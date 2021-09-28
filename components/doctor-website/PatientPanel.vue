@@ -3,18 +3,18 @@
     div.bg-container
       picture-source(
         image="Doctor Website - Foreground Hills and Clinics"
-        image-file-extension=".webp"
+        :image-file-extension="$useWebp? '.webp' : '.png'"
         custom-path="doctor-website/"
-        image-alt="Doctor Foreground"
+        image-alt="Clinic in the middle of hills artwork"
       ).bg
       v-container.content
         v-row(justify="center").text-center
           v-col(v-if="patientsTotal <= 10 && patientsTotal > 0" cols="3" md="1")
             picture-source(
               image="Patient 1"
-              image-file-extension=".webp"
+              :image-file-extension="$useWebp? '.webp' : '.png'"
               custom-path="doctor-website/"
-              image-alt="Patient"
+              image-alt="Patient vector art"
               image-width="75%"
             )
 </template>

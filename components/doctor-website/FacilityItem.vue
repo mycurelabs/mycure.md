@@ -30,10 +30,10 @@
         v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
         table
           tr(v-for="sched in clinicSchedules").font-weight-600
-            td(width="70") #[b.text-capitalize {{ formatDay(sched.day) }}]
-            td {{sched.startTime | morph-date-format('hh:mm A')}}
+            td(width="70") #[b.text-capitalize {{ formatDay(sched) }}]
+            td {{sched.startTime || sched.opening | morph-date-format('hh:mm A')}}
             td -
-            td {{sched.endTime | morph-date-format('hh:mm A')}}
+            td {{sched.endTime || sched.closing | morph-date-format('hh:mm A')}}
       br
       div(v-if="fullSchedules.length > 3").pl-3
         a(
@@ -42,35 +42,34 @@
         br
     div.card-actions.px-3.pb-3
       //- Online Consult
-      v-btn(
-        color="accent"
-        target="_blank"
-        rel="noopener noreferrer"
-        block
-        large
-        :disabled="!canBook"
-        :href="telehealthURL"
-      ).my-4.text-none.rounded-lg
-        v-icon(left) mdi-stethoscope
-        b Teleconsult
+      //- v-btn(
+      //-   color="accent"
+      //-   target="_blank"
+      //-   rel="noopener noreferrer"
+      //-   block
+      //-   large
+      //-   :disabled="!canOnlineBook"
+      //-   :href="telehealthURL"
+      //- ).my-4.text-none.rounded-lg
+      //-   v-icon(left) mdi-stethoscope
+      //-   b Teleconsult
 
       //- Physical Visit
       v-btn(
         color="secondary"
         target="_blank"
         rel="noopener noreferrer"
-        outlined
         block
         large
-        :disabled="!canBook"
+        :disabled="!canVisit"
         :href="visitURL"
       ).text-none.rounded-lg
         v-icon(left) mdi-calendar
-        b Clinic Visit
+        b Visit Clinic
 </template>
 
 <script>
-import { uniqWith } from 'lodash';
+import uniqWith from 'lodash/uniqWith';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import { formatAddress } from '~/utils/formats';
@@ -156,8 +155,12 @@ export default {
     };
   },
   computed: {
-    canBook () {
+    canOnlineBook () {
       return this.clinicId && this.doctorId && this.clinicSchedules?.length;
+    },
+    canVisit () {
+      return !!this.clinicSchedules?.length;
+      // return this.clinic?.types?.includes('doctor-booking' || 'clinic-booking');
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -188,14 +191,19 @@ export default {
   },
   watch: {
     clinicSchedulesExpanded (val) {
-      // Sort the schedules
       this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
-      if (!this.fullSchedules?.length) this.clinicSchedules = [];
+
+      if (!this.fullSchedules?.length) {
+        this.clinicSchedules = [];
+        return;
+      }
+      // Organize the schedules
       const groupedSchedules = uniqWith(this.fullSchedules
         .map((schedule) => {
-          const { day } = this.days.find(day => day.order === schedule.day);
+          const { day, order } = this.days.find(day => day.order === schedule.day);
           return {
             day,
+            order,
             ...schedule,
           };
         })
@@ -217,8 +225,9 @@ export default {
         window.location.href = url;
       }
     },
-    formatDay (scheduleDay) {
-      return this.days.find(day => day.order === scheduleDay).day;
+    formatDay (schedule) {
+      const comparingItem = typeof (schedule.day) === 'number' ? schedule.day : schedule.order;
+      return this.days.find(day => day.order === comparingItem).day;
     },
   },
 };

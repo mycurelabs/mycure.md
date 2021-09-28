@@ -3,7 +3,12 @@
     v-row(justify="center")
       generic-panel
         v-col(cols="12" md="4" align-self="center").text-center
-          img(width="80%" v-lazy="require('~/assets/images/our-story/mycure-web-our-story-paulette.png')" alt="Our Story Paulette")
+          img(
+            v-lazy="require('~/assets/images/our-story/mycure-web-our-story-paulette.png')"
+            alt="Our Story Paulette"
+            :width="$isMobile ? '205px' : ($isRegularScreen ? '240px' : '373px')"
+            :height="$isMobile ? '273.81px' : ($isRegularScreen ? '320.56px' : '498.21px')"
+          )
         v-col(cols="12" md="7" offset-md="1")
           h1(:class="headerClasses").mb-10 Meet Paulette
           div(:class="descriptionClasses")

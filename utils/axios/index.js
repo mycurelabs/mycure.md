@@ -261,6 +261,7 @@ export const signupFacility = async (opts) => {
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
+    if (opts.invitation) { payload.invitation = opts.invitation; };
     const { data } = await axios({
       method: 'POST',
       url: `${process.env.API_URL}/accounts`,
@@ -338,6 +339,24 @@ export const signupSpecialized = async (opts) => {
   }
 };
 
+export const refetchStripeToken = async (opts) => {
+  try {
+    // Get account data
+    const { data } = await axios({
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${opts.accessToken}`,
+      },
+      url: `${process.env.API_URL}/accounts/${opts.uid}`,
+    });
+    // Get stripe session id
+    return data?.organization?.subscription?.updatesPending?.stripeSession;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export const resendVerificationCode = async (opts) => {
   try {
     const payload = {
@@ -362,3 +381,4 @@ export * from './doctor-website';
 export * from './doctor-directory';
 export * from './clinics-website';
 export * from './organizations';
+export * from './website-metrics';

@@ -1,17 +1,17 @@
 <template lang="pug">
-  v-card(flat width="100%").mt-n16
+  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").mt-n16
     v-card-text.text-center
-      v-avatar(size="200").mt-n16.pa-3.elevation-5
+      v-avatar(size="200").mt-n16.elevation-5
         img(:src="picUrl")
     v-card-text
       h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
       br
       v-row(justify="center")
-        v-col(v-for="(metric, key) in metricMappings" :key="key" cols="12" md="3").text-center
+        v-col(v-for="(metric, key) in metricMappings" :key="key" cols="6" sm="3").text-center
           v-icon(:color="metric.color") {{ metric.icon }}
           br
           span(:class="`${metric.color}--text`").font-12.lh-title {{ metricData[metric.value] }} {{ metric.title }}
-        v-col(cols="12" md="3").text-center
+        v-col(cols="6" sm="3").text-center
           div.mb-6
             v-menu(
               v-model="socialMenu"
@@ -36,7 +36,7 @@
                   v-row(no-gutters)
                     v-col(cols="12")
                       div.d-flex
-                        share-network(network="facebook" :url="doctorLink" title="Doctor").social-image.pa-3
+                        share-network(network="facebook" v-bind="networkBindings").social-image.pa-3
                           v-icon(large color="white") mdi-facebook
                         share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
                           v-icon(large color="white") mdi-twitter
@@ -47,7 +47,12 @@
       br
       div.mb-6
         h2(:class="sectionTextClasses").secondary--text About Me
-        v-clamp(autoresize :max-lines="3") {{ bio || 'I am ready to accomodate you! How can I help you?' }}
+        template(v-if="!isAboutExpanded")
+          v-clamp(autoresize :max-lines="3") {{ bio }}
+          a(@click="isAboutExpanded = true").primary--text See more...
+        template(v-else)
+          p {{ bio }}
+          a(@click="isAboutExpanded = false").primary--text See less
       div(v-if="specialties.length").mb-6
         h2(:class="sectionTextClasses").secondary--text Specializations
         v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
@@ -62,17 +67,18 @@
           span {{ educ | format-school }}
           br
           span {{ educ.from }} - {{ educ.to }}
-      v-btn(
-        color="secondary"
-        block
-        depressed
-        x-large
-        :class="{ 'font-11' : $isMobile }"
-        :disabled="!isBookable"
-        @click="onBook"
-      ).text-none.rounded-xl
-        v-icon(left) mdi-calendar-blank
-        span Book an Appointment
+      //- TODO: Confirm what functionality
+      //- v-btn(
+      //-   color="secondary"
+      //-   block
+      //-   depressed
+      //-   x-large
+      //-   :class="{ 'font-11' : $isMobile }"
+      //-   :disabled="!isBookable"
+      //-   @click="onBook"
+      //- ).text-none.rounded-xl
+      //-   v-icon(left) mdi-calendar-blank
+      //-   span Book an Appointment
 </template>
 
 <script>
@@ -111,7 +117,7 @@ export default {
     },
     bio: {
       type: String,
-      default: null,
+      default: 'I am ready to accomodate you! How can I help you?',
     },
     specialties: {
       type: Array,
@@ -164,11 +170,11 @@ export default {
     return {
       // - UI State
       socialMenu: false,
+      isAboutExpanded: false,
     };
   },
   computed: {
     metricData () {
-      console.log('metrics', this.metrics);
       return {
         websiteVisits: this.metrics.websiteVisits || 0,
         patients: this.metrics.patients || 0,
@@ -178,7 +184,7 @@ export default {
     },
     mainTextClasses () {
       return classBinder(this, {
-        mobile: ['font-xs'],
+        mobile: ['font-xs', 'text-center'],
         regular: ['font-24'],
         wide: ['font-m'],
       });
@@ -203,9 +209,10 @@ export default {
     },
     networkBindings () {
       return {
-        title: this.windowTitle,
+        title: this.fullName ? `Consult with Dr. ${this.fullName}` : this.windowTitle,
         url: this.doctorLink,
         description: `Book a consultation with ${this.firstName} today!`,
+        media: this.picURL,
       };
     },
   },

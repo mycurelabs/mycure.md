@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import { fetchLearningCornerMaterials } from '~/utils/axios';
 
 export default {

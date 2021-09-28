@@ -49,6 +49,12 @@ const mapPackageInclusions = (plan, organizationType) => {
     });
   }
 
+  // Core Features
+  inclusions.push({
+    text: 'Core Features',
+    valid: true,
+  });
+
   // Classic Booking website
   inclusions.push({
     text: `${organizationType === 'doctor' ? 'Professional' : 'Classic Booking'} Website`,
@@ -62,12 +68,6 @@ const mapPackageInclusions = (plan, organizationType) => {
       valid: true,
     });
   }
-
-  // Core Features
-  inclusions.push({
-    text: 'Core Features',
-    valid: true,
-  });
 
   // Doctor specific only
   if (DOCTOR_TYPES.includes(organizationType)) {
@@ -158,29 +158,39 @@ const getMonthlyPrice = (pack, organizationType) => {
 
 const getAnnualMonthlyPrice = (pack, organizationType) => {
   if (!pack) return 0;
-  return Math.ceil((pack.plan?.amount || 0) / 12);
+  // return Math.ceil((pack.plan?.amount || 0) / 12);
+  return pack.plan?.amount || 0;
 };
 
 const isRecommended = (type, packageValue) => {
   if (DOCTOR_TYPES.includes(type)) return false;
-  if (type === 'diagnostic' && packageValue === 'platinum') return true;
+  if (type === 'diagnostic' && packageValue === 'premium') return true;
   if (type === 'clinic' && packageValue === 'premium') return true;
   return false;
+};
+
+const getPackageImage = (type, packageValue, isBooking = false) => {
+  if (isBooking) return PACKAGE_IMAGE[type];
+  return `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? ' White' : ''}`;
 };
 
 const PACKAGE_IMAGE = {
   lite: 'Essentials',
   premium: 'Premium',
   platinum: 'Platinum',
-  enterprise: 'Enterprise',
+  enterprise: 'Enterprise Blue',
+  // - BOOKING EXCLUSIVE
+  doctor: 'MYCURE Pricing Doctor',
+  clinic: 'MYCURE Pricing Outpatient',
+  diagnostic: 'MYCURE Pricing Diagnostics',
 };
 
 const PACKAGE_CURRENCY = {
-  php: '₱',
+  php: 'PHP',
   usd: 'USD',
 };
 
-const DOCTOR_TYPES = [
+export const DOCTOR_TYPES = [
   'doctor',
   'doctor-skin',
   'doctor-pedia',
@@ -220,7 +230,8 @@ export const getSubscriptionPackages = async ({ types }) => {
     $or: [
       { currency },
     ],
-    ...country.country_code === 'US' && { tags: ['us'] },
+    ...country.country_code === 'US' && { tags: { $in: ['us'] } },
+    ...country.country_code !== 'US' && { tags: { $nin: ['us'] } },
   });
   return items;
 };
@@ -234,7 +245,7 @@ export const getSubscriptionPackages = async ({ types }) => {
  *
  * @returns {Array} packages
  */
-export const getSubscriptionPackagesPricing = async (type) => {
+export const getSubscriptionPackagesPricing = async (type, { isBooking = false } = {}) => {
   const packages = await getSubscriptionPackages({ types: [type] });
   const plans = packages.filter(pack => pack.planInterval === 'month') || [];
 
@@ -253,15 +264,19 @@ export const getSubscriptionPackagesPricing = async (type) => {
       facilityType: type,
       title: `${packageValue.charAt(0).toUpperCase()}${packageValue.slice(1)}`,
       description: pack.description,
-      image: `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? ' White' : ''}`,
+      image: getPackageImage(type, packageValue, isBooking),
       isRecommended: isRecommended(type, packageValue),
       currency,
       monthlyPrice: getMonthlyPrice(pack, type),
       annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
       btnText: 'Get Started',
+      // Trial days
+      ...monthlyPackage?.trialDays && { monthlyTrial: monthlyPackage.trialDays },
+      ...annualPackage?.trialDays && { annualTrial: annualPackage.trialDays },
       // Doctor specific only
-      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
+      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? 1 : '/' },
+      // Sign-up query (except Doctor)
     };
   });
 
@@ -282,7 +297,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       { text: 'Multi-branch Functions', valid: true },
       { text: 'Customizable Features', valid: true },
     ],
-    btnText: 'Contact Us',
+    btnText: 'Chat With Us',
   };
 
   return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;

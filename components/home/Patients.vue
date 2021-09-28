@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="10").text-center
-          h1(:class="headerClasses").font-weight-semibold.primary--text.mb-10 Patients will love you even more
+          h2(:class="headerClasses").font-weight-semibold.primary--text.mb-10 Patients will love you even more
           v-row(justify="center")
             v-col(cols="12" md="8").text-center
               p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
@@ -12,18 +12,20 @@
           :key="key"
           cols="12"
           md="5"
-        ).text-center
-          v-card(flat)
-            v-img(
-              :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
-              :alt="feature.title"
-            )
-              v-card-title.mt-5
-                v-spacer
-                span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
-                v-spacer
-              v-card-text.text-center.px-8
-                strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ feature.description }}
+        ).text-center.ma-2
+          v-row(justify='center')
+            v-card(flat)
+              v-img(
+                alt="Mobile health application on Iphone"
+                :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
+                :width="$isMobile ? '430px' : '588px'"
+              )
+                v-card-title(:class="$isMobile ? 'pb-1' : 'mt-5' ")
+                  v-spacer
+                  span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
+                  v-spacer
+                v-card-text.text-center.px-8
+                  strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ feature.description }}
 </template>
 
 <script>
@@ -49,25 +51,13 @@ export default {
         image: 'Online Booking BG',
       },
     ];
+    this.headerClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {
       canUseWebp: false,
     };
   },
   computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-2xl'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
     appDescriptionClasses () {
       return classBinder(this, {
         mobile: ['font-s'],

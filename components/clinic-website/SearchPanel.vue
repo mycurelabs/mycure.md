@@ -21,7 +21,7 @@
 
 <script>
 // utils
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 export default {
   props: {
     value: {

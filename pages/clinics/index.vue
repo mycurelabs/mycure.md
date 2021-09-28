@@ -4,14 +4,13 @@
     usp(
       has-custom-background
       background-image="Clinics Landing Page"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Simplified workflows, faster results, better performance."
-      meta-title="MYCURE Clinic Management System"
+      meta-title="MYCURE Most Complete Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
-      parse-title="regular"
-      parse-meta-title="regular"
+      parse-title
+      parse-meta-title
       btn-text="Get Started"
-      btn-color="success"
       image="Clinics USP"
       :image-width="$isMobile ? '100%' : '90%'"
       custom-image-path="clinics/"
@@ -20,14 +19,22 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      panel-title="Your clinic system should not cause you more problems"
+      sub-title="Without correctly utilizing the technologies available today, you’re actually losing opportunities more than you think."
+      panel-description="MYCURE is a full featured, end-to-end solution that eliminates many of the challenges of manual processing. MYCURE’s solution encompasses the entire customer journey, from the time they book an appointment to the time they pay and leave, so no more disjointed or separate solutions for different aspects of the clinic operations. The digital solution eliminates the need for manual record keeping and the pushing paper documents to different departments."
+      :version="2"
+      :contents="stakesContent"
+      not-free
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       workflow
     //- 3rd panel
-    syncbase(version-two)
+    syncbase(:version="2")
     //- 4th panel
-    div.grey-bg.mx-n3
-      mycure-csi
+    //- div.grey-bg.mx-n3
+    //-   mycure-csi
     //- 5th panel
     generic-media-panel(
       :content="fifthPanel"
@@ -35,31 +42,54 @@
       :content-classes="descriptionClasses"
       hide-btn
     )
-      div(slot="additional-content").mt-10
+      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
-          rounded
           color="success"
           event-label="signup"
-          :block="$isMobile"
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="{'font-s': !$isMobile}"
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
         ).text-none
           v-icon(left) mdi-web
-          span Create my website
+          span.generic-button-text Create my website
     //- 6th panel
     div.grey-bg.mx-n3
       features(
         title="Customized for Your Specialty"
         description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
-        :class="panelMargins"
-        :icon-column-bindings="{ cols: 6, md: 3 }"
+        :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
+        :icon-column-bindings="{ cols: '6', md: '3' }"
         image-dir="clinics/"
-        icon-container-col-size="10"
         panel-height="70vh"
       )
+    //- 7.5
+    care
+    steps(
+      :steps="stepsContent"
+      not-free
+    )
+    //- 8th panel
+    think-long-term
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
+    v-divider.divider
+    //- 10th panel
+    //- pricing(
+    //-   type="clinic"
+    //-   title="Take the first step today"
+    //- ).mb-n3
+    pricing(
+      has-trial-option
+      type="clinic"
+      title="Take the first step today"
+      description="Choose the best plan for your clinic. Only pay for what you need."
+    ).mb-n3
+    //- 9th panel
+    call-to-action(:version="2" not-free)
     //- 7th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -67,67 +97,44 @@
         :content="practicingSoloPanel"
         :title-classes="[...headerClasses, 'white--text']"
         hide-btn
-        disable-parent-padding
       )
-        div(slot="additional-content").mt-10
+        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           mc-btn(
             depressed
-            rounded
             color="white"
-            :block="$isMobile"
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="{'font-s': !$isMobile}"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
             :to="{ name: 'doctors-clinics' }"
           ).text-none.primary--text
             v-icon(left) mdi-information-outline
-            span Learn More
-    //- 8th panel
-    think-long-term
-    v-divider.divider
-    //- 9th panel
-    call-to-action(:version="2")
-    //- 10th panel
-    pricing(
-      type="clinic"
-      title="Take the first step today"
-      description="Choose the best plan for your clinic. Only pay for what you need."
-      :pricing-details="pricingDetails"
-    ).mb-n3
+            span.generic-button-text Learn More
 </template>
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-// import MultipleBranches from '~/components/enterprise/multiple-branches';
-import MycureCsi from '~/components/commons/panels/MycureCsi';
-import Pricing from '~/components/commons/panels/Pricing';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import Workflow from '~/components/outpatient-clinics/Workflow';
-import SignupButton from '~/components/commons/SignupButton';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
-    CallToAction,
-    GenericMediaPanel,
-    Features,
-    // MultipleBranches,
-    MycureCsi,
-    Pricing,
-    Syncbase,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Features: () => import('~/components/commons/panels/Features'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Workflow,
-    SignupButton,
+    Workflow: () => import('~/components/outpatient-clinics/Workflow'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.features = [
@@ -167,62 +174,76 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.fifthPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
-      imageBindings: {
-        image: 'Expand your reach.webp',
-        customPath: 'commons/',
+    this.stakesContent = [
+      'Wasted Time and Resources',
+      'Cancelled Appointments',
+      'Long Patient Turn-around Time',
+      'Patient Dissatisfaction',
+      'Overworked Staff',
+      'Error Prone Reports',
+      'Increased Storage Costs',
+      'Lack of Compliance to Regulations',
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Clinic Management System.',
       },
-      contentAlign: 'left',
-    };
-    this.practicingSoloPanel = {
-      title: 'Practicing solo?',
-      imageBindings: {
-        image: 'Practicing Solo Ipad.webp',
-        imageWidth: '90%',
-        customPath: 'clinics/',
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account. MYCURE offers a wide range of modules and features.',
       },
-      contentAlign: 'left',
-    };
+      {
+        title: 'Onboarding',
+        description: 'Start onboarding other users. You can also watch tutorials or book a training session with a MYCURE specialist.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of clinic that  utilizes modern tools to optimize efficiency and improve operations.  In order to be that way, you need a solution that will integrate critical processes into a simple workflow that benefits everyone.',
+      'The problem is it’s hard to find an all-in-one system that is easy to use, affordable and customized to your practice, which makes you feel shortchanged in your current provider.  We believe that clinics like yours should never have to deal with this. We’ve talked to hundreds of health facilities and understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE as the most complete Clinic Management System that is flexible and customizable to fit your exact needs.',
+    ];
     this.pricingDetails = CLINICS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
   },
   head () {
     return headMeta({
-      title: 'MYCURE Clinic Management System',
-      description: 'MYCURE enables clinics with complex operations to have simplified workflows to be much more efficient, increase in revenue, and build.',
+      title: 'MYCURE EMR and Outpatient Multispecialty Clinic Management System',
+      description: 'MYCURE provides clinics with simple and customized workflows based on the specialization of the clinics',
       socialBanner: require('~/assets/images/banners/OG Clinics.png'),
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
+    fifthPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-5': !this.$isMobile };
+    practicingSoloPanel () {
+      return {
+        title: 'Practicing solo?',
+        imageBindings: {
+          image: 'Practicing Solo Ipad.webp',
+          imageAlt: 'Woman video call in Ipad tablet',
+          customPath: 'clinics/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '212.58px' : (this.$isRegularScreen ? '354.6px' : '547.15px'),
+        },
+        contentAlign: 'left',
+      };
     },
   },
   mounted () {

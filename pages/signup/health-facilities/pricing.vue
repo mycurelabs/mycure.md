@@ -1,37 +1,52 @@
 <template lang="pug">
   v-container
-    v-row(justify="center" align="start")
-      v-col(cols="12" md="12")
-        div.d-flex.align-center.justify-center
-          strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
-          v-switch(
-            v-model="paymentIntervalSwitch"
-            inset
-            color="primary"
-          )
-          strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-    v-row(justify="center" align="center")
-      template(v-for="bundle in packages")
-        v-col(
-          v-if="!bundle.requireContact"
-          cols="12"
-          md="3"
-        )
-          pricing-card(
-            :bundle="bundle"
-            :payment-interval="paymentInterval"
-          ).elevation-3
-            template(slot="card-btn")
-              v-btn(
-                rounded
-                block
-                depressed
-                :color="bundle.isRecommended ? 'white' : 'primary'"
-                :loading="loading"
-                :disabled="loading"
-                :class="{'primary--text': bundle.isRecommended}"
-                @click="selectBundle(bundle)"
-              ).text-none Choose {{bundle.title}}
+    v-overlay(v-if="loading.page" :value="loading.page")
+      v-progress-circular(
+        indeterminate
+        size="64"
+      )
+    template(v-else)
+      v-row(justify="center" align="center")
+        v-col(cols="12").text-center
+          h1.font-m Choose a&nbsp;
+            span.primary--text pricing plan&nbsp;
+            span(v-if="isTrial") before beginning your trial
+      v-row(justify="center" align="start")
+        v-col(cols="12" md="12")
+          div.d-flex.align-center.justify-center
+            strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+            v-switch(
+              v-model="paymentIntervalSwitch"
+              inset
+              color="primary"
+            )
+            strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+      v-row(justify="center" align="center")
+        v-col(cols="12" md="10")
+          v-row(justify="center" align="center")
+            template(v-for="bundle in packages")
+              v-col(
+                v-if="!bundle.requireContact"
+                cols="10"
+                md="4"
+                xl="3"
+              )
+                pricing-card(
+                  :bundle="bundle"
+                  :payment-interval="paymentInterval"
+                  height="850"
+                ).elevation-3
+                  template(slot="card-btn")
+                    v-btn(
+                      rounded
+                      block
+                      depressed
+                      :color="bundle.isRecommended ? 'white' : 'primary'"
+                      :loading="loading.button"
+                      :disabled="loading.button"
+                      :class="{'primary--text': bundle.isRecommended}"
+                      @click="selectBundle(bundle)"
+                    ).text-none Choose {{bundle.title}}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"
@@ -45,6 +60,11 @@
           v-icon(style="font-size: 40px;").error--text mdi-close
           h2 Error!
           p Checkout failed to proceed!
+          v-btn(
+            depressed
+            color="success"
+            @click="retryPayment"
+          ).text-none Retry Now
     //- Error
     v-dialog(v-model="errorDialog" width="400" persistent)
       v-card
@@ -56,12 +76,11 @@
           v-spacer
           v-btn(color="success" depressed :to="{ name: 'signup-health-facilities' }").text-none Back
           v-spacer
-    v-dialo
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
         v-card-text.pa-5
           h2.mb-5 Confirmation
-          p(v-if="isPaid") You will be redirected to our payment partner. Do you want to proceed?
+          p(v-if="isPaid") You will be redirected to our payment partner to input your card details. Do you want to proceed?
           p(v-else) Do you want to proceed creating a FREE account with MYCURE?
         v-card-actions
           v-spacer
@@ -77,14 +96,18 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
 import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
 import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
-import { signupFacility } from '~/utils/axios';
+import {
+  signupFacility,
+  // signin,
+} from '~/utils/axios';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
@@ -101,7 +124,10 @@ export default {
     //   doctor:
     // };
     return {
-      loading: false,
+      loading: {
+        page: false,
+        button: false,
+      },
       paymentErrorDialog: false,
       errorDialog: false,
       errorMessage: 'Checkout process failed to proceed!',
@@ -113,11 +139,15 @@ export default {
       selectedPricing: {},
       emailVerificationMessageDialog: false,
       sessionId: '',
+      isTrial: false,
     };
   },
   computed: {
     step1LocalStorageData () {
       return process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+    },
+    preBundle () {
+      return this.$route.query.plan;
     },
     email () {
       return this.step1LocalStorageData?.email;
@@ -174,57 +204,93 @@ export default {
   },
   async mounted () {
     // Check if step 1 accomplished
+    this.loading.page = true;
     if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
     if (this.paymentState === 'cancel') {
-      this.paymentErrorDialog = true;
+      this.handlePaymentCancel();
     }
+
+    // - Note: URL query parameters are strings
+    this.isTrial = this.$route.query.trial === 'true' || this.$route.query.trial === true;
+
+    if (this.preBundle) {
+      await this.submit();
+      return;
+    }
+
+    // For other types
     this.packages = await getSubscriptionPackagesPricing(this.facilityType);
+    this.loading.page = false;
   },
   methods: {
     selectBundle (bundle) {
       this.selectedBundle = bundle;
       this.confirmPaymentDialog = true;
     },
+    /*
+      The prebundle is meant for proceeding to stripe without selecting from the packages
+      Used when there is already a pre-selected plan from website pricing panels.
+    */
+    retryPayment () {
+      this.confirmPaymentDialog = true;
+    },
     async submit () {
       try {
-        this.loading = true;
+        this.loading.button = true;
         this.confirmPaymentDialog = false;
-        const bundle = this.selectedBundle;
+        const bundle = this.preBundle || this.selectedBundle;
         if (bundle.requireContact) {
           this.sendCrispMessage();
           return;
         }
-
-        // Build payload
+        // Build payload, omit non-allowed values
         const payload = {
-          ...this.step1LocalStorageData,
+          ...omit(this.step1LocalStorageData, ['trial', 'organizationType']),
         };
 
-        const paid = bundle.monthlyPrice > 0 || bundle.annualMonthlyPrice > 0;
+        // Subscription URLS
+        const subscription = {
+          stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
+          stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+        };
 
-        if (paid) {
-          let packageId;
-          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
-          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
-          // Build organization payload
+        if (this.preBundle) {
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
             subscription: {
-              package: packageId,
-              stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
-              stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+              ...subscription,
+              package: this.$route.query.plan,
               customer: {
                 stripeEmail: this.email,
               },
+              ...this.isTrial && { trial: true },
             },
           };
+        } else {
+          const paid = bundle.monthlyPrice > 0 || bundle.annualMonthlyPrice > 0;
+          if (paid) {
+            let packageId;
+            if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
+            if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+            // Build organization payload
+            payload.organization = {
+              ...this.step1LocalStorageData?.organization,
+              subscription: {
+                ...subscription,
+                package: packageId,
+                customer: {
+                  stripeEmail: this.email,
+                },
+                ...this.isTrial && { trial: true },
+              },
+            };
+          }
         }
 
         const user = await signupFacility(payload);
-
         if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
           this.sessionId = user.organization.subscription.updatesPending.stripeSession;
           process.browser && window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
@@ -248,10 +314,29 @@ export default {
           }
           this.errorMessage = 'The email or mobile number is already taken!';
         };
+        if (e.message === 'Invitation not found') this.errorMessage = 'Invitation code is not valid!';
         this.errorDialog = true;
       } finally {
-        this.loading = false;
+        this.loading.button = false;
       }
+    },
+    // Payment
+    handlePaymentCancel () {
+      this.paymentErrorDialog = true;
+      // - Reload route quries thru local storage
+      this.$router.replace({
+        query: {
+          trial: this.step1LocalStorageData.trial,
+          type: this.step1LocalStorageData.organizationType,
+          referralCode: this.step1LocalStorageData.invitation,
+        },
+      });
+
+      // Load pending session Id by logging in
+      // const { email, password } = this.step1LocalStorageData;
+      // const loginData = await signin({ email, password });
+      // this.sessionId = await refetchStripeToken(loginData);
+      this.sessionId = process.browser && JSON.parse(localStorage.getItem('signup:stripe:session-id'));
     },
     // MISC
     getInclusionColor (valid) {

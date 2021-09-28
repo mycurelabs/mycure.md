@@ -1,77 +1,43 @@
 <template lang="pug">
   v-app-bar(
-    height="50"
+    height="70"
     app
-    dark
+    color="#343A40"
     elevate-on-scroll
   ).nav-bar
-    v-container
+    v-container.px-0
       v-row(justify="center")
-        v-col(cols="12" md="11")
-          div.d-flex
-            nuxt-link(to="/")
-              img(
-                src="~/assets/images/MYCURE Logo - white.png"
-                width="120"
-                alt="MYCURE logo"
-              )
-            template(v-if="!$isMobile")
+        generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          v-col.pa-0.ml-n3
+            v-row(:justify="{'center': !$isMobile}").px-0.mx-0
+              v-col(cols="1")
+                nuxt-link(to="/")
+                  img(
+                    src="~/assets/images/MYCURE Logo - white.png"
+                    width="120px"
+                    height="34.46px"
+                    alt="MYCURE logo"
+                    :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
+                  )
               v-spacer
-              v-btn(
-                v-if="!$isMobile"
-                text
-                large
-                depressed
-                to="/"
-              ).text-none.font-12 For Providers
-              //- TO DO: Will add once support page is available
-              //- v-btn(
-              //-   text
-              //-   depressed
-              //-   to="/support"
-              //- ).text-none Support
-              v-btn(
-                text
-                depressed
-                large
-                @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.mr-2.font-12 #[span.font-weight-semibold LOG IN]
-              v-btn(
-                v-if="!$isMobile"
-                depressed
-                color="success"
-                tile
-                large
-                @click="openPxPortal(pxPortalSignUp)"
-              ).text-none.font-12.font-weight-semibold #[span GET STARTED]
-            v-menu(
-              v-else
-              bottom
-              left
-              large
-            )
-              template(v-slot:activator="{ on, attrs }")
-                v-btn(icon v-bind="attrs" v-on="on")
-                  v-icon mdi-menu
-              v-list(style="width: 250px")
-                v-list-item
+              v-col(cols="1" :class="!$isMobile ? 'pt-7' : 'pt-6'").pr-0
+                v-row(justify="end")
                   v-btn(
-                    text
-                    block
-                    href="/"
-                  ) For Providers
-                //- v-list-item
-                  //- v-btn(text block) Support
-                v-list-item
-                  v-btn(
-                    text
-                    block
-                    @click="openPxPortal(pxPortalSignUp)"
-                  ) Get Started Free
+                    color="primary"
+                    depressed
+                    rounded
+                    :large="$isWideScreen"
+                    @click="openPxPortal(pxPortalLogIn)"
+                  ).text-none.mr-2
+                    v-icon(small) mdi-account-outline
+                    span.font-weight-thin.font-12 Login
 </template>
 
 <script>
 export default {
+  components: {
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+  },
   props: {
     isServices: {
       type: Boolean,
@@ -111,6 +77,6 @@ export default {
 
 <style scoped>
 .nav-bar {
-  background-color: rgba(0,0,0,0.8);
+  background-color: #343A40;
 }
 </style>

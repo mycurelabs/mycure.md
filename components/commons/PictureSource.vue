@@ -7,8 +7,9 @@
       :type="`image/${source}`"
     )
     img(
-      v-lazy="require(`~/assets/images/${this.customPath}${this.image}${this.imageFileExtension}`)"
+      v-lazy="require(`~/assets/images/${this.customPath}${this.image}.png`)"
       :width="imageWidth"
+      :height="imageHeight"
       :alt="imageAlt"
       :class="imageClasses"
       :style="imageStyles"
@@ -52,7 +53,7 @@ export default {
      * @type {String}
      */
     image: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     /**
@@ -65,11 +66,19 @@ export default {
     },
     /**
      * Width of image
-     * @type {String}
+     * @type {String, Number}
      */
     imageWidth: {
-      type: String,
+      type: [String, Number],
       default: '100%',
+    },
+    /**
+     * Height of image
+     * @type {String, Number}
+     */
+    imageHeight: {
+      type: [String, Number],
+      default: 'auto',
     },
     /**
      * Alt value of image

@@ -5,103 +5,120 @@
     //- 2nd panel
     care
     //- 3rd panel
+    stakes(
+      panel-title="Your clinic system should not cause you more problems"
+      panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
+      :version="1"
+      :contents="stakesContent"
+      not-free
+    )
+    //- 4th panel
     div.simple-container.mx-n3
       simple
-    //- 4th panel
-    patients
     //- 5th panel
+    patients
+    //- 6th panel
     div.grey-bg.mx-n3
       tools(:version="2")
-    //-6th panel
-    syncbase
     //- 7th panel
+    syncbase
+    //- 8th panel
     div.grey-bg.mx-n3
       hipaa(
         :header-classes="headerClasses"
         :description-classes="descriptionClasses"
       )
+    //- 9th panel
+    steps(:steps="stepsContent" not-free)
+    //- 10th panel
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- CTA
     div.cta-container.mx-n3.mb-n3
       join-next-generation
       div.cta-image.text-center
         picture-source(
           image="CTA"
-          image-file-extension=".webp"
+          :image-file-extension="$useWebp? '.webp' : '.png'"
           custom-path="home/"
           image-alt="CTA Home"
-          :image-width="!$isMobile ? '30%' : '70%'"
+          :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
+          :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
           :image-styles="{ marginBottom: '-7px' }"
         )
 </template>
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import Care from '~/components/home/Care';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import Hipaa from '~/components/booking/Hipaa';
-import JoinNextGeneration from '~/components/home/JoinNextGeneration';
-import Patients from '~/components/home/Patients';
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
-import Simple from '~/components/home/Simple';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import Tools from '~/components/home/Tools';
 
 export default {
   components: {
-    Care,
-    GenericMediaPanel,
-    Hipaa,
-    JoinNextGeneration,
-    Patients,
+    Care: () => import('~/components/home/Care'),
+    GenericMediaPanel: () => import('~/components/commons/generic-media-panel'),
+    Hipaa: () => import('~/components/booking/Hipaa'),
+    JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
+    Patients: () => import('~/components/home/Patients'),
     PictureSource,
     SevenWonders,
-    Simple,
-    Syncbase,
-    Tools,
+    Simple: () => import('~/components/home/Simple'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    Tools: () => import('~/components/home/Tools'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.stakesContent = [
+      {
+        leftTitle: 'You spend more on tools that you don’t need',
+        leftDescription: 'Lack of needed reports and functionalities lead to problems in your operations. This is wasted time and lost revenue.',
+        rightTitle: 'You’ll have unhappy patients',
+        rightDescription: 'Disorganized workflows, long waiting time, incomplete documents result in unsatisfied patients.',
+      },
+      {
+        leftTitle: 'Your staff gets frustrated with more work',
+        leftDescription: 'IT solutions should simplify your people’s jobs, not make it more complicated. Poorly implemented solutions need to get replaced.',
+        rightTitle: 'You’re unsure of your compliance to laws',
+        rightDescription: 'With strict laws and heavy penalties on data privacy and security, you have to ensure that compliance is met in your health facility.',
+      },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Choose a Solution',
+        description: 'Select the application suited to your practice or facility.',
+      },
+      {
+        title: 'Create an Account',
+        description: 'This activates your Health Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize the system to fit your needs.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
+      'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
+      'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
+    ];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
   },
   head () {
     return headMeta({
-      title: 'MYCURE | Making Healthcare Accessible to All',
-      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+      title: 'MYCURE | Enterprise-Grade Healthcare Solutions',
+      description: 'MYCURE is a suite of cost-effective healthcare management solutions designed for doctors, clinics, diagnostic labs, and hospitals.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
-  },
-  computed: {
-    panelMargins () {
-      return { 'mt-10': !this.$isWideScreen, 'mt-12': this.$isWideScreen };
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     this.loading = false;

@@ -3,30 +3,35 @@
     v-row(justify="center" align="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" :md="titleColSize").text-center
-          strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+          span(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
           slot(name="title")
             h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
         v-col(cols="12" :md="contentColSize").text-center.py-3
-          div(:class="descriptionClasses").font-open-sans.font-gray
+          div
             slot(name="description")
-              p {{ description }}
-        v-col(cols="12" :md="iconContainerColSize")
+              p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
+        v-col(cols="12")
           v-row(justify="center")
-            slot(name="items")
-              v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
-                picture-source(
-                  v-if="item.icon"
-                  :extension-exclusive="extensionExclusive"
-                  :custom-path="imageDir"
-                  :image="item.icon"
-                  :image-alt="item.title"
-                  :image-file-extension="item.iconExtension || '.png'"
-                  :image-width="!$isMobile ? imageWidth : imageWidthMobile"
-                )
-                br
-                h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
-                p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
-                nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
+            v-col(cols="12" :md="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
+              v-row(justify="center")
+                slot(name="items")
+                  v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
+                    v-row(justify="center")
+                      v-col(v-bind="eachIconCol" :class="{'py-1': !$isMobile}")
+                        picture-source(
+                          v-if="item.icon"
+                          :extension-exclusive="extensionExclusive"
+                          :custom-path="imageDir"
+                          :image="item.icon"
+                          :image-alt="item.alt || item.title"
+                          image-file-extension=".png"
+                          :image-width="imageWidth ? imageWidth : defaultImageSize"
+                          :image-height="imageHeight ? imageHeight : defaultImageSize"
+                        )
+                        br
+                        h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
+                        p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
+                        nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
         slot(name="additional-content")
 </template>
 
@@ -62,11 +67,11 @@ export default {
     },
     imageWidth: {
       type: [String, Number],
-      default: '40%',
+      default: undefined,
     },
-    imageWidthMobile: {
+    imageHeight: {
       type: [String, Number],
-      default: '60%',
+      default: undefined,
     },
     extensionExclusive: {
       type: Boolean,
@@ -93,7 +98,7 @@ export default {
     // - Space for icons container
     iconContainerColSize: {
       type: [Number, String],
-      default: '12',
+      default: undefined,
     },
     // - Space for each icon
     iconColumnBindings: {
@@ -101,7 +106,6 @@ export default {
       default: () => ({
         cols: 6,
         md: 4,
-        xl: 3,
       }),
     },
     // - Height of panel
@@ -109,35 +113,21 @@ export default {
       type: String,
       default: '50vh',
     },
+    // - Space to occupy for each icon given the available space
+    eachIconCol: {
+      type: Object,
+      default: () => ({
+        cols: 10,
+      }),
+    },
+  },
+  data () {
+    this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
+    return {};
   },
   computed: {
-    titleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        { 'primary--text': this.primaryTitle },
-      ];
-    },
-    metaTitleClasses () {
-      return [
-        classBinder(this, {
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-    },
     itemTextClasses () {
       return [
         classBinder(this, {
@@ -146,6 +136,12 @@ export default {
           wide: ['font-s'],
         }),
       ];
+    },
+    defaultImageSize () {
+      return this.$isMobile ? '77px' : (this.$isRegularScreen ? '90px' : '120px');
+    },
+    defaultIconContainerSize () {
+      return this.$isWideScreen ? '5' : '7';
     },
   },
 };

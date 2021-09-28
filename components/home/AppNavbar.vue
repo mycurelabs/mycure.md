@@ -14,20 +14,41 @@
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - white.png"
-                  width="120"
                   alt="MYCURE logo"
-                ).mt-1.mr-1
+                  width="120px"
+                  height="34.46px"
+                ).mt-1.mr-4
               template(v-if="!$isMobile")
-                v-btn(
-                  v-for="(nav, key) in navs"
-                  text
-                  depressed
-                  tile
-                  large
-                  :key="key"
-                  @click="onNavClick(nav)"
-                ).text-none.font-12
-                  span.font-weight-medium {{ nav.name }}
+                template(v-for="(nav, key) in navs")
+                  v-menu(v-if="nav.isMenu" offset-y)
+                    template(v-slot:activator="{ on }")
+                      v-btn(
+                        v-on="on"
+                        text
+                        depressed
+                        tile
+                        large
+                      ).text-none.font-12.font-weight-medium
+                        | {{ nav.name }}
+                        v-icon(small right) mdi-chevron-down
+                    v-list
+                      v-list-item(
+                        v-for="(item, key) in nav.menuItems"
+                        :key="key"
+                        :to="{ name: item.route }"
+                        exact-path
+                      )
+                        v-list-item-title {{ item.name }}
+                  v-btn(
+                    v-else
+                    text
+                    depressed
+                    tile
+                    large
+                    :key="key"
+                    :to="{ name: nav.route }"
+                  ).text-none.font-12
+                    span.font-weight-medium {{ nav.name }}
                 //- v-btn(
                 //-   text
                 //-   depressed
@@ -72,10 +93,24 @@
           v-icon mdi-close
       v-list(dense nav)
         template(v-for="nav in navs")
+          v-list-group(v-if="nav.isMenu" dark).elevation-0
+            template(v-slot:activator)
+              v-list-item-title(dark) {{ nav.name }}
+            v-list
+              v-list-item(
+                v-for="(item, key) in nav.menuItems"
+                :key="key"
+                dense
+                link
+                exact-path
+                :to="{ name: item.route }"
+              )
+                v-list-item-title(dark) {{ item.name }}
           v-list-item(
+            v-else
             dense
             link
-            @click="onNavClick(nav)"
+            :to="{ name: nav.route }"
           )
             v-list-item-title {{ nav.name }}
       v-divider
@@ -95,7 +130,6 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
 export default {
@@ -111,21 +145,32 @@ export default {
       },
       {
         name: 'Clinics',
-        route: 'clinics',
+        isMenu: true,
+        menuItems: [
+          { name: 'Outpatient Clinics', route: 'clinics' },
+          { name: 'Skin Clinics', route: 'clinics-skin' },
+          { name: 'Dental Clinics', route: 'clinics-dental' },
+          { name: 'Corporate Clinics', route: 'clinics-corporate' },
+        ],
       },
       {
         name: 'Diagnostics',
-        route: 'diagnostics',
+        isMenu: true,
+        menuItems: [
+          { name: 'Diagnostic Centers', route: 'diagnostics' },
+          { name: 'OFW Clinics', route: 'diagnostics-ofw' },
+          { name: 'Mobile Labs', route: 'diagnostics-mobile-labs' },
+        ],
       },
       // TODO: re-enable
       // {
       //   name: 'Hospitals',
       //   route: 'hospitals',
       // },
-      // {
-      //   name: 'Telehealth',
-      //   route: 'telehealth',
-      // },
+      {
+        name: 'Telehealth',
+        route: 'telehealth',
+      },
       {
         name: 'Booking',
         route: 'booking',
@@ -142,13 +187,7 @@ export default {
   },
   methods: {
     onNavClick (nav) {
-      if (nav.route === this.$route.name && nav.panel) {
-        VueScrollTo.scrollTo(`#${nav.panel}`, 500, {
-          easing: 'ease',
-          ...nav.panelOffset && { offset: nav.panelOffset },
-        });
-        return;
-      }
+      if (!nav.route) return;
       this.$router.push({
         name: nav.route,
         params: {

@@ -3,13 +3,14 @@
     title="Add Protection and Flexibility"
     meta-title="MYCURE CSI"
     image-dir="csi/"
-    image-width="50%"
+    image-width="95.63px"
+    image-height="95.63px"
     icon-container-col-size="8"
     :items="items"
     hide-learn-more
   )
     template(slot="description")
-      p Using MYCURE makes your practice&nbsp;
+      p(:class="descriptionClasses").font-open-sans.font-gray Using MYCURE makes your practice&nbsp;
         br(v-if="!$isMobile")
         | Compliant, Secure, and Interoperable
 </template>
@@ -41,6 +42,7 @@ export default {
         route: 'csi',
       },
     ];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {};
   },
 };

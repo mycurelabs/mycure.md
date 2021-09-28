@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="900" height="900" persistent)
+  v-dialog(v-model="dialog" width="600" height="800" persistent)
     v-card
       v-toolbar(flat)
         v-spacer
-        h2.primary--text Choose a Service
+        h2 Choose a Service
         v-spacer
         v-btn(
           icon
@@ -15,27 +15,33 @@
         v-container
           v-row
             v-col(cols="6" v-for="(service, key) in services" :key="key").text-center
-              v-card(height="100%").elevation-3.service-card
-                v-card-text
-                  img(
-                    :src="require(`~/assets/images/home/${service.image}.png`)"
-                    :alt="service.image"
-                    width="50%"
+              v-hover(
+                v-slot="{ hover }"
+                open-delay="100"
+              )
+                v-card(
+                  hover
+                  :color="hover ? 'primary' : 'white'"
+                  :class="{'white--text': hover}"
+                  @click="onServiceSelect(service.type)"
+                ).service-card
+                  picture-source(
+                    :image="service.image"
+                    :image-alt="service.alt"
+                    :image-width="$isMobile ? '50%' : '100%'"
+                    :image-file-extension="$useWebp? '.webp' : '.png'"
+                    custom-path="doctor-website/"
                   )
-                v-card-actions.px-3.card-actions
-                  v-btn(
-                    depressed
-                    block
-                    :color="service.color"
-                    :disabled="service.btnBindings.disabled"
-                    @click="onServiceSelect(service.type)"
-                  ).text-none
-                    v-icon(left) {{ service.btnBindings.icon }}
-                    | {{ service.btnBindings.text }}
+                  v-card-text.text-center
+                    h3(:class="hover ? 'white--text' : 'secondary--text'") {{ service.text }}
 </template>
 
 <script>
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: {
+    PictureSource,
+  },
   props: {
     value: {
       type: Boolean,
@@ -45,24 +51,18 @@ export default {
   data () {
     this.services = [
       {
-        btnBindings: {
-          text: 'Teleconsult',
-          icon: 'mdi-stethoscope',
-          // - Temporary
-          disabled: true,
-        },
+        text: 'Teleconsult',
         type: 'telehealth',
         color: 'accent',
-        image: 'Telehealth',
+        image: 'Teleconsult',
+        alt: 'Doctor talking to a patient online artwork',
       },
       {
-        btnBindings: {
-          text: 'Clinic Visit',
-          icon: 'mdi-calendar',
-        },
+        text: 'Clinic Visit',
         type: 'physical',
         color: 'secondary',
-        image: 'Booking',
+        image: 'Clinic Visit',
+        alt: 'Doctor talking to a patient in a hospital room',
       },
     ];
     return {};
@@ -88,8 +88,7 @@ export default {
 
 <style scoped>
 .service-card {
-  position: relative;
-  padding-bottom: 30px;
+  border: 2px solid #04B1E7;
 }
 
 .card-actions {

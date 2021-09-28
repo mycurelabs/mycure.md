@@ -1,60 +1,65 @@
 <template lang="pug">
-  div.footer
-    v-container
-      v-row(align="center" no-gutters)
-        v-col(
-          :class="{ 'text-center' : $isMobile }"
-          cols="12"
-          md="5"
-        ).white--text
-          div.d-flex
-            p.mt-1 #[b Powered by]
-            img(
-              height="30"
-              src="~/assets/images/mycure-footer-logo.png"
-              alt="MYCURE"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).ml-2
-          span &copy; 2016 - {{ new Date().getFullYear() }}
-          span #[br(v-if="$isMobile")] All Rights Reserved.
-        v-col(v-if="$isMobile" cols="12")
-          hr.mb-5
-        v-spacer
-        v-col
-          div(:class="{'flex-column': $isMobile}").d-flex
-            v-btn(
-              to="/terms"
-              text
-              color="secondary"
-            ).text-none.letter-spacing-normal Terms of Use
-            span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-            v-btn(
-              to="/privacy-policy"
-              text
-              color="secondary"
-            ).text-none.letter-spacing-normal Privacy Policy
-            span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-            v-btn(
-              text
-              color="secondary"
-              @click="toggleChat"
-            ).text-none.letter-spacing-normal Send us your feedback
-          div(:class="{'flex-column': $isMobile}").d-flex
-             v-btn(
-              to="/directory/doctors"
-              text
-              color="secondary"
-            ).text-none.letter-spacing-normal.font-weight-bold See more Doctors
-             span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-             v-btn(
-              href="https://doctors.mycure.md"
-              text
-              color="secondary"
-            ).text-none.letter-spacing-normal Create my own Doctor Website
+  v-footer(dark color="#343A40")
+    v-container.my-3
+      v-row(justify="center")
+        generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          v-row(align="center" no-gutters)
+            v-col(
+              :class="{ 'text-center' : $isMobile }"
+              cols="12"
+              md="5"
+            ).white--text
+              div(:class="{'text-center justify-center': $isMobile}").d-flex
+                p.mt-1 #[b Powered by]
+                img(
+                  src="~/assets/images/MYCURE Logo - white.png"
+                  width="120px"
+                  height="34.46px"
+                  alt="MYCURE logo"
+                ).ml-3
+              span &copy; 2016 - {{ new Date().getFullYear() }}
+              span #[br(v-if="$isMobile")] All Rights Reserved.
+            v-col(v-if="$isMobile" cols="12")
+              hr.mb-5
+            v-spacer
+            v-col
+              div(:class="{'flex-column': $isMobile}").d-flex
+                v-btn(
+                  to="/terms"
+                  text
+                  color="secondary"
+                ).text-none.letter-spacing-normal Terms of Use
+                span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+                v-btn(
+                  to="/privacy-policy"
+                  text
+                  color="secondary"
+                ).text-none.letter-spacing-normal Privacy Policy
+                span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+                v-btn(
+                  text
+                  color="secondary"
+                  @click="toggleChat"
+                ).text-none.letter-spacing-normal Send us your feedback
+              div(:class="{'flex-column': $isMobile}").d-flex
+                  v-btn(
+                  to="/directory/doctors"
+                  text
+                  color="secondary"
+                ).text-none.letter-spacing-normal.font-weight-bold See more Doctors
+                  span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+                  v-btn(
+                  href="https://doctors.mycure.md"
+                  text
+                  color="secondary"
+                ).text-none.letter-spacing-normal Create my own Doctor Website
 </template>
 
 <script>
 export default {
+  components: {
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+  },
   props: {
     absolute: {
       type: Boolean,

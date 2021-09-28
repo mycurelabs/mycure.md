@@ -1,6 +1,16 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { normalizePopulated } from '~/utils/services';
 
+/**
+ *
+ * @param {SDK} sdk
+ * @param {Object} opts
+ * @param {String} opts.facility
+ * @param {String} opts.type
+ * @param {String} opts.subtype
+ * @param {String} opts.limit
+ * @param {String} opts.skip
+ */
 export const fetchClinicServices = async (sdk, opts) => {
   const query = {
     ...opts.facility && { facility: opts.facility },

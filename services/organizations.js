@@ -1,10 +1,11 @@
-import { pick, pickBy } from 'lodash';
+import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 
 export const fetchOrganizations = async (sdk, opts) => {
   const query = {
     $limit: opts.limit,
     $skip: opts.skip,
-    ...pickBy(pick(opts, ['createdBy', 'type', '$populated']), Boolean),
+    ...pickBy(pick(opts, ['createdBy', 'type', '$populate']), Boolean),
   };
 
   if (opts.searchText) {

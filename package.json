@@ -1,6 +1,6 @@
 {
   "name": "web-main",
-  "version": "4.21.0",
+  "version": "6.9.1",
   "description": "MYCURE Main Website",
   "author": "Jofferson R. Tiquez & Marc Almond Valleza",
   "private": true,
@@ -14,10 +14,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@bachdgvn/vue-otp-input": "^1.0.8",
     "@mycure/sdk-js": "^5.32.8",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/robots": "^2.5.0",
+    "@nuxtjs/sitemap": "^2.4.0",
     "@vue-stripe/vue-stripe": "^4.2.4",
     "amplitude-js": "^8.1.0",
     "animejs": "^3.2.1",
@@ -26,12 +29,13 @@
     "libphonenumber-js": "^1.9.15",
     "nuxt": "^2.15.6",
     "nuxt-webfontloader": "^1.1.0",
-    "resize-detector": "^0.3.0",
     "redirect-ssl": "^3.0.0",
+    "resize-detector": "^0.3.0",
+    "sass": "^1.35.2",
+    "sass-loader": "^10",
+    "vue-browser-geolocation": "^1.8.0",
     "vue-carousel": "^0.18.0",
     "vue-clamp": "^0.4.0",
-    "vue-cookie-law": "^1.13.3",
-    "vue-fragment": "^1.5.2",
     "vue-gtag": "^1.16.1",
     "vue-lazyload": "^1.3.3",
     "vue-media-query-mixin": "^0.1.0",
@@ -39,8 +43,7 @@
     "vue-observe-visibility": "^1.0.0",
     "vue-scrollto": "^2.20.0",
     "vue-slick-carousel": "^1.0.6",
-    "vue-social-sharing": "^3.0.7",
-    "vue-typer": "^1.2.0"
+    "vue-social-sharing": "^3.0.7"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.3",
@@ -57,6 +60,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
     "jest": "^26.6.3",
+    "node-sass": "^6.0.1",
     "nuxt-animejs": "^1.2.1",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",

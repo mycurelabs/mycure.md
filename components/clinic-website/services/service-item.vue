@@ -17,6 +17,13 @@
               div(v-for="(schedule, key) in previewSchedules" :key="key")
                 v-icon(color="black" small left) mdi-calendar-blank
                 span.text-capitalize {{ formatIndividualSchedule(schedule) }}
+                v-icon(
+                  v-if="getProviders(schedule).length"
+                  color="primary"
+                  small
+                  right
+                  @click="openProvidersDialog(schedule)"
+                ) mdi-information-outline
                 br
               br
               a(@click="scheduleExpanded = true").grey--text More Schedules >
@@ -45,7 +52,7 @@
           i(v-else) No coverages available
         v-col(v-if="!isDoctor && !readOnly").grow.text-right
           h3.info--text Availability
-            v-icon(:color="isAvailable ? 'primary' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
+            v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
           br
           br
           h2(v-if="price").black--text
@@ -92,19 +99,46 @@
       v-card
         v-card-text
           service-schedules(
+            non-mf-schedule
             :items="groupedSchedules"
-            :non-mf-schedule="nonMfSchedule"
           )
+    //- Providers Dialog
+    v-dialog(v-model="providersDialog" width="350")
+      v-toolbar(flat)
+        v-toolbar-title.primary--text Available Doctors
+        v-spacer
+        v-btn(icon @click="closeProvidersDialog")
+          v-icon mdi-close
+      v-card
+        v-card-text
+          v-list
+            v-list-item(v-for="(provider, key) in previewProviders" :key="key")
+              v-list-item-avatar
+                v-avatar(size="25")
+                  img(
+                    :src="provider.picURL || doctorAvatar"
+                    alt="MYCURE Doctor Default Avatar"
+                    width="100%"
+                  )
+              v-list-item-title {{ provider | format-name }}
 </template>
 
 <script>
 import { format } from 'date-fns';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
+import { formatName } from '~/utils/formats';
+import DefaultAvatar from '~/assets/images/commons/MYCURE Default Avatar.png';
 
 export default {
   components: {
     ServiceSchedules,
+  },
+  filters: {
+    formatName (provider) {
+      if (!provider?.name) return 'CONCEALED Doctor';
+      return `Dr. ${formatName(provider.name || {}, 'firstName middleInitial lastName generationalSuffix')}`;
+    },
   },
   props: {
     item: {
@@ -138,8 +172,12 @@ export default {
       { text: 'Sat', value: 6 },
       { text: 'Sun', value: 0 },
     ];
+    this.doctorAvatar = DefaultAvatar;
     return {
       scheduleExpanded: false,
+      // Providers Dialog
+      providersDialog: false,
+      previewProviders: [],
     };
   },
   computed: {
@@ -159,10 +197,10 @@ export default {
     price () {
       return this.item?.price;
     },
-    nonMfSchedule () {
-      // - Doctor schedules automatically do not use mf_schedule
-      return this.item?.nonMfSchedule || this.isDoctor;
-    },
+    // nonMfSchedule () {
+    //   // - Doctor schedules automatically do not use mf_schedule
+    //   return this.item?.nonMfSchedule || this.isDoctor;
+    // },
     fullSchedules () {
       return this.item?.scheduleData || this.item?.schedules || [];
     },
@@ -172,7 +210,7 @@ export default {
       return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
     },
     previewSchedules () {
-      return this.todaySchedules?.slice(0, 3);
+      return this.groupedSchedules?.slice(0, 3) || [];
     },
     todaySchedules () {
       if (!this.fullSchedules?.length) {
@@ -193,12 +231,9 @@ export default {
       const timeNow = format(Date.now(), 'HH:mm');
 
       const availableNow = this.todaySchedules.find((schedule) => {
-        const opening = this.nonMfSchedule ? schedule.startTime : schedule.opening;
-        const closing = this.nonMfSchedule ? schedule.endTime : schedule.closing;
-        const openingHour = format(opening, 'HH:mm');
-        const closingHour = format(closing, 'HH:mm');
-
-        return timeNow >= openingHour && timeNow <= closingHour;
+        const startTime = format(schedule.startTime, 'HH:mm');
+        const endTime = format(schedule.endTime, 'HH:mm');
+        return timeNow >= startTime && timeNow <= endTime;
       });
 
       return availableNow;
@@ -234,27 +269,37 @@ export default {
   methods: {
     formatTodaySchedule (schedule) {
       if (!schedule) return 'Unavailable at this hour';
-      if (this.nonMfSchedule) {
-        const today = schedule.day;
-        const day = this.days.find(day => day.value === today);
-        const times = `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
-        return `${day?.text} (${times})`;
-      }
-      const day = schedule.day;
-      const times = `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
-      return `${day} (${times})`;
+      const today = schedule.day;
+      const day = this.days.find(day => day.value === today);
+      const times = `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
+      return `${day?.text} (${times})`;
+      // const day = schedule.day;
+      // const times = `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
+      // return `${day} (${times})`;
     },
     formatIndividualSchedule (schedule) {
-      if (this.nonMfSchedule) {
-        const currentDay = schedule.day;
-        const day = this.days.find(day => day.value === currentDay) || '';
-        return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
-      }
-      return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
+      const currentDay = schedule.day;
+      const day = this.days.find(day => day.value === currentDay) || '';
+      return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
+      // return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
     },
     formatDay (day) {
-      if (this.nonMfSchedule) return this.days.find(item => item.value === day)?.text || '';
-      return day;
+      return this.days?.find(item => item.value === day)?.text || '';
+      // return day;
+    },
+    getProviders (schedule) {
+      if (this.isDoctor) return [];
+      if (!['clinical-consultation', 'clinical-procedure'].includes(schedule.meta?.serviceType)) return [];
+      const { providers } = schedule;
+      return providers || [];
+    },
+    openProvidersDialog (schedule) {
+      this.previewProviders = this.getProviders(schedule);
+      this.providersDialog = true;
+    },
+    closeProvidersDialog () {
+      this.providersDialog = false;
+      this.previewProviders = [];
     },
   },
 };

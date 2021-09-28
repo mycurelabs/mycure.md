@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 export default {
   props: {
     // - Container fluid
@@ -37,23 +36,9 @@ export default {
         description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
       },
     ];
+    this.headerClasses = ['mc-title-set-2', { 'pt-5': this.$isMobile }];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {};
-  },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-s', 'pt-5'],
-        regular: ['font-m'],
-        wide: ['font-l'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
   },
 };
 </script>

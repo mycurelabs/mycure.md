@@ -1,0 +1,349 @@
+// Width Presets
+$min-xs: 0px;
+$min-sm: 600px;
+$min-md: 1015px;
+$min-lg: 1264px;
+$min-xl: 1904px;
+
+$max-xs: $min-sm - 1;
+$max-sm: $min-md - 1;
+$max-md: $min-lg - 1;
+$max-lg: $min-xl - 1;
+
+// Font Presets
+$font-xs: 16px;
+$font-s: 1.25rem;
+$font-m: 2rem;
+$font-l: 3rem;
+$font-xl: 3.75rem;
+$font-2xl: 6rem;
+
+$letter-spacing: -0.5px;
+
+// Creates custom font-class
+@mixin font-n($max-font-size) {
+  @for $i from 10 through $max-font-size {
+    .font-#{$i} { font-size: #{$i}px !important; }
+  }
+}
+@include font-n(64);
+
+.font-2xl {
+  font-size: $font-2xl !important;
+  line-height: 1.5;
+  letter-spacing: $letter-spacing;
+}
+.font-xl {
+  font-size: $font-xl !important;
+  line-height: 1;
+  letter-spacing: $letter-spacing;
+}
+.font-l {
+  font-size: $font-l !important;
+  line-height: 1.5;
+  letter-spacing: $letter-spacing;
+}
+.font-m {
+  font-size: $font-m !important;
+  letter-spacing: $letter-spacing;
+}
+.font-s {
+  font-size: $font-s !important;
+}
+.font-xs {
+  font-size: $font-xs !important;
+}
+
+/* Font Styles */
+.font-poppins {
+  font-family: 'Poppins', 'sans-serif' !important;
+}
+.font-open-sans {
+  font-family: 'Open Sans', 'sans-serif' !important;
+}
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
+
+/* Font Color */
+.font-gray {
+  /* color: rgba(0,0,0,0.5); */
+  color: #787878;
+}
+.font-usp-primary {
+  color: #033F58;
+}
+
+/*
+ Font sizer to apply specific fonts
+ args: xs, s, m, l, xl, 2xl
+*/
+
+@mixin font-sizer($size) {
+  letter-spacing: $letter-spacing;
+  line-height: 1.5;
+  @if ($size == 2xl) {
+    font-size: $font-2xl !important;
+  } @else if ($size == xl) {
+    font-size: $font-xl !important;
+  } @else if ($size == l) {
+    font-size: $font-l !important;
+  } @else if ($size == m) {
+    font-size: $font-m !important;
+  } @else if ($size == s) {
+    font-size: $font-s !important;
+  } @else {
+    font-size: $font-xs !important;
+  }
+}
+
+/* ===== ADD GLOBAL CSS SETS HERE ===== */
+
+/*
+Sample Template
+
+classBinder(this, {
+  mobile: ['font-m'],
+  regular: ['font-l'],
+  wide: ['font-xl'],
+});
+
+*/
+
+/*
+  USP Main title Classes
+
+  Note: Feel free to replace this in accordance to the sets
+*/
+
+.mc-usp-title {
+  // - Mobile
+  @media (max-width: $max-sm) {
+    @include font-sizer(s);
+    text-align: center;
+  }
+  // - Regular
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  // - Wide
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
+.mc-title-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
+.mc-title-set-2 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(s);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(l);
+  }
+}
+.mc-title-set-3 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(2xl);
+  }
+}
+
+.mc-title-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
+.mc-content-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+.mc-content-set-2 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+}
+.mc-content-set-3 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+.mc-content-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+
+.mc-metatitle-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+  }
+}
+
+.mc-button-set-1 {
+  @media (max-width: $max-sm) {
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+  }
+}
+
+.mc-subheader-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(s);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(l);
+  }
+}
+.mc-subheader-set-2 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(l);
+  }
+}
+.mc-subheader-set-3 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+}
+
+.mc-subheader-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+  }
+}
+
+.mc-list-title-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
+.mc-list-content-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+.line-height-reducer {
+  line-height: 110% !important;
+}
+
+.generic-button-text {
+  @media (max-width: $max-sm) {
+    font-size: 18px;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    font-size: 18px;
+  }
+  @media (min-width: $min-xl) {
+    font-size: 22px;
+  }
+  letter-spacing: 0px;
+}
+
+.otp-input {
+  width: 40px !important;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
