@@ -279,6 +279,8 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
+import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
@@ -446,7 +448,18 @@ export default {
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
+        // - Check if there is pending session
         const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+        const sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+        if (sessionId) {
+          const queryOps = pickBy(pick(localStorageData, ['trial', 'plan', 'from']), Boolean);
+          this.$router.push({
+            name: 'signup-health-facilities-pricing',
+            query: queryOps,
+          });
+          return;
+        }
+
         if (localStorageData) {
           this.firstName = localStorageData.firstName;
           this.lastName = localStorageData.lastName;
