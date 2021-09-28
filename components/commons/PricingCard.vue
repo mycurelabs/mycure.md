@@ -229,6 +229,7 @@ export default {
       const queryOps = {
         trial: this.isTrialAvailable(bundle),
         plan: this.paymentInterval === 'month' ? bundle.monthlyPackageId : bundle.annualPackageId,
+        ...bundle.facilityType && { type: bundle.facilityType },
       };
       return queryOps;
     },
