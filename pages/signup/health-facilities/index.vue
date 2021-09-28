@@ -396,10 +396,9 @@ export default {
     isDoctor () {
       return this.roles.includes('doctor');
     },
-    // pricingBundles () {
-    //   if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
-    //   return this.pricingConstants.slice(0, 3);
-    // },
+    preBundle () {
+      return this.$route.query.plan;
+    },
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
@@ -529,6 +528,9 @@ export default {
           }
         }
 
+        // Route queries
+        const { trial, plan, from } = this.$route.query;
+
         // Map account payload
         const payload = {
           firstName: this.firstName,
@@ -541,8 +543,10 @@ export default {
           roles: this.roles,
           invitation: this.invitation,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
-          // - To be omitted in actual payload
-          ...this.$route.query.trial && { trial: true },
+          // - To be omitted in actual submit in step 2
+          ...trial && { trial: true },
+          ...plan && { plan },
+          ...from && { from },
           organizationType: this.facilityType,
         };
 
