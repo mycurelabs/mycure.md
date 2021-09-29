@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(
         hide-btn
-        :disable-parent-padding="disableParentPadding"
+        disable-parent-padding
       )
         v-card(width="100%" :class="$isMobile ? 'pa-3' : 'pa-10' ").card-bg.rounded-xl.pt-16
           v-card-text.white--text

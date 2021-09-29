@@ -279,6 +279,8 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
+import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import headMeta from '~/utils/head-meta';
@@ -404,10 +406,9 @@ export default {
     isDoctor () {
       return this.roles.includes('doctor');
     },
-    // pricingBundles () {
-    //   if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
-    //   return this.pricingConstants.slice(0, 3);
-    // },
+    preBundle () {
+      return this.$route.query.plan;
+    },
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
@@ -455,7 +456,18 @@ export default {
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
+        // - Check if there is pending session
         const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+        const sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+        if (sessionId) {
+          const queryOps = pickBy(pick(localStorageData, ['trial', 'plan', 'from']), Boolean);
+          this.$router.push({
+            name: 'signup-health-facilities-pricing',
+            query: queryOps,
+          });
+          return;
+        }
+
         if (localStorageData) {
           this.firstName = localStorageData.firstName;
           this.lastName = localStorageData.lastName;
@@ -537,6 +549,9 @@ export default {
           }
         }
 
+        // Route queries
+        const { trial, plan, from } = this.$route.query;
+
         // Map account payload
         const payload = {
           firstName: this.firstName,
@@ -549,8 +564,10 @@ export default {
           roles: this.roles,
           invitation: this.invitation,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
-          // - To be omitted in actual payload
-          ...this.$route.query.trial && { trial: true },
+          // - To be omitted in actual submit in step 2
+          ...trial && { trial: true },
+          ...plan && { plan },
+          ...from && { from },
           organizationType: this.facilityType,
         };
 

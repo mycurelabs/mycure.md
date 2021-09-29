@@ -281,7 +281,7 @@ export const getSubscriptionPackagesPricing = async (type, { isBooking = false }
   });
 
   const ENTERPRISE = {
-    facilityType: type,
+    facilityType: 'clinic',
     value: 'enterprise',
     title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
