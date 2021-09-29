@@ -78,6 +78,7 @@
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
             v-autocomplete(
+              v-if="appBar"
               v-model="searchObject.serviceType"
               placeholder="Service Type"
               solo
@@ -91,14 +92,25 @@
               :items="serviceTypes"
               @change="onSearch(false)"
             )
+            v-text-field(
+              v-else
+              v-model="searchObject.serviceType"
+              placeholder="Service Type"
+              prepend-inner-icon="mdi-filter"
+              outlined
+              dense
+              :disabled="dialog"
+              @click="dialog = true"
+            )
           //- Specialization
           v-col(
             v-if="showSpecializationsField" cols="12" md="5" lg="4"
             :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
           )
             v-autocomplete(
+              v-if="appBar"
               v-model="searchObject.specializations"
-              label="Specializations"
+              placeholder="Specializations"
               prepend-inner-icon="mdi-filter"
               solo
               outlined
@@ -123,6 +135,41 @@
                   v-if="index === 1"
                   class="grey--text text-caption"
                 ) (+{{ searchObject.specializations.length - 1 }} others)
+            v-text-field(
+              v-else
+              v-model="specialtiesDisplay"
+              placeholder="Specialties"
+              prepend-inner-icon="mdi-filter"
+              outlined
+              dense
+              :disabled="dialog"
+              @click="dialog = true"
+            )
+    v-dialog(v-model="dialog" width="80%" height="100%")
+      v-card.pa-5
+        v-card-title
+          h2 Filters
+        v-card-subtitle.pt-3.pb-0
+          v-text-field(
+            v-model="searchTagText"
+            placeholder="Search"
+            outlined
+            dense
+          )
+        v-card-text
+          div(v-if="mode === 'organization'" v-for="text in serviceTypes")
+            v-list
+              v-list-item(
+                v-if="searchTagText ? text.name.includes(searchTagText) || text.name.includes(capitalizeLetter(searchTagText)) || text.name.includes(decapitalizeLetter(searchTagText)) : true"
+                @click="searchObject.serviceType = text.value"
+              ) {{ text.name }}
+          div(v-if="mode === 'account'" v-for="text in specialtiesList")
+            v-checkbox(
+              v-if="searchTagText ? text.includes(searchTagText) || text.includes(capitalizeLetter(searchTagText)) || text.includes(decapitalizeLetter(searchTagText)) : true"
+              v-model="searchObject.specializations"
+              :value="text"
+              :label="text"
+            )
 </template>
 
 <script>
@@ -201,6 +248,8 @@ export default {
       debouncedResultsSearch: debounce((event) => { this.onSearch(true, event); }, 500),
       debouncedSuggestionsSearch: debounce(this.searchSuggestions, 500),
       searchDummy: null,
+      dialog: false,
+      searchTagText: null,
     };
   },
   computed: {
@@ -240,6 +289,14 @@ export default {
         this.$emit('update:locationSwitch', val);
       },
     },
+    specialtiesDisplay () {
+      const output = this.searchObject.specializations[0] || null;
+      let etc = '';
+      if (this.searchObject.specializations[1]) {
+        etc = ` +${this.searchObject.specializations.length - 1} others`;
+      }
+      return output ? `${output}${etc}` : null;
+    },
   },
   mounted () {
     this.loading.initial = false;
@@ -254,8 +311,10 @@ export default {
     onModeChange (val) {
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
+      this.searchObject.serviceType = null;
       if (val === 'account' && !isEmpty(this.searchObject.location)) this.searchObject.location = null;
       this.selectedMode = val;
+      this.searchTagText = null;
     },
     /**
      * @param {Boolean} allowableSearch - if true, continue with search regardless of action requirement
@@ -328,6 +387,9 @@ export default {
     },
     capitalizeLetter (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    decapitalizeLetter (string) {
+      return string.charAt(0).toLowerCase() + string.slice(1);
     },
     tagFormat (string) {
       let finArray = [];
