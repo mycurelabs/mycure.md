@@ -147,7 +147,7 @@ export default {
       return process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
     },
     preBundle () {
-      return this.$route.query.plan;
+      return this.$route.query.plan || this.step1LocalStorageData.plan;
     },
     email () {
       return this.step1LocalStorageData?.email;
@@ -203,8 +203,8 @@ export default {
     },
   },
   async mounted () {
-    // Check if step 1 accomplished
     this.loading.page = true;
+    // Check if step 1 accomplished
     if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
@@ -214,7 +214,9 @@ export default {
     }
 
     // - Note: URL query parameters are strings
-    this.isTrial = this.$route.query.trial === 'true' || this.$route.query.trial === true;
+    this.isTrial = this.$route.query.trial === 'true' ||
+      this.$route.query.trial === true ||
+      this.step1LocalStorageData.trial === true;
 
     if (this.preBundle) {
       await this.submit();
@@ -246,11 +248,18 @@ export default {
           this.sendCrispMessage();
           return;
         }
-        // Build payload, omit non-allowed values
+        // Build payload, omit non-allowed values. These are mostly route query values that were stored
+        const omitKeys = ['trial', 'organizationType', 'plan', 'from'];
         const payload = {
-          ...omit(this.step1LocalStorageData, ['trial', 'organizationType']),
+          ...omit(this.step1LocalStorageData, omitKeys),
         };
 
+        // Check if there is pending session Id
+        this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+        if (this.sessionId) {
+          this.$refs.checkoutRef.redirectToCheckout();
+          return;
+        }
         // Subscription URLS
         const subscription = {
           stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
@@ -262,7 +271,7 @@ export default {
             ...this.step1LocalStorageData?.organization,
             subscription: {
               ...subscription,
-              package: this.$route.query.plan,
+              package: this.preBundle,
               customer: {
                 stripeEmail: this.email,
               },
@@ -293,7 +302,9 @@ export default {
         const user = await signupFacility(payload);
         if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
           this.sessionId = user.organization.subscription.updatesPending.stripeSession;
-          process.browser && window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
+          if (process.browser) {
+            window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
+          }
           this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
@@ -307,7 +318,8 @@ export default {
         console.error(e);
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
-          this.sessionId = process.browser && window.localStorage.getItem('signup:stripe:session-id');
+          this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+          // - Continue pending checkout session
           if (this.sessionId) {
             this.$refs.checkoutRef.redirectToCheckout();
             return;
@@ -326,9 +338,11 @@ export default {
       // - Reload route quries thru local storage
       this.$router.replace({
         query: {
-          trial: this.step1LocalStorageData.trial,
-          type: this.step1LocalStorageData.organizationType,
-          referralCode: this.step1LocalStorageData.invitation,
+          ...this.preBundle && { plan: this.preBundle },
+          ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
+          ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
+          ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
+          type: this.organizationTypes0,
         },
       });
 
@@ -336,7 +350,7 @@ export default {
       // const { email, password } = this.step1LocalStorageData;
       // const loginData = await signin({ email, password });
       // this.sessionId = await refetchStripeToken(loginData);
-      this.sessionId = process.browser && JSON.parse(localStorage.getItem('signup:stripe:session-id'));
+      this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
     },
     // MISC
     getInclusionColor (valid) {

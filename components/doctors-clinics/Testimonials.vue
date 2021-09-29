@@ -3,7 +3,7 @@
     v-row(justify="center").py-16
       generic-panel(
         hide-btn
-        :disable-parent-padding="disableParentPadding"
+        disable-parent-padding
       )
         v-col(cols="12").pa-0
           v-row(justify="center")
