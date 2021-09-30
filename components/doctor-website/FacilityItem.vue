@@ -186,11 +186,11 @@ export default {
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=telehealth` : null;
+      return !this.isPreviewMode ? `${pxPortalUrl}/create-appointment/step-1?doctor=${this.doctorId}&clinic=${this.clinicId}&type=telehealth` : null;
     },
     visitURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=physical` : null;
+      return !this.isPreviewMode ? `${pxPortalUrl}/create-appointment/step-1?doctor=${this.doctorId}&clinic=${this.clinicId}&type=physical` : null;
     },
     clinicId () {
       return this.clinic?.id;

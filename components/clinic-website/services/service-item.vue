@@ -68,30 +68,6 @@
             :href="bookServiceURL"
           ).text-none.mt-1.font-12 Book Now
       v-row(justify="end")
-        v-col(
-          v-if="isDoctor && !readOnly"
-          cols="12"
-          md="4"
-        )
-          v-btn(
-            color="success"
-            depressed
-            block
-            :href="bookTeleconsultURL"
-            :disabled="!hasTeleconsult"
-          ).text-none.font-12
-            v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
-            span Online Consult
-          br
-          v-btn(
-            color="info"
-            depressed
-            block
-            :disabled="!isAvailable"
-            :href="bookTeleconsultURL"
-          ).text-none.font-12
-            v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
-            span Visit Doctor
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="600")
       v-toolbar(flat)
@@ -259,13 +235,13 @@ export default {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.id;
-      return `${pxPortalUrl}/appointments/step-1?service=${id}&organization=${this.organization}`;
+      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}`;
     },
     bookTeleconsultURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.uid;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&organization=${this.organization}&type=telehealth`;
+      return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=telehealth`;
     },
   },
   methods: {

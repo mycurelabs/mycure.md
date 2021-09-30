@@ -182,7 +182,7 @@ export default {
     bookService () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const bookURL = `${pxPortalUrl}/appointments/step-1?service=${this.selectedService}&organization=${this.organization}`;
+      const bookURL = `${pxPortalUrl}/create-appointment/step-1?service=${this.selectedService}&clinic=${this.organization}`;
       window.open(bookURL);
     },
     hasSchedules (item) {
