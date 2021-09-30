@@ -328,6 +328,11 @@ export default {
       if (customSearchText) this.searchObject.searchString = customSearchText;
       this.searchObject.mode = this.selectedMode;
       this.searchObject.location = this.isOrganization ? this.location : null;
+      // - Record search event
+      this.$gtag.event('search', {
+        event_category: 'directory',
+        event_label: `${this.selectedMode} search`,
+      });
       this.$emit('search', {
         ...this.searchObject,
       });

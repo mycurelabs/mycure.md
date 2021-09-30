@@ -110,6 +110,8 @@ export default {
   },
   mounted () {
     this.loading.page = false;
+    // Record page view
+    this.$gtag.pageview('/directory');
     // Check if already has location
     this.checkLocation();
   },
