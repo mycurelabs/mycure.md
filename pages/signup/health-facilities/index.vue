@@ -148,7 +148,7 @@
                   outlined
                   readonly
                   append-icon="$dropdown"
-                  :items="facilityTypes"
+                  :items="availableFacilityTypes"
                   :rules="isRequired"
                   :error="errorFacilityType"
                   :error-messages="errorMessagesFacilityType"
@@ -271,7 +271,7 @@
     //- Choose Facility Type Dialog
     choose-facility-type(
       v-model="chooseFacilityTypeDialog"
-      :facility-types="facilityTypes"
+      :facility-types="availableFacilityTypes"
       @select="onFacilityTypeSelect($event)"
     )
 </template>
@@ -403,6 +403,12 @@ export default {
     });
   },
   computed: {
+    availableFacilityTypes () {
+      // Diagnostic is hidden in telehealth signup
+      return this.$route.query.from === 'telehealth'
+        ? [...this.facilityTypes].slice(0, 2)
+        : this.facilityTypes;
+    },
     isDoctor () {
       return this.roles.includes('doctor');
     },
@@ -481,11 +487,13 @@ export default {
 
         // Query params handling
         if (this.$route.query.email) this.email = this.$route.query.email;
+
         if (this.$route.query.type) {
           this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
         } else {
           this.chooseFacilityTypeDialog = true;
         }
+
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
         if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
       } catch (e) {
@@ -524,33 +532,35 @@ export default {
           ...orgProps,
         };
 
+        // Route queries
+        const { trial, plan, from } = this.$route.query;
+
         // NOTE: See SignupButton component
         // for the logic of query params being
         // passed to the url before going to
         // signup page.
-        if (this.$route.query.from === 'booking') {
+        // `from` has value of either 'telehealth' or 'booking'
+        if (from && ['telehealth', 'booking'].includes(from)) {
           if (this.$route.query.type === 'doctor' || this.facilityType === 'doctor') {
             organizationPayload.types = [
               'doctor',
-              'doctor-booking',
+              `doctor-${from}`,
             ];
           }
           if (this.$route.query.type === 'clinic' || this.facilityType === 'clinic') {
             organizationPayload.types = [
               'clinic',
-              'clinic-booking',
+              `clinic-${from}`,
             ];
           }
-          if (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic') {
+          // Diagnostic telehealth not yet available business-wise
+          if (from === 'booking' && (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic')) {
             organizationPayload.types = [
               'diagnostic',
-              'diagnostic-booking',
+              `diagnostic-${from}`,
             ];
           }
         }
-
-        // Route queries
-        const { trial, plan, from } = this.$route.query;
 
         // Map account payload
         const payload = {

@@ -161,9 +161,7 @@ export default {
     facilityType () {
       const typesMap = {
         'doctor-booking': 'doctor',
-        'doctor-telehealth': 'doctor',
         'clinic-booking': 'clinic',
-        'clinic-telehealth': 'clinic',
         doctor: 'doctor',
         clinic: 'clinic',
         diagnostic: 'diagnostic',

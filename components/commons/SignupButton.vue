@@ -12,7 +12,6 @@ const healthFacilityTypeMap = {
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
   diagnostics: 'diagnostic',
-  telehealth: 'doctor-telehealth',
   'clinics-skin': 'clinic',
   'clinics-dental': 'clinic',
   'clinics-ofw': 'clinic',
@@ -51,6 +50,9 @@ export default {
       if (this.facilityType) route.query.type = this.facilityType;
       if (this.pricingBundle) {
         route.query.subscription = this.pricingBundle;
+      }
+      if (routeName === 'telehealth') {
+        route.query.from = 'telehealth';
       }
       if (routeName === 'booking') {
         route.query.from = 'booking';
