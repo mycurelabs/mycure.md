@@ -66,6 +66,7 @@
             block
             :disabled="!isAvailable"
             :href="bookServiceURL"
+            @click="trackBooking"
           ).text-none.mt-1.font-12 Book Now
       v-row(justify="end")
     //- Schedule dialog
@@ -278,6 +279,13 @@ export default {
     closeProvidersDialog () {
       this.providersDialog = false;
       this.previewProviders = [];
+    },
+    // Google analytics
+    trackBooking () {
+      this.$gtag.event('book', {
+        event_category: 'clinic-website',
+        event_label: `book-appointment-clinic-${this.organization}-service-${this.item.id}`,
+      });
     },
   },
 };

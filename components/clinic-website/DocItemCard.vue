@@ -72,6 +72,7 @@
           large
           :href="!readOnly && bookTeleconsultURL"
           :disabled="!hasTeleconsult"
+          @click="trackBooking('telehealth')"
         ).text-none.font-12.mx-1
           v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
           span Online Consult
@@ -81,6 +82,7 @@
           large
           :disabled="!isAvailable"
           :href="!readOnly && bookPhysicalURL"
+          @click="trackBooking('physical')"
         ).text-none.font-12.mx-1
           v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
           span Visit Doctor
@@ -249,6 +251,13 @@ export default {
     isClinicOpen (dayValue) {
       const matchedDay = this.groupedSchedules.find(schedule => (schedule.day || schedule.order) === dayValue);
       return !isNil(matchedDay);
+    },
+    // - Google Analytics
+    trackBooking (type) {
+      this.$gtag.event('book', {
+        event_category: 'clinic-website',
+        event_label: `book-${type}-clinic-${this.organization}-doctor-${this.doctor.uid}`,
+      });
     },
   },
 };
