@@ -229,6 +229,8 @@ export default {
     await this.fetchMetrics();
     // Fetch Doctor info
     this.fetchDoctorInfo();
+    // Record Page view for Google analytics
+    this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
   },
   methods: {
     async fetchDoctorInfo (page = 1) {

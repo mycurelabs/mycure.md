@@ -67,7 +67,12 @@ export default {
   methods: {
     onOrgSelect (organization) {
       const pxpURL = `${process.env.PX_PORTAL_URL}/appointments/step-1?doctor=${this.doctorId}&organization=${organization.id}&type=${this.appointmentType}`;
-      window.open(pxpURL, '_blank', 'noopener noreferrer');
+      // Track booking for GA
+      this.$gtag.event('book', {
+        event_category: 'doctor-website',
+        event_label: `book-${this.appointmentType}-organization-${organization}-doctor-${this.doctorId}`,
+      });
+      window.open(pxpURL);
       this.dialog = false;
     },
     isOrgBookable (organization) {
