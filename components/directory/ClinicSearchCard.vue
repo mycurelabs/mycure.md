@@ -32,20 +32,21 @@
             span {{ address || 'No address' }}
         div.d-flex.white--text.mt-2
           div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, badgeSize, {'primary': clinicOpen(day.value)}]").badge
+            div(:class="[textFontSize, badgeSize, {'primary': isClinicOpen(day.value)}]").badge
               | {{ day.text }}
     v-spacer
-    v-card-actions.pa-0
-      v-col
-        v-row(justify="end")
-          v-btn(
-            color="primary"
-            :small="!$isWideScreen"
-            rounded
-            :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
-            @click="dialogBox = true"
-          ).text-none.elevation-0.font-weight-light.mt-2
-            b Book a Visit
+    slot(name="card-actions")
+      v-card-actions.pa-0
+        v-col
+          v-row(justify="end")
+            v-btn(
+              color="primary"
+              :small="!$isWideScreen"
+              rounded
+              :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+              @click="dialogBox = true"
+            ).text-none.elevation-0.font-weight-light.mt-2
+              b Book a Visit
     v-dialog(
       v-model="dialogBox"
       :scrollable="false"
@@ -178,7 +179,7 @@ export default {
     visitWebsite () {
       this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
     },
-    clinicOpen (value) {
+    isClinicOpen (value) {
       if (this.fullSchedules.length) {
         if (value < this.startDay) return false;
         if (value > this.endDay) return false;
@@ -205,8 +206,8 @@ export default {
   max-width: 180px;
 }
 .badge-size {
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
 }
 .badge-size-mobile {
   height: 20px;

@@ -11,15 +11,26 @@
             v-col(cols="12" v-if="!availableOrganizations.length").text-center
               h3.font-open-sans.font-gray.font-weight-regular There are no available facilities at this time.
             template(v-else)
-              v-col(cols="12" md="4" v-for="(org, key) in availableOrganizations" :key="key")
-                v-card(height="100%" @click="onOrgSelect(org)").elevation-3
-                  v-card-text
-                    v-container
-                      v-row
-                        v-col(cols="12").text-center
-                          v-avatar(size="125")
-                            img(:src="org.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png')")
-                          h3.mt-3 {{ org.name }}
+              v-col(cols="12" md="4" lg="4" xl="3" v-for="(org, key) in availableOrganizations" :key="key")
+                //- v-card(height="100%" @click="onOrgSelect(org)").elevation-3
+                //-   v-card-text
+                //-     v-container
+                //-       v-row
+                //-         v-col(cols="12").text-center
+                //-           v-avatar(size="125")
+                //-             img(:src="org.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png')")
+                //-           h3.mt-3 {{ org.name }}
+                choose-facility-card(:organization="org")
+                  v-card-actions(slot="card-actions").pa-0
+                    v-spacer
+                    v-btn(
+                      color="primary"
+                      :small="!$isWideScreen"
+                      rounded
+                      :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+                      @click="onOrgSelect(org)"
+                    ).text-none.elevation-0.font-weight-light.mt-2
+                      b Book
       v-card-actions
         v-spacer
         v-btn(
@@ -30,7 +41,12 @@
 </template>
 
 <script>
+import ChooseFacilityCard from '~/components/directory/ClinicSearchCard';
+
 export default {
+  components: {
+    ChooseFacilityCard,
+  },
   props: {
     value: {
       type: Boolean,
