@@ -66,26 +66,28 @@
     slot(name="card-actions")
       v-card-actions(v-if="showBookButtons").pa-2
         v-spacer(v-if="!$isMobile")
-        v-btn(
-          color="success"
-          depressed
-          large
-          :href="!readOnly && bookTeleconsultURL"
-          :disabled="!hasTeleconsult"
-          @click="trackBooking('telehealth')"
-        ).text-none.font-12.mx-1
-          v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
-          span Online Consult
-        v-btn(
-          color="info"
-          depressed
-          large
-          :disabled="!isAvailable"
-          :href="!readOnly && bookPhysicalURL"
-          @click="trackBooking('physical')"
-        ).text-none.font-12.mx-1
-          v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
-          span Visit Doctor
+        div(:class="{'d-inline-flex': !$isMobile}")
+          v-btn(
+            color="success"
+            depressed
+            large
+            :href="!readOnly && bookTeleconsultURL"
+            :disabled="!hasTeleconsult"
+            @click="trackBooking('telehealth')"
+          ).text-none.font-12.mx-1
+            v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
+            span Online Consult
+          v-btn(
+            color="info"
+            depressed
+            large
+            :disabled="!isAvailable"
+            :href="!readOnly && bookPhysicalURL"
+            :class="{'mt-2': $isMobile}"
+            @click="trackBooking('physical')"
+          ).text-none.font-12.mx-1
+            v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
+            span Visit Doctor
         v-spacer(v-if="!$isMobile")
       v-card-actions(v-else).pa-0
         v-row(justify="center")

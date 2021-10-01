@@ -3,13 +3,13 @@
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
-          v-col(cols="12")
+          v-col(cols="12" :class="{'text-center': $isMobile}")
             h1.mb-5.white--text Get An Appointment
           v-col(cols="12" md="6").pa-10
             template(v-for="item in quickAppointmentsContent")
               media
                 template(slot="media-image")
-                  v-avatar(size="75" color="#add35b")
+                  v-avatar(:size="$isMobile ? '50' : '75'" color="#add35b")
                     v-icon(large).white--text {{item.icon}}
                 template(slot="media-content")
                   br

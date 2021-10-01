@@ -70,7 +70,6 @@
         ).text-none.font-12.mx-1.clinic-book-btn
           v-icon(small left) {{ canOnlineBook ? 'mdi-video-outline' : 'mdi-close' }}
           span Online Consult
-        br(v-if="$isMobile")
         v-btn(
           color="info"
           depressed
@@ -78,6 +77,7 @@
           :block="$isMobile"
           :disabled="!canVisit"
           :href="!isPreviewMode && visitURL"
+          :class="{'mt-2': $isMobile}"
           @click="trackBooking('physical')"
         ).text-none.font-12.mx-1.clinic-book-btn
           v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}

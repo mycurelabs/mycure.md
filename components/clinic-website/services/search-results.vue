@@ -7,7 +7,7 @@
       @search="$emit('search', $event)"
       @filter:date="$emit('filter:date', $event)"
     )
-    v-card(flat color="#f0f0f0")
+    v-card(flat color="#f0f0f0" :class="{'mt-2': $isMobile}")
       v-card-text
         v-row(v-if="loading" justify="center")
           v-col(cols="12" md="4").text-center
