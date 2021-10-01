@@ -53,10 +53,9 @@
               v-btn(
                 depressed
                 block
-                rounded="xl"
                 color="primary"
                 @click="openFile(material)"
-              ).text-none.font-weight-bold View
+              ).text-none.font-weight-bold.rounded-xl View
     template(v-else)
       p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>

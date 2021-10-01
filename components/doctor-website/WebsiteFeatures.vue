@@ -4,6 +4,7 @@
     //-   v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none
     //-     span(:class="{'font-11': $isMobile}") {{ tab.name }}
     v-btn-toggle(
+      v-if="!$isMobile"
       v-model="activeTab"
       tile
       group
@@ -15,6 +16,18 @@
         :key="key"
         :value="tab.value"
       ).text-none {{ tab.name }}
+    v-select(
+      v-else
+      v-model="activeTab"
+      placeholder="Section"
+      solo
+      outlined
+      flat
+      dense
+      item-text="name"
+      item-value="value"
+      :items="doctorTabs"
+    )
     v-tabs-items(v-model="activeTab").mt-3.transparent-bg
       v-tab-item(value="facilities")
         facilities(
