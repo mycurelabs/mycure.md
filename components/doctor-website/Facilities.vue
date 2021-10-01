@@ -8,7 +8,11 @@
         :key="key"
         cols="12"
       )
-        facility-item(:clinic="clinic" :doctor-id="doctorId" :is-preview-mode="isPreviewMode")
+        facility-item(
+          :clinic="clinic"
+          :doctor-id="doctorId"
+          :is-preview-mode="isPreviewMode"
+        )
       v-col(cols="12")
         v-pagination(
           v-model="page"

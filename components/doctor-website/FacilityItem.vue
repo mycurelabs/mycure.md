@@ -52,8 +52,8 @@
           large
         )
         v-spacer
-        a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
-        v-col(cols="12" v-else)
+        a(v-if="!$isMobile && fullSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
+        v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer
     v-card-actions.pa-2
@@ -62,7 +62,7 @@
         color="success"
         depressed
         large
-        :href="!readOnly && telehealthURL"
+        :href="!isPreviewMode && telehealthURL"
         :disabled="!canOnlineBook"
         @click="trackBooking('telehealth')"
       ).text-none.font-12.mx-1.clinic-book-btn
@@ -73,7 +73,7 @@
         depressed
         large
         :disabled="!canVisit"
-        :href="!readOnly && visitURL"
+        :href="!isPreviewMode && visitURL"
         @click="trackBooking('physical')"
       ).text-none.font-12.mx-1.clinic-book-btn
         v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
