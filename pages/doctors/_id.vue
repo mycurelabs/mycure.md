@@ -3,6 +3,7 @@
     //- Dialogs
     choose-appointment(
       v-model="appointmentDialog"
+      :organizations="clinics"
       @select="onSelectAppointment($event)"
     )
     choose-facility(

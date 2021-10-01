@@ -34,6 +34,7 @@
                   )
                   v-card-text.text-center
                     h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ service.text }}
+                    span(v-if="!isAvailable(service.type)").error--text UNAVAILABLE
 </template>
 
 <script>
@@ -46,6 +47,10 @@ export default {
     value: {
       type: Boolean,
       default: null,
+    },
+    organizations: {
+      type: Array,
+      default: () => ([]),
     },
   },
   data () {
@@ -79,8 +84,16 @@ export default {
   },
   methods: {
     onServiceSelect (type) {
+      if (!this.isAvailable(type)) return;
       this.$emit('select', type);
       this.dialog = false;
+    },
+    isAvailable (type) {
+      switch (type) {
+        case 'telehealth': return !!this.organizations?.find(org => org.teleconsultQueue);
+        case 'physical': return !!this.organizations?.find(org => org.doctorSchedules || org.$populated?.doctorSchedules);
+        default: return false;
+      }
     },
   },
 };
