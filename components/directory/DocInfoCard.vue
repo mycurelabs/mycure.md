@@ -1,21 +1,22 @@
 <template lang="pug">
   v-card(width="100%" :class="paddings").rounded-xl
     v-card-text
-      v-row
-        v-col(cols="5" :md="imageColumn" justify="center" align="center").text-center
+      v-row(:justify="$isMobile? 'center' : 'start'")
+        v-col(cols="10" :md="imageColumn" justify="center" align="center").text-center
           img(
             :src="picURL"
             alt="Services"
             width="90%"
           ).ma-3.rounded-xl
-        v-col(cols="12" :md="infoColumn").pt-5
+        v-spacer(v-if="!$isMobile")
+        v-col(cols="12" :md="infoColumn" :class="{'pt-5': !$isMobile}")
           div
             v-clamp(
               autoresize
               :max-lines="2"
               :class="[nameClass]"
             ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
-          div.info--text.font-weight-semibold
+          div(:class="{'text-center': $isMobile}").info--text.font-weight-semibold
             v-clamp(
               v-if="hasSpecialties"
               autoresize
@@ -72,7 +73,7 @@
       v-card-actions(v-else).pa-0
         v-row(justify="center")
           v-col(cols="11")
-            v-row(justify="end").py-4
+            v-row(:justify="$isMobile ? 'center' : 'end'").py-4
                 v-btn(
                   color="primary"
                   rel="noopener noreferrer"

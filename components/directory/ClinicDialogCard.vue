@@ -6,19 +6,19 @@
           img(
             :src="picURL"
             :alt="organization.name"
-            width="30%"
+            :width="$isMobile? '80%' : '30%'"
           ).rounded-xl
           v-clamp(
             autoresize
             :max-lines="2"
           ).mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
-        v-row.mc-content-set-4.mt-5
+        v-row(align="start").mc-list-content-set-2.mt-5
           v-icon(color="primary" x-large) mdi-medical-bag
           v-col.font-gray.py-0
             span Services
             div(v-if="organization.tags").font-weight-semibold
               span(v-for="(tag, index, key) in tagsToDisplay" :key="key") {{ index === 0 ? tag : ', ' + tag }}
-        v-row.mc-content-set-4.pt-2
+        v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-map-marker
           v-col.font-gray.py-0
             span Facility Address
@@ -26,7 +26,7 @@
               autoresize
               :max-lines="2"
             ).font-weight-semibold {{ address || 'No address provided'}}
-        v-row.mc-content-set-4.pt-2
+        v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-phone-in-talk-outline
           v-col.font-gray.py-0
             span Contact Number
@@ -34,7 +34,7 @@
               autoresize
               :max-lines="2"
             ).font-weight-semibold {{ organization.phone || 'No contact number'}}
-        v-row.mc-content-set-4.pt-2
+        v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-calendar
           v-col.font-gray.py-0
             v-row
@@ -46,7 +46,7 @@
                   span(v-if="typeof sched.day === 'string'").font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
                   span(v-else).font-weight-semibold.text-capitalize.font-gray {{ `${sched.day[0]} - ${sched.day[sched.day.length - 1]}` }}
                   v-spacer
-                  v-col(cols="7" align="end").pa-0
+                  v-col(cols="12" sm="7" :align="$isMobile? 'start' : 'end'").pa-0
                     span(v-if="sched.time.length > 18").text-center.font-gray {{ sched.time }}
                     div(v-else v-for="(slot, index, key) in sched.time" :key="key").pt-3
                       v-row.pb-1
@@ -61,6 +61,7 @@
             :href="clinicWebsite"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
+            :class="{'mt-4': $isMobile}"
             @click="visitWebsite"
           ).text-none.elevation-0.rounded-pill
             v-icon mdi-open-in-new
