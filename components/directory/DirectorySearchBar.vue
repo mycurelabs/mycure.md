@@ -39,10 +39,10 @@
               clearable
               :items="suggestionEntries"
               item-text="name"
-              cache-items
               :search-input.sync="searchDummy"
               :height="$isMobile ? '40px' : '60px'"
               :return-object="false"
+              :menu-props="{ bottom: true, offsetY: true }"
               @keyup.enter="onSearch(true)"
               @click:clear="clearSearchText"
               @update:search-input="handleDebouncedSearch($event)"
@@ -359,6 +359,7 @@ export default {
     handleDebouncedSearch (searchText) {
       if (this.loading.initial && !searchText) return;
       this.searchObject.searchString = searchText;
+      if (!searchText) this.suggestionEntries = [];
       // For A
       if (searchText && this.showSuggestions) {
         this.debouncedSuggestionsSearch(searchText);
@@ -385,6 +386,7 @@ export default {
     },
     clearSearchText () {
       this.searchObject.searchString = null;
+      this.suggestionEntries = [];
       this.onSearch();
     },
     clearSpecialties () {
