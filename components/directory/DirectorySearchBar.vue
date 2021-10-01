@@ -140,7 +140,7 @@
                   v-if="searchObject.specializations.length > 0"
                   @click="searchObject.specializations = []"
                 ) mdi-close
-    v-dialog(v-model="dialog" width="80%" height="100%")
+    v-dialog(v-model="dialog" width="500" height="100%")
       v-card.pa-5
         v-card-title
           v-row
