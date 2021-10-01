@@ -63,7 +63,7 @@
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
     v-dialog(
       v-model="dialogBox"
-      :width="$isMobile? '100%' : '50%' "
+      width="50%"
       content-class="rounded-xl"
       :scrollable="false"
     ).pa-0

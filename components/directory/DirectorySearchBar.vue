@@ -79,6 +79,7 @@
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
             v-autocomplete(
+              v-if="appBar"
               v-model="searchObject.serviceType"
               placeholder="Service Type"
               solo
@@ -92,6 +93,16 @@
               :items="serviceTypes"
               @change="onSearch(false)"
             )
+            v-text-field(
+              v-else
+              v-model="searchObject.serviceType"
+              placeholder="Service Type"
+              prepend-inner-icon="mdi-filter"
+              outlined
+              dense
+              :disabled="dialog"
+              @click="dialog = true"
+            )
           //- Specialization
           v-col(
             v-if="showSpecializationsField" cols="12" md="5" lg="4"
@@ -100,7 +111,7 @@
             v-autocomplete(
               v-if="appBar"
               v-model="searchObject.specializations"
-              label="Specializations"
+              placeholder="Specializations"
               prepend-inner-icon="mdi-filter"
               solo
               outlined
@@ -128,50 +139,38 @@
             v-text-field(
               v-else
               v-model="specialtiesDisplay"
-              placeholder="Specializations"
+              placeholder="Specialties"
               prepend-inner-icon="mdi-filter"
               outlined
               dense
               :disabled="dialog"
               @click="dialog = true"
             )
-              template(slot="append")
-                v-icon(
-                  v-if="searchObject.specializations.length > 0"
-                  @click="searchObject.specializations = []"
-                ) mdi-close
     v-dialog(v-model="dialog" width="80%" height="100%")
       v-card.pa-5
         v-card-title
-          v-row
-            v-col
-              h2 Filters
-            v-spacer
-            v-col(cols="1")
-              v-row(justify="end")
-                v-icon(large @click="dialog = false") mdi-close
+          h2 Filters
         v-card-subtitle.pt-3.pb-0
-          v-row.pa-3.mt-1
-            v-text-field(
-              v-model="searchTagText"
-              placeholder="Search"
-              outlined
-              dense
-            )
-            v-btn(
-              v-if="searchObject.specializations.length > 0"
-              color="primary"
-              text
-              @click="searchObject.specializations = []"
-            ).mc-content-set-4.mb-4 CLEAR FILTERS
+          v-text-field(
+            v-model="searchTagText"
+            placeholder="Search"
+            outlined
+            dense
+          )
         v-card-text
-          div(v-for="(tag, key) in specialtiesList" :key="key")
+          div(v-if="mode === 'organization'" v-for="text in serviceTypes")
+            v-list
+              v-list-item(
+                v-if="searchTagText ? text.name.includes(searchTagText) || text.name.includes(capitalizeLetter(searchTagText)) || text.name.includes(decapitalizeLetter(searchTagText)) : true"
+                @click="searchObject.serviceType = text.value"
+              ) {{ text.name }}
+          div(v-if="mode === 'account'" v-for="text in specialtiesList")
             v-checkbox(
-              v-if="searchTagText ? tagSearch(tag, searchTagText) : true"
+              v-if="searchTagText ? text.includes(searchTagText) || text.includes(capitalizeLetter(searchTagText)) || text.includes(decapitalizeLetter(searchTagText)) : true"
               v-model="searchObject.specializations"
-              :value="tag"
-              :label="tag"
-            ).ma-0
+              :value="text"
+              :label="text"
+            )
 </template>
 
 <script>
@@ -294,7 +293,7 @@ export default {
     specialtiesDisplay () {
       const output = this.searchObject.specializations[0] || null;
       let etc = '';
-      if (this.searchObject.specializations.length > 1) {
+      if (this.searchObject.specializations[1]) {
         etc = ` +${this.searchObject.specializations.length - 1} others`;
       }
       return output ? `${output}${etc}` : null;
@@ -311,7 +310,6 @@ export default {
   },
   methods: {
     onModeChange (val) {
-      this.suggestionEntries = [];
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
       this.searchObject.serviceType = null;
@@ -388,10 +386,16 @@ export default {
       this.onSearch();
     },
     clearSpecialties () {
+      for (let i = 0; i < this.specialtiesList.length; i++) {
+        this.specialtiesList[i].selected = false;
+      }
       this.searchObject.specialties = [];
     },
     capitalizeLetter (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    decapitalizeLetter (string) {
+      return string.charAt(0).toLowerCase() + string.slice(1);
     },
     tagFormat (string) {
       let finArray = [];
@@ -403,16 +407,6 @@ export default {
     },
     formatAddress (address) {
       return formatAddress(address, 'street1, street2, city, province, region, country');
-    },
-    tagSearch (text1, text2) {
-      const textBase = text1.toLowerCase();
-      const textSearch = text2.toLowerCase();
-      console.log(textBase + textSearch);
-      if (textBase.includes(textSearch)) {
-        return true;
-      } else {
-        return false;
-      }
     },
   },
 };

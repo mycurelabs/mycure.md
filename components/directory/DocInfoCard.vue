@@ -12,7 +12,7 @@
           div
             v-clamp(
               autoresize
-              :max-lines="2"
+              :max-lines="1"
               :class="[nameClass]"
             ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
           div.info--text.font-weight-semibold
@@ -30,7 +30,7 @@
               p(v-if="hasSpecialties").font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
               p(v-else).font-weight-semibold &nbspNo information provided
           v-row(:class="{'mt-2': !minified}")
-            v-icon(color="primary" v-bind="iconBindings") mdi-briefcase-variant-outline
+            v-icon(color="primary" ) mdi-briefcase-variant-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") Experience
               v-clamp(

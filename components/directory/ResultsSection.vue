@@ -10,7 +10,7 @@
                   p(v-if="itemsTotal") Showing&nbsp;
                     strong.primary--text {{ itemsTotal }}&nbsp;
                     | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}
-                  p(v-else) {{ location ? 'There are no results near you.' : 'There are no results available.' }}
+                  p(v-else) There are no results available.
             v-col(cols="12")
               v-row(v-if="loading" justify="center")
                 v-col(cols="12" md="5").text-center
@@ -89,10 +89,6 @@ export default {
     },
     // Read only
     readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    location: {
       type: Boolean,
       default: false,
     },

@@ -59,12 +59,13 @@
             color="primary"
             rel="noopener noreferrer"
             :href="clinicWebsite"
+            :disabled="!hasWebsite"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
             @click="visitWebsite"
           ).text-none.elevation-0.rounded-pill
             v-icon mdi-open-in-new
-            span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
+            span.generic-button-text &nbsp;View Website
 </template>
 
 <script>

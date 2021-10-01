@@ -50,7 +50,7 @@
     v-dialog(
       v-model="dialogBox"
       :scrollable="false"
-      :width="$isMobile ? '100%' : '40%'"
+      width="40%"
       content-class="rounded-xl"
     ).pa-0
       clinic-dialog-card(:organization="organization")
