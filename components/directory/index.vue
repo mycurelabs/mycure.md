@@ -36,6 +36,7 @@
       :loading="loading.results"
       :pagination="resultsPagination"
       :read-only="readOnly"
+      :location="location"
       @page:update="onPagination($event)"
     )#resultsSection
     //- Snack bar
