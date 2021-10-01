@@ -503,7 +503,13 @@ export default {
 
         await this.fetchDoctorMembers(searchText);
         await this.fetchServices(searchFilters, searchText);
-        this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        // Append doctors only if it is consult or no service type filter
+        if ((!this.searchFilters?.type) ||
+          (this.searchFilters?.type && this.searchFilters?.type === 'clinical-consultation')) {
+          this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        } else {
+          this.searchResults = [...this.filteredServices];
+        }
         VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       } catch (e) {
         console.error(e);
