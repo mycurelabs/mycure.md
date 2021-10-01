@@ -3,9 +3,10 @@
     v-card
       v-toolbar(flat)
         v-spacer
-        h2 Choose a Service
+        h2 How can I help you?
         v-spacer
         v-btn(
+          v-if="!$isMobile"
           icon
           depressed
           @click="dialog = false"
@@ -14,7 +15,7 @@
       v-card-text.pa-3
         v-container
           v-row
-            v-col(cols="6" v-for="(service, key) in services" :key="key").text-center
+            v-col(cols="12" md="6" v-for="(service, key) in services" :key="key").text-center
               v-hover(
                 v-slot="{ hover }"
                 open-delay="100"
@@ -35,6 +36,14 @@
                   v-card-text.text-center
                     h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ service.text }}
                     span(v-if="!isAvailable(service.type)").error--text UNAVAILABLE
+      v-card-actions(v-if="$isMobile")
+        v-spacer
+        v-btn(
+          color="error"
+          outlined
+          depressed
+          @click="dialog = false"
+        ).text-none Cancel
 </template>
 
 <script>

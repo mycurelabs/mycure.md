@@ -5,8 +5,8 @@
       img(
         :src="picURL"
         :alt="organization.name"
-        :width="$isRegularScreen? '82px' : '130px'"
-        :height="$isRegularScreen? '82px' : '130px'"
+        :width="imageSize"
+        :height="imageSize"
         style="border-radius: 20px"
       ).ma-3
       v-col
@@ -174,6 +174,11 @@ export default {
       const { address } = this.organization;
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
+    imageSize () {
+      if (this.$isRegularScreen) return '82px';
+      if (this.$isMobile) return '100px';
+      return '130px';
+    },
   },
   methods: {
     visitWebsite () {
@@ -210,8 +215,8 @@ export default {
   width: 20px;
 }
 .badge-size-mobile {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
 }
 .badge-size-wide {
   height: 30px;

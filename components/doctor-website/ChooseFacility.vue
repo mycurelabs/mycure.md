@@ -25,9 +25,8 @@
                     v-spacer
                     v-btn(
                       color="primary"
-                      :small="!$isWideScreen"
                       rounded
-                      :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+                      :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-16', 'px-5']"
                       @click="onOrgSelect(org)"
                     ).text-none.elevation-0.font-weight-light.mt-2
                       b Book
