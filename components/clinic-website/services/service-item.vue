@@ -58,7 +58,7 @@
           br
           h2(v-if="price").black--text
             v-icon(left) mdi-cash
-            | {{ price }}
+            money(:value="price" symbol="₱")
           h3(v-else).font-italic No price stated
           v-btn(
             color="accent"
@@ -107,11 +107,13 @@
 import { format } from 'date-fns';
 import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
+import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
 import DefaultAvatar from '~/assets/images/commons/MYCURE Default Avatar.png';
 
 export default {
   components: {
+    Money,
     ServiceSchedules,
   },
   filters: {
