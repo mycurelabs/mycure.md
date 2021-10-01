@@ -35,7 +35,7 @@
                   )
                   v-card-text.text-center
                     h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
-                    span(v-if="!isAvailable(service.type)").error--text UNAVAILABLE
+                    span(v-if="!isAvailable(service.type) && !isClinic").error--text UNAVAILABLE
       v-card-actions(v-if="$isMobile")
         v-spacer
         v-btn(
@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     onServiceSelect (type) {
-      if (!this.isAvailable(type)) return;
+      if (!this.isAvailable(type) && !this.isClinic) return;
       this.$emit('select', type);
       this.dialog = false;
     },

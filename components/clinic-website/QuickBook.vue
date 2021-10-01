@@ -182,8 +182,8 @@ export default {
     bookService () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const bookURL = `${pxPortalUrl}/create-appointment/step-1?service=${this.selectedService}&clinic=${this.organization}`;
-      window.open(bookURL);
+      const bookURL = `${pxPortalUrl}/create-appointment/step-1?service=${this.selectedService}&clinic=${this.organization}&type=physical`;
+      window.location.href = bookURL;
     },
     hasSchedules (item) {
       return item.schedules?.length;
