@@ -312,7 +312,6 @@ export default {
   methods: {
     onModeChange (val) {
       this.suggestionEntries = [];
-      console.log(this.suggestionEntries);
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
       this.searchObject.serviceType = null;
