@@ -1,22 +1,45 @@
 <template lang="pug">
-  div
-    v-tabs(v-model="activeTab")
-      v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none
-        span(:class="{'font-11': $isMobile}") {{ tab.name }}
-    v-tabs-items(v-model="activeTab")
+  div(:class="{'mt-n10': !$isMobile}")
+    //- v-tabs(v-model="activeTab")
+    //-   v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none
+    //-     span(:class="{'font-11': $isMobile}") {{ tab.name }}
+    v-btn-toggle(
+      v-if="!$isMobile"
+      v-model="activeTab"
+      tile
+      group
+      mandatory
+      color="primary"
+    )
+      v-btn(
+        v-for="(tab, key) in doctorTabs"
+        :key="key"
+        :value="tab.value"
+      ).text-none {{ tab.name }}
+    v-select(
+      v-else
+      v-model="activeTab"
+      placeholder="Section"
+      solo
+      outlined
+      flat
+      dense
+      item-text="name"
+      item-value="value"
+      :items="doctorTabs"
+    )
+    v-tabs-items(v-model="activeTab").mt-3.transparent-bg
       v-tab-item(value="facilities")
-        v-card(flat)
-          v-card-text
-             facilities(
-                :doctorId="doctorId"
-                :clinics="clinics"
-                :total="clinicsTotal"
-                :limit="clinicsLimit"
-                :is-preview-mode="isPreviewMode"
-                @onUpdatePage="$emit('onUpdateClinicPage', $event)"
-              )
+        facilities(
+          :doctorId="doctorId"
+          :clinics="clinics"
+          :total="clinicsTotal"
+          :limit="clinicsLimit"
+          :is-preview-mode="isPreviewMode"
+          @onUpdatePage="$emit('onUpdateClinicPage', $event)"
+        )
       v-tab-item(value="services")
-        v-card(flat)
+        v-card(flat).rounded-xl.bordered-card
           v-card-text
             h2 Services Offered
             v-list(v-if="services.length" dense)
@@ -28,12 +51,10 @@
             p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
 
       v-tab-item(value="learning-corner")
-        v-card(flat)
-          v-card-text
-            learning-corner(
-              :is-preview-mode="isPreviewMode"
-              :doctor-id="doctorId"
-            )
+        learning-corner(
+          :is-preview-mode="isPreviewMode"
+          :doctor-id="doctorId"
+        )
 </template>
 
 <script>
@@ -72,9 +93,9 @@ export default {
   },
   data () {
     this.doctorTabs = [
-      { name: 'Facilities', href: '#facilities' },
-      { name: 'Services', href: '#services' },
-      { name: 'Learning Corner', href: '#learning-corner' },
+      { name: 'Facilities', value: 'facilities' },
+      { name: 'Services', value: 'services' },
+      { name: 'Learning Corner', value: 'learning-corner' },
     ];
     return {
       activeTab: 'facilities',
@@ -82,3 +103,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.transparent-bg {
+  background-color: transparent !important;
+}
+.bordered-card {
+  border: 0.5px solid black !important;
+}
+</style>

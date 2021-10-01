@@ -21,12 +21,11 @@
                 picture-source(
                   :image="type.image"
                   :image-alt="type.alt"
-                  :image-width="$isMobile ? '50%' : '100%'"
                   :image-file-extension="$useWebp? '.webp' : '.png'"
                   custom-path="booking/"
                 )
                 v-card-text.text-center
-                  h3(:class="hover ? 'white--text' : 'secondary--text'") {{ type.text }}
+                  h3(:class="[hover ? 'white--text' : 'secondary--text', {'font-12': $isMobile}]") {{ type.text }}
       v-card-actions
         v-spacer
         v-btn(color="error" outlined depressed x-large @click="dialog = false").text-none Cancel

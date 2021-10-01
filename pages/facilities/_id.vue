@@ -2,6 +2,7 @@
   div(style="overflow: hidden; background: #fafafa")
     //- CHOOSE APPOINTMENT TYPE
     choose-appointment(
+      is-clinic
       v-model="dialogs.appointment"
       @select="onSelectAppointment($event)"
     )
@@ -248,7 +249,7 @@ export default {
     bookURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?organization=${this.orgId}&type=physical`;
+      return `${pxPortalUrl}/create-appointment/step-1?clinic=${this.orgId}&type=physical`;
     },
     formattedAddress () {
       if (!this.clinic?.address) return '';
@@ -502,7 +503,13 @@ export default {
 
         await this.fetchDoctorMembers(searchText);
         await this.fetchServices(searchFilters, searchText);
-        this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        // Append doctors only if it is consult or no service type filter
+        if ((!this.searchFilters?.type) ||
+          (this.searchFilters?.type && this.searchFilters?.type === 'clinical-consultation')) {
+          this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        } else {
+          this.searchResults = [...this.filteredServices];
+        }
         VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       } catch (e) {
         console.error(e);
