@@ -184,8 +184,7 @@ export default {
     },
     groupedSchedules () {
       const schedules = [...this.fullSchedules];
-      if (this.nonMfSchedule) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
-      return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
     },
     previewSchedules () {
       return this.groupedSchedules?.slice(0, 3) || [];

@@ -6,7 +6,7 @@
           h3 {{ day.text }}
         v-col.grow
           v-row(dense)
-            v-row(
+            v-col(
               v-for="(timeslot, key) in getSlots(day.value)"
               :key="key"
               align="center"
