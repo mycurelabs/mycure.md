@@ -80,7 +80,6 @@
                   :disabled="!hasDoctorWebsite"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
-                  @click="visitWebsite"
                 ).text-none.elevation-0.rounded-pill
                   v-icon mdi-open-in-new
                   span.generic-button-text &nbsp;View Profile
@@ -265,12 +264,6 @@ export default {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.doctor?.uid;
       return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=physical`;
-    },
-  },
-  methods: {
-    visitWebsite () {
-      const username = this.doctor?.doc_website || this.doctor?.id;
-      this.$router.push(`/doctors/${username}`);
     },
   },
 };
