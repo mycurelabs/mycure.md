@@ -23,7 +23,7 @@
             p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
             span {{ specialties.slice(0, 3).join(', ')}}
           //- Analytics
-          v-col(cols="6" md="8")
+          v-col(cols="12" md="8")
             v-row(justify="center")
               v-col(v-for="(metric, key) in metricMappings" :key="key" cols="4" sm="3").text-center
                 v-avatar(size="50" :color="metric.color").lighten-3
