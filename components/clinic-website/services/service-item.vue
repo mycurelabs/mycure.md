@@ -237,7 +237,7 @@ export default {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.id;
-      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}`;
+      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=physical`;
     },
     bookTeleconsultURL () {
       if (this.isPreviewMode) return null;
