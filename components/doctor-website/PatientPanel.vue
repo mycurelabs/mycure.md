@@ -9,14 +9,15 @@
       ).bg
       v-container.content
         v-row(justify="center").text-center
-          v-col(v-if="patientsTotal <= 10 && patientsTotal > 0" cols="3" md="1")
-            picture-source(
-              image="Patient 1"
-              :image-file-extension="$useWebp? '.webp' : '.png'"
-              custom-path="doctor-website/"
-              image-alt="Patient vector art"
-              image-width="75%"
-            )
+          //- TODO: Refactoring needed in creatives side
+          //- v-col(v-if="patientsTotal <= 10 && patientsTotal > 0" cols="3" md="1")
+          //-   picture-source(
+          //-     image="Patient 1"
+          //-     :image-file-extension="$useWebp? '.webp' : '.png'"
+          //-     custom-path="doctor-website/"
+          //-     image-alt="Patient vector art"
+          //-     image-width="75%"
+          //-   )
 </template>
 
 <script>
