@@ -3,7 +3,7 @@
     v-card
       v-toolbar(flat)
         v-spacer
-        h2 How can I help you?
+        h2 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
           v-if="!$isMobile"
@@ -34,7 +34,7 @@
                     custom-path="doctor-website/"
                   )
                   v-card-text.text-center
-                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ service.text }}
+                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
                     span(v-if="!isAvailable(service.type)").error--text UNAVAILABLE
       v-card-actions(v-if="$isMobile")
         v-spacer
@@ -60,6 +60,10 @@ export default {
     organizations: {
       type: Array,
       default: () => ([]),
+    },
+    isClinic: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

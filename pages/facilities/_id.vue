@@ -2,6 +2,7 @@
   div(style="overflow: hidden; background: #fafafa")
     //- CHOOSE APPOINTMENT TYPE
     choose-appointment(
+      is-clinic
       v-model="dialogs.appointment"
       @select="onSelectAppointment($event)"
     )
