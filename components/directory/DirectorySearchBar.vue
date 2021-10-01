@@ -407,12 +407,7 @@ export default {
     tagSearch (text1, text2) {
       const textBase = text1.toLowerCase();
       const textSearch = text2.toLowerCase();
-      console.log(textBase + textSearch);
-      if (textBase.includes(textSearch)) {
-        return true;
-      } else {
-        return false;
-      }
+      return textBase.includes(textSearch);
     },
   },
 };
