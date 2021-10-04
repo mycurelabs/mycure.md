@@ -9,7 +9,9 @@
                 v-col(align="start")
                   p(v-if="itemsTotal") Showing&nbsp;
                     strong.primary--text {{ itemsTotal }}&nbsp;
-                    | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}
+                    | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}&nbsp;
+                    span(v-if="location && locationKM") within&nbsp;
+                      strong.success--text {{ locationKM }} KM
                   p(v-else) {{ location ? 'There are no results near you.' : 'There are no results available.' }}
             v-col(cols="12")
               v-row(v-if="loading" justify="center")
@@ -95,6 +97,10 @@ export default {
     location: {
       type: Boolean,
       default: false,
+    },
+    locationKM: {
+      type: Number,
+      default: null,
     },
   },
   computed: {

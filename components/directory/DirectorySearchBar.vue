@@ -221,6 +221,10 @@ export default {
       type: Object,
       default: null,
     },
+    locationKM: {
+      type: Number,
+      default: 5,
+    },
     loadingLocation: {
       type: Boolean,
       default: false,

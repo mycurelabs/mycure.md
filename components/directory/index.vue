@@ -25,6 +25,7 @@
                 app-bar
                 :mode="searchMode"
                 :location="location"
+                :locationKM="locationKM"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
                 @select:location="onLocationPick($event)"
@@ -35,6 +36,7 @@
       :type="searchMode"
       :items="entries"
       :loading="loading.results"
+      :locationKM="locationKM"
       :pagination="resultsPagination"
       :read-only="readOnly"
       :location="location"
@@ -93,6 +95,8 @@ export default {
       // === Location ====
       // - Coordinates
       location: null,
+      // - KM Radium
+      locationKM: 5,
       // === Pagination ====
       entriesTotal: 0,
       entriesPage: 1,
@@ -111,7 +115,7 @@ export default {
     resultsName () {
       switch (this.searchMode) {
         case 'account': return 'doctor';
-        case 'organization': return 'organization';
+        case 'organization': return 'health organization';
         default: return 'results';
       }
     },
@@ -167,7 +171,10 @@ export default {
           // Apply filters
           ...(serviceType || specializations) && { tags: this.composeTags(serviceType, specializations) },
           // Apply location
-          ...location && { location: this.location },
+          ...location && {
+            location: this.location,
+            locationKM: this.locationKM,
+          },
         };
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
