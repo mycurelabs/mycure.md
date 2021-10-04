@@ -172,7 +172,7 @@
               :value="tag"
               :label="tag"
             ).ma-0
-     //- Map Dialog
+    //- Map Dialog
     v-dialog(v-model="mapDialog" width="600")
       map-picker(
         :address="address"
