@@ -16,6 +16,7 @@ export default {
     STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
     STRIPE_PK: process.env.STRIPE_PK,
     WEB_MAIN_URL: process.env.WEB_MAIN_URL,
+    GMAPS_GEOCODING_API_KEY: process.env.GMAPS_GEOCODING_API_KEY,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
