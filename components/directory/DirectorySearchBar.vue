@@ -17,7 +17,7 @@
           v-spacer
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
             v-row(align="center" :justify="$isMobile ? 'start' : 'end'")
-              span.font-weight-bold.font-14 USE MY LOCATION
+              span.font-weight-bold.font-14 USE LOCATION
               v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
               v-switch(
                 v-else
@@ -100,6 +100,12 @@
                   v-if="index === 1"
                   class="grey--text text-caption"
                 ) (+{{ searchObject.specializations.length - 1 }} others)
+    //- Map Dialog
+    v-dialog(v-model="mapDialog" width="600")
+      map-picker(
+        :address="address"
+        @resolve="onLocationPick"
+      )
 </template>
 
 <script>
@@ -108,8 +114,10 @@ import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
+import MapPicker from '~/components/commons/MapPicker';
 export default {
   components: {
+    MapPicker,
     VClamp,
   },
   props: {
@@ -144,6 +152,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    address: {
+      type: Object,
+      default: null,
+    },
   },
   data () {
     // this.cities = NCR_CITIES;
@@ -176,6 +188,8 @@ export default {
       suggestionEntries: [],
       debouncedResultsSearch: debounce((event) => { this.onSearch(true, event); }, 500),
       debouncedSuggestionsSearch: debounce(this.searchSuggestions, 500),
+      // - Map Dialog
+      mapDialog: false,
     };
   },
   computed: {
@@ -211,8 +225,13 @@ export default {
         return !!this.location;
       },
       set (val) {
-        if (!val) this.searchObject.location = null;
-        this.$emit('update:locationSwitch', val);
+        if (!val) {
+          this.searchObject.location = null;
+          this.$emit('clear:location');
+          return;
+        }
+        this.mapDialog = true;
+        // this.$emit('update:locationSwitch', val);
       },
     },
   },
@@ -308,6 +327,11 @@ export default {
         this.specialtiesList[i].selected = false;
       }
       this.searchObject.specialties = [];
+    },
+    onLocationPick (address) {
+      if (!address) return null;
+      this.$emit('select:location', address);
+      this.mapDialog = false;
     },
   },
 };

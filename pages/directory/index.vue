@@ -22,7 +22,8 @@
                 :loadingLocation="loading.location"
                 @search="onSearch($event)"
                 @update:mode="onChangeMode($event)"
-                @update:locationSwitch="onLocationSwitchUpdate($event)"
+                @select:location="onLocationPick($event)"
+                @clear:location="onClearLocation"
               )
     //- //- Loading Location
     //- v-dialog(v-model="preparingDirectoryDialog" width="350" persistent)
@@ -100,16 +101,26 @@ export default {
     };
   },
   head () {
-    return headMeta({
-      title: 'MYCURE Directory',
-      description: 'Search for clinics, doctors, and specialties in the MYCURE Directory',
-      socialBanner: require('~/assets/images/banners/OG Patients.png'),
-    });
+    return {
+      ...headMeta({
+        title: 'MYCURE Directory',
+        description: 'Search for clinics, doctors, and specialties in the MYCURE Directory',
+        socialBanner: require('~/assets/images/banners/OG Patients.png'),
+      }),
+      script: [
+        {
+          hid: 'google',
+          src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g&libraries=places&v=weekly',
+          defer: true,
+          // callback: () => { this.loading.page = false; },
+        },
+      ],
+    };
   },
   mounted () {
     this.loading.page = false;
     // Check if already has location
-    this.checkLocation();
+    // this.checkLocation();
   },
   methods: {
     /**
@@ -132,6 +143,10 @@ export default {
         },
       });
     },
+    onChangeMode (val) {
+      this.searchMode = val.mode;
+    },
+    /** TOGGLE LOCATION USAGE (OLD) */
     async checkLocation () {
       this.preparingDirectoryDialog = true;
       await navigator.permissions && navigator.permissions.query({ name: 'geolocation' })
@@ -174,9 +189,6 @@ export default {
         this.loading.location = false;
       }
     },
-    onChangeMode (val) {
-      this.searchMode = val.mode;
-    },
     async onLocationSwitchUpdate (val) {
       if (!val) {
         this.location = null;
@@ -195,6 +207,20 @@ export default {
             this.showSnack = true;
           }
         });
+    },
+    /** GMAPS USAGE (NEW) */
+    onLocationPick (address) {
+      console.log('address', address);
+      const { geometry } = address;
+      if (!geometry?.location) return;
+      const lat = geometry.location.lat();
+      const lng = geometry.location.lng();
+      console.log('lat', lat);
+      console.log('lng', lng);
+      this.location = { lat, lng };
+    },
+    onClearLocation () {
+      this.location = null;
     },
   },
 };

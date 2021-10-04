@@ -27,7 +27,8 @@
                 :location="location"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
-                @update:locationSwitch="onLocationSwitchUpdate($event)"
+                @select:location="onLocationPick($event)"
+                @clear:location="onClearLocation"
               )
     results-section(
       :results-name="resultsName"
@@ -249,6 +250,7 @@ export default {
         location: this.location,
       }, page);
     },
+    /** LOCATION TOGGLE usage (OLD) */
     onLocationSwitchUpdate (val) {
       if (!val) {
         this.location = null;
@@ -286,6 +288,29 @@ export default {
           message: 'Failed to retrieve your location',
         });
       }
+    },
+    /** GMAPS USAGE (NEW) */
+    onLocationPick (address) {
+      const { geometry } = address;
+      if (!geometry?.location) return;
+      const lat = geometry.location.lat();
+      const lng = geometry.location.lng();
+      this.location = { lat, lng };
+      this.search({
+        searchText: this.searchText,
+        serviceType: this.serviceType,
+        specializations: this.specializationFilters,
+        location: this.location,
+      });
+    },
+    onClearLocation () {
+      this.location = null;
+      this.search({
+        searchText: this.searchText,
+        serviceType: this.serviceType,
+        specializations: this.specializationFilters,
+        location: this.location,
+      });
     },
     enqueueSnack ({ color, message }) {
       this.snackbarModel.color = color;
