@@ -71,5 +71,17 @@ export const fetchUserFacilities = async (sdk, opts) => {
   };
 
   const { items, total } = await sdk.service('organization-members').find(payload);
-  return { items: items.map(item => item.$populated?.organization), total };
+  return {
+    items: items.map(item => ({
+      ...item.$populated?.organization,
+      /**
+       * OrganizationMember#teleconsultQueue
+       *
+       * This prop is included to serve as indicator if the doctor can book
+       * telehealth in the clinic
+      */
+      ...item.teleconsultQueue && { teleconsultQueue: item.teleconsultQueue },
+    })),
+    total,
+  };
 };

@@ -48,7 +48,7 @@ export default {
     url () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const { id } = this.$route.params;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${id}`;
+      return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}`;
     },
   },
 };

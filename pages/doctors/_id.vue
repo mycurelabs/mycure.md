@@ -3,6 +3,7 @@
     //- Dialogs
     choose-appointment(
       v-model="appointmentDialog"
+      :organizations="clinics"
       @select="onSelectAppointment($event)"
     )
     choose-facility(
@@ -13,6 +14,7 @@
     )
     //- First panel
     main-panel(
+      :metrics="doctorMetrics"
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
       :bio="bio"
@@ -25,8 +27,10 @@
       :is-preview-mode="isPreviewMode"
       @book="onBook"
     )
+
     //- Patient panel
     patient-panel(:metrics="doctorMetrics")
+
     //- Banner
     //- div.banner-container.mt-n5
     //-   img(
@@ -59,7 +63,6 @@
               :bio="bio"
               :specialties="specialties"
               :education="education"
-              :metrics="doctorMetrics"
               :is-bookable="isBookable"
               :is-preview-mode="isPreviewMode"
               @book="onBook"
@@ -83,7 +86,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
-import VueScrollTo from 'vue-scrollto';
+// import VueScrollTo from 'vue-scrollto';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -127,7 +130,7 @@ export default {
     }
   },
   data () {
-    this.clinicsLimit = 4;
+    this.clinicsLimit = 6;
     return {
       // - UI State
       loading: true,
@@ -229,6 +232,8 @@ export default {
     await this.fetchMetrics();
     // Fetch Doctor info
     this.fetchDoctorInfo();
+    // Record Page view for Google analytics
+    this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
@@ -281,8 +286,8 @@ export default {
       this.facilityDialog = true;
     },
     onBook () {
-      // this.appointmentDialog = true;
-      VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
+      this.appointmentDialog = true;
+      // VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
       this.snackbarModel = {

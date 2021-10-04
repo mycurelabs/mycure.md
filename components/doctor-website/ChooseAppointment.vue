@@ -3,9 +3,10 @@
     v-card
       v-toolbar(flat)
         v-spacer
-        h2 Choose a Service
+        h2 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
+          v-if="!$isMobile"
           icon
           depressed
           @click="dialog = false"
@@ -14,7 +15,7 @@
       v-card-text.pa-3
         v-container
           v-row
-            v-col(cols="6" v-for="(service, key) in services" :key="key").text-center
+            v-col(cols="12" md="6" v-for="(service, key) in services" :key="key").text-center
               v-hover(
                 v-slot="{ hover }"
                 open-delay="100"
@@ -33,7 +34,16 @@
                     custom-path="doctor-website/"
                   )
                   v-card-text.text-center
-                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ service.text }}
+                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
+                    span(v-if="!isAvailable(service.type) && !isClinic").error--text UNAVAILABLE
+      v-card-actions(v-if="$isMobile")
+        v-spacer
+        v-btn(
+          color="error"
+          outlined
+          depressed
+          @click="dialog = false"
+        ).text-none Cancel
 </template>
 
 <script>
@@ -46,6 +56,14 @@ export default {
     value: {
       type: Boolean,
       default: null,
+    },
+    organizations: {
+      type: Array,
+      default: () => ([]),
+    },
+    isClinic: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -79,8 +97,16 @@ export default {
   },
   methods: {
     onServiceSelect (type) {
+      if (!this.isAvailable(type) && !this.isClinic) return;
       this.$emit('select', type);
       this.dialog = false;
+    },
+    isAvailable (type) {
+      switch (type) {
+        case 'telehealth': return !!this.organizations?.find(org => org.teleconsultQueue);
+        case 'physical': return !!this.organizations?.find(org => org.doctorSchedules || org.$populated?.doctorSchedules);
+        default: return false;
+      }
     },
   },
 };

@@ -7,9 +7,12 @@
         v-for="(clinic, key) in clinics"
         :key="key"
         cols="12"
-        md="6"
       )
-        facility-item(:clinic="clinic" :doctor-id="doctorId" :is-preview-mode="isPreviewMode")
+        facility-item(
+          :clinic="clinic"
+          :doctor-id="doctorId"
+          :is-preview-mode="isPreviewMode"
+        )
       v-col(cols="12")
         v-pagination(
           v-model="page"
@@ -69,6 +72,17 @@ export default {
 <style scoped>
 #clinics-list-top {
   height: 700px;
+  width: 100%;
   overflow-y: scroll;
+}
+
+#clinics-list-top::-webkit-scrollbar {
+  width: 11px;
+}
+
+#clinics-list-top::-webkit-scrollbar-thumb {
+  background-color: #04B1E7;
+  border-radius: 6px;
+  border: 3px solid #f3f0dd;
 }
 </style>

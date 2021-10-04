@@ -5,8 +5,8 @@
       img(
         :src="picURL"
         :alt="organization.name"
-        :width="$isRegularScreen? '82px' : '130px'"
-        :height="$isRegularScreen? '82px' : '130px'"
+        :width="imageSize"
+        :height="imageSize"
         style="border-radius: 20px"
       ).ma-3
       v-col
@@ -32,28 +32,32 @@
             span {{ address || 'No address' }}
         div.d-flex.white--text.mt-2
           div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, badgeSize, {'primary': clinicOpen(day.value)}]").badge
+            div(:class="[textFontSize, badgeSize, {'primary': isClinicOpen(day.value)}]").badge
               | {{ day.text }}
     v-spacer
-    v-card-actions.pa-0
-      v-col
-        v-row(justify="end")
-          v-btn(
-            color="primary"
-            :small="!$isWideScreen"
-            rounded
-            :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
-            @click="visitWebsite"
-          ).text-none.elevation-0.font-weight-light.mt-2
-            b Book a Visit
+    slot(name="card-actions")
+      v-card-actions.pa-0
+        v-col
+          v-row(justify="end")
+            v-btn(
+              color="primary"
+              :small="!$isWideScreen"
+              rounded
+              :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+              @click="dialogBox = true"
+            ).text-none.elevation-0.font-weight-light.mt-2
+              b Book a Visit
+    v-dialog(
+      v-model="dialogBox"
+      :scrollable="false"
+      :width="$isMobile ? '100%' : '40%'"
+      content-class="rounded-xl"
+    ).pa-0
+      clinic-dialog-card(:organization="organization")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
-// import { format } from 'date-fns';
-// import uniqBy from 'lodash/uniqBy';
-// import { formatAddress, formatName } from '~/utils/formats';
-// import { formatName } from '~/utils/formats';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
@@ -61,6 +65,7 @@ import { formatAddress } from '~/utils/formats';
 export default {
   components: {
     VClamp,
+    ClinicDialogCard: () => import('~/components/directory/ClinicDialogCard.vue'),
   },
   props: {
     organization: {
@@ -83,6 +88,7 @@ export default {
       { text: 'S', value: 6 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
@@ -90,6 +96,10 @@ export default {
   computed: {
     hasWebsite () {
       return !!this.organization?.websiteId;
+    },
+    clinicWebsite () {
+      const username = this.organization?.websiteId;
+      return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     fullSchedules () {
       // eslint-disable-next-line camelcase
@@ -164,12 +174,17 @@ export default {
       const { address } = this.organization;
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
+    imageSize () {
+      if (this.$isRegularScreen) return '82px';
+      if (this.$isMobile) return '100px';
+      return '130px';
+    },
   },
   methods: {
     visitWebsite () {
       this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
     },
-    clinicOpen (value) {
+    isClinicOpen (value) {
       if (this.fullSchedules.length) {
         if (value < this.startDay) return false;
         if (value > this.endDay) return false;
@@ -196,12 +211,12 @@ export default {
   max-width: 180px;
 }
 .badge-size {
-  height: 15px;
-  width: 15px;
-}
-.badge-size-mobile {
   height: 20px;
   width: 20px;
+}
+.badge-size-mobile {
+  height: 25px;
+  width: 25px;
 }
 .badge-size-wide {
   height: 30px;

@@ -24,24 +24,24 @@
           span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
         div.d-flex.mt-1
-          v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
+          v-icon(color="primary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor") &nbsp;{{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
             span(v-else) &nbsp;- year/s of experience
         div(justify="start").mt-1.d-flex
-          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
-          div(v-if="doctor")
+          v-icon(color="primary" :small="!$isWideScreen" left) mdi-information-outline
+          div(v-if="bio")
             v-clamp(
               autoresize
               :max-lines="2"
-              :class="[textFontSize, {'font-italic': !address }]"
-            ).info--text {{ address || 'No address provided'}}
+              :class="[textFontSize, {'font-italic': !bio }]"
+            ) {{ bio || 'No address provided'}}
           div(v-else)
             v-clamp(
               autoresize
               :max-lines="2"
               :class="[textFontSize, 'font-italic']"
-            ).info--text No address provided
+            ) No information
     v-spacer
     v-card-actions.pa-0
       v-col
@@ -52,9 +52,8 @@
             rel="noopener noreferrer"
             :small="!$isWideScreen"
             rounded
-            :disabled="!hasDoctorWebsite"
-            :href="doctorWebsite"
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+            @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b View
 
@@ -62,14 +61,23 @@
     //-   v-col(cols="12")
     //-     v-row
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+    v-dialog(
+      v-model="dialogBox"
+      :width="$isMobile? '100%' : '50%' "
+      content-class="rounded-xl"
+      :scrollable="false"
+    ).pa-0
+      doc-info-card(:doctor="doctor")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
+import DocInfoCard from './DocInfoCard';
 import { formatAddress } from '~/utils/formats';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
+    DocInfoCard,
     VClamp,
   },
   props: {
@@ -93,6 +101,7 @@ export default {
       { text: 'Sun', value: 0 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
@@ -131,6 +140,9 @@ export default {
       const { address } = this.doctor;
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
+    bio () {
+      return this.doctor?.doc_bio;
+    },
     nameFontSize () {
       return classBinder(this, {
         mobile: ['font-12'],
@@ -147,6 +159,12 @@ export default {
     },
     hasSpecialties () {
       return this.doctor?.doc_specialties?.length;
+    },
+  },
+  methods: {
+    visitWebsite () {
+      const username = this.doctor?.doc_website || this.doctor?.id;
+      this.$router.push(`/doctors/${username}`);
     },
   },
 };
