@@ -46,7 +46,7 @@
                       :disabled="loading.button"
                       :class="{'primary--text': bundle.isRecommended}"
                       @click="selectBundle(bundle)"
-                    ).text-none Choose {{bundle.title}}
+                    ).text-none {{ getBundleTitle(bundle) }}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"
@@ -294,6 +294,10 @@ export default {
                 ...this.isTrial && { trial: true },
               },
             };
+            // If telehealth signup, and the package was not assigned a trial flag.
+            if (this.isTelehealthTrialAvailable(bundle) && !payload.organization.trial) {
+              payload.organization.trial = true;
+            }
           }
         }
 
@@ -363,6 +367,22 @@ export default {
     confirmEmailVerification () {
       process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
       this.$router.push({ name: 'signin' });
+    },
+    isTelehealthTrialAvailable (bundle) {
+      if (!this.$route.query.from === 'telehealth') return false;
+      if (this.paymentInterval === 'month') {
+        return !!bundle.monthlyTrial;
+      } else if (this.paymentInterval === 'year') {
+        return !!bundle.annualTrial;
+      } else {
+        return false;
+      }
+    },
+    getBundleTitle (bundle) {
+      if (this.isTelehealthTrialAvailable(bundle)) {
+        return 'Start Trial';
+      }
+      return `Choose ${bundle.trial}`;
     },
   },
 };
