@@ -15,7 +15,7 @@
             v-btn(value="account" text active-class="active-button" :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]").mr-3.tight-font.rounded-pill doctor
             v-btn(value="organization" text active-class="active-button" :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
-
+          v-spacer
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
             v-row(align="start" :justify="$isMobile ? 'start' : 'end'" :class="{'mt-3': $isMobile}")
               span.font-weight-bold.font-14.mt-1 USE LOCATION
