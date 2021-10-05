@@ -49,10 +49,6 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    hasDoctors: {
-      type: Boolean,
-      default: false,
-    },
   },
   data () {
     this.TYPE_MAPPINGS = {

@@ -48,12 +48,12 @@
                   span(v-else).font-weight-semibold.text-capitalize.font-gray {{ `${sched.day[0]} - ${sched.day[sched.day.length - 1]}` }}
                   v-spacer
                   v-col(cols="12" sm="7" :align="$isMobile? 'start' : 'end'").pa-0
-                    span(v-if="sched.time.length > 18").text-center.font-gray {{ sched.time }}
+                    span(v-if="typeof sched.time === 'string'").text-center.font-gray {{ sched.time }}
                     div(v-else v-for="(slot, index, key) in sched.time" :key="key" :class="{'pb-2': index === sched.time.length - 1}").pt-3
                       v-row.pb-1
                         v-col.py-0
                           span.text-center.font-gray {{ sched.time[index] }}
-            dov(v-else)
+            div(v-else)
               v-clamp(
                 autoresize
                 :max-lines="1"

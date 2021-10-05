@@ -21,6 +21,7 @@
                 open-delay="100"
               )
                 v-card(
+                  :disabled="service.type === 'telehealth' && !hasDoctors"
                   hover
                   :color="hover ? service.color : 'white'"
                   :class="{'white--text': hover}"
@@ -62,6 +63,10 @@ export default {
       default: () => ([]),
     },
     isClinic: {
+      type: Boolean,
+      default: false,
+    },
+    hasDoctors: {
       type: Boolean,
       default: false,
     },
