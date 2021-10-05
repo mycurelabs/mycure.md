@@ -7,6 +7,7 @@
             :src="picURL"
             :alt="organization.name"
             :width="$isMobile? '80%' : '30%'"
+            @error="imageExists = false"
           ).rounded-xl
           v-clamp(
             autoresize
@@ -100,6 +101,7 @@ export default {
       'sto:clinical-procedure/ambulatory-bp-monitoring': 'BP Monitoring',
     };
     return {
+      imageExists: true,
     };
   },
   computed: {
@@ -111,7 +113,7 @@ export default {
       return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     picURL () {
-      return this.organization?.picURL || FacilityPlaceholder;
+      return this.imageExists ? this.organization?.picURL || FacilityPlaceholder : FacilityPlaceholder;
     },
     address () {
       const { address } = this.organization;

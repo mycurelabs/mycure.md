@@ -8,6 +8,7 @@
         :width="imageSize"
         :height="imageSize"
         style="border-radius: 20px"
+        @error="imageExists = false"
       ).ma-3
       v-col
         v-tooltip(bottom)
@@ -91,6 +92,7 @@ export default {
       dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
+      imageExists: true,
     };
   },
   computed: {
@@ -147,32 +149,8 @@ export default {
       };
     },
     picURL () {
-      return this.organization?.picURL || FacilityPlaceholder;
+      return this.imageExists ? this.organization?.picURL || FacilityPlaceholder : FacilityPlaceholder;
     },
-    // picURL () {
-    //   if (this.checkImage) {
-    //     return this.organization.picURL;
-    //   } else {
-    //     return FacilityPlaceholder;
-    //   }
-    // },
-    // checkImage () {
-    //   let value = null;
-    //   const request = new XMLHttpRequest();
-    //   request.open('GET', (this.organization.picURL), true);
-    //   request.send();
-    //   request.onload = function () {
-    //     if (request.status === 200) {
-    //       console.log(' image exists');
-    //       value = true;
-    //     } else {
-    //       console.log(' image doesnt exist');
-    //       value = false;
-    //     }
-    //   };
-    //   console.log(value);
-    //   return value;
-    // },
     nameFontSize () {
       return classBinder(this, {
         mobile: ['font-12'],
@@ -216,24 +194,6 @@ export default {
       }
       return false;
     },
-    // onImageError () {
-    //   console.log('firing onImageError');
-    //   // this.$refs.img.src = '~/assets/images/facility-placeholder.jpg';
-    // },
-    // checkImage (url) {
-    //   const request = new XMLHttpRequest();
-    //   request.open('GET', url, true);
-    //   request.send();
-    //   request.onload = function () {
-    //     if (request.status === 200) {
-    //       console.log(' image exists');
-    //       return true;
-    //     } else {
-    //       console.log(' image doesnt exist');
-    //       return false;
-    //     }
-    //   };
-    // },
   },
 };
 </script>
