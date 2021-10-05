@@ -44,11 +44,11 @@
             div(v-if="organization.mf_schedule" v-for="(sched, key) in clinicSchedule" :key="key")
               v-col.py-0
                 v-row.py-1
-                  span(v-if="typeof sched.day === 'string'").font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
+                  span(v-if="typeof (sched.day) === 'string'").font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
                   span(v-else).font-weight-semibold.text-capitalize.font-gray {{ `${sched.day[0]} - ${sched.day[sched.day.length - 1]}` }}
                   v-spacer
                   v-col(cols="12" sm="7" :align="$isMobile? 'start' : 'end'").pa-0
-                    span(v-if="typeof sched.time === 'string'").text-center.font-gray {{ sched.time }}
+                    span(v-if="typeof (sched.time) === 'string'").text-center.font-gray {{ sched.time }}
                     div(v-else v-for="(slot, index, key) in sched.time" :key="key" :class="{'pb-2': index === sched.time.length - 1}").pt-3
                       v-row.pb-1
                         v-col.py-0
