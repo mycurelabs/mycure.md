@@ -1,7 +1,7 @@
 <template lang="pug">
   v-col.fill-height
     v-row(align="center").fill-height
-      v-container.pa-0
+      v-container
         v-row(v-if="!loading.page" justify="center").pb-16
           generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
             v-col

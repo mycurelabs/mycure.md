@@ -26,8 +26,8 @@
         div.d-flex.mt-1
           v-icon(color="primary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
-            span(v-if="doctor") &nbsp;{{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
-            span(v-else) &nbsp;- year/s of experience
+            span(v-if="doctor && doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
+            span(v-else) No history available
         div(justify="start").mt-1.d-flex
           v-icon(color="primary" :small="!$isWideScreen" left) mdi-information-outline
           div(v-if="bio")
