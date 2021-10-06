@@ -35,6 +35,7 @@ export default {
   head () {
     return {
       title: 'Payment Failed - MYCURE Sign Up',
+      description: 'Payment failed to proceed.',
     };
   },
   methods: {

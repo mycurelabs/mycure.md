@@ -6,7 +6,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: 'MYCURE Advanced Complete Clinic Management System',
+      title: 'MYCURE Payment',
     };
   },
   mounted () {
