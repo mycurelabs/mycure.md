@@ -43,7 +43,7 @@
                 ).text-none.letter-spacing-normal Send us your feedback
               div(:class="{'flex-column': $isMobile}").d-flex
                   v-btn(
-                  to="/directory/doctors"
+                  to="/directory/results?searchMode=account"
                   text
                   color="secondary"
                 ).text-none.letter-spacing-normal.font-weight-bold See more Doctors

@@ -6,7 +6,7 @@
         //-   v-col(cols="1")
         //-   v-spacer(v-if="!$isMobile")
         v-col(cols="12" align="end")
-          v-row(justify="end" :class="!$isMobile ? ['mx-0', 'mt-5'] : ['pr-9', 'mt-1']")
+          v-row(justify="end" :class="!$isMobile ? ['mx-0', 'mt-5'] : 'ma-3'")
             v-btn(
               color="primary"
               :width="$isWideScreen ? '120' : '110' "

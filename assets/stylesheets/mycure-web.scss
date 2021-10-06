@@ -226,6 +226,18 @@ classBinder(this, {
     @include font-sizer(m);
   }
 }
+.mc-content-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+  }
+}
 
 .mc-metatitle-set-1 {
   @media (max-width: $max-sm) {
@@ -313,6 +325,17 @@ classBinder(this, {
 .mc-list-content-set-1 {
   @media (max-width: $max-sm) {
     @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+.mc-list-content-set-2 {
+  @media (max-width: $max-sm) {
+    font-size: 14px !important;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(s);

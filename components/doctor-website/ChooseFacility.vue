@@ -3,7 +3,7 @@
     v-card
       v-card-text.pa-3
         v-container
-          v-row
+          v-row(justify="center")
             v-col(cols="12").text-center
               h1 Choose a Facility
               br

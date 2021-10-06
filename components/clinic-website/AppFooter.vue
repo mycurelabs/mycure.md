@@ -30,7 +30,7 @@
                   br
                   p.ml-5.mt-5 Copyright &#169;{{new Date().getFullYear()}} All Rights Reserved.
               v-col(v-if="!$isMobile").d-flex.text-center
-                nuxt-link(to="/directory/results").font-14 See more Health Facilities
+                nuxt-link(to="/directory/results?searchMode=organization").font-14 See more Health Facilities
                 | &nbsp;|&nbsp;
                 nuxt-link(to="/signup/health-facilities").font-14 Create my own Health Facility Website
 </template>

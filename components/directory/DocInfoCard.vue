@@ -1,21 +1,22 @@
 <template lang="pug">
   v-card(width="100%" :class="paddings").rounded-xl
     v-card-text
-      v-row
-        v-col(cols="5" :md="imageColumn" justify="center" align="center").text-center
+      v-row(:justify="$isMobile? 'center' : 'start'")
+        v-col(cols="10" :md="imageColumn" justify="center" align="center").text-center
           img(
             :src="picURL"
             alt="Services"
             width="90%"
           ).ma-3.rounded-xl
-        v-col(cols="12" :md="infoColumn").pt-5
+        v-spacer(v-if="!$isMobile")
+        v-col(cols="12" :md="infoColumn" :class="{'pt-5': !$isMobile}")
           div
             v-clamp(
               autoresize
               :max-lines="2"
               :class="[nameClass]"
             ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
-          div.info--text.font-weight-semibold
+          div(:class="{'text-center': $isMobile}").info--text.font-weight-semibold
             v-clamp(
               v-if="hasSpecialties"
               autoresize
@@ -23,14 +24,14 @@
             ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
             span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
             //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
-          v-row.mt-2
-            v-icon(color="primary" v-bind="iconBindings") mdi-medical-bag
+          v-row(align="start").mt-2
+            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-medical-bag
             v-col.font-gray
               span(:class="sectionHeaderClass") Specialization
-              p(v-if="hasSpecialties").font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
-              p(v-else).font-weight-semibold &nbspNo information provided
-          v-row(:class="{'mt-2': !minified}")
-            v-icon(color="primary" v-bind="iconBindings") mdi-briefcase-variant-outline
+              p(v-if="hasSpecialties").font-weight-semibold.mb-0 {{ specialtiesText }}&nbsp;&nbsp;
+              p(v-else).font-weight-semibold.mb-0 &nbspNo information provided
+          v-row(:class="{'mt-2': !minified}" align="start")
+            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") Experience
               v-clamp(
@@ -39,14 +40,14 @@
                 :max-lines="1"
               ).font-weight-semibold {{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
               span(v-else).font-weight-semibold &nbsp;- year/s of experience
-          v-row(v-if="!minified" :class="{'mt-2': !minified}")
-            v-icon(color="primary" v-bind="iconBindings") mdi-information-outline
+          v-row(v-if="!minified" :class="{'mt-2': !minified}" align="start")
+            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-information-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") About
               v-clamp(
                 v-if="bio"
                 autoresize
-                :max-lines="1"
+                :max-lines="3"
               ).font-weight-semibold {{ bio }}
               p(v-else).font-weight-semibold No information provided
     v-spacer
@@ -72,7 +73,7 @@
       v-card-actions(v-else).pa-0
         v-row(justify="center")
           v-col(cols="11")
-            v-row(justify="end").py-4
+            v-row(:justify="$isMobile ? 'center' : 'end'").py-4
                 v-btn(
                   color="primary"
                   rel="noopener noreferrer"

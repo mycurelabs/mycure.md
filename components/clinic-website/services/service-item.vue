@@ -33,7 +33,7 @@
             i No schedules available
             br
           template(v-if="!isDoctor")
-            span Coverages:
+            span Accreditations:
             br
             template(v-if="hasCoverages")
               v-tooltip(
@@ -50,7 +50,7 @@
                     v-img(v-if="coverage.picURL" :src="coverage.picURL")
                     span(v-else).white--text {{ coverage.name.substring(0,1) }}
                 span {{ coverage.name || 'HMO' }}
-            i(v-else) No coverages available
+            i(v-else) No accreditationss available
         v-col(v-if="!isDoctor && !readOnly" :class="$isMobile ? 'text-left' : 'text-right'").grow
           h3.info--text Availability
             v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
@@ -187,7 +187,16 @@ export default {
       return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
     },
     previewSchedules () {
-      return this.groupedSchedules?.slice(0, 3) || [];
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const index = this.groupedSchedules.findIndex(x => x.day === dayOfWeek);
+      if (index > 4) {
+        const frontSched = this.groupedSchedules.slice(index);
+        const endSched = this.groupedSchedules.slice(0, index - 4);
+        return frontSched.concat(endSched);
+      } else {
+        return this.groupedSchedules?.slice(index, index + 3) || [];
+      }
     },
     todaySchedules () {
       if (!this.fullSchedules?.length) {
