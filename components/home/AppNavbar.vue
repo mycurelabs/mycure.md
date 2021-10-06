@@ -36,7 +36,7 @@
                         v-for="(item, key) in nav.menuItems"
                         :key="key"
                         :to="{ name: item.route }"
-                        v-if="item.route !== 'diagnostics-ofw' || !inPh"
+                        v-if="isNavVisible(item)"
                         exact-path
                       )
                         v-list-item-title {{ item.name }}
@@ -201,6 +201,10 @@ export default {
           ...nav.panel && { panel: nav.panel },
         },
       });
+    },
+    isNavVisible (nav) {
+      if (nav.route !== 'diagnostics-ofw') return true;
+      return this.inPh;
     },
   },
 };

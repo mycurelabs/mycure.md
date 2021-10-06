@@ -1,53 +1,54 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
-    //- 1st panel
-    seven-wonders
-    //- 2nd panel
-    care
-    //- 3rd panel
-    stakes(
-      panel-title="Your clinic system should not cause you more problems"
-      panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
-      :version="1"
-      :contents="stakesContent"
-      not-free
-    )
-    //- 4th panel
-    div.simple-container.mx-n3
-      simple
-    //- 5th panel
-    patients
-    //- 6th panel
-    div.grey-bg.mx-n3
-      tools(:version="2")
-    //- 7th panel
-    syncbase
-    //- 8th panel
-    div.grey-bg.mx-n3
-      hipaa(
-        :header-classes="headerClasses"
-        :description-classes="descriptionClasses"
+  v-container(fluid).white
+    template(v-if="!loading")
+      //- 1st panel
+      seven-wonders
+      //- 2nd panel
+      care(:metrics-data="metricsData")
+      //- 3rd panel
+      stakes(
+        panel-title="Your clinic system should not cause you more problems"
+        panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
+        :version="1"
+        :contents="stakesContent"
+        not-free
       )
-    //- 9th panel
-    steps(:steps="stepsContent" not-free)
-    //- 10th panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
-    //- CTA
-    div.cta-container.mx-n3.mb-n3
-      join-next-generation
-      div.cta-image.text-center
-        picture-source(
-          image="CTA"
-          :image-file-extension="$useWebp? '.webp' : '.png'"
-          custom-path="home/"
-          image-alt="CTA Home"
-          :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
-          :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
-          :image-styles="{ marginBottom: '-7px' }"
+      //- 4th panel
+      div.simple-container.mx-n3
+        simple
+      //- 5th panel
+      patients
+      //- 6th panel
+      div.grey-bg.mx-n3
+        tools(:version="2")
+      //- 7th panel
+      syncbase
+      //- 8th panel
+      div.grey-bg.mx-n3
+        hipaa(
+          :header-classes="headerClasses"
+          :description-classes="descriptionClasses"
         )
+      //- 9th panel
+      steps(:steps="stepsContent" not-free)
+      //- 10th panel
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
+      //- CTA
+      div.cta-container.mx-n3.mb-n3
+        join-next-generation
+        div.cta-image.text-center
+          picture-source(
+            image="CTA"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
+            custom-path="home/"
+            image-alt="CTA Home"
+            :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
+            :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
+            :image-styles="{ marginBottom: '-7px' }"
+          )
 </template>
 
 <script>
@@ -56,6 +57,7 @@ import headMeta from '~/utils/head-meta';
 // - components
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
@@ -72,6 +74,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
