@@ -296,7 +296,7 @@ export default {
             };
             // If telehealth signup, and the package was not assigned a trial flag.
             if (this.isTelehealthTrialAvailable(bundle) && !payload.organization.trial) {
-              payload.organization.trial = true;
+              payload.organization.subscription.trial = true;
             }
           }
         }
@@ -382,7 +382,7 @@ export default {
       if (this.isTelehealthTrialAvailable(bundle)) {
         return 'Start Trial';
       }
-      return `Choose ${bundle.trial}`;
+      return `Choose ${bundle.title}`;
     },
   },
 };
