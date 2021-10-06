@@ -68,7 +68,6 @@
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
             :class="{'mt-4': $isMobile}"
-            @click="visitWebsite"
           ).text-none.elevation-0.rounded-pill
             v-icon mdi-open-in-new
             span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
@@ -109,7 +108,7 @@ export default {
       return !!this.organization?.websiteId;
     },
     clinicWebsite () {
-      const username = this.organization?.websiteId;
+      const username = this.organization?.websiteId || this.organization?.id;
       return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     picURL () {
@@ -148,9 +147,6 @@ export default {
     },
   },
   methods: {
-    visitWebsite () {
-      this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
-    },
     formatTime (time) {
       return format(time, 'hh:mm A');
     },
