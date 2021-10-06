@@ -15,13 +15,13 @@
             v-btn(
               value="account"
               text active-class="active-button"
-              :disabled="loadingResults"
+              :disabled="appBar && loadingResults"
               :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]"
             ).mr-3.tight-font.rounded-pill doctor
             v-btn(
               value="organization"
               text active-class="active-button"
-              :disabled="loadingResults"
+              :disabled="appBar && loadingResults"
               :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]"
             ).mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
