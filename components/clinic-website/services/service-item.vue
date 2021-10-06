@@ -50,7 +50,7 @@
                     v-img(v-if="coverage.picURL" :src="coverage.picURL")
                     span(v-else).white--text {{ coverage.name.substring(0,1) }}
                 span {{ coverage.name || 'HMO' }}
-            i(v-else) No accreditationss available
+            i(v-else) No accreditations available
         v-col(v-if="!isDoctor && !readOnly" :class="$isMobile ? 'text-left' : 'text-right'").grow
           h3.info--text Availability
             v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
