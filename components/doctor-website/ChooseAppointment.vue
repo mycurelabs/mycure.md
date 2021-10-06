@@ -21,10 +21,10 @@
                 open-delay="100"
               )
                 v-card(
-                  :disabled="service.type === 'telehealth' && !hasDoctors"
+                  :disabled="docUnavailable(service)"
                   hover
                   :color="hover ? service.color : 'white'"
-                  :class="{'white--text': hover}"
+                  :class="[{'white--text': hover}, {'unavailable': docUnavailable(service)}]"
                   @click="onServiceSelect(service.type)"
                 ).service-card
                   picture-source(
@@ -36,7 +36,7 @@
                   )
                   v-card-text.text-center
                     h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
-                    span(v-if="!isAvailable(service.type) && !isClinic").error--text UNAVAILABLE
+                    //- span(v-if="!isAvailable(service.type) && !isClinic").error--text UNAVAILABLE
       v-card-actions(v-if="$isMobile")
         v-spacer
         v-btn(
@@ -113,6 +113,9 @@ export default {
         default: return false;
       }
     },
+    docUnavailable (service) {
+      return !this.isClinic ? !this.isAvailable(service.type) : service.type === 'telehealth' && !this.hasDoctors;
+    },
   },
 };
 </script>
@@ -126,5 +129,8 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.unavailable {
+  filter: grayscale(100%);
 }
 </style>

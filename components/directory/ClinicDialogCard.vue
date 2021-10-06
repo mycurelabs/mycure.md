@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(width="100%").pa-5.rounded-xl
+  v-card(width="100%" :height="$isWideScreen ? '1000px' : $isRegularScreen ? '680px' : '100%'").pa-5.rounded-xl.no-scroll.scroll
     v-card-text
       v-col(cols="12")
         div.text-center
@@ -157,3 +157,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}
+.scroll {
+  overflow-y: scroll;
+}
+</style>

@@ -24,14 +24,14 @@
             ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
             span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
             //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
-          v-row.mt-2
-            v-icon(color="primary" v-bind="iconBindings") mdi-medical-bag
+          v-row(align="start").mt-2
+            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-medical-bag
             v-col.font-gray
               span(:class="sectionHeaderClass") Specialization
-              p(v-if="hasSpecialties").font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
-              p(v-else).font-weight-semibold &nbspNo information provided
-          v-row(:class="{'mt-2': !minified}")
-            v-icon(color="primary" v-bind="iconBindings") mdi-briefcase-variant-outline
+              p(v-if="hasSpecialties").font-weight-semibold.mb-0 {{ specialtiesText }}&nbsp;&nbsp;
+              p(v-else).font-weight-semibold.mb-0 &nbspNo information provided
+          v-row(:class="{'mt-2': !minified}" align="start")
+            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") Experience
               v-clamp(
@@ -40,14 +40,14 @@
                 :max-lines="1"
               ).font-weight-semibold {{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
               span(v-else).font-weight-semibold &nbsp;- year/s of experience
-          v-row(v-if="!minified" :class="{'mt-2': !minified}")
-            v-icon(color="primary" v-bind="iconBindings") mdi-information-outline
+          v-row(v-if="!minified" :class="{'mt-2': !minified}" align="start")
+            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-information-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") About
               v-clamp(
                 v-if="bio"
                 autoresize
-                :max-lines="1"
+                :max-lines="3"
               ).font-weight-semibold {{ bio }}
               p(v-else).font-weight-semibold No information provided
     v-spacer
