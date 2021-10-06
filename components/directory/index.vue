@@ -26,6 +26,7 @@
                 :mode="searchMode"
                 :location="location"
                 :locationKM="locationKM"
+                :loadingResults="loading.results"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
                 @select:location="onLocationPick($event)"

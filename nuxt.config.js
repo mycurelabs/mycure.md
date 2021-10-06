@@ -84,6 +84,21 @@ export default {
     // Sitemap should always be declared last according to docs https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
   ],
+  // Robots
+  robots: [
+    {
+      UserAgent: '*',
+      Disallow: '/payment',
+    },
+    {
+      UserAgent: '*',
+      Disallow: '/signup',
+    },
+    {
+      UserAgent: '*',
+      Disallow: '/forgot-password',
+    },
+  ],
   // Google Web Font Loader Module
   webfontloader: {
     google: {

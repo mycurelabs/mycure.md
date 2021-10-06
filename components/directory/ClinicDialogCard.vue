@@ -1,24 +1,25 @@
 <template lang="pug">
-  v-card(width="100%").pa-5.rounded-xl
+  v-card(width="100%" :height="$isWideScreen ? '800px' : $isRegularScreen ? '680px' : '100%'").pa-5.rounded-xl.no-scroll.no-scroll-2.scroll
     v-card-text
       v-col(cols="12")
         div.text-center
           img(
             :src="picURL"
             :alt="organization.name"
-            width="30%"
+            :width="$isMobile? '80%' : '30%'"
+            @error="imageExists = false"
           ).rounded-xl
           v-clamp(
             autoresize
             :max-lines="2"
           ).mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
-        v-row.mc-content-set-4.mt-5
+        v-row(align="start").mc-list-content-set-2.mt-5
           v-icon(color="primary" x-large) mdi-medical-bag
           v-col.font-gray.py-0
             span Services
             div(v-if="organization.tags").font-weight-semibold
               span(v-for="(tag, index, key) in tagsToDisplay" :key="key") {{ index === 0 ? tag : ', ' + tag }}
-        v-row.mc-content-set-4.pt-2
+        v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-map-marker
           v-col.font-gray.py-0
             span Facility Address
@@ -26,7 +27,7 @@
               autoresize
               :max-lines="2"
             ).font-weight-semibold {{ address || 'No address provided'}}
-        v-row.mc-content-set-4.pt-2
+        v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-phone-in-talk-outline
           v-col.font-gray.py-0
             span Contact Number
@@ -34,24 +35,29 @@
               autoresize
               :max-lines="2"
             ).font-weight-semibold {{ organization.phone || 'No contact number'}}
-        v-row.mc-content-set-4.pt-2
+        v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-calendar
           v-col.font-gray.py-0
             v-row
               v-col.pb-2
                 span Schedule
-            div(v-for="(sched, key) in clinicSchedule" :key="key")
+            div(v-if="organization.mf_schedule" v-for="(sched, key) in clinicSchedule" :key="key")
               v-col.py-0
                 v-row.py-1
-                  span(v-if="typeof sched.day === 'string'").font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
+                  span(v-if="typeof (sched.day) === 'string'").font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
                   span(v-else).font-weight-semibold.text-capitalize.font-gray {{ `${sched.day[0]} - ${sched.day[sched.day.length - 1]}` }}
                   v-spacer
-                  v-col(cols="7" align="end").pa-0
-                    span(v-if="sched.time.length > 18").text-center.font-gray {{ sched.time }}
-                    div(v-else v-for="(slot, index, key) in sched.time" :key="key").pt-3
+                  v-col(cols="12" sm="7" :align="$isMobile? 'start' : 'end'").pa-0
+                    span(v-if="typeof (sched.time) === 'string'").text-center.font-gray {{ sched.time }}
+                    div(v-else v-for="(slot, index, key) in sched.time" :key="key" :class="{'pb-2': index === sched.time.length - 1}").pt-3
                       v-row.pb-1
                         v-col.py-0
                           span.text-center.font-gray {{ sched.time[index] }}
+            div(v-else)
+              v-clamp(
+                autoresize
+                :max-lines="1"
+              ).font-weight-semibold No Schedule Available
     v-card-actions.pa-0
       v-col
         v-row(justify="center")
@@ -61,7 +67,7 @@
             :href="clinicWebsite"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
-            @click="visitWebsite"
+            :class="{'mt-4': $isMobile}"
           ).text-none.elevation-0.rounded-pill
             v-icon mdi-open-in-new
             span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
@@ -94,6 +100,7 @@ export default {
       'sto:clinical-procedure/ambulatory-bp-monitoring': 'BP Monitoring',
     };
     return {
+      imageExists: true,
     };
   },
   computed: {
@@ -101,11 +108,11 @@ export default {
       return !!this.organization?.websiteId;
     },
     clinicWebsite () {
-      const username = this.organization?.websiteId;
+      const username = this.organization?.websiteId || this.organization?.id;
       return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     picURL () {
-      return this.organization?.picURL || FacilityPlaceholder;
+      return this.imageExists ? this.organization?.picURL || FacilityPlaceholder : FacilityPlaceholder;
     },
     address () {
       const { address } = this.organization;
@@ -140,12 +147,22 @@ export default {
     },
   },
   methods: {
-    visitWebsite () {
-      this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
-    },
     formatTime (time) {
       return format(time, 'hh:mm A');
     },
   },
 };
 </script>
+
+<style scoped>
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}
+.scroll {
+  overflow-y: scroll;
+}
+.no-scroll-2 {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>

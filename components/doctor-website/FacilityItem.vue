@@ -18,13 +18,13 @@
           v-row.mt-2
             v-icon(color="primary") mdi-home-variant-outline
             v-col.font-gray
-              span.mc-content-set-4 Address
+              span.mc-content-set-5 Address
               v-clamp(autoresize :max-lines="2" :class="{ 'font-italic': !clinic.address }").font-weight-semibold {{ clinic.address | prettify-address }}&nbsp;&nbsp;
           //- Contact
           v-row
             v-icon(color="primary") mdi-phone-in-talk
             v-col.font-gray
-              span.mc-content-set-4 Contact Number
+              span.mc-content-set-5 Contact Number
               v-clamp(
                 autoresize
                 :max-lines="1"
@@ -34,7 +34,7 @@
           v-row
             v-icon(color="primary") mdi-email
             v-col.font-gray
-              span.mc-content-set-4 Email
+              span.mc-content-set-5 Email
               v-clamp(
                 autoresize
                 :max-lines="1"

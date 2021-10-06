@@ -8,6 +8,7 @@
         :width="imageSize"
         :height="imageSize"
         style="border-radius: 20px"
+        @error="imageExists = false"
       ).ma-3
       v-col
         v-tooltip(bottom)
@@ -79,18 +80,19 @@ export default {
   },
   data () {
     this.daysInit = [
-      { text: 'S', value: 0 },
-      { text: 'M', value: 1 },
-      { text: 'T', value: 2 },
-      { text: 'W', value: 3 },
-      { text: 'Th', value: 4 },
-      { text: 'F', value: 5 },
-      { text: 'S', value: 6 },
+      { text: 'S', value: 'sun' },
+      { text: 'M', value: 'mon' },
+      { text: 'T', value: 'tue' },
+      { text: 'W', value: 'wed' },
+      { text: 'Th', value: 'thu' },
+      { text: 'F', value: 'fri' },
+      { text: 'S', value: 'sat' },
     ];
     return {
       dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
+      imageExists: true,
     };
   },
   computed: {
@@ -124,30 +126,8 @@ export default {
 
       return this.fullSchedules.filter(schedule => schedule.order === dayOrder || schedule.day === dayOrder) || [];
     },
-    startDay () {
-      switch (this.filteredDays[0]) {
-        case 'mon': return 1;
-        case 'tue': return 2;
-        case 'wed': return 3;
-        case 'thu': return 4;
-        case 'fri': return 5;
-        case 'sat': return 6;
-        default: return 0;
-      };
-    },
-    endDay () {
-      switch (this.filteredDays[this.filteredDays.length - 1]) {
-        case 'mon': return 1;
-        case 'tue': return 2;
-        case 'wed': return 3;
-        case 'thu': return 4;
-        case 'fri': return 5;
-        case 'sat': return 6;
-        default: return 0;
-      };
-    },
     picURL () {
-      return this.organization?.picURL || FacilityPlaceholder;
+      return this.imageExists ? this.organization?.picURL || FacilityPlaceholder : FacilityPlaceholder;
     },
     nameFontSize () {
       return classBinder(this, {
@@ -186,9 +166,8 @@ export default {
     },
     isClinicOpen (value) {
       if (this.fullSchedules.length) {
-        if (value < this.startDay) return false;
-        if (value > this.endDay) return false;
-        return true;
+        if (this.filteredDays.includes(value)) return true;
+        return false;
       }
       return false;
     },

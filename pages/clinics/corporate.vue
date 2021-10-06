@@ -52,7 +52,7 @@
       :title-classes="headerClasses"
       :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
-    care
+    care(:metrics-data="metricsData")
     steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
@@ -84,6 +84,7 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
@@ -99,6 +100,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     this.features = [

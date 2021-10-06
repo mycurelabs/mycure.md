@@ -4,13 +4,13 @@
     choose-appointment(
       is-clinic
       v-model="dialogs.appointment"
+      :has-doctors="hasDoctors"
       @select="onSelectAppointment($event)"
     )
     //- CHOOSE SERVICE DIALOG
     choose-service(
       v-model="dialogs.serviceType"
       :service-types="serviceTypes"
-      :has-doctors="hasDoctors"
       @select="activeTab = $event"
     )
     //- APP BAR
@@ -18,7 +18,7 @@
     //- PANEL 1
     div(
       :class="background"
-      :style="{ height: isVerified ? '150vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
+      :style="{ height: isVerified ? $isMobile ? '120vh' : '150vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
     ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import uniq from 'lodash/uniq';
@@ -302,18 +303,27 @@ export default {
     },
     // - Schedules simplified to get overall time period instead of multiple periods
     compressedSchedules () {
-      const schedules = [...this.groupedSchedules];
-      const compressedSchedules = [];
-      schedules.forEach((schedule) => {
-        const existing = compressedSchedules.find(sched => sched.day === schedule.day && sched.closing < schedule.closing);
-        if (!existing) {
-          compressedSchedules.push(schedule);
-          return;
+      const sched = this.groupedSchedules;
+      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
+      const finalSched = [{ day: '', time: '' }];
+      formatSched.map((x) => {
+        if (finalSched.find(sched => sched.time === x.time)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
+          if (typeof finalSched[index].day === 'string') {
+            finalSched[index].day = [finalSched[index].day, x.day];
+          } else {
+            finalSched[index].day = [...finalSched[index].day, x.day];
+          }
+        } else if (finalSched.find(sched => sched.day === x.day)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
+          finalSched[index].time = [finalSched[index].time, x.time];
+        } else {
+          finalSched.push(x);
+          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
         }
-        const index = compressedSchedules.indexOf(existing);
-        compressedSchedules[index].closing = schedule.closing;
+        return 0;
       });
-      return compressedSchedules;
+      return finalSched;
     },
     formattedDoctors () {
       if (!this.orgDoctors?.length) return [];
@@ -544,6 +554,9 @@ export default {
         // - scroll down to doctors list
         VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       }
+    },
+    formatTime (time) {
+      return format(time, 'hh:mm A');
     },
   },
 };
