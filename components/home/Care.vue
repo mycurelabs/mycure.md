@@ -21,10 +21,16 @@
 
 <script>
 import GenericPanel from '~/components/generic/GenericPanel';
-import { fetchWebsiteMetrics } from '~/utils/axios';
+// import { fetchWebsiteMetrics } from '~/utils/axios';
 export default {
   components: {
     GenericPanel,
+  },
+  props: {
+    metricsData: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data () {
     this.headerClasses = ['mc-title-set-1', 'mb-5'];
@@ -67,22 +73,22 @@ export default {
     isVisible (val) {
       this.animate();
     },
-    medicalRecordsData () {
-      this.animate();
+    medicalRecordsData (val) {
+      if (val && this.isVisible) this.animate();
     },
-    patientsData () {
-      this.animate();
+    patientsData (val) {
+      if (val && this.isVisible) this.animate();
     },
-    providersData () {
-      this.animate();
+    providersData (val) {
+      if (val && this.isVisible) this.animate();
     },
   },
-  async created () {
+  created () {
     try {
-      const data = await fetchWebsiteMetrics();
-      this.medicalRecordsData = data?.medicalRecordsData || 1700000;
-      this.patientsData = data?.patientsData || 1450000;
-      this.providersData = data?.providersData || 780;
+      // const data = await fetchWebsiteMetrics();
+      this.medicalRecordsData = this.metricsData?.medicalRecordsData || 1700000;
+      this.patientsData = this.metricsData?.patientsData || 1450000;
+      this.providersData = this.metricsData?.providersData || 780;
     } catch (e) {
       console.error(e);
     }

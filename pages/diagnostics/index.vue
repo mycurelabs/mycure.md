@@ -118,7 +118,7 @@
             //- v-icon(left)  mdi-information-outline
             span.generic-button-text See MYCURE for Clinics
     //- 7.5
-    care
+    care(:metrics-data="metricsData")
     steps(:steps="stepsContent" not-free)
     //- 8th panel
     think-long-term
@@ -140,6 +140,7 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 // - constants
 import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
@@ -160,6 +161,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     // - TODO: Update info

@@ -4,7 +4,7 @@
       //- 1st panel
       seven-wonders
       //- 2nd panel
-      care
+      care(:metrics-data="metricsData")
       //- 3rd panel
       stakes(
         panel-title="Your clinic system should not cause you more problems"
@@ -57,6 +57,7 @@ import headMeta from '~/utils/head-meta';
 // - components
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
@@ -73,6 +74,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];

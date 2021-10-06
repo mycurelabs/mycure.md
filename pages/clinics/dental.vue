@@ -149,7 +149,7 @@
           //-   span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
-    care
+    care(:metrics-data="metricsData")
     steps(:steps="stepsContent" not-free)
     //- 9th panel
     think-long-term(extended)
@@ -169,6 +169,7 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
@@ -188,6 +189,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     this.studentPanel = {
