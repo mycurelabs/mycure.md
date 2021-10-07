@@ -32,6 +32,7 @@
           :doctor="item"
           :is-preview-mode="isPreviewMode"
           :read-only="readOnly"
+          :is-booking-enabled="isBookingEnabled"
         )
         service-item(
           v-else
@@ -42,7 +43,7 @@
           :read-only="readOnly"
         )
     //- PAGINATION
-    v-row
+    v-row(v-if="items.length")
       v-spacer
       v-pagination(
         v-model="itemsPage"
@@ -99,6 +100,10 @@ export default {
       default: false,
     },
     showBackButton: {
+      type: Boolean,
+      default: false,
+    },
+    isBookingEnabled: {
       type: Boolean,
       default: false,
     },

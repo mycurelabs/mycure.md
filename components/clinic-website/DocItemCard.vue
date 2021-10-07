@@ -153,6 +153,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isBookingEnabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.daysList = [
@@ -227,7 +231,7 @@ export default {
       return fullSchedules.filter(schedule => (schedule.order || schedule.day) === dayOrder) || [];
     },
     isAvailable () {
-      return this.todaySchedules.length;
+      return this.todaySchedules.length && this.isBookingEnabled;
     },
     hasTeleconsult () {
       return this.doctor?.teleconsultQueue;

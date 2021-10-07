@@ -35,6 +35,7 @@
               show-book-buttons
               :organization="organization"
               :doctor="item"
+              :is-booking-enabled="isBookingEnabled"
             )
             //- Service
             service-item(
@@ -81,6 +82,10 @@ export default {
       default: false,
     },
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    isBookingEnabled: {
       type: Boolean,
       default: false,
     },

@@ -16,6 +16,7 @@ export const fetchClinicServices = async (sdk, opts) => {
     ...opts.facility && { facility: opts.facility },
     ...opts.type && { type: opts.type },
     ...opts.subtype && { subtype: opts.subtype },
+    ...opts.tags && { tags: opts.tags },
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $populate: {

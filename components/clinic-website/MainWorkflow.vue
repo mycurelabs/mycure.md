@@ -8,6 +8,8 @@
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
       :service-types="serviceTypes"
+      :has-services="hasServices"
+      :has-doctors="hasDoctors"
       :hide-banner="hideBanner"
       @search="onSearch"
       style="margin-top: 12px;"
@@ -20,8 +22,8 @@
             v-col(
               v-if="!searchResultsMode"
               cols="12"
-              :md="!serviceTypes.length ? '12' : '8'"
-              :xl="!serviceTypes.length ? '12' : '7'"
+              :md="!hasSearchables ? '12' : '8'"
+              :xl="!hasSearchables ? '12' : '7'"
               :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
             )
               //- If mobile view and no service type is expanded, show all service types card
@@ -44,20 +46,21 @@
                 :has-next-page="hasNextPage"
                 :has-previous-page="hasPreviousPage"
                 :is-preview-mode="isPreviewMode"
+                :is-booking-enabled="isBookingEnabled"
                 :search-results-mode="searchResultsMode"
                 @back="mobileServicesListView = false"
                 @paginate="onPaginate($event)"
               )
-            //- Selection Area, side panel. Only present in web view
+            //- Selection Area, side panel. Only present in web view and if there are services
             v-col(
               v-if="!$isMobile"
               cols="12"
               :md="searchResultsMode ? '3' : '4'"
               :xl="searchResultsMode ? '2' : '3'"
             )
-              //-Show in standard view (no search)
+              //- Show in standard view (no search)
               service-types-selection(
-                v-if="!searchResultsMode"
+                v-if="!searchResultsMode && hasSearchables"
                 v-model="activeTab"
                 :service-types="serviceTypes"
                 :has-doctors="hasDoctors"
@@ -66,7 +69,7 @@
               )
               //- Only show in search results mode
               v-btn(
-                v-else
+                v-else-if="searchResultsMode"
                 tile
                 outlined
                 color="primary"
@@ -82,6 +85,7 @@
               v-if="searchResultsMode"
             )#services
               services-search-results(
+                :is-booking-enabled="isBookingEnabled"
                 :organization="orgId"
                 :loading="loading"
                 :items="searchResults"
@@ -93,6 +97,7 @@
 </template>
 
 <script>
+import isEmpty from 'lodash/isEmpty';
 import ServicesSearchResults from './services/search-results';
 import ServicesList from './services/ServicesList';
 import ServiceTypesMobileSelection from './services/service-types-mobile-selection';
@@ -181,6 +186,9 @@ export default {
     };
   },
   computed: {
+    isBookingEnabled () {
+      return this.organization?.types?.includes('clinic-booking');
+    },
     activeTab: {
       get () {
         return this.value;
@@ -202,6 +210,12 @@ export default {
       if (this.$isMobile && this.mobileServicesListView) return true;
       if (!this.$isMobile && !this.searchResultsMode) return true;
       return false;
+    },
+    hasServices () {
+      return !isEmpty(this.items);
+    },
+    hasSearchables () {
+      return this.hasServices || this.hasDoctors;
     },
   },
   watch: {

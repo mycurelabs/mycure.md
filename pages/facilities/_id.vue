@@ -25,7 +25,7 @@
           v-avatar(:size="$isMobile ? '150' : '200'").mb-5
             img(:src="picURL")
           h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
-          template(v-if="isVerified")
+          template(v-if="isVerified && isAvailable")
             div.white.btn-banner
               strong(slot="badge").font-18.warning--text We're Open!
             v-hover(
@@ -53,6 +53,7 @@
           span {{clinicPhone}}
       //- MAIN PANELS
       main-workflow(
+        v-if="!loading.page"
         v-model="activeTab"
         :is-preview-mode="isPreviewMode"
         :search-results-mode="searchResultsMode"
@@ -80,7 +81,9 @@
         :schedules="compressedSchedules"
       )
       //- QUICK BOOK
+      //- Only show this panel, if booking is enabled
       quick-book(
+        v-if="isBookingEnabled"
         :is-preview-mode="isPreviewMode"
         :service-types="serviceTypes"
         :service-schedules="serviceSchedules"
@@ -159,7 +162,10 @@ export default {
   async asyncData ({ params, $sdk, redirect }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
-      if (isEmpty(clinic)) redirect('/');
+      // Redirect to home if no clinic found, or if clinic is existing, but has not setup its website yet
+      // Will not redirect if it's a 'diagnostic-center' since these are the orgs we have up for claiming
+      if (isEmpty(clinic) ||
+        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) redirect('/');
       return {
         clinic,
       };
@@ -247,6 +253,9 @@ export default {
     });
   },
   computed: {
+    isBookingEnabled () {
+      return this.clinic?.types?.includes('clinic-booking');
+    },
     bookURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -273,6 +282,10 @@ export default {
     },
     isVerified () {
       return !!this.clinic?.websiteId;
+    },
+    // Clinic is available if it has booking / telehealth services
+    isAvailable () {
+      return this.servicesTotal || this.doctorsTotal;
     },
     isDummyOrg () {
       const { tags } = this.clinic;
@@ -377,14 +390,18 @@ export default {
   async mounted () {
     // Initial window setups
     this.$vuetify.theme.dark = false;
+    this.canUseWebp = await canUseWebp();
     if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
 
-    this.loading.page = false;
-    await this.fetchServiceTypes();
+    if (this.isBookingEnabled) {
+      await this.fetchServiceTypes();
+      await this.fetchServices();
+    }
     await this.fetchDoctorMembers();
-    this.canUseWebp = await canUseWebp();
     this.listItems = [...this.filteredServices];
+    console.log('listItems', this.listItems);
     this.itemsTotal = this.servicesTotal;
+    this.loading.page = false;
   },
   methods: {
     // - Fetches all doctors of facility
@@ -409,7 +426,7 @@ export default {
       try {
         const { type, subtype, insurer } = service;
         const skip = this.itemsLimit * (page - 1);
-        const { items, total } = await fetchClinicServices(this.$sdk, {
+        const query = {
           facility: this.orgId,
           type,
           subtype,
@@ -417,7 +434,15 @@ export default {
           searchText,
           limit: this.itemsLimit,
           skip,
-        });
+          /**
+           * Don't put a telehealth service on display at clinic website
+           *
+           * We have identified that doctor should be a starting point in booking a telehealth appointment
+           * Picking a telehealth service will be done at PxP
+           */
+          ...type === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+        };
+        const { items, total } = await fetchClinicServices(this.$sdk, query);
         this.servicesTotal = total;
 
         /*
@@ -512,7 +537,9 @@ export default {
         this.searchFilters = searchFilters;
 
         await this.fetchDoctorMembers(searchText);
-        await this.fetchServices(searchFilters, searchText);
+        if (this.isBookingEnabled) {
+          await this.fetchServices(searchFilters, searchText);
+        }
         // Append doctors only if it is consult or no service type filter
         if ((!this.searchFilters?.type) ||
           (this.searchFilters?.type && this.searchFilters?.type === 'clinical-consultation')) {
