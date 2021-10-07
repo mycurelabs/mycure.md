@@ -74,7 +74,7 @@
           p {{ errorMessage }}
         v-card-actions
           v-spacer
-          v-btn(color="success" depressed :to="{ name: 'signup-health-facilities' }").text-none Back
+          v-btn(color="success" depressed :to="initialRoute").text-none Back
           v-spacer
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
@@ -145,6 +145,20 @@ export default {
   computed: {
     step1LocalStorageData () {
       return process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+    },
+    initialRoute () {
+      if (!this.step1LocalStorageData) return { name: 'signup-health-facilities' };
+      const query = {
+        ...this.preBundle && { plan: this.preBundle },
+        ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
+        ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
+        ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
+        type: this.organizationTypes0,
+      };
+      return {
+        name: 'signup-health-facilities',
+        query,
+      };
     },
     preBundle () {
       return this.$route.query.plan || this.step1LocalStorageData.plan;
