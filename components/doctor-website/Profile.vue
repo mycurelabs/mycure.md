@@ -139,13 +139,14 @@ export default {
   computed: {
     mainTextClasses () {
       return classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
+        mobile: ['font-24', 'text-center'],
         regular: ['font-24'],
         wide: ['font-m'],
       });
     },
     sectionTextClasses () {
       return classBinder(this, {
+        mobile: ['font-16'],
         regular: ['font-xs'],
         wide: ['font-s'],
       });

@@ -1,19 +1,19 @@
 <template lang="pug">
   v-card(width="100%" flat).px-1.py-1.rounded-xl.card-outter
     v-card-text
-      v-row
-        v-col(cols="6" md="3" justify="center" align="center").text-center
+      v-row(justify="center")
+        v-col(cols="6" md="3" justify="center" align="center").pb-0.text-center
           img(
             :src="clinicPicURL"
             alt="Services"
             width="90%"
-          ).ma-3.rounded-xl
+          ).mt-3.rounded-xl
         v-col(cols="12" md="8").pt-5
           div
             v-clamp(
               autoresize
               :max-lines="1"
-            ).font-weight-bold.mb-0.mc-content-set-3 {{ clinic.name }}&nbsp;
+            ).font-weight-bold.mb-0.mc-title-set-2 {{ clinic.name }}&nbsp;
           //- Address
           v-row.mt-2
             v-icon(color="primary") mdi-home-variant-outline
@@ -56,33 +56,36 @@
         v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer
-    v-card-actions.pa-2
-      v-spacer(v-if="!$isMobile")
-      div(:class="{'d-inline-flex': !$isMobile}")
-        v-btn(
-          color="success"
-          depressed
-          large
-          :block="$isMobile"
-          :href="!isPreviewMode && telehealthURL"
-          :disabled="!canOnlineBook"
-          @click="trackBooking('telehealth')"
-        ).text-none.font-12.mx-1.clinic-book-btn
-          v-icon(small left) {{ canOnlineBook ? 'mdi-video-outline' : 'mdi-close' }}
-          span Online Consult
-        v-btn(
-          color="info"
-          depressed
-          large
-          :block="$isMobile"
-          :disabled="!canVisit"
-          :href="!isPreviewMode && visitURL"
-          :class="{'mt-2': $isMobile}"
-          @click="trackBooking('physical')"
-        ).text-none.font-12.mx-1.clinic-book-btn
-          v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
-          span Visit Clinic
-      v-spacer(v-if="!$isMobile")
+    v-card-actions.pa-2.pb-4
+      v-row(justify="center")
+        //- v-spacer(v-if="!$isMobile")
+        v-col(cols="12" sm="8").text-center
+          div(:class="{'d-inline-flex': !$isMobile}")
+            v-btn(
+              color="success"
+              depressed
+              large
+              :block="$isMobile"
+              :href="!isPreviewMode && telehealthURL"
+              :class="{'mx-1': !$isMobile}"
+              :disabled="!canOnlineBook"
+              @click="trackBooking('telehealth')"
+            ).text-none.font-12.clinic-book-btn
+              v-icon(small left) {{ canOnlineBook ? 'mdi-video-outline' : 'mdi-close' }}
+              span Online Consult
+            v-btn(
+              color="info"
+              depressed
+              large
+              :block="$isMobile"
+              :disabled="!canVisit"
+              :href="!isPreviewMode && visitURL"
+              :class="$isMobile ? 'mt-2': 'mx-1'"
+              @click="trackBooking('physical')"
+            ).text-none.font-12.clinic-book-btn
+              v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
+              span Visit Clinic
+      //- v-spacer(v-if="!$isMobile")
 
     //- Schedule Dialog
     v-dialog(v-model="scheduleDialog" width="600")

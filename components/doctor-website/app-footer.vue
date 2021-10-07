@@ -38,6 +38,9 @@
                 span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
                 v-btn(
                   text
+                  href="https://airtable.com/shrgkdR8ASEdbQ1Pa"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   color="secondary"
                   @click="toggleChat"
                 ).text-none.letter-spacing-normal Send us your feedback
@@ -49,7 +52,7 @@
                 ).text-none.letter-spacing-normal.font-weight-bold See more Doctors
                   span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
                   v-btn(
-                  href="https://doctors.mycure.md"
+                  to="/signup/health-facilities?type=doctor"
                   text
                   color="secondary"
                 ).text-none.letter-spacing-normal Create my own Doctor Website
