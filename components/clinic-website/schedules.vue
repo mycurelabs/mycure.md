@@ -10,10 +10,14 @@
             v-spacer
             v-col(cols="12" sm="7" :align="$isMobile? 'start' : 'end'").pa-0
               span(v-if="typeof (sched.time) === 'string'").text-center.font-gray {{ sched.time }}
-              div(v-else v-for="(slot, index, key) in sched.time" :key="key" :class="{'pb-2': index === sched.time.length - 1}").pt-3
-                v-row.pb-1
+              div(v-else).pt-3
+                v-row(v-for="(slot, key) in sched.time" :key="key" :class="{'pb-2': key === sched.time.length - 1}").pb-1
                   v-col.py-0
-                    span.text-center.font-gray {{ sched.time[index] }}
+                    span(v-if="typeof (slot) === 'string'").text-center.font-gray {{ slot }}
+                    template(v-else)
+                      template(v-for="subslot in slot")
+                        span.text-center.font-gray {{ subslot }}
+                        br
     div(v-else)
       span No Schedule Available
     //- div(v-for="(sched, key) in schedules" :key="key").d-flex
