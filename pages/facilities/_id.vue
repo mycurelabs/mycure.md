@@ -211,7 +211,7 @@ export default {
         dayName: 'Sunday',
       },
     ];
-    this.itemsLimit = 10;
+    this.itemsLimit = 5;
     return {
       // UI State
       loading: {
