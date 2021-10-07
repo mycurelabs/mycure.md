@@ -192,7 +192,7 @@ export default {
       const index = this.groupedSchedules.findIndex(x => x.day === dayOfWeek);
       if (index > 4) {
         const frontSched = this.groupedSchedules.slice(index);
-        const endSched = this.groupedSchedules.slice(0, index - 4);
+        const endSched = this.groupedSchedules.slice(index, index - 1);
         return frontSched.concat(endSched);
       } else {
         return this.groupedSchedules?.slice(index, index + 3) || [];
