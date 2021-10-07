@@ -187,6 +187,7 @@
       map-picker(
         :address="address"
         @resolve="onLocationPick"
+        @close="onMapDialogClose"
       )
 </template>
 
@@ -316,6 +317,7 @@ export default {
     },
     locationSwitch: {
       get () {
+        console.log('location', !!this.location);
         return !!this.location;
       },
       set (val) {
@@ -451,7 +453,13 @@ export default {
     onLocationPick (address) {
       if (!address) return null;
       this.$emit('select:location', address);
+    },
+    onMapDialogClose (hasAddress) {
       this.mapDialog = false;
+      if (!hasAddress) {
+        this.searchObject.location = null;
+        this.$emit('clear:location');
+      }
     },
   },
 };

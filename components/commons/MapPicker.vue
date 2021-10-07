@@ -207,7 +207,7 @@ export default {
       return address;
     },
     onCancel () {
-      this.$emit('close', true);
+      this.$emit('close', false);
     },
     onSave () {
       this.$emit('resolve', this.resolvedAddress);
@@ -226,6 +226,7 @@ export default {
   min-height: 450px;
   height: 100%;
   min-width: 450px;
+  max-width: 600px;
   width: 100%;
 }
 
