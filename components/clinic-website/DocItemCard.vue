@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card(width="100%").px-1.py-1.rounded-xl
     v-card-text
-      v-row
+      v-row(:justify="$isMobile ? 'center' : 'start'")
         v-col(cols="5" md="3" justify="center" align="center").text-center
           img(
             :src="picURL"
@@ -21,23 +21,27 @@
               :max-lines="1"
             ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
             //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
-          v-row.mt-2
+          v-row.mt-2.px-3
             v-icon(color="primary") mdi-medical-bag
-            v-col.font-gray
+            v-col.py-0.font-gray
               span.mc-content-set-4 Specialization
-              p(v-if="hasSpecialties").font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
-              p(v-else).font-weight-semibold &nbspNo information provided
-          v-row
+              p(v-if="hasSpecialties").ma-0.font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
+              p(v-else).ma-0.font-weight-semibold.font-italic &nbsp;No information provided
+          v-row.px-3.pb-3
             v-icon(color="primary" ) mdi-briefcase-variant-outline
-            v-col.font-gray
+            v-col.py-0.font-gray
               span.mc-content-set-4 Experience
               v-clamp(
-                v-if="doctor"
+                v-if="doctor.doc_practicingSince"
                 autoresize
                 :max-lines="1"
-              ).font-weight-semibold {{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
-              span(v-else).font-weight-semibold &nbsp;- year/s of experience
-          v-row(v-if="!minified" :class="{'mt-2': !minified}")
+              ).font-weight-semibold {{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
+              v-clamp(
+                v-else
+                autoresize
+                :max-lines="1"
+              ).font-weight-semibold.font-italic &nbsp;No Information
+          v-row(v-if="!minified" :class="{'mt-2': !minified}").pa-3
             v-icon(color="primary" v-bind="iconBindings") mdi-information-outline
             v-col.font-gray
               span.mc-content-set-4 About
@@ -47,30 +51,36 @@
                 :max-lines="1"
               ).font-weight-semibold {{ bio }}
               p(v-else).font-weight-semibold No information provided
+      v-divider.mb-2.mt-5
       //- Schedules
-      v-row.pt-2
-        v-col(cols="1" v-if="!$isMobile")
-        v-badge(
-          v-for="(day, key) in daysList"
-          :key="key"
-          :color="isClinicOpen(day.value) ? 'success' : 'grey'"
-          :content="day.text"
-          inline
-          large
-        )
+      v-row(justify="end").pt-2.px-4
+        //- v-col(cols="1" v-if="!$isMobile")
+        //- v-badge(
+        //-   v-for="(day, key) in daysList"
+        //-   :key="key"
+        //-   :color="isClinicOpen(day.value) ? 'success' : 'grey'"
+        //-   :content="day.text"
+        //-   inline
+        //-   x-large
+        //- )
+        //- div.d-flex.white--text.mt-2
+        v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
+          div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'success' : 'grey']").badge
+            | {{ day.text }}
         v-spacer
-        a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
-        v-col(cols="12" v-else)
+        //- a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+        v-col(cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer
     slot(name="card-actions")
-      v-card-actions(v-if="showBookButtons").pa-2
+      v-card-actions(v-if="showBookButtons").pa-3
         v-spacer(v-if="!$isMobile")
         div(:class="{'d-inline-flex': !$isMobile}")
           v-btn(
             color="success"
             depressed
             large
+            :block="$isMobile"
             :href="!readOnly && bookTeleconsultURL"
             :disabled="!hasTeleconsult"
             @click="trackBooking('telehealth')"
@@ -81,6 +91,7 @@
             color="info"
             depressed
             large
+            :block="$isMobile"
             :disabled="!isAvailable"
             :href="!readOnly && bookPhysicalURL"
             :class="{'mt-2': $isMobile}"
@@ -121,6 +132,7 @@
 import VClamp from 'vue-clamp';
 import isNil from 'lodash/isNil';
 import SchedulesList from './services/service-schedules';
+import classBinder from '~/utils/class-binder';
 import { formatAddress } from '~/utils/formats';
 
 export default {
@@ -163,9 +175,9 @@ export default {
       { text: 'M', value: 1 },
       { text: 'T', value: 2 },
       { text: 'W', value: 3 },
-      { text: 'Th', value: 4 },
+      { text: 'R', value: 4 },
       { text: 'F', value: 5 },
-      { text: 'Sa', value: 6 },
+      { text: 'S', value: 6 },
       { text: 'S', value: 0 },
     ];
     return {
@@ -248,6 +260,20 @@ export default {
       const id = this.doctor?.uid;
       return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=physical`;
     },
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
+      });
+    },
+    textFontSize () {
+      return classBinder(this, {
+        mobile: ['font-12'],
+        regular: ['font-14'],
+        wide: ['font-18'],
+      });
+    },
   },
   methods: {
     visitWebsite () {
@@ -268,3 +294,25 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.badge-size {
+  height: 30px;
+  width: 30px;
+}
+.badge-size-mobile {
+  height: 20px;
+  width: 20px;
+}
+.badge-size-wide {
+  height: 40px;
+  width: 40px;
+}
+.badge {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: rgb(163, 163, 163);
+}
+</style>

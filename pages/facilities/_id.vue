@@ -18,7 +18,7 @@
     //- PANEL 1
     div(
       :class="background"
-      :style="{ height: isVerified ? $isMobile ? '120vh' : '150vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
+      :style="{ height: isVerified ? $isMobile ? '120vh' : '130vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
     ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
@@ -372,8 +372,8 @@ export default {
       `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
     background () {
-      if (this.isVerified && this.canUseWebp) return 'bg-webp';
-      if (this.isVerified && !this.canUseWebp) return 'bg-png';
+      // if (this.isVerified && this.canUseWebp) return 'bg-webp';
+      // if (this.isVerified && !this.canUseWebp) return 'bg-png';
       if (!this.isVerified && this.canUseWebp) return 'construct-bg-webp';
       if (!this.isVerified && !this.canUseWebp) return 'construct-bg-png';
       return 'bg-png';
@@ -605,9 +605,9 @@ a {
   background-image: url('../../assets/images/clinics-website/Clinic Website BG.png');
 }
 
-.bg-webp {
+/* .bg-webp {
   background-image: url('../../assets/images/clinics-website/Clinic Website BG.webp');
-}
+} */
 .construct-bg-png {
   background-image: url('../../assets/images/clinics-website/MYCURE - Construction.png');
 }
