@@ -48,7 +48,12 @@
 </template>
 
 <script>
+import intersection from 'lodash/intersection';
 import PictureSource from '~/components/commons/PictureSource';
+
+const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
+const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
+
 export default {
   components: {
     PictureSource,
@@ -99,12 +104,6 @@ export default {
         this.$emit('input', val);
       },
     },
-    bookingOrgType () {
-      return this.isClinic ? 'clinic-booking' : 'doctor-booking';
-    },
-    telehealthOrgType () {
-      return this.isClinic ? 'clinic-telehealth' : 'doctor-telehealth';
-    },
   },
   methods: {
     onServiceSelect (type) {
@@ -115,9 +114,11 @@ export default {
     isAvailable (type) {
       switch (type) {
         case 'telehealth':
-          return !!this.organizations?.find(org => org.teleconsultQueue && org.types?.includes(this.telehealthOrgType));
+          return !!this.organizations?.find(org => org.teleconsultQueue &&
+            intersection(org.types, TELEHEALTH_FACILITY_TYPES)?.length);
         case 'physical':
-          return !!this.organizations?.find(org => (org.doctorSchedules || org.$populated?.doctorSchedules) && org.types?.includes(this.bookingOrgType));
+          return !!this.organizations?.find(org => (org.doctorSchedules || org.$populated?.doctorSchedules) &&
+            intersection(org.types, BOOKING_FACILITY_TYPES)?.length);
         default: return false;
       }
     },

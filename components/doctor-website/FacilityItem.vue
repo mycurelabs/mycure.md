@@ -113,6 +113,7 @@
 
 <script>
 import isNil from 'lodash/isNil';
+import intersection from 'lodash/intersection';
 import uniqWith from 'lodash/uniqWith';
 import VClamp from 'vue-clamp';
 // - components
@@ -120,6 +121,9 @@ import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import SchedulesList from '~/components/clinic-website/services/service-schedules';
 import classBinder from '~/utils/class-binder';
 import { formatAddress } from '~/utils/formats';
+
+const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
+const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
 
 export default {
   components: {
@@ -205,11 +209,10 @@ export default {
   },
   computed: {
     canOnlineBook () {
-      return this.clinic?.teleconsultQueue;
+      return this.clinic?.teleconsultQueue && intersection(this.clinic?.types, TELEHEALTH_FACILITY_TYPES)?.length;
     },
     canVisit () {
-      return !!this.fullSchedules?.length;
-      // return this.clinic?.types?.includes('doctor-booking' || 'clinic-booking');
+      return !!this.fullSchedules?.length && intersection(this.clinic?.types, BOOKING_FACILITY_TYPES)?.length;
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
