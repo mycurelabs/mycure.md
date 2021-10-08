@@ -86,6 +86,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
@@ -103,7 +104,15 @@ import {
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import { fetchUserFacilities } from '~/services/organization-members';
-// import { fetchOrganizations } from '~/services/organizations';
+import { fetchOrganizations } from '~/services/organizations';
+
+const BOOKABLE_FACILITY_TYPES = [
+  'doctor-booking',
+  'doctor-telehealth',
+  'clinic-booking',
+  'clinic-telehealth',
+];
+
 export default {
   components: {
     ChooseAppointment,
@@ -221,7 +230,7 @@ export default {
     isBookable () {
       if (!this.clinics?.length) return false;
       return !!this.clinics.find(c => (c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length) &&
-        (c?.types?.includes('doctor-booking') || c?.types?.includes('doctor-telehealth')));
+        intersection(c?.types, BOOKABLE_FACILITY_TYPES)?.length);
     },
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
@@ -253,6 +262,22 @@ export default {
         });
         this.clinicsTotal = total;
         this.clinics = items;
+
+        /**
+         * Normally, this does not happen. A doctor would not have
+         * a website if they haven't enabled either booking or telehealth.
+         * This was added to display the created facilities of our
+         * already EXISTING doctors prior to the changes made in booking and telehealth.
+         */
+        if (!this.isBookable && !this.clinics?.length) {
+          const { items, total } = await fetchOrganizations(this.$sdk, {
+            createdBy: this.doctor.id,
+            limit: this.clinicsLimit,
+            skip,
+          });
+          this.clinicsTotal = total;
+          this.clinics = items;
+        }
       } catch (error) {
         console.error(error);
         this.$nuxt.$router.push('/');
