@@ -107,36 +107,7 @@
             v-if="showSpecializationsField" cols="12" md="5" lg="4"
             :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
           )
-            v-autocomplete(
-              v-if="appBar"
-              v-model="searchObject.specializations"
-              label="Specializations"
-              prepend-inner-icon="mdi-filter"
-              solo
-              outlined
-              flat
-              dense
-              multiple
-              chips
-              small-chips
-              deletable-chips
-              clearable
-              :menu-props="{ bottom: true }"
-              :items="specialtiesList"
-              @change="onSearch(false)"
-            )
-              template(v-slot:selection="{ item, index }")
-                v-clamp(
-                  v-if="index === 0"
-                  autoresize
-                  :max-lines="1"
-                ) {{ item }}
-                span(
-                  v-if="index === 1"
-                  class="grey--text text-caption"
-                ) (+{{ searchObject.specializations.length - 1 }} others)
             v-text-field(
-              v-else
               v-model="specialtiesDisplay"
               placeholder="Specializations"
               prepend-inner-icon="mdi-filter"
@@ -148,9 +119,9 @@
               template(slot="append")
                 v-icon(
                   v-if="searchObject.specializations.length > 0"
-                  @click="searchObject.specializations = []"
+                  @click="searchObject.specializations = [], onSearch(false)"
                 ) mdi-close
-    v-dialog(v-model="dialog" width="500" height="100%")
+    v-dialog(v-model="dialog" width="500" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
         v-card-title
           v-row
@@ -159,7 +130,7 @@
             v-spacer
             v-col(cols="1")
               v-row(justify="end")
-                v-icon(large @click="dialog = false") mdi-close
+                v-icon(large @click="dialog = false, onSearch(false)") mdi-close
         v-card-subtitle.pt-3.pb-0
           v-row.pa-3.mt-1
             v-text-field(
