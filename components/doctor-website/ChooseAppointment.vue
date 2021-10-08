@@ -76,14 +76,14 @@ export default {
       {
         text: 'Online Consult',
         type: 'telehealth',
-        color: 'accent',
+        color: 'secondary',
         image: 'Teleconsult',
         alt: 'Doctor talking to a patient online artwork',
       },
       {
         text: 'Visit Doctor',
         type: 'physical',
-        color: 'secondary',
+        color: 'accent',
         image: 'Clinic Visit',
         alt: 'Doctor talking to a patient in a hospital room',
       },

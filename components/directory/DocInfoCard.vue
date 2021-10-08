@@ -59,7 +59,7 @@
       v-card-actions(v-if="showBookButtons").pa-2
         v-spacer
         v-btn(
-          color="success"
+          color="info"
           depressed
           :href="!readOnly && bookTeleconsultURL"
           :disabled="!hasTeleconsult"
@@ -67,7 +67,7 @@
           v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
           span Online Consult
         v-btn(
-          color="info"
+          color="success"
           depressed
           :disabled="!isAvailable"
           :href="!readOnly && bookPhysicalURL"

@@ -77,7 +77,7 @@
         v-spacer(v-if="!$isMobile")
         div(:class="{'d-inline-flex': !$isMobile}")
           v-btn(
-            color="success"
+            color="info"
             depressed
             large
             :block="$isMobile"
@@ -88,7 +88,7 @@
             v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
             span Online Consult
           v-btn(
-            color="info"
+            color="success"
             depressed
             large
             :block="$isMobile"
