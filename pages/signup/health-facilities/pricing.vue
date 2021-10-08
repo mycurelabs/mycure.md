@@ -261,7 +261,13 @@ export default {
           return;
         }
         // Build payload, omit non-allowed values. These are mostly route query values that were stored
-        const omitKeys = ['trial', 'organizationType', 'plan', 'from'];
+        const omitKeys = [
+          'trial',
+          'organizationType',
+          'plan',
+          'from',
+          'stripeCoupon',
+        ];
         const payload = {
           ...omit(this.step1LocalStorageData, omitKeys),
         };
@@ -278,6 +284,7 @@ export default {
           stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
         };
 
+        // If a package was already selected from a pricing panel
         if (this.preBundle) {
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
@@ -288,6 +295,7 @@ export default {
                 stripeEmail: this.email,
               },
               ...this.isTrial && { trial: true },
+              ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
             },
           };
         } else {
@@ -306,6 +314,7 @@ export default {
                   stripeEmail: this.email,
                 },
                 ...this.isTrial && { trial: true },
+                ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
               },
             };
             // If telehealth signup, and the package was not assigned a trial flag.

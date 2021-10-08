@@ -36,6 +36,7 @@
                 v-model="firstName"
                 label="First Name"
                 outlined
+                :dense="$isMobile"
                 :rules="isRequired"
                 :disabled="loading.form"
               )
@@ -51,6 +52,7 @@
                 v-model="lastName"
                 label="Last Name"
                 outlined
+                :dense="$isMobile"
                 :rules="isRequired"
                 :disabled="loading.form"
               )
@@ -66,6 +68,7 @@
                 v-model="email"
                 label="Email"
                 outlined
+                :dense="$isMobile"
                 :rules="emailRules"
                 :disabled="loading.form"
                 @keyup="checkEmail"
@@ -89,6 +92,7 @@
                 label="Mobile Number"
                 type="number"
                 outlined
+                :dense="$isMobile"
                 :prefix="`+${countryCallingCode}`"
                 :disabled="loading.form"
                 :rules="[...isRequired, mobileNumberRule]"
@@ -112,6 +116,7 @@
                 v-model="password"
                 label="Password"
                 outlined
+                :dense="$isMobile"
                 :type="showPass ? 'text' : 'password'"
                 :rules="passwordRules"
                 :disabled="loading.form"
@@ -129,6 +134,7 @@
                 label="Confirm Password"
                 type="password"
                 outlined
+                :dense="$isMobile"
                 :rules="[...isRequired, matchPasswordRule]"
                 :disabled="loading.form"
               )
@@ -146,6 +152,7 @@
                   item-text="text"
                   item-value="value"
                   outlined
+                  dense
                   readonly
                   append-icon="$dropdown"
                   :items="availableFacilityTypes"
@@ -175,9 +182,31 @@
               //- )
               v-text-field(
                 v-model="invitation"
-                label="Invite Code"
-                hint="6 character invite code"
+                label="Referral Code (Optional)"
+                hint="6 character referral code"
                 outlined
+                dense
+                clearable
+                :disabled="loading.form"
+              )
+              v-checkbox(
+                v-model="hasPromoCode"
+                hide-details
+                color="primary"
+                style="margin-top: 0px"
+                :disabled="loading.form"
+              )
+                template(slot="label")
+                  span I have a&nbsp;
+                    strong.primary--text promo code
+                    | .
+              v-text-field(
+                v-if="hasPromoCode"
+                v-model="stripeCoupon"
+                :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
+                label="Promo Code"
+                outlined
+                dense
                 clearable
                 :disabled="loading.form"
               )
@@ -192,6 +221,7 @@
                 item-text="text"
                 item-value="value"
                 outlined
+                dense
                 :error-messages="errorMessagesRoles"
                 :items="userRoles"
                 :rules="isRequired"
@@ -204,6 +234,7 @@
                 v-model="doc_PRCLicenseNo"
                 label="PRC License No"
                 outlined
+                dense
                 hint="Please enter your PRC License No for verification"
                 :disabled="loading.form"
                 :rules="isRequired"
@@ -364,8 +395,10 @@ export default {
       subscription: null,
       doc_PRCLicenseNo: null,
       invitation: null,
+      stripeCoupon: null,
       roles: [],
       agree: '',
+      hasPromoCode: null,
       // - Stripe
       stripeCheckoutSessionId: null,
       // Country Dialog
@@ -446,6 +479,9 @@ export default {
         this.errorMessagesRoles = '';
       }
     },
+    hasPromoCode (val) {
+      if (!val) this.stripeCoupon = null;
+    },
   },
   created () {
     this.loading.page = false;
@@ -483,6 +519,7 @@ export default {
           this.roles = localStorageData.roles;
           this.doc_PRCLicenseNo = localStorageData.doc_PRCLicenseNo;
           this.invitation = localStorageData.invitation;
+          this.stripeCoupon = localStorageData.stripeCoupon;
         }
 
         // Query params handling
@@ -496,6 +533,7 @@ export default {
 
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
         if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
+        if (this.stripeCoupon) this.hasPromoCode = true;
       } catch (e) {
         console.error(e);
       } finally {
@@ -573,6 +611,7 @@ export default {
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
           invitation: this.invitation,
+          stripeCoupon: this.stripeCoupon,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
           // - To be omitted in actual submit in step 2
           ...trial && { trial: true },
