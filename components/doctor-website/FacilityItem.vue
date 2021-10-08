@@ -41,19 +41,26 @@
                 :class="{ 'font-italic': !email }"
               ).font-weight-semibold {{ email || 'No information provided'}}
       //- Schedules
-      v-row.pt-2
-        v-col(cols="1" v-if="!$isMobile")
-        v-badge(
-          v-for="(day, key) in days"
-          :key="key"
-          :color="isClinicOpen(day.order) ? 'success' : 'grey'"
-          :content="day.dayName.charAt(0)"
-          inline
-          large
-        )
+      //- v-row.pt-2
+      //-   v-col(cols="1" v-if="!$isMobile")
+      //-   v-badge(
+      //-     v-for="(day, key) in days"
+      //-     :key="key"
+      //-     :color="isClinicOpen(day.order) ? 'success' : 'grey'"
+      //-     :content="day.dayName.charAt(0)"
+      //-     inline
+      //-     large
+      //-   )
+      //-   v-spacer
+      //-   a(v-if="!$isMobile && fullSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
+      //-   v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
+      //-     a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+      v-row(justify="end").pt-2.px-4
+        v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
+          div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'success' : 'grey']").badge
+            | {{ day.text }}
         v-spacer
-        a(v-if="!$isMobile && fullSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
-        v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
+        v-col(cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer
     v-card-actions.pa-2.pb-4
@@ -108,6 +115,7 @@ import VClamp from 'vue-clamp';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import SchedulesList from '~/components/clinic-website/services/service-schedules';
+import classBinder from '~/utils/class-binder';
 import { formatAddress } from '~/utils/formats';
 
 export default {
@@ -179,6 +187,15 @@ export default {
         dayName: 'Sunday',
       },
     ];
+    this.daysList = [
+      { text: 'M', value: 1 },
+      { text: 'T', value: 2 },
+      { text: 'W', value: 3 },
+      { text: 'R', value: 4 },
+      { text: 'F', value: 5 },
+      { text: 'S', value: 6 },
+      { text: 'S', value: 0 },
+    ];
     return {
       scheduleDialog: false,
     };
@@ -237,6 +254,20 @@ export default {
         .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
       , (a, b) => a.day === b.day && a.startTime === b.startTime);
     },
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
+      });
+    },
+    textFontSize () {
+      return classBinder(this, {
+        mobile: ['font-12'],
+        regular: ['font-14'],
+        wide: ['font-18'],
+      });
+    },
   },
   methods: {
     visitWebsite (url) {
@@ -269,5 +300,24 @@ export default {
 }
 .clinic-book-btn {
   width: 150px;
+}
+.badge-size {
+  height: 30px;
+  width: 30px;
+}
+.badge-size-mobile {
+  height: 20px;
+  width: 20px;
+}
+.badge-size-wide {
+  height: 40px;
+  width: 40px;
+}
+.badge {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: rgb(163, 163, 163);
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="{'mt-n10': !$isMobile}")
+  div
     //- v-tabs(v-model="activeTab")
     //-   v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none
     //-     span(:class="{'font-11': $isMobile}") {{ tab.name }}

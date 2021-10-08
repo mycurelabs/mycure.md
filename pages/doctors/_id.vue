@@ -29,7 +29,7 @@
     )
 
     //- Patient panel
-    patient-panel(:metrics="doctorMetrics")
+    //- patient-panel(:metrics="doctorMetrics")
 
     //- Banner
     //- div.banner-container.mt-n5

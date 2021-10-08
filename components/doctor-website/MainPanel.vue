@@ -17,7 +17,7 @@
               img(:src="picUrl")
             br
             br
-            h2 Dr. {{ fullName }}
+            span.font-weight-bold.mc-title-set-2 Dr. {{ fullName }}
           //- Professional Info
           v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-10
             p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
@@ -25,7 +25,7 @@
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
-              v-col(v-for="(metric, key) in metricMappings" :key="key" cols="4" sm="3").text-center
+              v-col(v-if="metricData[metric.value] !== 0 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
                 v-avatar(size="50" :color="metric.color").lighten-3
                   v-icon(:color="metric.color").darken-1 {{ metric.icon }}
                 br
@@ -162,7 +162,8 @@ export default {
       return '';
     },
     backgroundImage () {
-      return this.canUseWebp ? 'bg-webp' : 'bg-png';
+      // return this.canUseWebp ? 'bg-webp' : 'bg-png';
+      return this.$isMobile ? 'bg-png' : 'bg-newpng';
     },
   },
   async mounted () {
@@ -196,10 +197,13 @@ export default {
 .bg-webp {
   background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.webp');
 }
+.bg-newpng {
+  background-image: url('../../assets/images/doctor-website/Doctor Clinics BG.png');
+}
 .panel-bg {
   background-size: cover;
   width: 100%;
-  height: 1150px;
+  height: 1000px;
   position: relative;
   /* top: 0;
   position: absolute; */
