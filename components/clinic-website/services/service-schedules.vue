@@ -13,7 +13,9 @@
               justify="center"
               cols="12"
             ).text-center
-              h4.font-weight-semibold {{ timeslot | format-time-range }}
+              h4.font-weight-semibold
+                strong(:class="`${getSlotColor(timeslot)}--text`") |&nbsp;
+                span {{ timeslot | format-time-range }}
 </template>
 
 <script>
@@ -143,6 +145,11 @@ export default {
       }
       if (this.nonMfSchedule) return items.filter(item => item.day === value);
       return items.filter(item => item.order === value);
+    },
+    getSlotColor (timeslot) {
+      const { meta } = timeslot;
+      if (meta?.serviceSubtype === 'telehealth') return 'info';
+      return 'success';
     },
   },
 };
