@@ -7,7 +7,9 @@
       )
         v-card(color="grey" @click="$emit('select', type.value)")
           v-toolbar(flat)
-            h3 {{ type.text }}
+            h3 {{ type.text }}&nbsp;
+            v-chip(v-if="type.value === 'doctors'" color="primary" small)
+              span.font-10 Telehealth
             v-spacer
             v-icon(color="primary") mdi-chevron-right
 </template>
@@ -32,7 +34,7 @@ export default {
       { text: 'PE Packages', type: 'pe', value: 'pe' },
       { text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
       { text: 'Dental', type: 'dental', value: 'dental' },
-      { text: 'Our Doctors', type: 'doctors', value: 'doctors' },
+      { text: 'Book Doctor', type: 'doctors', value: 'doctors' },
     ];
     return {};
   },

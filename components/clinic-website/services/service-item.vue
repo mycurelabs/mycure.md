@@ -2,13 +2,6 @@
   v-card.rounded-lg
     v-card-text
       v-row
-        v-col(v-if="isDoctor" cols="12" md="2")
-          v-avatar(size="100")
-            img(
-              :src="picURL"
-              :alt="title"
-              width="100%"
-            )
         v-col(cols="12" md="8")
           h3.black--text {{ title }}&nbsp;
           //- SCHEDULES
@@ -32,26 +25,24 @@
           template(v-else)
             i No schedules available
             br
-          template(v-if="!isDoctor")
+          template(v-if="hasCoverages")
             span Accreditations:
             br
-            template(v-if="hasCoverages")
-              v-tooltip(
-                v-for="(coverage, key) in coverages"
-                :key="key"
-                top
-              )
-                template(v-slot:activator="{ on, attrs }")
-                  v-avatar(
-                    size="40"
-                    color="secondary"
-                    v-on="on"
-                  ).mx-1
-                    v-img(v-if="coverage.picURL" :src="coverage.picURL")
-                    span(v-else).white--text {{ coverage.name.substring(0,1) }}
-                span {{ coverage.name || 'HMO' }}
-            i(v-else) No accreditations available
-        v-col(v-if="!isDoctor && !readOnly" :class="$isMobile ? 'text-left' : 'text-right'").grow
+            v-tooltip(
+              v-for="(coverage, key) in coverages"
+              :key="key"
+              top
+            )
+              template(v-slot:activator="{ on, attrs }")
+                v-avatar(
+                  size="40"
+                  color="secondary"
+                  v-on="on"
+                ).mx-1
+                  v-img(v-if="coverage.picURL" :src="coverage.picURL")
+                  span(v-else).white--text {{ coverage.name.substring(0,1) }}
+              span {{ coverage.name || 'HMO' }}
+        v-col(v-if="!readOnly" :class="$isMobile ? 'text-left' : 'text-right'").grow
           h3.info--text Availability
             v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
           br
@@ -61,6 +52,7 @@
             money(:value="price" symbol="₱")
           h3(v-else).font-italic No price stated
           v-btn(
+            v-if="isBookingEnabled"
             color="accent"
             depressed
             block
@@ -127,10 +119,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    isDoctor: {
-      type: Boolean,
-      default: false,
-    },
     isPreviewMode: {
       type: Boolean,
       default: false,
@@ -140,6 +128,10 @@ export default {
       default: null,
     },
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    isBookingEnabled: {
       type: Boolean,
       default: false,
     },
@@ -164,9 +156,6 @@ export default {
   },
   computed: {
     title () {
-      if (this.isDoctor) {
-        return this.item?.doctorName;
-      }
       return this.item?.name;
     },
     picURL () {
@@ -175,10 +164,6 @@ export default {
     price () {
       return this.item?.price;
     },
-    // nonMfSchedule () {
-    //   // - Doctor schedules automatically do not use mf_schedule
-    //   return this.item?.nonMfSchedule || this.isDoctor;
-    // },
     fullSchedules () {
       return this.item?.scheduleData || this.item?.schedules || [];
     },
@@ -277,7 +262,6 @@ export default {
       // return day;
     },
     getProviders (schedule) {
-      if (this.isDoctor) return [];
       if (!['clinical-consultation', 'clinical-procedure'].includes(schedule.meta?.serviceType)) return [];
       const { providers } = schedule;
       return providers || [];
