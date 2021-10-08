@@ -9,37 +9,41 @@
             width="90%"
           ).ma-3.rounded-xl
         v-spacer(v-if="!$isMobile")
-        v-col(cols="12" :md="infoColumn" :class="{'pt-5': !$isMobile}")
+        v-col(cols="12" :md="infoColumn" :class="{'pt-5': !$isMobile}").mc-content-set-6
           div
             v-clamp(
               autoresize
               :max-lines="2"
               :class="[nameClass]"
             ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
-          div(:class="{'text-center': $isMobile}").info--text.font-weight-semibold
-            v-clamp(
-              v-if="hasSpecialties"
-              autoresize
-              :max-lines="1"
-            ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
-            span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
+          //- div(:class="{'text-center': $isMobile}").info--text.font-weight-semibold
+          //-   v-clamp(
+          //-     v-if="hasSpecialties"
+          //-     autoresize
+          //-     :max-lines="1"
+          //-   ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
+          //-   span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
             //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
           v-row(align="start").mt-2
             v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-medical-bag
             v-col.font-gray
               span(:class="sectionHeaderClass") Specialization
               p(v-if="hasSpecialties").font-weight-semibold.mb-0 {{ specialtiesText }}&nbsp;&nbsp;
-              p(v-else).font-weight-semibold.mb-0 &nbspNo information provided
+              p(v-else).font-weight-semibold.mb-0 &nbsp;No information provided
           v-row(:class="{'mt-2': !minified}" align="start")
             v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") Experience
               v-clamp(
-                v-if="doctor"
+                v-if="doctor.doc_practicingSince"
                 autoresize
                 :max-lines="1"
-              ).font-weight-semibold {{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
-              span(v-else).font-weight-semibold &nbsp;- year/s of experience
+              ).font-weight-semibold {{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
+              v-clamp(
+                v-else
+                autoresize
+                :max-lines="1"
+              ).font-weight-semibold.font-italic No information
           v-row(v-if="!minified" :class="{'mt-2': !minified}" align="start")
             v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-information-outline
             v-col.font-gray
@@ -114,8 +118,8 @@ const COMPONENT_SPECS = {
     minified: 'mc-content-set-3',
   },
   sectionHeaderClass: {
-    default: 'mc-content-set-4',
-    minified: 'mc-content-set-4',
+    default: 'mc-content-set-5',
+    minified: 'mc-content-set-5',
   },
 };
 

@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-col.fill-height
+  v-col.fill-height.pb-16
     v-row(align="center").fill-height
       v-container
-        v-row(v-if="!loading.page" justify="center").pb-16
+        v-row(v-if="!loading.page" justify="center").pb-16.mb-16
           generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
             v-col
               v-row(justify="center")
@@ -10,7 +10,7 @@
                   nuxt-link(to="/")
                     img(
                       src="~/assets/images/MYCURE Logo - black.png"
-                        width="70%"
+                        width="55%"
                       alt="MYCURE logo"
                     )
               v-row(justify="center" align="center").search-bar-container

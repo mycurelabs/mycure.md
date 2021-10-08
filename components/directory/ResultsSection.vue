@@ -40,6 +40,7 @@
                   )
               br
               v-pagination(
+                circle
                 v-model="page"
                 :length="itemsLength"
                 :total-visible="totalVisible"

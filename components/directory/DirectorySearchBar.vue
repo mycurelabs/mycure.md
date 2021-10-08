@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center")
-      v-col(cols="12").pb-0
+      v-col(:cols="appBar ? '12' : '9'").pb-0
         v-row
           v-btn-toggle(
             v-model="selectedMode"
@@ -10,7 +10,7 @@
             borderless
             mandatory
             @change="onModeChange($event)"
-          )
+          ).mb-4
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
             v-btn(
               value="account"
@@ -47,6 +47,7 @@
               flat
               dense
               clearable
+              :autofocus="true"
               :items="suggestionEntries"
               item-text="name"
               :search-input.sync="searchDummy"
@@ -85,7 +86,7 @@
                         //-     span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
                         v-spacer
                     v-icon(color="primary" large) mdi-arrow-right
-        v-row
+        v-row(:justify="appBar? 'start' : 'center'")
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
             v-autocomplete(
@@ -128,9 +129,8 @@
             v-col
               h2 Filters
             v-spacer
-            v-col(cols="1")
-              v-row(justify="end")
-                v-icon(large @click="dialog = false, onSearch(false)") mdi-close
+            v-col(cols="1" align-self="center").pa-0
+              v-icon(large @click="dialog = false, onSearch(false)") mdi-close
         v-card-subtitle.pt-3.pb-0
           v-row.pa-3.mt-1
             v-text-field(
@@ -144,7 +144,7 @@
               color="primary"
               text
               @click="searchObject.specializations = []"
-            ).mc-content-set-4.mb-4 CLEAR FILTERS
+            ).font-12 CLEAR FILTERS
         v-card-text
           div(v-for="(tag, key) in specialtiesList" :key="key")
             v-checkbox(
