@@ -213,10 +213,15 @@ export default {
     isVerified () {
       return this.doctor?.doc_verified; // eslint-disable-line
     },
-    // Check if doctor has a schedule in any clinic
+    /**
+     * Check if doctor has a schedule in any clinic
+     *
+     * Also check if the doctor has enabled booking / telehealth
+     */
     isBookable () {
       if (!this.clinics?.length) return false;
-      return !!this.clinics.find(c => c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length);
+      return !!this.clinics.find(c => (c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length) &&
+        (c?.types?.includes('doctor-booking') || c?.types?.includes('doctor-telehealth')));
     },
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');

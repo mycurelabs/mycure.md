@@ -3,7 +3,7 @@
     v-col(cols="12")
       v-row(v-for="(day, key) in days" :key="key" align="center").bordered-table.my-3
         v-col(cols="12" md="2").text-center
-          h3 {{ day.text }}
+          h3(:class="{'error--text': day.value === 0}") {{ day.text }}
         v-col.grow
           v-row(dense)
             v-col(
@@ -11,8 +11,9 @@
               :key="key"
               align="center"
               justify="center"
+              cols="12"
             ).text-center
-              h3.font-weight-semibold {{ timeslot | format-time-range }}
+              h4.font-weight-semibold {{ timeslot | format-time-range }}
 </template>
 
 <script>
@@ -150,7 +151,7 @@ export default {
 <style scoped>
 .bordered-table {
   border: 1px solid lightgrey;
-  border-radius: 3px;
+  border-radius: 5px !important;
 }
 
 .schedule-table {

@@ -44,7 +44,7 @@
               :class="{ 'font-11' : $isMobile }"
               :disabled="!isBookable"
               @click="onBook"
-            ).text-none.font-weight-bold.custom-book-btn.font-18 {{ !isBookable ? 'The doctor is out' : 'Book Now' }}
+            ).text-none.font-weight-bold.custom-book-btn.font-18 {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
 </template>
 
 <script>
@@ -205,8 +205,8 @@ export default {
   position: absolute; */
 }
 .custom-book-btn {
-  height: 70px !important;
-  width: 300px;
+  height: 50px !important;
+  width: 250px;
 }
 .book-text:hover {
   cursor: pointer;
