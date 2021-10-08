@@ -47,7 +47,7 @@
               flat
               dense
               clearable
-              :autofocus="true"
+              autofocus
               :items="suggestionEntries"
               item-text="name"
               :search-input.sync="searchDummy"
@@ -120,7 +120,7 @@
               template(slot="append")
                 v-icon(
                   v-if="searchObject.specializations.length > 0"
-                  @click="searchObject.specializations = [], onSearch(false)"
+                  @click="searchObject.specializations = []; onSearch(false)"
                 ) mdi-close
     v-dialog(v-model="dialog" width="500" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
@@ -130,7 +130,7 @@
               h2 Filters
             v-spacer
             v-col(cols="1" align-self="center").pa-0
-              v-icon(large @click="dialog = false, onSearch(false)") mdi-close
+              v-icon(large @click="dialog = false; onSearch(false)") mdi-close
         v-card-subtitle.pt-3.pb-0
           v-row.pa-3.mt-1
             v-text-field(

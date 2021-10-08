@@ -274,6 +274,7 @@ export default {
         regular: ['font-14'],
         wide: ['font-18'],
       });
+    },
     operatingGroupedSchedules () {
       const schedules = this.operatingSchedules;
       return uniqWith(schedules
