@@ -60,7 +60,7 @@
           div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'success' : 'grey']").badge
             | {{ day.text }}
         v-spacer
-        v-col(cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
+        v-col(v-if="operatingSchedules.length" cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer
     v-card-actions.pa-2.pb-4
@@ -105,7 +105,10 @@
           v-btn(icon @click="scheduleDialog = false")
             v-icon mdi-close
         v-card-text.pt-3
-          schedules-list(:items="groupedSchedules")
+          schedules-list(
+            :items="operatingGroupedSchedules"
+            :non-mf-schedule="false"
+          )
 </template>
 
 <script>
@@ -235,11 +238,15 @@ export default {
       return !!this.clinic?.websiteId;
     },
     // - Schedules models
-    // all schedules
+    // all doctor schedules
     fullSchedules () {
       return this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
     },
-    // schedules organized
+    // - opening hours, uses mf_schedule
+    operatingSchedules () {
+      return this.clinic?.mf_schedule || [];
+    },
+    // doctor schedules organized
     groupedSchedules () {
       const schedules = this.fullSchedules;
       return uniqWith(schedules
@@ -267,6 +274,19 @@ export default {
         regular: ['font-14'],
         wide: ['font-18'],
       });
+    operatingGroupedSchedules () {
+      const schedules = this.operatingSchedules;
+      return uniqWith(schedules
+        .map((schedule) => {
+          const { day, order } = this.days.find(item => item.day === schedule.day);
+          return {
+            day,
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || []
+      , (a, b) => a.day === b.day && a.opening === b.opening);
     },
   },
   methods: {
@@ -280,7 +300,8 @@ export default {
       return this.days.find(day => day.order === comparingItem).day;
     },
     isClinicOpen (dayValue) {
-      const matchedDay = this.groupedSchedules.find(schedule => (schedule.day || schedule.order) === dayValue);
+      console.log('operatingGrouped', this.operatingGroupedSchedules);
+      const matchedDay = this.operatingGroupedSchedules.find(schedule => schedule.order === dayValue);
       return !isNil(matchedDay);
     },
     // Google Analytics

@@ -99,6 +99,12 @@ export default {
         this.$emit('input', val);
       },
     },
+    bookingOrgType () {
+      return this.isClinic ? 'clinic-booking' : 'doctor-booking';
+    },
+    telehealthOrgType () {
+      return this.isClinic ? 'clinic-telehealth' : 'doctor-telehealth';
+    },
   },
   methods: {
     onServiceSelect (type) {
@@ -108,8 +114,10 @@ export default {
     },
     isAvailable (type) {
       switch (type) {
-        case 'telehealth': return !!this.organizations?.find(org => org.teleconsultQueue);
-        case 'physical': return !!this.organizations?.find(org => org.doctorSchedules || org.$populated?.doctorSchedules);
+        case 'telehealth':
+          return !!this.organizations?.find(org => org.teleconsultQueue && org.types?.includes(this.telehealthOrgType));
+        case 'physical':
+          return !!this.organizations?.find(org => (org.doctorSchedules || org.$populated?.doctorSchedules) && org.types?.includes(this.bookingOrgType));
         default: return false;
       }
     },

@@ -26,8 +26,6 @@
             img(:src="picURL")
           h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
           template(v-if="isVerified && isAvailable")
-            div.white.btn-banner
-              strong(slot="badge").font-18.warning--text We're Open!
             v-hover(
               v-slot="{ hover }"
               open-delay="100"
@@ -256,6 +254,9 @@ export default {
     isBookingEnabled () {
       return this.clinic?.types?.includes('clinic-booking');
     },
+    isTelehealthEnabled () {
+      return this.clinic?.types?.includes('clinic-telehealth');
+    },
     bookURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -285,7 +286,7 @@ export default {
     },
     // Clinic is available if it has booking / telehealth services
     isAvailable () {
-      return this.servicesTotal || this.doctorsTotal;
+      return (this.servicesTotal || this.doctorsTotal) && (this.isBookingEnabled || this.isTelehealthEnabled);
     },
     isDummyOrg () {
       const { tags } = this.clinic;
@@ -394,12 +395,12 @@ export default {
     if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
 
     if (this.isBookingEnabled) {
-      await this.fetchServiceTypes();
-      await this.fetchServices();
+      await Promise.all([
+        this.fetchServiceTypes(),
+        this.fetchServices()]);
     }
     await this.fetchDoctorMembers();
     this.listItems = [...this.filteredServices];
-    console.log('listItems', this.listItems);
     this.itemsTotal = this.servicesTotal;
     this.loading.page = false;
   },
@@ -485,6 +486,7 @@ export default {
             meta: {
               serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
               ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
+              ...type === 'clinical-consultation' && { serviceSubtype: { $nin: ['telehealth'] } },
             },
             $populate: {
               providers: {

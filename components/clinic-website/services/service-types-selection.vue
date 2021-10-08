@@ -14,7 +14,10 @@
       template(v-for="type in types")
         v-tab(v-if="hasServiceType(type.value)" :href="`#${type.value}`")
           v-icon(left) {{ type.icon }}
-          span.black--text.text-none {{ type.text }}
+          span.black--text.text-none {{ type.text }}&nbsp;
+          br
+          v-chip(v-if="type.value === 'doctors'" color="primary" small)
+            span.font-10 Telehealth
 </template>
 
 <script>
@@ -41,7 +44,7 @@ export default {
       { icon: 'mdi-package-variant-closed', text: 'PE Packages', type: 'pe', value: 'pe' },
       { icon: 'mdi-pulse', text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
       { icon: 'mdi-tooth-outline', text: 'Dental', type: 'dental', value: 'dental' },
-      { icon: 'mdi-stethoscope', text: 'Our Doctors', type: 'doctors', value: 'doctors' },
+      { icon: 'mdi-stethoscope', text: 'Book Doctor', type: 'doctors', value: 'doctors' },
     ];
     return {};
   },

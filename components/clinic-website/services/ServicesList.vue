@@ -41,6 +41,7 @@
           :is-doctor="activeServiceType === 'doctors'"
           :is-preview-mode="isPreviewMode"
           :read-only="readOnly"
+          :is-booking-enabled="isBookingEnabled"
         )
     //- PAGINATION
     v-row(v-if="items.length")
