@@ -81,7 +81,7 @@
         v-card-text.pa-5
           h2.mb-5 Confirmation
           p(v-if="isPaid") You will be redirected to our payment partner to input your card details. Do you want to proceed?
-          p(v-else) Do you want to proceed creating a FREE account with MYCURE?
+          p(v-else) Do you want to proceed creating an account with MYCURE?
         v-card-actions
           v-spacer
           v-btn(
@@ -106,10 +106,12 @@ import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
 import {
   signupFacility,
-  // signin,
+  signin,
 } from '~/utils/axios';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
+
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
+
 export default {
   components: {
     EmailVerificationDialog,
@@ -138,8 +140,11 @@ export default {
       selectedPricingModel: 0,
       selectedPricing: {},
       emailVerificationMessageDialog: false,
-      sessionId: '',
       isTrial: false,
+      // Subsription
+      subscriptionId: null,
+      // Stripe session
+      sessionId: '',
     };
   },
   computed: {
@@ -156,7 +161,7 @@ export default {
         type: this.organizationTypes0,
       };
       return {
-        name: 'signup-health-facilities',
+        name: 'signup-health-facilities-pricing',
         query,
       };
     },
@@ -230,7 +235,12 @@ export default {
       this.$route.query.trial === true ||
       this.step1LocalStorageData.trial === true;
 
-    if (this.preBundle) {
+    this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
+
+    // Do not use pre-bundle when there is an existing subscription
+    // The existence of a subscription means that a payment has been cancelled.
+    // This allows room for changing packages
+    if (this.preBundle && !this.subscriptionId) {
       await this.submit();
       return;
     }
@@ -244,13 +254,13 @@ export default {
       this.selectedBundle = bundle;
       this.confirmPaymentDialog = true;
     },
+    retryPayment () {
+      this.paymentErrorDialog = false;
+    },
     /*
       The prebundle is meant for proceeding to stripe without selecting from the packages
       Used when there is already a pre-selected plan from website pricing panels.
     */
-    retryPayment () {
-      this.confirmPaymentDialog = true;
-    },
     async submit () {
       try {
         this.loading.button = true;
@@ -272,9 +282,20 @@ export default {
           ...omit(this.step1LocalStorageData, omitKeys),
         };
 
-        // Check if there is pending session Id
-        this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
-        if (this.sessionId) {
+        // Check if there is pending subscription Id
+        if (this.subscriptionId) {
+          // Get auth token
+          const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
+          let packageId;
+          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
+          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+          // Update the new selected subscription
+          const subscription = await this.$sdk.service('subscriptions').update(this.subscriptionId, {
+            package: packageId,
+            stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
+            stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+          }, { accessToken });
+          this.sessionId = subscription.updatesPending.stripeSession;
           this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
@@ -326,8 +347,10 @@ export default {
 
         const user = await signupFacility(payload);
         if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
+          this.subscriptionId = user.organization?.subscription?.id;
           this.sessionId = user.organization.subscription.updatesPending.stripeSession;
           if (process.browser) {
+            window.localStorage.setItem('signup:subscription-id', this.subscriptionId);
             window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
           }
           this.$refs.checkoutRef.redirectToCheckout();
@@ -363,7 +386,6 @@ export default {
       // - Reload route quries thru local storage
       this.$router.replace({
         query: {
-          ...this.preBundle && { plan: this.preBundle },
           ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
           ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
           ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
@@ -376,6 +398,7 @@ export default {
       // const loginData = await signin({ email, password });
       // this.sessionId = await refetchStripeToken(loginData);
       this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+      this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
     },
     // MISC
     getInclusionColor (valid) {
