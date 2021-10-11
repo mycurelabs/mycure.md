@@ -66,7 +66,7 @@
     v-card-actions.pa-2.pb-4
       v-row(justify="center")
         //- v-spacer(v-if="!$isMobile")
-        v-col(cols="12" sm="8").text-center
+        v-col(v-if="canOnlineBook || canVisit" cols="12" sm="8").text-center
           div(:class="{'d-inline-flex': !$isMobile}")
             v-btn(
               color="info"
@@ -92,6 +92,8 @@
             ).text-none.font-12.clinic-book-btn
               v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
               span Visit Clinic
+        v-col(v-else cols="12" sm="10").text-center
+          span.font-italic.grey--text This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
       //- v-spacer(v-if="!$isMobile")
 
     //- Schedule Dialog
