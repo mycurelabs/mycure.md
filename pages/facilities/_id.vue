@@ -10,7 +10,7 @@
     //- CHOOSE SERVICE DIALOG
     choose-service(
       v-model="dialogs.serviceType"
-      :service-types="serviceTypes"
+      :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
       @select="activeTab = $event"
     )
     //- APP BAR

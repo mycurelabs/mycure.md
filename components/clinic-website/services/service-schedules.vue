@@ -1,5 +1,11 @@
 <template lang="pug">
   v-row
+    v-col
+      strong.font-weight-black.accent--text |&nbsp;
+        span.font-weight-bold Physical Appointment
+      br
+      strong.font-weight-black.info--text |&nbsp;
+        span.font-weight-bold Online Consult
     v-col(cols="12")
       v-row(v-for="(day, key) in days" :key="key" align="center").bordered-table.my-3
         v-col(cols="12" md="2").text-center
@@ -14,7 +20,7 @@
               cols="12"
             ).text-center
               h4.font-weight-semibold
-                strong(:class="`${getSlotColor(timeslot)}--text`") |&nbsp;
+                strong(:class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
                 span {{ timeslot | format-time-range }}
 </template>
 
@@ -149,7 +155,7 @@ export default {
     getSlotColor (timeslot) {
       const { meta } = timeslot;
       if (meta?.serviceSubtype === 'telehealth') return 'info';
-      return 'success';
+      return 'accent';
     },
   },
 };

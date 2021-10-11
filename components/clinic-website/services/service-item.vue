@@ -52,23 +52,32 @@
             money(:value="price" symbol="₱")
           h3(v-else).font-italic No price stated
           v-btn(
-            v-if="isBookingEnabled"
+            v-if="isTelehealthService(item)"
+            color="secondary"
+            depressed
+            block
+            :disabled="!isAvailable"
+            :href="bookTelehealthURL"
+            @click="trackBooking"
+          ).text-none.mt-1.font-12 Online Consult
+          v-btn(
+            v-else-if="isBookingEnabled"
             color="accent"
             depressed
             block
             :disabled="!isAvailable"
-            :href="bookServiceURL"
+            :href="bookPhysicalURL"
             @click="trackBooking"
           ).text-none.mt-1.font-12 Book Now
       v-row(justify="end")
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="600")
-      v-toolbar(flat)
-        v-toolbar-title.primary--text Available Schedules
-        v-spacer
-        v-btn(icon @click="scheduleExpanded = false")
-          v-icon mdi-close
       v-card
+        v-toolbar(flat)
+          v-toolbar-title.primary--text Available Schedules
+          v-spacer
+          v-btn(icon @click="scheduleExpanded = false")
+            v-icon mdi-close
         v-card-text
           service-schedules(
             non-mf-schedule
@@ -176,11 +185,13 @@ export default {
       const dayOfWeek = today.getDay();
       const index = this.groupedSchedules.findIndex(x => x.day === dayOfWeek);
       if (index > 4) {
-        const frontSched = this.groupedSchedules.slice(index);
+        const frontSched = this.groupedSchedules[index];
         const endSched = this.groupedSchedules.slice(index, index - 1);
         return frontSched.concat(endSched);
+      } else if (index === -1) {
+        return this.groupedSchedules.slice(0, 3) || [];
       } else {
-        return this.groupedSchedules?.slice(index, index + 3) || [];
+        return this.groupedSchedules.slice(index, index + 3);
       }
     },
     todaySchedules () {
@@ -222,25 +233,25 @@ export default {
       });
     },
     isAvailable () {
-      return this.todaySchedules.length;
+      return this.fullSchedules.length;
     },
-    hasTeleconsult () {
-      return this.item?.teleconsultQueue;
-    },
-    bookServiceURL () {
+    bookPhysicalURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.id;
       return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=physical`;
     },
-    bookTeleconsultURL () {
+    bookTelehealthURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const id = this.item?.uid;
-      return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=telehealth`;
+      const id = this.item?.id;
+      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=telehealth`;
     },
   },
   methods: {
+    isTelehealthService (service) {
+      return service.type === 'clinical-consultation' && service.tags?.includes('telehealth');
+    },
     formatTodaySchedule (schedule) {
       if (!schedule) return 'Unavailable at this hour';
       const today = schedule.day;
