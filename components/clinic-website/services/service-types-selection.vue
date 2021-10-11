@@ -15,9 +15,6 @@
         v-tab(v-if="hasServiceType(type.value)" :href="`#${type.value}`")
           v-icon(left) {{ type.icon }}
           span.black--text.text-none {{ type.text }}&nbsp;
-          br
-          v-chip(v-if="type.value === 'doctors'" color="primary" small)
-            span.font-10 Telehealth
 </template>
 
 <script>
@@ -38,13 +35,14 @@ export default {
   },
   data () {
     this.types = [
-      { icon: 'mdi-account-tie-voice-outline', text: 'Consultation', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { icon: 'mdi-account-tie-voice-outline', text: 'Face-to-Face Consults', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { icon: 'mdi-video-outline', text: 'Teleconsults', type: 'telehealth', value: 'telehealth' },
       { icon: 'mdi-flask-outline', text: 'Laboratory', type: 'diagnostic', value: 'lab' },
       { icon: 'mdi-radiology-box-outline', text: 'Imaging', type: 'diagnostic', value: 'imaging' },
       { icon: 'mdi-package-variant-closed', text: 'PE Packages', type: 'pe', value: 'pe' },
       { icon: 'mdi-pulse', text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
       { icon: 'mdi-tooth-outline', text: 'Dental', type: 'dental', value: 'dental' },
-      { icon: 'mdi-stethoscope', text: 'Book Doctor', type: 'doctors', value: 'doctors' },
+      { icon: 'mdi-stethoscope', text: 'Our Doctors', type: 'doctors', value: 'doctors' },
     ];
     return {};
   },

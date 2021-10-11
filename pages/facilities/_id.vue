@@ -425,7 +425,7 @@ export default {
     // - Fetches all services of facility
     async fetchServices (service = {}, searchText, page = 1) {
       try {
-        const { type, subtype, insurer } = service;
+        const { type, subtype, insurer, tags } = service;
         const skip = this.itemsLimit * (page - 1);
         const query = {
           facility: this.orgId,
@@ -435,13 +435,7 @@ export default {
           searchText,
           limit: this.itemsLimit,
           skip,
-          /**
-           * Don't put a telehealth service on display at clinic website
-           *
-           * We have identified that doctor should be a starting point in booking a telehealth appointment
-           * Picking a telehealth service will be done at PxP
-           */
-          ...type === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+          tags,
         };
         const { items, total } = await fetchClinicServices(this.$sdk, query);
         this.servicesTotal = total;
@@ -453,9 +447,14 @@ export default {
           await this.fetchServiceTypes();
         }
         this.filteredServices = items.map((item) => {
-          const { type, subtype } = item;
+          const { type, subtype, tags } = item;
           const primaryType = subtype || type;
-          const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+          const schedules = this.serviceSchedules.find((schedule) => {
+            if (primaryType === 'clinical-consultation' && tags?.includes('telehealth')) {
+              return schedule.type === 'telehealth';
+            }
+            return schedule.type === primaryType;
+          });
 
           // Filter schedules according to section
           if (item.refSection) {
@@ -475,7 +474,19 @@ export default {
         console.error(error);
       }
     },
-    // - Fetches all service types of facility
+    /**
+     * Fetches all service types and their schedules from a facility
+     *
+     * @returns {Object[]}
+     * @param type - service type
+     * @param items - all schedule-slots of that service type
+     *
+     * Note that further filtering between face-to-face consultations and telehealth is done
+     * because they both have the same service#type 'clinical-consultation'.
+     *
+     * They are differentiated by the presence of tags. Telehealth services have 'telehealth'
+     * in their service#tags
+     * */
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
@@ -486,6 +497,7 @@ export default {
             meta: {
               serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
               ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
+              // Fetch Telehealth Schedules separately, so do not include them here
               ...type === 'clinical-consultation' && { serviceSubtype: { $nin: ['telehealth'] } },
             },
             $populate: {
@@ -505,6 +517,36 @@ export default {
           };
         });
         this.serviceSchedules = await Promise.all(typeSchedulesPromises) || [];
+
+        /**
+         * Fetch telehealth services without providers
+         *
+         * Those with providers are already available from the 'Our Doctors' section
+         * of the Clinic Website
+         */
+        const telehealthSchedules = await fetchScheduleSlots(this.$sdk, {
+          organization: this.orgId,
+          meta: {
+            serviceType: 'clinical-consultation',
+            serviceSubtype: 'telehealth',
+            providers: { $exists: false },
+          },
+        });
+
+        // Include telehealth in Service types and schedules
+        if (telehealthSchedules) {
+          console.log('service types', this.serviceTypes);
+          if (!this.serviceTypes?.length) {
+            this.serviceTypes = ['telehealth'];
+          } else {
+            this.serviceTypes.splice(1, 0, 'telehealth');
+          }
+          this.serviceSchedules.push({
+            type: 'telehealth',
+            items: telehealthSchedules.items,
+          });
+          console.log('service scheds', this.serviceSchedules);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -520,8 +562,20 @@ export default {
           this.itemsTotal = this.doctorsTotal;
           return;
         }
+
+        const getServiceType = (type) => {
+          if (['lab', 'imaging'].includes(type)) return 'diagnostic';
+          if (type === 'telehealth') return 'clinical-consultation';
+          return type;
+        };
         const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
-        await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
+        await this.fetchServices({
+          type: getServiceType(tab),
+          ...subtype && { subtype },
+          // Separate face-to-face and telehealth services
+          ...tab === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+          ...tab === 'telehealth' && { tags: { $in: ['telehealth'] } },
+        }, null, this.page);
         this.listItems = [...this.filteredServices];
         this.itemsTotal = this.servicesTotal;
       } catch (e) {
