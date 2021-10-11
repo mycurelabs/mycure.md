@@ -152,7 +152,7 @@
                   item-text="text"
                   item-value="value"
                   outlined
-                  dense
+                  :dense="$isMobile"
                   readonly
                   append-icon="$dropdown"
                   :items="availableFacilityTypes"
@@ -185,7 +185,7 @@
                 label="Referral Code (Optional)"
                 hint="6 character referral code"
                 outlined
-                dense
+                :dense="$isMobile"
                 clearable
                 :disabled="loading.form"
               )
@@ -221,7 +221,7 @@
                 item-text="text"
                 item-value="value"
                 outlined
-                dense
+                :dense="$isMobile"
                 :error-messages="errorMessagesRoles"
                 :items="userRoles"
                 :rules="isRequired"
@@ -234,8 +234,8 @@
                 v-model="doc_PRCLicenseNo"
                 label="PRC License No"
                 outlined
-                dense
                 hint="Please enter your PRC License No for verification"
+                :dense="$isMobile"
                 :disabled="loading.form"
                 :rules="isRequired"
               )
