@@ -240,7 +240,8 @@ export const signupIndividual = async (opts) => {
 export const signupFacility = async (opts) => {
   try {
     const payload = {
-      // skipMobileNoVerification: opts.skipMobileNoVerification,
+      // Mobile no verification will be done after stripe checkout success
+      skipMobileNoVerification: opts.skipMobileNoVerification,
       email: opts.email,
       mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,

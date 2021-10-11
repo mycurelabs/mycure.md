@@ -105,6 +105,7 @@ import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
 import {
+  resendVerificationCode,
   signupFacility,
   signin,
 } from '~/utils/axios';
@@ -224,6 +225,7 @@ export default {
     // Check if step 1 accomplished
     if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
+      await this.sendOtp();
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
     if (this.paymentState === 'cancel') {
@@ -279,6 +281,8 @@ export default {
           'stripeCoupon',
         ];
         const payload = {
+          // This was added since we want the otp to be sent once stripe checkout is complete
+          skipMobileNoVerification: true,
           ...omit(this.step1LocalStorageData, omitKeys),
         };
 
@@ -413,6 +417,11 @@ export default {
     confirmEmailVerification () {
       process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
       this.$router.push({ name: 'signin' });
+    },
+    async sendOtp () {
+      this.loading.page = true;
+      const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
+      await resendVerificationCode({ token: accessToken });
     },
     isTelehealthTrialAvailable (bundle) {
       if (!this.$route.query.from === 'telehealth') return false;
