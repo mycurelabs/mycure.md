@@ -24,6 +24,7 @@ export default {
   mounted () {
     this.$vuetify.theme.dark = false;
     this.loading = false;
+    window.$crisp.push(['do', 'chat:show']);
   },
 };
 </script>
