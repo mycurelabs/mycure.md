@@ -26,8 +26,8 @@
               v-on="on"
               autoresize
               :max-lines="2"
-              :class="nameFontSize"
-            ).font-weight-bold.mb-0.black--text {{ organization.name || '' }}&nbsp;
+              :class="[nameFontSize, organization.name ? ['font-weight-bold', 'black--text'] : ['font-italic', 'grey--text']]"
+            ).mb-0 {{ organization.name || 'No Clinic Name' }}&nbsp;
           span {{ organization.name }}
         div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
           v-icon(color="secondary" :small="!$isWideScreen") mdi-map-marker
@@ -37,9 +37,20 @@
                 v-on="on"
                 autoresize
                 :max-lines="1"
-                :class="[textFontSize, {'font-italic': !address }]"
-              ).info--text.mt-1 {{ address || 'No address provided'}}
+                :class="[textFontSize, address ? 'black--text' : 'font-italic']"
+              ).mt-1.ml-2 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
+        div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
+          v-icon(color="secondary" :small="!$isWideScreen") mdi-email
+          v-tooltip(bottom)
+            template(v-slot:activator="{ on, attrs }")
+              v-clamp(
+                v-on="on"
+                autoresize
+                :max-lines="1"
+                :class="[textFontSize, organization.email ? 'black--text' : 'font-italic']"
+              ).mt-1.ml-2 {{ organization.email || 'No email provided'}}
+            span {{ organization.email || 'No email provided'}}
     v-spacer
     v-card-actions.pa-0
       v-col.pa-0
