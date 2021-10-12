@@ -1,26 +1,35 @@
 <template lang="pug">
-  v-card(height="100%" elevation="2").orgs-card.px-3.pb-3.pt-4.d-flex.flex-column
-    v-row
+  v-card(height="100%" elevation="4").orgs-card.pa-4.d-flex.flex-column
+    v-card-title.pa-0
+      div(:height="coverSize").container.pa-0
+        img(
+          :src="coverURL"
+          :alt="organization.name"
+          width="100%"
+          :height="coverSize"
+          style="border-radius: 20px; object-fit: cover"
+          @error="imageExists = false"
+        )
+        img(
+          :src="picURL"
+          :alt="organization.name"
+          :width="imageSize"
+          :height="imageSize"
+          @error="imageExists = false"
+        ).bottom-right.ma-2.rounded-circle
+    v-card-text(:class="$isWideScreen ? 'pt-4' : 'pt-2'").px-0
       //- v-icon(v-if="hasWebsite" color="secondary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
-      img(
-        :src="picURL"
-        :alt="organization.name"
-        :width="imageSize"
-        :height="imageSize"
-        style="border-radius: 20px"
-        @error="imageExists = false"
-      ).ma-3
-      v-col
+      v-col.pa-0
         v-tooltip(bottom)
           template(v-slot:activator="{ on, attrs }")
             v-clamp(
               v-on="on"
               autoresize
               :max-lines="2"
-              :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
-            ).font-weight-bold.mb-0 {{ organization.name || '' }}&nbsp;
+              :class="nameFontSize"
+            ).font-weight-bold.mb-0.black--text {{ organization.name || '' }}&nbsp;
           span {{ organization.name }}
-        div.d-flex.mt-1
+        div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
           v-icon(color="secondary" :small="!$isWideScreen") mdi-map-marker
           v-tooltip(bottom)
             template(v-slot:activator="{ on, attrs }")
@@ -31,20 +40,32 @@
                 :class="[textFontSize, {'font-italic': !address }]"
               ).info--text.mt-1 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
-        div.d-flex.white--text.mt-2
-          div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, badgeSize, {'secondary': isClinicOpen(day.value)}]").badge
-              | {{ day.text }}
     v-spacer
-    slot(name="card-actions")
-      v-card-actions.pa-0
-        v-col
-          v-row(justify="end")
+    v-card-actions.pa-0
+      v-col.pa-0
+        div.d-flex.white--text.my-2
+          div(v-for="(day, index) in daysInit" :key="index").pr-2
+            div(:class="[textFontSize, badgeSize, {'success': isClinicOpen(day.value)}]").badge
+              | {{ day.text }}
+        v-row(justify="end").py-3
+          v-col(cols="12" sm="6").py-0
+            v-btn(
+              color="secondary"
+              :small="!$isWideScreen"
+              outlined
+              rounded
+              block
+              :class="$isWideScreen ? 'font-14' : 'font-10'"
+              @click="dialogBox = true"
+            ).text-none.elevation-0.font-weight-light.mt-2
+              b Online Consults
+          v-col(cols="12" sm="6").py-0
             v-btn(
               color="secondary"
               :small="!$isWideScreen"
               rounded
-              :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+              block
+              :class="$isWideScreen ? 'font-14' : 'font-10'"
               @click="dialogBox = true"
             ).text-none.elevation-0.font-weight-light.mt-2
               b Book a Visit
@@ -62,6 +83,7 @@ import VClamp from 'vue-clamp';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
+import CoverPlaceholder from '~/assets/images/directory-results/Directory Card image - Clinic.png';
 import { formatAddress } from '~/utils/formats';
 export default {
   components: {
@@ -129,11 +151,14 @@ export default {
     picURL () {
       return this.imageExists ? this.organization?.picURL || FacilityPlaceholder : FacilityPlaceholder;
     },
+    coverURL () {
+      return this.imageExists ? this.organization?.coverURL || CoverPlaceholder : CoverPlaceholder;
+    },
     nameFontSize () {
       return classBinder(this, {
-        mobile: ['font-12'],
-        regular: ['font-16'],
-        wide: ['font-24'],
+        mobile: ['font-16'],
+        regular: ['font-20'],
+        wide: ['font-28'],
       });
     },
     textFontSize () {
@@ -155,9 +180,14 @@ export default {
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
     imageSize () {
-      if (this.$isRegularScreen) return '82px';
-      if (this.$isMobile) return '100px';
-      return '130px';
+      if (this.$isRegularScreen) return '55px';
+      if (this.$isMobile) return '67px';
+      return '87px';
+    },
+    coverSize () {
+      if (this.$isRegularScreen) return '140px';
+      if (this.$isMobile) return '140px';
+      return '180px';
     },
   },
   methods: {
@@ -207,5 +237,18 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: rgb(163, 163, 163);
+}
+.cover-bg {
+  width: 100%;
+  border-radius: 20px;
+}
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 0px;
+}
+.container {
+  position: relative;
+  text-align: center;
 }
 </style>
