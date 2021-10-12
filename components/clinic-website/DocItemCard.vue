@@ -210,7 +210,9 @@ export default {
       return this.doctor?.doc_specialties?.join(', ') || '';
     },
     yearsOfExperience () {
-      const from = new Date(this.doctor.doc_practicingSince).getFullYear();
+      const { doc_practicingSince } = this.doctor;
+      let from = doc_practicingSince;
+      if (from.length > 4) from = new Date(doc_practicingSince).getFullYear();
       const to = new Date().getFullYear();
       return to - from;
     },
