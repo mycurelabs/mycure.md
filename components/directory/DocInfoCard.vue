@@ -179,7 +179,7 @@ export default {
       return this.doctor?.doc_specialties?.join(', ') || '';
     },
     yearsOfExperience () {
-      const from = new Date(this.doctor.doc_practicingSince).getFullYear();
+      const from = this.doctor.doc_practicingSince;
       const to = new Date().getFullYear();
       return to - from;
     },
