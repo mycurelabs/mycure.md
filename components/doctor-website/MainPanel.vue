@@ -14,7 +14,7 @@
           //- Profile picture and main info
           v-col(cols="12").text-center
             v-avatar(size="200").elevation-5
-              img(:src="picUrl")
+              img(:src="picUrl").img-border
             br
             br
             span.font-weight-bold.mc-title-set-2 Dr. {{ fullName }}
@@ -215,7 +215,9 @@ export default {
 .book-text:hover {
   cursor: pointer;
 }
-
+.img-border {
+  border: 8px solid white;
+}
 .btn-banner {
   width: 25%;
   margin: auto;

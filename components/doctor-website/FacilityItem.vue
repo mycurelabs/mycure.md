@@ -29,7 +29,7 @@
                 autoresize
                 :max-lines="1"
                 :class="{ 'font-italic': !phone }"
-              ).font-weight-semibold {{ phone ? `+${phone}` : 'No information provided' }}
+              ).font-weight-semibold {{ phone || 'No information provided' }}
           //- Email
           v-row
             v-icon(color="primary") mdi-email
@@ -323,7 +323,7 @@ export default {
 
 <style scoped>
 .card-outter {
-  border: 0.5px solid grey !important;
+  border: 0.5px solid rgb(218, 218, 218) !important;
 }
 .clinic-book-btn {
   width: 150px;

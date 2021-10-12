@@ -44,12 +44,12 @@
           cols="12"
           md="6"
         )
-          v-card(height="100%" flat).material-container.bordered-card.rounded-lg
+          v-card(height="100%" flat).material-container.bordered-card.rounded-xl.pa-4
             v-card-text
               h3.my-2 {{ material.title }}
-              i.primary--text.font-12(v-if="material.category") {{ material.category }}
+              i.font-gray.font-12.font-italic(v-if="material.category") {{ material.category }}
               p.my-2 {{ material.description }}
-            div.material-bottom.text-center.pa-3
+            v-card-actions.text-center.py-3.px-4
               v-btn(
                 depressed
                 block
@@ -165,6 +165,6 @@ export default {
   width: 100%;
 }
 .bordered-card {
-  border: 0.5px solid grey;
+  border: 0.5px solid rgb(218, 218, 218) !important;
 }
 </style>

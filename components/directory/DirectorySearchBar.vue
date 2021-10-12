@@ -29,7 +29,7 @@
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
             v-row(align="start" :justify="$isMobile ? 'start' : 'end'" :class="{'mt-3': $isMobile}")
               span.font-weight-bold.font-14.mt-1 USE LOCATION
-              v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
+              v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="secondary").pl-1
               v-switch(
                 v-else
                 v-model="locationSwitch"
@@ -63,7 +63,7 @@
                   :small="!$isMobile"
                   :x-small="$isMobile"
                   fab
-                  color="primary"
+                  color="secondary"
                   @click="onSearch(true)"
                 ).elevation-0
                   v-icon mdi-magnify
@@ -77,15 +77,15 @@
                       v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
-                            v-icon(color="primary" small) mdi-medical-bag
+                            v-icon(color="secondary" small) mdi-medical-bag
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
                         //- TODO: Location search not yet applicable for doctor
                         //- v-col.pb-0
                         //-   v-row.px-3
-                        //-     v-icon(color="primary" small) mdi-map-marker
+                        //-     v-icon(color="secondary" small) mdi-map-marker
                         //-     span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
                         v-spacer
-                    v-icon(color="primary" large) mdi-arrow-right
+                    v-icon(color="secondary" large) mdi-arrow-right
         v-row(:justify="appBar? 'start' : 'center'")
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
@@ -140,7 +140,7 @@
             )
             v-btn(
               v-if="searchObject.specializations.length > 0"
-              color="primary"
+              color="secondary"
               text
               @click="searchObject.specializations = []"
             ).font-12 CLEAR FILTERS

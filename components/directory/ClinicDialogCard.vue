@@ -1,12 +1,12 @@
 <template lang="pug">
-  v-card(width="100%" :height="$isWideScreen ? '800px' : $isRegularScreen ? '680px' : '100%'").pa-5.rounded-xl.no-scroll.no-scroll-2.scroll
+  v-card(width="100%" :height="$isWideScreen ? '1000px' : $isRegularScreen ? '680px' : '100%'").py-8.px-5.rounded-xl.no-scroll.no-scroll-2.scroll
     v-card-text
       v-col(cols="12")
         div.text-center
           img(
             :src="picURL"
             :alt="organization.name"
-            :width="$isMobile? '80%' : '30%'"
+            :width="$isMobile? '80%' : '40%'"
             @error="imageExists = false"
           ).rounded-xl
           v-clamp(
@@ -14,7 +14,7 @@
             :max-lines="2"
           ).mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
         v-row(align="start").mc-list-content-set-2.mt-5
-          v-icon(color="primary" x-large) mdi-medical-bag
+          v-icon(color="secondary" x-large) mdi-medical-bag
           v-col.font-gray.py-0
             span Services
             div(v-if="organization.tags").font-weight-semibold
@@ -25,16 +25,15 @@
                 :max-lines="1"
               ).font-weight-light.font-italic.grey--text.text--lighten-1 No services available
         v-row(align="start").mc-list-content-set-2.pt-2
-          v-icon(color="primary" x-large) mdi-map-marker
+          v-icon(color="secondary" x-large) mdi-map-marker
           v-col.font-gray.py-0
             span Facility Address
             v-clamp(
               autoresize
-              :max-lines="2"
               :class="address ? 'font-weight-semibold' : ['font-weight-light', 'font-italic', 'grey--text', 'text--lighten-1']"
             ) {{ address || 'No address provided'}}
         v-row(align="start").mc-list-content-set-2.pt-2
-          v-icon(color="primary" x-large) mdi-phone-in-talk-outline
+          v-icon(color="secondary" x-large) mdi-phone-in-talk-outline
           v-col.font-gray.py-0
             span Contact Number
             v-clamp(
@@ -43,7 +42,7 @@
               :class="organization.phone ? 'font-weight-semibold' : ['font-weight-light', 'font-italic', 'grey--text', 'text--lighten-1']"
             ) {{ organization.phone || 'No contact number'}}
         v-row(align="start").mc-list-content-set-2.pt-2
-          v-icon(color="primary" x-large) mdi-calendar
+          v-icon(color="secondary" x-large) mdi-calendar
           v-col.font-gray.py-0
             v-row
               v-col.pb-2
@@ -69,13 +68,12 @@
       v-col
         v-row(justify="center")
           v-btn(
-            color="primary"
+            color="secondary"
             rel="noopener noreferrer"
             :href="clinicWebsite"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
-            :class="{'mt-4': $isMobile}"
-          ).text-none.elevation-0.rounded-pill
+          ).text-none.elevation-0.rounded-pill.mt-4
             v-icon mdi-open-in-new
             span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
 </template>

@@ -22,14 +22,14 @@
             :max-lines="1"
           ) {{ specialtiesText }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
-          //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
+          //- v-chip(v-if="doctor.doc_website" color="secondary" outlined x-small).mt-1 verified
         div.d-flex.mt-1
-          v-icon(color="primary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
+          v-icon(color="secondary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor && doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
             span(v-else).font-italic.grey--text.text--lighten-1 No information
         div(justify="start").mt-1.d-flex
-          v-icon(color="primary" :small="!$isWideScreen" left) mdi-information-outline
+          v-icon(color="secondary" :small="!$isWideScreen" left) mdi-information-outline
           div(v-if="bio")
             v-clamp(
               autoresize
@@ -47,7 +47,7 @@
       v-col
         v-row(justify="end")
           v-btn(
-            color="primary"
+            color="secondary"
             target="_blank"
             rel="noopener noreferrer"
             :small="!$isWideScreen"

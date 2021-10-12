@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card(height="100%" elevation="2").orgs-card.px-3.pb-3.pt-4.d-flex.flex-column
     v-row
-      //- v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
+      //- v-icon(v-if="hasWebsite" color="secondary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
       img(
         :src="picURL"
         :alt="organization.name"
@@ -21,19 +21,19 @@
             ).font-weight-bold.mb-0 {{ organization.name || '' }}&nbsp;
           span {{ organization.name }}
         div.d-flex.mt-1
-          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
+          v-icon(color="secondary" :small="!$isWideScreen") mdi-map-marker
           v-tooltip(bottom)
             template(v-slot:activator="{ on, attrs }")
               v-clamp(
                 v-on="on"
                 autoresize
-                :max-lines="2"
+                :max-lines="1"
                 :class="[textFontSize, {'font-italic': !address }]"
               ).info--text.mt-1 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
         div.d-flex.white--text.mt-2
           div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, badgeSize, {'primary': isClinicOpen(day.value)}]").badge
+            div(:class="[textFontSize, badgeSize, {'secondary': isClinicOpen(day.value)}]").badge
               | {{ day.text }}
     v-spacer
     slot(name="card-actions")
@@ -41,7 +41,7 @@
         v-col
           v-row(justify="end")
             v-btn(
-              color="primary"
+              color="secondary"
               :small="!$isWideScreen"
               rounded
               :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
@@ -51,7 +51,7 @@
     v-dialog(
       v-model="dialogBox"
       :scrollable="false"
-      :width="$isMobile ? '100%' : '40%'"
+      :width="$isMobile ? '100%' : '35%'"
       content-class="rounded-xl"
     ).pa-0
       clinic-dialog-card(:organization="organization")

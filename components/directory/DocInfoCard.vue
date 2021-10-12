@@ -23,15 +23,15 @@
           //-     :max-lines="1"
           //-   ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
           //-   span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
-            //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
+            //- v-chip(v-if="doctor.doc_website" color="secondary" outlined x-small).mt-1 verified
           v-row(align="start").mt-2
-            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-medical-bag
+            v-icon(color="secondary" v-bind="iconBindings").mt-3 mdi-medical-bag
             v-col.font-gray
               span(:class="sectionHeaderClass") Specialization
               p(v-if="hasSpecialties").font-weight-semibold.mb-0 {{ specialtiesText }}&nbsp;&nbsp;
               p(v-else).font-weight-light.font-italic.mb-0.grey--text.text--lighten-1 No information
           v-row(:class="{'mt-2': !minified}" align="start")
-            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
+            v-icon(color="secondary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") Experience
               v-clamp(
@@ -45,7 +45,7 @@
                 :max-lines="1"
               ).font-weight-light.font-italic.grey--text.text--lighten-1 No information
           v-row(v-if="!minified" :class="{'mt-2': !minified}" align="start")
-            v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-information-outline
+            v-icon(color="secondary" v-bind="iconBindings").mt-3 mdi-information-outline
             v-col.font-gray
               span(:class="sectionHeaderClass") About
               v-clamp(
@@ -79,7 +79,7 @@
           v-col(cols="11")
             v-row(:justify="$isMobile ? 'center' : 'end'").py-4
                 v-btn(
-                  color="primary"
+                  color="secondary"
                   rel="noopener noreferrer"
                   :href="doctorWebsite"
                   :disabled="!hasDoctorWebsite"

@@ -109,6 +109,6 @@ export default {
   background-color: transparent !important;
 }
 .bordered-card {
-  border: 0.5px solid black !important;
+  border: 0.5px solid rgb(218, 218, 218) !important;
 }
 </style>
