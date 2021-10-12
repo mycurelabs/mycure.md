@@ -310,23 +310,18 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
-import pick from 'lodash/pick';
-import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import headMeta from '~/utils/head-meta';
 import {
   getCountries,
   getCountry,
-  // signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
   emailRules,
   passwordRules,
 } from '~/utils/text-field-rules';
-// import { CLINICS_PRICING } from '~/constants/pricing';
-// import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { DOCTOR_TYPES } from '~/services/subscription-packages';
 import ChooseFacilityType from '~/components/signup/ChooseFacilityType';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
@@ -500,16 +495,6 @@ export default {
 
         // - Check if there is pending session
         const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
-        const sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
-        if (sessionId) {
-          const queryOps = pickBy(pick(localStorageData, ['trial', 'plan', 'from']), Boolean);
-          this.$router.push({
-            name: 'signup-health-facilities-pricing',
-            query: queryOps,
-          });
-          return;
-        }
-
         if (localStorageData) {
           this.firstName = localStorageData.firstName;
           this.lastName = localStorageData.lastName;
