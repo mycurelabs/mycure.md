@@ -14,7 +14,7 @@
           //- Profile picture and main info
           v-col(cols="12").text-center
             v-avatar(size="200").elevation-5
-              img(:src="picUrl")
+              img(:src="picUrl").img-border
             br
             br
             span.font-weight-bold.mc-title-set-2 Dr. {{ fullName }}
@@ -25,7 +25,7 @@
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
-              v-col(v-if="metricData[metric.value] !== 0 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
+              v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
                 v-avatar(size="50" :color="metric.color").lighten-3
                   v-icon(:color="metric.color").darken-1 {{ metric.icon }}
                 br
@@ -215,7 +215,9 @@ export default {
 .book-text:hover {
   cursor: pointer;
 }
-
+.img-border {
+  border: 8px solid white;
+}
 .btn-banner {
   width: 25%;
   margin: auto;

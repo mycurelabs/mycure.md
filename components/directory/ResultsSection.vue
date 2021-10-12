@@ -8,7 +8,7 @@
               v-row(align="center")
                 v-col(align="start")
                   p(v-if="itemsTotal") Showing&nbsp;
-                    strong.primary--text {{ itemsTotal }}&nbsp;
+                    strong.secondary--text {{ itemsTotal }}&nbsp;
                     | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}&nbsp;
                     span(v-if="location && locationKM") within&nbsp;
                       strong.success--text {{ locationKM }} KM
@@ -17,7 +17,7 @@
               v-row(v-if="loading" justify="center")
                 v-col(cols="12" md="5").text-center
                   v-progress-circular(
-                    color="primary"
+                    color="secondary"
                     indeterminate
                     size="100"
                   ).mt-16

@@ -2,7 +2,7 @@
 v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
     v-card-text.text-center
       v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
-        img(:src="picUrl")
+        img(:src="picUrl").img-border
     v-card-text
       h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
       br
@@ -190,5 +190,8 @@ export default {
 }
 .social-icon {
   z-index: 99;
+}
+.img-border {
+  border: 8px solid white;
 }
 </style>
