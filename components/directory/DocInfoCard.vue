@@ -53,7 +53,7 @@
                 autoresize
                 :max-lines="3"
               ).font-weight-semibold {{ bio }}
-              p(v-else).font-weight-semibold No information provided
+              p(v-else).font-weight-light.font-italic.grey--text.text--lighten-1 No information
     v-spacer
     slot(name="card-actions")
       v-card-actions(v-if="showBookButtons").pa-2
