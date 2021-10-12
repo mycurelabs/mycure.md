@@ -19,6 +19,11 @@
             span Services
             div(v-if="organization.tags").font-weight-semibold
               span(v-for="(tag, index, key) in tagsToDisplay" :key="key") {{ index === 0 ? tag : ', ' + tag }}
+            div(v-else)
+              v-clamp(
+                autoresize
+                :max-lines="1"
+              ).font-weight-light.font-italic.grey--text.text--lighten-1 No services available
         v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-map-marker
           v-col.font-gray.py-0
