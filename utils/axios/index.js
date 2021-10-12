@@ -175,7 +175,7 @@ export const getCountries = async () => {
     ];
     const { data } = await axios({
       method: 'get',
-      url: `https://restcountries.eu/rest/v2/all?fields=${fields.join(';')}`,
+      url: `https://restcountries.com/v2/all?fields=${fields.join(',')}`,
     });
     return data;
   } catch (e) {

@@ -571,7 +571,7 @@ export default {
           mobileResultUnique,
         ] = await Promise.all([
           this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
-          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', this.mobileNo),
+          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
         ]);
         if (!emailResultUnique || !mobileResultUnique) {
           this.error = true;
