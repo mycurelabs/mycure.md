@@ -187,7 +187,7 @@ export default {
     coverSize () {
       if (this.$isRegularScreen) return '140px';
       if (this.$isMobile) return '140px';
-      return '180px';
+      return '220px';
     },
   },
   methods: {
