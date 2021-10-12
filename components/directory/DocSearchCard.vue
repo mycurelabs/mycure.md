@@ -27,7 +27,7 @@
           v-icon(color="primary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor && doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
-            span(v-else).font-italic No information
+            span(v-else).font-italic.grey--text.text--lighten-1 No information
         div(justify="start").mt-1.d-flex
           v-icon(color="primary" :small="!$isWideScreen" left) mdi-information-outline
           div(v-if="bio")
@@ -41,7 +41,7 @@
               autoresize
               :max-lines="2"
               :class="[textFontSize, 'font-italic']"
-            ) No information
+            ).grey--text.text--lighten-1 No information
     v-spacer
     v-card-actions.pa-0
       v-col

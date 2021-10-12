@@ -122,13 +122,12 @@
                   v-if="searchObject.specializations.length > 0"
                   @click="searchObject.specializations = []; onSearch(false)"
                 ) mdi-close
-    v-dialog(v-model="dialog" width="500" height="100%" @click:outside="onSearch(false)")
+    v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
         v-card-title
           v-row
             v-col
-              h2 Filters
-            v-spacer
+              h2 Filter by Specialization
             v-col(cols="1" align-self="center").pa-0
               v-icon(large @click="dialog = false; onSearch(false)") mdi-close
         v-card-subtitle.pt-3.pb-0

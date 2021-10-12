@@ -29,7 +29,7 @@
             v-col.font-gray
               span(:class="sectionHeaderClass") Specialization
               p(v-if="hasSpecialties").font-weight-semibold.mb-0 {{ specialtiesText }}&nbsp;&nbsp;
-              p(v-else).font-weight-semibold.mb-0 &nbsp;No information provided
+              p(v-else).font-weight-light.font-italic.mb-0.grey--text.text--lighten-1 No information
           v-row(:class="{'mt-2': !minified}" align="start")
             v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
             v-col.font-gray
@@ -43,7 +43,7 @@
                 v-else
                 autoresize
                 :max-lines="1"
-              ).font-weight-semibold.font-italic No information
+              ).font-weight-light.font-italic.grey--text.text--lighten-1 No information
           v-row(v-if="!minified" :class="{'mt-2': !minified}" align="start")
             v-icon(color="primary" v-bind="iconBindings").mt-3 mdi-information-outline
             v-col.font-gray

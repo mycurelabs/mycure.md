@@ -26,7 +26,8 @@
             v-clamp(
               autoresize
               :max-lines="2"
-            ).font-weight-semibold {{ address || 'No address provided'}}
+              :class="address ? 'font-weight-semibold' : ['font-weight-light', 'font-italic', 'grey--text', 'text--lighten-1']"
+            ) {{ address || 'No address provided'}}
         v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-phone-in-talk-outline
           v-col.font-gray.py-0
@@ -34,7 +35,8 @@
             v-clamp(
               autoresize
               :max-lines="2"
-            ).font-weight-semibold {{ organization.phone || 'No contact number'}}
+              :class="organization.phone ? 'font-weight-semibold' : ['font-weight-light', 'font-italic', 'grey--text', 'text--lighten-1']"
+            ) {{ organization.phone || 'No contact number'}}
         v-row(align="start").mc-list-content-set-2.pt-2
           v-icon(color="primary" x-large) mdi-calendar
           v-col.font-gray.py-0
@@ -57,7 +59,7 @@
               v-clamp(
                 autoresize
                 :max-lines="1"
-              ).font-weight-semibold No Schedule Available
+              ).font-weight-light.font-italic.grey--text.text--lighten-1 No schedule available
     v-card-actions.pa-0
       v-col
         v-row(justify="center")
