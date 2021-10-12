@@ -53,7 +53,7 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
           span.font-gray {{ specialty }}
       div(v-if="practicingSince").mb-6
         h2(:class="sectionTextClasses").secondary--text Practicing Since
-        p {{ new Date(practicingSince).getFullYear() }} - {{ practicingYears }} Years of Experience
+        p {{ practicingSince }} - {{ practicingYears }} Years of Experience
       //- Educational Background
       div(v-if="education.length").mb-6
         h2(:class="sectionTextClasses").secondary--text Education
