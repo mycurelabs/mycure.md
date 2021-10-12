@@ -613,7 +613,7 @@ export default {
           mobileResultUnique,
         ] = await Promise.all([
           this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
-          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', this.mobileNo),
+          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
         ]);
         if (!emailResultUnique || !mobileResultUnique) {
           this.error = true;
@@ -669,6 +669,7 @@ export default {
         if (process.browser) {
           if (!localStorage.getItem('mycure:countries')) {
             this.countries = await getCountries();
+            console.log('countries', this.countries);
             localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
           } else {
             this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
