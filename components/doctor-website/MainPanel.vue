@@ -25,7 +25,7 @@
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
-              v-col(v-if="metricData[metric.value] !== 0 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
+              v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
                 v-avatar(size="50" :color="metric.color").lighten-3
                   v-icon(:color="metric.color").darken-1 {{ metric.icon }}
                 br
