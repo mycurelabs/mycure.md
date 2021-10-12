@@ -306,7 +306,6 @@ export default {
       return this.days.find(day => day.order === comparingItem).day;
     },
     isClinicOpen (dayValue) {
-      console.log('operatingGrouped', this.operatingGroupedSchedules);
       const matchedDay = this.operatingGroupedSchedules.find(schedule => schedule.order === dayValue);
       return !isNil(matchedDay);
     },
