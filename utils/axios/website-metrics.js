@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { handleError } from './error-handler';
 
+// Fall-backs
+const MEDICAL_RECORDS_FALLBACK = 1180000;
+const PATIENTS_FALLBACK = 1460000;
+const PROVIDERS_FALLBACK = 790;
+
 export const fetchWebsiteMetrics = async () => {
   try {
     const { data: medicalRecordsData } = await axios({
@@ -38,14 +43,19 @@ export const fetchWebsiteMetrics = async () => {
     // });
     return {
       // Patients will be added to records as well
-      medicalRecordsData: (medicalRecordsData[0]?.data[0]?.value || 0) + (patientsData[0]?.data[0]?.value || 0),
-      patientsData: (patientsData[0]?.data[0]?.value || 0),
-      providersData: (providersData[0]?.data[0]?.value || 0) + (doctorsData[0]?.data[0]?.value || 0),
+      medicalRecordsData: (medicalRecordsData[0]?.data[0]?.value || MEDICAL_RECORDS_FALLBACK) + (patientsData[0]?.data[0]?.value || PATIENTS_FALLBACK),
+      patientsData: (patientsData[0]?.data[0]?.value || PATIENTS_FALLBACK),
+      providersData: (providersData[0]?.data[0]?.value || PROVIDERS_FALLBACK) + (doctorsData[0]?.data[0]?.value || 0),
       // medicalRecordsData: medicalRecordsData[0]?.value || 0,
       // patientsData: patientsData[0]?.value || 0,
       // providersData: providersData[0]?.value || 0,
     };
   } catch (e) {
-    throw handleError(e);
+    // When error occurs, just return fallback value to prevent breaking the site
+    return {
+      medicalRecordsData: MEDICAL_RECORDS_FALLBACK + PATIENTS_FALLBACK,
+      patientsData: PATIENTS_FALLBACK,
+      providersData: PROVIDERS_FALLBACK,
+    };
   }
 };

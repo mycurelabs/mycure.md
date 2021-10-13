@@ -83,7 +83,7 @@ export default {
       if (val && this.isVisible) this.animate();
     },
   },
-  created () {
+  mounted () {
     try {
       // const data = await fetchWebsiteMetrics();
       this.medicalRecordsData = this.metricsData?.medicalRecordsData || 1700000;
