@@ -58,19 +58,8 @@
           div(v-for="(day, index) in daysInit" :key="index").pr-2
             div(:class="[textFontSize, badgeSize, {'success': isClinicOpen(day.value)}]").badge
               | {{ day.text }}
-        v-row(justify="end").py-3
-          v-col(cols="12" sm="6").py-0
-            v-btn(
-              color="secondary"
-              :small="!$isWideScreen"
-              outlined
-              rounded
-              block
-              :class="$isWideScreen ? 'font-14' : 'font-10'"
-              @click="dialogBox = true"
-            ).text-none.elevation-0.font-weight-light.mt-2
-              b Online Consults
-          v-col(cols="12" sm="6").py-0
+        v-row
+          v-col(cols="12")
             v-btn(
               color="secondary"
               :small="!$isWideScreen"

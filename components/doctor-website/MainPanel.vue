@@ -18,10 +18,11 @@
             br
             br
             span.font-weight-bold.mc-title-set-2 Dr. {{ fullName }}
-          //- Professional Info
-          v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-10
-            p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
-            span {{ specialties.slice(0, 3).join(', ')}}
+            v-row(justify="center").mc-content-set-5.black--text
+              //- Professional Info
+              v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
+                span {{ specialties.slice(0, 3).join(', ')}}
+                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{practicingYears}} Years of Experience
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
@@ -40,11 +41,10 @@
               rounded
               depressed
               x-large
-              color="info"
               :class="{ 'font-11' : $isMobile }"
               :disabled="!isBookable"
               @click="onBook"
-            ).text-none.font-weight-bold.custom-book-btn.font-18 {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
+            ).text-none.font-weight-bold.custom-book-btn.font-18.white--text {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
 </template>
 
 <script>
@@ -211,6 +211,7 @@ export default {
 .custom-book-btn {
   height: 50px !important;
   width: 250px;
+  background: linear-gradient(258.57deg, #59A3F1 14.32%, #3371B0 76.89%);
 }
 .book-text:hover {
   cursor: pointer;
