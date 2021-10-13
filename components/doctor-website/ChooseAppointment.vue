@@ -21,10 +21,10 @@
                 open-delay="100"
               )
                 v-card(
-                  :disabled="docUnavailable(service)"
+                  :disabled="!isAppointmentAvailable(service)"
                   hover
                   :color="hover ? service.color : 'white'"
-                  :class="[{'white--text': hover}, {'unavailable': docUnavailable(service)}]"
+                  :class="[{'white--text': hover}, {'unavailable': !isAppointmentAvailable(service)}]"
                   @click="onServiceSelect(service.type)"
                 ).service-card
                   picture-source(
@@ -36,7 +36,6 @@
                   )
                   v-card-text.text-center
                     h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
-                    //- span(v-if="!isAvailable(service.type) && !isClinic").error--text UNAVAILABLE
       v-card-actions(v-if="$isMobile")
         v-spacer
         v-btn(
@@ -71,7 +70,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    // Required, when `isClinic` is true
     hasDoctors: {
+      type: Boolean,
+      default: false,
+    },
+    // Required, when `isClinic` is true
+    hasPhysicalServices: {
       type: Boolean,
       default: false,
     },
@@ -107,11 +112,11 @@ export default {
   },
   methods: {
     onServiceSelect (type) {
-      if (!this.isAvailable(type) && !this.isClinic) return;
+      if (!this.isDocAvailable(type) && !this.isClinic) return;
       this.$emit('select', type);
       this.dialog = false;
     },
-    isAvailable (type) {
+    isDocAvailable (type) {
       switch (type) {
         case 'telehealth':
           return !!this.organizations?.find(org => org.teleconsultQueue &&
@@ -122,8 +127,12 @@ export default {
         default: return false;
       }
     },
-    docUnavailable (service) {
-      return !this.isClinic ? !this.isAvailable(service.type) : service.type === 'telehealth' && !this.hasDoctors;
+    isAppointmentAvailable (service) {
+      if (!this.isClinic) {
+        return this.isDocAvailable(service);
+      }
+      if (service.type === 'telehealth') return this.hasDoctors;
+      return this.hasPhysicalServices;
     },
   },
 };

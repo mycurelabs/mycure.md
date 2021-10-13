@@ -60,6 +60,7 @@ export default {
     this.serviceTypeMappings = {
       'clinical-consultation': { text: 'Consult', value: 'clinical-consultation' },
       'clinical-procedure': { text: 'Procedure', value: 'clinical-procedure' },
+      telehealth: { text: 'Telehealth', value: 'telehealth' },
       lab: { text: 'Laboratory', value: 'lab' },
       imaging: { text: 'Imaging', value: 'imaging' },
       pe: { text: 'PE Package', value: 'pe' },
@@ -91,10 +92,20 @@ export default {
       this.$emit('search', { searchFilters: this.searchFilters });
     },
     onServiceTypeSelect () {
+      const mapServiceType = (type) => {
+        if (type === 'lab' || type === 'imaging') return 'diagnostic';
+        // Telehealth services are technically under 'clinical-consultation',
+        // They are differentiated through `service#tags`
+        if (type === 'telehealth') return 'clinical-consultation';
+        return type;
+      };
       this.searchFilters = {
         ...this.searchFilters,
-        type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
+        type: mapServiceType(this.serviceType),
         subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
+        // Differentiate the telehealth services
+        ...this.serviceType === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+        ...this.serviceType === 'telehealth' && { tags: { $in: ['telehealth'] } },
       };
       this.search();
     },

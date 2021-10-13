@@ -20,15 +20,11 @@
           v-col(cols="12" md="4").text-center
             h2 No results available
         template(v-else)
-          div(v-for="(item, key) in items" :key="key")
+          div(
+            v-for="(item, key) in items" :key="key"
+            :class="{'mt-0': key === 0}"
+          ).my-3
             //- If doctor
-            //- doc-item-card(
-            //-   v-if="!!item.uid"
-            //-   :organization="organization"
-            //-   :item="item"
-            //-   :is-preview-mode="isPreviewMode"
-            //-   :read-only="readOnly"
-            //- )
             doc-item-card(
               v-if="!!item.uid"
               minified
