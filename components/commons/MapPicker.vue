@@ -2,16 +2,15 @@
   v-card
     v-card-text.map-container.pa-3
       //- address input
-      input(
+      v-text-field(
         type="text"
         placeholder="Search Address"
         outlined
         autofocus
-      )#pac-input.q-mb-md
-
+        prepend-inner-icon="mdi-map-search-outline"
+      )#pac-input
       //- map display
       div#map
-
     //- card actions
     v-card-actions
       v-spacer
