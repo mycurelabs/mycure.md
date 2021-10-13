@@ -26,47 +26,84 @@
             ).mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
+          v-col(:cols="$isMobile ? '12' : null")
             v-row(align="start" :justify="$isMobile ? 'start' : 'end'" :class="{'mt-3': $isMobile}")
-              span.font-weight-bold.font-14.mt-1 USE LOCATION
-              v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="secondary").pl-1
-              v-switch(
-                v-else
-                v-model="locationSwitch"
-                inset
-              ).ml-3.mt-0
-          v-col(v-else)
-            br
+              //- Service Type Filter
+              v-col(
+                v-if="searchObject.mode === 'organization'"
+                md="6"
+              ).pa-0.ma-0
+                v-autocomplete(
+                  v-model="searchObject.serviceType"
+                  item-text="name"
+                  item-value="value"
+                  placeholder="Service Type"
+                  prepend-inner-icon="mdi-filter"
+                  clearable
+                  dense
+                  flat
+                  hide-details
+                  outlined
+                  solo
+                  :items="serviceTypes"
+                  @change="onSearch(false)"
+                )
+              //- Specialization
+              v-col(
+                v-if="showSpecializationsField"
+                md="6"
+                :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
+              ).pa-0.ma-0
+                v-text-field(
+                  v-model="specialtiesDisplay"
+                  placeholder="Specializations"
+                  prepend-inner-icon="mdi-filter"
+                  dense
+                  hide-details
+                  outlined
+                  :disabled="dialog"
+                  @click="dialog = true"
+                )
+                  template(slot="append")
+                    v-icon(
+                      v-if="searchObject.specializations.length > 0"
+                      @click="searchObject.specializations = []; onSearch(false)"
+                    ) mdi-close
         v-row.pt-2
           v-col.pa-0
             v-combobox(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
-              solo
-              outlined
-              flat
-              dense
-              clearable
-              autofocus
-              :items="suggestionEntries"
               item-text="name"
-              :search-input.sync="searchDummy"
+              autofocus
+              clearable
+              dense
+              flat
+              outlined
+              solo
               :height="$isMobile ? '40px' : '60px'"
-              :return-object="false"
+              :items="suggestionEntries"
               :menu-props="{ bottom: true, offsetY: true }"
-              @keyup.enter="onSearch(true)"
+              :return-object="false"
+              :search-input.sync="searchDummy"
               @click:clear="clearSearchText"
+              @keyup.enter="onSearch(true)"
               @update:search-input="handleDebouncedSearch($event)"
             ).rounded-lg
-              template(slot="append")
-                v-btn(
-                  :small="!$isMobile"
-                  :x-small="$isMobile"
-                  fab
-                  color="secondary"
-                  @click="onSearch(true)"
-                ).elevation-0
-                  v-icon mdi-magnify
+              template(v-if="isOrganization" slot="append")
+                v-tooltip(bottom)
+                  template(v-slot:activator="{ on, attrs }")
+                    v-btn(
+                      v-on="on"
+                      v-bind="attrs"
+                      :small="!$isMobile"
+                      :x-small="$isMobile"
+                      icon
+                      large
+                      @click="mapDialog = true"
+                    ).elevation-0
+                      v-icon mdi-crosshairs-gps
+                  span Use your location
               template(v-slot:item="data")
                 v-col(cols="12")
                   v-row.py-3
@@ -86,42 +123,7 @@
                         //-     span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
                         v-spacer
                     v-icon(color="secondary" large) mdi-arrow-right
-        v-row(:justify="appBar? 'start' : 'center'")
-          //- Service Type Filter
-          v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
-            v-autocomplete(
-              v-model="searchObject.serviceType"
-              placeholder="Service Type"
-              solo
-              outlined
-              flat
-              dense
-              clearable
-              item-text="name"
-              item-value="value"
-              prepend-inner-icon="mdi-filter"
-              :items="serviceTypes"
-              @change="onSearch(false)"
-            )
-          //- Specialization
-          v-col(
-            v-if="showSpecializationsField" cols="12" md="5" lg="4"
-            :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
-          )
-            v-text-field(
-              v-model="specialtiesDisplay"
-              placeholder="Specializations"
-              prepend-inner-icon="mdi-filter"
-              outlined
-              dense
-              :disabled="dialog"
-              @click="dialog = true"
-            )
-              template(slot="append")
-                v-icon(
-                  v-if="searchObject.specializations.length > 0"
-                  @click="searchObject.specializations = []; onSearch(false)"
-                ) mdi-close
+    //- DIALOGS
     v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
         v-card-title
@@ -284,21 +286,6 @@ export default {
     },
     isOrganization () {
       return this.selectedMode === 'organization';
-    },
-    locationSwitch: {
-      get () {
-        console.log('location', !!this.location);
-        return !!this.location;
-      },
-      set (val) {
-        if (!val) {
-          this.searchObject.location = null;
-          this.$emit('clear:location');
-          return;
-        }
-        this.mapDialog = true;
-        // this.$emit('update:locationSwitch', val);
-      },
     },
     specialtiesDisplay () {
       const output = this.searchObject.specializations[0] || null;
