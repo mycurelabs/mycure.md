@@ -245,7 +245,7 @@ export default {
       return fullSchedules.filter(schedule => (schedule.order || schedule.day) === dayOrder) || [];
     },
     isAvailable () {
-      return this.todaySchedules.length && this.isBookingEnabled;
+      return this.fullSchedules.length && this.isBookingEnabled;
     },
     hasTeleconsult () {
       return this.doctor?.teleconsultQueue;

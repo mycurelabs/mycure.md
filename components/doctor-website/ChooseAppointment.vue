@@ -129,7 +129,7 @@ export default {
     },
     isAppointmentAvailable (service) {
       if (!this.isClinic) {
-        return this.isDocAvailable(service);
+        return this.isDocAvailable(service.type);
       }
       if (service.type === 'telehealth') return this.hasDoctors;
       return this.hasPhysicalServices;
