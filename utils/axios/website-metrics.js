@@ -52,6 +52,7 @@ export const fetchWebsiteMetrics = async () => {
     };
   } catch (e) {
     // When error occurs, just return fallback value to prevent breaking the site
+    // Mostly used for Brave Shield
     return {
       medicalRecordsData: MEDICAL_RECORDS_FALLBACK + PATIENTS_FALLBACK,
       patientsData: PATIENTS_FALLBACK,
