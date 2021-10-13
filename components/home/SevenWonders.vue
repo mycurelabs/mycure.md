@@ -53,6 +53,12 @@
                   :slidesToShow="4",
                   :speed="1000"
                 )
+                  template(slot="prevArrow")
+                    v-btn(icon).ml-n4.custom-btn
+                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") mdi-chevron-left-circle
+                  template(slot="nextArrow")
+                    v-btn(icon).mr-n4.custom-btn
+                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") mdi-chevron-right-circle
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
               //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
@@ -226,5 +232,11 @@ export default {
   /* height: 1000px; */
   background-image: url('~/assets/images/home/Homepage USP BG Mobile.png');
   background-position: center bottom;
+}
+.custom-btn::before {
+    color: transparent
+}
+.custom-btn:hover {
+    color: grey;
 }
 </style>
