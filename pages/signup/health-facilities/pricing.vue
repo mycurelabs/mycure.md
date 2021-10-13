@@ -226,10 +226,20 @@ export default {
     if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
       await this.sendOtp();
+      // Record track
+      this.$gtag.event('pay', {
+        event_category: 'signup',
+        event_label: 'signup-step-2-payment-success',
+      });
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
     if (this.paymentState === 'cancel') {
       this.handlePaymentCancel();
+      // Record track
+      this.$gtag.event('pay', {
+        event_category: 'signup',
+        event_label: 'signup-step-2-payment-cancel',
+      });
     }
 
     // - Note: URL query parameters are strings

@@ -621,6 +621,11 @@ export default {
           return;
         };
         this.saveModel(payload);
+        // Record track
+        this.$gtag.event('submit', {
+          event_category: 'signup',
+          event_label: 'signup-step-1',
+        });
         this.$router.push({
           name: 'signup-health-facilities-pricing',
           query: {
