@@ -102,12 +102,14 @@
         v-toolbar(flat)
           v-toolbar-title.primary--text Schedules
             br
-            h5.black--text {{ clinic.name }}
+            h5.black--text {{ clinic.name }}&nbsp;
+              span.font-weight-regular - Opening Hours
           v-spacer
           v-btn(icon @click="scheduleDialog = false")
             v-icon mdi-close
         v-card-text.pt-3
           schedules-list(
+            hideLabels
             :items="operatingGroupedSchedules"
             :non-mf-schedule="false"
           )

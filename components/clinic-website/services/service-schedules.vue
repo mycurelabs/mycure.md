@@ -1,6 +1,6 @@
 <template lang="pug">
   v-row
-    v-col
+    v-col(v-if="!hideLabels")
       strong.font-weight-black.accent--text |&nbsp;
         span.font-weight-bold Physical Appointment
       br
@@ -20,7 +20,7 @@
               cols="12"
             ).text-center
               h4.font-weight-semibold
-                strong(:class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
+                strong(v-if="!hideLabels" :class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
                 span {{ timeslot | format-time-range }}
 </template>
 
@@ -57,6 +57,10 @@ export default {
     nonMfSchedule: {
       type: Boolean,
       default: true,
+    },
+    hideLabels: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
