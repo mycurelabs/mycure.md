@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { handleError } from './error-handler';
 
 // Fall-backs
 const MEDICAL_RECORDS_FALLBACK = 1180000;
