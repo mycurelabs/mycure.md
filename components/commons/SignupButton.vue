@@ -51,9 +51,10 @@ export default {
       if (this.pricingBundle) {
         route.query.subscription = this.pricingBundle;
       }
-      if (routeName === 'telehealth') {
-        route.query.from = 'telehealth';
-      }
+      // TODO: Uncomment once other TH apps are deployed
+      // if (routeName === 'telehealth') {
+      //   route.query.from = 'telehealth';
+      // }
       if (routeName === 'booking') {
         route.query.from = 'booking';
         // - This was done since booking is a special case in health facility types
