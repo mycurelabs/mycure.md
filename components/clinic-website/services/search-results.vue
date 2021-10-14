@@ -41,6 +41,7 @@
               :is-doctor="!!item.uid"
               :is-preview-mode="isPreviewMode"
               :read-only="readOnly"
+              :is-booking-enabled="isBookingEnabled"
             )
             v-divider
 </template>

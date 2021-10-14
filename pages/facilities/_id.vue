@@ -543,7 +543,7 @@ export default {
         });
 
         // Include telehealth in Service types and schedules
-        if (telehealthSchedules) {
+        if (telehealthSchedules && this.isTelehealthEnabled) {
           console.log('service types', this.serviceTypes);
           if (!this.serviceTypes?.length) {
             this.serviceTypes = ['telehealth'];
