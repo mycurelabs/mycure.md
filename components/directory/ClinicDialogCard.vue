@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(width="100%" :height="$isWideScreen ? '800px' : $isRegularScreen ? '680px' : '100%'").py-8.px-5.rounded-xl.no-scroll.no-scroll-2.scroll
+  v-card(width="100%" :height="$isWideScreen ? '800px' : $isRegularScreen ? '700px' : '100%'").py-8.px-5.rounded-xl.no-scroll.no-scroll-2.scroll
     v-card-text
       v-col(cols="12")
         div.text-center
