@@ -209,6 +209,7 @@
                 dense
                 clearable
                 :disabled="loading.form"
+                :class="{'pt-1': $isMobile}"
               )
             v-col(
               cols="12"
