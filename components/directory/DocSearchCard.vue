@@ -134,7 +134,7 @@ export default {
     yearsOfExperience () {
       const { doc_practicingSince } = this.doctor; // eslint-disable-line
       let from = doc_practicingSince; // eslint-disable-line
-      if ((+from).toLocaleString().length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
+      if (`${from}`.length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
       const to = new Date().getFullYear();
       return to - from;
     },
