@@ -31,42 +31,39 @@
       :items="features"
     )
     //- 4th panel
-    //- features(
-    //-   title="Integration. Interoperability."
-    //-   description="MYCURE follows global standards and has open APIs that allow you to integrate or fortify your other systems with MYCURE. "
-    //-   :items="features"
-    //- )
-    //- 5th to 6th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-      :dense="$isMobile"
-      :header="info.header"
-      :descriptions="info.descriptions"
-      dummy
-    )
+    div.grey-bg.mx-n3
+      generic-media-panel(
+        :content="fourthPanelContent"
+        :center-panel-title-classes="titleClasses"
+        :content-classes="descriptionClasses"
+        :super-title-classes="subheaderClasses"
+        :title-classes="[...titleClasses, 'primary--text']"
+        align="center"
+        hide-btn
+      )
+    //- 5th
+
+    //- 6th
+    call-to-action(:content="ctaContent")
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
+import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    CallToAction,
     Features,
     GenericMediaPanel,
     Usp,
   },
-  middleware: ['disable-route'],
+  // middleware: ['disable-route'],
   data () {
     this.secondPanelItems = [
       {
@@ -113,20 +110,29 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.infoPanels = [
-      {
-        header: 'Accessibility like never before.',
-        descriptions: [
-          'Work online and offline across multiple locations with MYCURE Syncbase.',
-        ],
+    this.fourthPanelContent = {
+      centerPanelTitle: 'Integration and Interoperability',
+      superTitle: 'Choose from a wide array of MYCURE modules to add in your system',
+      description: 'MYCURE follows global standards and has open APIs that allow you to integrate or fortify your other systems with MYCURE.',
+      contentAlign: 'right',
+      imageBindings: {
+        image: 'As your practice grows.png',
+        imageAlt: 'Hospitals growing and scaling up artwork',
+        customPath: 'commons/',
+        extensionExclusive: true,
       },
-      {
-        header: 'Time to call for CSI',
-        descriptions: [
-          'Partner with MYCURE today and see progress in no time.',
-        ],
-      },
-    ];
+    };
+    this.ctaContent = {
+      title: 'Time to call for CSI',
+      description: [
+        'Partner with MYCURE today and see progress in no time.',
+      ],
+      contentAlign: 'right',
+    };
+    this.titleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.buttonClasses = ['mc-button-set-1'];
+    this.subheaderClasses = ['mc-subheader-set-2', 'font-open-sans', 'primary--text'];
     return {
       loading: true,
     };
@@ -138,29 +144,6 @@ export default {
       description: 'MYCURE offers a customizable clinic management system that allows API integration to ensure a smooth experience for doctors and clinics.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     this.loading = false;

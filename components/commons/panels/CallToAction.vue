@@ -57,6 +57,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    // Custom content, can be without `imageBindings`
+    content: {
+      type: Object,
+      default: null,
+    },
   },
   data () {
     this.versionOne = {
@@ -107,6 +112,7 @@ export default {
       };
     },
     callToActionPanel () {
+      if (this.content) return { ...this.content, imageBindings: this.imgBindings };
       switch (this.version) {
         case 2: return { ...this.versionTwo, imageBindings: this.imgBindings };
         case 3: return { ...this.versionThree, imageBindings: this.imgBindings };

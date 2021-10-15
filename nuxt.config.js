@@ -99,8 +99,13 @@ export default {
       Disallow: '/forgot-password',
     },
     {
-      UserAgen: '*',
+      UserAgent: '*',
       Disallow: '/features',
+    },
+    // Temporary disallow CSI since content is not yet complete
+    {
+      UserAgent: '*',
+      Disallow: '/csi',
     },
   ],
   // Google Web Font Loader Module
