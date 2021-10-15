@@ -63,7 +63,7 @@ export default {
     GenericMediaPanel,
     Usp,
   },
-  // middleware: ['disable-route'],
+  middleware: ['disable-route'],
   data () {
     this.secondPanelItems = [
       {
