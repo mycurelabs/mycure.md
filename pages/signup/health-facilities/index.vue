@@ -1,281 +1,257 @@
 <template lang="pug">
-  v-container(v-if="!loading.page")
-    v-toolbar(
-      color="transparent"
-      dense
-      flat
-    )
-      img(
-        src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-        alt="White MYCURE Logo"
-        width="150px"
-        height="41.88px"
-        @click="$router.push({ name: 'index' })"
-      ).link-to-home
-      v-spacer
-      span(:class="{'font-10' : $isMobile}").ml-5.mr-2 Already have an account?&nbsp;&nbsp;
-      v-btn(
-        depressed
-        color="primary"
-        :to="{ name: 'signin' }"
-      ).text-none Log In
-    v-row(justify="center" align="center").mt-2
-      v-col(cols="12" md="7" justify="center" align="center")
-        h1(v-if="!$isMobile").mb-5 Level up your healthcare services and get more patients safely
-        h2(v-else style="line-height: 1.25em;").mb-5 Level up your healthcare services and get more patients safely
-        v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
-          v-row(:no-gutters="$isMobile")
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-1.order-sm-1
-              //- First Name
-              v-text-field(
-                ref="firstNameRef"
-                v-model="firstName"
-                label="First Name"
-                outlined
-                :dense="$isMobile"
-                :rules="isRequired"
-                :disabled="loading.form"
-              )
-                template(v-slot:append v-if="firstName")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-2.order-sm-2
-              //- Last Name
-              v-text-field(
-                v-model="lastName"
-                label="Last Name"
-                outlined
-                :dense="$isMobile"
-                :rules="isRequired"
-                :disabled="loading.form"
-              )
-                template(v-slot:append v-if="lastName")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-3.order-sm-3
-              //- Email
-              v-text-field(
-                v-model="email"
-                label="Email"
-                outlined
-                :dense="$isMobile"
-                :rules="emailRules"
-                :disabled="loading.form"
-                @keyup="checkEmail"
-              )
-                template(v-slot:append v-if="isEmailValid")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-4.order-sm-6
-              //- v-text-field(
-              //-   v-model="mobileNo"
-              //-   label="Mobile No."
-              //-   outlined
-              //-   :rules="[isRequired]"
-              //- )
-              //- Mobile No.
-              v-text-field(
-                v-model="mobileNo"
-                label="Mobile Number"
-                type="number"
-                outlined
-                :dense="$isMobile"
-                :prefix="`+${countryCallingCode}`"
-                :disabled="loading.form"
-                :rules="[...isRequired, mobileNumberRule]"
-                @keypress="checkNumberInput($event)"
-              )
-                template(slot="append")
-                  div(style="margin-top: -8px")
-                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
-                    v-tooltip(bottom)
-                      template(v-slot:activator="{ on }")
-                        v-btn(icon @click="countryDialog = true" v-on="on")
-                          img(width="25" height="18.75" :src="countryFlag" :alt="countryFlag").flag-img.mt-2
-                      | Change Country
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-5.order-sm-4
-              //- Password
-              v-text-field(
-                v-model="password"
-                label="Password"
-                outlined
-                :dense="$isMobile"
-                :type="showPass ? 'text' : 'password'"
-                :rules="passwordRules"
-                :disabled="loading.form"
-                :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                @click:append="showPass = !showPass"
-              )
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-6.order-sm-5
-              //- Confirm Password
-              v-text-field(
-                v-model="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                outlined
-                :dense="$isMobile"
-                :rules="[...isRequired, matchPasswordRule]"
-                :disabled="loading.form"
-              )
-                template(v-slot: append v-if="confirmPassword && confirmPassword === password")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-7.order-sm-7
-              div(@click="chooseFacilityTypeDialog = true")
+  v-container(v-if="!loading.page" fluid fill-height).pa-0.ma-0
+    v-row(style="height: 100vh")
+      v-col(cols="6" v-if="!$isMobile" style="background: #DEDEE8;").pa-0
+        v-row(style="height: 100vh" align="center" justify="center")
+          img(
+            src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+            alt="White MYCURE Logo"
+            width="150px"
+            height="41.88px"
+            @click="$router.push({ name: 'index' })"
+          ).link-to-home
+          img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
+          v-spacer
+      v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'pt-10']").rounded-tl-xl.rounded-bl-xl
+          v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
+            v-row
+              v-col(cols="10")
+                h2 Register
+                p Level up your healthcare services and get more patients safely
+            p.mb-2 Personal Info
+            v-row(:no-gutters="$isMobile").px-2
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-1.order-sm-1
+                //- First Name
+                v-text-field(
+                  ref="firstNameRef"
+                  v-model="firstName"
+                  placeholder="First Name"
+                  outlined
+                  :dense="!$isWideScreen"
+                  hide-details
+                  :rules="isRequired"
+                  :disabled="loading.form"
+                ).ma-0
+                  template(v-slot:append v-if="firstName")
+                    v-icon(color="accent") mdi-check
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-2.order-sm-2
+                //- Last Name
+                v-text-field(
+                  v-model="lastName"
+                  placeholder="Last Name"
+                  outlined
+                  :dense="!$isWideScreen"
+                  hide-details
+                  :rules="isRequired"
+                  :disabled="loading.form"
+                ).ma-0
+                  template(v-slot:append v-if="lastName")
+                    v-icon(color="accent") mdi-check
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-3.order-sm-3
+                //- Email
+                v-text-field(
+                  v-model="email"
+                  placeholder="Email"
+                  outlined
+                  :dense="!$isWideScreen"
+                  hide-details
+                  :rules="emailRules"
+                  :disabled="loading.form"
+                  @keyup="checkEmail"
+                ).mb-0
+                  template(v-slot:append v-if="isEmailValid")
+                    v-icon(color="accent") mdi-check
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-4.order-sm-6
+                //- Mobile No.
+                v-text-field(
+                  v-model="mobileNo"
+                  placeholder="Mobile Number"
+                  type="number"
+                  outlined
+                  :dense="!$isWideScreen"
+                  hide-details
+                  :prefix="`+${countryCallingCode}`"
+                  :disabled="loading.form"
+                  :rules="[...isRequired, mobileNumberRule]"
+                  @keypress="checkNumberInput($event)"
+                ).mb-0
+                  template(slot="append")
+                    div(style="margin-top: -8px")
+                      v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
+                      v-tooltip(bottom)
+                        template(v-slot:activator="{ on }")
+                          v-btn(icon @click="countryDialog = true" v-on="on")
+                            img(width="25" height="18.75" :src="countryFlag" :alt="countryFlag").flag-img.mt-2
+                        | Change Country
+              v-col(
+                cols="12"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-5.order-sm-4
+                //- Password
+                v-text-field(
+                  v-model="password"
+                  placeholder="Password"
+                  outlined
+                  hide-details
+                  :dense="!$isWideScreen"
+                  :type="showPass ? 'text' : 'password'"
+                  :rules="passwordRules"
+                  :disabled="loading.form"
+                  :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+                  @click:append="showPass = !showPass"
+                )
+              v-col(
+                cols="12"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-6.order-sm-5
+                //- Confirm Password
+                v-text-field(
+                  v-model="confirmPassword"
+                  placeholder="Confirm Password"
+                  type="password"
+                  outlined
+                  hide-details
+                  :dense="!$isWideScreen"
+                  :rules="[...isRequired, matchPasswordRule]"
+                  :disabled="loading.form"
+                )
+                  template(v-slot: append v-if="confirmPassword && confirmPassword === password")
+                    v-icon(color="accent") mdi-check
+            p.mt-5.mb-2 Facility Info
+            v-row(:no-gutters="$isMobile").px-2
+              v-col(
+                cols="12"
+                md="8"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-7.order-sm-7
+                div(@click="chooseFacilityTypeDialog = true")
+                  v-select(
+                    v-model="facilityType"
+                    placeholder="Health Facility Type"
+                    item-text="text"
+                    item-value="value"
+                    outlined
+                    :dense="!$isWideScreen"
+                    readonly
+                    hide-details
+                    append-icon="$dropdown"
+                    :items="availableFacilityTypes"
+                    :rules="isRequired"
+                    :error="errorFacilityType"
+                    :error-messages="errorMessagesFacilityType"
+                    @click:append="chooseFacilityTypeDialog = true"
+                  )
+                    template(v-slot:item="{ item }")
+                      span {{ item.text }}&nbsp;
+                        v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+                    template(v-slot:selection="{ item }")
+                      span {{ item.text }}&nbsp;
+                        v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+              v-col(
+                cols="12"
+                md="4"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-8.order-sm-8
                 v-select(
-                  v-model="facilityType"
-                  label="Health Facility Type"
+                  v-model="roles"
+                  placeholder="Your Role"
                   item-text="text"
                   item-value="value"
                   outlined
-                  :dense="$isMobile"
-                  readonly
-                  append-icon="$dropdown"
-                  :items="availableFacilityTypes"
+                  :dense="!$isWideScreen"
+                  hide-details
+                  :error-messages="errorMessagesRoles"
+                  :items="userRoles"
                   :rules="isRequired"
-                  :error="errorFacilityType"
-                  :error-messages="errorMessagesFacilityType"
-                  @click:append="chooseFacilityTypeDialog = true"
+                  :disabled="loading.form"
+                  :error="errorRoles"
                 )
-                  template(v-slot:item="{ item }")
-                    span {{ item.text }}&nbsp;
-                      v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
-                  template(v-slot:selection="{ item }")
-                    span {{ item.text }}&nbsp;
-                      v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
-              //- Pricing
-              //- v-autocomplete(
-              //-   v-if="facilityType"
-              //-   v-model="subscription"
-              //-   label="Pricing Bundle"
-              //-   item-text="title"
-              //-   item-value="value"
-              //-   outlined
-              //-   :items="pricingBundles"
-              //-   :rules="isRequired"
-              //-   :disabled="loading.form"
-              //-   return-object
-              //- )
-              v-text-field(
-                v-model="invitation"
-                label="Referral Code (Optional)"
-                hint="6 character referral code"
-                outlined
-                :dense="$isMobile"
-                clearable
-                :disabled="loading.form"
-              )
-              v-checkbox(
-                v-model="hasPromoCode"
-                hide-details
-                color="primary"
-                style="margin-top: 0px"
-                :disabled="loading.form"
-              )
-                template(slot="label")
-                  span I have a&nbsp;
-                    strong.primary--text promo code
-                    | .
-              v-text-field(
-                v-if="hasPromoCode"
-                v-model="stripeCoupon"
-                :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
-                label="Promo Code"
-                outlined
-                dense
-                clearable
-                :disabled="loading.form"
-                :class="{'pt-1': $isMobile}"
-              )
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-8.order-sm-8
-              v-select(
-                v-model="roles"
-                label="Your Role"
-                item-text="text"
-                item-value="value"
-                outlined
-                :dense="$isMobile"
-                :error-messages="errorMessagesRoles"
-                :items="userRoles"
-                :rules="isRequired"
-                :disabled="loading.form"
-                :error="errorRoles"
-              )
-              v-text-field(
-                v-if="isDoctor"
-                type="number"
-                v-model="doc_PRCLicenseNo"
-                label="PRC License No"
-                outlined
-                hint="Please enter your PRC License No for verification"
-                :dense="$isMobile"
-                :disabled="loading.form"
-                :rules="isRequired"
-              )
-            v-col(
-              cols="12"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-9.order-sm-9.mb-5
-              v-checkbox(
-                v-model="agree"
-                hide-details
-                color="primary"
-                style="margin-top: 0px"
-                :disabled="loading.form"
-              )
-                template(slot="label")
-                  span
-                    | I agree to MYCURE's&nbsp;
-                    a(@click.stop="goToTerms") Terms of Use&nbsp;
-                    | and&nbsp;
-                    a(@click.stop="goToPrivacy") Privacy Policy.
-              v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
-            v-col(
-              cols="12"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-10.order-sm-10
-              v-btn(
-                type="submit"
-                color="primary"
-                style="min-width: 200px;"
-                large
-                :disabled="isProceedDisabled"
-                :loading="loading.form"
-                :block="$isMobile"
-              ).text-none #[b Proceed #[v-icon mdi-arrow-right]]
-              stripe-checkout(
-                ref="checkoutRef"
-                :pk="stripePK"
-                :sessionId="stripeCheckoutSessionId"
-              )
+              v-col(
+                cols="12"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-8.order-sm-8
+                v-text-field(
+                  v-if="isDoctor"
+                  v-model="doc_PRCLicenseNo"
+                  type="number"
+                  placeholder="PRC License No"
+                  hint="Please enter your PRC License No for verification"
+                  outlined
+                  :dense="!$isWideScreen"
+                  hide-details
+                  :disabled="loading.form"
+                  :rules="isRequired"
+                )
+            div(v-if="!invitation").font-italic.font-gray.mt-4
+              span Have a referral code?&nbsp;
+              a(@click="codeDialog = true") Click here
+            div(v-else).font-italic.font-gray.mt-4
+              span Referral code has been applied.&nbsp;
+              a(@click="codeDialog = true") Change
+            br
+            v-checkbox(
+              v-model="hasPromoCode"
+              hide-details
+              color="primary"
+              :disabled="loading.form"
+            ).mt-0
+              template(slot="label")
+                span.mt-3.mb-3 Apply a promo code (Optional)&nbsp;
+                v-text-field(
+                  v-if="hasPromoCode"
+                  v-model="stripeCoupon"
+                  :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
+                  placeholder="Promo Code"
+                  outlined
+                  dense
+                  height="20"
+                  clearable
+                  hide-details
+                  :disabled="loading.form"
+                  :class="{'pt-1': $isMobile}"
+                  @click.stop
+                )
+            v-checkbox(
+              v-model="agree"
+              hide-details
+              color="primary"
+              :disabled="loading.form"
+            ).ma-0
+              template(slot="label")
+                span I agree to MYCURE's&nbsp;
+                  a(target="_blank" rel="noopener noreferrer" href="../terms" @click.stop style="text-decoration: none") Terms of Use&nbsp;
+                  | and&nbsp;
+                  a(target="_blank" rel="noopener noreferrer" href="../privacy-policy" @click.stop style="text-decoration: none") Privacy Policy
+            v-row.mt-1.mb-2
+              v-col(cols="12")
+                v-btn(
+                  type="submit"
+                  color="primary"
+                  block
+                  large
+                  :disabled="isProceedDisabled"
+                  :loading="loading.form"
+                ) Proceed
+            span Already have an account?&nbsp;
+            a(href="../signin" style="text-decoration: none") Log in
+
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
@@ -306,6 +282,19 @@
       :facility-types="availableFacilityTypes"
       @select="onFacilityTypeSelect($event)"
     )
+    //- referral code dilog
+    v-dialog(v-model="codeDialog")
+      v-card
+        v-card-text
+          v-text-field(
+            v-model="invitation"
+            label="Referral Code (Optional)"
+            hint="6 character referral code"
+            outlined
+            :dense="$isMobile"
+            clearable
+            :disabled="loading.form"
+          )
 </template>
 
 <script>
@@ -422,6 +411,7 @@ export default {
       errorMessagesFacilityType: '',
       errorRoles: false,
       errorMessagesRoles: '',
+      codeDialog: false,
     };
   },
   head () {
