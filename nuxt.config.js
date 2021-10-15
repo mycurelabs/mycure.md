@@ -98,6 +98,10 @@ export default {
       UserAgent: '*',
       Disallow: '/forgot-password',
     },
+    {
+      UserAgen: '*',
+      Disallow: '/features',
+    },
   ],
   // Google Web Font Loader Module
   webfontloader: {
