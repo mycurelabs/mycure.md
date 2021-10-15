@@ -3,6 +3,7 @@
     //- Dialogs
     choose-appointment(
       v-model="appointmentDialog"
+      :organizations="clinics"
       @select="onSelectAppointment($event)"
     )
     choose-facility(
@@ -13,6 +14,7 @@
     )
     //- First panel
     main-panel(
+      :metrics="doctorMetrics"
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
       :bio="bio"
@@ -25,8 +27,10 @@
       :is-preview-mode="isPreviewMode"
       @book="onBook"
     )
+
     //- Patient panel
-    patient-panel(:metrics="doctorMetrics")
+    //- patient-panel(:metrics="doctorMetrics")
+
     //- Banner
     //- div.banner-container.mt-n5
     //-   img(
@@ -59,7 +63,6 @@
               :bio="bio"
               :specialties="specialties"
               :education="education"
-              :metrics="doctorMetrics"
               :is-bookable="isBookable"
               :is-preview-mode="isPreviewMode"
               @book="onBook"
@@ -83,7 +86,8 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
-import VueScrollTo from 'vue-scrollto';
+import intersection from 'lodash/intersection';
+// import VueScrollTo from 'vue-scrollto';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -100,7 +104,15 @@ import {
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import { fetchUserFacilities } from '~/services/organization-members';
-// import { fetchOrganizations } from '~/services/organizations';
+import { fetchOrganizations } from '~/services/organizations';
+
+const BOOKABLE_FACILITY_TYPES = [
+  'doctor-booking',
+  'doctor-telehealth',
+  'clinic-booking',
+  'clinic-telehealth',
+];
+
 export default {
   components: {
     ChooseAppointment,
@@ -127,7 +139,7 @@ export default {
     }
   },
   data () {
-    this.clinicsLimit = 3;
+    this.clinicsLimit = 6;
     return {
       // - UI State
       loading: true,
@@ -197,7 +209,7 @@ export default {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
     practicingYears () {
-      const from = new Date(this.practicingSince).getFullYear();
+      const from = this.practicingSince;
       const to = new Date().getFullYear();
       return to - from;
     },
@@ -210,10 +222,15 @@ export default {
     isVerified () {
       return this.doctor?.doc_verified; // eslint-disable-line
     },
-    // Check if doctor has a schedule in any clinic
+    /**
+     * Check if doctor has a schedule in any clinic
+     *
+     * Also check if the doctor has enabled booking / telehealth
+     */
     isBookable () {
       if (!this.clinics?.length) return false;
-      return !!this.clinics.find(c => c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length);
+      return !!this.clinics.find(c => (c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length) &&
+        intersection(c?.types, BOOKABLE_FACILITY_TYPES)?.length);
     },
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
@@ -229,6 +246,8 @@ export default {
     await this.fetchMetrics();
     // Fetch Doctor info
     this.fetchDoctorInfo();
+    // Record Page view for Google analytics
+    this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
@@ -243,6 +262,22 @@ export default {
         });
         this.clinicsTotal = total;
         this.clinics = items;
+
+        /**
+         * Normally, this does not happen. A doctor would not have
+         * a website if they haven't enabled either booking or telehealth.
+         * This was added to display the created facilities of our
+         * already EXISTING doctors prior to the changes made in booking and telehealth.
+         */
+        if (!this.isBookable && !this.clinics?.length) {
+          const { items, total } = await fetchOrganizations(this.$sdk, {
+            createdBy: this.doctor.id,
+            limit: this.clinicsLimit,
+            skip,
+          });
+          this.clinicsTotal = total;
+          this.clinics = items;
+        }
       } catch (error) {
         console.error(error);
         this.$nuxt.$router.push('/');
@@ -281,8 +316,8 @@ export default {
       this.facilityDialog = true;
     },
     onBook () {
-      // this.appointmentDialog = true;
-      VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
+      this.appointmentDialog = true;
+      // VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
       this.snackbarModel = {

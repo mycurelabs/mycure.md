@@ -1,82 +1,139 @@
 <template lang="pug">
-  v-card(height="100%").card-outter.elevation-3
-    v-card-text.text-center
-      v-avatar(size="125")
-        img(:src="clinicPicURL")
+  v-card(width="100%" flat).px-1.py-1.rounded-xl.card-outter
     v-card-text
-      h3.text-center {{ clinic.name }}
-        template(v-if="isVerified")
-          | &nbsp;
-          v-icon(color="primary" small) mdi-check-circle-outline
-      br
-      //- Address
-      div.d-flex
-        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-home-variant-outline
-        p(:class="{ 'font-italic': !clinic.address }").text-left {{ clinic.address | prettify-address }}
-      //- Contact number
-      div.d-flex
-        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-phone-in-talk
-        p(:class="{ 'font-italic': !phone }") {{ phone ? `+${phone}` : 'No information provided' }}
-      //- Email
-      div.d-flex
-        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-email
-        p(:class="{ 'font-italic': !email }") {{ email || 'No information provided' }}
-      br
-      template(v-if="clinicSchedules && clinicSchedules.length === 0")
-        div(:class="{ 'justify-center' : $isMobile}").d-flex
-          v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
-          i No schedules available
-      div(v-else :class="{ 'justify-center' : $isMobile}").d-flex
-        v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
-        table
-          tr(v-for="sched in clinicSchedules").font-weight-600
-            td(width="70") #[b.text-capitalize {{ formatDay(sched) }}]
-            td {{sched.startTime || sched.opening | morph-date-format('hh:mm A')}}
-            td -
-            td {{sched.endTime || sched.closing | morph-date-format('hh:mm A')}}
-      br
-      div(v-if="fullSchedules.length > 3").pl-3
-        a(
-          @click="clinicSchedulesExpanded = !clinicSchedulesExpanded"
-        ) View {{clinicSchedulesExpanded ? 'less' : 'more'}}
-        br
-    div.card-actions.px-3.pb-3
-      //- Online Consult
-      //- v-btn(
-      //-   color="accent"
-      //-   target="_blank"
-      //-   rel="noopener noreferrer"
-      //-   block
-      //-   large
-      //-   :disabled="!canOnlineBook"
-      //-   :href="telehealthURL"
-      //- ).my-4.text-none.rounded-lg
-      //-   v-icon(left) mdi-stethoscope
-      //-   b Teleconsult
+      v-row(justify="center")
+        v-col(cols="6" md="3" justify="center" align="center").pb-0.text-center
+          img(
+            :src="clinicPicURL"
+            alt="Services"
+            width="90%"
+          ).mt-3.rounded-xl
+        v-col(cols="12" md="8").pt-5
+          div
+            v-clamp(
+              autoresize
+              :max-lines="1"
+            ).font-weight-bold.mb-0.mc-title-set-2 {{ clinic.name }}&nbsp;
+          //- Address
+          v-row.mt-2
+            v-icon(color="primary") mdi-home-variant-outline
+            v-col.font-gray
+              span.mc-content-set-5 Address
+              v-clamp(autoresize :max-lines="2" :class="{ 'font-italic': !clinic.address }").font-weight-semibold {{ clinic.address | prettify-address }}&nbsp;&nbsp;
+          //- Contact
+          v-row
+            v-icon(color="primary") mdi-phone-in-talk
+            v-col.font-gray
+              span.mc-content-set-5 Contact Number
+              v-clamp(
+                autoresize
+                :max-lines="1"
+                :class="{ 'font-italic': !phone }"
+              ).font-weight-semibold {{ phone || 'No information provided' }}
+          //- Email
+          v-row
+            v-icon(color="primary") mdi-email
+            v-col.font-gray
+              span.mc-content-set-5 Email
+              v-clamp(
+                autoresize
+                :max-lines="1"
+                :class="{ 'font-italic': !email }"
+              ).font-weight-semibold {{ email || 'No information provided'}}
+      //- Schedules
+      //- v-row.pt-2
+      //-   v-col(cols="1" v-if="!$isMobile")
+      //-   v-badge(
+      //-     v-for="(day, key) in days"
+      //-     :key="key"
+      //-     :color="isClinicOpen(day.order) ? 'success' : 'grey'"
+      //-     :content="day.dayName.charAt(0)"
+      //-     inline
+      //-     large
+      //-   )
+      //-   v-spacer
+      //-   a(v-if="!$isMobile && fullSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
+      //-   v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
+      //-     a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+      v-row(justify="end").pt-2.px-4
+        v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
+          div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'success' : 'grey']").badge
+            | {{ day.text }}
+        v-spacer
+        v-col(v-if="operatingSchedules.length" cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
+          a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+    v-spacer
+    v-card-actions.pa-2.pb-4
+      v-row(justify="center")
+        //- v-spacer(v-if="!$isMobile")
+        v-col(v-if="canOnlineBook || canVisit" cols="12" sm="8").text-center
+          div(:class="{'d-inline-flex': !$isMobile}")
+            v-btn(
+              color="info"
+              depressed
+              large
+              :block="$isMobile"
+              :href="!isPreviewMode && telehealthURL"
+              :class="{'mx-1': !$isMobile}"
+              :disabled="!canOnlineBook"
+              @click="trackBooking('telehealth')"
+            ).text-none.font-12.clinic-book-btn
+              v-icon(small left) {{ canOnlineBook ? 'mdi-video-outline' : 'mdi-close' }}
+              span Online Consult
+            v-btn(
+              color="success"
+              depressed
+              large
+              :block="$isMobile"
+              :disabled="!canVisit"
+              :href="!isPreviewMode && visitURL"
+              :class="$isMobile ? 'mt-2': 'mx-1'"
+              @click="trackBooking('physical')"
+            ).text-none.font-12.clinic-book-btn
+              v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
+              span Visit Clinic
+        v-col(v-else cols="12" sm="10").text-center
+          span.font-italic.grey--text This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
+      //- v-spacer(v-if="!$isMobile")
 
-      //- Physical Visit
-      v-btn(
-        color="secondary"
-        target="_blank"
-        rel="noopener noreferrer"
-        block
-        large
-        :disabled="!canVisit"
-        :href="visitURL"
-      ).text-none.rounded-lg
-        v-icon(left) mdi-calendar
-        b Visit Clinic
+    //- Schedule Dialog
+    v-dialog(v-model="scheduleDialog" width="600")
+      v-card.pa-3
+        v-toolbar(flat)
+          v-toolbar-title.primary--text Schedules
+            br
+            h5.black--text {{ clinic.name }}&nbsp;
+              span.font-weight-regular - Opening Hours
+          v-spacer
+          v-btn(icon @click="scheduleDialog = false")
+            v-icon mdi-close
+        v-card-text.pt-3
+          schedules-list(
+            hideLabels
+            :items="operatingGroupedSchedules"
+            :non-mf-schedule="false"
+          )
 </template>
 
 <script>
+import isNil from 'lodash/isNil';
+import intersection from 'lodash/intersection';
 import uniqWith from 'lodash/uniqWith';
+import VClamp from 'vue-clamp';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import SchedulesList from '~/components/clinic-website/services/service-schedules';
+import classBinder from '~/utils/class-binder';
 import { formatAddress } from '~/utils/formats';
+
+const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
+const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
 
 export default {
   components: {
     BookAppointmentBtn,
+    SchedulesList,
+    VClamp,
   },
   filters: {
     prettifyAddress (address) {
@@ -141,34 +198,33 @@ export default {
         dayName: 'Sunday',
       },
     ];
+    this.daysList = [
+      { text: 'M', value: 1 },
+      { text: 'T', value: 2 },
+      { text: 'W', value: 3 },
+      { text: 'R', value: 4 },
+      { text: 'F', value: 5 },
+      { text: 'S', value: 6 },
+      { text: 'S', value: 0 },
+    ];
     return {
-      clinicSchedules: [],
-      clinicSchedulesExpanded: null,
-      fullSchedules: [],
-      clinicKeys: [
-        'description',
-        'address',
-        'phone',
-        'email',
-        'website',
-      ],
+      scheduleDialog: false,
     };
   },
   computed: {
     canOnlineBook () {
-      return this.clinicId && this.doctorId && this.clinicSchedules?.length;
+      return this.clinic?.teleconsultQueue && intersection(this.clinic?.types, TELEHEALTH_FACILITY_TYPES)?.length;
     },
     canVisit () {
-      return !!this.clinicSchedules?.length;
-      // return this.clinic?.types?.includes('doctor-booking' || 'clinic-booking');
+      return !!this.fullSchedules?.length && intersection(this.clinic?.types, BOOKING_FACILITY_TYPES)?.length;
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=telehealth` : null;
+      return !this.isPreviewMode ? `${pxPortalUrl}/create-appointment/step-1?doctor=${this.doctorId}&clinic=${this.clinicId}&type=telehealth` : null;
     },
     visitURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=physical` : null;
+      return !this.isPreviewMode ? `${pxPortalUrl}/create-appointment/step-1?doctor=${this.doctorId}&clinic=${this.clinicId}&type=physical` : null;
     },
     clinicId () {
       return this.clinic?.id;
@@ -188,17 +244,19 @@ export default {
     isVerified () {
       return !!this.clinic?.websiteId;
     },
-  },
-  watch: {
-    clinicSchedulesExpanded (val) {
-      this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
-
-      if (!this.fullSchedules?.length) {
-        this.clinicSchedules = [];
-        return;
-      }
-      // Organize the schedules
-      const groupedSchedules = uniqWith(this.fullSchedules
+    // - Schedules models
+    // all doctor schedules
+    fullSchedules () {
+      return this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
+    },
+    // - opening hours, uses mf_schedule
+    operatingSchedules () {
+      return this.clinic?.mf_schedule || [];
+    },
+    // doctor schedules organized
+    groupedSchedules () {
+      const schedules = this.fullSchedules;
+      return uniqWith(schedules
         .map((schedule) => {
           const { day, order } = this.days.find(day => day.order === schedule.day);
           return {
@@ -209,15 +267,35 @@ export default {
         })
         .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
       , (a, b) => a.day === b.day && a.startTime === b.startTime);
-      if (!val && groupedSchedules && groupedSchedules.length >= 3) {
-        this.clinicSchedules = groupedSchedules.slice(0, 3);
-        return;
-      }
-      this.clinicSchedules = groupedSchedules;
     },
-  },
-  created () {
-    this.clinicSchedulesExpanded = false;
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
+      });
+    },
+    textFontSize () {
+      return classBinder(this, {
+        mobile: ['font-12'],
+        regular: ['font-14'],
+        wide: ['font-18'],
+      });
+    },
+    operatingGroupedSchedules () {
+      const schedules = this.operatingSchedules;
+      return uniqWith(schedules
+        .map((schedule) => {
+          const { day, order } = this.days.find(item => item.day === schedule.day);
+          return {
+            day,
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || []
+      , (a, b) => a.day === b.day && a.opening === b.opening);
+    },
   },
   methods: {
     visitWebsite (url) {
@@ -229,27 +307,45 @@ export default {
       const comparingItem = typeof (schedule.day) === 'number' ? schedule.day : schedule.order;
       return this.days.find(day => day.order === comparingItem).day;
     },
+    isClinicOpen (dayValue) {
+      const matchedDay = this.operatingGroupedSchedules.find(schedule => schedule.order === dayValue);
+      return !isNil(matchedDay);
+    },
+    // Google Analytics
+    trackBooking (type) {
+      this.$gtag.event('book', {
+        event_category: 'doctor-website',
+        event_label: `book-${type}-organization-${this.clinicId}-doctor-${this.doctorId}`,
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
+.card-outter {
+  border: 0.5px solid rgb(218, 218, 218) !important;
+}
 .clinic-book-btn {
   width: 150px;
 }
-
-td {
-  vertical-align: unset !important;
+.badge-size {
+  height: 30px;
+  width: 30px;
 }
-
-.card-outter {
-  position: relative;
-  padding-bottom: 120px;
+.badge-size-mobile {
+  height: 20px;
+  width: 20px;
 }
-
-.card-actions {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.badge-size-wide {
+  height: 40px;
+  width: 40px;
+}
+.badge {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: rgb(163, 163, 163);
 }
 </style>

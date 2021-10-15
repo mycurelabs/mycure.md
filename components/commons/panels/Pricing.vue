@@ -133,6 +133,9 @@ export default {
       canUseWebp: false,
     };
   },
+  async fetch () {
+    this.pricingPackages = await getSubscriptionPackagesPricing(this.type) || [];
+  },
   computed: {
     panelBackground () {
       return this.$isMobile
@@ -163,7 +166,7 @@ export default {
   },
   async created () {
     // fetch packages
-    await this.fetchPackages(this.type);
+    // await this.fetchPackages(this.type);
     this.canUseWebp = await canUseWebp();
   },
   methods: {

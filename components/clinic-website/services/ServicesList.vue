@@ -24,15 +24,27 @@
         :key="key"
         :class="{'mt-0': key === 0}"
       ).my-3
+        doc-item-card(
+          v-if="!!item.uid"
+          minified
+          show-book-buttons
+          :organization="organization"
+          :doctor="item"
+          :is-preview-mode="isPreviewMode"
+          :read-only="readOnly"
+          :is-booking-enabled="isBookingEnabled"
+        )
         service-item(
+          v-else
           :item="item"
           :organization="organization"
           :is-doctor="activeServiceType === 'doctors'"
           :is-preview-mode="isPreviewMode"
           :read-only="readOnly"
+          :is-booking-enabled="isBookingEnabled"
         )
     //- PAGINATION
-    v-row
+    v-row(v-if="items.length")
       v-spacer
       v-pagination(
         v-model="itemsPage"
@@ -44,9 +56,11 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import DocItemCard from '../DocItemCard';
 import ServiceItem from './service-item';
 export default {
   components: {
+    DocItemCard,
     ServiceItem,
   },
   props: {
@@ -87,6 +101,10 @@ export default {
       default: false,
     },
     showBackButton: {
+      type: Boolean,
+      default: false,
+    },
+    isBookingEnabled: {
       type: Boolean,
       default: false,
     },

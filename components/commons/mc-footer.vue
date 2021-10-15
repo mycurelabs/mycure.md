@@ -19,8 +19,6 @@
                   a(
                     v-if="col.type === 'link'"
                     :href="col.link"
-                    target="_blank"
-                    el="noopener noreferrer"
                   ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'phone'"
@@ -92,6 +90,7 @@ export default {
           value: 'About',
           columns: [
             // { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/fight-covid-19' },
+            { type: 'link', value: 'MYCURE Syncbase', link: '/syncbase' },
             { type: 'link', value: 'Our Story', link: '/our-story' },
             { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
             { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },

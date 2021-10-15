@@ -16,6 +16,7 @@ export default {
     STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
     STRIPE_PK: process.env.STRIPE_PK,
     WEB_MAIN_URL: process.env.WEB_MAIN_URL,
+    GMAPS_GEOCODING_API_KEY: process.env.GMAPS_GEOCODING_API_KEY,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -49,8 +50,8 @@ export default {
     { src: '~/plugins/mc-btn', mode: 'client' },
     { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
-    { src: '~plugins/crisp.js', mode: 'client' },
-    { src: '~plugins/amplitude.js', mode: 'client' },
+    { src: '~/plugins/crisp.js', mode: 'client' },
+    { src: '~/plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
     { src: '~/plugins/vue-stripe.js', mode: 'client' },
@@ -82,6 +83,30 @@ export default {
     '@nuxtjs/robots',
     // Sitemap should always be declared last according to docs https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
+  ],
+  // Robots
+  robots: [
+    {
+      UserAgent: '*',
+      Disallow: '/payment',
+    },
+    {
+      UserAgent: '*',
+      Disallow: '/signup',
+    },
+    {
+      UserAgent: '*',
+      Disallow: '/forgot-password',
+    },
+    {
+      UserAgent: '*',
+      Disallow: '/features',
+    },
+    // Temporary disallow CSI since content is not yet complete
+    {
+      UserAgent: '*',
+      Disallow: '/csi',
+    },
   ],
   // Google Web Font Loader Module
   webfontloader: {

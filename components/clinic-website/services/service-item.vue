@@ -2,13 +2,6 @@
   v-card.rounded-lg
     v-card-text
       v-row
-        v-col(v-if="isDoctor" cols="12" md="2")
-          v-avatar(size="100")
-            img(
-              :src="picURL"
-              :alt="title"
-              width="100%"
-            )
         v-col(cols="12" md="8")
           h3.black--text {{ title }}&nbsp;
           //- SCHEDULES
@@ -32,9 +25,9 @@
           template(v-else)
             i No schedules available
             br
-          span Coverages:
-          br
           template(v-if="hasCoverages")
+            span Accreditations:
+            br
             v-tooltip(
               v-for="(coverage, key) in coverages"
               :key="key"
@@ -49,54 +42,42 @@
                   v-img(v-if="coverage.picURL" :src="coverage.picURL")
                   span(v-else).white--text {{ coverage.name.substring(0,1) }}
               span {{ coverage.name || 'HMO' }}
-          i(v-else) No coverages available
-        v-col(v-if="!isDoctor && !readOnly").grow.text-right
+        v-col(v-if="!readOnly" :class="$isMobile ? 'text-left' : 'text-right'").grow
           h3.info--text Availability
             v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
           br
           br
           h2(v-if="price").black--text
             v-icon(left) mdi-cash
-            | {{ price }}
+            money(:value="price" symbol="₱")
           h3(v-else).font-italic No price stated
           v-btn(
+            v-if="isTelehealthService(item)"
+            color="secondary"
+            depressed
+            block
+            :disabled="!isAvailable"
+            :href="bookTelehealthURL"
+            @click="trackBooking"
+          ).text-none.mt-1.font-12 Online Consult
+          v-btn(
+            v-else-if="isBookingEnabled"
             color="accent"
             depressed
             block
             :disabled="!isAvailable"
-            :href="bookServiceURL"
+            :href="bookPhysicalURL"
+            @click="trackBooking"
           ).text-none.mt-1.font-12 Book Now
       v-row(justify="end")
-        v-col(
-          v-if="isDoctor && !readOnly"
-          cols="12"
-          md="4"
-        )
-          //- TODO: Temporary hide
-          //- v-btn(
-          //-   color="success"
-          //-   depressed
-          //-   block
-          //-   :disabled="!isAvailable"
-          //-   :href="bookTeleconsultURL"
-          //- ).text-none.font-12 Book a Teleconsult
-          //- br
-          v-btn(
-            color="info"
-            depressed
-            block
-            outlined
-            :disabled="!isAvailable"
-            :href="bookTeleconsultURL"
-          ).text-none.font-12 Book a Visit
     //- Schedule dialog
-    v-dialog(v-model="scheduleExpanded" width="1000")
-      v-toolbar(flat)
-        v-toolbar-title.primary--text Available Schedules
-        v-spacer
-        v-btn(icon @click="scheduleExpanded = false")
-          v-icon mdi-close
+    v-dialog(v-model="scheduleExpanded" width="600")
       v-card
+        v-toolbar(flat)
+          v-toolbar-title.primary--text Available Schedules
+          v-spacer
+          v-btn(icon @click="scheduleExpanded = false")
+            v-icon mdi-close
         v-card-text
           service-schedules(
             non-mf-schedule
@@ -127,11 +108,13 @@
 import { format } from 'date-fns';
 import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
+import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
 import DefaultAvatar from '~/assets/images/commons/MYCURE Default Avatar.png';
 
 export default {
   components: {
+    Money,
     ServiceSchedules,
   },
   filters: {
@@ -145,10 +128,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    isDoctor: {
-      type: Boolean,
-      default: false,
-    },
     isPreviewMode: {
       type: Boolean,
       default: false,
@@ -158,6 +137,10 @@ export default {
       default: null,
     },
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    isBookingEnabled: {
       type: Boolean,
       default: false,
     },
@@ -182,35 +165,34 @@ export default {
   },
   computed: {
     title () {
-      if (this.isDoctor) {
-        return this.item?.doctorName;
-      }
       return this.item?.name;
     },
     picURL () {
-      const sex = this.item?.sex;
-      if (sex === 'female') {
-        return this.item?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.item?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.item?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
     },
     price () {
       return this.item?.price;
     },
-    // nonMfSchedule () {
-    //   // - Doctor schedules automatically do not use mf_schedule
-    //   return this.item?.nonMfSchedule || this.isDoctor;
-    // },
     fullSchedules () {
       return this.item?.scheduleData || this.item?.schedules || [];
     },
     groupedSchedules () {
       const schedules = [...this.fullSchedules];
-      if (this.nonMfSchedule) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
-      return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
     },
     previewSchedules () {
-      return this.groupedSchedules?.slice(0, 3) || [];
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const index = this.groupedSchedules.findIndex(x => x.day === dayOfWeek);
+      if (index > 4) {
+        const frontSched = this.groupedSchedules[index];
+        const endSched = this.groupedSchedules.slice(index, index - 1);
+        return [frontSched].concat(endSched);
+      } else if (index === -1) {
+        return this.groupedSchedules.slice(0, 3) || [];
+      } else {
+        return this.groupedSchedules.slice(index, index + 3) || [];
+      }
     },
     todaySchedules () {
       if (!this.fullSchedules?.length) {
@@ -251,22 +233,25 @@ export default {
       });
     },
     isAvailable () {
-      return this.todaySchedules.length;
+      return this.fullSchedules.length;
     },
-    bookServiceURL () {
+    bookPhysicalURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.id;
-      return `${pxPortalUrl}/appointments/step-1?service=${id}&organization=${this.organization}`;
+      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=physical`;
     },
-    bookTeleconsultURL () {
+    bookTelehealthURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const id = this.item?.uid;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&organization=${this.organization}`;
+      const id = this.item?.id;
+      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=telehealth`;
     },
   },
   methods: {
+    isTelehealthService (service) {
+      return service.type === 'clinical-consultation' && service.tags?.includes('telehealth');
+    },
     formatTodaySchedule (schedule) {
       if (!schedule) return 'Unavailable at this hour';
       const today = schedule.day;
@@ -288,7 +273,6 @@ export default {
       // return day;
     },
     getProviders (schedule) {
-      if (this.isDoctor) return [];
       if (!['clinical-consultation', 'clinical-procedure'].includes(schedule.meta?.serviceType)) return [];
       const { providers } = schedule;
       return providers || [];
@@ -300,6 +284,13 @@ export default {
     closeProvidersDialog () {
       this.providersDialog = false;
       this.previewProviders = [];
+    },
+    // Google analytics
+    trackBooking () {
+      this.$gtag.event('book', {
+        event_category: 'clinic-website',
+        event_label: `book-appointment-clinic-${this.organization}-service-${this.item.id}`,
+      });
     },
   },
 };

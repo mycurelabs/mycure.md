@@ -46,7 +46,7 @@
                       :disabled="loading.button"
                       :class="{'primary--text': bundle.isRecommended}"
                       @click="selectBundle(bundle)"
-                    ).text-none Choose {{bundle.title}}
+                    ).text-none {{ getBundleTitle(bundle) }}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"
@@ -74,14 +74,14 @@
           p {{ errorMessage }}
         v-card-actions
           v-spacer
-          v-btn(color="success" depressed :to="{ name: 'signup-health-facilities' }").text-none Back
+          v-btn(color="success" depressed :to="initialRoute").text-none Back
           v-spacer
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
         v-card-text.pa-5
           h2.mb-5 Confirmation
           p(v-if="isPaid") You will be redirected to our payment partner to input your card details. Do you want to proceed?
-          p(v-else) Do you want to proceed creating a FREE account with MYCURE?
+          p(v-else) Do you want to proceed creating an account with MYCURE?
         v-card-actions
           v-spacer
           v-btn(
@@ -105,11 +105,14 @@ import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
 import {
+  resendVerificationCode,
   signupFacility,
-  // signin,
+  signin,
 } from '~/utils/axios';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
+
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
+
 export default {
   components: {
     EmailVerificationDialog,
@@ -138,13 +141,30 @@ export default {
       selectedPricingModel: 0,
       selectedPricing: {},
       emailVerificationMessageDialog: false,
-      sessionId: '',
       isTrial: false,
+      // Subsription
+      subscriptionId: null,
+      // Stripe session
+      sessionId: '',
     };
   },
   computed: {
     step1LocalStorageData () {
       return process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+    },
+    initialRoute () {
+      if (!this.step1LocalStorageData) return { name: 'signup-health-facilities' };
+      const query = {
+        ...this.preBundle && { plan: this.preBundle },
+        ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
+        ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
+        ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
+        type: this.organizationTypes0,
+      };
+      return {
+        name: 'signup-health-facilities-pricing',
+        query,
+      };
     },
     preBundle () {
       return this.$route.query.plan || this.step1LocalStorageData.plan;
@@ -161,9 +181,7 @@ export default {
     facilityType () {
       const typesMap = {
         'doctor-booking': 'doctor',
-        'doctor-telehealth': 'doctor',
         'clinic-booking': 'clinic',
-        'clinic-telehealth': 'clinic',
         doctor: 'doctor',
         clinic: 'clinic',
         diagnostic: 'diagnostic',
@@ -207,10 +225,21 @@ export default {
     // Check if step 1 accomplished
     if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
+      await this.sendOtp();
+      // Record track
+      this.$gtag.event('pay', {
+        event_category: 'signup',
+        event_label: 'signup-step-2-payment-success',
+      });
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
     if (this.paymentState === 'cancel') {
       this.handlePaymentCancel();
+      // Record track
+      this.$gtag.event('pay', {
+        event_category: 'signup',
+        event_label: 'signup-step-2-payment-cancel',
+      });
     }
 
     // - Note: URL query parameters are strings
@@ -218,7 +247,12 @@ export default {
       this.$route.query.trial === true ||
       this.step1LocalStorageData.trial === true;
 
-    if (this.preBundle) {
+    this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
+
+    // Do not use pre-bundle when there is an existing subscription
+    // The existence of a subscription means that a payment has been cancelled.
+    // This allows room for changing packages
+    if (this.preBundle && !this.subscriptionId) {
       await this.submit();
       return;
     }
@@ -232,13 +266,13 @@ export default {
       this.selectedBundle = bundle;
       this.confirmPaymentDialog = true;
     },
+    retryPayment () {
+      this.paymentErrorDialog = false;
+    },
     /*
       The prebundle is meant for proceeding to stripe without selecting from the packages
       Used when there is already a pre-selected plan from website pricing panels.
     */
-    retryPayment () {
-      this.confirmPaymentDialog = true;
-    },
     async submit () {
       try {
         this.loading.button = true;
@@ -249,14 +283,33 @@ export default {
           return;
         }
         // Build payload, omit non-allowed values. These are mostly route query values that were stored
-        const omitKeys = ['trial', 'organizationType', 'plan', 'from'];
+        const omitKeys = [
+          'trial',
+          'organizationType',
+          'plan',
+          'from',
+          'stripeCoupon',
+        ];
         const payload = {
+          // This was added since we want the otp to be sent once stripe checkout is complete
+          skipMobileNoVerification: true,
           ...omit(this.step1LocalStorageData, omitKeys),
         };
 
-        // Check if there is pending session Id
-        this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
-        if (this.sessionId) {
+        // Check if there is pending subscription Id
+        if (this.subscriptionId) {
+          // Get auth token
+          const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
+          let packageId;
+          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
+          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+          // Update the new selected subscription
+          const subscription = await this.$sdk.service('subscriptions').update(this.subscriptionId, {
+            package: packageId,
+            stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
+            stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+          }, { accessToken });
+          this.sessionId = subscription.updatesPending.stripeSession;
           this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
@@ -266,6 +319,7 @@ export default {
           stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
         };
 
+        // If a package was already selected from a pricing panel
         if (this.preBundle) {
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
@@ -276,6 +330,7 @@ export default {
                 stripeEmail: this.email,
               },
               ...this.isTrial && { trial: true },
+              ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
             },
           };
         } else {
@@ -294,15 +349,22 @@ export default {
                   stripeEmail: this.email,
                 },
                 ...this.isTrial && { trial: true },
+                ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
               },
             };
+            // If telehealth signup, and the package was not assigned a trial flag.
+            if (this.isTelehealthTrialAvailable(bundle) && !payload.organization.trial) {
+              payload.organization.subscription.trial = true;
+            }
           }
         }
 
         const user = await signupFacility(payload);
         if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
+          this.subscriptionId = user.organization?.subscription?.id;
           this.sessionId = user.organization.subscription.updatesPending.stripeSession;
           if (process.browser) {
+            window.localStorage.setItem('signup:subscription-id', this.subscriptionId);
             window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
           }
           this.$refs.checkoutRef.redirectToCheckout();
@@ -338,7 +400,6 @@ export default {
       // - Reload route quries thru local storage
       this.$router.replace({
         query: {
-          ...this.preBundle && { plan: this.preBundle },
           ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
           ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
           ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
@@ -351,6 +412,7 @@ export default {
       // const loginData = await signin({ email, password });
       // this.sessionId = await refetchStripeToken(loginData);
       this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+      this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
     },
     // MISC
     getInclusionColor (valid) {
@@ -365,6 +427,27 @@ export default {
     confirmEmailVerification () {
       process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
       this.$router.push({ name: 'signin' });
+    },
+    async sendOtp () {
+      this.loading.page = true;
+      const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
+      await resendVerificationCode({ token: accessToken });
+    },
+    isTelehealthTrialAvailable (bundle) {
+      if (!this.$route.query.from === 'telehealth') return false;
+      if (this.paymentInterval === 'month') {
+        return !!bundle.monthlyTrial;
+      } else if (this.paymentInterval === 'year') {
+        return !!bundle.annualTrial;
+      } else {
+        return false;
+      }
+    },
+    getBundleTitle (bundle) {
+      if (this.isTelehealthTrialAvailable(bundle)) {
+        return 'Start Trial';
+      }
+      return `Choose ${bundle.title}`;
     },
   },
 };

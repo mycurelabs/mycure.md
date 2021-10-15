@@ -12,7 +12,6 @@ const healthFacilityTypeMap = {
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
   diagnostics: 'diagnostic',
-  telehealth: 'doctor-telehealth',
   'clinics-skin': 'clinic',
   'clinics-dental': 'clinic',
   'clinics-ofw': 'clinic',
@@ -52,6 +51,10 @@ export default {
       if (this.pricingBundle) {
         route.query.subscription = this.pricingBundle;
       }
+      // TODO: Uncomment once other TH apps are deployed
+      // if (routeName === 'telehealth') {
+      //   route.query.from = 'telehealth';
+      // }
       if (routeName === 'booking') {
         route.query.from = 'booking';
         // - This was done since booking is a special case in health facility types

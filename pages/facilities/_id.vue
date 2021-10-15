@@ -1,27 +1,32 @@
 <template lang="pug">
   div(style="overflow: hidden; background: #fafafa")
+    //- CHOOSE APPOINTMENT TYPE
+    choose-appointment(
+      is-clinic
+      v-model="dialogs.appointment"
+      :has-doctors="hasDoctors"
+      :has-physical-services="hasPhysicalServices"
+      @select="onSelectAppointment($event)"
+    )
     //- CHOOSE SERVICE DIALOG
     choose-service(
-      v-model="chooseServiceDialog"
-      :service-types="serviceTypes"
-      :has-doctors="hasDoctors"
-      @select="activeTab = $event"
+      v-model="dialogs.serviceType"
+      :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
+      @select="onSelectServiceType($event)"
     )
     //- APP BAR
     app-bar
     //- PANEL 1
     div(
       :class="background"
-      :style="{ height: isVerified ? '150vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
+      :style="{ height: isVerified ? $isMobile ? '120vh' : '130vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
     ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
           v-avatar(:size="$isMobile ? '150' : '200'").mb-5
             img(:src="picURL")
           h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
-          template(v-if="isVerified")
-            div.white.btn-banner
-              strong(slot="badge").font-18.warning--text We're Open!
+          template(v-if="isVerified && isAvailable")
             v-hover(
               v-slot="{ hover }"
               open-delay="100"
@@ -31,7 +36,7 @@
                 rounded
                 dark
                 :color="hover ? 'info' : 'warning'"
-                :href="bookURL"
+                @click="dialogs.appointment = true"
               ).text-none.custom-clinic-button
                 h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
     template(v-if="isVerified")
@@ -47,6 +52,7 @@
           span {{clinicPhone}}
       //- MAIN PANELS
       main-workflow(
+        v-if="!loading.page"
         v-model="activeTab"
         :is-preview-mode="isPreviewMode"
         :search-results-mode="searchResultsMode"
@@ -59,11 +65,15 @@
         :loading="loading.list"
         :has-next-page="hasNextPage"
         :has-previous-page="hasPreviousPage"
-        @back="searchResultsMode = false"
+        @back="onMainPageReturn"
         @search="onServiceSearch"
         @paginate="onPaginate($event)"
         @filter:date="filterByDate"
       )
+      //- Loading
+      v-container(v-else)
+        v-row(justify="center").text-center
+          v-progress-circular(indeterminate color="primary" size="150")
       //- ABOUT US
       about-us(
         :picURL="picURL"
@@ -74,7 +84,9 @@
         :schedules="compressedSchedules"
       )
       //- QUICK BOOK
+      //- Only show this panel, if booking is enabled
       quick-book(
+        v-if="isBookingEnabled"
         :is-preview-mode="isPreviewMode"
         :service-types="serviceTypes"
         :service-schedules="serviceSchedules"
@@ -99,6 +111,7 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import uniq from 'lodash/uniq';
@@ -120,6 +133,7 @@ import {
 import AboutUs from '~/components/clinic-website/AboutUs';
 import AppBar from '~/components/clinic-website/new/AppBar';
 import AppFooter from '~/components/clinic-website/AppFooter';
+import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseService from '~/components/clinic-website/ChooseService';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
@@ -140,6 +154,7 @@ export default {
     AboutUs,
     AppBar,
     AppFooter,
+    ChooseAppointment,
     ChooseService,
     GenericPanel,
     SearchPanel,
@@ -150,7 +165,10 @@ export default {
   async asyncData ({ params, $sdk, redirect }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
-      if (isEmpty(clinic)) redirect('/');
+      // Redirect to home if no clinic found, or if clinic is existing, but has not setup its website yet
+      // Will not redirect if it's a 'diagnostic-center' since these are the orgs we have up for claiming
+      if (isEmpty(clinic) ||
+        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) redirect('/');
       return {
         clinic,
       };
@@ -196,16 +214,18 @@ export default {
         dayName: 'Sunday',
       },
     ];
-    this.itemsLimit = 10;
+    this.itemsLimit = 5;
     return {
       // UI State
       loading: {
         page: true,
         list: false,
       },
-      servicesDialog: false,
-      chooseServiceDialog: false,
-      activeTab: null,
+      dialogs: {
+        serviceType: false,
+        appointment: false,
+      },
+      activeTab: null, // - possible values: all service type values, and 'doctors'
       // Pagination
       page: 1,
       pageCount: 2,
@@ -215,6 +235,8 @@ export default {
       serviceTypes: [],
       serviceSchedules: [],
       canUseWebp: null,
+      hasItemsToBook: false, // has either physical / telehealth services
+      hasPhysicalServices: false, // has physical appointments
       // Items to show in tab list
       listItems: [],
       // total items
@@ -236,10 +258,16 @@ export default {
     });
   },
   computed: {
+    isBookingEnabled () {
+      return this.clinic?.types?.includes('clinic-booking');
+    },
+    isTelehealthEnabled () {
+      return this.clinic?.types?.includes('clinic-telehealth');
+    },
     bookURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?organization=${this.orgId}&type=physical`;
+      return `${pxPortalUrl}/create-appointment/step-1?clinic=${this.orgId}&type=physical`;
     },
     formattedAddress () {
       if (!this.clinic?.address) return '';
@@ -262,6 +290,10 @@ export default {
     },
     isVerified () {
       return !!this.clinic?.websiteId;
+    },
+    // Clinic is available if it has booking / telehealth services and items to book
+    isAvailable () {
+      return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
     },
     isDummyOrg () {
       const { tags } = this.clinic;
@@ -292,18 +324,27 @@ export default {
     },
     // - Schedules simplified to get overall time period instead of multiple periods
     compressedSchedules () {
-      const schedules = [...this.groupedSchedules];
-      const compressedSchedules = [];
-      schedules.forEach((schedule) => {
-        const existing = compressedSchedules.find(sched => sched.day === schedule.day && sched.closing < schedule.closing);
-        if (!existing) {
-          compressedSchedules.push(schedule);
-          return;
+      const sched = this.groupedSchedules;
+      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
+      const finalSched = [{ day: '', time: '' }];
+      formatSched.map((x) => {
+        if (finalSched.find(sched => sched.time === x.time)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
+          if (typeof finalSched[index].day === 'string') {
+            finalSched[index].day = [finalSched[index].day, x.day];
+          } else {
+            finalSched[index].day = [...finalSched[index].day, x.day];
+          }
+        } else if (finalSched.find(sched => sched.day === x.day)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
+          finalSched[index].time = [finalSched[index].time, x.time];
+        } else {
+          finalSched.push(x);
+          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
         }
-        const index = compressedSchedules.indexOf(existing);
-        compressedSchedules[index].closing = schedule.closing;
+        return 0;
       });
-      return compressedSchedules;
+      return finalSched;
     },
     formattedDoctors () {
       if (!this.orgDoctors?.length) return [];
@@ -339,8 +380,8 @@ export default {
       `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
     background () {
-      if (this.isVerified && this.canUseWebp) return 'bg-webp';
-      if (this.isVerified && !this.canUseWebp) return 'bg-png';
+      // if (this.isVerified && this.canUseWebp) return 'bg-webp';
+      // if (this.isVerified && !this.canUseWebp) return 'bg-png';
       if (!this.isVerified && this.canUseWebp) return 'construct-bg-webp';
       if (!this.isVerified && !this.canUseWebp) return 'construct-bg-png';
       return 'bg-png';
@@ -357,14 +398,20 @@ export default {
   async mounted () {
     // Initial window setups
     this.$vuetify.theme.dark = false;
+    this.canUseWebp = await canUseWebp();
     if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
 
-    this.loading.page = false;
-    await this.fetchServiceTypes();
+    if (this.isBookingEnabled) {
+      await Promise.all([
+        this.fetchServiceTypes(),
+        this.fetchServices()]);
+    }
     await this.fetchDoctorMembers();
-    this.canUseWebp = await canUseWebp();
     this.listItems = [...this.filteredServices];
     this.itemsTotal = this.servicesTotal;
+    if (this.servicesTotal) this.hasPhysicalServices = true;
+    if (this.servicesTotal || this.doctorsTotal) this.hasItemsToBook = true;
+    this.loading.page = false;
   },
   methods: {
     // - Fetches all doctors of facility
@@ -387,9 +434,9 @@ export default {
     // - Fetches all services of facility
     async fetchServices (service = {}, searchText, page = 1) {
       try {
-        const { type, subtype, insurer } = service;
+        const { type, subtype, insurer, tags } = service;
         const skip = this.itemsLimit * (page - 1);
-        const { items, total } = await fetchClinicServices(this.$sdk, {
+        const query = {
           facility: this.orgId,
           type,
           subtype,
@@ -397,7 +444,9 @@ export default {
           searchText,
           limit: this.itemsLimit,
           skip,
-        });
+          tags,
+        };
+        const { items, total } = await fetchClinicServices(this.$sdk, query);
         this.servicesTotal = total;
 
         /*
@@ -407,9 +456,14 @@ export default {
           await this.fetchServiceTypes();
         }
         this.filteredServices = items.map((item) => {
-          const { type, subtype } = item;
+          const { type, subtype, tags } = item;
           const primaryType = subtype || type;
-          const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+          const schedules = this.serviceSchedules.find((schedule) => {
+            if (primaryType === 'clinical-consultation' && tags?.includes('telehealth')) {
+              return schedule.type === 'telehealth';
+            }
+            return schedule.type === primaryType;
+          });
 
           // Filter schedules according to section
           if (item.refSection) {
@@ -429,7 +483,19 @@ export default {
         console.error(error);
       }
     },
-    // - Fetches all service types of facility
+    /**
+     * Fetches all service types and their schedules from a facility
+     *
+     * @returns {Object[]}
+     * @param type - service type
+     * @param items - all schedule-slots of that service type
+     *
+     * Note that further filtering between face-to-face consultations and telehealth is done
+     * because they both have the same service#type 'clinical-consultation'.
+     *
+     * They are differentiated by the presence of tags. Telehealth services have 'telehealth'
+     * in their service#tags
+     * */
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
@@ -440,6 +506,8 @@ export default {
             meta: {
               serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
               ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
+              // Fetch Telehealth Schedules separately, so do not include them here
+              ...type === 'clinical-consultation' && { serviceSubtype: { $nin: ['telehealth'] } },
             },
             $populate: {
               providers: {
@@ -458,6 +526,36 @@ export default {
           };
         });
         this.serviceSchedules = await Promise.all(typeSchedulesPromises) || [];
+
+        /**
+         * Fetch telehealth services without providers
+         *
+         * Those with providers are already available from the 'Our Doctors' section
+         * of the Clinic Website
+         */
+        const telehealthSchedules = await fetchScheduleSlots(this.$sdk, {
+          organization: this.orgId,
+          meta: {
+            serviceType: 'clinical-consultation',
+            serviceSubtype: 'telehealth',
+            providers: { $exists: false },
+          },
+        });
+
+        // Include telehealth in Service types and schedules
+        if (telehealthSchedules && this.isTelehealthEnabled) {
+          console.log('service types', this.serviceTypes);
+          if (!this.serviceTypes?.length) {
+            this.serviceTypes = ['telehealth'];
+          } else {
+            this.serviceTypes.splice(1, 0, 'telehealth');
+          }
+          this.serviceSchedules.push({
+            type: 'telehealth',
+            items: telehealthSchedules.items,
+          });
+          console.log('service scheds', this.serviceSchedules);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -473,8 +571,20 @@ export default {
           this.itemsTotal = this.doctorsTotal;
           return;
         }
+
+        const getServiceType = (type) => {
+          if (['lab', 'imaging'].includes(type)) return 'diagnostic';
+          if (type === 'telehealth') return 'clinical-consultation';
+          return type;
+        };
         const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
-        await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
+        await this.fetchServices({
+          type: getServiceType(tab),
+          ...subtype && { subtype },
+          // Separate face-to-face and telehealth services
+          ...tab === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+          ...tab === 'telehealth' && { tags: { $in: ['telehealth'] } },
+        }, null, this.page);
         this.listItems = [...this.filteredServices];
         this.itemsTotal = this.servicesTotal;
       } catch (e) {
@@ -492,8 +602,17 @@ export default {
         this.searchFilters = searchFilters;
 
         await this.fetchDoctorMembers(searchText);
-        await this.fetchServices(searchFilters, searchText);
-        this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        if (this.isBookingEnabled) {
+          await this.fetchServices(searchFilters, searchText);
+        }
+        // Append doctors only if it is consult/telehealth or no service type filter
+        if ((!this.searchFilters?.type) ||
+          (this.searchFilters?.type &&
+            ['clinical-consultation', 'telehealth'].includes(this.searchFilters?.type))) {
+          this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        } else {
+          this.searchResults = [...this.filteredServices];
+        }
         VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       } catch (e) {
         console.error(e);
@@ -517,6 +636,31 @@ export default {
         return !!matchDay;
       }) || [];
     },
+    onSelectAppointment (type) {
+      this.dialogs.appointment = false;
+      if (type === 'physical') {
+        this.dialogs.serviceType = true;
+        return;
+      }
+      if (type === 'telehealth') {
+        this.activeTab = 'doctors';
+        // - scroll down to doctors list
+        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
+      }
+    },
+    onSelectServiceType (serviceType) {
+      this.onMainPageReturn();
+      this.activeTab = serviceType;
+    },
+    // Returning to normal view from search results mode
+    onMainPageReturn () {
+      this.searchResultsMode = false;
+      // Refetch doctors
+      this.fetchDoctorMembers();
+    },
+    formatTime (time) {
+      return format(time, 'hh:mm A');
+    },
   },
 };
 </script>
@@ -537,9 +681,9 @@ a {
   background-image: url('../../assets/images/clinics-website/Clinic Website BG.png');
 }
 
-.bg-webp {
+/* .bg-webp {
   background-image: url('../../assets/images/clinics-website/Clinic Website BG.webp');
-}
+} */
 .construct-bg-png {
   background-image: url('../../assets/images/clinics-website/MYCURE - Construction.png');
 }

@@ -22,39 +22,39 @@
             :max-lines="1"
           ) {{ specialtiesText }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
-          //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
+          //- v-chip(v-if="doctor.doc_website" color="secondary" outlined x-small).mt-1 verified
         div.d-flex.mt-1
-          v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
+          v-icon(color="secondary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
-            span(v-if="doctor") &nbsp;{{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
-            span(v-else) &nbsp;- year/s of experience
+            span(v-if="doctor && doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
+            span(v-else).font-italic.grey--text.text--lighten-1 No information
         div(justify="start").mt-1.d-flex
-          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
-          div(v-if="doctor")
+          v-icon(color="secondary" :small="!$isWideScreen" left) mdi-information-outline
+          div(v-if="bio")
             v-clamp(
               autoresize
               :max-lines="2"
-              :class="[textFontSize, {'font-italic': !address }]"
-            ).info--text {{ address || 'No address provided'}}
+              :class="[textFontSize, {'font-italic': !bio }]"
+            ) {{ bio || 'No address provided'}}
           div(v-else)
             v-clamp(
               autoresize
               :max-lines="2"
               :class="[textFontSize, 'font-italic']"
-            ).info--text No address provided
+            ).grey--text.text--lighten-1 No information
     v-spacer
     v-card-actions.pa-0
       v-col
         v-row(justify="end")
           v-btn(
-            color="primary"
+            color="secondary"
             target="_blank"
             rel="noopener noreferrer"
             :small="!$isWideScreen"
             rounded
-            :disabled="!hasDoctorWebsite"
-            :href="doctorWebsite"
+            :disabled="!isDoctorExisting"
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+            @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b View
 
@@ -62,14 +62,23 @@
     //-   v-col(cols="12")
     //-     v-row
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+    v-dialog(
+      v-model="dialogBox"
+      :width="$isMobile? '100%' : '50%' "
+      content-class="rounded-xl"
+      :scrollable="false"
+    ).pa-0
+      doc-info-card(:doctor="doctor")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
+import DocInfoCard from './DocInfoCard';
 import { formatAddress } from '~/utils/formats';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
+    DocInfoCard,
     VClamp,
   },
   props: {
@@ -93,11 +102,15 @@ export default {
       { text: 'Sun', value: 0 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
   },
   computed: {
+    isDoctorExisting () {
+      return !!this.doctor && !!this.doctor?.id;
+    },
     hasDoctorWebsite () {
       return !!this.doctor?.doc_website && !!this.doctor?.id;
     },
@@ -123,13 +136,18 @@ export default {
       return this.doctor?.doc_specialties?.join(', ') || '';
     },
     yearsOfExperience () {
-      const from = new Date(this.doctor.doc_practicingSince).getFullYear();
+      const doc_practicingSince = this.doctor?.doc_practicingSince; // eslint-disable-line
+      let from = doc_practicingSince; // eslint-disable-line
+      if (`${from}`.length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
       const to = new Date().getFullYear();
       return to - from;
     },
     address () {
       const { address } = this.doctor;
       return formatAddress(address, 'street1, street2, city, province, region, country');
+    },
+    bio () {
+      return this.doctor?.doc_bio;
     },
     nameFontSize () {
       return classBinder(this, {
@@ -147,6 +165,12 @@ export default {
     },
     hasSpecialties () {
       return this.doctor?.doc_specialties?.length;
+    },
+  },
+  methods: {
+    visitWebsite () {
+      const username = this.doctor?.doc_website || this.doctor?.id;
+      this.$router.push(`/doctors/${username}`);
     },
   },
 };

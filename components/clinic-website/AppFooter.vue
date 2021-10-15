@@ -15,24 +15,24 @@
                   ).ml-2
                 p(v-if="!$isMobile").ml-5 Copyright &#169;{{new Date().getFullYear()}} All Rights Reserved.
               v-col(:class="{'flex-column text-center': $isMobile}").d-md-flex
-                nuxt-link(to="/terms").font-14.white--text Terms of Use
+                nuxt-link(to="/terms").font-14.white--text.text-center Terms of Use
                 span(v-if="!$isMobile") &nbsp;|&nbsp;
                 br(v-else)
-                nuxt-link(to="/privacy-policy").font-14.white--text Privacy Policy
+                nuxt-link(to="/privacy-policy").font-14.white--text.text-center Privacy Policy
                 span(v-if="!$isMobile") &nbsp;|&nbsp;
                 br(v-else)
                 a(
                   :href="feedbackLink"
                   target="_blank"
                   rel="noopener noreferrer"
-                ).font-14.white--text Send us your feedback
+                ).font-14.white--text.text-center Send us your feedback
                 template(v-if="$isMobile")
                   br
                   p.ml-5.mt-5 Copyright &#169;{{new Date().getFullYear()}} All Rights Reserved.
               v-col(v-if="!$isMobile").d-flex.text-center
-                nuxt-link(to="/directory/results").font-14 See more Health Facilities
+                nuxt-link(to="/directory/results?searchMode=organization").font-14 See more Health Facilities
                 | &nbsp;|&nbsp;
-                nuxt-link(to="/signup/health-facilities").font-14 Create my own Health Facility Website
+                nuxt-link(to="/signup/health-facilities?type=clinic").font-14 Create my own Health Facility Website
 </template>
 
 <script>

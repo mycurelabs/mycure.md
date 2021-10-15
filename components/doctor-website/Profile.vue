@@ -1,65 +1,59 @@
 <template lang="pug">
-  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").mt-n16
+v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
     v-card-text.text-center
-      v-avatar(size="200").mt-n16.elevation-5
-        img(:src="picUrl")
+      v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
+        img(:src="picUrl").img-border
     v-card-text
       h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
       br
-      v-row(justify="center")
-        v-col(v-for="(metric, key) in metricMappings" :key="key" cols="6" sm="3").text-center
-          v-icon(:color="metric.color") {{ metric.icon }}
-          br
-          span(:class="`${metric.color}--text`").font-12.lh-title {{ metricData[metric.value] }} {{ metric.title }}
-        v-col(cols="6" sm="3").text-center
-          div.mb-6
-            v-menu(
-              v-model="socialMenu"
-              :close-on-content-click="false"
-              offset-y
-            )
-              template(v-slot:activator="{ on }")
-                div.text-center
-                  v-btn(
-                    v-on="on"
-                    icon
-                    small
-                    depressed
-                    color="primary"
-                  ).text-none
-                    v-icon(color="primary") mdi-export-variant
-                  br
-                  span.primary--text.font-12 Share
-              v-card(color="primary" width="275")
-                v-card-text
-                  h4.white--text Love this doctor? Let your friends know by sharing this website!
-                  v-row(no-gutters)
-                    v-col(cols="12")
-                      div.d-flex
-                        share-network(network="facebook" v-bind="networkBindings").social-image.pa-3
-                          v-icon(large color="white") mdi-facebook
-                        share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
-                          v-icon(large color="white") mdi-twitter
-                        //- share-network(network="linkedin" v-bind="networkBindings").social-image
-                        //-   img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
-                        share-network(network="email" v-bind="networkBindings").social-image.pa-3
-                          v-icon(large color="white") mdi-email
-      br
+      //- v-row(justify="center")
+      //-   v-col(cols="6" sm="3").text-center
+      //-     div.mb-6
+      //-       v-menu(
+      //-         v-model="socialMenu"
+      //-         :close-on-content-click="false"
+      //-         offset-y
+      //-       )
+      //-         template(v-slot:activator="{ on }")
+      //-           div.text-center
+      //-             v-btn(
+      //-               v-on="on"
+      //-               icon
+      //-               small
+      //-               depressed
+      //-               color="primary"
+      //-             ).text-none
+      //-               v-icon(color="primary") mdi-export-variant
+      //-             br
+      //-             span.primary--text.font-12 Share
+      //-         v-card(color="primary" width="275")
+      //-           v-card-text
+      //-             h4.white--text Love this doctor? Let your friends know by sharing this website!
+      //-             v-row(no-gutters)
+      //-               v-col(cols="12")
+      //-                 div.d-flex
+      //-                   share-network(network="facebook" v-bind="networkBindings").social-image.pa-3
+      //-                     v-icon(large color="white") mdi-facebook
+      //-                   share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
+      //-                     v-icon(large color="white") mdi-twitter
+      //-                   //- share-network(network="linkedin" v-bind="networkBindings").social-image
+      //-                   //-   img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
+      //-                   share-network(network="email" v-bind="networkBindings").social-image.pa-3
+      //-                     v-icon(large color="white") mdi-email
+      //- br
       div.mb-6
         h2(:class="sectionTextClasses").secondary--text About Me
-        template(v-if="!isAboutExpanded")
-          v-clamp(autoresize :max-lines="3") {{ bio }}
-          a(@click="isAboutExpanded = true").primary--text See more...
-        template(v-else)
-          p {{ bio }}
-          a(@click="isAboutExpanded = false").primary--text See less
+        v-clamp(autoresize :max-lines="3") {{ bio }}
+          template(v-slot:after="{ expand, collapse, clamped, expanded }")
+            a(v-if="clamped" @click="expand").primary--text See more...
+            a(v-else-if="expanded" @click="collapse").primary--text See less
       div(v-if="specialties.length").mb-6
         h2(:class="sectionTextClasses").secondary--text Specializations
         v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
           span.font-gray {{ specialty }}
       div(v-if="practicingSince").mb-6
         h2(:class="sectionTextClasses").secondary--text Practicing Since
-        p {{ new Date(practicingSince).getFullYear() }} - {{ practicingYears }} Years of Experience
+        p {{ practicingSince }} - {{ practicingYears }} Years of Experience
       //- Educational Background
       div(v-if="education.length").mb-6
         h2(:class="sectionTextClasses").secondary--text Education
@@ -127,10 +121,6 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    metrics: {
-      type: Object,
-      default: () => ({}),
-    },
     isBookable: {
       type: Boolean,
       default: false,
@@ -141,56 +131,22 @@ export default {
     },
   },
   data () {
-    this.metricMappings = [
-      {
-        icon: 'mdi-eye',
-        title: 'views',
-        value: 'websiteVisits',
-        color: 'info',
-      },
-      {
-        icon: 'mdi-pulse',
-        title: 'lives saved',
-        value: 'patients',
-        color: 'error',
-      },
-      {
-        icon: 'mdi-bookshelf',
-        title: 'records',
-        value: 'records',
-        color: 'success',
-      },
-      // {
-      //   icon: 'mdi-heart-outline',
-      //   title: 'hearts',
-      //   value: 'hearts',
-      //   color: 'error',
-      // },
-    ];
     return {
       // - UI State
       socialMenu: false,
-      isAboutExpanded: false,
     };
   },
   computed: {
-    metricData () {
-      return {
-        websiteVisits: this.metrics.websiteVisits || 0,
-        patients: this.metrics.patients || 0,
-        records: this.metrics.records || 0,
-        // - hearts: this.metrics.hearts || 0,
-      };
-    },
     mainTextClasses () {
       return classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
+        mobile: ['font-24', 'text-center'],
         regular: ['font-24'],
         wide: ['font-m'],
       });
     },
     sectionTextClasses () {
       return classBinder(this, {
+        mobile: ['font-16'],
         regular: ['font-xs'],
         wide: ['font-s'],
       });
@@ -234,5 +190,8 @@ export default {
 }
 .social-icon {
   z-index: 99;
+}
+.img-border {
+  border: 8px solid white;
 }
 </style>

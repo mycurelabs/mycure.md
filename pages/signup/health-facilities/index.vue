@@ -36,6 +36,7 @@
                 v-model="firstName"
                 label="First Name"
                 outlined
+                :dense="$isMobile"
                 :rules="isRequired"
                 :disabled="loading.form"
               )
@@ -51,6 +52,7 @@
                 v-model="lastName"
                 label="Last Name"
                 outlined
+                :dense="$isMobile"
                 :rules="isRequired"
                 :disabled="loading.form"
               )
@@ -66,6 +68,7 @@
                 v-model="email"
                 label="Email"
                 outlined
+                :dense="$isMobile"
                 :rules="emailRules"
                 :disabled="loading.form"
                 @keyup="checkEmail"
@@ -89,6 +92,7 @@
                 label="Mobile Number"
                 type="number"
                 outlined
+                :dense="$isMobile"
                 :prefix="`+${countryCallingCode}`"
                 :disabled="loading.form"
                 :rules="[...isRequired, mobileNumberRule]"
@@ -100,7 +104,7 @@
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
                         v-btn(icon @click="countryDialog = true" v-on="on")
-                          img(width="25" height="18.75" :src="countryFlag").flag-img.mt-2
+                          img(width="25" height="18.75" :src="countryFlag" :alt="countryFlag").flag-img.mt-2
                       | Change Country
             v-col(
               cols="12"
@@ -112,6 +116,7 @@
                 v-model="password"
                 label="Password"
                 outlined
+                :dense="$isMobile"
                 :type="showPass ? 'text' : 'password'"
                 :rules="passwordRules"
                 :disabled="loading.form"
@@ -129,6 +134,7 @@
                 label="Confirm Password"
                 type="password"
                 outlined
+                :dense="$isMobile"
                 :rules="[...isRequired, matchPasswordRule]"
                 :disabled="loading.form"
               )
@@ -146,9 +152,10 @@
                   item-text="text"
                   item-value="value"
                   outlined
+                  :dense="$isMobile"
                   readonly
                   append-icon="$dropdown"
-                  :items="facilityTypes"
+                  :items="availableFacilityTypes"
                   :rules="isRequired"
                   :error="errorFacilityType"
                   :error-messages="errorMessagesFacilityType"
@@ -175,11 +182,34 @@
               //- )
               v-text-field(
                 v-model="invitation"
-                label="Invite Code"
-                hint="6 character invite code"
+                label="Referral Code (Optional)"
+                hint="6 character referral code"
                 outlined
+                :dense="$isMobile"
                 clearable
                 :disabled="loading.form"
+              )
+              v-checkbox(
+                v-model="hasPromoCode"
+                hide-details
+                color="primary"
+                style="margin-top: 0px"
+                :disabled="loading.form"
+              )
+                template(slot="label")
+                  span I have a&nbsp;
+                    strong.primary--text promo code
+                    | .
+              v-text-field(
+                v-if="hasPromoCode"
+                v-model="stripeCoupon"
+                :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
+                label="Promo Code"
+                outlined
+                dense
+                clearable
+                :disabled="loading.form"
+                :class="{'pt-1': $isMobile}"
               )
             v-col(
               cols="12"
@@ -192,6 +222,7 @@
                 item-text="text"
                 item-value="value"
                 outlined
+                :dense="$isMobile"
                 :error-messages="errorMessagesRoles"
                 :items="userRoles"
                 :rules="isRequired"
@@ -205,6 +236,7 @@
                 label="PRC License No"
                 outlined
                 hint="Please enter your PRC License No for verification"
+                :dense="$isMobile"
                 :disabled="loading.form"
                 :rules="isRequired"
               )
@@ -271,7 +303,7 @@
     //- Choose Facility Type Dialog
     choose-facility-type(
       v-model="chooseFacilityTypeDialog"
-      :facility-types="facilityTypes"
+      :facility-types="availableFacilityTypes"
       @select="onFacilityTypeSelect($event)"
     )
 </template>
@@ -279,22 +311,18 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
-import pick from 'lodash/pick';
-import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import headMeta from '~/utils/head-meta';
 import {
   getCountries,
   getCountry,
-  // signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
   emailRules,
   passwordRules,
 } from '~/utils/text-field-rules';
-// import { CLINICS_PRICING } from '~/constants/pricing';
-// import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { DOCTOR_TYPES } from '~/services/subscription-packages';
 import ChooseFacilityType from '~/components/signup/ChooseFacilityType';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
@@ -363,8 +391,10 @@ export default {
       subscription: null,
       doc_PRCLicenseNo: null,
       invitation: null,
+      stripeCoupon: null,
       roles: [],
       agree: '',
+      hasPromoCode: null,
       // - Stripe
       stripeCheckoutSessionId: null,
       // Country Dialog
@@ -394,7 +424,20 @@ export default {
       errorMessagesRoles: '',
     };
   },
+  head () {
+    return headMeta({
+      title: 'Sign Up to MYCURE',
+      description: 'Welcome to MYCURE Complete Clinic Management System. Sign up today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+    });
+  },
   computed: {
+    availableFacilityTypes () {
+      // Diagnostic is hidden in telehealth signup
+      return this.$route.query.from === 'telehealth'
+        ? [...this.facilityTypes].slice(0, 2)
+        : this.facilityTypes;
+    },
     isDoctor () {
       return this.roles.includes('doctor');
     },
@@ -418,7 +461,7 @@ export default {
         return;
       }
       const needle = val.toLowerCase();
-      this.countries = this.countries.filter(v => v?.name?.toLowerCase().startsWith(needle)); // eslint-disable-line
+      this.countries = this.countries.filter(v => v?.name?.toLowerCase().includes(needle)); // eslint-disable-line
     },
     facilityType (val) {
       if (!isEmpty(val)) {
@@ -431,6 +474,9 @@ export default {
         this.errorRoles = false;
         this.errorMessagesRoles = '';
       }
+    },
+    hasPromoCode (val) {
+      if (!val) this.stripeCoupon = null;
     },
   },
   created () {
@@ -450,16 +496,6 @@ export default {
 
         // - Check if there is pending session
         const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
-        const sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
-        if (sessionId) {
-          const queryOps = pickBy(pick(localStorageData, ['trial', 'plan', 'from']), Boolean);
-          this.$router.push({
-            name: 'signup-health-facilities-pricing',
-            query: queryOps,
-          });
-          return;
-        }
-
         if (localStorageData) {
           this.firstName = localStorageData.firstName;
           this.lastName = localStorageData.lastName;
@@ -469,17 +505,21 @@ export default {
           this.roles = localStorageData.roles;
           this.doc_PRCLicenseNo = localStorageData.doc_PRCLicenseNo;
           this.invitation = localStorageData.invitation;
+          this.stripeCoupon = localStorageData.stripeCoupon;
         }
 
         // Query params handling
         if (this.$route.query.email) this.email = this.$route.query.email;
+
         if (this.$route.query.type) {
           this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
         } else {
           this.chooseFacilityTypeDialog = true;
         }
+
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
         if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
+        if (this.stripeCoupon) this.hasPromoCode = true;
       } catch (e) {
         console.error(e);
       } finally {
@@ -516,33 +556,35 @@ export default {
           ...orgProps,
         };
 
+        // Route queries
+        const { trial, plan, from } = this.$route.query;
+
         // NOTE: See SignupButton component
         // for the logic of query params being
         // passed to the url before going to
         // signup page.
-        if (this.$route.query.from === 'booking') {
+        // `from` has value of either 'telehealth' or 'booking'
+        if (from && ['telehealth', 'booking'].includes(from)) {
           if (this.$route.query.type === 'doctor' || this.facilityType === 'doctor') {
             organizationPayload.types = [
               'doctor',
-              'doctor-booking',
+              `doctor-${from}`,
             ];
           }
           if (this.$route.query.type === 'clinic' || this.facilityType === 'clinic') {
             organizationPayload.types = [
               'clinic',
-              'clinic-booking',
+              `clinic-${from}`,
             ];
           }
-          if (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic') {
+          // Diagnostic telehealth not yet available business-wise
+          if (from === 'booking' && (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic')) {
             organizationPayload.types = [
               'diagnostic',
-              'diagnostic-booking',
+              `diagnostic-${from}`,
             ];
           }
         }
-
-        // Route queries
-        const { trial, plan, from } = this.$route.query;
 
         // Map account payload
         const payload = {
@@ -555,6 +597,7 @@ export default {
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
           invitation: this.invitation,
+          stripeCoupon: this.stripeCoupon,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
           // - To be omitted in actual submit in step 2
           ...trial && { trial: true },
@@ -579,6 +622,11 @@ export default {
           return;
         };
         this.saveModel(payload);
+        // Record track
+        this.$gtag.event('submit', {
+          event_category: 'signup',
+          event_label: 'signup-step-1',
+        });
         this.$router.push({
           name: 'signup-health-facilities-pricing',
           query: {
@@ -627,6 +675,7 @@ export default {
         if (process.browser) {
           if (!localStorage.getItem('mycure:countries')) {
             this.countries = await getCountries();
+            console.log('countries', this.countries);
             localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
           } else {
             this.countries = JSON.parse(localStorage.getItem('mycure:countries'));

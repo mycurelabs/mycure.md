@@ -13,6 +13,7 @@ $max-lg: $min-xl - 1;
 // Font Presets
 $font-xs: 16px;
 $font-s: 1.25rem;
+$font-ms: 1.75rem;
 $font-m: 2rem;
 $font-l: 3rem;
 $font-xl: 3.75rem;
@@ -45,6 +46,10 @@ $letter-spacing: -0.5px;
 }
 .font-m {
   font-size: $font-m !important;
+  letter-spacing: $letter-spacing;
+}
+.font-ms {
+  font-size: $font-ms !important;
   letter-spacing: $letter-spacing;
 }
 .font-s {
@@ -90,6 +95,8 @@ $letter-spacing: -0.5px;
     font-size: $font-l !important;
   } @else if ($size == m) {
     font-size: $font-m !important;
+  } @else if ($size == ms) {
+    font-size: $font-ms !important;
   } @else if ($size == s) {
     font-size: $font-s !important;
   } @else {
@@ -226,6 +233,32 @@ classBinder(this, {
     @include font-sizer(m);
   }
 }
+.mc-content-set-5 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+    letter-spacing: $letter-spacing;
+  }
+}
+.mc-content-set-6 {
+  @media (max-width: $max-sm) {
+    font-size: 18px;
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    font-size: 18px;
+  }
+  @media (min-width: $min-xl) {
+    font-size: 24px;
+    letter-spacing: $letter-spacing;
+  }
+}
 
 .mc-metatitle-set-1 {
   @media (max-width: $max-sm) {
@@ -319,6 +352,17 @@ classBinder(this, {
   }
   @media (min-width: $min-xl) {
     @include font-sizer(m);
+  }
+}
+.mc-list-content-set-2 {
+  @media (max-width: $max-sm) {
+    font-size: 14px !important;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(ms);
   }
 }
 .line-height-reducer {

@@ -241,6 +241,9 @@ export default {
           this.otpCountdown = Number(JSON.parse(localStorage.getItem('otp:resend:countdown')));
           this.startCountDown();
         }
+
+        // Record track
+        this.$gtag.pageview('/signup/health-facilities/otp-verification');
       }
     },
     // - Test
@@ -281,6 +284,11 @@ export default {
           password: this.step1Data.password,
         });
         await resendVerificationCode({ token: accessToken });
+        // Record track
+        this.$gtag.event('click', {
+          event_category: 'signup',
+          event_label: 'signup-step-3-otp-resend',
+        });
         this.snackBarModel = {
           text: 'OTP was resent successfully!',
           color: 'accent',
@@ -303,6 +311,11 @@ export default {
           password: this.step1Data.password,
         });
         localStorage.clear();
+        // Record track
+        this.$gtag.event('click', {
+          event_category: 'signup',
+          event_label: 'signup-step-3-otp-success',
+        });
         window.location = `${process.env.CMS_URL}?token=${accessToken}`;
       } catch (error) {
         console.error(error);

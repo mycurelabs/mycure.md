@@ -3,9 +3,10 @@
     v-card
       v-toolbar(flat)
         v-spacer
-        h2 Choose a Service
+        h2 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
+          v-if="!$isMobile"
           icon
           depressed
           @click="dialog = false"
@@ -14,15 +15,16 @@
       v-card-text.pa-3
         v-container
           v-row
-            v-col(cols="6" v-for="(service, key) in services" :key="key").text-center
+            v-col(cols="12" md="6" v-for="(service, key) in services" :key="key").text-center
               v-hover(
                 v-slot="{ hover }"
                 open-delay="100"
               )
                 v-card(
+                  :disabled="!isAppointmentAvailable(service)"
                   hover
-                  :color="hover ? 'primary' : 'white'"
-                  :class="{'white--text': hover}"
+                  :color="hover ? service.color : 'white'"
+                  :class="[{'white--text': hover}, {'unavailable': !isAppointmentAvailable(service)}]"
                   @click="onServiceSelect(service.type)"
                 ).service-card
                   picture-source(
@@ -33,11 +35,24 @@
                     custom-path="doctor-website/"
                   )
                   v-card-text.text-center
-                    h3(:class="hover ? 'white--text' : 'secondary--text'") {{ service.text }}
+                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
+      v-card-actions(v-if="$isMobile")
+        v-spacer
+        v-btn(
+          color="error"
+          outlined
+          depressed
+          @click="dialog = false"
+        ).text-none Cancel
 </template>
 
 <script>
+import intersection from 'lodash/intersection';
 import PictureSource from '~/components/commons/PictureSource';
+
+const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
+const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
+
 export default {
   components: {
     PictureSource,
@@ -47,20 +62,38 @@ export default {
       type: Boolean,
       default: null,
     },
+    organizations: {
+      type: Array,
+      default: () => ([]),
+    },
+    isClinic: {
+      type: Boolean,
+      default: false,
+    },
+    // Required, when `isClinic` is true
+    hasDoctors: {
+      type: Boolean,
+      default: false,
+    },
+    // Required, when `isClinic` is true
+    hasPhysicalServices: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.services = [
       {
-        text: 'Teleconsult',
+        text: 'Online Consult',
         type: 'telehealth',
-        color: 'accent',
+        color: 'secondary',
         image: 'Teleconsult',
         alt: 'Doctor talking to a patient online artwork',
       },
       {
-        text: 'Clinic Visit',
+        text: 'Visit Doctor',
         type: 'physical',
-        color: 'secondary',
+        color: 'accent',
         image: 'Clinic Visit',
         alt: 'Doctor talking to a patient in a hospital room',
       },
@@ -79,8 +112,27 @@ export default {
   },
   methods: {
     onServiceSelect (type) {
+      if (!this.isDocAvailable(type) && !this.isClinic) return;
       this.$emit('select', type);
       this.dialog = false;
+    },
+    isDocAvailable (type) {
+      switch (type) {
+        case 'telehealth':
+          return !!this.organizations?.find(org => org.teleconsultQueue &&
+            intersection(org.types, TELEHEALTH_FACILITY_TYPES)?.length);
+        case 'physical':
+          return !!this.organizations?.find(org => (org.doctorSchedules || org.$populated?.doctorSchedules) &&
+            intersection(org.types, BOOKING_FACILITY_TYPES)?.length);
+        default: return false;
+      }
+    },
+    isAppointmentAvailable (service) {
+      if (!this.isClinic) {
+        return this.isDocAvailable(service.type);
+      }
+      if (service.type === 'telehealth') return this.hasDoctors;
+      return this.hasPhysicalServices;
     },
   },
 };
@@ -95,5 +147,8 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.unavailable {
+  filter: grayscale(100%);
 }
 </style>

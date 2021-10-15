@@ -1,66 +1,95 @@
 <template lang="pug">
-  v-card(height="100%" elevation="2").orgs-card.px-3.pb-3.pt-4.d-flex.flex-column
-    v-row
-      //- v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
-      img(
-        :src="picURL"
-        :alt="organization.name"
-        :width="$isRegularScreen? '82px' : '130px'"
-        :height="$isRegularScreen? '82px' : '130px'"
-        style="border-radius: 20px"
-      ).ma-3
-      v-col
+  v-card(height="100%" elevation="4").orgs-card.pa-4.d-flex.flex-column
+    v-card-title.pa-0
+      div(:height="coverSize").container.pa-0
+        img(
+          :src="coverURL"
+          :alt="organization.name"
+          width="100%"
+          :height="coverSize"
+          style="border-radius: 20px; object-fit: cover"
+          @error="imageExists = false"
+        )
+        img(
+          :src="picURL"
+          :alt="organization.name"
+          :width="imageSize"
+          :height="imageSize"
+          @error="imageExists = false"
+        ).bottom-right.ma-2.rounded-circle
+    v-card-text(:class="$isWideScreen ? 'pt-4' : 'pt-2'").px-0
+      //- v-icon(v-if="hasWebsite" color="secondary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
+      v-col.pa-0
         v-tooltip(bottom)
           template(v-slot:activator="{ on, attrs }")
             v-clamp(
               v-on="on"
               autoresize
               :max-lines="2"
-              :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
-            ).font-weight-bold.mb-0 {{ organization.name || '' }}&nbsp;
+              :class="[nameFontSize, organization.name ? ['font-weight-bold', 'black--text'] : ['font-italic', 'grey--text']]"
+            ).mb-0 {{ organization.name || 'No Clinic Name' }}&nbsp;
           span {{ organization.name }}
-        div.d-flex.mt-1
-          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
+        div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
+          v-icon(color="secondary" :small="!$isWideScreen") mdi-map-marker
           v-tooltip(bottom)
             template(v-slot:activator="{ on, attrs }")
               v-clamp(
                 v-on="on"
                 autoresize
-                :max-lines="2"
-                :class="[textFontSize, {'font-italic': !address }]"
-              ).info--text.mt-1 {{ address || 'No address provided'}}
+                :max-lines="1"
+                :class="[textFontSize, address ? 'black--text' : 'font-italic']"
+              ).mt-1.ml-2 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
-        div.d-flex.white--text.mt-2
-          div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, badgeSize, {'primary': clinicOpen(day.value)}]").badge
-              | {{ day.text }}
+        div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
+          v-icon(color="secondary" :small="!$isWideScreen") mdi-email
+          v-tooltip(bottom)
+            template(v-slot:activator="{ on, attrs }")
+              v-clamp(
+                v-on="on"
+                autoresize
+                :max-lines="1"
+                :class="[textFontSize, organization.email ? 'black--text' : 'font-italic']"
+              ).mt-1.ml-2 {{ organization.email || 'No email provided'}}
+            span {{ organization.email || 'No email provided'}}
     v-spacer
     v-card-actions.pa-0
-      v-col
-        v-row(justify="end")
-          v-btn(
-            color="primary"
-            :small="!$isWideScreen"
-            rounded
-            :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
-            @click="visitWebsite"
-          ).text-none.elevation-0.font-weight-light.mt-2
-            b Book a Visit
+      v-col.pa-0
+        div.d-flex.white--text.my-2
+          div(v-for="(day, index) in daysInit" :key="index").pr-2
+            div(:class="[textFontSize, badgeSize, {'success': isClinicOpen(day.value)}]").badge
+              | {{ day.text }}
+        v-row
+          v-col(cols="12")
+            slot(name="card-button")
+              v-btn(
+                color="secondary"
+                :small="!$isWideScreen"
+                rounded
+                block
+                :class="$isWideScreen ? 'font-14' : 'font-10'"
+                @click="dialogBox = true"
+              ).text-none.elevation-0.font-weight-light.mt-2
+                b Book a Visit
+    v-dialog(
+      v-model="dialogBox"
+      :scrollable="false"
+      :width="$isMobile ? '100%' : '35%'"
+      content-class="rounded-xl"
+    ).pa-0
+      clinic-dialog-card(:organization="organization")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
-// import { format } from 'date-fns';
-// import uniqBy from 'lodash/uniqBy';
-// import { formatAddress, formatName } from '~/utils/formats';
-// import { formatName } from '~/utils/formats';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
+import CoverPlaceholder from '~/assets/images/directory-results/Directory Card image - Clinic.png';
 import { formatAddress } from '~/utils/formats';
 export default {
   components: {
     VClamp,
+    ClinicDialogCard: () => import('~/components/directory/ClinicDialogCard.vue'),
   },
   props: {
     organization: {
@@ -74,22 +103,28 @@ export default {
   },
   data () {
     this.daysInit = [
-      { text: 'S', value: 0 },
-      { text: 'M', value: 1 },
-      { text: 'T', value: 2 },
-      { text: 'W', value: 3 },
-      { text: 'Th', value: 4 },
-      { text: 'F', value: 5 },
-      { text: 'S', value: 6 },
+      { text: 'S', value: 'sun' },
+      { text: 'M', value: 'mon' },
+      { text: 'T', value: 'tue' },
+      { text: 'W', value: 'wed' },
+      { text: 'Th', value: 'thu' },
+      { text: 'F', value: 'fri' },
+      { text: 'S', value: 'sat' },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
+      imageExists: true,
     };
   },
   computed: {
     hasWebsite () {
       return !!this.organization?.websiteId;
+    },
+    clinicWebsite () {
+      const username = this.organization?.websiteId;
+      return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     fullSchedules () {
       // eslint-disable-next-line camelcase
@@ -114,36 +149,17 @@ export default {
 
       return this.fullSchedules.filter(schedule => schedule.order === dayOrder || schedule.day === dayOrder) || [];
     },
-    startDay () {
-      switch (this.filteredDays[0]) {
-        case 'mon': return 1;
-        case 'tue': return 2;
-        case 'wed': return 3;
-        case 'thu': return 4;
-        case 'fri': return 5;
-        case 'sat': return 6;
-        default: return 0;
-      };
-    },
-    endDay () {
-      switch (this.filteredDays[this.filteredDays.length - 1]) {
-        case 'mon': return 1;
-        case 'tue': return 2;
-        case 'wed': return 3;
-        case 'thu': return 4;
-        case 'fri': return 5;
-        case 'sat': return 6;
-        default: return 0;
-      };
-    },
     picURL () {
-      return this.organization?.picURL || FacilityPlaceholder;
+      return this.imageExists ? this.organization?.picURL || FacilityPlaceholder : FacilityPlaceholder;
+    },
+    coverURL () {
+      return this.imageExists ? this.organization?.coverURL || CoverPlaceholder : CoverPlaceholder;
     },
     nameFontSize () {
       return classBinder(this, {
-        mobile: ['font-12'],
-        regular: ['font-16'],
-        wide: ['font-24'],
+        mobile: ['font-16'],
+        regular: ['font-20'],
+        wide: ['font-28'],
       });
     },
     textFontSize () {
@@ -164,16 +180,25 @@ export default {
       const { address } = this.organization;
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
+    imageSize () {
+      if (this.$isRegularScreen) return '55px';
+      if (this.$isMobile) return '67px';
+      return '87px';
+    },
+    coverSize () {
+      if (this.$isRegularScreen) return '140px';
+      if (this.$isMobile) return '140px';
+      return '220px';
+    },
   },
   methods: {
     visitWebsite () {
       this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
     },
-    clinicOpen (value) {
+    isClinicOpen (value) {
       if (this.fullSchedules.length) {
-        if (value < this.startDay) return false;
-        if (value > this.endDay) return false;
-        return true;
+        if (this.filteredDays.includes(value)) return true;
+        return false;
       }
       return false;
     },
@@ -196,12 +221,12 @@ export default {
   max-width: 180px;
 }
 .badge-size {
-  height: 15px;
-  width: 15px;
-}
-.badge-size-mobile {
   height: 20px;
   width: 20px;
+}
+.badge-size-mobile {
+  height: 25px;
+  width: 25px;
 }
 .badge-size-wide {
   height: 30px;
@@ -213,5 +238,18 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: rgb(163, 163, 163);
+}
+.cover-bg {
+  width: 100%;
+  border-radius: 20px;
+}
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 0px;
+}
+.container {
+  position: relative;
+  text-align: center;
 }
 </style>

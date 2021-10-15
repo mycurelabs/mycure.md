@@ -18,9 +18,8 @@
       :parse-title-fields="['you ', 'your ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor-telehealth' }})"
     )
-      //- remove when telehealth is available
+      //- GET RESPONSE
       template(slot="cta-button")
         mc-btn(
           depressed
@@ -28,14 +27,14 @@
           :width="!$isWideScreen ? '228px' : '300'"
           :height="!$isWideScreen ? '59px' : '73.68'"
           color="success"
-          @click="btnClicked = true"
+          @click="getResponseDialog = true"
         ).text-none
           span.generic-button-text Get Started Free
     //- 2nd panel
     virtual-clinic
     //- 3rd panel
     telehealth-video
-      //- remove when telehealth is available
+      //- GET RESPONSE
       template(slot="cta-button")
         br
         mc-btn(
@@ -44,7 +43,7 @@
           :width="!$isWideScreen ? '228px' : '300'"
           :height="!$isWideScreen ? '59px' : '73.68'"
           color="primary"
-          @click="btnClicked = true"
+          @click="getResponseDialog = true"
         ).text-none
           span.generic-button-text Get Started Free
     //- 4th panel
@@ -83,7 +82,7 @@
     //- )
     //- 7th panel
     call-to-action
-      //- remove when telehealth is available
+      //- GET RESPONSE
       template(slot="cta-button")
         v-col
           v-row(:justify="$isMobile ? 'center' : 'start'")
@@ -94,10 +93,12 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
-                @click="btnClicked = true"
+                @click="getResponseDialog = true"
               ).text-none
                 span.generic-button-text Get Started Free
-    v-dialog(v-model="btnClicked" width="unset")
+
+    //- GET RESPONSE DIALOG
+    v-dialog(v-model="getResponseDialog" width="unset")
       script(type='text/javascript'
         src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=hUJKB'
         data-webform-id='hUJKB'
@@ -136,7 +137,7 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
-      btnClicked: false,
+      getResponseDialog: false,
     };
   },
   head () {

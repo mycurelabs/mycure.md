@@ -3,13 +3,13 @@
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
-          v-col(cols="12")
+          v-col(cols="12" :class="{'text-center': $isMobile}")
             h1.mb-5.white--text Get An Appointment
           v-col(cols="12" md="6").pa-10
             template(v-for="item in quickAppointmentsContent")
               media
                 template(slot="media-image")
-                  v-avatar(size="75" color="#add35b")
+                  v-avatar(:size="$isMobile ? '50' : '75'" color="#add35b")
                     v-icon(large).white--text {{item.icon}}
                 template(slot="media-content")
                   br
@@ -117,7 +117,8 @@ export default {
       },
     ];
     this.serviceTypeMappings = {
-      'clinical-consultation': { text: 'Consult', value: 'clinical-consultation' },
+      'clinical-consultation': { text: 'Face-to-Face Consult', value: 'clinical-consultation' },
+      telehealth: { text: 'Teleconsult', value: 'telehealth' },
       'clinical-procedure': { text: 'Procedure', value: 'clinical-procedure' },
       lab: { text: 'Laboratory', value: 'lab' },
       imaging: { text: 'Imaging', value: 'imaging' },
@@ -156,17 +157,32 @@ export default {
     async fetchServices () {
       try {
         this.loading = true;
+        const mapServiceType = (type) => {
+          if (type === 'lab' || type === 'imaging') return 'diagnostic';
+          // Telehealth services are technically under 'clinical-consultation',
+          // They are differentiated through `service#tags`
+          if (type === 'telehealth') return 'clinical-consultation';
+          return type;
+        };
         const { items } = await fetchClinicServices(this.$sdk, {
           facility: this.organization,
-          type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
+          type: mapServiceType(this.serviceType),
           subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
+          // Differentiate the telehealth services
+          ...this.serviceType === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+          ...this.serviceType === 'telehealth' && { tags: { $in: ['telehealth'] } },
         });
 
         // - Assign schedules and include only those with schedules
         this.services = items.map((item) => {
-          const { type, subtype } = item;
+          const { type, subtype, tags } = item;
           const primaryType = subtype || type;
-          const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+          const schedules = this.serviceSchedules.find((schedule) => {
+            if (primaryType === 'clinical-consultation' && tags?.includes('telehealth')) {
+              return schedule.type === 'telehealth';
+            }
+            return schedule.type === primaryType;
+          });
           return {
             ...item,
             nonMfSchedule: !!schedules,
@@ -182,8 +198,9 @@ export default {
     bookService () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const bookURL = `${pxPortalUrl}/appointments/step-1?service=${this.selectedService}&organization=${this.organization}`;
-      window.open(bookURL);
+      const appointmentType = this.serviceType === 'telehealth' ? 'telehealth' : 'physical';
+      const bookURL = `${pxPortalUrl}/create-appointment/step-1?service=${this.selectedService}&clinic=${this.organization}&type=${appointmentType}`;
+      window.location.href = bookURL;
     },
     hasSchedules (item) {
       return item.schedules?.length;

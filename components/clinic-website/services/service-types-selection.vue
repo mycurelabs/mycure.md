@@ -14,7 +14,7 @@
       template(v-for="type in types")
         v-tab(v-if="hasServiceType(type.value)" :href="`#${type.value}`")
           v-icon(left) {{ type.icon }}
-          span.black--text.text-none {{ type.text }}
+          span.black--text.text-none {{ type.text }}&nbsp;
 </template>
 
 <script>
@@ -35,7 +35,8 @@ export default {
   },
   data () {
     this.types = [
-      { icon: 'mdi-account-tie-voice-outline', text: 'Consultation', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { icon: 'mdi-account-tie-voice-outline', text: 'Face-to-Face Consults', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { icon: 'mdi-video-outline', text: 'Teleconsults', type: 'telehealth', value: 'telehealth' },
       { icon: 'mdi-flask-outline', text: 'Laboratory', type: 'diagnostic', value: 'lab' },
       { icon: 'mdi-radiology-box-outline', text: 'Imaging', type: 'diagnostic', value: 'imaging' },
       { icon: 'mdi-package-variant-closed', text: 'PE Packages', type: 'pe', value: 'pe' },

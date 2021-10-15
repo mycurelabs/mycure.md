@@ -119,7 +119,7 @@
           //-     :x-large="$isWideScreen"
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
-    care
+    care(:metrics-data="metricsData")
     steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
@@ -158,7 +158,7 @@ import headMeta from '~/utils/head-meta';
 // - constants
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import { getCountry } from '~/utils/axios';
+import { getCountry, fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
@@ -176,11 +176,13 @@ export default {
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
-  async asyncData ({ redirect }) {
+  async asyncData ({ error }) {
     const country = await getCountry() || {};
     const code = country.country_code;
+    const metricsData = await fetchWebsiteMetrics();
 
-    if (!code || code !== 'PH') redirect('/');
+    if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
+    return { metricsData };
   },
   data () {
     this.stepsContent = [

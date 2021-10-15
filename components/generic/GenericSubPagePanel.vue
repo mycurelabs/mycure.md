@@ -10,7 +10,7 @@
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
     v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
       slot(name="image")
-        img(:width="width" :src="image")
+        img(v-if="$isMobile" :width="width" :src="image" :alt="image")
     v-col(v-bind="contentColumnBindings")
       v-row(justify="center")
         v-col(v-if="!$isMobile && contentRight" cols="2").pa-0

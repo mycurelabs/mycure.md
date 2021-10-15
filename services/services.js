@@ -16,6 +16,7 @@ export const fetchClinicServices = async (sdk, opts) => {
     ...opts.facility && { facility: opts.facility },
     ...opts.type && { type: opts.type },
     ...opts.subtype && { subtype: opts.subtype },
+    ...opts.tags && { tags: opts.tags },
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $populate: {
@@ -42,10 +43,7 @@ export const fetchClinicServices = async (sdk, opts) => {
   }
 
   if (!isEmpty(opts.searchText)) {
-    if (isEmpty(query.$and)) query.$and = [];
-    query.$and.push(
-      { name: { $regex: `^${opts.searchText}`, $options: 'gi' } },
-    );
+    query.$search = opts.searchText;
   }
 
   const { items, total } = await sdk.service('services').find(query);

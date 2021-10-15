@@ -105,6 +105,7 @@
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
+          //- SEO issue non descriptiove link
           mc-btn(
             depressed
             event-label="clinics-info"
@@ -114,10 +115,10 @@
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
-            v-icon(left)  mdi-information-outline
-            span.generic-button-text  Learn more
+            //- v-icon(left)  mdi-information-outline
+            span.generic-button-text See MYCURE for Clinics
     //- 7.5
-    care
+    care(:metrics-data="metricsData")
     steps(:steps="stepsContent" not-free)
     //- 8th panel
     think-long-term
@@ -139,6 +140,7 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 // - constants
 import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
@@ -159,6 +161,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     // - TODO: Update info

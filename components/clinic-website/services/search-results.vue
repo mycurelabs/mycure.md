@@ -7,7 +7,7 @@
       @search="$emit('search', $event)"
       @filter:date="$emit('filter:date', $event)"
     )
-    v-card(flat color="#f0f0f0")
+    v-card(flat color="#f0f0f0" :class="{'mt-2': $isMobile}")
       v-card-text
         v-row(v-if="loading" justify="center")
           v-col(cols="12" md="4").text-center
@@ -20,22 +20,40 @@
           v-col(cols="12" md="4").text-center
             h2 No results available
         template(v-else)
-          div(v-for="(item, key) in items" :key="key")
+          div(
+            v-for="(item, key) in items" :key="key"
+            :class="{'mt-0': key === 0}"
+          ).my-3
+            //- If doctor
+            doc-item-card(
+              v-if="!!item.uid"
+              minified
+              show-book-buttons
+              :organization="organization"
+              :doctor="item"
+              :is-booking-enabled="isBookingEnabled"
+            )
+            //- Service
             service-item(
+              v-else
               :organization="organization"
               :item="item"
               :is-doctor="!!item.uid"
               :is-preview-mode="isPreviewMode"
               :read-only="readOnly"
+              :is-booking-enabled="isBookingEnabled"
             )
             v-divider
 </template>
 
 <script>
+// import DocItemCard from '../DocItemCard';
+import DocItemCard from '../DocItemCard';
 import SearchFilters from '../SearchFilters';
 import ServiceItem from './service-item';
 export default {
   components: {
+    DocItemCard,
     SearchFilters,
     ServiceItem,
   },
@@ -61,6 +79,10 @@ export default {
       default: false,
     },
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    isBookingEnabled: {
       type: Boolean,
       default: false,
     },

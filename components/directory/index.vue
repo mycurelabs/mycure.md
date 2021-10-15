@@ -25,17 +25,22 @@
                 app-bar
                 :mode="searchMode"
                 :location="location"
+                :locationKM="locationKM"
+                :loadingResults="loading.results"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
-                @update:locationSwitch="onLocationSwitchUpdate($event)"
+                @select:location="onLocationPick($event)"
+                @clear:location="onClearLocation"
               )
     results-section(
       :results-name="resultsName"
       :type="searchMode"
       :items="entries"
       :loading="loading.results"
+      :locationKM="locationKM"
       :pagination="resultsPagination"
       :read-only="readOnly"
+      :location="location"
       @page:update="onPagination($event)"
     )#resultsSection
     //- Snack bar
@@ -91,6 +96,8 @@ export default {
       // === Location ====
       // - Coordinates
       location: null,
+      // - KM Radium
+      locationKM: 5,
       // === Pagination ====
       entriesTotal: 0,
       entriesPage: 1,
@@ -109,7 +116,7 @@ export default {
     resultsName () {
       switch (this.searchMode) {
         case 'account': return 'doctor';
-        case 'organization': return 'organization';
+        case 'organization': return 'health organization';
         default: return 'results';
       }
     },
@@ -165,7 +172,10 @@ export default {
           // Apply filters
           ...(serviceType || specializations) && { tags: this.composeTags(serviceType, specializations) },
           // Apply location
-          ...location && { location: this.location },
+          ...location && {
+            location: this.location,
+            locationKM: this.locationKM,
+          },
         };
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
@@ -196,7 +206,7 @@ export default {
         if (this.searchMode === 'organization' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
             const orgDetails = await this.$sdk.service('organizations').get(entry.ref.id);
-            return orgDetails;
+            return { ...orgDetails, tags: entry.tags };
           });
           this.entries = await Promise.all(entryPromises);
           return;
@@ -249,6 +259,7 @@ export default {
         location: this.location,
       }, page);
     },
+    /** LOCATION TOGGLE usage (OLD) */
     onLocationSwitchUpdate (val) {
       if (!val) {
         this.location = null;
@@ -286,6 +297,29 @@ export default {
           message: 'Failed to retrieve your location',
         });
       }
+    },
+    /** GMAPS USAGE (NEW) */
+    onLocationPick (address) {
+      const { geometry } = address;
+      if (!geometry?.location) return;
+      const lat = geometry.location.lat();
+      const lng = geometry.location.lng();
+      this.location = { lat, lng };
+      this.search({
+        searchText: this.searchText,
+        serviceType: this.serviceType,
+        specializations: this.specializationFilters,
+        location: this.location,
+      });
+    },
+    onClearLocation () {
+      this.location = null;
+      this.search({
+        searchText: this.searchText,
+        serviceType: this.serviceType,
+        specializations: this.specializationFilters,
+        location: this.location,
+      });
     },
     enqueueSnack ({ color, message }) {
       this.snackbarModel.color = color;

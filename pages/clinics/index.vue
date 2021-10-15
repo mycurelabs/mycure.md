@@ -65,7 +65,7 @@
         panel-height="70vh"
       )
     //- 7.5
-    care
+    care(:metrics-data="metricsData")
     steps(
       :steps="stepsContent"
       not-free
@@ -99,6 +99,7 @@
         hide-btn
       )
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+          //- SEO issue non descriptiove link
           mc-btn(
             depressed
             color="white"
@@ -107,13 +108,14 @@
             :height="!$isWideScreen ? '59px' : '73.68'"
             :to="{ name: 'doctors-clinics' }"
           ).text-none.primary--text
-            v-icon(left) mdi-information-outline
-            span.generic-button-text Learn More
+            //- v-icon(left) mdi-information-outline
+            span.generic-button-text See MYCURE for Doctors
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 // - constants
@@ -135,6 +137,10 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     this.features = [

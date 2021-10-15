@@ -44,7 +44,8 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   // put location string
   if (opts.location) {
     const { lat, lng } = opts.location;
-    query.location = `${lat},${lng},5`; // - 5 stands for radius in km
+    const locationKM = opts.locationKM || 5;
+    query.location = `${lat},${lng},${locationKM}`; // - 5 stands for radius in km
   }
   if (query.type === 'organization') {
     query = {
