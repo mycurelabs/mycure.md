@@ -210,6 +210,7 @@ export default {
     },
     practicingYears () {
       let from = this.practicingSince || 0;
+      if (!from) return 0;
       if (`${from}`.length > 4) from = new Date(from).getFullYear(); // eslint-disable-line
       const to = new Date().getFullYear();
       return to - from;
