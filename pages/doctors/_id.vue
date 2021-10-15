@@ -209,7 +209,7 @@ export default {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
     practicingYears () {
-      const from = this.practicingSince || 0;
+      let from = this.practicingSince || 0;
       if (`${from}`.length > 4) from = new Date(from).getFullYear(); // eslint-disable-line
       const to = new Date().getFullYear();
       return to - from;
