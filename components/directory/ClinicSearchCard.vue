@@ -60,15 +60,16 @@
               | {{ day.text }}
         v-row
           v-col(cols="12")
-            v-btn(
-              color="secondary"
-              :small="!$isWideScreen"
-              rounded
-              block
-              :class="$isWideScreen ? 'font-14' : 'font-10'"
-              @click="dialogBox = true"
-            ).text-none.elevation-0.font-weight-light.mt-2
-              b Book a Visit
+            slot(name="card-button")
+              v-btn(
+                color="secondary"
+                :small="!$isWideScreen"
+                rounded
+                block
+                :class="$isWideScreen ? 'font-14' : 'font-10'"
+                @click="dialogBox = true"
+              ).text-none.elevation-0.font-weight-light.mt-2
+                b Book a Visit
     v-dialog(
       v-model="dialogBox"
       :scrollable="false"
