@@ -1,33 +1,41 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
+      has-custom-background
+      extension-exclusive
+      background-image="MYCURE-CSI-Landing Page"
       title="Simply plug and play"
       meta-title="MYCURE CSI"
-      description="MYCURE as your partner helps your facility to comply with international standards when it comes to digital information processing. Being HIPAA Compliant, we demonstrate our commitment to industry-leading best practices for your security and privacy of protected health information."
+      image="MYCURE-CSI-Landing Page-Mobile"
+      image-col-offset="1"
+      custom-image-path="csi/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
-    generic-media-panel(
-      header="Set the bar high"
-      :descriptions="['MYCURE as your partner helps your facility to comply with international standards when it comes to digital information processing. Being HIPAA Compliant, we demonstrate our commitment to industry-leading best practices for your security and privacy of protected health information.']"
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-      :dense="$isMobile"
-      dummy
-    )
+    div.grey-bg.mx-n3
+      features(
+        title="Set the bar high"
+        description="MYCURE as your partner helps your facility to comply with international standards when it comes to digital information processing. Being HIPAA Compliant, we demonstrate our commitment to industry-leading best practices for your security and privacy of protected health information."
+        image-dir="clinics/module-icons/"
+        content-col-size="10"
+        :icon-container-col-size="$isWideScreen ? '8' : '10'"
+        :items="secondPanelItems"
+      )
     //- 3rd panel
     features(
-      title="Protect your medical records with confidence"
-      description="Data privacy concerns are the least of your worries. Keeping personal and sensitive information secure such as medical records is our priority."
-    )
-    //- 4th panel
-    features(
-      title="Integration. Interoperability."
-      description="MYCURE follows global standards and has open APIs that allow you to integrate or fortify your other systems with MYCURE. "
+      title="Secure cloud-based software with the benefits of an on-premise system"
+      title-col-size="10"
+      image-dir="syncbase/"
       :items="features"
     )
+    //- 4th panel
+    //- features(
+    //-   title="Integration. Interoperability."
+    //-   description="MYCURE follows global standards and has open APIs that allow you to integrate or fortify your other systems with MYCURE. "
+    //-   :items="features"
+    //- )
     //- 5th to 6th panel
     generic-media-panel(
       v-for="(info, key) in infoPanels"
@@ -58,23 +66,51 @@ export default {
     GenericMediaPanel,
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
+    this.secondPanelItems = [
+      {
+        title: 'Quick Calls and Chats',
+        icon: 'Chat',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'Appointment Schedule',
+        icon: 'Appointments',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'SMS and In-app Reminders',
+        icon: 'SMS',
+        iconExtension: '.webp',
+      },
+    ];
     // - TODO: Update info
     this.features = [
       {
-        title: 'Digital Records',
+        title: 'Grade A+ SSL',
+        icon: 'Grade A+ SSL',
+        iconExtension: '.webp',
       },
       {
-        title: 'Telehealth',
+        title: 'Data Encryption',
+        icon: 'Data Encryption',
+        iconExtension: '.webp',
       },
       {
-        title: 'Daily Reports',
+        title: 'User Designated Access',
+        icon: 'User Designated Access',
+        iconExtension: '.webp',
       },
       {
-        title: 'Professional Website',
+        title: 'Secure Cloud Hosting',
+        icon: 'Secure Cloud Hosting',
+        iconExtension: '.webp',
       },
       {
-        title: 'Appointment Booking',
+        title: 'Data Privacy Standards',
+        icon: 'Data Privacy standards',
+        iconExtension: '.webp',
       },
     ];
     this.infoPanels = [
@@ -131,3 +167,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>
