@@ -67,15 +67,16 @@
     v-card-actions.pa-0
       v-col
         v-row(justify="center")
-          v-btn(
-            color="secondary"
-            rel="noopener noreferrer"
-            :href="clinicWebsite"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none.elevation-0.rounded-pill.mt-4
-            v-icon mdi-open-in-new
-            span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
+          slot(name="card-button")
+            v-btn(
+              color="secondary"
+              rel="noopener noreferrer"
+              :href="clinicWebsite"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+            ).text-none.elevation-0.rounded-pill.mt-4
+              v-icon mdi-open-in-new
+              span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
 </template>
 
 <script>

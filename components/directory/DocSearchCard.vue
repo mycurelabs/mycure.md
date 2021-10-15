@@ -52,6 +52,7 @@
             rel="noopener noreferrer"
             :small="!$isWideScreen"
             rounded
+            :disabled="!isDoctorExisting"
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
             @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
@@ -107,6 +108,9 @@ export default {
     };
   },
   computed: {
+    isDoctorExisting () {
+      return !!this.doctor && !!this.doctor?.id;
+    },
     hasDoctorWebsite () {
       return !!this.doctor?.doc_website && !!this.doctor?.id;
     },
@@ -132,7 +136,7 @@ export default {
       return this.doctor?.doc_specialties?.join(', ') || '';
     },
     yearsOfExperience () {
-      const { doc_practicingSince } = this.doctor; // eslint-disable-line
+      const doc_practicingSince = this.doctor?.doc_practicingSince; // eslint-disable-line
       let from = doc_practicingSince; // eslint-disable-line
       if (`${from}`.length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
       const to = new Date().getFullYear();
