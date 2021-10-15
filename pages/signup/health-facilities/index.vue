@@ -3,15 +3,16 @@
     v-row(style="height: 100vh")
       v-col(cols="6" v-if="!$isMobile" style="background: #DEDEE8;").pa-0
         v-row(style="height: 100vh" align="center" justify="center")
-          img(
-            src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-            alt="White MYCURE Logo"
-            width="150px"
-            height="41.88px"
-            @click="$router.push({ name: 'index' })"
-          ).link-to-home
-          img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
-          v-spacer
+          v-col.text-center
+            img(
+              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+              alt="White MYCURE Logo"
+              width="150px"
+              height="41.88px"
+              @click="$router.push({ name: 'index' })"
+            ).link-to-home
+            br
+            img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
       v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
         v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'pt-10']").rounded-tl-xl.rounded-bl-xl
           v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
