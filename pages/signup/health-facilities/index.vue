@@ -25,7 +25,7 @@
               v-col(
                 cols="12"
                 md="6"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-1.order-sm-1
                 //- First Name
                 v-text-field(
@@ -43,7 +43,7 @@
               v-col(
                 cols="12"
                 md="6"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-2.order-sm-2
                 //- Last Name
                 v-text-field(
@@ -60,7 +60,7 @@
               v-col(
                 cols="12"
                 md="6"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-3.order-sm-3
                 //- Email
                 v-text-field(
@@ -78,7 +78,7 @@
               v-col(
                 cols="12"
                 md="6"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-4.order-sm-6
                 //- Mobile No.
                 v-text-field(
@@ -103,7 +103,7 @@
                         | Change Country
               v-col(
                 cols="12"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-5.order-sm-4
                 //- Password
                 v-text-field(
@@ -120,7 +120,7 @@
                 )
               v-col(
                 cols="12"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-6.order-sm-5
                 //- Confirm Password
                 v-text-field(
@@ -140,7 +140,7 @@
               v-col(
                 cols="12"
                 md="8"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-7.order-sm-7
                 div(@click="chooseFacilityTypeDialog = true")
                   v-select(
@@ -168,7 +168,7 @@
               v-col(
                 cols="12"
                 md="4"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-8.order-sm-8
                 v-select(
                   v-model="roles"
@@ -186,7 +186,7 @@
                 )
               v-col(
                 cols="12"
-                :class="{ 'pa-1': !$isMobile }"
+                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
               ).order-md-8.order-sm-8
                 v-text-field(
                   v-if="isDoctor"
