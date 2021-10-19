@@ -165,10 +165,10 @@ export default {
   async asyncData ({ params, $sdk, redirect }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
-      // Redirect to home if no clinic found, or if clinic is existing, but has not setup its website yet
+      // Show 404 if no clinic found, or if clinic is existing, but has not setup its website yet
       // Will not redirect if it's a 'diagnostic-center' since these are the orgs we have up for claiming
       if (isEmpty(clinic) ||
-        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) redirect('/');
+        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) error({ statusCode: 404, message: 'clinic-not-found' });
       return {
         clinic,
       };

@@ -11,6 +11,9 @@
               v-col(v-if="error.message === 'doctor-not-found'")
                 h2 Doctor who?
                 p.pb-2.font-16 The doctor with username '{{$route.params.id}}' is not yet using MYCURE.
+              v-col(v-else-if="error.message === 'clinic-not-found'")
+                h2 Doctor who?
+                p.pb-2.font-16 The health facility '{{$route.params.id}}' does not exist in our directory.
               v-col(v-else)
                 strong.pb-2.font-18 Oh snap!
                 h2 The page you’re looking for can’t be found.
