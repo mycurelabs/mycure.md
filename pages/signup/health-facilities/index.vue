@@ -249,10 +249,15 @@
                   large
                   :disabled="isProceedDisabled"
                   :loading="loading.form"
-                ) Proceed
+                ).text-none Proceed
+                stripe-checkout(
+                  ref="checkoutRef"
+                  :pk="stripePK"
+                  :sessionId="stripeCheckoutSessionId"
+                )
             span Already have an account?&nbsp;
             a(href="../signin" style="text-decoration: none") Log in
-
+    v-snackbar(:value="error" type="error" color="red" timeout="2000").mt-5 {{ errorMessage }}
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
@@ -608,6 +613,7 @@ export default {
           this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
         ]);
         if (!emailResultUnique || !mobileResultUnique) {
+          console.log(emailResultUnique + '    ' + mobileResultUnique);
           this.error = true;
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
