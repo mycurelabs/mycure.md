@@ -73,7 +73,7 @@
                   :disabled="loading.form"
                   @keyup="checkEmail"
                 ).mb-0
-                  template(v-slot:append v-if="isEmailValid")
+                  template(v-slot:append v-if="isEmailValid && emailUnique")
                     v-icon(color="accent") mdi-check
               v-col(
                 cols="12"
@@ -95,7 +95,7 @@
                 ).mb-0
                   template(slot="append")
                     div(style="margin-top: -8px")
-                      v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
+                      v-icon(v-if="mobileNoError && mobileUnique" color="accent").ml-n10 mdi-check
                       v-tooltip(bottom)
                         template(v-slot:activator="{ on }")
                           v-btn(icon @click="countryDialog = true" v-on="on")
@@ -418,6 +418,8 @@ export default {
       errorRoles: false,
       errorMessagesRoles: '',
       codeDialog: false,
+      emailUnique: true,
+      mobileUnique: true,
     };
   },
   head () {
@@ -612,6 +614,8 @@ export default {
           this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
           this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
         ]);
+        this.emailUnique = emailResultUnique;
+        this.mobileUnique = mobileResultUnique;
         if (!emailResultUnique || !mobileResultUnique) {
           this.error = true;
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';

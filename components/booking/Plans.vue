@@ -133,6 +133,26 @@ export default {
           },
           ...omit(doctorPricings[1], 'title'),
         };
+        const freeBooking = {
+          title: 'Start Free',
+          image: 'Essentials',
+          description: 'All essential features to help start up your digital booking journey',
+          inclusions: [
+            { text: 'Up to 1 user', valid: true },
+            { text: 'Up to 200 MB', valid: true },
+            { text: 'Classic Booking Website', valid: true },
+            { text: 'Fast appointments', valid: true },
+            { text: 'Online payments', valid: true },
+            { text: 'Patient Registration', valid: true },
+            { text: 'Medical Records', valid: true },
+            { text: 'Daily Census', valid: true },
+            { text: 'Sales Reports', valid: true },
+          ],
+          queryOps: {
+            type: 'doctor',
+          },
+          ...omit(doctorPricings[0], 'title', 'description', 'inclusions'),
+        };
         // - Fetch clinic pricings
         const clinicPricings = await getSubscriptionPackagesPricing('clinic', { isBooking: true }) || [];
         // - Get lowest pricing from clinics
@@ -156,29 +176,29 @@ export default {
           ...omit(diagnosticPricings[0], 'title'),
         };
         // - Map Free Booking
-        const freeBooking = {
-          monthlyPrice: 0,
-          annualMonthlyPrice: 0,
-          image: 'Essentials',
-          btnText: 'Try Free',
-          title: 'Start Free',
-          trial: true,
-          description: 'All essential features to help start up your digital booking journey',
-          inclusions: [
-            { text: 'Up to 1 user', valid: true },
-            { text: 'Up to 200 MB', valid: true },
-            { text: 'Classic Booking Website', valid: true },
-            { text: 'Fast appointments', valid: true },
-            { text: 'Online payments', valid: true },
-            { text: 'Patient Registration', valid: true },
-            { text: 'Medical Records', valid: true },
-            { text: 'Daily Census', valid: true },
-            { text: 'Sales Reports', valid: true },
-          ],
-          queryOps: {
-            trial: 1,
-          },
-        };
+        // const freeBooking = {
+        //   monthlyPrice: 0,
+        //   annualMonthlyPrice: 0,
+        //   image: 'Essentials',
+        //   btnText: 'Try Free',
+        //   title: 'Start Free',
+        //   trial: true,
+        //   description: 'All essential features to help start up your digital booking journey',
+        //   inclusions: [
+        //     { text: 'Up to 1 user', valid: true },
+        //     { text: 'Up to 200 MB', valid: true },
+        //     { text: 'Classic Booking Website', valid: true },
+        //     { text: 'Fast appointments', valid: true },
+        //     { text: 'Online payments', valid: true },
+        //     { text: 'Patient Registration', valid: true },
+        //     { text: 'Medical Records', valid: true },
+        //     { text: 'Daily Census', valid: true },
+        //     { text: 'Sales Reports', valid: true },
+        //   ],
+        //   queryOps: {
+        //     trial: 1,
+        //   },
+        // };
 
         // - Put them all together
         this.pricingPackages = [
