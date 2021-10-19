@@ -613,7 +613,6 @@ export default {
           this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
         ]);
         if (!emailResultUnique || !mobileResultUnique) {
-          console.log(emailResultUnique + '    ' + mobileResultUnique);
           this.error = true;
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
