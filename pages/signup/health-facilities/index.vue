@@ -257,7 +257,7 @@
                 )
             span Already have an account?&nbsp;
             a(href="../signin" style="text-decoration: none") Log in
-    v-snackbar(color="red" timeout="2000").mt-5 {{ errorMessage }}
+    v-snackbar(:value="error" type="error" color="red" timeout="2000").mt-5 {{ errorMessage }}
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
