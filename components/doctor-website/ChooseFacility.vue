@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="900" height="900" persistent)
+  v-dialog(v-model="dialog" width="1000" height="900" persistent)
     v-card
       v-card-text.pa-3
         v-container
@@ -11,7 +11,7 @@
             v-col(cols="12" v-if="!availableOrganizations.length").text-center
               h3.font-open-sans.font-gray.font-weight-regular There are no available facilities at this time.
             template(v-else)
-              v-col(cols="12" md="4" lg="4" xl="3" v-for="(org, key) in availableOrganizations" :key="key")
+              v-col(cols="12" md="4" lg="4" xl="4" v-for="(org, key) in availableOrganizations" :key="key")
                 //- v-card(height="100%" @click="onOrgSelect(org)").elevation-3
                 //-   v-card-text
                 //-     v-container
@@ -21,10 +21,10 @@
                 //-             img(:src="org.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png')")
                 //-           h3.mt-3 {{ org.name }}
                 choose-facility-card(:organization="org")
-                  v-card-actions(slot="card-actions").pa-0
-                    v-spacer
+                  template(slot="card-button")
                     v-btn(
-                      color="primary"
+                      color="secondary"
+                      block
                       rounded
                       :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-16', 'px-5']"
                       @click="onOrgSelect(org)"
