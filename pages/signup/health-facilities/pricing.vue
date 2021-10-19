@@ -247,12 +247,10 @@ export default {
       this.$route.query.trial === true ||
       this.step1LocalStorageData.trial === true;
 
+    // This allows room for changing packages
     this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
 
-    // Do not use pre-bundle when there is an existing subscription
-    // The existence of a subscription means that a payment has been cancelled.
-    // This allows room for changing packages
-    if (this.preBundle && !this.subscriptionId) {
+    if (this.preBundle) {
       await this.submit();
       return;
     }
