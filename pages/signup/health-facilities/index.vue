@@ -215,20 +215,20 @@
             ).mt-0
               template(slot="label")
                 span.mt-3.mb-3 Apply a promo code (Optional)&nbsp;
-                v-text-field(
-                  v-if="hasPromoCode"
-                  v-model="stripeCoupon"
-                  :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
-                  placeholder="Promo Code"
-                  outlined
-                  dense
-                  height="20"
-                  clearable
-                  hide-details
-                  :disabled="loading.form"
-                  :class="{'pt-1': $isMobile}"
-                  @click.stop
-                )
+                div(width="200px")
+                  v-text-field(
+                    v-if="hasPromoCode"
+                    v-model="stripeCoupon"
+                    :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
+                    placeholder="Promo Code"
+                    outlined
+                    dense
+                    clearable
+                    hide-details
+                    :disabled="loading.form"
+                    :class="{'pt-1': $isMobile}"
+                    @click.stop
+                  )
             v-checkbox(
               v-model="agree"
               hide-details
