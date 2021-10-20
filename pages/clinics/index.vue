@@ -3,7 +3,7 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Clinics Landing Page"
+      background-image="clinics-landing-page"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Simplified workflows, faster results, better performance."
       meta-title="MYCURE Most Complete Clinic Management System"
@@ -11,7 +11,7 @@
       parse-title
       parse-meta-title
       btn-text="Get Started"
-      image="Clinics USP"
+      image="clinics-usp"
       :image-width="$isMobile ? '100%' : '90%'"
       custom-image-path="clinics/"
       :parse-title-fields="['workflows, ', 'results, ']"
@@ -156,7 +156,7 @@ export default {
       },
       {
         title: 'Maternity Care',
-        icon: 'Maternity Care',
+        icon: 'maternity-care',
         iconExtension: '.webp',
       },
       {
@@ -231,7 +231,7 @@ export default {
         contentAlign: 'left',
         imageBindings: {
           customPath: 'commons/',
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
@@ -242,7 +242,7 @@ export default {
       return {
         title: 'Practicing solo?',
         imageBindings: {
-          image: 'Practicing Solo Ipad.webp',
+          image: 'practicing-solo-ipad.webp',
           imageAlt: 'Woman video call in Ipad tablet',
           customPath: 'clinics/',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),

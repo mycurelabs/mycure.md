@@ -171,7 +171,7 @@ const isRecommended = (type, packageValue) => {
 
 const getPackageImage = (type, packageValue, isBooking = false) => {
   if (isBooking) return PACKAGE_IMAGE[type];
-  return `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? ' White' : ''}`;
+  return `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? '-White' : ''}`;
 };
 
 const PACKAGE_IMAGE = {
@@ -180,9 +180,9 @@ const PACKAGE_IMAGE = {
   platinum: 'Platinum',
   enterprise: 'Enterprise Blue',
   // - BOOKING EXCLUSIVE
-  doctor: 'MYCURE Pricing Doctor',
-  clinic: 'MYCURE Pricing Outpatient',
-  diagnostic: 'MYCURE Pricing Diagnostics',
+  doctor: 'MYCURE-Pricing-Doctor',
+  clinic: 'MYCURE-Pricing-Outpatient',
+  diagnostic: 'MYCURE-Pricing-Diagnostics',
 };
 
 const PACKAGE_CURRENCY = {

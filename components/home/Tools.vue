@@ -46,9 +46,9 @@ export default {
   },
   data () {
     this.defaultTools = [
-      { name: 'Privacy Standards', icon: 'Privacy Standards' },
+      { name: 'Privacy Standards', icon: 'Privacy-Standards' },
       { name: 'Interoperable Systems', icon: 'Interoperable' },
-      { name: 'Customizable Features', icon: 'Customizable Features' },
+      { name: 'Customizable Features', icon: 'Customizable-Features' },
     ];
     this.modules = [
       {

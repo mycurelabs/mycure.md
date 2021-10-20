@@ -13,7 +13,7 @@
             v-col.d-flex
               nuxt-link(to="/")
                 img(
-                  src="~/assets/images/MYCURE Logo - white.png"
+                  src="~/assets/images/mycure-logo-white.png"
                   alt="MYCURE logo"
                   width="120px"
                   height="34.46px"
@@ -85,7 +85,7 @@
     )
       v-toolbar(flat color="black")
         img(
-          src="~/assets/images/MYCURE Logo - white.png"
+          src="~/assets/images/mycure-logo-white.png"
           width="120"
           alt="MYCURE logo"
         )

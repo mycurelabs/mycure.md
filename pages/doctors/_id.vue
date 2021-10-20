@@ -177,7 +177,7 @@ export default {
       return this.mode === 'preview';
     },
     picURL () {
-      return this.doctor?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
+      return this.doctor?.picURL || require('~/assets/images/commons/mycure-default-avatar.png');
     },
     name () {
       return this.doctor?.name || {};

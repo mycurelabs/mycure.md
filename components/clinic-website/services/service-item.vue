@@ -110,7 +110,7 @@ import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
 import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
-import DefaultAvatar from '~/assets/images/commons/MYCURE Default Avatar.png';
+import DefaultAvatar from '~/assets/images/commons/mycure-default-avatar.png';
 
 export default {
   components: {
@@ -168,7 +168,7 @@ export default {
       return this.item?.name;
     },
     picURL () {
-      return this.item?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
+      return this.item?.picURL || require('~/assets/images/commons/mycure-default-avatar.png');
     },
     price () {
       return this.item?.price;

@@ -3,13 +3,13 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Mobile Clinics Full"
+      background-image="Mobile-Clinics-Full"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="The simplest LIS for Mobile Labs"
       meta-title="MYCURE LIS for Mobile Labs"
       description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
       btn-text="Get Started"
-      image="Mobile Clinics Mobile Version"
+      image="Mobile-Clinics-Mobile-Version"
       custom-image-path="diagnostics/mobile-labs/"
       parse-title
       parse-meta-title
@@ -161,11 +161,11 @@ export default {
   data () {
     this.reportMockups = [
       {
-        image: 'Imaging Report',
+        image: 'Imaging-Report',
         value: 'imaging',
       },
       {
-        image: 'Mobile Labs Laboratory',
+        image: 'Mobile-Labs-Laboratory',
         value: 'lab',
       },
     ];
@@ -196,7 +196,7 @@ export default {
         description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),

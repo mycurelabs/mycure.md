@@ -191,18 +191,18 @@ export default {
 <style scoped>
 .pricing-bg-png {
   width: 100vw;
-  background-image: url('../../../assets/images/pricing/MYCURE-Pricing BG Wide.png');
+  background-image: url('../../../assets/images/pricing/mycure-pricing-bg-wide.png');
   background-position: center center;
   background-size: 100% 100%;
 }
 .pricing-bg-webp {
   width: 100vw;
-  background-image: url('../../../assets/images/pricing/MYCURE-Pricing BG Wide.webp');
+  background-image: url('../../../assets/images/pricing/mycure-pricing-bg-wide.webp');
   background-position: center center;
   background-size: 100% 100%;
 }
 .pricing-bg-mobile {
-  background-image: url('../../../assets/images/pricing/MYCURE-Pricing BG Mobile.png');
+  background-image: url('../../../assets/images/pricing/mycure-pricing-bg-mobile.png');
   background-position: center bottom;
   background-size: 100% 100%;
 }

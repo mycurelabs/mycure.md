@@ -4,10 +4,10 @@
     usp(
       has-custom-background
       extension-exclusive
-      background-image="MYCURE-CSI-Landing Page"
+      background-image="mycure-csi-landing-page"
       title="Simply plug and play"
       meta-title="MYCURE CSI"
-      image="MYCURE-CSI-Landing Page-Mobile"
+      image="mycure-csi-landing-page-mobile"
       image-col-offset="1"
       custom-image-path="csi/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
@@ -86,27 +86,27 @@ export default {
     this.features = [
       {
         title: 'Grade A+ SSL',
-        icon: 'Grade A+ SSL',
+        icon: 'Grade-A-Plus-SSL',
         iconExtension: '.webp',
       },
       {
-        title: 'Data Encryption',
-        icon: 'Data Encryption',
+        title: 'Data-Encryption',
+        icon: 'Data-Encryption',
         iconExtension: '.webp',
       },
       {
         title: 'User Designated Access',
-        icon: 'User Designated Access',
+        icon: 'User-Designated-Access',
         iconExtension: '.webp',
       },
       {
         title: 'Secure Cloud Hosting',
-        icon: 'Secure Cloud Hosting',
+        icon: 'Secure-Cloud-Hosting',
         iconExtension: '.webp',
       },
       {
         title: 'Data Privacy Standards',
-        icon: 'Data Privacy standards',
+        icon: 'Data-Privacy-standards',
         iconExtension: '.webp',
       },
     ];
@@ -116,7 +116,7 @@ export default {
       description: 'MYCURE follows global standards and has open APIs that allow you to integrate or fortify your other systems with MYCURE.',
       contentAlign: 'right',
       imageBindings: {
-        image: 'As your practice grows.png',
+        image: 'as-your-practice-grows.png',
         imageAlt: 'Hospitals growing and scaling up artwork',
         customPath: 'commons/',
         extensionExclusive: true,
