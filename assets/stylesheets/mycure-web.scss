@@ -15,6 +15,7 @@ $font-xs: 16px;
 $font-s: 1.25rem;
 $font-ms: 1.75rem;
 $font-m: 2rem;
+$font-lm: 2.3rem;
 $font-l: 3rem;
 $font-xl: 3.75rem;
 $font-2xl: 6rem;
@@ -41,6 +42,11 @@ $letter-spacing: -0.5px;
 }
 .font-l {
   font-size: $font-l !important;
+  line-height: 1.5;
+  letter-spacing: $letter-spacing;
+}
+.font-lm {
+  font-size: $font-lm !important;
   line-height: 1.5;
   letter-spacing: $letter-spacing;
 }
@@ -93,6 +99,8 @@ $letter-spacing: -0.5px;
     font-size: $font-xl !important;
   } @else if ($size == l) {
     font-size: $font-l !important;
+  } @else if ($size == lm) {
+    font-size: $font-lm !important;
   } @else if ($size == m) {
     font-size: $font-m !important;
   } @else if ($size == ms) {
@@ -186,6 +194,17 @@ classBinder(this, {
   }
   @media (min-width: $min-xl) {
     @include font-sizer(xl);
+  }
+}
+.mc-title-set-5 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(lm);
   }
 }
 
