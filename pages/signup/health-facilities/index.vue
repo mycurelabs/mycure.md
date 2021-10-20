@@ -188,7 +188,7 @@
                   outlined
                   :dense="!$isWideScreen"
                   :disabled="loading.form"
-                  :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'No negative values allowed' : 'Please enter your PRC License No for verification')] "
+                  :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'Value not allowed' : 'Please enter your PRC License No for verification')] "
                 ).no-details-margin
                   //- hint="Please enter your PRC License No for verification"
             div(v-if="!invitation").font-italic.font-gray.mt-4
@@ -628,7 +628,7 @@ export default {
           ...from && { from },
           organizationType: this.facilityType,
         };
-
+        console.table(payload);
         // Only include PRC when user is a doctor
         if (this.doc_PRCLicenseNo && this.isDoctor) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
 
