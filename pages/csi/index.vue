@@ -142,7 +142,7 @@ export default {
     return headMeta({
       title: 'MYCURE Compliance Security Interoperability',
       description: 'MYCURE offers a customizable clinic management system that allows API integration to ensure a smooth experience for doctors and clinics.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   mounted () {
