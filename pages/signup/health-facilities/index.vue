@@ -189,28 +189,6 @@
                 clearable
                 :disabled="loading.form"
               )
-              v-checkbox(
-                v-model="hasPromoCode"
-                hide-details
-                color="primary"
-                style="margin-top: 0px"
-                :disabled="loading.form"
-              )
-                template(slot="label")
-                  span I have a&nbsp;
-                    strong.primary--text promo code
-                    | .
-              v-text-field(
-                v-if="hasPromoCode"
-                v-model="stripeCoupon"
-                :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
-                label="Promo Code"
-                outlined
-                dense
-                clearable
-                :disabled="loading.form"
-                :class="{'pt-1': $isMobile}"
-              )
             v-col(
               cols="12"
               md="6"
@@ -239,6 +217,33 @@
                 :dense="$isMobile"
                 :disabled="loading.form"
                 :rules="isRequired"
+              )
+            v-col(
+              cols="12"
+              md="6"
+              :class="{ 'pa-1': !$isMobile }"
+            ).order-md-9.order-sm-9
+              v-checkbox(
+                v-model="hasPromoCode"
+                hide-details
+                color="primary"
+                style="margin-top: 0px"
+                :disabled="loading.form"
+              )
+                template(slot="label")
+                  span I have a&nbsp;
+                    strong.primary--text promo code
+                    | .
+              v-text-field(
+                v-if="hasPromoCode"
+                v-model="stripeCoupon"
+                :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
+                label="Promo Code"
+                outlined
+                dense
+                clearable
+                :disabled="loading.form"
+                :class="{'pt-1': $isMobile}"
               )
             v-col(
               cols="12"
