@@ -98,10 +98,6 @@ export default {
       UserAgent: '*',
       Disallow: '/forgot-password',
     },
-    {
-      UserAgent: '*',
-      Disallow: '/features',
-    },
     // Temporary disallow CSI since content is not yet complete
     {
       UserAgent: '*',
