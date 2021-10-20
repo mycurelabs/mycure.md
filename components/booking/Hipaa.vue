@@ -7,9 +7,9 @@
             v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
               div.text-center
                 picture-source(
+                  image="mycure-hipaa-badge"
                   :image-width="$vuetify.breakpoint.width > 1919 ? '465px' : ($isRegularScreen ? '266.66px' : '226px')"
                   :image-height="$vuetify.breakpoint.width > 1919 ? '449.41px' : ($isRegularScreen ? '257.7px' : '218.42px')"
-                  image="MYCURE-HIPAA Badge"
                   :image-file-extension="$useWebp? '.webp' : '.png'"
                   image-alt="HIPAA Compliance Seal"
                 )

@@ -132,7 +132,7 @@ export default {
     return headMeta({
       title: 'MYCURE Patient Relationship Management',
       description: 'Build lasting connections with your patients with MYCURE’s medical CRM by making quick calls and appointments to reinforce continuity of care in effective ways.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   mounted () {
