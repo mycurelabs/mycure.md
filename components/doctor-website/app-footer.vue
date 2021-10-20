@@ -12,7 +12,7 @@
               div(:class="{'text-center justify-center': $isMobile}").d-flex
                 p.mt-1 #[b Powered by]
                 img(
-                  src="~/assets/images/MYCURE Logo - white.png"
+                  src="~/assets/images/mycure-logo-white.png"
                   width="120px"
                   height="34.46px"
                   alt="MYCURE logo"

@@ -84,7 +84,7 @@ import VClamp from 'vue-clamp';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
-import CoverPlaceholder from '~/assets/images/directory-results/Directory Card image - Clinic.png';
+import CoverPlaceholder from '~/assets/images/directory-results/Directory-Card-image-Clinic.png';
 import { formatAddress } from '~/utils/formats';
 export default {
   components: {

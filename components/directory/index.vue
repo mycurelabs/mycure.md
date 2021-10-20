@@ -16,7 +16,7 @@
             v-col(cols="12" :class="{'pa-0': $isMobile}")
               nuxt-link(to="/")
                 img(
-                  src="~/assets/images/MYCURE Logo - black.png"
+                  src="~/assets/images/MYCURE-Logo-black.png"
                   width="120px"
                   height="34.46px"
                   alt="MYCURE logo"

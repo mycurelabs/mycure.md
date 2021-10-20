@@ -17,7 +17,7 @@
         v-col(cols="12")
           v-row(v-if="!$isMobile" justify="center")
             picture-source(
-              image="Problem Statement"
+              image="problem-statement"
               image-alt="Mother and child in the hospital, Patients waiting in line, and Dentist treating a patient artwork"
               :image-file-extension="$useWebp? '.webp' : '.png'"
               custom-path="clinics/dental/"

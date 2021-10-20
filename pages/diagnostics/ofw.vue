@@ -3,13 +3,13 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="OFW Clinics Full"
+      background-image="ofw-clinics-full"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="The first and only medical software for OFW clinics"
       meta-title="MYCURE for OFW Medical Clinics"
       description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
       btn-text="Get Started"
-      image="OFW Clinics Mobile"
+      image="ofw-clinics-mobile"
       custom-image-path="clinics/ofw/"
       parse-title
       parse-meta-title
@@ -41,7 +41,7 @@
               image-file-extension=".png"
               extension-exclusive
               custom-path="clinics/ofw/"
-              image="Beautiful reports"
+              image="beautiful-reports"
             )
     //- h1.text-center.my-16 Design your own packages panel (placeholder)
     //- 4th panel
@@ -266,7 +266,7 @@ export default {
         contentAlign: 'right',
         imageBindings: {
           customPath: 'commons/',
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
@@ -279,8 +279,8 @@ export default {
         description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'MYCURE - OFW The Stakes.png',
-          mobileImage: 'MYCURE - OFW The Stakes.png',
+          image: 'mycure-ofw-the-stakes.png',
+          mobileImage: 'mycure-ofw-the-stakes.png',
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'clinics/ofw/',
           extensionExclusive: true,

@@ -94,7 +94,7 @@ export default {
         text: 'Visit Doctor',
         type: 'physical',
         color: 'accent',
-        image: 'Clinic Visit',
+        image: 'Clinic-Visit',
         alt: 'Doctor talking to a patient in a hospital room',
       },
     ];

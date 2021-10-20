@@ -13,7 +13,7 @@
               v-col(cols="1")
                 nuxt-link(to="/")
                   img(
-                    src="~/assets/images/MYCURE Logo - white.png"
+                    src="~/assets/images/mycure-logo-white.png"
                     width="120px"
                     height="34.46px"
                     alt="MYCURE logo"

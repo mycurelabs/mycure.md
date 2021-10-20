@@ -3,13 +3,13 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Skin Clinics Full Illu"
+      background-image="skin-clinics-full-illu"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Skin and Aesthetic Clinic Management System for a Flawless Experience"
       meta-title="MYCURE for Skin Clinics"
       description="Easy appointment, inventory management and secure client records and relationship management with analytics and reporting."
       btn-text="Get Started"
-      image="Skin Clinics USP Mobile"
+      image="skin-clinics-usp-mobile"
       custom-image-path="clinics/skin/"
       parse-title
       parse-meta-title
@@ -174,27 +174,27 @@ export default {
     this.features = [
       {
         title: 'Digital Medical Records',
-        icon: 'Digital Records',
+        icon: 'digital-records',
         iconExtension: '.png',
       },
       {
         title: 'Smart Attachments',
-        icon: 'Smart Attachments',
+        icon: 'smart-attachments',
         iconExtension: '.png',
       },
       {
         title: 'Point-of-Sales',
-        icon: 'Point of Sales',
+        icon: 'point-of-sales',
         iconExtension: '.png',
       },
       {
         title: 'Inventory Management',
-        icon: 'Inventory Management',
+        icon: 'inventory-management',
         iconExtension: '.png',
       },
       {
         title: 'Works Offline',
-        icon: 'Works Offline',
+        icon: 'works-offline',
         iconExtension: '.png',
       },
     ];
@@ -240,7 +240,7 @@ export default {
       return {
         contentAlign: 'left',
         imageBindings: {
-          image: 'Beautiful User experience.png',
+          image: 'beautiful-user-experience.png',
           imageAlt: 'Body diagram in a tablet',
           extensionExclusive: true,
           customPath: 'clinics/skin/',
@@ -256,7 +256,7 @@ export default {
         contentAlign: 'right',
         imageBindings: {
           customPath: 'commons/',
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
@@ -275,8 +275,8 @@ export default {
         contentAlign: 'left',
         imageBindings: {
           customPath: 'clinics/skin/',
-          image: 'Multiple locations.png',
-          mobileImage: 'Multiple locations mobile.png',
+          image: 'multiple-locations.png',
+          mobileImage: 'multiple-locations-mobile.png',
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
@@ -290,8 +290,8 @@ export default {
         description: 'Don’t give a reason to lose to your competition. Complement your top notch skin services with a modern, robust and complete system.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'Skin - The Stakes.png',
-          mobileImage: 'Skin - The Stakes.png',
+          image: 'skin-the-stakes.png',
+          mobileImage: 'skin-the-stakes.png',
           imageAlt: 'Doctor listening to patient feedback',
           customPath: 'clinics/skin/',
           extensionExclusive: true,
