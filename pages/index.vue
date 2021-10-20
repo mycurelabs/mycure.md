@@ -42,9 +42,9 @@
         div.cta-image.text-center
           picture-source(
             image="CTA"
-            :image-file-extension="$useWebp? '.webp' : '.png'"
             custom-path="home/"
             image-alt="CTA Home"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
             :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
             :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
             :image-styles="{ marginBottom: '-7px' }"
@@ -69,11 +69,11 @@ export default {
     PictureSource,
     SevenWonders,
     Simple: () => import('~/components/home/Simple'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     Tools: () => import('~/components/home/Tools'),
-    Steps: () => import('~/components/commons/panels/Steps'),
-    Stakes: () => import('~/components/commons/panels/Stakes'),
-    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   async asyncData (context) {
     const metricsData = await fetchWebsiteMetrics();
@@ -123,7 +123,7 @@ export default {
     return headMeta({
       title: 'MYCURE | Enterprise-Grade Healthcare Solutions',
       description: 'MYCURE is a suite of cost-effective healthcare management solutions designed for doctors, clinics, diagnostic labs, and hospitals.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   mounted () {

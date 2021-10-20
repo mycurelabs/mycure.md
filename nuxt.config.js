@@ -28,7 +28,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preload', type: 'image', href: '~/assets/images/home/Homepage USP BG.webp' },
+      { rel: 'preload', type: 'image', href: '~/assets/images/home/homepage-usp-bg.webp' },
     ],
   },
 
@@ -134,7 +134,7 @@ export default {
     treeShake: true,
     optionsPath: './vuetify.options.js',
   },
-  
+
   // Google Analytics Module
   googleAnalytics: {
     id: process.env.GA_ID,

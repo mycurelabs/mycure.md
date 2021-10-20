@@ -1,6 +1,10 @@
 <template lang="pug">
   v-app#app
-    template(v-if="!loading")
+    //- NOTE: remove loading
+    //- so solve seo issue
+    //- do not remove yet
+    //- div(v-if="!loading")
+    div
       nuxt
 </template>
 

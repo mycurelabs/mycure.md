@@ -4,7 +4,7 @@
       picture-source(
         v-if="!$isMobile"
         image-file-extension=".png"
-        image="Homepage USP BG"
+        image="homepage-usp-bg"
         image-alt="Bushes and clouds background artwork"
         custom-path="home/"
         :image-styles="backgroundStyle"
@@ -224,13 +224,13 @@ export default {
 } */
 .video-bg {
   /* height: 1000px; */
-  background-image: url('~/assets/images/home/Homepage USP BG.png');
+  background-image: url('~/assets/images/home/homepage-usp-bg.png');
   background-position: left top;
   background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('~/assets/images/home/Homepage USP BG Mobile.png');
+  background-image: url('~/assets/images/home/homepage-usp-bg-mobile.png');
   background-position: center bottom;
 }
 .custom-btn::before {

@@ -264,7 +264,7 @@
         v-divider
         v-card-text(style="height: 300px").pa-0
           v-list
-            v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
+            v-list-item(v-for="(country, key) in countriesList" @click="selectCountry(country)" :key="key")
               v-list-item-action
                 img(width="25" :src="country.flag")
               v-list-item-content
@@ -417,6 +417,7 @@ export default {
       countryDialog: false,
       searchString: '',
       countries: [],
+      countriesList: [],
       countryCallingCode: '',
       countryFlag: '',
       // UI States
@@ -447,7 +448,7 @@ export default {
     return headMeta({
       title: 'Sign Up to MYCURE',
       description: 'Welcome to MYCURE Complete Clinic Management System. Sign up today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   computed: {
@@ -479,11 +480,11 @@ export default {
   },
   watch: {
     searchString (val) {
-      if (typeof val !== 'string' || val === '') {
+      if (typeof val !== 'string') {
         return;
       }
       const needle = val.toLowerCase();
-      this.countries = this.countries.filter(v => v?.name?.toLowerCase().includes(needle)); // eslint-disable-line
+      this.countriesList = this.countries.filter(v => v?.name?.toLowerCase().includes(needle)); // eslint-disable-line
     },
     facilityType (val) {
       if (!isEmpty(val)) {
@@ -700,10 +701,12 @@ export default {
         if (process.browser) {
           if (!localStorage.getItem('mycure:countries')) {
             this.countries = await getCountries();
+            this.countriesList = await getCountries();
             console.log('countries', this.countries);
             localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
           } else {
             this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+            this.countriesList = JSON.parse(localStorage.getItem('mycure:countries'));
           }
         }
       } catch (e) {
