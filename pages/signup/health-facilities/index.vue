@@ -291,7 +291,7 @@
             div(style="position: absolute; top: 35%; left: 0; width: 100%")
               v-col(cols="12")
                 v-row(justify="center")
-                  v-col(cols="10" sm="4")
+                  v-col(cols="7" sm="4")
                     img(
                       width="100%"
                       src="~/assets/images/sign-up/referral-fg.png"
