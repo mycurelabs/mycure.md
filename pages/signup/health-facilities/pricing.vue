@@ -74,7 +74,7 @@
           p {{ errorMessage }}
         v-card-actions
           v-spacer
-          v-btn(color="success" depressed :to="initialRoute").text-none Back
+          v-btn(color="success" depressed :to="initialRoute" @click="console.log(initialRoute);").text-none Back
           v-spacer
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
@@ -293,6 +293,7 @@ export default {
           skipMobileNoVerification: true,
           ...omit(this.step1LocalStorageData, omitKeys),
         };
+        console.table(payload);
 
         // Check if there is pending subscription Id
         if (this.subscriptionId) {

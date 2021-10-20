@@ -188,7 +188,7 @@
                   outlined
                   :dense="!$isWideScreen"
                   :disabled="loading.form"
-                  :rules="[v => !!v && numPRC > 0 || numPRC > 0 ? 'Please enter your PRC License No for verification' : 'No negative values allowed'] "
+                  :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'No negative values allowed' : 'Please enter your PRC License No for verification')] "
                 ).no-details-margin
                   //- hint="Please enter your PRC License No for verification"
             div(v-if="!invitation").font-italic.font-gray.mt-4
@@ -211,7 +211,7 @@
                   v-text-field(
                     v-if="hasPromoCode"
                     v-model="stripeCoupon"
-                    :rules="[v => !!v && hasPromoCode && stripeCoupon > 0 || stripeCoupon < 0 ? 'No negative values allowed' : 'Please input your promo code']"
+                    :rules="[v => !!v && hasPromoCode && (stripeCoupon > 0) || (stripeCoupon < 0 ? 'Value not allowed' : 'Please input your promo code')]"
                     placeholder="Promo Code"
                     outlined
                     dense
@@ -474,7 +474,7 @@ export default {
       return this.loading.form || !this.valid || !this.agree || !this.areSelectionsValid;
     },
     numPRC () {
-      return parseInt(this.doc_PRCLicenseNo);
+      return this.doc_PRCLicenseNo ? parseInt(this.doc_PRCLicenseNo) : 0;
     },
   },
   watch: {
