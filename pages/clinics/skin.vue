@@ -232,7 +232,7 @@ export default {
     return headMeta({
       title: 'MYCURE Skin and Aesthetics | POS Clinic Management System',
       description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE provides dermatologists an easy way to beautifully manage their practice.',
-      socialBanner: require('~/assets/images/banners/MYCURE - Skin Clinic OG BANNER.png'),
+      socialBanner: require('~/assets/images/banners/skin-clinic-og-banner.png'),
     });
   },
   computed: {

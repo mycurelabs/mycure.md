@@ -115,7 +115,7 @@ export default {
     return headMeta({
       title: 'MYCURE Hospital Management System | REST API Integration',
       description: 'MYCURE helps hospitals manage their entire system from bookings to medical records, processing fees, and API integration with existing systems.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   computed: {
