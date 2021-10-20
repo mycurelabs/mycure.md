@@ -21,7 +21,7 @@
             v-col(cols="12").text-center
               picture-source(
                 custom-path="diagnostics/mobile-labs/"
-                image="Mobile Labs Problem Statement"
+                image="Mobile-Labs-Problem-Statement"
                 image-alt="Mobile labs workflow"
                 image-file-extension=".png"
                 :image-width="$isRegularScreen ? '945px' : '1445px'"
@@ -56,19 +56,19 @@ export default {
     this.items = [
       {
         title: 'Book Appointments',
-        icon: '1-Appointments Mobile',
+        icon: '1-Appointments-Mobile',
       },
       {
         title: 'Register via Kiosk',
-        icon: '2-Register Mobile',
+        icon: '2-Register-Mobile',
       },
       {
         title: 'Specimen Collection Queueing',
-        icon: '3-Queueing Mobile',
+        icon: '3-Queueing-Mobile',
       },
       {
         title: 'Online and Printed Results',
-        icon: '4-Results Mobile',
+        icon: '4-Results-Mobile',
       },
     ];
     this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];

@@ -104,7 +104,7 @@ export default {
   computed: {
     imgBindings () {
       return {
-        image: 'Let us do the work.webp',
+        image: 'let-us-the-work.webp',
         imageAlt: 'Hospital and smartphone artwork',
         customPath: 'commons/',
         width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),

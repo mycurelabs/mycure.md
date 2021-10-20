@@ -3,13 +3,13 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Corporate Clinics Full"
+      background-image="corporate-clinics-full"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Manage your Company Clinic with Ease"
       meta-title="MYCURE for Corporate Clinics"
       description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."
       btn-text="Get Started"
-      image="Corporate Clinics Mobile"
+      image="corporate-clinics-mobile"
       custom-image-path="clinics/corporate/"
       parse-title
       parse-meta-title
@@ -109,7 +109,7 @@ export default {
     this.features = [
       {
         title: 'Online Health Records',
-        icon: 'Online Health Records',
+        icon: 'online-health-records',
         iconExtension: '.png',
       },
       {
@@ -124,7 +124,7 @@ export default {
       },
       {
         title: 'COVID-19 Test and Vaccine Tracker',
-        icon: 'Covid vaccine tracker',
+        icon: 'covid-vaccine-tracker',
         iconExtension: '.png',
       },
     ];
@@ -145,8 +145,8 @@ export default {
         title: 'Low Safety Monitoring',
         description: 'With the ‘new normal’ due to the pandemic, a robust health system would greatly complement HR’s processes on vaccine and testing tracking.',
         imageBindings: {
-          image: 'Low Safety Monitoring.png',
-          mobileImage: 'Low Safety Monitoring.png',
+          image: 'low-safety-monitoring.png',
+          mobileImage: 'low-safety-monitoring.png',
           imageAlt: 'Woman confused at list',
           customPath: 'clinics/corporate/',
           extensionExclusive: true,
@@ -157,8 +157,8 @@ export default {
         title: 'Low Productivity',
         description: 'Having a health platform with analytics could provide helpful insights that can help in creating activities to boost productivity.',
         imageBindings: {
-          image: 'Low Productivity.png',
-          mobileImage: 'Low Productivity.png',
+          image: 'low-productivity.png',
+          mobileImage: 'low-productivity.png',
           imageAlt: 'Man sleeping on the job due to slow software',
           customPath: 'clinics/corporate/',
           extensionExclusive: true,
@@ -206,8 +206,8 @@ export default {
         contentAlign: 'left',
         imageBindings: {
           customPath: 'clinics/skin/',
-          image: 'Multiple locations.png',
-          mobileImage: 'Multiple locations mobile.png',
+          image: 'multiple-locations.png',
+          mobileImage: 'multiple-locations-mobile.png',
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),

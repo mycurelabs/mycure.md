@@ -1,7 +1,7 @@
 <template lang="pug">
   div.bg-container
     picture-source(
-      image="Doctor Website - Foreground Hills and Clinics"
+      image="Doctor-Website-Foreground-Hills-and-Clinics"
       :image-file-extension="$useWebp? '.webp' : '.png'"
       custom-path="doctor-website/"
       image-alt="Clinic in the middle of hills artwork"
@@ -11,7 +11,7 @@
         //- TODO: Refactoring needed in creatives side
         //- v-col(v-if="patientsTotal <= 10 && patientsTotal > 0" cols="3" md="1")
         //-   picture-source(
-        //-     image="Patient 1"
+        //-     image="Patient-1"
         //-     :image-file-extension="$useWebp? '.webp' : '.png'"
         //-     custom-path="doctor-website/"
         //-     image-alt="Patient vector art"

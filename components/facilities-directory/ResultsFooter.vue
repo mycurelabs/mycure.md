@@ -17,7 +17,7 @@
                 v-row.pl-3.py-5
                   v-row(align="center" :justify="$isMobile ? 'center' : 'start' ").call-number.white--text Powered by
                     img(
-                      src="~/assets/images/MYCURE Logo - white.png"
+                      src="~/assets/images/mycure-logo-white.png"
                       width="120px"
                       height="34.46px"
                       alt="MYCURE logo"
@@ -79,19 +79,19 @@ export default {
         {
           name: 'MYCURE - Facebook',
           link: 'https://www.facebook.com/mycure.md',
-          icon: 'Fb - white.png',
+          icon: 'Fb-white.png',
           id: 'footer-fb-btn',
         },
         {
           name: 'MYCURE - Instagram',
           link: 'https://www.instagram.com/mycure.md/',
-          icon: 'Instagram - white.png',
+          icon: 'Instagram-white.png',
           id: 'footer-ig-btn',
         },
         {
           name: 'MYCURE - Twitter',
           link: 'https://twitter.com/mycureapp',
-          icon: 'Twitter - white.png',
+          icon: 'Twitter-white.png',
           id: 'footer-twitter-btn',
         },
       ],

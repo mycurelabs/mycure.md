@@ -678,17 +678,17 @@ a {
 }
 
 .bg-png {
-  background-image: url('../../assets/images/clinics-website/Clinic Website BG.png');
+  background-image: url('../../assets/images/clinics-website/clinic-website-bg.png');
 }
 
 /* .bg-webp {
-  background-image: url('../../assets/images/clinics-website/Clinic Website BG.webp');
+  background-image: url('../../assets/images/clinics-website/clinic-website-bg.webp');
 } */
 .construct-bg-png {
-  background-image: url('../../assets/images/clinics-website/MYCURE - Construction.png');
+  background-image: url('../../assets/images/clinics-website/under-construction.png');
 }
 .construct-bg-webp {
-  background-image: url('../../assets/images/clinics-website/MYCURE - Construction.webp');
+  background-image: url('../../assets/images/clinics-website/under-construction.webp');
 }
 .custom-clinic-button {
   height: 70px !important;

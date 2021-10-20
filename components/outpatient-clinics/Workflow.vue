@@ -28,7 +28,7 @@
                   v-col(cols="12").text-center
                     picture-source(
                       custom-path="clinics/"
-                      image="Problem Statement"
+                      image="problem-statement"
                       image-alt="Clinic workflow"
                       :image-file-extension="$useWebp? '.webp' : '.png'"
                       :image-width=" $isRegularScreen ? '850px' : '1300px' "
@@ -71,11 +71,11 @@ export default {
       },
       {
         title: 'Nurse Triage',
-        icon: '3M-Nurse Triage',
+        icon: '3m-nurse-triage',
       },
       {
         title: 'Doctor\'s Consult',
-        icon: '4M-Doctors Consult',
+        icon: '4m-doctors-consult',
       },
       {
         title: 'Diagnostics',

@@ -192,13 +192,13 @@ export default {
   top: 0;
 }
 .bg-png {
-  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.png');
+  background-image: url('../../assets/images/doctor-website/Doctor-Website-Background-Clouds.png');
 }
 .bg-webp {
-  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.webp');
+  background-image: url('../../assets/images/doctor-website/Doctor-Website-Background-Clouds.webp');
 }
 .bg-newpng {
-  background-image: url('../../assets/images/doctor-website/Doctor Clinics BG.png');
+  background-image: url('../../assets/images/doctor-website/Doctor-Clinics-BG.png');
 }
 .panel-bg {
   background-size: cover;

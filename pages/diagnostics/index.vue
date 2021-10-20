@@ -3,12 +3,12 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Diagnostics Landing Page"
+      background-image="Diagnostics-Landing-Page"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Your Diagnostic Center Transformed"
       meta-title="MYCURE Diagnostic"
       description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
-      image="Diagnostics Mobile USP"
+      image="Diagnostics-Mobile-USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"
       parse-title
@@ -176,7 +176,7 @@ export default {
       },
       {
         title: 'Booking System',
-        icon: 'Booking Systems',
+        icon: 'Booking-Systems',
         iconExtension: '.webp',
       },
       {
@@ -191,7 +191,7 @@ export default {
       },
       {
         title: 'Online Results',
-        icon: 'Online Results',
+        icon: 'Online-Results',
         iconExtension: '.webp',
       },
     ];
@@ -258,7 +258,7 @@ export default {
             'Quick Appointment Booking',
           ],
           imageBindings: {
-            image: 'Fast results.webp',
+            image: 'Fast-results.webp',
             imageAlt: 'Sending out health results artwork',
             customPath: 'diagnostics/',
             width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
@@ -297,7 +297,7 @@ export default {
         title: 'Expand your Reach',
         description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
         imageBindings: {
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
@@ -327,8 +327,8 @@ export default {
         description: 'And this can be costly! Not only do these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'Diagnostic Stakes.png',
-          mobileImage: 'Diagnostic Stakes.png',
+          image: 'Diagnostic-Stakes.png',
+          mobileImage: 'Diagnostic-Stakes.png',
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'diagnostics/',
           extensionExclusive: true,
@@ -365,7 +365,7 @@ export default {
 <style scoped>
 .diagnostics-bg {
   width: 100vw;
-  background-image: url('../../assets/images/diagnostics/Diagnostics Landing Page.png');
+  background-image: url('../../assets/images/diagnostics/Diagnostics-Landing-Page.png');
   background-position: center center;
   background-size: contain;
 }
