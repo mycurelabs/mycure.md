@@ -13,9 +13,9 @@ $max-lg: $min-xl - 1;
 // Font Presets
 $font-xs: 16px;
 $font-s: 1.25rem;
-$font-ms: 1.75rem;
+$font-ms: 1.75rem; // size between medium-small (for titles with font-s content)
 $font-m: 2rem;
-$font-lm: 2.3rem;
+$font-lm: 2.3rem; // size between large-medium (for titles with font-m content)
 $font-l: 3rem;
 $font-xl: 3.75rem;
 $font-2xl: 6rem;
