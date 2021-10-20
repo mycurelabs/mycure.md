@@ -119,7 +119,7 @@ export default {
     PictureSource,
     PricingCard,
   },
-  layout: 'user',
+  layout: 'empty',
   data () {
     this.subscriptionMappings = SUBSCRIPTION_MAPPINGS;
     this.publishableKey = process.env.STRIPE_PK;

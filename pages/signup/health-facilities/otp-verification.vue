@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(v-if="!loading" fluid fill-height).pa-0.ma-0
     v-row(style="height: 100vh")
-      v-col(cols="6" v-if="!$isMobile" style="background: #DEDEE8;").pa-0.text-center
+      v-col(cols="6" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
         v-row(style="height: 100vh" align="center" justify="center")
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
       v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
@@ -149,7 +149,7 @@ import { verifyMobileNo, signin, resendVerificationCode } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 const COUNTDOWN_MILLIS = 60000;
 export default {
-  layout: 'user',
+  layout: 'empty',
   data () {
     this.dayOrNight = dayOrNight();
     return {
@@ -234,6 +234,7 @@ export default {
         //   document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
         // });
 
+        this.$vuetify.theme.dark = false;
         const step1Data = JSON.parse(localStorage.getItem('facility:step1:model'));
         if (!step1Data?.email) {
           this.$nuxt.$router.push({ name: 'signup-health-facilities' });

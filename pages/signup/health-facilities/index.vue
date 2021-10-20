@@ -1,20 +1,20 @@
 <template lang="pug">
   v-container(v-if="!loading.page" fluid fill-height).pa-0.ma-0
     v-row(style="height: 100vh")
-      v-col(cols="6" v-if="!$isMobile" style="background: #DEDEE8;").pa-0
+      v-col(cols="6" v-if="!$isMobile").pa-0.bg-panel
         v-row(style="height: 100vh" align="center" justify="center")
-          v-col.text-center
-            img(
-              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-              alt="White MYCURE Logo"
-              width="150px"
-              height="41.88px"
-              @click="$router.push({ name: 'index' })"
-            ).link-to-home
-            br
-            img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
+          //- v-col.text-center
+          //-   img(
+          //-     src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+          //-     alt="White MYCURE Logo"
+          //-     width="150px"
+          //-     height="41.88px"
+          //-     @click="$router.push({ name: 'index' })"
+          //-   ).link-to-home
+          //-   br
+          //-   img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
       v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
-        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'pt-10']").rounded-tl-xl.rounded-bl-xl
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'py-8']").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
           v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
             v-row
               v-col(cols="10")
@@ -25,7 +25,7 @@
               v-col(
                 cols="12"
                 md="6"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-1.order-sm-1
                 //- First Name
                 v-text-field(
@@ -34,16 +34,15 @@
                   placeholder="First Name"
                   outlined
                   :dense="!$isWideScreen"
-                  hide-details
                   :rules="isRequired"
                   :disabled="loading.form"
-                ).ma-0
+                ).ma-0.no-details-margin
                   template(v-slot:append v-if="firstName")
                     v-icon(color="accent") mdi-check
               v-col(
                 cols="12"
                 md="6"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-2.order-sm-2
                 //- Last Name
                 v-text-field(
@@ -51,16 +50,15 @@
                   placeholder="Last Name"
                   outlined
                   :dense="!$isWideScreen"
-                  hide-details
                   :rules="isRequired"
                   :disabled="loading.form"
-                ).ma-0
+                ).ma-0.no-details-margin
                   template(v-slot:append v-if="lastName")
                     v-icon(color="accent") mdi-check
               v-col(
                 cols="12"
                 md="6"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-3.order-sm-3
                 //- Email
                 v-text-field(
@@ -68,17 +66,16 @@
                   placeholder="Email"
                   outlined
                   :dense="!$isWideScreen"
-                  hide-details
                   :rules="emailRules"
                   :disabled="loading.form"
                   @keyup="checkEmail"
-                ).mb-0
+                ).mb-0.no-details-margin
                   template(v-slot:append v-if="isEmailValid && emailUnique")
                     v-icon(color="accent") mdi-check
               v-col(
                 cols="12"
                 md="6"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-4.order-sm-6
                 //- Mobile No.
                 v-text-field(
@@ -87,12 +84,11 @@
                   type="number"
                   outlined
                   :dense="!$isWideScreen"
-                  hide-details
                   :prefix="`+${countryCallingCode}`"
                   :disabled="loading.form"
                   :rules="[...isRequired, mobileNumberRule]"
                   @keypress="checkNumberInput($event)"
-                ).mb-0
+                ).mb-0.no-details-margin
                   template(slot="append")
                     div(style="margin-top: -8px")
                       v-icon(v-if="mobileNoError && mobileUnique" color="accent").ml-n10 mdi-check
@@ -103,24 +99,23 @@
                         | Change Country
               v-col(
                 cols="12"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-5.order-sm-4
                 //- Password
                 v-text-field(
                   v-model="password"
                   placeholder="Password"
                   outlined
-                  hide-details
                   :dense="!$isWideScreen"
                   :type="showPass ? 'text' : 'password'"
                   :rules="passwordRules"
                   :disabled="loading.form"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                   @click:append="showPass = !showPass"
-                )
+                ).no-details-margin
               v-col(
                 cols="12"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-6.order-sm-5
                 //- Confirm Password
                 v-text-field(
@@ -128,11 +123,10 @@
                   placeholder="Confirm Password"
                   type="password"
                   outlined
-                  hide-details
                   :dense="!$isWideScreen"
                   :rules="[...isRequired, matchPasswordRule]"
                   :disabled="loading.form"
-                )
+                ).no-details-margin
                   template(v-slot: append v-if="confirmPassword && confirmPassword === password")
                     v-icon(color="accent") mdi-check
             p.mt-5.mb-2 Facility Info
@@ -140,7 +134,7 @@
               v-col(
                 cols="12"
                 md="8"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-7.order-sm-7
                 div(@click="chooseFacilityTypeDialog = true")
                   v-select(
@@ -151,14 +145,13 @@
                     outlined
                     :dense="!$isWideScreen"
                     readonly
-                    hide-details
                     append-icon="$dropdown"
                     :items="availableFacilityTypes"
                     :rules="isRequired"
                     :error="errorFacilityType"
                     :error-messages="errorMessagesFacilityType"
                     @click:append="chooseFacilityTypeDialog = true"
-                  )
+                  ).no-details-margin
                     template(v-slot:item="{ item }")
                       span {{ item.text }}&nbsp;
                         v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
@@ -168,7 +161,7 @@
               v-col(
                 cols="12"
                 md="4"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-8.order-sm-8
                 v-select(
                   v-model="roles"
@@ -177,29 +170,27 @@
                   item-value="value"
                   outlined
                   :dense="!$isWideScreen"
-                  hide-details
                   :error-messages="errorMessagesRoles"
                   :items="userRoles"
                   :rules="isRequired"
                   :disabled="loading.form"
                   :error="errorRoles"
-                )
+                ).no-details-margin
               v-col(
                 cols="12"
-                :class="[{ 'pa-1': !$isMobile }, { 'mb-3': $isWideScreen }]"
+                :class="{ 'pa-1': !$isMobile }"
               ).order-md-8.order-sm-8
                 v-text-field(
                   v-if="isDoctor"
                   v-model="doc_PRCLicenseNo"
                   type="number"
                   placeholder="PRC License No"
-                  hint="Please enter your PRC License No for verification"
                   outlined
                   :dense="!$isWideScreen"
-                  hide-details
                   :disabled="loading.form"
-                  :rules="isRequired"
-                )
+                  :rules="[v => !!v && numPRC > 0 || numPRC > 0 ? 'Please enter your PRC License No for verification' : 'No negative values allowed'] "
+                ).no-details-margin
+                  //- hint="Please enter your PRC License No for verification"
             div(v-if="!invitation").font-italic.font-gray.mt-4
               span Have a referral code?&nbsp;
               a(@click="codeDialog = true") Click here
@@ -211,30 +202,29 @@
               v-model="hasPromoCode"
               hide-details
               color="primary"
+              height="57.97px"
               :disabled="loading.form"
             ).mt-0
               template(slot="label")
-                span.mt-3.mb-3 Apply a promo code (Optional)&nbsp;
+                span Apply a promo code (Optional)&nbsp;&nbsp;
                 div(width="200px")
                   v-text-field(
                     v-if="hasPromoCode"
                     v-model="stripeCoupon"
-                    :rules="[v => !!v && hasPromoCode || 'Please input your promo code']"
+                    :rules="[v => !!v && hasPromoCode && stripeCoupon > 0 || stripeCoupon < 0 ? 'No negative values allowed' : 'Please input your promo code']"
                     placeholder="Promo Code"
                     outlined
                     dense
                     clearable
-                    hide-details
                     :disabled="loading.form"
                     :class="{'pt-1': $isMobile}"
                     @click.stop
-                  )
+                  ).no-details-margin
             v-checkbox(
               v-model="agree"
-              hide-details
               color="primary"
               :disabled="loading.form"
-            ).ma-0
+            ).ma-0.no-details-margin
               template(slot="label")
                 span I agree to MYCURE's&nbsp;
                   a(target="_blank" rel="noopener noreferrer" href="../terms" @click.stop style="text-decoration: none") Terms of Use&nbsp;
@@ -289,18 +279,49 @@
       @select="onFacilityTypeSelect($event)"
     )
     //- referral code dilog
-    v-dialog(v-model="codeDialog")
-      v-card
-        v-card-text
-          v-text-field(
-            v-model="invitation"
-            label="Referral Code (Optional)"
-            hint="6 character referral code"
-            outlined
-            :dense="$isMobile"
-            clearable
-            :disabled="loading.form"
-          )
+    v-dialog(v-model="codeDialog" :width="$isMobile ? '100%' : '60%'").ma-0.rounded-xl
+      v-card(height="100%" width="100%").rounded-xl
+        v-card-text.pa-0
+          div(style="position: relative; left: 0; top: 0;")
+            img(
+              src="~/assets/images/sign-up/Referral-code.png"
+              width="100%"
+              style="background: #D7F7FE; position: relative; left: 0; top: 0;"
+            ).rounded-tl-xl.rounded-tr-xl
+            div(style="position: absolute; top: 35%; left: 0; width: 100%")
+              v-col(cols="12")
+                v-row(justify="center")
+                  v-col(cols="10" sm="4")
+                    img(
+                      width="100%"
+                      src="~/assets/images/sign-up/referral-fg.png"
+                    )
+          v-col(cols="12").text-center.pt-16.px-4.pb-4
+            div.mt-10.mb-5
+              span.font-m.black--text.font-weight-bold Enter Referral Code
+            v-col(cols="12")
+              v-row(justify="center")
+                v-col(cols="12" sm="5")
+                  v-text-field(
+                    v-model="invitation"
+                    label="Referral Code (Optional)"
+                    hint="6 character referral code"
+                    outlined
+                    :dense="$isMobile"
+                    clearable
+                    :disabled="loading.form"
+                  ).rounded-lg
+              v-row(justify="end")
+                v-col(cols="1" align="end")
+                  v-row(justify="end" align="end")
+                    v-btn(
+                      fab
+                      :width="$isWideScreen ? '100' : '70'"
+                      :height="$isWideScreen ? '100' : '70'"
+                      color="primary"
+                      @click="codeDialog = false"
+                    )
+                      v-icon mdi-arrow-right
 </template>
 
 <script>
@@ -329,7 +350,7 @@ export default {
     ChooseFacilityType,
     EmailVerificationDialog,
   },
-  layout: 'user',
+  layout: 'empty',
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
@@ -452,6 +473,9 @@ export default {
     isProceedDisabled () {
       return this.loading.form || !this.valid || !this.agree || !this.areSelectionsValid;
     },
+    numPRC () {
+      return parseInt(this.doc_PRCLicenseNo);
+    },
   },
   watch: {
     searchString (val) {
@@ -484,6 +508,7 @@ export default {
   methods: {
     async init () {
       try {
+        this.$vuetify.theme.dark = false;
         this.loading.form = true;
         // - Fetch countries
         await this.getCountries();
@@ -759,5 +784,24 @@ export default {
 ::v-deep input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.no-scroll-2 {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-details-margin >>> .v-text-field__details {
+  margin-bottom: 0px !important;
+}
+.bg-panel {
+  background-image: url('~/assets/images/sign-up/Signup-bg.png');
+  background-size: 100%;
+  background-position: center center;
 }
 </style>
