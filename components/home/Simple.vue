@@ -78,7 +78,7 @@ export default {
   computed: {
     imageBindings () {
       return {
-        image: 'Simple and Powerful',
+        image: 'simple-and-powerful',
         imageFileExtension: '.webp',
         imageAlt: 'Health application in Macbook laptop',
         imageWidth: this.$vuetify.breakpoint.width > 1919 ? '750px' : (this.$isRegularScreen ? '485px' : '250px'),

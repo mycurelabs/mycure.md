@@ -101,7 +101,7 @@ export default {
     return headMeta({
       title: 'MYCURE POS System for Pharmacy and Drugstores',
       description: 'MYCURE provides a POS system specifically catered to pharmacies and drugstores that make their inventory management easier.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   computed: {

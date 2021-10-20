@@ -53,7 +53,7 @@ export default {
     this.modules = [
       {
         name: 'Personal Details',
-        icon: 'Personal Details',
+        icon: 'personal-details-icon',
       },
       {
         name: 'Electronic Medical Records (EMR)',
@@ -85,7 +85,7 @@ export default {
       },
       {
         name: 'Physical Medical Exam',
-        icon: 'Physical Medical Exam',
+        icon: 'physical-medical-exam',
       },
       {
         name: 'Inventory',
@@ -93,7 +93,7 @@ export default {
       },
       {
         name: 'Ward Management',
-        icon: 'Ward Management',
+        icon: 'ward-management',
       },
       {
         name: 'Authentication & Authorization',
