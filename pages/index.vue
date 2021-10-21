@@ -1,8 +1,5 @@
 <template lang="pug">
   v-container(fluid).white
-    //- Remove for now to test SEO
-    //- template(v-if="!loading")
-    template
       //- 1st panel
       seven-wonders
       //- 2nd panel
