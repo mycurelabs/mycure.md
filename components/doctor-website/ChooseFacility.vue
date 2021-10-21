@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     onOrgSelect (organization) {
-      const pxpURL = `${process.env.PX_PORTAL_URL}/create-appointment/step-1?doctor=${this.doctorId}&clinic=${organization.id}&type=${this.appointmentType}`;
+      const pxpURL = `${process.env.PX_PORTAL_URL}/appointments/step-1?doctor=${this.doctorId}&clinic=${organization.id}&type=${this.appointmentType}`;
       // Track booking for GA
       this.$gtag.event('book', {
         event_category: 'doctor-website',
