@@ -107,7 +107,7 @@
               template(v-slot:item="data")
                 v-col(cols="12")
                   v-row.py-3
-                    v-col.mc-content-set-4
+                    v-col.mc-content-set-5
                       v-row
                         v-col.py-0
                           span.font-weight-semibold {{ data.item.name }}
