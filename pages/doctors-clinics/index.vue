@@ -3,11 +3,11 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Doctor Landing Page"
+      background-image="Doctor-Landing-Page"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
-      image="Doc USP"
+      image="Doc-USP"
       image-width="90%"
       custom-image-path="doctors-clinics/"
       image-align="right"
@@ -133,12 +133,12 @@ export default {
     this.features = [
       {
         title: 'Professional Website',
-        icon: 'Professional Website',
+        icon: 'Professional-Website',
         iconExtension: '.webp',
       },
       {
         title: 'Appointment Booking',
-        icon: 'Appointment Booking',
+        icon: 'Appointment-Booking',
         iconExtension: '.webp',
       },
       {
@@ -148,12 +148,12 @@ export default {
       },
       {
         title: 'Digital Records',
-        icon: 'Digital Records',
+        icon: 'Daily-Reports',
         iconExtension: '.webp',
       },
       {
         title: 'Daily Reports',
-        icon: 'Daily Reports',
+        icon: 'Daily-Reports',
         iconExtension: '.webp',
       },
     ];
@@ -202,8 +202,8 @@ export default {
           contentAlign: 'left',
           imageBindings: {
             customPath: 'doctors-clinics/',
-            image: 'Lightning fast.webp',
-            mobileImage: 'Lightning fast mobile.png',
+            image: 'Lightning-fast.webp',
+            mobileImage: 'Lightning-fast-mobile.png',
             imageAlt: 'Print preview of health prescription receipt',
             width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
             height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '324.5px' : '523.62px'),
@@ -215,8 +215,8 @@ export default {
           contentAlign: 'right',
           imageBindings: {
             customPath: 'doctors-clinics/',
-            image: 'Going digital.webp',
-            mobileImage: 'Going digital mobile.png',
+            image: 'Going-digital.webp',
+            mobileImage: 'Going-digital-mobile.png',
             imageAlt: 'Growth chart showing an increasing trend',
             width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
             height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '324.5px' : '523.62px'),
@@ -247,7 +247,7 @@ export default {
         ],
         contentAlign: 'right',
         imageBindings: {
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),

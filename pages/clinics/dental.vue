@@ -3,13 +3,13 @@
     //- 1st panel
     usp(
       has-custom-background
-      background-image="Dental Clinics USP - Full Illu"
+      background-image="dental-clinics-usp-full-illu"
       :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="The Dental Clinic Management System that makes you Smile"
       meta-title="MYCURE for Dental Clinics"
       description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
       btn-text="Get Started"
-      image="Dental Clinics USP - Mobile version"
+      image="dental-clinics-usp-mobile-version"
       custom-image-path="clinics/dental/"
       parse-title
       parse-meta-title
@@ -244,8 +244,8 @@ export default {
       return {
         contentAlign: 'left',
         imageBindings: {
-          image: 'Dental charts.png',
-          mobileImage: 'Dental charts mobile.png',
+          image: 'dental-charts.png',
+          mobileImage: 'dental-charts-mobile.png',
           imageAlt: 'Dental charts in a tablet',
           customPath: 'clinics/dental/',
           extensionExclusive: true,
@@ -261,7 +261,7 @@ export default {
         contentAlign: 'right',
         imageBindings: {
           customPath: 'commons/',
-          image: 'Expand your reach.webp',
+          image: 'expand-your-reach.webp',
           imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
@@ -280,8 +280,8 @@ export default {
         contentAlign: 'left',
         imageBindings: {
           customPath: 'clinics/skin/',
-          image: 'Multiple locations.png',
-          mobileImage: 'Multiple locations mobile.png',
+          image: 'multiple-locations.png',
+          mobileImage: 'multiple-locations-mobile.png',
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
@@ -295,8 +295,8 @@ export default {
         description: 'Do you still use paper charting to track history of your patient’s dental records? You may be losing to your competition.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'Dental - The Stakes.png',
-          mobileImage: 'Dental - The Stakes.png',
+          image: 'dental-the-stakes.png',
+          mobileImage: 'dental-the-stakes.png',
           imageAlt: 'Doctor with tons of paper work',
           customPath: 'clinics/dental/',
           extensionExclusive: true,

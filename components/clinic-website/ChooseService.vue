@@ -79,7 +79,7 @@ export default {
       pe: {
         text: 'PE Packages',
         value: 'pe',
-        image: 'PE Packages',
+        image: 'pe-packages',
         alt: 'Eye test examination artwork',
       },
       dental: {

@@ -9,7 +9,7 @@
             div(v-if="!$isMobile" style="width: 250px; height: 3px; background: #0099cc")
             div(v-else style="width: 100%; height: 3px; background: #0099cc")
           v-col(cols="12" md="4")
-            h2(:class="mainTitleClasses").secondary--text {{ name }}
+            h2.secondary--text.mc-title-set-2 {{ name }}
           v-col(cols="12" md="4")
             h3(:class="sectionClasses") About Us
             br

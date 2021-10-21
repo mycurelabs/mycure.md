@@ -84,7 +84,7 @@ import VClamp from 'vue-clamp';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
-import CoverPlaceholder from '~/assets/images/directory-results/Directory Card image - Clinic.png';
+import CoverPlaceholder from '~/assets/images/directory-results/Directory-Card-image-Clinic.png';
 import { formatAddress } from '~/utils/formats';
 export default {
   components: {
@@ -159,7 +159,7 @@ export default {
       return classBinder(this, {
         mobile: ['font-16'],
         regular: ['font-20'],
-        wide: ['font-28'],
+        wide: ['font-28', 'text-spacer'],
       });
     },
     textFontSize () {
@@ -251,5 +251,9 @@ export default {
 .container {
   position: relative;
   text-align: center;
+}
+.text-spacer {
+  line-height: 1.5;
+  letter-spacing: -0.5px;
 }
 </style>

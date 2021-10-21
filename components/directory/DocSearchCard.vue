@@ -130,7 +130,7 @@ export default {
       return fullName;
     },
     picURL () {
-      return this.doctor?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
+      return this.doctor?.picURL || require('~/assets/images/commons/mycure-default-avatar.png');
     },
     specialtiesText () {
       return this.doctor?.doc_specialties?.join(', ') || '';

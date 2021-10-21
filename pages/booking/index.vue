@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       v-bind="imageBindings"
-      background-image="Booking Landing Page"
+      background-image="Booking-Landing-Page"
       title="Easy Booking System to Grow Your Practice"
       meta-title="MYCURE Booking"
       description="Let your patients book and schedule appointments efficiently"
@@ -204,42 +204,42 @@ export default {
       {
         title: 'Set up your page',
         description: 'Create your professional website and add your availability preferences.',
-        icon: 'MYCURE - Product Step 1',
+        icon: 'MYCURE-Product-Step-1',
         iconExtension: '.webp',
         alt: 'Man browsing a website page artwork',
       },
       {
         title: 'Share your link',
         description: 'Send your website URL to your family, network, and patients.',
-        icon: 'MYCURE - Product Step 2',
+        icon: 'MYCURE-Product-Step-2',
         iconExtension: '.webp',
         alt: 'Woman pressing the share button artwork',
       },
       {
         title: 'Get booked',
         description: 'Patients pick a time and the consultation is added in your calendar',
-        icon: 'MYCURE - Product Step 3',
+        icon: 'MYCURE-Product-Step-3',
         iconExtension: '.webp',
         alt: 'Doctor and patient appointment confirmation artwork',
       },
     ];
     this.thirdPanelContents = [
       {
-        icon: 'Organized Patient visits',
+        icon: 'Organized-Patient-visits',
         iconExtension: '.webp',
         title: 'Systematic',
         description: 'Organized patient visits for easy COVID-19 safety compliance.',
         alt: 'Health checklist icon',
       },
       {
-        icon: 'open schedule',
+        icon: 'open-schedule',
         iconExtension: '.webp',
         title: 'Automated',
         description: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
         alt: 'Phone scheduling icon',
       },
       {
-        icon: 'covers from virtual',
+        icon: 'covers-from-virtual',
         iconExtension: '.webp',
         title: 'Flexible',
         description: 'Covers from virtual (telehealth) to physical (face to face) accommodation',
@@ -248,11 +248,11 @@ export default {
     ];
     this.websiteMockups = [
       {
-        image: 'Booking Page UI Mockup - Doctor',
+        image: 'Booking-Page-UI-Mockup-Doctor',
         value: 'doctor',
       },
       {
-        image: 'Booking Page UI Mockup - Clinic',
+        image: 'Booking-Page-UI-Mockup-Clinic',
         value: 'clinic',
       },
     ];
@@ -268,7 +268,7 @@ export default {
     this.howItWorksClass = ['mc-title-set-2'];
     this.headerClasses = ['mc-title-set-2', 'font-weight-semibold'];
     this.imageBindings = {
-      image: 'Booking Mobile',
+      image: 'Booking-Mobile',
       customImagePath: 'booking/',
       imageAlign: 'right',
       imageAlt: 'Booking a schedule on a phone artwork',
@@ -312,7 +312,7 @@ export default {
         title: 'Also available for Medium and Large-scale Facilities',
         description: 'MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.',
         imageBindings: {
-          image: 'As your practice grows.png',
+          image: 'as-your-practice-grows.png',
           imageAlt: 'Hospitals growing and scaling up artwork',
           customPath: 'commons/',
           extensionExclusive: true,

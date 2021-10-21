@@ -43,12 +43,12 @@ export default {
       {
         title: 'Online Results',
         description: 'Time to go digital for the new generation.',
-        image: 'Online Results BG',
+        image: 'Online-Results-BG',
       },
       {
         title: 'Online Booking',
         description: 'Help patients find the best schedule for their next visit.',
-        image: 'Online Booking BG',
+        image: 'Online-Booking-BG',
       },
     ];
     this.headerClasses = ['mc-title-set-1'];

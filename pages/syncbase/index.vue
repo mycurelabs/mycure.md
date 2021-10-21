@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid v-if="!loading").white
+  v-container(fluid).white
     //- 1st panel
     div(:class="$isMobile? 'syncbase-bg-mobile' : 'syncbase-bg'").mx-n3
       v-container
@@ -78,27 +78,27 @@ export default {
     this.features = [
       {
         title: 'Grade A+ SSL',
-        icon: 'Grade A+ SSL',
+        icon: 'Grade-A-Plus-SSL',
         iconExtension: '.webp',
       },
       {
-        title: 'Data Encryption',
-        icon: 'Data Encryption',
+        title: 'Data-Encryption',
+        icon: 'Data-Encryption',
         iconExtension: '.webp',
       },
       {
         title: 'User Designated Access',
-        icon: 'User Designated Access',
+        icon: 'User-Designated-Access',
         iconExtension: '.webp',
       },
       {
         title: 'Secure Cloud Hosting',
-        icon: 'Secure Cloud Hosting',
+        icon: 'Secure-Cloud-Hosting',
         iconExtension: '.webp',
       },
       {
         title: 'Data Privacy Standards',
-        icon: 'Data Privacy standards',
+        icon: 'Data-Privacy-standards',
         iconExtension: '.webp',
       },
     ];
@@ -149,12 +149,12 @@ export default {
 
 <style scoped>
 .syncbase-bg {
-  background-image: url('../../assets/images/syncbase/Syncbase BG.png');
+  background-image: url('../../assets/images/syncbase/Syncbase-BG.png');
   background-position: center center;
   background-size: 100%;
 }
 .syncbase-bg-mobile {
-  background-image: url('../../assets/images/syncbase/Syncbase BG.png');
+  background-image: url('../../assets/images/syncbase/Syncbase-BG.png');
   background-position: center bottom;
 }
 .grey-bg {
