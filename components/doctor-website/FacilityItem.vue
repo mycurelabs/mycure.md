@@ -12,8 +12,8 @@
           div
             v-clamp(
               autoresize
-              :max-lines="1"
-            ).font-weight-bold.mb-0.mc-title-set-2 {{ clinic.name }}&nbsp;
+              :max-lines="2"
+            ).font-weight-bold.mb-0.mc-title-set-5 {{ clinic.name }}&nbsp;
           //- Address
           v-row.mt-2
             v-icon(color="primary") mdi-home-variant-outline

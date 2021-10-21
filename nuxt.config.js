@@ -88,24 +88,20 @@ export default {
   robots: [
     {
       UserAgent: '*',
-      Disallow: '/payment',
+      Disallow: () => '/payment',
     },
     {
       UserAgent: '*',
-      Disallow: '/signup',
+      Disallow: () => '/signup',
     },
     {
       UserAgent: '*',
-      Disallow: '/forgot-password',
-    },
-    {
-      UserAgent: '*',
-      Disallow: '/features',
+      Disallow: () => '/forgot-password',
     },
     // Temporary disallow CSI since content is not yet complete
     {
       UserAgent: '*',
-      Disallow: '/csi',
+      Disallow: () => '/csi',
     },
   ],
   // Google Web Font Loader Module
@@ -154,7 +150,7 @@ export default {
     },
   },
   sitemap: {
-    hostname: 'https://mycure.md',
+    hostname: 'https://www.mycure.md',
     gzip: true,
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build

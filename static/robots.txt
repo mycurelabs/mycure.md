@@ -1,0 +1,12 @@
+UserAgent: *
+Disallow: /payment
+
+UserAgent: *
+Disallow: /signup
+
+UserAgent: *
+Disallow: /forgot-password
+
+UserAgent: *
+Disallow: /csi
+    
