@@ -231,6 +231,9 @@ export default {
         event_category: 'signup',
         event_label: 'signup-step-2-payment-success',
       });
+      // Remove stripe localStorage items
+      localStorage.removeItem('signup:subscription-id');
+      localStorage.removeItem('signup:stripe:session-id');
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
     if (this.paymentState === 'cancel') {
