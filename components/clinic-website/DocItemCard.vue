@@ -254,13 +254,13 @@ export default {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.doctor?.uid;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&clinic=${this.organization}&type=telehealth`;
+      return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=telehealth`;
     },
     bookPhysicalURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.doctor?.uid;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&clinic=${this.organization}&type=physical`;
+      return `${pxPortalUrl}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=physical`;
     },
     badgeSize () {
       return classBinder(this, {
