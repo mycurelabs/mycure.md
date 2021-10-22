@@ -23,7 +23,8 @@
               :should-auto-focus="true"
               :is-input-num="true"
               @on-change="otp = $event"
-            )
+              :class="{'mobile-otp': $isMobile}"
+            ).d-flex
           //- Verify button
           v-col(cols="12")
             v-btn(
@@ -444,6 +445,10 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.mobile-otp >>> .otp-input {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 @media screen and (min-width: 768px) {
   .main-container {

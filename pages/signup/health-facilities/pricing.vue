@@ -66,7 +66,7 @@
             @click="retryPayment"
           ).text-none Retry Now
     //- Error
-    v-dialog(v-model="errorDialog" width="400" persistent)
+    v-dialog(v-model="errorDialog" width="400")
       v-card
         v-card-text.pa-10.text-center
           v-icon(style="font-size: 40px;").error--text mdi-close
@@ -74,7 +74,7 @@
           p {{ errorMessage }}
         v-card-actions
           v-spacer
-          v-btn(color="success" depressed :to="initialRoute").text-none Back
+          v-btn(color="success" depressed @click="errorDialog = false").text-none Back
           v-spacer
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card

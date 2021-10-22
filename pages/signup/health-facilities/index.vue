@@ -260,6 +260,7 @@
             hide-details
             clearable
             flat
+            @click:clear="searchString = ''"
           )
         v-divider
         v-card-text(style="height: 300px").pa-0
@@ -279,7 +280,7 @@
       @select="onFacilityTypeSelect($event)"
     )
     //- referral code dilog
-    v-dialog(v-model="codeDialog" :width="$isMobile ? '100%' : '60%'").ma-0.rounded-xl
+    v-dialog(v-model="codeDialog" :width="$isMobile ? '100%' : '60%'" content-class="rounded-xl").ma-0
       v-card(height="100%" width="100%").rounded-xl
         v-card-text.pa-0
           div(style="position: relative; left: 0; top: 0;")
@@ -291,12 +292,12 @@
             div(style="position: absolute; top: 35%; left: 0; width: 100%")
               v-col(cols="12")
                 v-row(justify="center")
-                  v-col(cols="7" sm="4")
+                  v-col(cols="5" sm="4")
                     img(
                       width="100%"
                       src="~/assets/images/sign-up/referral-fg.png"
                     )
-          v-col(cols="12").text-center.pt-16.px-4.pb-4
+          v-col(cols="12" :class="$isMobile ? 'pt-14' : 'pt-12' ").text-center.pt-12.px-4.pb-2
             div.mt-10.mb-5
               span.font-m.black--text.font-weight-bold Enter Referral Code
             v-col(cols="12")
@@ -307,6 +308,7 @@
                     label="Referral Code (Optional)"
                     hint="6 character referral code"
                     outlined
+                    hide-details
                     :dense="$isMobile"
                     clearable
                     :disabled="loading.form"
@@ -804,7 +806,10 @@ export default {
 }
 .bg-panel {
   background-image: url('~/assets/images/sign-up/Signup-bg.png');
-  background-size: 100%;
+  background-size: cover;
   background-position: center center;
+}
+.rounded-ref-dialog {
+  border-radius: 50px;
 }
 </style>
