@@ -199,7 +199,7 @@ export default {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const appointmentType = this.serviceType === 'telehealth' ? 'telehealth' : 'physical';
-      const bookURL = `${pxPortalUrl}/appointments/step-1?service=${this.selectedService}&clinic=${this.organization}&type=${appointmentType}`;
+      const bookURL = `${pxPortalUrl}/create-appointment/step-1?service=${this.selectedService}&clinic=${this.organization}&type=${appointmentType}`;
       window.location.href = bookURL;
     },
     hasSchedules (item) {
