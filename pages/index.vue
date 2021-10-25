@@ -6,6 +6,7 @@
     seven-wonders
     //- 2nd panel
     pre {{ $isMobile }}
+    pre {{ $vuetify.breakpoint.width }}
     care(:metrics-data="metricsData")
     //- 3rd panel
     stakes(

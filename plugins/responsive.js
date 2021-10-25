@@ -1,18 +1,19 @@
 import Vue from 'vue';
 
-const mixin = {
-  computed: {
-    $isMobile () {
-      return this.$vuetify.breakpoint.width < 1015;
+export default (context) => {
+  const mixin = {
+    computed: {
+      $isMobile () {
+        return context.$vuetify.breakpoint.width < 1015;
+      },
+      /* Used if you do not want changes to transcend to widescreens */
+      $isRegularScreen () {
+        return context.$vuetify.breakpoint.width > 1014 && context.$vuetify.breakpoint.width < 1904;
+      },
+      $isWideScreen () {
+        return context.$vuetify.breakpoint.width > 1903;
+      },
     },
-    /* Used if you do not want changes to transcend to widescreens */
-    $isRegularScreen () {
-      return this.$vuetify.breakpoint.width > 1014 && this.$vuetify.breakpoint.width < 1904;
-    },
-    $isWideScreen () {
-      return this.$vuetify.breakpoint.width > 1903;
-    },
-  },
+  };
+  Vue.mixin(mixin);
 };
-
-Vue.mixin(mixin);
