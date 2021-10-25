@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app#app
-    mc-navbar(v-show="!loading")
+    mc-navbar
     div(style="padding-top: 35px")
       nuxt
-    mc-footer(v-show="!loading")
+    mc-footer
 </template>
 
 <script>
@@ -16,14 +16,8 @@ export default {
     McNavbar,
     McFooter,
   },
-  data () {
-    return {
-      loading: true,
-    };
-  },
   mounted () {
     this.$vuetify.theme.dark = false;
-    this.loading = false;
     window.$crisp.push(['do', 'chat:show']);
   },
 };

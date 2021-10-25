@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.footer-gray
+  div(v-show="!loading").footer-gray
     v-container
       v-row(justify="center")
         v-col(cols="12" md="10")
@@ -84,6 +84,7 @@
 export default {
   data () {
     return {
+      loading: true,
       footerItems: [
         {
           type: 'footer-header',
@@ -178,6 +179,9 @@ export default {
         },
       ],
     };
+  },
+  created () {
+    this.loading = false;
   },
   methods: {
     toggleChat () {
