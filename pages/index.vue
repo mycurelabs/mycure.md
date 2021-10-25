@@ -5,6 +5,7 @@
     //- 1st panel
     seven-wonders
     //- 2nd panel
+    pre {{ $isMobile }}
     care(:metrics-data="metricsData")
     //- 3rd panel
     stakes(
