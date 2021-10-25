@@ -3,6 +3,7 @@
     //- 1st panel
     seven-wonders
     //- 2nd panel
+    pre {{ $screen.width }}
     care(:metrics-data="metricsData")
     //- 3rd panel
     stakes(
@@ -74,7 +75,7 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     Tools: () => import('~/components/home/Tools'),
   },
-  async asyncData (context) {
+  async asyncData ({ $screen }) {
     const metricsData = await fetchWebsiteMetrics();
     return { metricsData };
   },
@@ -125,7 +126,7 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

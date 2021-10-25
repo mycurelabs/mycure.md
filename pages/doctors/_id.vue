@@ -240,20 +240,26 @@ export default {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
   },
-  async mounted () {
+  async created () {
     this.loading = false;
-    this.dataLoading = true;
-    if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
-      // Record new
-      await recordWebsiteVisit({ uid: this.doctor.id });
+    try {
+      this.dataLoading = true;
+      if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
+        // Record new
+        await recordWebsiteVisit({ uid: this.doctor.id });
+      }
+      // Fetch metrics
+      await this.fetchMetrics();
+      // Fetch Doctor info
+      this.fetchDoctorInfo();
+      // Record Page view for Google analytics
+      this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      this.dataLoading = false;
+      console.warn('loaded!');
     }
-    // Fetch metrics
-    await this.fetchMetrics();
-    // Fetch Doctor info
-    this.fetchDoctorInfo();
-    // Record Page view for Google analytics
-    this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
-    this.dataLoading = false;
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
