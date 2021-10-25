@@ -159,7 +159,7 @@ export default {
       'vue-clamp',
       'resize-detector',
     ],
-    extractCss: true,
+    // extractCss: true,
     /*
     ** You can extend webpack config here
     */
