@@ -45,6 +45,7 @@ export default {
     '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-lazyload.js',
     '~/plugins/vue-gtag.js',
+    '~/plugins/responsive.js',
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
     { src: '~/plugins/main.js' },
     { src: '~/plugins/mc-btn', mode: 'client' },

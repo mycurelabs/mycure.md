@@ -4,10 +4,10 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import ResponsiveMixins from '~/mixins/responsiveMixins';
+// import Vue from 'vue';
+// import ResponsiveMixins from '~/mixins/responsiveMixins';
 
-Vue.mixin(ResponsiveMixins);
+// Vue.mixin(ResponsiveMixins);
 
 export default {};
 </script>

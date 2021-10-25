@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import ResponsiveMixins from '~/mixins/responsiveMixins';
+// import Vue from 'vue';
+// import ResponsiveMixins from '~/mixins/responsiveMixins';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 
-Vue.mixin(ResponsiveMixins);
+// Vue.mixin(ResponsiveMixins);
 
 export default {
   components: {
