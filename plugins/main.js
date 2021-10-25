@@ -6,18 +6,19 @@ export default (context, inject) => {
   const useWebp = async () => await CanUseWebp();
   inject('useWebp', useWebp);
   context.$useWebp = useWebp;
+  context.$screen = Vue.prototype.$screen;
 
   Vue.mixin({
     computed: {
       $isMobile () {
-        return context.$vuetify.breakpoint.width < 1015;
+        return context.$screen.width < 1015;
       },
       /* Used if you do not want changes to transcend to widescreens */
       $isRegularScreen () {
-        return context.$vuetify.breakpoint.width > 1014 && context.$vuetify.breakpoint.width < 1904;
+        return context.$screen.width > 1014 && context.$screen.width < 1904;
       },
       $isWideScreen () {
-        return context.$vuetify.breakpoint.width > 1903;
+        return context.$screen.width > 1903;
       },
     },
   });
