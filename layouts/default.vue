@@ -1,9 +1,10 @@
 <template lang="pug">
   v-app#app
-    mc-navbar(v-show="!loading")
-    div(style="padding-top: 35px")
-      nuxt
-    mc-footer(v-show="!loading")
+    client-only
+      mc-navbar
+      div(style="padding-top: 35px")
+        nuxt
+      mc-footer
 </template>
 
 <script>
