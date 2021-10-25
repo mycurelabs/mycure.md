@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!pageLoading").main-container.my-16.pb-8
+  v-container.main-container.my-16.pb-8
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="5")
         v-col.text-center

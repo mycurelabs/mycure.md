@@ -1,15 +1,19 @@
 <template lang="pug">
   v-app#app
-    mc-navbar(v-if="!loading")
+    mc-navbar
     div(style="padding-top: 35px")
       nuxt
-    mc-footer(v-if="!loading")
+    mc-footer
 </template>
 
 <script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
 // - components
 import McNavbar from '~/components/home/AppNavbar';
 import McFooter from '~/components/commons/mc-footer';
+
+Vue.mixin(ResponsiveMixins);
 
 export default {
   components: {

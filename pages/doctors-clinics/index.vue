@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(fluid).white
     //- 1st panel
     usp(
       has-custom-background
@@ -182,9 +182,7 @@ export default {
     this.eightPanelContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'white--text'];
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
-    return {
-      loading: true,
-    };
+    return {};
   },
   head () {
     return headMeta({
@@ -275,9 +273,6 @@ export default {
         ],
       };
     },
-  },
-  mounted () {
-    this.loading = false;
   },
 };
 </script>

@@ -31,8 +31,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
+
+Vue.mixin(ResponsiveMixins);
+
 export default {
   layout: 'default',
   props: {

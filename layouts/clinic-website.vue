@@ -10,6 +10,10 @@
 
 <script>
 import 'babel-polyfill';
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
+
+Vue.mixin(ResponsiveMixins);
 
 export default {
   data () {

@@ -137,9 +137,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import OtpInput from '@bachdgvn/vue-otp-input';
 import dayOrNight from '~/utils/day-or-night';
 import { verifyMobileNo, signin, resendVerificationCode } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
+
+Vue.component('VOtpInput', OtpInput);
+
 const COUNTDOWN_MILLIS = 60000;
 export default {
   layout: 'user',

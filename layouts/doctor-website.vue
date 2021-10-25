@@ -6,12 +6,17 @@
     //- div(v-if="!loading")
     div
       nuxt
-    app-footer(v-if="!loading")
+    app-footer
 </template>
 
 <script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
 import AppBar from '~/components/doctor-website/app-bar';
 import AppFooter from '~/components/doctor-website/app-footer';
+
+Vue.mixin(ResponsiveMixins);
+
 export default {
   components: {
     AppBar,

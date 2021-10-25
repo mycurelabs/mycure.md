@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app(style="overflow: hidden;")#app
-    v-row(v-if="!loading" :class="contentClasses" fill-height fluid)
+    v-row(:class="contentClasses" fill-height fluid)
       v-col(:class="[contentClasses, footerClasses]").footer-bg
         nuxt
     v-row(align="center" justify="center").text-center.footer.pb-3
@@ -13,15 +13,20 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
 // - utils
 // import VueScrollTo from 'vue-scrollto';
 import dayOrNight from '../utils/day-or-night';
+
+Vue.mixin(ResponsiveMixins);
+
 const FORCED_DAY = true;
+
 export default {
   data () {
     return {
       dayOrNight: '',
-      loading: false,
     };
   },
   computed: {
@@ -39,7 +44,6 @@ export default {
     async init () {
       this.dayOrNight = await dayOrNight(FORCED_DAY);
       this.$vuetify.theme.dark = this.dayOrNight === 'night';
-      this.loading = false;
     },
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });

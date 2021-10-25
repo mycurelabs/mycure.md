@@ -21,7 +21,12 @@
   </template>
 
 <script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
 import dayOrNight from '../utils/day-or-night';
+
+Vue.mixin(ResponsiveMixins);
+
 export default {
   data () {
     return {

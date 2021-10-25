@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  div.white
     //- 1st panel
     usp(
       title="Build lasting connections with your patients"

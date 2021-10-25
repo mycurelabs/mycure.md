@@ -46,7 +46,7 @@ export default {
     '~/plugins/vue-lazyload.js',
     '~/plugins/vue-gtag.js',
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
-    { src: '~/plugins/main.js', mode: 'client' },
+    { src: '~/plugins/main.js' },
     { src: '~/plugins/mc-btn', mode: 'client' },
     { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
@@ -159,6 +159,7 @@ export default {
       'vue-clamp',
       'resize-detector',
     ],
+    extractCss: true,
     /*
     ** You can extend webpack config here
     */

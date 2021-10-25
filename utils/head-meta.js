@@ -22,37 +22,37 @@ export default ({ title, description, socialBanner }) => {
       // facebook meta
       {
         hid: 'locale',
-        name: 'og:locale',
+        property: 'og:locale',
         content: LANG,
       },
       {
         hid: 'type',
-        name: 'og:type',
+        property: 'og:type',
         content: TYPE,
       },
       {
         hid: 'og:url',
-        name: 'og:url',
+        property: 'og:url',
         content: URL,
       },
       {
         hid: 'og:title',
-        name: 'og:title',
+        property: 'og:title',
         content: title,
       },
       {
         hid: 'og:site_name',
-        name: 'og:site_name',
+        property: 'og:site_name',
         content: SITE_NAME,
       },
       {
         hid: 'og:description',
-        name: 'og:description',
+        property: 'og:description',
         content: description,
       },
       {
         hid: 'og:image',
-        name: 'og:image',
+        property: 'og:image',
         content: socialBanner,
       },
       // twitter meta

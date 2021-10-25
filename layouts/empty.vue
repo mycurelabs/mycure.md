@@ -3,6 +3,15 @@
     nuxt
 </template>
 
+<script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
+
+Vue.mixin(ResponsiveMixins);
+
+export default {};
+</script>
+
 <style>
 #app {
   max-width: 100%;

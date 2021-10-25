@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid v-if="!loading")
+  v-container(fluid)
     //- 1st panel
     usp.pb-5.mx-n3
     //- 2nd panel

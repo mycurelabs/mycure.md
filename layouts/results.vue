@@ -1,10 +1,15 @@
 <template lang="pug">
   v-app#app
     nuxt(:class="$isMobile? 'mobile-margin' : ['mb-16', 'pb-10']")
-    results-footer(v-if="!loading").footer
+    results-footer.footer
 </template>
 
 <script>
+import Vue from 'vue';
+import ResponsiveMixins from '~/mixins/responsiveMixins';
+
+Vue.mixin(ResponsiveMixins);
+
 export default {
   components: {
     AppBar: () => import('~/components/home/AppBar'),

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")#top.pt-3
+  div#top.pt-3
     div.header.mb-5
       v-container
         v-row(align="center" :class="{'header-container': !$isMobile}")

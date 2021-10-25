@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  div.white
     //- 1st panel
     usp(
       title="Sales and stock reporting made simple"
