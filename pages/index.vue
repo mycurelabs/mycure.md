@@ -125,9 +125,6 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  mounted () {
-    console.log('isMobile', this.$isMobile);
-  },
 };
 </script>
 

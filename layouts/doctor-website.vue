@@ -10,25 +10,17 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import ResponsiveMixins from '~/mixins/responsiveMixins';
+// import Vue from 'vue';
+// import ResponsiveMixins from '~/mixins/responsiveMixins';
 import AppBar from '~/components/doctor-website/app-bar';
 import AppFooter from '~/components/doctor-website/app-footer';
 
-Vue.mixin(ResponsiveMixins);
+// Vue.mixin(ResponsiveMixins);
 
 export default {
   components: {
     AppBar,
     AppFooter,
-  },
-  data () {
-    return {
-      loading: true,
-    };
-  },
-  mounted () {
-    this.loading = false;
   },
 };
 </script>

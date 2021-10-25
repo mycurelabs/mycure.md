@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import ResponsiveMixins from '~/mixins/responsiveMixins';
+// import Vue from 'vue';
+// import ResponsiveMixins from '~/mixins/responsiveMixins';
 // - components
 import McNavbar from '~/components/home/AppNavbar';
 import McFooter from '~/components/commons/mc-footer';
 
-Vue.mixin(ResponsiveMixins);
+// Vue.mixin(ResponsiveMixins);
 
 export default {
   components: {
