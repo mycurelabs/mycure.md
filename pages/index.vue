@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-hsow="!loading" fluid).white
+  v-container(v-show="!loading" fluid).white
     //- 1st panel
     seven-wonders
     //- 2nd panel
