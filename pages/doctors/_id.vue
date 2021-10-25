@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-show="!loading").main-container
+  div.main-container
     //- Dialogs
     choose-appointment(
       v-model="appointmentDialog"
@@ -25,6 +25,7 @@
       :is-verified="isVerified"
       :is-bookable="isBookable"
       :is-preview-mode="isPreviewMode"
+      :loading="dataLoading"
       @book="onBook"
     )
 
@@ -143,6 +144,7 @@ export default {
     return {
       // - UI State
       loading: true,
+      dataLoading: false,
       showSnack: false,
       appointmentDialog: false,
       facilityDialog: false,
@@ -240,6 +242,7 @@ export default {
   },
   async mounted () {
     this.loading = false;
+    this.dataLoading = true;
     if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
       // Record new
       await recordWebsiteVisit({ uid: this.doctor.id });
@@ -250,6 +253,7 @@ export default {
     this.fetchDoctorInfo();
     // Record Page view for Google analytics
     this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
+    this.dataLoading = false;
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
