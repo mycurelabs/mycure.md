@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app(style="overflow: hidden;")#app
-    v-row(v-if="!loading" :class="contentClasses" fill-height fluid)
+    v-row(v-show="!loading" :class="contentClasses" fill-height fluid)
       v-col(:class="[contentClasses, footerClasses]").footer-bg
         nuxt
     v-row(align="center" justify="center").text-center.footer.pb-3

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  div(v-show="!loading").white
     //- 1st panel
     usp(
       title="Advanced Patient-centric hospital software"

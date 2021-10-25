@@ -1,6 +1,6 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    directory(v-if="!loading" :class="{'pb-5': $isMobile}").services
+    directory(v-show="!loading" :class="{'pb-5': $isMobile}").services
 </template>
 
 <script>

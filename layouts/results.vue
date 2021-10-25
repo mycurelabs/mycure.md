@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app#app
     nuxt(:class="$isMobile? 'mobile-margin' : ['mb-16', 'pb-10']")
-    results-footer(v-if="!loading").footer
+    results-footer(v-show="!loading").footer
 </template>
 
 <script>

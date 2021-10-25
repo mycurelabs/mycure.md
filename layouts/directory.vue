@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app#app.pa-0
-    directory-app-bar(v-if="!loading")
+    directory-app-bar(v-show="!loading")
     nuxt
 </template>
 

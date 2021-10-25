@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app#app
-    mc-navbar(v-if="!loading")
+    mc-navbar(v-show="!loading")
     div(style="padding-top: 35px")
       nuxt
-    mc-footer(v-if="!loading")
+    mc-footer(v-show="!loading")
 </template>
 
 <script>

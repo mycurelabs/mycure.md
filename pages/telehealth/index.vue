@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(v-show="!loading" fluid).white
     //- 1st panel
     usp(
       has-custom-background

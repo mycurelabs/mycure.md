@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").main-container
+  div(v-show="!loading").main-container
     //- Dialogs
     choose-appointment(
       v-model="appointmentDialog"

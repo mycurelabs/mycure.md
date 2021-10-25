@@ -6,7 +6,7 @@
     //- div(v-if="!loading")
     div
       nuxt
-    app-footer(v-if="!loading")
+    app-footer(v-show="!loading")
 </template>
 
 <script>
