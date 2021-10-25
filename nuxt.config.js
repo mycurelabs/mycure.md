@@ -49,7 +49,7 @@ export default {
     { src: '~/plugins/main.js' },
     { src: '~/plugins/responsive.js', mode: 'client' },
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
-    { src: '~/plugins/mc-btn', mode: 'client' },
+    { src: '~/plugins/mc-btn' },
     { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~/plugins/crisp.js', mode: 'client' },

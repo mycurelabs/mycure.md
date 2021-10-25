@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid).white
+  v-container(v-if="!loading" fluid).white
     //- Remove for now to test SEO
     //- 1st panel
     seven-wonders
@@ -128,7 +128,7 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

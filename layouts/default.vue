@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app#app
-    mc-navbar
+    mc-navbar(v-if="!loading")
     div(style="padding-top: 35px")
       nuxt
-    mc-footer
+    mc-footer(v-if="!loading")
 </template>
 
 <script>
@@ -21,9 +21,11 @@ export default {
       loading: true,
     };
   },
-  mounted () {
+  created () {
     this.$vuetify.theme.dark = false;
     this.loading = false;
+  },
+  mounted () {
     window.$crisp.push(['do', 'chat:show']);
   },
 };
