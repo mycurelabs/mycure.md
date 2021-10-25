@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app#app
-    mc-navbar
+    mc-navbar(v-if="!loading")
     div(style="padding-top: 35px")
       nuxt
-    mc-footer
+    mc-footer(v-if="!loading")
 </template>
 
 <script>
@@ -16,6 +16,11 @@ export default {
     McNavbar,
     McFooter,
   },
+  data () {
+    return {
+      loading: true,
+    };
+  },
   watch: {
     '$screen.width' (val) {
       console.warn('screen is now', val);
@@ -23,6 +28,7 @@ export default {
   },
   mounted () {
     this.$vuetify.theme.dark = false;
+    this.loading = false;
     window.$crisp.push(['do', 'chat:show']);
   },
 };

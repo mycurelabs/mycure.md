@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid).white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     seven-wonders
     //- 2nd panel
@@ -75,9 +75,12 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     Tools: () => import('~/components/home/Tools'),
   },
-  async asyncData ({ $screen }) {
+  async asyncData ({ $vuetify }) {
     const metricsData = await fetchWebsiteMetrics();
-    return { metricsData };
+    console.log('$vuetify', $vuetify);
+    return {
+      metricsData,
+    };
   },
   data () {
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];

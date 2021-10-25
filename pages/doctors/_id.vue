@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.main-container
+  div(v-if="!loading").main-container
     //- Dialogs
     choose-appointment(
       v-model="appointmentDialog"
@@ -240,7 +240,7 @@ export default {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
   },
-  async created () {
+  async mounted () {
     this.loading = false;
     try {
       this.dataLoading = true;
