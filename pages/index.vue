@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-show="!loading" fluid).white
+  v-container(fluid).white
     //- 1st panel
     seven-wonders
     //- 2nd panel
@@ -124,11 +124,6 @@ export default {
       description: 'MYCURE is a suite of cost-effective healthcare management solutions designed for doctors, clinics, diagnostic labs, and hospitals.',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
-  },
-  watch: {
-    '$screen.width' (val) {
-      console.warn('screen is now', val);
-    },
   },
   mounted () {
     this.loading = false;

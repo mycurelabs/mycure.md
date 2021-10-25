@@ -16,6 +16,11 @@ export default {
     McNavbar,
     McFooter,
   },
+  watch: {
+    '$screen.width' (val) {
+      console.warn('screen is now', val);
+    },
+  },
   mounted () {
     this.$vuetify.theme.dark = false;
     window.$crisp.push(['do', 'chat:show']);

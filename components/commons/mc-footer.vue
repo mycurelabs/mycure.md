@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-show="!loading").footer-gray
+  div.footer-gray
     v-container
       v-row(justify="center")
         v-col(cols="12" md="10")

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-show="!loading")
+  div
     v-app-bar(
       height="50"
       app
