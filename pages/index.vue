@@ -125,6 +125,11 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
+  watch: {
+    '$screen.width' (val) {
+      console.warn('screen is now', val);
+    },
+  },
   mounted () {
     this.loading = false;
   },
