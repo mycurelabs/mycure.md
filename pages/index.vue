@@ -77,7 +77,6 @@ export default {
   },
   async asyncData ({ $vuetify }) {
     const metricsData = await fetchWebsiteMetrics();
-    console.log('$vuetify', $vuetify);
     return {
       metricsData,
     };
