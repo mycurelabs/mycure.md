@@ -127,6 +127,10 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
+  mounted () {
+    console.warn('vuetify', this.$vuetify);
+    console.warn('context', this);
+  },
 };
 </script>
 
