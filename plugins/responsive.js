@@ -4,15 +4,17 @@ export default (context) => {
   const mixin = {
     computed: {
       $isMobile () {
-        console.warn('ctx from res ismobile', context);
-        return context.$vuetify.breakpoint.width < 1015;
+        const width = context.$vuetify.breakpoint.width || context.$vuetify.breakpoint.framework.breakpoint.width;
+        return width < 1015;
       },
       /* Used if you do not want changes to transcend to widescreens */
       $isRegularScreen () {
-        return context.$vuetify.breakpoint.width > 1014 && context.$vuetify.breakpoint.width < 1904;
+        const width = context.$vuetify.breakpoint.width || context.$vuetify.breakpoint.framework.breakpoint.width;
+        return width > 1014 && width < 1904;
       },
       $isWideScreen () {
-        return context.$vuetify.breakpoint.width > 1903;
+        const width = context.$vuetify.breakpoint.width || context.$vuetify.breakpoint.framework.breakpoint.width;
+        return width > 1903;
       },
     },
   };
