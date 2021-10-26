@@ -133,11 +133,12 @@
       :content="storybrandContent"
     )
     //- 8th panel
-    pricing(
-      type="clinic"
-      title="Take the first step today."
-      :pricing-details="pricingDetails"
-    )
+    client-only
+      pricing(
+        type="clinic"
+        title="Take the first step today."
+        :pricing-details="pricingDetails"
+      )
     //- 9th panel
     call-to-action(:version="3" not-free)
 </template>

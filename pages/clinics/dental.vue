@@ -158,10 +158,11 @@
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    pricing(
-      title="Take the first step today."
-      type="clinic"
-    )
+    client-only
+      pricing(
+        title="Take the first step today."
+        type="clinic"
+      )
     //- 11th panel
     call-to-action(:version="3")
 </template>

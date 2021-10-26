@@ -102,10 +102,11 @@
       :content="storybrandContent"
     )
     //- 5th panel
-    pricing(
-      title="Take the first step today."
-      type="diagnostic"
-    )
+    client-only
+      pricing(
+        title="Take the first step today."
+        type="diagnostic"
+      )
 
     //- 6th panel
     call-to-action(:version="4")

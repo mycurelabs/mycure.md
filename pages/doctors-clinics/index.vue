@@ -93,12 +93,13 @@
     )
     v-divider.divider
     //- 10th panel
-    pricing(
-      center-items
-      type="doctor"
-      title="Start free and only pay as you grow"
-      :column-bindings="{ cols: '12', md: '4', xl: '3'}"
-    )
+    client-only
+      pricing(
+        center-items
+        type="doctor"
+        title="Start free and only pay as you grow"
+        :column-bindings="{ cols: '12', md: '4', xl: '3'}"
+      )
     //- 11th panel
     call-to-action(:fluid="!$isMobile")
 </template>

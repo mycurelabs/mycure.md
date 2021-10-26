@@ -78,16 +78,13 @@
     )
     v-divider.divider
     //- 10th panel
-    //- pricing(
-    //-   type="clinic"
-    //-   title="Take the first step today"
-    //- ).mb-n3
-    pricing(
-      has-trial-option
-      type="clinic"
-      title="Take the first step today"
-      description="Choose the best plan for your clinic. Only pay for what you need."
-    ).mb-n3
+    client-only
+      pricing(
+        has-trial-option
+        type="clinic"
+        title="Take the first step today"
+        description="Choose the best plan for your clinic. Only pay for what you need."
+      ).mb-n3
     //- 9th panel
     call-to-action(:version="2" not-free)
     //- 7th panel

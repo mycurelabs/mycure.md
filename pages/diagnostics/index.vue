@@ -128,12 +128,13 @@
       :content="storybrandContent"
     )
     //- 10th panel
-    pricing(
-      title="Take the first step today"
-      description="Choose the best plan for your diagnostic center. Only pay for what you need."
-      type="diagnostic"
-      has-trial-option
-    ).mb-n3
+    client-only
+      pricing(
+        title="Take the first step today"
+        description="Choose the best plan for your diagnostic center. Only pay for what you need."
+        type="diagnostic"
+        has-trial-option
+      ).mb-n3
     call-to-action(:version="2" not-free)
 </template>
 
