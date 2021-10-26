@@ -124,9 +124,11 @@ export default {
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Privacy_Policy.png?alt=media&token=f68b2956-ed80-421b-bbcd-a7c129f7430c',
     });
   },
+  created () {
+    this.loading = false;
+  },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-    this.loading = false;
   },
 };
 </script>

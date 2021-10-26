@@ -61,7 +61,7 @@ export default {
       },
     },
   },
-  mounted () {
+  created () {
     this.isMobile = this.$isMobile;
     this.loading = false;
   },

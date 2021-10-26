@@ -119,7 +119,7 @@ export default {
       ],
     };
   },
-  mounted () {
+  created () {
     this.loading.page = false;
     // Record page view
     this.$gtag.pageview('/directory');
