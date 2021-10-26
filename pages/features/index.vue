@@ -76,9 +76,11 @@ export default {
       socialBanner: require('~/assets/images/banners/features-og-banner.png'),
     });
   },
+  created () {
+    this.loading = false;
+  },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-    this.loading = false;
   },
   methods: {
     goToSignup (email) {
