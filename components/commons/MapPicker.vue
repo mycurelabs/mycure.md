@@ -13,6 +13,13 @@
       div#map
     //- card actions
     v-card-actions
+      v-btn(
+        :loading="loading"
+        :disabled="loading"
+        label="Cancel"
+        text
+        @click="getMyPos"
+      ) Use my position
       v-spacer
       v-btn(
         :loading="loading"
@@ -211,6 +218,26 @@ export default {
     onSave () {
       this.$emit('resolve', this.resolvedAddress);
       this.$emit('close', true);
+    },
+    getMyPos () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            this.mapMarker.setMap(null);
+            this.mapMarker = this.createMapMarker(pos);
+            this.geocodePosition(this.mapMarker.getPosition());
+            this.addMapMarkerDragEvent();
+            this.map.setCenter(pos);
+            this.addMapMarkerDragEvent();
+          },
+        );
+      } else {
+        console.log("Browser doesn't support Geolocation");
+      }
     },
   },
 };
