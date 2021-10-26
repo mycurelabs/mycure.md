@@ -169,7 +169,7 @@ export default {
   },
   sitemap: {
     lastmod: '2021-10-26',
-    hostname: 'https://www.mycure.md',
+    hostname: process.env.WEB_MAIN_URL,
     gzip: true,
     exclude: [
       '/signup/*',
