@@ -74,10 +74,11 @@
     //-           ).text-none
     //-             span.generic-button-text Count me in
     //- 5th panel
-    pricing(
-      type="clinic"
-      title="Take the first step today."
-    )
+    client-only
+      pricing(
+        type="clinic"
+        title="Take the first step today."
+      )
     call-to-action(:version="4" not-free)
 </template>
 
@@ -216,7 +217,7 @@ export default {
       };
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

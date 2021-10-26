@@ -126,10 +126,11 @@
       :content="storybrandContent"
     )
     //- 7th panel
-    pricing(
-      title="Take the first step today."
-      type="diagnostic"
-    )
+    client-only
+      pricing(
+        title="Take the first step today."
+        type="diagnostic"
+      )
     //- 8th panel
     call-to-action(:version="2" not-free)
     //- 9th panel
@@ -178,7 +179,7 @@ export default {
   },
   async asyncData ({ error }) {
     const country = await getCountry() || {};
-    const code = country.country_code;
+    const code = country.country_code || 'PH';
     const metricsData = await fetchWebsiteMetrics();
 
     if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
@@ -290,7 +291,7 @@ export default {
       };
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

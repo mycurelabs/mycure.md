@@ -395,11 +395,10 @@ export default {
       });
     },
   },
-  async mounted () {
+  async created () {
     // Initial window setups
     this.$vuetify.theme.dark = false;
     this.canUseWebp = await canUseWebp();
-    if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
 
     if (this.isBookingEnabled) {
       await Promise.all([
@@ -412,6 +411,9 @@ export default {
     if (this.servicesTotal) this.hasPhysicalServices = true;
     if (this.servicesTotal || this.doctorsTotal) this.hasItemsToBook = true;
     this.loading.page = false;
+  },
+  mounted () {
+    if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
   },
   methods: {
     // - Fetches all doctors of facility

@@ -45,9 +45,11 @@ export default {
     '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-lazyload.js',
     '~/plugins/vue-gtag.js',
+    '~/plugins/vue-screen.js',
+    { src: '~/plugins/main.js' },
+    { src: '~/plugins/responsive.js', mode: 'client' },
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
-    { src: '~/plugins/main.js', mode: 'client' },
-    { src: '~/plugins/mc-btn', mode: 'client' },
+    { src: '~/plugins/mc-btn' },
     { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~/plugins/crisp.js', mode: 'client' },
@@ -63,6 +65,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/device',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
@@ -74,6 +77,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'vue-screen/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
@@ -89,19 +93,34 @@ export default {
     {
       UserAgent: '*',
       Disallow: () => '/payment',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
     {
       UserAgent: '*',
       Disallow: () => '/signup',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
     {
       UserAgent: '*',
       Disallow: () => '/forgot-password',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
     // Temporary disallow CSI since content is not yet complete
     {
       UserAgent: '*',
       Disallow: () => '/csi',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    // Hidden
+    {
+      UserAgent: '*',
+      Disallow: () => '/hospitals',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/pharmacy',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
   ],
   // Google Web Font Loader Module
@@ -150,8 +169,17 @@ export default {
     },
   },
   sitemap: {
-    hostname: 'https://www.mycure.md',
+    lastmod: '2021-10-26',
+    hostname: process.env.WEB_MAIN_URL,
     gzip: true,
+    exclude: [
+      '/signup/*',
+      '/payment/*',
+      '/forgot-password',
+      '/csi',
+      '/hospitals',
+      '/pharmacy',
+    ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
