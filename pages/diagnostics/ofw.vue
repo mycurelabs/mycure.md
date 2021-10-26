@@ -290,7 +290,7 @@ export default {
       };
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

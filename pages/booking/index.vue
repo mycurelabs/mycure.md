@@ -325,7 +325,7 @@ export default {
       return this.$isMobile ? '77px' : (this.$isRegularScreen ? '110px' : '175px');
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
   methods: {

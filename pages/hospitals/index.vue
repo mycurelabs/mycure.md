@@ -141,7 +141,7 @@ export default {
       return descriptionClasses;
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

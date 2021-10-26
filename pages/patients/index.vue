@@ -135,7 +135,7 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };
