@@ -8,7 +8,7 @@ export default (context, inject) => {
   context.$useWebp = useWebp;
   context.$screen = Vue.prototype.$screen;
   inject('isMobile', context.$device.isMobileOrTablet);
-  inject('isRegularScreen', context.$device.isDesktop);
+  inject('isRegularScreen', !context.$device.isMobileOrTablet);
   inject('isWideScreen', false);
 
   // if (process.client) {
