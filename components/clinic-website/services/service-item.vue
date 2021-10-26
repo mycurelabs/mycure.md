@@ -187,11 +187,11 @@ export default {
       if (index > 4) {
         const frontSched = this.groupedSchedules[index];
         const endSched = this.groupedSchedules.slice(index, index - 1);
-        return frontSched.concat(endSched);
+        return [frontSched].concat(endSched);
       } else if (index === -1) {
         return this.groupedSchedules.slice(0, 3) || [];
       } else {
-        return this.groupedSchedules.slice(index, index + 3);
+        return this.groupedSchedules.slice(index, index + 3) || [];
       }
     },
     todaySchedules () {

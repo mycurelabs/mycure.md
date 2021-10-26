@@ -43,10 +43,7 @@ export const fetchClinicServices = async (sdk, opts) => {
   }
 
   if (!isEmpty(opts.searchText)) {
-    if (isEmpty(query.$and)) query.$and = [];
-    query.$and.push(
-      { name: { $regex: `^${opts.searchText}`, $options: 'gi' } },
-    );
+    query.$search = opts.searchText;
   }
 
   const { items, total } = await sdk.service('services').find(query);

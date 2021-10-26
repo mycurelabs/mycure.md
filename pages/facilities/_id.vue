@@ -5,13 +5,14 @@
       is-clinic
       v-model="dialogs.appointment"
       :has-doctors="hasDoctors"
+      :has-physical-services="hasPhysicalServices"
       @select="onSelectAppointment($event)"
     )
     //- CHOOSE SERVICE DIALOG
     choose-service(
       v-model="dialogs.serviceType"
       :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
-      @select="activeTab = $event"
+      @select="onSelectServiceType($event)"
     )
     //- APP BAR
     app-bar
@@ -64,11 +65,15 @@
         :loading="loading.list"
         :has-next-page="hasNextPage"
         :has-previous-page="hasPreviousPage"
-        @back="searchResultsMode = false"
+        @back="onMainPageReturn"
         @search="onServiceSearch"
         @paginate="onPaginate($event)"
         @filter:date="filterByDate"
       )
+      //- Loading
+      v-container(v-else)
+        v-row(justify="center").text-center
+          v-progress-circular(indeterminate color="primary" size="150")
       //- ABOUT US
       about-us(
         :picURL="picURL"
@@ -157,13 +162,13 @@ export default {
     QuickBook,
   },
   layout: 'clinic-website',
-  async asyncData ({ params, $sdk, redirect }) {
+  async asyncData ({ params, $sdk, redirect, error }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
-      // Redirect to home if no clinic found, or if clinic is existing, but has not setup its website yet
+      // Show 404 if no clinic found, or if clinic is existing, but has not setup its website yet
       // Will not redirect if it's a 'diagnostic-center' since these are the orgs we have up for claiming
       if (isEmpty(clinic) ||
-        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) redirect('/');
+        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) error({ statusCode: 404, message: 'clinic-not-found' });
       return {
         clinic,
       };
@@ -230,6 +235,8 @@ export default {
       serviceTypes: [],
       serviceSchedules: [],
       canUseWebp: null,
+      hasItemsToBook: false, // has either physical / telehealth services
+      hasPhysicalServices: false, // has physical appointments
       // Items to show in tab list
       listItems: [],
       // total items
@@ -284,9 +291,9 @@ export default {
     isVerified () {
       return !!this.clinic?.websiteId;
     },
-    // Clinic is available if it has booking / telehealth services
+    // Clinic is available if it has booking / telehealth services and items to book
     isAvailable () {
-      return (this.servicesTotal || this.doctorsTotal) && (this.isBookingEnabled || this.isTelehealthEnabled);
+      return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
     },
     isDummyOrg () {
       const { tags } = this.clinic;
@@ -402,6 +409,8 @@ export default {
     await this.fetchDoctorMembers();
     this.listItems = [...this.filteredServices];
     this.itemsTotal = this.servicesTotal;
+    if (this.servicesTotal) this.hasPhysicalServices = true;
+    if (this.servicesTotal || this.doctorsTotal) this.hasItemsToBook = true;
     this.loading.page = false;
   },
   methods: {
@@ -534,7 +543,7 @@ export default {
         });
 
         // Include telehealth in Service types and schedules
-        if (telehealthSchedules) {
+        if (telehealthSchedules && this.isTelehealthEnabled) {
           console.log('service types', this.serviceTypes);
           if (!this.serviceTypes?.length) {
             this.serviceTypes = ['telehealth'];
@@ -596,9 +605,10 @@ export default {
         if (this.isBookingEnabled) {
           await this.fetchServices(searchFilters, searchText);
         }
-        // Append doctors only if it is consult or no service type filter
+        // Append doctors only if it is consult/telehealth or no service type filter
         if ((!this.searchFilters?.type) ||
-          (this.searchFilters?.type && this.searchFilters?.type === 'clinical-consultation')) {
+          (this.searchFilters?.type &&
+            ['clinical-consultation', 'telehealth'].includes(this.searchFilters?.type))) {
           this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
         } else {
           this.searchResults = [...this.filteredServices];
@@ -637,6 +647,16 @@ export default {
         // - scroll down to doctors list
         VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       }
+    },
+    onSelectServiceType (serviceType) {
+      this.onMainPageReturn();
+      this.activeTab = serviceType;
+    },
+    // Returning to normal view from search results mode
+    onMainPageReturn () {
+      this.searchResultsMode = false;
+      // Refetch doctors
+      this.fetchDoctorMembers();
     },
     formatTime (time) {
       return format(time, 'hh:mm A');

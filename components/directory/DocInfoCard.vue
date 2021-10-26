@@ -179,9 +179,9 @@ export default {
       return this.doctor?.doc_specialties?.join(', ') || '';
     },
     yearsOfExperience () {
-      const { doc_practicingSince } = this.doctor; // eslint-disable-line
+      const doc_practicingSince = this.doctor?.doc_practicingSince; // eslint-disable-line
       let from = doc_practicingSince; // eslint-disable-line
-      if (from.length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
+      if (`${from}`.length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
       const to = new Date().getFullYear();
       return to - from;
     },
