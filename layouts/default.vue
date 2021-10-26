@@ -21,9 +21,11 @@ export default {
       loading: true,
     };
   },
-  mounted () {
+  created () {
     this.$vuetify.theme.dark = false;
     this.loading = false;
+  },
+  mounted () {
     window.$crisp.push(['do', 'chat:show']);
   },
 };

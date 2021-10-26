@@ -22,7 +22,7 @@ export default {
       loading: true,
     };
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

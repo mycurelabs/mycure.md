@@ -238,7 +238,7 @@ export default {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
   },
-  async mounted () {
+  async created () {
     this.loading = false;
     if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
       // Record new

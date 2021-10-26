@@ -6,21 +6,30 @@ export default (context, inject) => {
   const useWebp = async () => await CanUseWebp();
   inject('useWebp', useWebp);
   context.$useWebp = useWebp;
+  context.$screen = Vue.prototype.$screen;
+  inject('isMobile', false);
+  inject('isRegularScreen', true);
+  inject('isWideScreen', false);
+  context.$isMobile = false;
+  context.$isRegularScreen = true;
+  context.$isWideScreen = false;
 
-  Vue.mixin({
-    computed: {
-      $isMobile () {
-        return context.$vuetify.breakpoint.width < 1015;
-      },
-      /* Used if you do not want changes to transcend to widescreens */
-      $isRegularScreen () {
-        return context.$vuetify.breakpoint.width > 1014 && context.$vuetify.breakpoint.width < 1904;
-      },
-      $isWideScreen () {
-        return context.$vuetify.breakpoint.width > 1903;
-      },
-    },
-  });
+  // if (process.client) {
+  //   Vue.mixin({
+  //     computed: {
+  //       $isMobile () {
+  //         return context.$screen.width < 1015;
+  //       },
+  //       /* Used if you do not want changes to transcend to widescreens */
+  //       $isRegularScreen () {
+  //         return context.$screen.width > 1014 && context.$screen.width < 1904;
+  //       },
+  //       $isWideScreen () {
+  //         return context.$screen.width > 1903;
+  //       },
+  //     },
+  //   });
+  // }
 
   Vue.component('VOtpInput', OtpInput);
 };
