@@ -631,7 +631,6 @@ export default {
           ...from && { from },
           organizationType: this.facilityType,
         };
-        console.table(payload);
         // Only include PRC when user is a doctor
         if (this.doc_PRCLicenseNo && this.isDoctor) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
 

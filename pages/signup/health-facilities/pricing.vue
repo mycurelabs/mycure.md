@@ -293,7 +293,6 @@ export default {
           skipMobileNoVerification: true,
           ...omit(this.step1LocalStorageData, omitKeys),
         };
-        console.table(payload);
 
         // Check if there is pending subscription Id
         if (this.subscriptionId) {
