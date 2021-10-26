@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.footer-gray
+  div(v-if="!loading").footer-gray
     v-container
       v-row(justify="center")
         v-col(cols="12" md="10")
@@ -177,7 +177,11 @@ export default {
           id: 'footer-twitter-btn',
         },
       ],
+      loading: true,
     };
+  },
+  created () {
+    this.loading = false;
   },
   methods: {
     toggleChat () {

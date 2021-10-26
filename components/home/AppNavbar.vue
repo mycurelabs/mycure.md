@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(v-if="!loading")
     v-app-bar(
       height="50"
       app
@@ -186,11 +186,13 @@ export default {
     return {
       drawer: false,
       inPh: false,
+      loading: false,
     };
   },
   async created () {
     // fetch packages
     this.inPh = await inPh();
+    this.loading = false;
   },
   methods: {
     onNavClick (nav) {
