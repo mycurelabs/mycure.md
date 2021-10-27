@@ -17,7 +17,7 @@
     v-card-actions
       v-col(cols="12")
         v-row(justify="start")
-          v-col(:cols="$isMobile ? '12' : null").pa-0.mb-2
+          v-col(:cols="$vuetify.breakpoint.width < 450 ? '12' : null").pa-0.mb-2
             v-btn(
               :loading="loading"
               :disabled="loading"
