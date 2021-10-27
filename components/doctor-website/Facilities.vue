@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-row#clinics-list-top
+  v-row(style="max-height:700px; overflow-y: auto;" ref="facilitiesContainer" )#container
     v-col(v-if="!clinics.length" cols="12")
       p.font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
     template(v-else)
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
+// import VueScrollTo from 'vue-scrollto';
 import FacilityItem from './FacilityItem';
 export default {
   components: {
@@ -61,20 +61,25 @@ export default {
   },
   watch: {
     page (val) {
-      VueScrollTo.scrollTo('#clinics-list-top', 500, { easing: 'ease' });
+      this.toTop();
       this.$emit('onUpdatePage', val);
       return val;
+    },
+  },
+  methods: {
+    toTop () {
+      this.$refs.facilitiesContainer.scrollTop = 0;
     },
   },
 };
 </script>
 
 <style scoped>
-#clinics-list-top {
+/* #clinics-list-top {
   height: 700px;
   width: 100%;
   overflow-y: scroll;
-}
+} */
 
 #clinics-list-top::-webkit-scrollbar {
   width: 11px;
