@@ -7,35 +7,40 @@
         placeholder="Search Address"
         outlined
         autofocus
+        hide-details
         prepend-inner-icon="mdi-map-search-outline"
-      )#pac-input
+        :dense="$isMobile"
+      )#pac-input.mb-2
       //- map display
       div#map
     //- card actions
     v-card-actions
-      v-btn(
-        :loading="loading"
-        :disabled="loading"
-        label="Cancel"
-        text
-        @click="getMyPos"
-      ) Use my position
-      v-spacer
-      v-btn(
-        :loading="loading"
-        :disabled="loading"
-        label="Cancel"
-        text
-        @click="onCancel"
-      ) Cancel
-      v-btn(
-        :loading="loading"
-        :disabled="loading"
-        label="Save"
-        color="primary"
-        depressed
-        @click="onSave"
-      ) Select
+      v-col(cols="12")
+        v-row(justify="start")
+          v-col(:cols="$isMobile ? '12' : null").pa-0.mb-2
+            v-btn(
+              :loading="loading"
+              :disabled="loading"
+              :x-snmall="$isMobile"
+              color="success"
+              @click="getMyPos"
+            ) Use my position
+          v-spacer(v-if="!$isMobile")
+          v-btn(
+            :loading="loading"
+            :disabled="loading"
+            label="Cancel"
+            text
+            @click="onCancel"
+          ).mb-2 Cancel
+          v-btn(
+            :loading="loading"
+            :disabled="loading"
+            label="Save"
+            color="primary"
+            depressed
+            @click="onSave"
+          ).mb-2 Select
 </template>
 
 <script>
@@ -249,9 +254,9 @@ export default {
 }
 
 #map {
-  min-height: 450px;
+  min-height: 400px;
   height: 100%;
-  min-width: 450px;
+  min-width: 250px;
   max-width: 600px;
   width: 100%;
 }
