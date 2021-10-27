@@ -265,7 +265,7 @@ export default {
     // Verify mobile no and signup
     async submit () {
       try {
-        this.loading = true;
+        // this.loading = true;
         this.verificationError = false;
         const payload = {
           code: this.otp,
@@ -284,7 +284,7 @@ export default {
         this.clearInputs();
         console.error(e);
       } finally {
-        this.loading = false;
+        // this.loading = false;
         this.otp = '';
       }
     },
