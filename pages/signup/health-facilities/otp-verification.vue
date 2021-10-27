@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid fill-height).pa-0.ma-0
+  v-container(fluid fill-height).pa-0.ma-0
     v-row(style="height: 100vh")
       v-col(cols="6" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
         v-row(style="height: 100vh" align="center" justify="center")
@@ -265,7 +265,7 @@ export default {
     // Verify mobile no and signup
     async submit () {
       try {
-        // this.loading = true;
+        this.loading = true;
         this.verificationError = false;
         const payload = {
           code: this.otp,
@@ -284,7 +284,7 @@ export default {
         this.clearInputs();
         console.error(e);
       } finally {
-        // this.loading = false;
+        this.loading = false;
         this.otp = '';
       }
     },
