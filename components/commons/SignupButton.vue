@@ -14,8 +14,8 @@ const healthFacilityTypeMap = {
   diagnostics: 'diagnostic',
   'clinics-skin': 'clinic',
   'clinics-dental': 'clinic',
-  'clinics-ofw': 'clinic',
   'clinics-corporate': 'clinic',
+  'diagnostics-ofw': 'diagnostic',
   'diagnostics-mobile-labs': 'diagnostic',
 };
 export default {
