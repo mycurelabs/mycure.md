@@ -485,9 +485,9 @@ export default {
       if (!val) this.stripeCoupon = null;
     },
   },
-  created () {
-    this.loading.page = false;
+  mounted () {
     this.init();
+    this.loading.page = false;
   },
   methods: {
     async init () {
