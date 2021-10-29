@@ -15,6 +15,7 @@
         v-for="(tab, key) in doctorTabs"
         :key="key"
         :value="tab.value"
+        @click="scrollToTop(tab.value)"
       ).text-none {{ tab.name }}
     v-select(
       v-else
@@ -31,6 +32,7 @@
     v-tabs-items(v-model="activeTab").mt-3.transparent-bg
       v-tab-item(value="facilities")
         facilities(
+          ref="docFacilities"
           :doctorId="doctorId"
           :clinics="clinics"
           :total="clinicsTotal"
@@ -100,6 +102,13 @@ export default {
     return {
       activeTab: 'facilities',
     };
+  },
+  methods: {
+    scrollToTop (val) {
+      if (val === 'facilities') {
+        this.$refs.docFacilities.scrollToTop();
+      }
+    },
   },
 };
 </script>
