@@ -6,13 +6,18 @@
         type="text"
         placeholder="Search Address"
         outlined
-        autofocus
         hide-details
         prepend-inner-icon="mdi-map-search-outline"
         :dense="$isMobile"
       )#pac-input.mb-2
       //- map display
-      div#map
+      div(v-if="!loading")#map
+      div(v-else).map-size.text-center
+        v-progress-circular(
+          color="primary"
+          indeterminate
+          size="150"
+        ).mt-6
     //- card actions
     v-card-actions
       v-col(cols="12")
@@ -21,7 +26,7 @@
             v-btn(
               :loading="loading"
               :disabled="loading"
-              :x-snmall="$isMobile"
+              :small="$isMobile"
               color="success"
               @click="getMyPos"
             ) Use my position
@@ -29,6 +34,7 @@
           v-btn(
             :loading="loading"
             :disabled="loading"
+            :small="$isMobile"
             label="Cancel"
             text
             @click="onCancel"
@@ -36,6 +42,7 @@
           v-btn(
             :loading="loading"
             :disabled="loading"
+            :small="$isMobile"
             label="Save"
             color="primary"
             depressed
@@ -49,6 +56,10 @@ export default {
     address: {
       type: Object,
       default: null,
+    },
+    dialog: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -73,19 +84,27 @@ export default {
       return [street1, city, region, country].filter(Boolean).join(', ');
     },
   },
+  watch: {
+    dialog (val) {
+      this.geocodePosition(this.mapMarker.getPosition());
+    },
+  },
   mounted () {
     this.initialize();
   },
   methods: {
     initialize () {
+      console.log('init');
       this.initializeAddressAutocomplete();
 
       // Create a marker for passed address
       const position = this.addressGeometry || this.defaultMapPosition;
       this.mapMarker = this.createMapMarker(position);
       this.addMapMarkerDragEvent();
+      this.geocodePosition(this.mapMarker.getPosition());
     },
     initializeAddressAutocomplete () {
+      console.log('initAddAuto');
       this.mapGeocoder = new google.maps.Geocoder(); /* eslint-disable-line no-undef */
       const center = this.addressGeometry || this.defaultMapPosition;
       const mapOptions = {
@@ -226,6 +245,7 @@ export default {
     },
     getMyPos () {
       if (navigator.geolocation) {
+        this.loading = true;
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const pos = {
@@ -237,7 +257,7 @@ export default {
             this.geocodePosition(this.mapMarker.getPosition());
             this.addMapMarkerDragEvent();
             this.map.setCenter(pos);
-            this.addMapMarkerDragEvent();
+            this.loading = false;
           },
         );
       } else {
@@ -254,6 +274,13 @@ export default {
 }
 
 #map {
+  min-height: 400px;
+  height: 100%;
+  min-width: 250px;
+  max-width: 600px;
+  width: 100%;
+}
+.map-size {
   min-height: 400px;
   height: 100%;
   min-width: 250px;

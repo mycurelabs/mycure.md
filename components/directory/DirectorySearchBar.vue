@@ -158,6 +158,7 @@
     //- Map Dialog
     v-dialog(v-model="mapDialog" width="600")
       map-picker(
+        :dialog="mapDialog"
         :address="address"
         @resolve="onLocationPick"
         @close="onMapDialogClose"
