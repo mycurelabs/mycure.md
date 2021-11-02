@@ -18,7 +18,7 @@
         v-progress-circular(
           color="primary"
           indeterminate
-          size="150"
+          size="100"
         ).mt-6
     //- card actions
     v-card-actions
@@ -281,6 +281,7 @@ export default {
   width: 100%;
 }
 .map-size {
+  padding: 150px 0;
   min-height: 400px;
   height: 100%;
   min-width: 250px;
