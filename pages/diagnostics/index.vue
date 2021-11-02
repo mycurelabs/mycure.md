@@ -226,7 +226,6 @@ export default {
     return headMeta({
       title: 'MYCURE for Diagnostic Labs & Imaging Centers | HL7-Ready LIS RIS',
       description: 'MYCURE provides the best tool to create, finalize, and release diagnostic test results. Best alternative to laboratory and radiology information systems.',
-      keywords: 'diagnostics, diagnostic, labs, imaging',
       socialBanner: require('~/assets/images/banners/diag-og-banner.png'),
     });
   },

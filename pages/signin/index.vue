@@ -181,7 +181,6 @@ export default {
     return headMeta({
       title: 'Sign In to MYCURE',
       description: 'Welcome to MYCURE Complete Clinic Management System. Sign in today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
-      keywords: 'signin, sign, in',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
