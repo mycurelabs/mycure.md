@@ -114,7 +114,7 @@
                       v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
-                            v-icon(color="secondary" small) mdi-medical-bag
+                            v-icon(color="secondary" :small="!$isWideScreen") mdi-briefcase
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
                         //- TODO: Location search not yet applicable for doctor
                         //- v-col.pb-0

@@ -10,7 +10,7 @@
       h3.font-weight-semibold Our Services
       v-spacer
     div.mt-3
-    v-tabs(vertical v-model="activeServiceType" grow).tabs
+    v-tabs(vertical v-model="activeServiceType" grow).tabs.highlight
       template(v-for="type in types")
         v-tab(v-if="hasServiceType(type.value)" :href="`#${type.value}`")
           v-icon(left) {{ type.icon }}
@@ -68,5 +68,9 @@ export default {
 <style scoped>
 .tabs [role="tab"] {
   justify-content: flex-start;
+}
+.highlight >>> .v-tabs-slider-wrapper {
+  left: auto !important;
+  right: 1px;
 }
 </style>

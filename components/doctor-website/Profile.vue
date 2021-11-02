@@ -4,7 +4,7 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
       v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
         img(:src="picUrl").img-border
     v-card-text
-      h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
+      h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text {{ fullName }}
       br
       //- v-row(justify="center")
       //-   v-col(cols="6" sm="3").text-center
@@ -48,7 +48,7 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
             a(v-if="clamped" @click="expand").primary--text See more...
             a(v-else-if="expanded" @click="collapse").primary--text See less
       div(v-if="specialties.length").mb-6
-        h2(:class="sectionTextClasses").secondary--text Specializations
+        h2(:class="sectionTextClasses").secondary--text Tags
         v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
           span.font-gray {{ specialty }}
       div(v-if="practicingSince").mb-6
