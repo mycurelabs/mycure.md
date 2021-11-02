@@ -3,12 +3,17 @@ const TYPE = 'website';
 const URL = 'https://mycure.md';
 const SITE_NAME = 'mycure.md';
 
-export default ({ title, description, socialBanner }) => {
+export default ({ title, description, keywords, socialBanner }) => {
   return {
     title,
     description,
     meta: [
       // normal meta
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content: keywords,
+      },
       {
         hid: 'description',
         name: 'description',
