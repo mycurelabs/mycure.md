@@ -5,8 +5,10 @@
       v-text-field(
         type="text"
         placeholder="Search Address"
+        v-model="resolvedAddress.fullAddress"
         outlined
         hide-details
+        clearable
         prepend-inner-icon="mdi-map-search-outline"
         :dense="$isMobile"
       )#pac-input.mb-2
@@ -94,7 +96,6 @@ export default {
   },
   methods: {
     initialize () {
-      console.log('init');
       this.initializeAddressAutocomplete();
 
       // Create a marker for passed address
@@ -104,7 +105,6 @@ export default {
       this.geocodePosition(this.mapMarker.getPosition());
     },
     initializeAddressAutocomplete () {
-      console.log('initAddAuto');
       this.mapGeocoder = new google.maps.Geocoder(); /* eslint-disable-line no-undef */
       const center = this.addressGeometry || this.defaultMapPosition;
       const mapOptions = {
