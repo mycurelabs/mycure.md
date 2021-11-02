@@ -19,7 +19,7 @@ export default {
   head () {
     return {
       ...headMeta({
-        title: 'MYCURE Booking Management Software',
+        title: 'Results in MYCURE Directory',
         description: 'Search for doctors and clinics in the MYCURE Directory',
         socialBanner: require('~/assets/images/banners/patients-og-banner.png'),
       }),

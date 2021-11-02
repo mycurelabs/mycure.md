@@ -7,12 +7,12 @@
             v-col(v-if="!loading" cols="12" :class="{'text-center': $isMobile}")
               v-row(align="center")
                 v-col(align="start")
-                  p(v-if="itemsTotal") Showing&nbsp;
+                  h1(v-if="itemsTotal" :class="$isMobile ? 'font-14' : 'font-18'").font-weight-semibold Showing&nbsp;
                     strong.secondary--text {{ itemsTotal }}&nbsp;
                     | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}&nbsp;
                     span(v-if="location && locationKM") within&nbsp;
                       strong.success--text {{ locationKM }} KM
-                  p(v-else) {{ location ? 'There are no results near you.' : 'There are no results available.' }}
+                  h1(v-else :class="$isMobile ? 'font-14' : 'font-18'").font-weight-semibold {{ location ? 'There are no results near you.' : 'There are no results available.' }}
             v-col(cols="12")
               v-row(v-if="loading" justify="center")
                 v-col(cols="12" md="5").text-center

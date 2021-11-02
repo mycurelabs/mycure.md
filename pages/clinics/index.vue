@@ -217,6 +217,7 @@ export default {
     return headMeta({
       title: 'MYCURE EMR and Outpatient Multispecialty Clinic Management System',
       description: 'MYCURE provides clinics with simple and customized workflows based on the specialization of the clinics',
+      keywords: 'clinics, outpatient, clinic',
       socialBanner: require('~/assets/images/banners/clinics-og-banner.png'),
     });
   },
