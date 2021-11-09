@@ -236,7 +236,7 @@ export default {
   head () {
     return headMeta({
       title: 'Dental Clinic Management System | MYCURE for Dental Clinics',
-      description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
+      description: 'MYCURE is a complete dental clinic management system for dentists to manage everything in their dental practice, from patient appointments to billing. Visit us.',
       socialBanner: require('~/assets/images/banners/dental-clinic-og-banner.png'),
     });
   },

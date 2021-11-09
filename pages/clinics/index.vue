@@ -216,7 +216,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE\'s Clinic Software | Flexible Clinic Management System',
-      description: 'MYCURE provides clinics with simple and customized workflows based on the specialization of the clinics',
+      description: 'MYCURE Clinic is a software that helps hospitals, diagnostic centers to run their day-to-day operations. It manages patient records, appointments, & more',
       socialBanner: require('~/assets/images/banners/clinics-og-banner.png'),
     });
   },

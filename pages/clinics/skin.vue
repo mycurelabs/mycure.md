@@ -232,7 +232,7 @@ export default {
   head () {
     return headMeta({
       title: 'Best Skin and Aesthetic Clinic Management System | MYCURE',
-      description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE provides dermatologists an easy way to beautifully manage their practice.',
+      description: 'MYCURE offers a management system that helps skin clinics manage their operations. It has modules for patient management, appointments, and reporting. See more.',
       socialBanner: require('~/assets/images/banners/skin-clinic-og-banner.png'),
     });
   },
