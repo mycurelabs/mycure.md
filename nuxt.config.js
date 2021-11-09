@@ -183,7 +183,8 @@ export default {
     hostname: process.env.WEB_MAIN_URL,
     gzip: true,
     exclude: [
-      '/signup/*',
+      '/signup',
+      '/signup/health-facilities',
       '/payment/*',
       '/forgot-password',
       '/csi',
