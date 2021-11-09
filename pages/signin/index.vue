@@ -10,7 +10,7 @@
             width="95px"
             height="110px"
           ).link-to-home.mb-3
-          h1(:class="titleSizeClasses").signin-title.font-weight-bold.pb-2 Sign in to MYCURE
+          h1(:class="titleSizeClasses").font-weight-bold.pb-2 Sign in to MYCURE
           span.grey--text Because you care the extra mile.
         v-col
           v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
