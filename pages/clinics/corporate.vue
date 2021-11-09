@@ -193,7 +193,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE for Corporate Clinics',
+      title: 'Custom-Built Corporate Clinic Management System | MYCURE',
       description: 'Organize your employee health records like a breeze. Get the most affordable software for corporate clinics today.',
       socialBanner: require('~/assets/images/banners/corporate-clinic-og-banner.png'),
     });

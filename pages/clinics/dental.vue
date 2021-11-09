@@ -235,7 +235,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE for Dental Clinics',
+      title: 'Dental Clinic Management System | MYCURE for Dental Clinics',
       description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
       socialBanner: require('~/assets/images/banners/dental-clinic-og-banner.png'),
     });

@@ -122,6 +122,11 @@ export default {
       Disallow: () => '/pharmacy',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
+    {
+      UserAgent: '*',
+      Disallow: () => '/directory/results',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
   ],
   // Google Web Font Loader Module
   webfontloader: {
@@ -179,6 +184,7 @@ export default {
       '/csi',
       '/hospitals',
       '/pharmacy',
+      '/directory/results',
     ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
