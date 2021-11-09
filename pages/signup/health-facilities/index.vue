@@ -448,7 +448,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'Sign Up to MYCURE',
+      title: 'Signup to MYCURE',
       description: 'Welcome to MYCURE Complete Clinic Management System. Sign up today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
