@@ -189,7 +189,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE EMR Practice Management System for Doctors',
+      title: 'EMR Practice Management System for Doctors - Start Free | MYCURE',
       description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
       socialBanner: require('~/assets/images/banners/doc-og-banner.png'),
     });

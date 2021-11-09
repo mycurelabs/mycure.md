@@ -123,7 +123,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE | Enterprise-Grade Healthcare Solutions',
+      title: 'Enterprise-Grade Healthcare Management Solutions | MYCURE',
       description: 'MYCURE is a suite of cost-effective healthcare management solutions designed for doctors, clinics, diagnostic labs, and hospitals.',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });

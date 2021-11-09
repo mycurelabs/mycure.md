@@ -102,6 +102,11 @@ export default {
     },
     {
       UserAgent: '*',
+      Disallow: () => '/signup/health-facilities',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
       Disallow: () => '/forgot-password',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
@@ -120,6 +125,11 @@ export default {
     {
       UserAgent: '*',
       Disallow: () => '/pharmacy',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/directory/results',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
   ],
@@ -179,6 +189,7 @@ export default {
       '/csi',
       '/hospitals',
       '/pharmacy',
+      '/directory/results',
     ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build

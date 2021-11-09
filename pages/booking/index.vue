@@ -284,7 +284,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
+      title: 'Healthcare Service Booking Management Software | MYCURE',
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/booking-og-banner.png'),
     });
