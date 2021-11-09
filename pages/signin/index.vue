@@ -10,7 +10,7 @@
             width="95px"
             height="110px"
           ).link-to-home.mb-3
-          h1(:class="titleSizeClasses").signin-title.font-weight-bold.pb-2 Sign in to MYCURE
+          h1(:class="titleSizeClasses").font-weight-bold.pb-2 Sign in to MYCURE
           span.grey--text Because you care the extra mile.
         v-col
           v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
@@ -179,7 +179,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'Sign In to MYCURE',
+      title: 'Signin to MYCURE',
       description: 'Welcome to MYCURE Complete Clinic Management System. Sign in today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });

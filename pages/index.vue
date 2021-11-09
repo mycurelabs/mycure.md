@@ -124,7 +124,7 @@ export default {
   head () {
     return headMeta({
       title: 'Enterprise-Grade Healthcare Management Solutions | MYCURE',
-      description: 'MYCURE is a suite of cost-effective healthcare management solutions designed for doctors, clinics, diagnostic labs, and hospitals.',
+      description: 'MYCURE is a modern healthcare management solutions provider that helps doctors, clinics, diagnostic labs, & hospitals save time and work efficiently. Know more.',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },

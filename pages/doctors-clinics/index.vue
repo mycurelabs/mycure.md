@@ -190,7 +190,7 @@ export default {
   head () {
     return headMeta({
       title: 'EMR Practice Management System for Doctors - Start Free | MYCURE',
-      description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
+      description: 'Find how a digital practice management system helps you focus on your patients. MYCURE helps digitize everything from prescriptions to medical records. Sign Up.',
       socialBanner: require('~/assets/images/banners/doc-og-banner.png'),
     });
   },

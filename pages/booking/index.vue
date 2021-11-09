@@ -285,7 +285,7 @@ export default {
   head () {
     return headMeta({
       title: 'Healthcare Service Booking Management Software | MYCURE',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      description: 'MYCURE\'s online appointment scheduling software provides a simple, easy, & intuitive booking system for patients to book their appointments online. Learn more.',
       socialBanner: require('~/assets/images/banners/booking-og-banner.png'),
     });
   },

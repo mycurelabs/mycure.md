@@ -186,7 +186,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE\'s Simplest LIS for Mobile Labs | Secure & Easy to Use',
-      description: 'The simplest and most affordable laboratory information software (LIS) designed for mobile labs. It’s cloud-based, works offline—best for lab results on-the-go! ',
+      description: 'MYCURE\'s LIS provides the easiest way to manage your mobile lab. Its simple, intuitive interface allows you to get started right. Get more details here.',
       socialBanner: require('~/assets/images/banners/mobile-clinic-og-banner.png'),
     });
   },

@@ -15,7 +15,8 @@
                 img(
                   :src="require(`~/assets/images/home/${type.image}.png`)"
                   :alt="type.image"
-                  width="50%"
+                  width="120px"
+                  height="163.59px"
                 )
                 v-card-text.text-center
                   h3.mt-3.primary--text {{ type.text }}
