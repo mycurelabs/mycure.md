@@ -18,7 +18,7 @@
           v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
             v-row
               v-col(cols="10")
-                h2 Register
+                h1.font-24 Register
                 p Level up your healthcare services and get more patients safely
             p.mb-2 Personal Info
             v-row(:no-gutters="$isMobile").px-2
