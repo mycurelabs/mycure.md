@@ -31,7 +31,6 @@
               //- Service Type Filter
               v-col(
                 v-if="searchObject.mode === 'organization'"
-                :md="appBar ? '6' : '10'"
               ).pa-0.ma-0
                 v-autocomplete(
                   v-model="searchObject.serviceType"
@@ -51,7 +50,6 @@
               //- Specialization
               v-col(
                 v-if="showSpecializationsField"
-                :md="appBar ? '6' : '10'"
                 :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
               ).pa-0.ma-0
                 v-text-field(
