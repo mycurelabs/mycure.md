@@ -102,6 +102,11 @@ export default {
     },
     {
       UserAgent: '*',
+      Disallow: () => '/signup/health-facilities',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
       Disallow: () => '/forgot-password',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },

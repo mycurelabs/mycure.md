@@ -142,7 +142,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Telehealth',
+      title: 'Start Your Virtual Practice | MYCURE Telehealth',
       description: 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve wherever they are.',
       socialBanner: require('~/assets/images/banners/telehealth-og-banner.png'),
     });
