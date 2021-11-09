@@ -10,24 +10,27 @@
             borderless
             mandatory
             @change="onModeChange($event)"
-          ).mb-4
+            :class="$isMobile ? 'mb-2' : 'mb-4'"
+          )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
             v-btn(
               value="account"
               text active-class="active-button"
+              :small="$isMobile"
               :disabled="appBar && loadingResults"
               :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]"
             ).mr-3.tight-font.rounded-pill doctor
             v-btn(
               value="organization"
               text active-class="active-button"
+              :small="$isMobile"
               :disabled="appBar && loadingResults"
               :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]"
             ).mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          v-col(:cols="$isMobile ? '12' : null")
-            v-row(align="start" :justify="$isMobile ? 'start' : 'end'" :class="{'mt-3': $isMobile}")
+          v-col(:cols="$isMobile ? '12' : '4'")
+            v-row(align="start" :justify="$isMobile ? 'start' : 'end'")
               //- Service Type Filter
               v-col(
                 v-if="searchObject.mode === 'organization'"
@@ -155,6 +158,7 @@
     //- Map Dialog
     v-dialog(v-model="mapDialog" width="600")
       map-picker(
+        :dialog="mapDialog"
         :address="address"
         @resolve="onLocationPick"
         @close="onMapDialogClose"

@@ -505,8 +505,8 @@ export default {
     },
   },
   created () {
-    this.loading.page = false;
     this.init();
+    this.loading.page = false;
   },
   methods: {
     async init () {
