@@ -224,7 +224,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE for Diagnostics Labs & Imaging Centers | HL7-Ready LIS RIS',
+      title: 'MYCURE Diagnostics for Lab & Imaging Centers | HL7-Ready LIS RIS',
       description: 'Do you want to streamline diagnostic laboratories & imaging centers’ operations, automate routine tasks, & reduce errors? MYCURE\'s Diagnostic is the solution.',
       socialBanner: require('~/assets/images/banners/diag-og-banner.png'),
     });
