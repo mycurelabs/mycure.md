@@ -2,17 +2,15 @@
   v-container(v-if="!loading.page" fluid fill-height).pa-0.ma-0
     v-row(style="height: 100vh")
       v-col(cols="6" v-if="!$isMobile").pa-0.bg-panel
-        v-row(style="height: 100vh" align="center" justify="center")
-          //- v-col.text-center
-          //-   img(
-          //-     src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-          //-     alt="White MYCURE Logo"
-          //-     width="150px"
-          //-     height="41.88px"
-          //-     @click="$router.push({ name: 'index' })"
-          //-   ).link-to-home
-          //-   br
-          //-   img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
+        v-row(style="height: 100vh" align="start" justify="center")
+          v-col.text-center.pt-16.pr-14
+            img(
+              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+              alt="White MYCURE Logo"
+              width="300px"
+              height="83.76px"
+              @click="$router.push({ name: 'index' })"
+            ).link-to-home
       v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
         v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'py-8']").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
           v-form(ref="formRef" v-model="valid" @submit.prevent="submit")

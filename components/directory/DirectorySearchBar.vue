@@ -378,7 +378,13 @@ export default {
         text: searchText,
         limit: 10,
         type: this.selectedMode,
+        tags: [],
       };
+      if (this.selectedMode === 'account') {
+        query.tags = this.searchObject.specializations.map(x => this.tagUnformat(x));
+      } else {
+        query.tag = this.tagUnformat(this.searchObject.serviceType);
+      }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
       this.suggestionEntries = items || [];
     },
@@ -400,6 +406,13 @@ export default {
       finArray = str1.split('-');
       finArray = finArray.map(x => `${x.charAt(0).toUpperCase()}${x.slice(1)}`);
       return finArray.join(' ');
+    },
+    tagUnformat (string) {
+      let finArray = string.split(' ');
+      finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
+      let finStr = finArray.join('-');
+      finStr = this.selectedMode === 'account' ? `spc:${finStr}` : `sto:${finStr}`;
+      return finStr;
     },
     formatAddress (address) {
       return formatAddress(address, 'street1, street2, city, province, region, country');
