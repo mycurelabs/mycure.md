@@ -12,6 +12,7 @@
       :doctor-id="doctor.id"
       :appointment-type="appointmentType"
     )
+    v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     //- First panel
     main-panel(
       :metrics="doctorMetrics"
@@ -66,6 +67,7 @@
               :is-bookable="isBookable"
               :is-preview-mode="isPreviewMode"
               @book="onBook"
+              @clipped="clipSuccess = true"
             )
           //- Tabs
           v-col(cols="12" lg="8" xl="7")
@@ -76,6 +78,7 @@
               :clinics-limit="clinicsLimit"
               :services="services"
               :is-preview-mode="isPreviewMode"
+              :facilities-loading="facilitiesLoading"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
             )#doctor-website-features
     v-snackbar(
@@ -160,6 +163,8 @@ export default {
       // - Paginations
       page: 1,
       clinicsTotal: 0,
+      clipSuccess: false,
+      facilitiesLoading: false,
     };
   },
   head () {
@@ -254,6 +259,7 @@ export default {
   methods: {
     async fetchDoctorInfo (page = 1) {
       try {
+        this.facilitiesLoading = true;
         const skip = this.clinicsLimit * (page - 1);
 
         /* Uses organization-members service */
@@ -280,6 +286,7 @@ export default {
           this.clinicsTotal = total;
           this.clinics = items;
         }
+        this.facilitiesLoading = false;
       } catch (error) {
         console.error(error);
         this.$nuxt.$router.push('/');

@@ -73,7 +73,7 @@
       //- Loading
       v-container(v-else)
         v-row(justify="center").text-center
-          v-progress-circular(indeterminate color="primary" size="150")
+          v-progress-circular(indeterminate color="primary" size="150").my-8
       //- ABOUT US
       about-us(
         :picURL="picURL"

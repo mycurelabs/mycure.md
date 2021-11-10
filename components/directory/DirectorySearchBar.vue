@@ -10,7 +10,7 @@
             borderless
             mandatory
             @change="onModeChange($event)"
-            :class="$isMobile ? 'mb-2' : 'mb-4'"
+            :class="$isMobile ? 'mb-2' : ''"
           )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
             v-btn(
@@ -82,6 +82,7 @@
               flat
               outlined
               solo
+              hide-details
               :height="$isMobile ? '40px' : '60px'"
               :items="suggestionEntries"
               :menu-props="{ bottom: true, offsetY: true }"
