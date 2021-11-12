@@ -26,7 +26,7 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
         span.font-gray {{ specialty }}
     div(v-if="practicingSince").mb-6
       h2(:class="sectionTextClasses").secondary--text Practicing Since
-      p {{ practicingSince | format-practicing-since }} - {{ `${practicingYears} Year${'s': practicingYears > 1} of Experience`:  practicingYears > 0 }}
+      p {{ practicingSince | format-practicing-since }} - {{ practicingYears > 0 ? `${practicingYears} Year${practicingYears > 1 ? 's' : ''} of Experience` : ''}}
     //- Educational Background
     div(v-if="education.length").mb-6
       h2(:class="sectionTextClasses").secondary--text Education

@@ -108,7 +108,7 @@
                   span Use your location
               template(v-slot:item="data")
                 v-col(cols="12")
-                  v-row.py-3
+                  v-row(@click="searchObject.searchString = data.item.name; onSearch(true)").py-3
                     v-col.mc-content-set-5
                       v-row
                         v-col.py-0
@@ -118,6 +118,7 @@
                           v-row.px-3
                             v-icon(color="secondary" :small="!$isWideScreen") mdi-briefcase
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
+                            span(v-if="data.item.tags") &nbsp;{{ data.item.tags.length > 1 ? `+${data.item.tags.length - 1} other${data.item.tags.length > 2 ? 's' : ''}` : ''}}
                         //- TODO: Location search not yet applicable for doctor
                         //- v-col.pb-0
                         //-   v-row.px-3
@@ -384,7 +385,7 @@ export default {
       if (this.selectedMode === 'account') {
         query.tags = this.searchObject.specializations.map(x => this.formatTagForQuery(x));
       } else {
-        query.tag = this.formatTagForQuery(this.searchObject.serviceType);
+        query.tag = this.formatTagForQuery(this.searchObject.searchString);
       }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
       this.suggestionEntries = items || [];
