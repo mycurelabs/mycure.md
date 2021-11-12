@@ -33,7 +33,7 @@
               slot(name="cta-button")
                 signup-button(
                   depressed
-                  class="rounded-pill"
+                  class="rounded-lg"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   :color="btnColor"
@@ -181,8 +181,8 @@ export default {
     },
   },
   data () {
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.btnClasses = ['mc-content-set-1'];
+    this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-btn1'];
     return {};
   },
   computed: {
@@ -201,7 +201,7 @@ export default {
     // Classes
     titleClasses () {
       return [
-        'mc-title-set-1',
+        'mc-h1',
         'lh-title',
         'font-weight-bold',
         // 'font-usp-primary',
@@ -210,7 +210,7 @@ export default {
     },
     superTitleClasses () {
       return [
-        'mc-content-set-1',
+        'mc-h6',
         'font-open-sans',
         'primary--text',
         'font-weight-bold',

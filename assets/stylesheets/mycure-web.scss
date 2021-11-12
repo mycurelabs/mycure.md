@@ -19,6 +19,47 @@ $font-lm: 2.3rem; // size between large-medium (for titles with font-m content)
 $font-l: 3rem;
 $font-xl: 3.75rem;
 $font-2xl: 6rem;
+// new font presets
+$h1-wide: 96px; //linespace lineheight
+$h2-wide: 48px; //linespace lineheight
+$h3-wide: 34px; //linespace
+$h4-wide: 24px;
+$h5-wide: 20px;
+$h6-wide: 24px;
+$h7-wide: 18px;
+$b1-wide: 34px;
+$b2-wide: 20px;
+$b3-wide: 18px;
+$b4-wide: 16px;
+$b5-wide: 16px;
+$hyp1-wide: 20px;
+$hyp2-wide: 18px;
+$btn1-wide: 20px;
+$h1-std: 60px; //linespace lineheight
+$h2-std: 34px; //linespace
+$h3-std: 24px;
+$h4-std: 20px;
+$h5-std: 18px;
+$h6-std: 18px;
+$h7-std: 12px;
+$b1-std: 24px;
+$b2-std: 18px;
+$b3-std: 16px;
+$b4-std: 14px;
+$b5-std: 14px;
+$hyp1-std: 16px;
+$hyp2-std: 14px;
+$btn1-std: 18px;
+$h1-mob: 34px;
+$h2-mob: 20px;
+$h4-mob: 18px;
+$h6-mob: 18px;
+$h7-mob: 12px;
+$b1-mob: 18px;
+$b2-mob: 16px;
+$b4-mob: 14px;
+$hyp1-mob: 18px;
+$btn1-mob: 16px;
 
 $letter-spacing: -0.5px;
 
@@ -110,6 +151,10 @@ $letter-spacing: -0.5px;
   } @else {
     font-size: $font-xs !important;
   }
+}
+@mixin mc-font-sizer($size) {
+  letter-spacing: $letter-spacing;
+  font-size: $size !important;
 }
 
 /* ===== ADD GLOBAL CSS SETS HERE ===== */
@@ -399,6 +444,216 @@ classBinder(this, {
     font-size: 22px;
   }
   letter-spacing: 0px;
+}
+
+.mc-h1 {
+  font-weight: 600 !important;
+  // - Mobile
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h1-mob);
+    text-align: center;
+  }
+  // - Regular
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h1-std);
+    line-height: 1.5;
+  }
+  // - Wide
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h1-wide);
+    line-height: 1.5;
+  }
+}
+.mc-h2 {
+  font-weight: 600 !important;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h2-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h2-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h2-wide);
+    line-height: 1.5;
+  }
+}
+.mc-h3 {
+  font-weight: 600 !important;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h2-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h3-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h3-wide);
+    line-height: 1.5;
+  }
+}
+.mc-h4 {
+  font-weight: 600 !important;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h4-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h4-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h4-wide);
+    line-height: 1.5;
+  }
+}
+.mc-h5 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h6-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h5-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h5-wide);
+    line-height: 1.5;
+  }
+}
+.mc-h6 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h6-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h6-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h6-wide);
+    line-height: 1.5;
+  }
+}
+.mc-h7 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h7-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h7-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h7-wide);
+    line-height: 1.5;
+  }
+}
+.mc-b1 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b1-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b1-std);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b1-wide);
+  }
+}
+.mc-b2 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b2-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b2-std);
+    line-height: 30px;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b2-wide);
+    line-height: 40px;
+  }
+}
+.mc-b3 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b1-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b3-std);
+    line-height: 25px;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b3-wide);
+    line-height: 30px;
+  }
+}
+.mc-b4 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b4-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b4-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b4-wide);
+    line-height: 1.5;
+  }
+}
+.mc-b5 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b4-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b5-std);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b5-wide);
+    line-height: 1.5;
+  }
+}
+.mc-hyp1 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($hyp1-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($hyp1-std);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($hyp1-wide);
+  }
+}
+.mc-hyp2 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($hyp1-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($hyp2-std);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($hyp2-wide);
+  }
+}
+.mc-btn1 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($btn1-mob);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($btn1-std);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($btn1-wide);
+  }
 }
 
 .otp-input {
