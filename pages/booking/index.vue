@@ -121,7 +121,7 @@
                 )
 
     testimonials(is-booking)
-
+    attendance-video
     //- 4th panel
     features(
       :items="howItWorksContents"
@@ -242,6 +242,7 @@ export default {
     Practitioners: () => import('~/components/booking/Practitioners'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
     Testimonials: () => import('~/components/doctors-clinics/Testimonials'),
+    AttendanceVideo: () => import('~/components/booking/AttendanceVideo'),
   },
   data () {
     this.howItWorksContents = [
