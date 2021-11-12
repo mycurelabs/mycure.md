@@ -8,11 +8,6 @@
     //- LOADING
     v-row(v-if="loading" justify="center")
       v-col.text-center
-        //- v-progress-circular(
-        //-   color="primary"
-        //-   indeterminate
-        //-   size="100"
-        //- )
         v-skeleton-loader(type="card-heading, list-item-three-line, actions" elevation="2")
     //- EMPTY SERVICES
     v-row(v-else-if="items.length === 0" justify="center")

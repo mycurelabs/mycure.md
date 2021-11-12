@@ -42,11 +42,10 @@
     template(v-if="isVerified")
       //- PANEL 1 FOOTER
       div(:style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer.text-center
-        span(v-if="formattedAddress")
+        span(v-if="formattedAddress").mr-6
           v-icon.red--text mdi-map-marker
           span {{formattedAddress}}
         br(v-if="$isMobile")
-        span(v-else) &nbsp;&nbsp;&nbsp;
         span(v-if="clinicPhone")
           v-icon.green--text mdi-phone
           span {{clinicPhone}}

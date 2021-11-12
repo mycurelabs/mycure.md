@@ -10,7 +10,7 @@
             borderless
             mandatory
             @change="onModeChange($event)"
-            :class="$isMobile ? 'mb-2' : ''"
+            :class="{'mb-2': $isMobile }"
           )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
             v-btn(
@@ -382,9 +382,9 @@ export default {
         tags: [],
       };
       if (this.selectedMode === 'account') {
-        query.tags = this.searchObject.specializations.map(x => this.tagUnformat(x));
+        query.tags = this.searchObject.specializations.map(x => this.formatTagForQuery(x));
       } else {
-        query.tag = this.tagUnformat(this.searchObject.serviceType);
+        query.tag = this.formatTagForQuery(this.searchObject.serviceType);
       }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
       this.suggestionEntries = items || [];
@@ -408,7 +408,7 @@ export default {
       finArray = finArray.map(x => `${x.charAt(0).toUpperCase()}${x.slice(1)}`);
       return finArray.join(' ');
     },
-    tagUnformat (string) {
+    formatTagForQuery (string) {
       let finArray = string.split(' ');
       finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
       let finStr = finArray.join('-');

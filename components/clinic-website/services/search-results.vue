@@ -11,11 +11,6 @@
       v-card-text
         v-row(v-if="loading" justify="center")
           v-col.text-center
-            //- v-progress-circular(
-            //-   color="primary"
-            //-   indeterminate
-            //-   size="100"
-            //- )
             v-skeleton-loader(type="card-heading, list-item-three-line, actions" elevation="2")
         v-row(v-else-if="!items.length" justify="center")
           v-col(cols="12" md="4").text-center
