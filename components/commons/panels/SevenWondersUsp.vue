@@ -203,7 +203,7 @@ export default {
       return [
         'mc-h1',
         'lh-title',
-        'font-weight-bold',
+        'font-weight-semibold',
         // 'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
       ];
