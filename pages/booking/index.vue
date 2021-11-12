@@ -40,7 +40,7 @@
       features(
         image-dir="booking/"
         content-col-size="10"
-        icon-container-col-size="10"
+        icon-container-col-size="12"
         :each-icon-col="{ cols: 12, sm: 10 }"
         :items="thirdPanelContents"
       )
@@ -50,21 +50,20 @@
           span.mc-b2.font-gray MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
         template(slot="items")
           v-col(cols="12" md="4" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
-            v-card(height="100%" elevation="1").rounded-lg
-              v-card-text
-                picture-source(
-                  v-if="item.icon"
-                  custom-path="booking/"
-                  :image="item.icon"
-                  :image-alt="item.title"
-                  :image-file-extension="item.iconExtension"
-                  :image-width="acquireIconsSize"
-                  :image-height="acquireIconsSize"
-                )
-                br
-                h2.hiw-subheading.font-weight-semibold.mc-h4 {{ item.title }}
-                br
-                p.hiw-caption.font-open-sans.mc-b4 {{ item.description }}
+            v-card(height="100%" elevation="1").rounded-lg.pa-8
+              picture-source(
+                v-if="item.icon"
+                custom-path="booking/"
+                :image="item.icon"
+                :image-alt="item.title"
+                :image-file-extension="item.iconExtension"
+                :image-width="acquireIconsSize"
+                :image-height="acquireIconsSize"
+              )
+              br
+              h2.hiw-subheading.font-weight-semibold.mc-h4 {{ item.title }}
+              br
+              p.hiw-caption.font-open-sans.mc-b4 {{ item.description }}
         //- template(slot="additional-content")
         //-   v-col(cols="12").text-center.mt-5
         //-     signup-button(
@@ -120,7 +119,7 @@
                   custom-path="booking/"
                 )
 
-    testimonials(is-booking)
+    testimonials
     attendance-video
     //- 4th panel
     features(
