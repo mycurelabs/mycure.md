@@ -375,6 +375,7 @@ export default {
         if (this.countryCallingCode !== '63') {
           this.emailVerificationMessageDialog = true;
         } else {
+          await this.sendOtp();
           this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
         }
       } catch (e) {
