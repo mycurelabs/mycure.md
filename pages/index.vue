@@ -15,20 +15,24 @@
     )
       //- 4th panel
     div.simple-container.mx-n3
-      simple
+      lazy-hydrate(when-visible)
+        simple
     //- 5th panel
-    patients
+    lazy-hydrate(when-visible)
+      patients
     //- 6th panel
     div.grey-bg.mx-n3
-      tools(:version="2")
+      lazy-hydrate(when-visible)
+        tools(:version="2")
     //- 7th panel
     syncbase
     //- 8th panel
     div.grey-bg.mx-n3
-      hipaa(
-        :header-classes="headerClasses"
-        :description-classes="descriptionClasses"
-      )
+      lazy-hydrate(when-visible)
+        hipaa(
+          :header-classes="headerClasses"
+          :description-classes="descriptionClasses"
+        )
     //- 9th panel
     steps(:steps="stepsContent" not-free)
     //- 10th panel
@@ -53,6 +57,7 @@
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
@@ -63,6 +68,7 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
+    LazyHydrate,
     Care,
     GenericMediaPanel,
     Hipaa: () => import('~/components/booking/Hipaa'),
