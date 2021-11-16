@@ -87,6 +87,7 @@
         img(
           src="~/assets/images/mycure-logo-white.png"
           width="120"
+          height="34.46px"
           alt="MYCURE logo"
         )
         v-spacer
