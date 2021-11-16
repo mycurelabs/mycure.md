@@ -21,14 +21,15 @@
       lazy-hydrate(on-interaction)
         simple
     //- 5th panel
-    lazy-hydrate(never)
+    lazy-hydrate(when-visible)
       patients
     //- 6th panel
     div.grey-bg.mx-n3
       lazy-hydrate(never)
         tools(:version="2")
     //- 7th panel
-    syncbase
+    lazy-hydrate(on-interaction)
+      syncbase
     //- 8th panel
     div.grey-bg.mx-n3
       lazy-hydrate(on-interaction)
@@ -37,7 +38,7 @@
           :description-classes="descriptionClasses"
         )
     //- 9th panel
-    lazy-hydrate(on-interaction)
+    lazy-hydrate(when-visible)
       steps(:steps="stepsContent" not-free)
     //- 10th panel
     lazy-hydrate(never)
