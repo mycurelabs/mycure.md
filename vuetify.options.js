@@ -1,3 +1,10 @@
+// MDI
+import {
+  mdiFlask,
+  mdiHospitalMarker,
+  mdiStethoscope,
+} from '@mdi/js';
+
 export default {
   theme: {
     themes: {
@@ -27,6 +34,14 @@ export default {
       sm: 1024,
       md: 1264,
       lg: 1904,
+    },
+  },
+  icons: {
+    iconFont: 'mdiSvg',
+    values: {
+      mdiFlask,
+      mdiHospitalMarker,
+      mdiStethoscope,
     },
   },
 };

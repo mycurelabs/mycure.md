@@ -153,6 +153,7 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
     optionsPath: './vuetify.options.js',
+    defaultAssets: false,
   },
 
   // Google Analytics Module
@@ -189,6 +190,7 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCss: true,
     transpile: [
       'vue-clamp',
       'resize-detector',

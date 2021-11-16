@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@bachdgvn/vue-otp-input": "^1.0.8",
+    "@mdi/js": "^6.5.95",
     "@mycure/sdk-js": "^5.32.8",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/dotenv": "^1.4.1",
