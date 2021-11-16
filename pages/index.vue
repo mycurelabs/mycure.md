@@ -2,57 +2,69 @@
   v-container(v-if="!loading" fluid).white
     //- Remove for now to test SEO
     //- 1st panel
-    seven-wonders
+    lazy-hydrate(when-idle)
+      seven-wonders
     //- 2nd panel
-    care(:metrics-data="metricsData")
-    //- 3rd panel
-    stakes(
-      panel-title="Your clinic system should not cause you more problems"
-      panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
-      :version="1"
-      :contents="stakesContent"
-      not-free
-    )
-    //- 4th panel
-    div.simple-container.mx-n3
-      simple
-    //- 5th panel
-    patients
-    //- 6th panel
-    div.grey-bg.mx-n3
-      tools(:version="2")
-    //- 7th panel
-    syncbase
-    //- 8th panel
-    div.grey-bg.mx-n3
-      hipaa(
-        :header-classes="headerClasses"
-        :description-classes="descriptionClasses"
-      )
-    //- 9th panel
-    steps(:steps="stepsContent" not-free)
-    //- 10th panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
-    //- CTA
-    div.cta-container.mx-n3.mb-n3
-      join-next-generation
-      div.cta-image.text-center
-        picture-source(
-          image="CTA"
-          custom-path="home/"
-          image-alt="CTA Home"
-          :image-file-extension="$useWebp? '.webp' : '.png'"
-          :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
-          :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
-          :image-styles="{ marginBottom: '-7px' }"
+    lazy-hydrate(when-visible)
+      div
+        care(:metrics-data="metricsData")
+        //- 3rd panel
+        stakes(
+          panel-title="Your clinic system should not cause you more problems"
+          panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
+          :version="1"
+          :contents="stakesContent"
+          not-free
         )
+    lazy-hydrate(when-visible)
+      //- 4th panel
+      div.simple-container.mx-n3
+        simple
+    //- 5th panel
+    lazy-hydrate(when-visible)
+      patients
+    //- 6th panel
+    lazy-hydrate(never)
+      div.grey-bg.mx-n3
+        tools(:version="2")
+    //- 7th panel
+    lazy-hydrate(when-visible)
+      syncbase
+    //- 8th panel
+    lazy-hydrate(when-visible)
+      div.grey-bg.mx-n3
+        hipaa(
+          :header-classes="headerClasses"
+          :description-classes="descriptionClasses"
+        )
+    //- 9th panel
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
+    //- 10th panel
+    lazy-hydrate(never)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
+    //- CTA
+    lazy-hydrate(when-visible)
+      div.cta-container.mx-n3.mb-n3
+        join-next-generation
+        div.cta-image.text-center
+          picture-source(
+            image="CTA"
+            custom-path="home/"
+            image-alt="CTA Home"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
+            :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
+            :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
+            :image-styles="{ marginBottom: '-7px' }"
+          )
 </template>
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
@@ -63,6 +75,7 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
+    LazyHydrate,
     Care,
     GenericMediaPanel,
     Hipaa: () => import('~/components/booking/Hipaa'),
