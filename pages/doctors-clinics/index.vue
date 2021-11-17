@@ -68,7 +68,7 @@
               color="success"
             ).text-none
               span.generic-button-text Get Started Free
-              v-icon(small right) mdi-arrow-right
+              v-icon(small right) {{ mdiArrowRight }}
     //- 7th panel
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
@@ -85,7 +85,7 @@
           template(slot="additional-content")
             template(v-for="item in eightPanel.list")
               v-row(dense align="center").my-2
-                v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
+                v-icon(color="white" :large="$isWideScreen") {{ mdiCheckboxMarkedCircle }}
                 span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
     lazy-hydrate(when-visible)
@@ -119,6 +119,7 @@
 <script>
 // utils
 import LazyHydrate from 'vue-lazy-hydration';
+import { mdiArrowRight, mdiCheckboxMarkedCircle } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
@@ -199,6 +200,9 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      // icons
+      mdiArrowRight,
+      mdiCheckboxMarkedCircle,
     };
   },
   head () {

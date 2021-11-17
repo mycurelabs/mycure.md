@@ -22,7 +22,7 @@
             :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}"
             :style="opacity"
           ).text-center
-            v-icon(color="success" small left) {{ isRecommended ? 'mdi-tag' : 'mdi-tag-outline' }}
+            v-icon(color="success" small left) {{ isRecommended ? mdiTag : mdiTagOutline }}
             strong(:class="{ 'white--text': isRecommended, 'grey--text': !isRecommended}").savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
             v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
           p(
@@ -115,6 +115,14 @@
 </template>
 
 <script>
+import {
+  mdiCheckboxMarkedCircle,
+  mdiClose,
+  mdiCloseCircle,
+  mdiPlusCircle,
+  mdiTag,
+  mdiTagOutline,
+} from '@mdi/js';
 import SignupButton from '~/components/commons/SignupButton';
 import PictureSource from '~/components/commons/PictureSource';
 import classBinder from '~/utils/class-binder';
@@ -165,6 +173,13 @@ export default {
   data () {
     return {
       showList: false,
+      // icons
+      mdiCheckboxMarkedCircle,
+      mdiClose,
+      mdiCloseCircle,
+      mdiPlusCircle,
+      mdiTag,
+      mdiTagOutline,
     };
   },
   computed: {
@@ -260,10 +275,10 @@ export default {
       return 'primary';
     },
     getInclusionIcon (valid, additional = false) {
-      if (valid && additional) return 'mdi-plus-circle';
-      if (valid) return 'mdi-checkbox-marked-circle';
-      if (this.isRecommended && !valid) return 'mdi-close';
-      return 'mdi-close-circle';
+      if (valid && additional) return this.mdiPlusCircle;
+      if (valid) return this.mdiCheckboxMarkedCircle;
+      if (this.isRecommended && !valid) return this.mdiClose;
+      return this.mdiCloseCircle;
     },
     getInclusionTextColor (valid) {
       if (this.isRecommended) return 'white--text';
