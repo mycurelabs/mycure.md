@@ -1,79 +1,85 @@
 <template lang="pug">
   v-container(v-if="!loading" fluid).white
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="Telehealth-Landing-Page"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="Everything you need to build your virtual practice"
-      meta-title="MYCURE Telehealth"
-      description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
-      btn-text="Get Started Free"
-      image="Telehealth-Mobile-USP"
-      image-width="90%"
-      image-align="right"
-      custom-image-path="telehealth/"
-      parse-title
-      parse-meta-title
-      :parse-title-fields="['you ', 'your ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
-      //- GET RESPONSE
-      template(slot="cta-button")
-        mc-btn(
-          depressed
-          class="rounded-pill"
-          :width="!$isWideScreen ? '228px' : '300'"
-          :height="!$isWideScreen ? '59px' : '73.68'"
-          color="success"
-          @click="getResponseDialog = true"
-        ).text-none
-          span.generic-button-text Get Started Free
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="Telehealth-Landing-Page"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="Everything you need to build your virtual practice"
+        meta-title="MYCURE Telehealth"
+        description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
+        btn-text="Get Started Free"
+        image="Telehealth-Mobile-USP"
+        image-width="90%"
+        image-align="right"
+        custom-image-path="telehealth/"
+        parse-title
+        parse-meta-title
+        :parse-title-fields="['you ', 'your ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
+        //- GET RESPONSE
+        template(slot="cta-button")
+          mc-btn(
+            depressed
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
+            color="success"
+            @click="getResponseDialog = true"
+          ).text-none
+            span.generic-button-text Get Started Free
     //- 2nd panel
-    virtual-clinic
+    lazy-hydrate(when-visible)
+      virtual-clinic
     //- 3rd panel
-    telehealth-video
-      //- GET RESPONSE
-      template(slot="cta-button")
-        br
-        mc-btn(
-          depressed
-          class="rounded-pill"
-          :width="!$isWideScreen ? '228px' : '300'"
-          :height="!$isWideScreen ? '59px' : '73.68'"
-          color="primary"
-          @click="getResponseDialog = true"
-        ).text-none
-          span.generic-button-text Get Started Free
+    lazy-hydrate(on-interaction)
+      telehealth-video
+        //- GET RESPONSE
+        template(slot="cta-button")
+          br
+          mc-btn(
+            depressed
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
+            color="primary"
+            @click="getResponseDialog = true"
+          ).text-none
+            span.generic-button-text Get Started Free
     //- 4th panel
-    generic-media-panel(
-      :content="fourthPanel"
-      hide-btn
-    )
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="fourthPanel"
+        hide-btn
+      )
     v-divider(v-if="$isMobile").divider
     //-5th panel
-    generic-media-panel(
-      :content="fifthPanel"
-      hide-btn
-      :title-classes="listHeaderClasses"
-      :content-classes="listContentClasses"
-    )
-      //- Check list
-      template(slot="additional-content")
-        template(v-for="(item, i) in fifthPanel.list")
-          v-row(dense align="center").my-2
-            img(
-              src="~/assets/images/mycure-check.png"
-              alt="Check icon"
-              :width="$isWideScreen ? '30' : '20'"
-              :height="$isWideScreen ? '30' : '20'"
-            )
-            span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="fifthPanel"
+        hide-btn
+        :title-classes="listHeaderClasses"
+        :content-classes="listContentClasses"
+      )
+        //- Check list
+        template(slot="additional-content")
+          template(v-for="(item, i) in fifthPanel.list")
+            v-row(dense align="center").my-2
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
+              span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     //- 6th panel
     //- pricing(
     //-   title="Start free and only pay as you grow."
@@ -81,21 +87,22 @@
     //-   :column-bindings="{ cols: '12', md: '3', xl: '3'}"
     //- )
     //- 7th panel
-    call-to-action
-      //- GET RESPONSE
-      template(slot="cta-button")
-        v-col
-          v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(:align="$isMobile ? 'center' : 'start'")
-              mc-btn(
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="success"
-                @click="getResponseDialog = true"
-              ).text-none
-                span.generic-button-text Get Started Free
+    lazy-hydrate(when-visible)
+      call-to-action
+        //- GET RESPONSE
+        template(slot="cta-button")
+          v-col
+            v-row(:justify="$isMobile ? 'center' : 'start'")
+              v-col(:align="$isMobile ? 'center' : 'start'")
+                mc-btn(
+                  depressed
+                  class="rounded-pill"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  color="success"
+                  @click="getResponseDialog = true"
+                ).text-none
+                  span.generic-button-text Get Started Free
 
     //- GET RESPONSE DIALOG
     v-dialog(v-model="getResponseDialog" width="unset")
@@ -107,6 +114,7 @@
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -115,6 +123,7 @@ import { DOCTORS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
