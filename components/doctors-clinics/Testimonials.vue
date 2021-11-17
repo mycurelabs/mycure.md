@@ -8,13 +8,13 @@
         v-col(cols="12").pa-0
           v-row(justify="center")
             v-col(cols="12").text-center
-              h4.mc-h7.primary--text.font-open-sans.font-weight-semibold MYCURE Testimonials
+              h4.mc-h7.primary--text.font-open-sans.font-weight-semibold TESTIMONIALS
               span.font-weight-semibold.mc-h2 {{ isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?' }}
           v-row(justify="center").mt-5
             //- hr(size="8" color="#0099cc" width="10%")
           v-row(justify="center").black--text
-            v-col(v-if="!isBooking" cols="12" sm="5")
-              v-card(elevation="7" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
+            v-col(cols="12" sm="6")
+              v-card(elevation="2" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
                 v-card-text
                   v-col(cols="12")
                     v-icon(:large="$vuetify.breakpoint.width > 1024" :x-large="$isWideScreen" color="primary").mb-3 mdi-format-quote-open
@@ -35,9 +35,9 @@
                       v-col
                         h1.font-weight-semibold.mc-metatitle-set-1 Dr. Nelson S. Abelardo
                         h1.font-weight-light.mc-metatitle-set-1 Cardiologist
-            v-col(v-if="!isBooking && $vuetify.breakpoint.width > 1023" cols="1")
-            v-col(cols="12" sm="5")
-              v-card(elevation="7" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
+            //- v-col(v-if="!isBooking && $vuetify.breakpoint.width > 1023" cols="1")
+            v-col(cols="12" sm="6")
+              v-card(elevation="2" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
                 v-card-text
                   v-col(cols="12")
                     v-icon(:large="$vuetify.breakpoint.width > 1024" :x-large="$isWideScreen" color="primary").mb-3 mdi-format-quote-open

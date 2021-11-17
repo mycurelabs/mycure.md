@@ -43,7 +43,7 @@ $h5-std: 18px;
 $h6-std: 18px;
 $h7-std: 12px;
 $b1-std: 24px;
-$b2-std: 18px;
+$b2-std: 16px;
 $b3-std: 16px;
 $b4-std: 14px;
 $b5-std: 14px;
@@ -518,7 +518,7 @@ classBinder(this, {
 }
 .mc-h6 {
   color: #0099CC;
-  font-weight: 700 !important;
+  font-weight: 900 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h6-mob, 24px);
     text-align: center;
@@ -535,7 +535,7 @@ classBinder(this, {
 }
 .mc-h7 {
   color: #0099CC;
-  font-weight: 700 !important;
+  font-weight: 900 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h7-mob, 18px);
     text-align: center;
@@ -551,6 +551,7 @@ classBinder(this, {
   }
 }
 .mc-b1 {
+  color: #353A40;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
     text-align: center;
@@ -563,6 +564,7 @@ classBinder(this, {
   }
 }
 .mc-b2 {
+  color: #353A40;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
     text-align: center;
@@ -575,6 +577,7 @@ classBinder(this, {
   }
 }
 .mc-b3 {
+  color: #353A40;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
     text-align: center;
@@ -587,6 +590,7 @@ classBinder(this, {
   }
 }
 .mc-b4 {
+  color: #353A40;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
@@ -599,6 +603,7 @@ classBinder(this, {
   }
 }
 .mc-b5 {
+  color: #353A40;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b4-mob, 24px);
     text-align: center;

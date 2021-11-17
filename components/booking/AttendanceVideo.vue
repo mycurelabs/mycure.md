@@ -7,12 +7,7 @@
       )
         v-row(justify="center")
           v-col(cols="12" sm="5")
-            span.mc-h2 Watch how you can improve your patient attendance rate
-            br
-            br
-            span.mc-b2.font-gray Want to reduce no-shows? Play the video to learn how the MYCURE Booking System engages your patients from booking to billing.
-            br
-            br
+            p.mc-h2 Watch how you can improve your patient attendance rate
             div(:class="{ 'text-center': $isMobile }")
               signup-button(
                 depressed

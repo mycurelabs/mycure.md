@@ -1,14 +1,19 @@
 <template lang="pug">
   div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
     div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
-      picture-source(
-        :image-file-extension="backgroundImageFileExtension"
-        :image="backgroundImage"
-        :image-alt="imageAlt || title"
-        :image-styles="backgroundStyle"
-        :extension-exclusive="extensionExclusive"
-        :custom-path="customImagePath"
+      img(
+        :src="require(`~/assets/images/${customImagePath}${image}.png`)"
+        :alt="image"
+        :style="backgroundStyle"
       )
+      //- picture-source(
+      //-   image-file-extension="png"
+      //-   :image="image"
+      //-   :image-alt="imageAlt || title"
+      //-   :image-styles="backgroundStyle"
+      //-   :extension-exclusive="extensionExclusive"
+      //-   :custom-path="customImagePath"
+      //- )
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
@@ -97,7 +102,7 @@ export default {
     },
     btnColor: {
       type: String,
-      default: 'success',
+      default: 'primary',
     },
     // - If custom btn
     slottedBtn: {
@@ -203,8 +208,7 @@ export default {
       return [
         'mc-h1',
         'lh-title',
-        'font-weight-semibold',
-        // 'font-usp-primary',
+        'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseTitle) },
       ];
     },
@@ -212,8 +216,6 @@ export default {
       return [
         'mc-h6',
         'font-open-sans',
-        'primary--text',
-        'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
       ];
     },
@@ -238,13 +240,13 @@ export default {
     },
     backgroundStyle () {
       return {
-        width: '100%',
+        width: '50%',
         height: '100%',
         position: 'absolute',
-        left: '0',
+        left: '50%',
         top: '0',
         zIndex: '1',
-        objectFit: 'cover',
+        objectFit: 'contain',
       };
     },
   },

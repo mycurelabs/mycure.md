@@ -5,8 +5,8 @@
       has-custom-background
       v-bind="imageBindings"
       background-image="Booking-Landing-Page"
-      title="Easy Booking System to Grow Your Practice"
-      meta-title="MYCURE Booking"
+      title="Easy Booking App to Grow Your Practice"
+      meta-title="MYCURE BOOKING"
       description="Let your patients book and schedule appointments efficiently"
       btn-text="Get Started Free"
       parse-title
@@ -49,8 +49,8 @@
         template(slot="description")
           span.mc-b2.font-gray MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
         template(slot="items")
-          v-col(cols="12" md="4" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
-            v-card(height="100%" elevation="1").rounded-lg.pa-8
+          div.d-flex.justify-space-around
+            v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key")
               picture-source(
                 v-if="item.icon"
                 custom-path="booking/"
@@ -60,8 +60,7 @@
                 :image-width="acquireIconsSize"
                 :image-height="acquireIconsSize"
               )
-              br
-              h2.hiw-subheading.font-weight-semibold.mc-h4 {{ item.title }}
+              h2.hiw-subheading.font-weight-semibold.mc-h4.my-4 {{ item.title }}
               p.hiw-caption.font-open-sans.mc-b4 {{ item.description }}
         //- template(slot="additional-content")
         //-   v-col(cols="12").text-center.mt-5
@@ -118,17 +117,20 @@
                   custom-path="booking/"
                 )
 
-    testimonials
+    testimonials(is-booking)
     attendance-video
     //- 4th panel
     features(
       :items="howItWorksContents"
       image-dir="booking/"
       icon-container-col-size="12"
+      title-col-size="7"
       :each-icon-col="{ cols: 12 }"
     )
       template(slot="title")
         span.mc-h2.font-weight-semibold An Easy Booking App to Grow Your Practice
+      template(slot="description")
+        span.mc-b2 If you’re ready to modernize your appointment scheduling software with MYCURE Booking, getting started is easy.
       template(slot="items")
         v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key")
           div.text-center
@@ -143,8 +145,8 @@
             )
           br
           br
-          h2.hiw-subheading.font-weight-semibold.mc-h3 {{ item.title }}
-          p.hiw-caption.font-open-sans.mc-b3 {{ item.description }}
+          h2.font-weight-semibold.mc-h3 {{ item.title }}
+          p.font-open-sans.mc-b3 {{ item.description }}
 
     //- 6th panel
     div.mx-n3
@@ -305,7 +307,7 @@ export default {
       'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
     ];
     this.titleClasses = ['mc-h2', 'black--text'];
-    this.superTitleClasses = ['mc-h7', 'font-open-sans', 'font-weight-semibold', 'primary--text'];
+    this.superTitleClasses = ['mc-h7', 'font-open-sans'];
     this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
     this.buttonClasses = ['mc-button-set-1'];
     this.howItWorksClass = ['mc-title-set-2'];
@@ -336,7 +338,7 @@ export default {
     secondPanel () {
       return {
         title: 'The MYCURE Booking App Won’t Waste Your Time',
-        superTitle: 'TIRED OF LONG WAITING LINES?',
+        superTitle: 'TIRED OF LONG WAIT TIMES?',
         description: 'Without an appointment booking system, healthcare providers find it difficult to organize patient visits resulting to missed opportunities and more time wasted.',
         contentAlign: 'right',
         imageBindings: {
