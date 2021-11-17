@@ -31,11 +31,12 @@
 <script>
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
     GenericPanel,
     PictureSource,
-    SignupButton: () => import('~/components/commons/SignupButton'),
+    SignupButton,
   },
 };
 </script>
