@@ -20,7 +20,7 @@
                 )
               v-col.pl-2
                 h3 {{ clinicName }}&nbsp;
-                  v-icon(v-if="isVerified" color="primary") mdi-check-decagram
+                  v-icon(v-if="isVerified" color="primary") {{ mdiCheckDecagram }}
               v-spacer
               v-btn(
                 depressed
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mdiMenu, mdiCheck } from '@mdi/js';
+import { mdiMenu, mdiCheck, mdiCheckDecagram } from '@mdi/js';
 export default {
   props: {
     picURL: {
@@ -89,6 +89,7 @@ export default {
       // icons,
       mdiMenu,
       mdiCheck,
+      mdiCheckDecagram,
     };
   },
   mounted () {
