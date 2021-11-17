@@ -1,52 +1,57 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="dental-clinics-usp-full-illu"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="The Dental Clinic Management System that makes you Smile"
-      meta-title="MYCURE for Dental Clinics"
-      description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
-      btn-text="Get Started"
-      image="dental-clinics-usp-mobile-version"
-      custom-image-path="clinics/dental/"
-      parse-title
-      parse-meta-title
-      :parse-title-fields="['Dental ', 'Management ', 'that ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
-    stakes(
-      :version="3"
-      :media-content="stakesContent"
-      hide-btn
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="dental-clinics-usp-full-illu"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="The Dental Clinic Management System that makes you Smile"
+        meta-title="MYCURE for Dental Clinics"
+        description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
+        btn-text="Get Started"
+        image="dental-clinics-usp-mobile-version"
+        custom-image-path="clinics/dental/"
+        parse-title
+        parse-meta-title
+        :parse-title-fields="['Dental ', 'Management ', 'that ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
+    lazy-hydrate(when-visible)
+      stakes(
+        :version="3"
+        :media-content="stakesContent"
+        hide-btn
+      )
     //- 2nd panel
     div.grey-bg.mx-n3
-      problem-statement
+      lazy-hydrate(when-visible)
+        problem-statement
     //- 3rd panel
-    generic-media-panel(
-      :content="thirdPanel" align="center"
-    )
-      template(slot="content")
-        h2(:class="headerClasses") Always accessible dental charts.
-        br
-        h2(:class="contentClasses") Never miss an appointment.
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="thirdPanel" align="center"
+      )
+        template(slot="content")
+          h2(:class="headerClasses") Always accessible dental charts.
           br
-          span Never miss a tooth.
-      template(slot="cta-button")
-        div(:class="{ 'text-center': $isMobile }")
-          signup-button(
-            depressed
-            color="success"
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none
-            span.generic-button-text Get Started
+          h2(:class="contentClasses") Never miss an appointment.
+            br
+            span Never miss a tooth.
+        template(slot="cta-button")
+          div(:class="{ 'text-center': $isMobile }")
+            signup-button(
+              depressed
+              color="success"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+            ).text-none
+              span.generic-button-text Get Started
     //- 4th panel
-    straightforward
+    lazy-hydrate(when-visible)
+      straightforward
     //- 5th panel
     //- div.info.mx-n3
     //-   v-container
@@ -65,110 +70,120 @@
     //-           ).text-none Count me in
 
     //- 6th panel
-    generic-media-panel(
-      :content="directoryPanel"
-      :title-classes="listHeaderClasses"
-      :content-classes="listContentClasses"
-    )
-      //- Check list
-      template(slot="additional-content")
-        template(v-for="(item, i) in directoryPanel.list")
-          v-row(dense align="center").my-2
-            img(
-              src="~/assets/images/mycure-check.png"
-              alt="Check icon"
-              :width="$isWideScreen ? '30' : '20'"
-              :height="$isWideScreen ? '30' : '20'"
-            )
-            span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]").font-open-sans.font-gray {{ item }}
-        div.mb-10
-      template(slot="cta-button")
-        div(:class="{'text-center': $isMobile}")
-          signup-button(
-            depressed
-            color="success"
-            event-label="signup"
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none
-            v-icon(left) mdi-web
-            span.generic-button-text Create my website
-        //- v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="12" sm="6" align="center").px-0.pb-0
-            mc-btn(
-              color="success"
-              href="https://calendly.com/mycure/demo"
-              target="_blank"
-              rel="noopener noreferrer"
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="directoryPanel"
+        :title-classes="listHeaderClasses"
+        :content-classes="listContentClasses"
+      )
+        //- Check list
+        template(slot="additional-content")
+          template(v-for="(item, i) in directoryPanel.list")
+            v-row(dense align="center").my-2
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
+              span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]").font-open-sans.font-gray {{ item }}
+          div.mb-10
+        template(slot="cta-button")
+          div(:class="{'text-center': $isMobile}")
+            signup-button(
               depressed
+              color="success"
+              event-label="signup"
               class="rounded-pill"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              //- v-icon(left) mdi-web
-              span.generic-button-text Create my Website
-          v-col(cols="12" sm="6" align="center" :class="{'pl-6': !$isMobile}").pb-0
+              v-icon(left) mdi-web
+              span.generic-button-text Create my website
+          //- v-row(:justify="$isMobile ? 'center' : 'start'")
+            v-col(cols="12" sm="6" align="center").px-0.pb-0
+              mc-btn(
+                color="success"
+                href="https://calendly.com/mycure/demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                depressed
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none
+                //- v-icon(left) mdi-web
+                span.generic-button-text Create my Website
+            v-col(cols="12" sm="6" align="center" :class="{'pl-6': !$isMobile}").pb-0
+              signup-button(
+                depressed
+                :block="!$isMobile"
+                outlined
+                color="success"
+                class="rounded-pill"
+                :width="$isMobile ? '228' : ''"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none
+                span.generic-button-text Get Started
+
+    //- 7th panel
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        align="center"
+        :content="multiplePanel"
+        :title-classes="[...headerClasses, 'primary--text']"
+      )
+        template(slot="cta-button")
+          div(:class="{'text-center': $isMobile}")
             signup-button(
               depressed
-              :block="!$isMobile"
-              outlined
               color="success"
               class="rounded-pill"
-              :width="$isMobile ? '228' : ''"
+              :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started
-
-    //- 7th panel
-    generic-media-panel(
-      align="center"
-      :content="multiplePanel"
-      :title-classes="[...headerClasses, 'primary--text']"
-    )
-      template(slot="cta-button")
-        div(:class="{'text-center': $isMobile}")
-          signup-button(
-            depressed
-            color="success"
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none
-            span.generic-button-text Get Started
-          //- mc-btn(
-          //-   color="success"
-          //-   href="https://calendly.com/mycure/demo"
-          //-   target="_blank"
-          //-   rel="noopener noreferrer"
-          //-   depressed
-          //-   class="rounded-pill"
-          //-   :width="!$isWideScreen ? '228px' : '300'"
-          //-   :height="!$isWideScreen ? '59px' : '73.68'"
-          //- ).text-none
-          //-   span.generic-button-text Get Started
+            //- mc-btn(
+            //-   color="success"
+            //-   href="https://calendly.com/mycure/demo"
+            //-   target="_blank"
+            //-   rel="noopener noreferrer"
+            //-   depressed
+            //-   class="rounded-pill"
+            //-   :width="!$isWideScreen ? '228px' : '300'"
+            //-   :height="!$isWideScreen ? '59px' : '73.68'"
+            //- ).text-none
+            //-   span.generic-button-text Get Started
     //- 8th panel
-    syncbase(:version="3")
-    care(:metrics-data="metricsData")
-    steps(:steps="stepsContent" not-free)
+    lazy-hydrate(when-visible)
+     syncbase(:version="3")
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
     //- 9th panel
-    think-long-term(extended)
+    lazy-hydrate(when-visible)
+      think-long-term(extended)
     //- 10th panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
-    client-only
-      pricing(
-        title="Take the first step today."
-        type="clinic"
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
       )
+    client-only
+      lazy-hydrate(when-idle)
+        pricing(
+          title="Take the first step today."
+          type="clinic"
+        )
     //- 11th panel
-    call-to-action(:version="3")
+    lazy-hydrate(when-visible)
+      call-to-action(:version="3")
 </template>
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
@@ -176,6 +191,7 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),

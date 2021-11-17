@@ -1,116 +1,130 @@
 <template lang="pug">
   v-container(v-if="!loading" fluid).white
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="clinics-landing-page"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="Simplified workflows, faster results, better performance."
-      meta-title="MYCURE Most Complete Clinic Management System"
-      description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
-      parse-title
-      parse-meta-title
-      btn-text="Get Started"
-      image="clinics-usp"
-      :image-width="$isMobile ? '100%' : '90%'"
-      custom-image-path="clinics/"
-      :parse-title-fields="['workflows, ', 'results, ']"
-      :parse-meta-title-fields="['System']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
-    stakes(
-      panel-title="Your clinic system should not cause you more problems"
-      sub-title="Without correctly utilizing the technologies available today, you’re actually losing opportunities more than you think."
-      panel-description="MYCURE is a full featured, end-to-end solution that eliminates many of the challenges of manual processing. MYCURE’s solution encompasses the entire customer journey, from the time they book an appointment to the time they pay and leave, so no more disjointed or separate solutions for different aspects of the clinic operations. The digital solution eliminates the need for manual record keeping and the pushing paper documents to different departments."
-      :version="2"
-      :contents="stakesContent"
-      not-free
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="clinics-landing-page"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="Simplified workflows, faster results, better performance."
+        meta-title="MYCURE Most Complete Clinic Management System"
+        description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
+        parse-title
+        parse-meta-title
+        btn-text="Get Started"
+        image="clinics-usp"
+        :image-width="$isMobile ? '100%' : '90%'"
+        custom-image-path="clinics/"
+        :parse-title-fields="['workflows, ', 'results, ']"
+        :parse-meta-title-fields="['System']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
+    lazy-hydrate(when-visible)
+      stakes(
+        panel-title="Your clinic system should not cause you more problems"
+        sub-title="Without correctly utilizing the technologies available today, you’re actually losing opportunities more than you think."
+        panel-description="MYCURE is a full featured, end-to-end solution that eliminates many of the challenges of manual processing. MYCURE’s solution encompasses the entire customer journey, from the time they book an appointment to the time they pay and leave, so no more disjointed or separate solutions for different aspects of the clinic operations. The digital solution eliminates the need for manual record keeping and the pushing paper documents to different departments."
+        :version="2"
+        :contents="stakesContent"
+        not-free
+      )
     //- 2nd panel
     div.grey-bg.mx-n3
-      workflow
+      lazy-hydrate(when-visible)
+        workflow
     //- 3rd panel
-    syncbase(:version="2")
+    lazy-hydrate(when-visible)
+      syncbase(:version="2")
     //- 4th panel
     //- div.grey-bg.mx-n3
     //-   mycure-csi
     //- 5th panel
-    generic-media-panel(
-      :content="fifthPanel"
-      :title-classes="headerClasses"
-      :content-classes="descriptionClasses"
-      hide-btn
-    )
-      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
-        signup-button(
-          depressed
-          color="success"
-          event-label="signup"
-          class="rounded-pill"
-          :width="!$isWideScreen ? '228px' : '300'"
-          :height="!$isWideScreen ? '59px' : '73.68'"
-        ).text-none
-          v-icon(left) mdi-web
-          span.generic-button-text Create my website
-    //- 6th panel
-    div.grey-bg.mx-n3
-      features(
-        title="Customized for Your Specialty"
-        description="MYCURE has already built-in workflows and processes for different setups."
-        :items="features"
-        :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
-        :icon-column-bindings="{ cols: '6', md: '3' }"
-        image-dir="clinics/"
-        panel-height="70vh"
-      )
-    //- 7.5
-    care(:metrics-data="metricsData")
-    steps(
-      :steps="stepsContent"
-      not-free
-    )
-    //- 8th panel
-    think-long-term
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
-    v-divider.divider
-    //- 10th panel
-    client-only
-      pricing(
-        has-trial-option
-        type="clinic"
-        title="Take the first step today"
-        description="Choose the best plan for your clinic. Only pay for what you need."
-      ).mb-n3
-    //- 9th panel
-    call-to-action(:version="2" not-free)
-    //- 7th panel
-    div.blue-bg.mx-n3
+    lazy-hydrate(when-visible)
       generic-media-panel(
-        align="center"
-        :content="practicingSoloPanel"
-        :title-classes="[...headerClasses, 'white--text']"
+        :content="fifthPanel"
+        :title-classes="headerClasses"
+        :content-classes="descriptionClasses"
         hide-btn
       )
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
-          //- SEO issue non descriptiove link
-          mc-btn(
+          signup-button(
             depressed
-            color="white"
+            color="success"
+            event-label="signup"
             class="rounded-pill"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
-            :to="{ name: 'doctors-clinics' }"
-          ).text-none.primary--text
-            //- v-icon(left) mdi-information-outline
-            span.generic-button-text See MYCURE for Doctors
+          ).text-none
+            v-icon(left) mdi-web
+            span.generic-button-text Create my website
+    //- 6th panel
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        features(
+          title="Customized for Your Specialty"
+          description="MYCURE has already built-in workflows and processes for different setups."
+          :items="features"
+          :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
+          :icon-column-bindings="{ cols: '6', md: '3' }"
+          image-dir="clinics/"
+          panel-height="70vh"
+        )
+    //- 7.5
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
+    lazy-hydrate(when-visible)
+      steps(
+        :steps="stepsContent"
+        not-free
+      )
+    //- 8th panel
+    lazy-hydrate(when-visible)
+      think-long-term
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
+    v-divider.divider
+    //- 10th panel
+    client-only
+      lazy-hydrate(when-idle)
+        pricing(
+          has-trial-option
+          type="clinic"
+          title="Take the first step today"
+          description="Choose the best plan for your clinic. Only pay for what you need."
+        ).mb-n3
+    //- 9th panel
+    lazy-hydrate(when-visible)
+      call-to-action(:version="2" not-free)
+    //- 7th panel
+    div.blue-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          align="center"
+          :content="practicingSoloPanel"
+          :title-classes="[...headerClasses, 'white--text']"
+          hide-btn
+        )
+          div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+            //- SEO issue non descriptiove link
+            mc-btn(
+              depressed
+              color="white"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              :to="{ name: 'doctors-clinics' }"
+            ).text-none.primary--text
+              //- v-icon(left) mdi-information-outline
+              span.generic-button-text See MYCURE for Doctors
 </template>
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
@@ -120,6 +134,7 @@ import { CLINICS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Features: () => import('~/components/commons/panels/Features'),
