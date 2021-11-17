@@ -62,7 +62,6 @@
               )
               br
               h2.hiw-subheading.font-weight-semibold.mc-h4 {{ item.title }}
-              br
               p.hiw-caption.font-open-sans.mc-b4 {{ item.description }}
         //- template(slot="additional-content")
         //-   v-col(cols="12").text-center.mt-5

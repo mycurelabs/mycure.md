@@ -20,7 +20,7 @@ $font-l: 3rem;
 $font-xl: 3.75rem;
 $font-2xl: 6rem;
 // new font presets
-$h1-wide: 96px; //linespace lineheight
+$h1-wide: 60px; //linespace lineheight
 $h2-wide: 48px; //linespace lineheight
 $h3-wide: 34px; //linespace
 $h4-wide: 24px;
@@ -35,7 +35,7 @@ $b5-wide: 16px;
 $hyp1-wide: 20px;
 $hyp2-wide: 18px;
 $btn1-wide: 20px;
-$h1-std: 60px; //linespace lineheight
+$h1-std: 48px; //linespace lineheight
 $h2-std: 34px; //linespace
 $h3-std: 24px;
 $h4-std: 20px;
@@ -152,8 +152,9 @@ $letter-spacing: -0.5px;
     font-size: $font-xs !important;
   }
 }
-@mixin mc-font-sizer($size) {
+@mixin mc-font-sizer($size, $line-height) {
   letter-spacing: $letter-spacing;
+  line-height: $line-height;
   font-size: $size !important;
 }
 
@@ -450,209 +451,201 @@ classBinder(this, {
   font-weight: 600 !important;
   // - Mobile
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h1-mob);
+    @include mc-font-sizer($h1-mob, 51px);
     text-align: center;
   }
   // - Regular
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h1-std);
-    line-height: 1.5;
+    @include mc-font-sizer($h1-std, 80px);
   }
   // - Wide
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h1-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($h1-wide, 96px);
   }
 }
 .mc-h2 {
   font-weight: 600 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h2-mob);
+    @include mc-font-sizer($h2-mob, 30px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h2-std);
+    @include mc-font-sizer($h2-std, 48px);
     line-height: 1.5;
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h2-wide);
+    @include mc-font-sizer($h2-wide, 72px);
     line-height: 1.5;
   }
 }
 .mc-h3 {
   font-weight: 600 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h2-mob);
+    @include mc-font-sizer($h2-mob, 30px );
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h3-std);
-    line-height: 1.5;
+    @include mc-font-sizer($h3-std, 34px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h3-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($h3-wide, 54px);
   }
 }
 .mc-h4 {
   font-weight: 600 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h4-mob);
+    @include mc-font-sizer($h4-mob, 27px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h4-std);
-    line-height: 1.5;
+    @include mc-font-sizer($h4-std, 30px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h4-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($h4-wide, 48px);
   }
 }
 .mc-h5 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h6-mob);
+    @include mc-font-sizer($h6-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h5-std);
-    line-height: 1.5;
+    @include mc-font-sizer($h5-std, 30px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h5-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($h5-wide, 48px); 
   }
 }
 .mc-h6 {
+  color: #0099CC;
+  font-weight: 700 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h6-mob);
+    @include mc-font-sizer($h6-mob, 24px);
     text-align: center;
+    letter-spacing: 2px;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h6-std);
-    line-height: 1.5;
+    @include mc-font-sizer($h6-std, 30px);
+    letter-spacing: 3px;
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h6-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($h6-wide, 36px);
+    letter-spacing: 3px;
   }
 }
 .mc-h7 {
+  color: #0099CC;
+  font-weight: 700 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($h7-mob);
+    @include mc-font-sizer($h7-mob, 18px);
     text-align: center;
+    letter-spacing: 2px;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($h7-std);
-    line-height: 1.5;
+    @include mc-font-sizer($h7-std, 18px);
+    letter-spacing: 3px;
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h7-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($h7-wide, 24px);
+    letter-spacing: 3px;
   }
 }
 .mc-b1 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b1-mob);
+    @include mc-font-sizer($b1-mob, 30px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($b1-std);
+    @include mc-font-sizer($b1-std, 40px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($b1-wide);
+    @include mc-font-sizer($b1-wide, 54px);
   }
 }
 .mc-b2 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b2-mob);
+    @include mc-font-sizer($b2-mob, 30px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($b2-std);
-    line-height: 30px;
+    @include mc-font-sizer($b2-std, 30px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($b2-wide);
-    line-height: 40px;
+    @include mc-font-sizer($b2-wide, 40px);
   }
 }
 .mc-b3 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b1-mob);
+    @include mc-font-sizer($b1-mob, 30px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($b3-std);
-    line-height: 25px;
+    @include mc-font-sizer($b3-std, 24px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($b3-wide);
-    line-height: 30px;
+    @include mc-font-sizer($b3-wide, 36px); 
   }
 }
 .mc-b4 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b4-mob);
+    @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($b4-std);
-    line-height: 1.5;
+    @include mc-font-sizer($b4-std, 20px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($b4-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($b4-wide, 24px);
   }
 }
 .mc-b5 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b4-mob);
+    @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($b5-std);
-    line-height: 1.5;
+    @include mc-font-sizer($b5-std, 30px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($b5-wide);
-    line-height: 1.5;
+    @include mc-font-sizer($b5-wide, 40px);
   }
 }
 .mc-hyp1 {
+  font-weight: 700 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($hyp1-mob);
+    @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($hyp1-std);
+    @include mc-font-sizer($hyp1-std, 20px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($hyp1-wide);
+    @include mc-font-sizer($hyp1-wide, 27px);
   }
 }
 .mc-hyp2 {
+  font-weight: 700 !important;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($hyp1-mob);
+    @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($hyp2-std);
+    @include mc-font-sizer($hyp2-std, 20px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($hyp2-wide);
+    @include mc-font-sizer($hyp2-wide, 25px);
   }
 }
 .mc-btn1 {
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($btn1-mob);
+    @include mc-font-sizer($btn1-mob, 22px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
-    @include mc-font-sizer($btn1-std);
+    @include mc-font-sizer($btn1-std, 30px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($btn1-wide);
+    @include mc-font-sizer($btn1-wide, 30px);
   }
 }
 
