@@ -1,58 +1,107 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  div.white
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="ofw-clinics-full"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="The first and only medical software for OFW clinics"
-      meta-title="MYCURE for OFW Medical Clinics"
-      description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
-      btn-text="Get Started"
-      image="ofw-clinics-mobile"
-      custom-image-path="clinics/ofw/"
-      parse-title
-      parse-meta-title
-      :parse-title-fields="['only ', 'software ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
-    )
-    stakes(
-      :version="3"
-      :media-content="stakesContent"
-      hide-btn
-    )
-      template(slot="title")
-        h2.mc-title-set-2.font-weight-semibold Wasted Time +
-        h2.mc-title-set-2.font-weight-semibold Missed Opportunities =
-        h2.mc-title-set-2.font-weight-semibold Lost Income
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="ofw-clinics-full"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="The first and only medical software for OFW clinics"
+        meta-title="MYCURE for OFW Medical Clinics"
+        description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
+        btn-text="Get Started"
+        image="ofw-clinics-mobile"
+        custom-image-path="clinics/ofw/"
+        parse-title
+        parse-meta-title
+        :parse-title-fields="['only ', 'software ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+        @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
+      )
+    lazy-hydrate(when-visible)
+      stakes(
+        :version="3"
+        :media-content="stakesContent"
+        hide-btn
+      )
+        template(slot="title")
+          h2.mc-title-set-2.font-weight-semibold Wasted Time +
+          h2.mc-title-set-2.font-weight-semibold Missed Opportunities =
+          h2.mc-title-set-2.font-weight-semibold Lost Income
     //- 2nd panel
     v-container
       v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center'}")
-          v-col(cols="12" lg="8").text-center
-            h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
-            p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide both printed and online copies of their medical exam results without the hassle.
-          v-col(cols="12").text-center
-            //- TODO: Add explicit width and height
-            picture-source(
-              image-alt="Sample report in MYCURE Clinic Management System"
-              image-file-extension=".png"
-              extension-exclusive
-              custom-path="clinics/ofw/"
-              image="beautiful-reports"
-            )
+        lazy-hydrate(when-visible)
+          generic-panel(:row-bindings="{ justify: 'center'}")
+            v-col(cols="12" lg="8").text-center
+              h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
+              p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide both printed and online copies of their medical exam results without the hassle.
+            v-col(cols="12").text-center
+              //- TODO: Add explicit width and height
+              picture-source(
+                image-alt="Sample report in MYCURE Clinic Management System"
+                image-file-extension=".png"
+                extension-exclusive
+                custom-path="clinics/ofw/"
+                image="beautiful-reports"
+              )
     //- h1.text-center.my-16 Design your own packages panel (placeholder)
     //- 4th panel
-    generic-media-panel(
-      :content="queuePanel"
-      :title-classes="[...headerClasses, 'primary--text']"
-    )
-      template(slot="cta-button")
-        v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" md="7" lg="6" xl="7")
-            div(:class="{ 'text-center': $isMobile }")
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="queuePanel"
+        :title-classes="[...headerClasses, 'primary--text']"
+      )
+        template(slot="cta-button")
+          v-row(:justify="$isMobile ? 'center' : 'start'")
+            v-col(cols="10" md="7" lg="6" xl="7")
+              div(:class="{ 'text-center': $isMobile }")
+                signup-button(
+                  depressed
+                  class="rounded-pill"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  color="success"
+                ).text-none
+                  span.generic-button-text Get Started
+    //- 5th panel
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="integrationsPanel"
+          hide-btn
+          align="center"
+          :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+        )
+          template(slot="content")
+            v-row(justify="start")
+              v-col(
+                v-for="(item, key) in integrationsPanel.list"
+                :key="key"
+                cols="6"
+                md="4"
+              ).text-center
+                picture-source(
+                  custom-path="diagnostics/"
+                  image-file-extension=".png"
+                  extension-exclusive
+                  :image="item.icon"
+                  :image-alt="item.title"
+                  :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                  :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                )
+                br
+                h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
+    //- 6th panel
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="directoryPanel"
+        :title-classes="[...headerClasses, 'primary--text']"
+      )
+        template(slot="cta-button")
+          v-row(:justify="$isMobile ? 'center' : 'start'")
+            v-col(cols="10" sm="5" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
               signup-button(
                 depressed
                 class="rounded-pill"
@@ -60,79 +109,41 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
-                span.generic-button-text Get Started
-    //- 5th panel
-    div.grey-bg.mx-n3
-      generic-media-panel(
-        :content="integrationsPanel"
-        hide-btn
-        align="center"
-        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+                v-icon(left) mdi-web
+                span.generic-button-text Create my website
+            //- TODO: Bring back when sample website is available
+            //- v-col(cols="12" md="7" lg="6" xl="5")
+            //-   mc-btn(
+            //-     color="success"
+            //-     href="https://calendly.com/mycure/demo"
+            //-     target="_blank"
+            //-     rel="noopener noreferrer"
+            //-     depressed
+            //-     rounded
+            //-     block
+            //-     :large="!$isWideScreen"
+            //-     :x-large="$isWideScreen"
+            //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+            //-   ).text-none Book a full training
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
       )
-        template(slot="content")
-          v-row(justify="start")
-            v-col(
-              v-for="(item, key) in integrationsPanel.list"
-              :key="key"
-              cols="6"
-              md="4"
-            ).text-center
-              picture-source(
-                custom-path="diagnostics/"
-                image-file-extension=".png"
-                extension-exclusive
-                :image="item.icon"
-                :image-alt="item.title"
-                :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
-                :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
-              )
-              br
-              h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
-    //- 6th panel
-    generic-media-panel(
-      :content="directoryPanel"
-      :title-classes="[...headerClasses, 'primary--text']"
-    )
-      template(slot="cta-button")
-        v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" sm="5" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
-            signup-button(
-              depressed
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="success"
-            ).text-none
-              v-icon(left) mdi-web
-              span.generic-button-text Create my website
-          //- TODO: Bring back when sample website is available
-          //- v-col(cols="12" md="7" lg="6" xl="5")
-          //-   mc-btn(
-          //-     color="success"
-          //-     href="https://calendly.com/mycure/demo"
-          //-     target="_blank"
-          //-     rel="noopener noreferrer"
-          //-     depressed
-          //-     rounded
-          //-     block
-          //-     :large="!$isWideScreen"
-          //-     :x-large="$isWideScreen"
-          //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-          //-   ).text-none Book a full training
-    care(:metrics-data="metricsData")
-    steps(:steps="stepsContent" not-free)
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
     //- 7th panel
     client-only
-      pricing(
-        title="Take the first step today."
-        type="diagnostic"
-      )
+      lazy-hydrate(when-idle)
+        pricing(
+          title="Take the first step today."
+          type="diagnostic"
+        )
     //- 8th panel
-    call-to-action(:version="2" not-free)
+    lazy-hydrate(when-visible)
+      call-to-action(:version="2" not-free)
     //- 9th panel
     //- div.info.mx-n3
     //-   v-container
@@ -155,6 +166,7 @@
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - constants
 // - components
@@ -163,6 +175,7 @@ import { getCountry, fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
