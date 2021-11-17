@@ -1,158 +1,29 @@
 <template lang="pug">
   v-container(v-if="!loading" fluid).white
     //- 1st panel
-    usp(
-      has-custom-background
-      v-bind="imageBindings"
-      background-image="Booking-Landing-Page"
-      title="Easy Booking System to Grow Your Practice"
-      meta-title="MYCURE Booking"
-      description="Let your patients book and schedule appointments efficiently"
-      btn-text="Get Started Free"
-      parse-title
-      :parse-title-fields="['to ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        v-bind="imageBindings"
+        background-image="Booking-Landing-Page"
+        title="Easy Booking System to Grow Your Practice"
+        meta-title="MYCURE Booking"
+        description="Let your patients book and schedule appointments efficiently"
+        btn-text="Get Started Free"
+        parse-title
+        :parse-title-fields="['to ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
 
     //- 2nd panel
-    generic-media-panel(
-      :content="secondPanel"
-      :title-classes="headerClasses"
-      :super-title-classes="superTitleClasses"
-      :content-classes="[...descriptionClasses, 'justify-left']"
-      :class="{'mt-16': !$isMobile}"
-    )
-      template(slot="cta-button")
-        div(:class="{ 'text-center': $isMobile }")
-          signup-button(
-            depressed
-            color="success"
-            facility-type="clinic"
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none
-            span.generic-button-text Get Started Free
-
-    //-3rd panel
-    div.grey-bg.mx-n3
-      features(
-        image-dir="booking/"
-        icon-container-col-size="10"
-        :each-icon-col="{ cols: 12, sm: 10 }"
-        :items="thirdPanelContents"
-      )
-        template(slot="title")
-          h2(:class="[...superTitleClasses, 'font-open-sans']") Benefits of MYCURE Booking System
-        template(slot="description")
-          p.mc-title-set-2.font-weight-semibold Acquire and Accommodate more Patients
-        template(slot="items")
-          v-col(cols="12" md="4" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
-            picture-source(
-              v-if="item.icon"
-              custom-path="booking/"
-              :image="item.icon"
-              :image-alt="item.title"
-              :image-file-extension="item.iconExtension"
-              :image-width="acquireIconsSize"
-              :image-height="acquireIconsSize"
-            )
-            br
-            br
-            h2.hiw-subheading.font-weight-semibold {{ item.title }}
-            p.hiw-caption.font-open-sans {{ item.description }}
-
-        template(slot="additional-content")
-          v-col(cols="12").text-center.mt-5
-            signup-button(
-              depressed
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="success"
-            ).text-none
-              span.generic-button-text Get Started Free
-
-    testimonials(is-booking)
-
-    //- 4th panel
-    features(
-      :items="howItWorksContents"
-      image-dir="booking/"
-      icon-container-col-size="12"
-      :each-icon-col="{ cols: 12 }"
-    )
-      template(slot="title")
-        h2(:class="superTitleClasses") How it works?
-        p.mc-title-set-1.font-weight-semibold Easy as 1-2-3
-      template(slot="items")
-        v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key").text-center
-          picture-source(
-            v-if="item.icon"
-            custom-path="booking/"
-            :image="item.icon"
-            :image-alt="item.title"
-            :image-file-extension="item.iconExtension"
-            :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
-            :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
-          )
-          br
-          br
-          h2.hiw-subheading.font-weight-semibold {{ item.title }}
-          p.hiw-caption.font-open-sans {{ item.description }}
-
-    //- 5th panel
-    v-container
-      v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center' }")
-          v-col(cols="12" md="8").text-center
-            h2(:class="titleClasses").font-weight-semibold.primary--text Activate your awesome booking website
-            p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
-          v-col(cols="12").text-center
-            //- v-btn-toggle(v-model="websiteType" mandatory)
-            v-row.justify-center.gutterless
-              v-col(cols="6" md="3").pa-0
-                v-btn(
-                  color="primary"
-                  depressed
-                  tile
-                  block
-                  :x-large="!$isMobile"
-                  :outlined="websiteType !== 'doctor'"
-                  @click="websiteType = 'doctor'"
-                ).text-none Doctors
-              v-col(cols="6" md="3").pa-0
-                v-btn(
-                  color="primary"
-                  depressed
-                  outlined
-                  tile
-                  block
-                  :x-large="!$isMobile"
-                  :outlined="websiteType !== 'clinic'"
-                  @click="websiteType = 'clinic'"
-                ).text-none Clinics
-            br
-            br
-            v-tabs-items(v-model="websiteType")
-              v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
-                picture-source(
-                  :image="mockup.image"
-                  :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
-                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
-                  :image-file-extension="$useWebp? '.webp' : '.png'"
-                  custom-path="booking/"
-                )
-
-    //- 6th panel
-    div.blue-bg.mx-n3
+    lazy-hydrate(when-idle)
       generic-media-panel(
-        align="center"
-        :content="fifthPanelContents"
-        :title-classes="[...titleClasses, 'white--text', 'line-height-reducer', 'font-weight-semibold']"
-        :content-classes="['white--text', ...descriptionClasses]"
+        :content="secondPanel"
+        :title-classes="headerClasses"
+        :super-title-classes="superTitleClasses"
+        :content-classes="[...descriptionClasses, 'justify-left']"
+        :class="{'mt-16': !$isMobile}"
       )
         template(slot="cta-button")
           div(:class="{ 'text-center': $isMobile }")
@@ -165,12 +36,149 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started Free
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+
+    //-3rd panel
+    div.grey-bg.mx-n3
+      lazy-hydrate(on-interaction)
+        features(
+          image-dir="booking/"
+          icon-container-col-size="10"
+          :each-icon-col="{ cols: 12, sm: 10 }"
+          :items="thirdPanelContents"
+        )
+          template(slot="title")
+            h2(:class="[...superTitleClasses, 'font-open-sans']") Benefits of MYCURE Booking System
+          template(slot="description")
+            p.mc-title-set-2.font-weight-semibold Acquire and Accommodate more Patients
+          template(slot="items")
+            v-col(cols="12" md="4" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
+              picture-source(
+                v-if="item.icon"
+                custom-path="booking/"
+                :image="item.icon"
+                :image-alt="item.title"
+                :image-file-extension="item.iconExtension"
+                :image-width="acquireIconsSize"
+                :image-height="acquireIconsSize"
+              )
+              br
+              br
+              h2.hiw-subheading.font-weight-semibold {{ item.title }}
+              p.hiw-caption.font-open-sans {{ item.description }}
+
+          template(slot="additional-content")
+            v-col(cols="12").text-center.mt-5
+              signup-button(
+                depressed
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                color="success"
+              ).text-none
+                span.generic-button-text Get Started Free
+
+    lazy-hydrate(never)
+      testimonials(is-booking)
+    //- 4th panel
+    lazy-hydrate(when-visible)
+      features(
+        :items="howItWorksContents"
+        image-dir="booking/"
+        icon-container-col-size="12"
+        :each-icon-col="{ cols: 12 }"
+      )
+        template(slot="title")
+          h2(:class="superTitleClasses") How it works?
+          p.mc-title-set-1.font-weight-semibold Easy as 1-2-3
+        template(slot="items")
+          v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key").text-center
+            picture-source(
+              v-if="item.icon"
+              custom-path="booking/"
+              :image="item.icon"
+              :image-alt="item.title"
+              :image-file-extension="item.iconExtension"
+              :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
+              :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
+            )
+            br
+            br
+            h2.hiw-subheading.font-weight-semibold {{ item.title }}
+            p.hiw-caption.font-open-sans {{ item.description }}
+
+    //- 5th panel
+    v-container
+      v-row(justify="center")
+        lazy-hydrate(when-visible)
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" md="8").text-center
+              h2(:class="titleClasses").font-weight-semibold.primary--text Activate your awesome booking website
+              p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
+            v-col(cols="12").text-center
+              //- v-btn-toggle(v-model="websiteType" mandatory)
+              v-row.justify-center.gutterless
+                v-col(cols="6" md="3").pa-0
+                  v-btn(
+                    color="primary"
+                    depressed
+                    tile
+                    block
+                    :x-large="!$isMobile"
+                    :outlined="websiteType !== 'doctor'"
+                    @click="websiteType = 'doctor'"
+                  ).text-none Doctors
+                v-col(cols="6" md="3").pa-0
+                  v-btn(
+                    color="primary"
+                    depressed
+                    outlined
+                    tile
+                    block
+                    :x-large="!$isMobile"
+                    :outlined="websiteType !== 'clinic'"
+                    @click="websiteType = 'clinic'"
+                  ).text-none Clinics
+              br
+              br
+              v-tabs-items(v-model="websiteType")
+                v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
+                  picture-source(
+                    :image="mockup.image"
+                    :image-alt="`A ${websiteType} website mockup on laptop screen`"
+                    :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                    :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
+                    :image-file-extension="$useWebp? '.webp' : '.png'"
+                    custom-path="booking/"
+                  )
+
+    //- 6th panel
+    div.blue-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          align="center"
+          :content="fifthPanelContents"
+          :title-classes="[...titleClasses, 'white--text', 'line-height-reducer', 'font-weight-semibold']"
+          :content-classes="['white--text', ...descriptionClasses]"
+        )
+          template(slot="cta-button")
+            div(:class="{ 'text-center': $isMobile }")
+              signup-button(
+                depressed
+                color="success"
+                facility-type="clinic"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none
+                span.generic-button-text Get Started Free
+    lazy-hydrate(never)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     //- 7th panel
-    plans.mb-n3
+    lazy-hydrate(when-idle)
+      plans.mb-n3
 
     //- Image Viewer
     mc-image-viewer(
@@ -181,6 +189,7 @@
 
 <script>
 // utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // components
 import PictureSource from '~/components/commons/PictureSource';
@@ -188,6 +197,7 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    LazyHydrate,
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
