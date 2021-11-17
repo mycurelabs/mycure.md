@@ -37,7 +37,7 @@
               v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
                 v-expansion-panel-header(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
                   template(v-slot:actions)
-                    v-icon(color="primary") mdi-chevron-down
+                    v-icon(color="primary") {{ mdiChevronDown }}
                 template(v-for="(col, index) in footerItem.columns")
                   v-expansion-panel-content
                     a(
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { mdiChevronDown } from '@mdi/js';
 export default {
   data () {
     return {
@@ -178,6 +179,7 @@ export default {
         },
       ],
       loading: true,
+      mdiChevronDown,
     };
   },
   created () {
