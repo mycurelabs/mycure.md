@@ -109,7 +109,7 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
-                v-icon(left) mdi-web
+                v-icon(left) {{ mdiWeb }}
                 span.generic-button-text Create my website
             //- TODO: Bring back when sample website is available
             //- v-col(cols="12" md="7" lg="6" xl="5")
@@ -167,6 +167,7 @@
 <script>
 // - utils
 import LazyHydrate from 'vue-lazy-hydration';
+import { mdiWeb } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 // - constants
 // - components
@@ -223,6 +224,7 @@ export default {
     this.btnClasses = ['mc-button-set-1'];
     return {
       loading: true,
+      mdiWeb,
     };
   },
   head () {

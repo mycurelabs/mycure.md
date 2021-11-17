@@ -99,7 +99,7 @@
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
-            v-icon(left) mdi-web
+            v-icon(left) {{ mdiWeb }}
             span.generic-button-text Create my website
     v-divider(v-if="$isMobile").divider
     //- 7th panel
@@ -153,6 +153,7 @@
 <script>
 // - utils
 import LazyHydrate from 'vue-lazy-hydration';
+import { mdiWeb } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - constants
@@ -234,6 +235,7 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      mdiWeb,
     };
   },
   head () {

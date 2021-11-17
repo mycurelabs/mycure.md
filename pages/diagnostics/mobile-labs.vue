@@ -85,22 +85,8 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
-                v-icon(left) mdi-web
+                v-icon(left) {{ mdiWeb }}
                 span.generic-button-text Create my website
-            //- TODO: Bring back when sample website is available
-            //- v-col(cols="12" md="7" lg="6" xl="5")
-            //-   mc-btn(
-            //-     color="success"
-            //-     href="https://calendly.com/mycure/demo"
-            //-     target="_blank"
-            //-     rel="noopener noreferrer"
-            //-     depressed
-            //-     rounded
-            //-     block
-            //-     :large="!$isWideScreen"
-            //-     :x-large="$isWideScreen"
-            //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-            //-   ).text-none Book a full training
     lazy-hydrate(when-visible)
       storybrand(
         title="Using Modern Tools to Boost Your Practice"
@@ -151,6 +137,7 @@
 <script>
 // - utils
 import LazyHydrate from 'vue-lazy-hydration';
+import { mdiWeb } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -190,6 +177,7 @@ export default {
     return {
       reportType: 'imaging',
       loading: true,
+      mdiWeb,
     };
   },
   head () {
