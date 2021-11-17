@@ -84,31 +84,31 @@
       v-model="showSnack"
       :color="snackbarModel.color"
     ) {{ snackbarModel.text }}
-    v-speed-dial(v-model="shareBtn" bottom left fixed x-large direction="top" transition="slide-y-reverse-transition")
-      template(v-slot:activator)
-        v-btn(v-model="shareBtn" color="primary" fab)
-          v-icon(v-if="shareBtn" color="white") mdi-close
-          v-icon(v-else color="white") mdi-share-variant
-      v-tooltip(right)
-        template( v-slot:activator="{ on, attrs }")
-          v-btn(fab small color="#4267B2" v-bind="attrs" v-on="on")
-            v-icon(color="white") mdi-facebook
-        span Share to Facebook
-      v-tooltip(right)
-        template( v-slot:activator="{ on, attrs }")
-          v-btn(fab small v-bind="attrs" v-on="on").instag
-            v-icon(color="white") mdi-instagram
-        span Share to Instagram
-      v-tooltip(right)
-        template( v-slot:activator="{ on, attrs }")
-          v-btn(fab small color="#0E76A8" v-bind="attrs" v-on="on")
-            v-icon(color="white") mdi-linkedin
-        span Share to LinkedIn
-      v-tooltip(right)
-        template( v-slot:activator="{ on, attrs }")
-          v-btn(fab small color="success" v-bind="attrs" v-on="on" @click="getShareLink")
-            v-icon(color="white") mdi-link-variant
-        span Copy Link to Clipboard
+    //- v-speed-dial(v-model="shareBtn" bottom left fixed x-large direction="top" transition="slide-y-reverse-transition")
+    //-   template(v-slot:activator)
+    //-     v-btn(v-model="shareBtn" color="primary" fab)
+    //-       v-icon(v-if="shareBtn" color="white") mdi-close
+    //-       v-icon(v-else color="white") mdi-share-variant
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small color="#4267B2" v-bind="attrs" v-on="on")
+    //-         v-icon(color="white") mdi-facebook
+    //-     span Share to Facebook
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small v-bind="attrs" v-on="on").instag
+    //-         v-icon(color="white") mdi-instagram
+    //-     span Share to Instagram
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small color="#0E76A8" v-bind="attrs" v-on="on")
+    //-         v-icon(color="white") mdi-linkedin
+    //-     span Share to LinkedIn
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small color="success" v-bind="attrs" v-on="on" @click="getShareLink")
+    //-         v-icon(color="white") mdi-link-variant
+    //-     span Copy Link to Clipboard
 </template>
 
 <script>
