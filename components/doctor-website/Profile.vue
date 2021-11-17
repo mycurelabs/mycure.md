@@ -11,9 +11,6 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
       :large="$isWideScreen"
       :class="$isWideScreen ? 'pb-3' : 'pb-2'"
     ).ml-1 mdi-check-decagram
-    br
-    v-btn(@click="getShareLink" color="success" small).my-2
-      v-icon(color="white") mdi-share-variant
     div.mb-6
       h2(:class="sectionTextClasses").secondary--text About Me
       v-clamp(autoresize :max-lines="3") {{ bio }}
@@ -141,10 +138,6 @@ export default {
     onBook () {
       if (this.isPreviewMode) return;
       return this.$emit('book');
-    },
-    getShareLink () {
-      navigator.clipboard.writeText(window.location.href);
-      this.$emit('clipped');
     },
   },
 };
