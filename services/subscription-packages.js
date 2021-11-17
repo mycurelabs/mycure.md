@@ -246,7 +246,9 @@ export const getSubscriptionPackages = async ({ types }) => {
  * @returns {Array} packages
  */
 export const getSubscriptionPackagesPricing = async (type, { isBooking = false } = {}) => {
+  // This is all the packages: both month and year
   const packages = await getSubscriptionPackages({ types: [type] });
+  // This is just the monthly packages
   const plans = packages.filter(pack => pack.planInterval === 'month') || [];
 
   if (!plans.length) return [];
