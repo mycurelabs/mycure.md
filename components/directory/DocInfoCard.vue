@@ -15,7 +15,7 @@
               autoresize
               :max-lines="2"
               :class="[nameClass]"
-            ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
+            ).font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
           //- div(:class="{'text-center': $isMobile}").info--text.font-weight-semibold
           //-   v-clamp(
           //-     v-if="hasSpecialties"

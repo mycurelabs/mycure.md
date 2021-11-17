@@ -5,7 +5,7 @@
       v-text-field(
         type="text"
         placeholder="Search Address"
-        v-model="resolvedAddress.fullAddress"
+        v-model="searchText"
         outlined
         hide-details
         clearable
@@ -73,6 +73,7 @@ export default {
       mapGeocoder: null,
       mapMarker: null,
       resolvedAddress: {},
+      searchText: null,
     };
   },
   computed: {
@@ -230,6 +231,7 @@ export default {
       }, {
         // initial values
         fullAddress: result?.formatted_address,
+        searchText: result?.formatted_address,
         geometry: result?.geometry,
         name: result?.name,
         types: result?.types,

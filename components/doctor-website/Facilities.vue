@@ -1,7 +1,8 @@
 <template lang="pug">
   v-row(style="max-height:700px; overflow-y: auto;" ref="facilitiesContainer")
     v-col(v-if="!clinics.length" cols="12")
-      p.font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
+      v-skeleton-loader(v-if="loading" type="article, actions")
+      p(v-else).font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
     template(v-else)
       v-col(
         v-for="(clinic, key) in clinics"
@@ -47,6 +48,10 @@ export default {
     isPreviewMode: {
       type: Boolean,
       default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: true,
     },
   },
   data () {

@@ -17,12 +17,12 @@
               img(:src="picUrl").img-border
             br
             br
-            span.font-weight-bold.mc-title-set-2 Dr. {{ fullName }}
+            h1.font-weight-bold.mc-title-set-2 {{ fullName }}
             v-row(justify="center").mc-content-set-5.black--text
               //- Professional Info
               v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
                 span {{ specialties.slice(0, 3).join(', ')}}
-                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{practicingYears}} Years of Experience
+                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
