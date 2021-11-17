@@ -88,15 +88,15 @@
                 v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
                 span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
-    lazy-hydrate(never)
+    lazy-hydrate(when-visible)
       different-video
     lazy-hydrate(when-visible)
       steps(:steps="stepsContent")
-    lazy-hydrate(never)
+    lazy-hydrate(when-visible)
       testimonials
     lazy-hydrate(when-visible)
       think-long-term
-    lazy-hydrate(never)
+    lazy-hydrate(when-visible)
       storybrand(
         title="Using Modern Tools to Boost Your Practice"
         :content="storybrandContent"

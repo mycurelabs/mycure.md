@@ -35,7 +35,7 @@
     lazy-hydrate(when-visible)
       virtual-clinic
     //- 3rd panel
-    lazy-hydrate(on-interaction)
+    lazy-hydrate(when-visible)
       telehealth-video
         //- GET RESPONSE
         template(slot="cta-button")

@@ -39,7 +39,7 @@
 
     //-3rd panel
     div.grey-bg.mx-n3
-      lazy-hydrate(on-interaction)
+      lazy-hydrate(when-visible)
         features(
           image-dir="booking/"
           icon-container-col-size="10"
@@ -77,7 +77,7 @@
               ).text-none
                 span.generic-button-text Get Started Free
 
-    lazy-hydrate(never)
+    lazy-hydrate(when-visible)
       testimonials(is-booking)
     //- 4th panel
     lazy-hydrate(when-visible)
@@ -171,7 +171,7 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
                 span.generic-button-text Get Started Free
-    lazy-hydrate(never)
+    lazy-hydrate(when-visible)
       storybrand(
         title="Using Modern Tools to Boost Your Practice"
         :content="storybrandContent"
