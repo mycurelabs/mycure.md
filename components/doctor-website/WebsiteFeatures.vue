@@ -15,7 +15,7 @@
         v-for="(tab, key) in doctorTabs"
         :key="key"
         :value="tab.value"
-        @click="scrollToTop(tab.value)"
+        @click="$refs.docFacilities.scrollToTop()"
       ).text-none {{ tab.name }}
     v-select(
       v-else
@@ -38,6 +38,7 @@
           :total="clinicsTotal"
           :limit="clinicsLimit"
           :is-preview-mode="isPreviewMode"
+          :loading="facilitiesLoading"
           @onUpdatePage="$emit('onUpdateClinicPage', $event)"
         )
       v-tab-item(value="services")
@@ -92,6 +93,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    facilitiesLoading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.doctorTabs = [
@@ -102,13 +107,6 @@ export default {
     return {
       activeTab: 'facilities',
     };
-  },
-  methods: {
-    scrollToTop (val) {
-      if (val === 'facilities') {
-        this.$refs.docFacilities.scrollToTop();
-      }
-    },
   },
 };
 </script>
