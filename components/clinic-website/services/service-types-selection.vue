@@ -18,6 +18,16 @@
 </template>
 
 <script>
+import {
+  mdiAccountTieVoiceOutline,
+  mdiVideoOutline,
+  mdiFlaskOutline,
+  mdiRadiologyBoxOutline,
+  mdiPackageVariantClosed,
+  mdiPulse,
+  mdiToothOutline,
+  mdiStethoscope,
+} from '@mdi/js';
 export default {
   props: {
     value: {
@@ -35,14 +45,14 @@ export default {
   },
   data () {
     this.types = [
-      { icon: 'mdi-account-tie-voice-outline', text: 'Face-to-Face Consults', type: 'clinical-consultation', value: 'clinical-consultation' },
-      { icon: 'mdi-video-outline', text: 'Teleconsults', type: 'telehealth', value: 'telehealth' },
-      { icon: 'mdi-flask-outline', text: 'Laboratory', type: 'diagnostic', value: 'lab' },
-      { icon: 'mdi-radiology-box-outline', text: 'Imaging', type: 'diagnostic', value: 'imaging' },
-      { icon: 'mdi-package-variant-closed', text: 'PE Packages', type: 'pe', value: 'pe' },
-      { icon: 'mdi-pulse', text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
-      { icon: 'mdi-tooth-outline', text: 'Dental', type: 'dental', value: 'dental' },
-      { icon: 'mdi-stethoscope', text: 'Our Doctors', type: 'doctors', value: 'doctors' },
+      { icon: mdiAccountTieVoiceOutline, text: 'Face-to-Face Consults', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { icon: mdiVideoOutline, text: 'Teleconsults', type: 'telehealth', value: 'telehealth' },
+      { icon: mdiFlaskOutline, text: 'Laboratory', type: 'diagnostic', value: 'lab' },
+      { icon: mdiRadiologyBoxOutline, text: 'Imaging', type: 'diagnostic', value: 'imaging' },
+      { icon: mdiPackageVariantClosed, text: 'PE Packages', type: 'pe', value: 'pe' },
+      { icon: mdiPulse, text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
+      { icon: mdiToothOutline, text: 'Dental', type: 'dental', value: 'dental' },
+      { icon: mdiStethoscope, text: 'Our Doctors', type: 'doctors', value: 'doctors' },
     ];
     return {};
   },

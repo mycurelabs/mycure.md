@@ -14,7 +14,7 @@
         v-on="on"
         v-model="dateFormatted"
         :label="label"
-        prepend-inner-icon="mdi-calendar"
+        :prepend-inner-icon="mdiCalendar"
         clearable
         :readonly="!readOnly"
         :disabled="readOnly"
@@ -64,6 +64,7 @@ import {
   setHours,
   setMinutes,
 } from 'date-fns';
+import { mdiCalendar } from '@mdi/js';
 
 export default {
   props: {
@@ -156,6 +157,7 @@ export default {
     return {
       menu: false,
       mode: 'date',
+      mdiCalendar,
     };
   },
   computed: {

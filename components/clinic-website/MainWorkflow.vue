@@ -75,7 +75,7 @@
                 color="primary"
                 @click="$emit('back')"
               ).text-none
-                v-icon(small left) mdi-arrow-left
+                v-icon(small left) {{ mdiArrowLeft }}
                 | Go back to Main Page
             //- The results list. Show this when user has searched
             v-col(
@@ -98,6 +98,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import { mdiArrowLeft } from '@mdi/js';
 import ServicesSearchResults from './services/search-results';
 import ServicesList from './services/ServicesList';
 import ServiceTypesMobileSelection from './services/service-types-mobile-selection';
@@ -183,6 +184,7 @@ export default {
       mobileServicesListView: false,
       // - Search
       searchText: null,
+      mdiArrowLeft,
     };
   },
   computed: {

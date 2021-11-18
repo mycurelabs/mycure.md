@@ -9,10 +9,11 @@
           v-toolbar(flat)
             h3 {{ type.text }}&nbsp;
             v-spacer
-            v-icon(color="primary") mdi-chevron-right
+            v-icon(color="primary") {{ mdiChevronRight }}
 </template>
 
 <script>
+import { mdiChevronRight } from '@mdi/js';
 export default {
   props: {
     serviceTypes: {
@@ -35,7 +36,9 @@ export default {
       { text: 'Dental', type: 'dental', value: 'dental' },
       { text: 'Our Doctors', type: 'doctors', value: 'doctors' },
     ];
-    return {};
+    return {
+      mdiChevronRight,
+    };
   },
   methods: {
     hasServiceType (type) {

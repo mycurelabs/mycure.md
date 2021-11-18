@@ -22,13 +22,13 @@
             ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
             //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
           v-row.mt-2.px-3
-            v-icon(color="primary") mdi-medical-bag
+            v-icon(color="primary") {{ mdiMedicalBag }}
             v-col.py-0.font-gray
               span.mc-content-set-4 Specialization
               p(v-if="hasSpecialties").ma-0.font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
               p(v-else).ma-0.font-weight-semibold.font-italic &nbsp;No information provided
           v-row.px-3.pb-3
-            v-icon(color="primary" ) mdi-briefcase-variant-outline
+            v-icon(color="primary" ) {{ mdiBriefcaseVariantOutline }}
             v-col.py-0.font-gray
               span.mc-content-set-4 Experience
               v-clamp(
@@ -42,7 +42,7 @@
                 :max-lines="1"
               ).font-weight-semibold.font-italic &nbsp;No Information
           v-row(v-if="!minified" :class="{'mt-2': !minified}").pa-3
-            v-icon(color="primary" v-bind="iconBindings") mdi-information-outline
+            v-icon(color="primary" v-bind="iconBindings") {{ mdiInformationOutline }}
             v-col.font-gray
               span.mc-content-set-4 About
               v-clamp(
@@ -85,7 +85,7 @@
             :disabled="!hasTeleconsult"
             @click="trackBooking('telehealth')"
           ).text-none.font-12.mx-1
-            v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
+            v-icon(small left) {{ hasTeleconsult ? mdiVideoOutline : mdiClose }}
             span Online Consult
           v-btn(
             color="success"
@@ -97,7 +97,7 @@
             :class="{'mt-2': $isMobile}"
             @click="trackBooking('physical')"
           ).text-none.font-12.mx-1
-            v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
+            v-icon(small left) {{ isAvailable ? mdiStethoscope : mdiClose }}
             span Visit Doctor
         v-spacer(v-if="!$isMobile")
       v-card-actions(v-else).pa-0
@@ -113,7 +113,7 @@
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   @click="visitWebsite"
                 ).text-none.elevation-0.rounded-pill
-                  v-icon mdi-open-in-new
+                  v-icon {{ mdiOpenInNew }}
                   span.generic-button-text &nbsp;View Profile
     v-dialog(v-model="scheduleDialog" width="600")
       v-card.pa-3
@@ -123,7 +123,7 @@
             h5.black--text Dr. {{ fullNameWithSuffixes }}
           v-spacer
           v-btn(icon @click="scheduleDialog = false")
-            v-icon mdi-close
+            v-icon {{ mdiClose }}
         v-card-text.pt-3
           schedules-list(:items="groupedSchedules")
 </template>
@@ -131,6 +131,15 @@
 <script>
 import VClamp from 'vue-clamp';
 import isNil from 'lodash/isNil';
+import {
+  mdiClose,
+  mdiOpenInNew,
+  mdiStethoscope,
+  mdiVideoOutline,
+  mdiBriefcaseVariantOutline,
+  mdiMedicalBag,
+  mdiInformationOutline,
+} from '@mdi/js';
 import SchedulesList from './services/service-schedules';
 import classBinder from '~/utils/class-binder';
 import { formatAddress } from '~/utils/formats';
@@ -182,6 +191,13 @@ export default {
     ];
     return {
       scheduleDialog: false,
+      mdiClose,
+      mdiOpenInNew,
+      mdiStethoscope,
+      mdiVideoOutline,
+      mdiBriefcaseVariantOutline,
+      mdiMedicalBag,
+      mdiInformationOutline,
     };
   },
   computed: {

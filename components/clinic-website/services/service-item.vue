@@ -8,7 +8,7 @@
           div(v-if="fullSchedules.length")
             div
               div(v-for="(schedule, key) in previewSchedules" :key="key")
-                v-icon(color="black" small left) mdi-calendar-blank
+                v-icon(color="black" small left) {{ mdiCalendarBlank }}
                 span.text-capitalize {{ formatIndividualSchedule(schedule) }}
                 v-icon(
                   v-if="getProviders(schedule).length"
@@ -16,7 +16,7 @@
                   small
                   right
                   @click="openProvidersDialog(schedule)"
-                ) mdi-information-outline
+                ) {{ mdiInformationOutline }}
                 br
               br
               a(@click="scheduleExpanded = true").grey--text More Schedules >
@@ -44,11 +44,11 @@
               span {{ coverage.name || 'HMO' }}
         v-col(v-if="!readOnly" :class="$isMobile ? 'text-left' : 'text-right'").grow
           h3.info--text Availability
-            v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
+            v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? mdiCheckboxMarkedCircleOutline: mdiCloseCircleOutline }}
           br
           br
           h2(v-if="price").black--text
-            v-icon(left) mdi-cash
+            v-icon(left) {{ mdiCash }}
             money(:value="price" symbol="₱")
           h3(v-else).font-italic No price stated
           v-btn(
@@ -77,7 +77,7 @@
           v-toolbar-title.primary--text Available Schedules
           v-spacer
           v-btn(icon @click="scheduleExpanded = false")
-            v-icon mdi-close
+            v-icon {{ mdiClose }}
         v-card-text
           service-schedules(
             non-mf-schedule
@@ -89,7 +89,7 @@
         v-toolbar-title.primary--text Available Doctors
         v-spacer
         v-btn(icon @click="closeProvidersDialog")
-          v-icon mdi-close
+          v-icon {{ mdiClose }}
       v-card
         v-card-text
           v-list
@@ -106,6 +106,14 @@
 
 <script>
 import { format } from 'date-fns';
+import {
+  mdiCalendarBlank,
+  mdiInformationOutline,
+  mdiCheckboxMarkedCircleOutline,
+  mdiCloseCircleOutline,
+  mdiCash,
+  mdiClose,
+} from '@mdi/js';
 import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
 import Money from '~/components/commons/Money';
@@ -161,6 +169,13 @@ export default {
       // Providers Dialog
       providersDialog: false,
       previewProviders: [],
+      // icons
+      mdiCalendarBlank,
+      mdiInformationOutline,
+      mdiCheckboxMarkedCircleOutline,
+      mdiCloseCircleOutline,
+      mdiCash,
+      mdiClose,
     };
   },
   computed: {
