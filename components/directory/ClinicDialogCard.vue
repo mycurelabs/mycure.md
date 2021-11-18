@@ -14,7 +14,7 @@
             :max-lines="2"
           ).mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
         v-row(align="start").mc-list-content-set-2.mt-5
-          v-icon(color="secondary" x-large) mdi-medical-bag
+          v-icon(color="secondary" x-large) {{ mdiMedicalBag }}
           v-col.font-gray.py-0
             span Services
             div(v-if="organization.tags").font-weight-semibold
@@ -25,7 +25,7 @@
                 :max-lines="1"
               ).font-weight-light.font-italic.grey--text.text--lighten-1 No services available
         v-row(align="start").mc-list-content-set-2.pt-2
-          v-icon(color="secondary" x-large) mdi-map-marker
+          v-icon(color="secondary" x-large) {{ mdiMapMarker }}
           v-col.font-gray.py-0
             span Facility Address
             v-clamp(
@@ -33,7 +33,7 @@
               :class="address ? 'font-weight-semibold' : ['font-weight-light', 'font-italic', 'grey--text', 'text--lighten-1']"
             ) {{ address || 'No address provided'}}
         v-row(align="start").mc-list-content-set-2.pt-2
-          v-icon(color="secondary" x-large) mdi-phone-in-talk-outline
+          v-icon(color="secondary" x-large) {{ mdiPhoneInTalkOutline }}
           v-col.font-gray.py-0
             span Contact Number
             v-clamp(
@@ -42,7 +42,7 @@
               :class="organization.phone ? 'font-weight-semibold' : ['font-weight-light', 'font-italic', 'grey--text', 'text--lighten-1']"
             ) {{ organization.phone || 'No contact number'}}
         v-row(align="start").mc-list-content-set-2.pt-2
-          v-icon(color="secondary" x-large) mdi-calendar
+          v-icon(color="secondary" x-large) {{ mdiCalendar }}
           v-col.font-gray.py-0
             v-row
               v-col.pb-2
@@ -75,12 +75,19 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none.elevation-0.rounded-pill.mt-4
-              v-icon mdi-open-in-new
+              v-icon {{ mdiOpenInNew }}
               span.generic-button-text &nbsp;{{ hasWebsite ? 'View Website' : 'Claim this Facility' }}
 </template>
 
 <script>
 import { format } from 'date-fns';
+import {
+  mdiOpenInNew,
+  mdiMedicalBag,
+  mdiMapMarker,
+  mdiPhoneInTalkOutline,
+  mdiCalendar,
+} from '@mdi/js';
 import VClamp from 'vue-clamp';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 import { formatAddress } from '~/utils/formats';
@@ -107,6 +114,12 @@ export default {
     };
     return {
       imageExists: true,
+      // icons
+      mdiOpenInNew,
+      mdiMedicalBag,
+      mdiMapMarker,
+      mdiPhoneInTalkOutline,
+      mdiCalendar,
     };
   },
   computed: {
