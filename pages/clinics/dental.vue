@@ -98,33 +98,8 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              v-icon(left) mdi-web
+              v-icon(left) {{ mdiWeb }}
               span.generic-button-text Create my website
-          //- v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="12" sm="6" align="center").px-0.pb-0
-              mc-btn(
-                color="success"
-                href="https://calendly.com/mycure/demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-              ).text-none
-                //- v-icon(left) mdi-web
-                span.generic-button-text Create my Website
-            v-col(cols="12" sm="6" align="center" :class="{'pl-6': !$isMobile}").pb-0
-              signup-button(
-                depressed
-                :block="!$isMobile"
-                outlined
-                color="success"
-                class="rounded-pill"
-                :width="$isMobile ? '228' : ''"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-              ).text-none
-                span.generic-button-text Get Started
 
     //- 7th panel
     lazy-hydrate(when-visible)
@@ -143,17 +118,6 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started
-            //- mc-btn(
-            //-   color="success"
-            //-   href="https://calendly.com/mycure/demo"
-            //-   target="_blank"
-            //-   rel="noopener noreferrer"
-            //-   depressed
-            //-   class="rounded-pill"
-            //-   :width="!$isWideScreen ? '228px' : '300'"
-            //-   :height="!$isWideScreen ? '59px' : '73.68'"
-            //- ).text-none
-            //-   span.generic-button-text Get Started
     //- 8th panel
     lazy-hydrate(when-visible)
      syncbase(:version="3")
@@ -183,6 +147,7 @@
 
 <script>
 // - utils
+import { mdiWeb } from '@mdi/js';
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
@@ -247,6 +212,7 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      mdiWeb,
     };
   },
   head () {

@@ -95,7 +95,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none
-              v-icon(left) mdi-web
+              v-icon(left) {{ mdiWeb }}
               span.generic-button-text Create my website
 
     //- 5th panel
@@ -158,6 +158,7 @@
 
 <script>
 // - utils
+import { mdiWeb } from '@mdi/js';
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
@@ -242,6 +243,7 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      mdiWeb,
     };
   },
   head () {
