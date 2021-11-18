@@ -5,7 +5,7 @@
         hide-btn
         disable-parent-padding
       )
-        v-row(justify="center")
+        v-row(justify="center" align="center")
           v-col(cols="12" sm="5")
             p.mc-h2.white--text Watch how you can improve your patient attendance rate
             div(:class="{ 'text-center': $isMobile }")
@@ -20,7 +20,15 @@
                 span.mc-btn1.primary--text Get Started Free
           v-spacer(v-if="!$isMobile")
           v-col(cols="12" sm="6")
-            v-skeleton-loader(type="image" height="100%")
+            iframe(
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/Xj9GgIHW0_s"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            )
+            //- v-skeleton-loader(type="image" height="100%")
 </template>
 
 <script>
