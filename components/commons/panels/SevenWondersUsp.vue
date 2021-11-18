@@ -240,10 +240,10 @@ export default {
     },
     backgroundStyle () {
       return {
-        width: '50%',
+        width: '42%',
         height: '100%',
         position: 'absolute',
-        left: '50%',
+        left: '55%',
         top: '0',
         zIndex: '1',
         objectFit: 'contain',

@@ -8,7 +8,7 @@
         v-col(cols="12").pa-0
           v-row(justify="center")
             v-col(cols="12").text-center
-              h4.mc-h7.primary--text.font-open-sans.font-weight-semibold TESTIMONIALS
+              h4.mc-h7.font-open-sans TESTIMONIALS
               span.font-weight-semibold.mc-h2 {{ isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?' }}
           v-row(justify="center").mt-5
             //- hr(size="8" color="#0099cc" width="10%")

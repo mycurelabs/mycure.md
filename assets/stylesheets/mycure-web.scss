@@ -26,8 +26,8 @@ $h3-wide: 34px; //linespace
 $h4-wide: 24px;
 $h5-wide: 20px;
 $h6-wide: 24px;
-$h7-wide: 18px;
-$b1-wide: 34px;
+$h7-wide: 20px;
+$b1-wide: 30px;
 $b2-wide: 20px;
 $b3-wide: 18px;
 $b4-wide: 16px;
@@ -41,8 +41,8 @@ $h3-std: 24px;
 $h4-std: 20px;
 $h5-std: 18px;
 $h6-std: 18px;
-$h7-std: 12px;
-$b1-std: 24px;
+$h7-std: 14px;
+$b1-std: 20px;
 $b2-std: 16px;
 $b3-std: 16px;
 $b4-std: 14px;
@@ -54,7 +54,7 @@ $h1-mob: 34px;
 $h2-mob: 20px;
 $h4-mob: 18px;
 $h6-mob: 18px;
-$h7-mob: 12px;
+$h7-mob: 14px;
 $b1-mob: 18px;
 $b2-mob: 16px;
 $b4-mob: 14px;
@@ -518,7 +518,6 @@ classBinder(this, {
 }
 .mc-h6 {
   color: #0099CC;
-  font-weight: 900 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h6-mob, 24px);
     text-align: center;
@@ -535,7 +534,6 @@ classBinder(this, {
 }
 .mc-h7 {
   color: #0099CC;
-  font-weight: 900 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h7-mob, 18px);
     text-align: center;
