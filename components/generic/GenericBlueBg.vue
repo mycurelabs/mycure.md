@@ -10,6 +10,10 @@
         src="~/assets/images/commons/dots-left.png"
         alt="dots gradient"
       ).left-center
+      img(
+        src="~/assets/images/commons/dots-right.png"
+        alt="dots gradient"
+      ).right-center
     div.content
       slot(name="panel")
 </template>
@@ -42,9 +46,14 @@ export default {
 }
 .left-center {
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 0;
-  margin-top: -125px;
+  z-index: 2;
+}
+.right-center {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
   z-index: 2;
 }
 </style>
