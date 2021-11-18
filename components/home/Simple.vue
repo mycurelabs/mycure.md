@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.my-8
     v-row(justify="center")
       generic-sub-page-panel(
         content-right
@@ -20,25 +20,25 @@
             nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Explore the Features
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
-        v-col(slot="additional-content" cols="12").order-last
-          v-row(justify="center")
-            v-col(v-for="(service, key) in services" :key="key").shrink
-              v-hover(
-                v-slot="{ hover }"
-                open-delay="100"
-              )
-                mc-btn(
-                  depressed
-                  color="white"
-                  :block="$isMobile"
-                  :x-large="$isWideScreen"
-                  :large="!$isWideScreen"
-                  :to="{ name: service.route }"
-                  :outlined="!hover"
-                  :class="{'white--text': !hover, 'info--text': hover}"
-                ).text-none
-                  v-icon(left) {{ service.icon }}
-                  strong {{ service.text }}
+        //- v-col(slot="additional-content" cols="12").order-last
+        //-   v-row(justify="center")
+        //-     v-col(v-for="(service, key) in services" :key="key").shrink
+        //-       v-hover(
+        //-         v-slot="{ hover }"
+        //-         open-delay="100"
+        //-       )
+        //-         mc-btn(
+        //-           depressed
+        //-           color="white"
+        //-           :block="$isMobile"
+        //-           :x-large="$isWideScreen"
+        //-           :large="!$isWideScreen"
+        //-           :to="{ name: service.route }"
+        //-           :outlined="!hover"
+        //-           :class="{'white--text': !hover, 'info--text': hover}"
+        //-         ).text-none
+        //-           v-icon(left) {{ service.icon }}
+        //-           strong {{ service.text }}
 </template>
 
 <script>

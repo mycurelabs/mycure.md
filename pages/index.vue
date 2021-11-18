@@ -11,6 +11,7 @@
       :contents="stakesContent"
       not-free
     )
+    router
     //- 3rd panel
     care(:metrics-data="metricsData")
     //- 4th panel
@@ -57,6 +58,7 @@ import Care from '~/components/home/Care';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
+import Router from '~/components/home/Router';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
@@ -67,6 +69,7 @@ export default {
     JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
     Patients: () => import('~/components/home/Patients'),
     PictureSource,
+    Router,
     SevenWonders,
     Simple: () => import('~/components/home/Simple'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
