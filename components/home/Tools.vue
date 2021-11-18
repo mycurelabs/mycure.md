@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-container
+  v-container.my-8
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12").text-center
-          p(:class="subheaderClasses").primary--text.font-open-sans.font-weight-semibold Customizable based on what you need
-          h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Flexible. Scalable.
+          p.mc-h7.primary--text.font-open-sans.font-weight-semibold FLEXIBLE AND SCALABLE
+          h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Customizable Health Information System
           v-row(justify="center")
             v-col(cols="12" md="6").text-center
               p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
@@ -25,12 +25,11 @@
               :image-file-extension="$useWebp? '.webp' : '.png'"
             )
             br
-            h3.font-xs.font-open-sans.font-gray {{ tool.name }}
+            h3.mc-b2.font-open-sans.font-gray {{ tool.name }}
             br
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
@@ -112,20 +111,13 @@ export default {
         icon: 'Notification',
       },
     ];
-    this.headerClasses = ['mc-title-set-1'];
-    this.descriptionClasses = ['mc-content-set-4'];
+    this.headerClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
     return {};
   },
   computed: {
     items () {
       return this.version === 1 ? this.defaultTools : this.modules;
-    },
-    subheaderClasses () {
-      return classBinder(this, {
-        mobile: ['font-14'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
     },
     panelHeight () {
       if (this.$isMobile) return 'auto';

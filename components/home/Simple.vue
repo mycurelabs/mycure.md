@@ -1,39 +1,44 @@
 <template lang="pug">
-  v-container
+  v-container.my-8
     v-row(justify="center")
       generic-sub-page-panel(
-        center-panel-title="Simple and powerful"
-        super-title="Say goodbye to paperwork and hello to an easy, compact database."
-        content="MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow to another — you probably won't even consider using pen and paper ever again."
+        content-right
+        title="Say goodbye to a mess of paperwork and hello to an easy, compact database of electronic medical records."
+        content="MYCURE features an advanced user experience that stands out from the competition. With smooth transitions that help you streamline your workflow you won’t miss pen and paper forms."
         :content-column-bindings="contentColumnBindings"
         :media-column-bindings="mediaColumnBindings"
-        :center-panel-title-classes="headerClasses"
-        :super-title-classes="subheaderClasses"
+        :title-classes="headerClasses"
         :content-classes="descriptionClasses"
-        hide-btn
       )
+        div(slot="super-title")
+          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SIMPLE AND POWERFUL
         template(slot="image")
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
-        v-col(slot="additional-content" cols="12").order-last
-          v-row(justify="center")
-            v-col(v-for="(service, key) in services" :key="key").shrink
-              v-hover(
-                v-slot="{ hover }"
-                open-delay="100"
-              )
-                mc-btn(
-                  depressed
-                  color="white"
-                  :block="$isMobile"
-                  :x-large="$isWideScreen"
-                  :large="!$isWideScreen"
-                  :to="{ name: service.route }"
-                  :outlined="!hover"
-                  :class="{'white--text': !hover, 'info--text': hover}"
-                ).text-none
-                  v-icon(left) {{ service.icon }}
-                  strong {{ service.text }}
+        template(slot="cta-button")
+          div(:class="{'text-center ml-4': $isMobile}")
+            nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
+              span.mc-hyp1.primary--text Explore the Features
+              v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
+        //- v-col(slot="additional-content" cols="12").order-last
+        //-   v-row(justify="center")
+        //-     v-col(v-for="(service, key) in services" :key="key").shrink
+        //-       v-hover(
+        //-         v-slot="{ hover }"
+        //-         open-delay="100"
+        //-       )
+        //-         mc-btn(
+        //-           depressed
+        //-           color="white"
+        //-           :block="$isMobile"
+        //-           :x-large="$isWideScreen"
+        //-           :large="!$isWideScreen"
+        //-           :to="{ name: service.route }"
+        //-           :outlined="!hover"
+        //-           :class="{'white--text': !hover, 'info--text': hover}"
+        //-         ).text-none
+        //-           v-icon(left) {{ service.icon }}
+        //-           strong {{ service.text }}
 </template>
 
 <script>
@@ -70,9 +75,8 @@ export default {
       //   route: 'hospitals',
       // },
     ];
-    this.headerClasses = ['mc-title-set-1', 'white--text', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-4', 'white--text', 'font-open-sans'];
-    this.subheaderClasses = ['mc-subheader-set-2', 'white--text', 'font-open-sans'];
+    this.headerClasses = ['mc-h3'];
+    this.descriptionClasses = ['mc-b2', 'font-open-sans'];
     return {};
   },
   computed: {
@@ -110,5 +114,8 @@ export default {
 
 .product-btn {
   width: 175px;
+}
+.button {
+  text-decoration: none;
 }
 </style>
