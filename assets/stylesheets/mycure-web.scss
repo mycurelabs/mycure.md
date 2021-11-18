@@ -587,6 +587,18 @@ classBinder(this, {
     @include mc-font-sizer($b3-wide, 36px); 
   }
 }
+.mc-list-b3 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b1-mob, 30px);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b3-std, 24px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b3-wide, 36px); 
+  }
+}
 .mc-b4 {
   color: #353A40;
   @media (max-width: $max-sm) {
@@ -614,7 +626,6 @@ classBinder(this, {
   }
 }
 .mc-hyp1 {
-  font-weight: 700 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;
@@ -627,7 +638,6 @@ classBinder(this, {
   }
 }
 .mc-hyp2 {
-  font-weight: 700 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;

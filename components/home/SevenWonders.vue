@@ -1,48 +1,39 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'video-bg-mobile' : ''").mx-n3.mt-n5.main-container
+  div(:class="$isMobile ? 'video-bg-mobile' : 'mb-16'").mx-n3.mt-n5.main-container
     div(v-if="!$isMobile")
-      picture-source(
-        v-if="!$isMobile"
-        image-file-extension=".png"
-        image="homepage-usp-bg"
-        image-alt="Bushes and clouds background artwork"
-        custom-path="home/"
-        :image-styles="backgroundStyle"
+      img(
+        src="~/assets/images/commons/blue-gradient-bg.png"
+        alt="blue gradient background"
+        :style="backgroundStyle"
       )
-      //- picture-source(
-      //-   v-else
-      //-   image-file-extension=".png"
-      //-   image="Homepage USP BG Mobile"
-      //-   extension-exclusive="true"
-      //-   image-alt="Bushes and clouds background artwork"
-      //-   custom-path="home/"
-      //-   :image-styles="backgroundStyleMobile"
-      //- )
-      //- img(
-      //-   alt=""
-      //-   width="100%"
-      //-   :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
-      //- ).background
+      img(
+        src="~/assets/images/commons/dots-left.png"
+        alt="dots gradient"
+      ).left-center
+      img(
+        src="~/assets/images/commons/dots-right.png"
+        alt="dots gradient"
+      ).right-center
     v-container(:class="{'ml-n6': !$isMobile}").content
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center").mb-5
               v-col(cols="12" md="7" xl="8")
-                h1(:class="headerClasses").mb-2 Enterprise-Grade
+                h1(:class="headerClasses").mb-2 Integrated Healthcare
                   br
-                  | Healthcare Solutions
+                  | Solutions for Every Provider
                 v-row(justify="center").mt-5
                   v-col(cols="12" md="10")
-                    p.mc-content-set-1.font-gray.mb-8.font-open-sans MYCURE provides a wide array of modern healthcare management solutions that are custom-built for doctors, clinics, diagnostic labs and hospitals at a fraction of the cost.
+                    p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
                 signup-button(
                   depressed
-                  class="rounded-pill"
+                  class="rounded-lg"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
-                  color="success"
-                ).text-none.mc-button-set-1
-                  span.generic-button-text Get Started
+                  color="white"
+                ).text-none.mc-btn1
+                  span.generic-button-text.primary--text Get Started
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
@@ -61,8 +52,6 @@
                       v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") mdi-chevron-right-circle
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
-              //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-              //-   wonder(:wonder="wonder")
               v-col(v-else cols="10" sm="8" md="10")
                 carousel(
                   paginationColor="#f0f0f0"
@@ -158,7 +147,7 @@ export default {
       //   image: 'security',
       // },
     ];
-    this.headerClasses = ['mc-title-set-4', 'lh-title'];
+    this.headerClasses = ['mc-h1', 'lh-title', 'white--text'];
     return {
       isWebp: false,
     };
@@ -167,7 +156,7 @@ export default {
     backgroundStyle () {
       return {
         width: '100%',
-        height: '100%',
+        height: '85%',
         position: 'absolute',
         left: '0',
         top: '0',
@@ -197,31 +186,33 @@ export default {
   position: relative;
 }
 .content {
-  z-index: 2;
+  z-index: 3;
   position: relative;
 }
 .line-spacing-title {
   line-height: 1.25em;
 }
-/* .background {
-  width: 100%;
-  height: 100%;
+.left-center {
   position: absolute;
+  top: 10%;
   left: 0;
-  top: 0;
-  overflow: hidden;
-  object-fit: cover;
-} */
+  z-index: 2;
+}
+.right-center {
+  position: absolute;
+  bottom: 25%;
+  right: 0;
+  z-index: 2;
+}
 .container {
   width: 100vw;
+}
+.margin-desktop {
+  margin-bottom: 150px;
 }
 .text-container {
   margin-bottom: 65px;
 }
-/* .content {
-  position: absolute;
-  width: 100vw;
-} */
 .video-bg {
   /* height: 1000px; */
   background-image: url('~/assets/images/home/homepage-usp-bg.png');

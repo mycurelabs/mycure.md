@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.my-5
     v-row(justify="center").py-16
       generic-panel(
         hide-btn

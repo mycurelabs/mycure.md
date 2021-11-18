@@ -4,51 +4,49 @@
     //- 1st panel
     seven-wonders
     //- 2nd panel
-    care(:metrics-data="metricsData")
-    //- 3rd panel
     stakes(
-      panel-title="Your clinic system should not cause you more problems"
-      panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
+      panel-title="Your Clinic Management System Should Not Cause You More Problems"
+      sub-title="As a healthcare provider, your entire day is committed to helping people. But so much of your time is lost to disorganization and inefficiency when you’re using the wrong electronic health records software."
       :version="1"
       :contents="stakesContent"
       not-free
     )
+    //- 3rd panel
+    care(:metrics-data="metricsData")
     //- 4th panel
-    div.simple-container.mx-n3
-      simple
+    hipaa(
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
     //- 5th panel
-    patients
-    //- 6th panel
-    div.grey-bg.mx-n3
-      tools(:version="2")
-    //- 7th panel
     syncbase
-    //- 8th panel
+    //- 6th panel
+    simple
+    //- 7th panel
     div.grey-bg.mx-n3
-      hipaa(
-        :header-classes="headerClasses"
-        :description-classes="descriptionClasses"
-      )
-    //- 9th panel
-    steps(:steps="stepsContent" not-free)
-    //- 10th panel
+      patients
+    //- 8th panel
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
+    //- 9th panel
+    tools(:version="2")
+    //- 10th panel
+    steps(:steps="stepsContent" not-free).mb-n3
     //- CTA
-    div.cta-container.mx-n3.mb-n3
-      join-next-generation
-      div.cta-image.text-center
-        picture-source(
-          image="CTA"
-          custom-path="home/"
-          image-alt="CTA Home"
-          :image-file-extension="$useWebp? '.webp' : '.png'"
-          :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
-          :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
-          :image-styles="{ marginBottom: '-7px' }"
-        )
+    //- div.cta-container.mx-n3.mb-n3
+    //-   join-next-generation
+    //-   div.cta-image.text-center
+    //-     picture-source(
+    //-       image="CTA"
+    //-       custom-path="home/"
+    //-       image-alt="CTA Home"
+    //-       :image-file-extension="$useWebp? '.webp' : '.png'"
+    //-       :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
+    //-       :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
+    //-       :image-styles="{ marginBottom: '-7px' }"
+    //-     )
 </template>
 
 <script>
@@ -82,33 +80,33 @@ export default {
     return { metricsData };
   },
   data () {
-    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.headerClasses = ['mc-h2'];
     this.stakesContent = [
       {
-        leftTitle: 'You spend more on tools that you don’t need',
-        leftDescription: 'Lack of needed reports and functionalities lead to problems in your operations. This is wasted time and lost revenue.',
-        rightTitle: 'You’ll have unhappy patients',
-        rightDescription: 'Disorganized workflows, long waiting time, incomplete documents result in unsatisfied patients.',
+        leftTitle: 'Money Wasted on Unnecessary Tools',
+        leftDescription: 'Many platforms don’t allow you to choose which tools you need from them to best manage your practice, forcing you to pay for things you won’t use.',
+        rightTitle: 'Extra Work for Medical and Administrative Staff',
+        rightDescription: 'Your staff already works hard, but inefficient IT solutions will result in even more work just trying to correct mistakes.',
       },
       {
-        leftTitle: 'Your staff gets frustrated with more work',
-        leftDescription: 'IT solutions should simplify your people’s jobs, not make it more complicated. Poorly implemented solutions need to get replaced.',
-        rightTitle: 'You’re unsure of your compliance to laws',
-        rightDescription: 'With strict laws and heavy penalties on data privacy and security, you have to ensure that compliance is met in your health facility.',
+        leftTitle: 'Frustrated and Unhappy Patients',
+        leftDescription: 'Long waiting times, incomplete or inaccurate documents, and a disorganized workflow will result in dissatisfied patients not getting the care they need.',
+        rightTitle: 'More Revenue Lost to Non-Compliance Fines',
+        rightDescription: 'Now more than ever, data privacy is of the utmost importance. But if your IT solutions aren’t in compliance with regulations, you could wind up with expensive fines and penalties.',
       },
     ];
     this.stepsContent = [
       {
-        title: 'Choose a Solution',
+        title: 'Pick your product',
         description: 'Select the application suited to your practice or facility.',
       },
       {
-        title: 'Create an Account',
+        title: 'Automated',
         description: 'This activates your Health Management System.',
       },
       {
-        title: 'Set up your Account',
-        description: 'Customize the system to fit your needs.',
+        title: 'Start customizing',
+        description: 'Customize the system to fit the needs of your practice or facility.',
       },
     ];
     this.storybrandContent = [
@@ -116,7 +114,7 @@ export default {
       'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
       'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
     ];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };

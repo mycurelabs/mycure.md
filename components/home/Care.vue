@@ -1,22 +1,38 @@
 <template lang="pug">
-  v-container.py-16.my-5
-    v-row(justify="center")
-      generic-panel(:row-bindings="{ justify: 'center' }")
-        v-col(cols="12").text-center.pa-0
-          h2(:class="headerClasses").font-weight-semibold.primary--text Caring for people who care for people
-          p(:class="descriptionClasses").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
-          v-row(
-            justify="center"
-          ).stat-container
-            v-col(
-              v-for="(stat, key) in stats"
-              :key="key"
-              cols="12"
-              md="4"
-              v-observe-visibility="{ callback: onVisibilityChange, intersection: { threshold: 1 } }"
-            ).text-center
-              h3(:class="{ 'font-xl': $isWideScreen, 'font-l': $isRegularScreen, 'font-m' : $isMobile }").primary--text.font-weight-semibold {{ statData[stat.amountKey].toLocaleString() }}
-              h3(:class="{ 'font-m': $isWideScreen, 'font-s' : $isRegularScreen, 'font-xs' : $isMobile }").font-weight-regular.grey--text {{ stat.title }}
+  div.mx-n3.main-container
+    div
+      img(
+        src="~/assets/images/commons/blue-gradient-bg.png"
+        alt="blue gradient background"
+        :style="backgroundStyle"
+      )
+      img(
+        src="~/assets/images/commons/dots-left.png"
+        alt="dots gradient"
+      ).left-center
+      img(
+        src="~/assets/images/commons/dots-right.png"
+        alt="dots gradient"
+      ).right-center
+    v-container.py-16.my-5.content
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }")
+          v-col(cols="12").text-center.pa-0
+            h2(:class="headerClasses").font-weight-semibold.white--text Caring for people who care for people
+            p(:class="descriptionClasses").white--text.font-open-sans MYCURE is dedicated to help healthcare providers save lives every day.
+            v-card.rounded-xl.pa-5
+              v-row(
+                justify="center"
+              ).stat-container
+                v-col(
+                  v-for="(stat, key) in stats"
+                  :key="key"
+                  cols="12"
+                  md="4"
+                  v-observe-visibility="{ callback: onVisibilityChange, intersection: { threshold: 1 } }"
+                ).text-center
+                  h3.mc-h2.primary--text {{ statData[stat.amountKey].toLocaleString() }}
+                  h3.mc-h7.black--text {{ stat.title }}
 </template>
 
 <script>
@@ -33,9 +49,9 @@ export default {
     },
   },
   data () {
-    this.headerClasses = ['mc-title-set-1', 'mb-5'];
-    this.descriptionClasses = this.$isMobile ? ['mc-content-set-1', 'mb-6'] : ['mc-content-set-1', 'mb-12'];
-    this.btnClasses = ['mc-button-set-1'];
+    this.headerClasses = ['mc-h2', 'mb-5'];
+    this.descriptionClasses = this.$isMobile ? ['mc-b2', 'mb-6'] : ['mc-b2', 'mb-12'];
+    this.btnClasses = ['mc-btn1'];
     return {
       statData: {
         'medical-records': 0,
@@ -67,6 +83,17 @@ export default {
   computed: {
     hasFetched () {
       return this.medicalRecordsData && this.patientsData && this.providersData;
+    },
+    backgroundStyle () {
+      return {
+        width: '100%',
+        height: '65%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
     },
   },
   watch: {
@@ -113,3 +140,27 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main-container {
+  position: relative;
+}
+.content {
+  position: relative;
+  z-index: 3;
+}
+.left-center {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 8%;
+  z-index: 2;
+}
+.right-center {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 8%;
+  z-index: 2;
+}
+</style>
