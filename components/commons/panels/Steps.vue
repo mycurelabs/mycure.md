@@ -1,18 +1,23 @@
 <template lang="pug">
   div.mx-n3.main-container
     div
-      img(
-        src="~/assets/images/commons/blue-gradient-bg.png"
-        alt="blue gradient background"
-        :style="backgroundStyle"
-      )
-      img(
-        src="~/assets/images/commons/dots-left.png"
-        alt="dots gradient"
+      picture-source(
+        image-file-extension="png"
+        image="dots-left"
+        image-alt="dots gradient"
+        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
+        :extension-exclusive="true"
+        custom-path="commons/"
       ).left-center
-      img(
-        src="~/assets/images/commons/dots-right.png"
-        alt="dots gradient"
+      picture-source(
+        image-file-extension="png"
+        image="dots-right"
+        image-alt="dots gradient"
+        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
+        :extension-exclusive="true"
+        custom-path="commons/"
       ).right-center
     v-container.white--text.content
       v-row(justify="center").pa-5.py-16
@@ -84,17 +89,6 @@ export default {
       ];
       return numberSize;
     },
-    backgroundStyle () {
-      return {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        left: '0',
-        top: '0',
-        zIndex: '1',
-        objectFit: 'cover',
-      };
-    },
   },
 };
 </script>
@@ -102,6 +96,7 @@ export default {
 <style scoped>
 .main-container {
   position: relative;
+  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
 }
 .content {
   position: relative;
@@ -109,16 +104,14 @@ export default {
 }
 .left-center {
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 0;
-  margin-top: -125px;
   z-index: 2;
 }
 .right-center {
   position: absolute;
-  top: 50%;
+  bottom: 10%;
   right: 0;
-  margin-top: -125px;
   z-index: 2;
 }
 </style>

@@ -1,18 +1,23 @@
 <template lang="pug">
   div(:class="$isMobile ? 'video-bg-mobile' : 'mb-16'").mx-n3.mt-n5.main-container
     div(v-if="!$isMobile")
-      img(
-        src="~/assets/images/commons/blue-gradient-bg.png"
-        alt="blue gradient background"
-        :style="backgroundStyle"
-      )
-      img(
-        src="~/assets/images/commons/dots-left.png"
-        alt="dots gradient"
+      picture-source(
+        image-file-extension="png"
+        image="dots-left"
+        image-alt="dots gradient"
+        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
+        :extension-exclusive="true"
+        custom-path="commons/"
       ).left-center
-      img(
-        src="~/assets/images/commons/dots-right.png"
-        alt="dots gradient"
+      picture-source(
+        image-file-extension="png"
+        image="dots-right"
+        image-alt="dots gradient"
+        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
+        :extension-exclusive="true"
+        custom-path="commons/"
       ).right-center
     v-container(:class="{'ml-n6': !$isMobile}").content
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
@@ -152,29 +157,6 @@ export default {
       isWebp: false,
     };
   },
-  computed: {
-    backgroundStyle () {
-      return {
-        width: '100%',
-        height: '85%',
-        position: 'absolute',
-        left: '0',
-        top: '0',
-        zIndex: '1',
-        objectFit: 'cover',
-      };
-    },
-    backgroundStyleMobile () {
-      return {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        bottom: '0',
-        zIndex: '1',
-        objectFit: 'cover',
-      };
-    },
-  },
   async mounted () {
     this.isWebp = await canUseWebp();
   },
@@ -184,6 +166,7 @@ export default {
 <style scoped>
 .main-container {
   position: relative;
+  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
 }
 .content {
   z-index: 3;
@@ -200,7 +183,7 @@ export default {
 }
 .right-center {
   position: absolute;
-  bottom: 25%;
+  bottom: 10%;
   right: 0;
   z-index: 2;
 }
