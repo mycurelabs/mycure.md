@@ -19,10 +19,19 @@
               ).text-none
                 span.mc-btn1.primary--text Get Started Free
           v-spacer(v-if="!$isMobile")
-          v-col(cols="12" sm="6")
+          v-col(cols="12" sm="6" :class="{'text-center': $isMobile}")
+            img(
+              v-if="!showVideo"
+              src="~/assets/images/booking/booking-video-still.png"
+              alt="booking video"
+              :width="$isMobile ? '300': '560'"
+              :height="$isMobile ? '168.75': '315'"
+              @click="showVideo = true"
+            )
             iframe(
-              width="560"
-              height="315"
+              v-else
+              :width="$isMobile ? '300': '560'"
+              :height="$isMobile ? '168.75': '315'"
               src="https://www.youtube.com/embed/Xj9GgIHW0_s"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -40,6 +49,11 @@ export default {
     GenericPanel,
     PictureSource,
     SignupButton,
+  },
+  data () {
+    return {
+      showVideo: false,
+    };
   },
 };
 </script>

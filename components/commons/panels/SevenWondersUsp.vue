@@ -1,19 +1,14 @@
 <template lang="pug">
   div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
     div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
-      img(
-        :src="require(`~/assets/images/${customImagePath}${image}.png`)"
-        :alt="image"
-        :style="backgroundStyle"
+      picture-source(
+        image-file-extension="png"
+        :image="image"
+        :image-alt="imageAlt || title"
+        :image-styles="backgroundStyle"
+        :extension-exclusive="extensionExclusive"
+        :custom-path="customImagePath"
       )
-      //- picture-source(
-      //-   image-file-extension="png"
-      //-   :image="image"
-      //-   :image-alt="imageAlt || title"
-      //-   :image-styles="backgroundStyle"
-      //-   :extension-exclusive="extensionExclusive"
-      //-   :custom-path="customImagePath"
-      //- )
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
@@ -188,6 +183,15 @@ export default {
   data () {
     this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
+    this.backgroundStyle = {
+      width: '42%',
+      height: '100%',
+      position: 'absolute',
+      left: '55%',
+      top: '0',
+      zIndex: '1',
+      objectFit: 'contain',
+    };
     return {};
   },
   computed: {
@@ -236,17 +240,6 @@ export default {
       return {
         justify: 'center',
         align: 'center',
-      };
-    },
-    backgroundStyle () {
-      return {
-        width: '42%',
-        height: '100%',
-        position: 'absolute',
-        left: '55%',
-        top: '0',
-        zIndex: '1',
-        objectFit: 'contain',
       };
     },
   },
