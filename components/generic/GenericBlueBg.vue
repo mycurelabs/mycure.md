@@ -1,28 +1,56 @@
 <template lang="pug">
   div.mx-n3.main-container
     div
-      img(
-        src="~/assets/images/commons/blue-gradient-bg.png"
-        alt="blue gradient background"
-        :style="backgroundStyle"
+      //- img(
+      //-   src="~/assets/images/commons/blue-gradient-bg.png"
+      //-   alt="blue gradient background"
+      //-   :style="backgroundStyle"
+      //- )
+      //- img(
+      //-   src="~/assets/images/commons/dots-left.png"
+      //-   alt="dots gradient"
+      //- ).left-center
+      //- img(
+      //-   src="~/assets/images/commons/dots-right.png"
+      //-   alt="dots gradient"
+      //- ).right-center
+      picture-source(
+        image-file-extension="png"
+        image="blue-gradient-bg"
+        image-alt="blue gradient background"
+        :image-styles="backgroundStyle"
+        :extension-exclusive="true"
+        custom-path="commons/"
       )
-      img(
-        src="~/assets/images/commons/dots-left.png"
-        alt="dots gradient"
+      picture-source(
+        image-file-extension="png"
+        image="dots-left"
+        image-alt="dots gradient"
+        :image-styles="backgroundStyle"
+        :extension-exclusive="true"
+        custom-path="commons/"
       ).left-center
-      img(
-        src="~/assets/images/commons/dots-right.png"
-        alt="dots gradient"
+      picture-source(
+        image-file-extension="png"
+        image="dots-right"
+        image-alt="dots gradient"
+        :image-styles="backgroundStyle"
+        :extension-exclusive="true"
+        custom-path="commons/"
       ).right-center
     div.content
-      slot(name="panel")
+      slot(name="default")
 </template>
 
 <script>
+import PictureSource from '~/components/commons/PictureSource';
 export default {
-  computed: {
-    backgroundStyle () {
-      return {
+  components: {
+    PictureSource,
+  },
+  data () {
+    return {
+      backgroundStyle: {
         width: '100%',
         height: '100%',
         position: 'absolute',
@@ -30,8 +58,8 @@ export default {
         top: '0',
         zIndex: '1',
         objectFit: 'cover',
-      };
-    },
+      },
+    };
   },
 };
 </script>

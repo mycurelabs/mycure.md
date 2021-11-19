@@ -20,7 +20,16 @@
                 span.mc-btn1.primary--text Get Started Free
           v-spacer(v-if="!$isMobile")
           v-col(cols="12" sm="6")
+            img(
+              v-if="!showVideo"
+              src="~/assets/images/booking/booking-video-still.png"
+              alt="booking video"
+              width="560"
+              height="315"
+              @click="showVideo = true"
+            )
             iframe(
+              v-else
               width="560"
               height="315"
               src="https://www.youtube.com/embed/Xj9GgIHW0_s"
@@ -40,6 +49,11 @@ export default {
     GenericPanel,
     PictureSource,
     SignupButton,
+  },
+  data () {
+    return {
+      showVideo: false,
+    };
   },
 };
 </script>

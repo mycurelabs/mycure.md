@@ -3,6 +3,7 @@
     //- 1st panel
     usp(
       has-custom-background
+      extension-exclusive
       v-bind="imageBindings"
       background-image="Booking-Landing-Page"
       title="Easy Booking App to Grow Your Practice"
@@ -37,32 +38,31 @@
 
     //-3rd panel
     generic-blue-bg
-      template(slot="panel")
-        features(
-          image-dir="booking/"
-          content-col-size="10"
-          icon-container-col-size="12"
-          :each-icon-col="{ cols: 12, sm: 10 }"
-          :items="thirdPanelContents"
-        )
-          template(slot="title")
-            span.mc-h2.white--text Benefits of MYCURE Booking for Health Providers and Clinics
-          template(slot="description")
-            span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
-          template(slot="items")
-            div.d-flex.justify-space-around
-              v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key")
-                picture-source(
-                  v-if="item.icon"
-                  custom-path="booking/"
-                  :image="item.icon"
-                  :image-alt="item.title"
-                  :image-file-extension="item.iconExtension"
-                  :image-width="acquireIconsSize"
-                  :image-height="acquireIconsSize"
-                )
-                h2.hiw-subheading.font-weight-semibold.mc-h4.my-4.white--text {{ item.title }}
-                p.hiw-caption.font-open-sans.mc-b4.white--text {{ item.description }}
+      features(
+        image-dir="booking/"
+        content-col-size="10"
+        icon-container-col-size="12"
+        :each-icon-col="{ cols: 12, sm: 10 }"
+        :items="thirdPanelContents"
+      )
+        template(slot="title")
+          span.mc-h2.white--text Benefits of MYCURE Booking for Health Providers and Clinics
+        template(slot="description")
+          span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
+        template(slot="items")
+          div.d-flex.justify-space-around
+            v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key")
+              picture-source(
+                v-if="item.icon"
+                custom-path="booking/"
+                :image="item.icon"
+                :image-alt="item.title"
+                :image-file-extension="item.iconExtension"
+                :image-width="acquireIconsSize"
+                :image-height="acquireIconsSize"
+              )
+              h2.hiw-subheading.font-weight-semibold.mc-h4.my-4.white--text {{ item.title }}
+              p.hiw-caption.font-open-sans.mc-b4.white--text {{ item.description }}
 
     //- 5th panel
     v-container
@@ -110,8 +110,7 @@
 
     testimonials(is-booking)
     generic-blue-bg
-      template(slot="panel")
-        attendance-video
+      attendance-video
     //- 4th panel
     features(
       :items="howItWorksContents"
@@ -157,7 +156,6 @@
                 v-btn(
                   depressed
                   color="#FOF7FD"
-                  facility-type="clinic"
                   class="rounded-lg"
                   :block="$isRegularScreen"
                   :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
@@ -183,34 +181,33 @@
     //- 7th panel
     //- plans.mb-n3
     generic-blue-bg
-      template(slot="panel")
-        div.cta-container.mx-n3.mb-n3
-          v-row(justify="center")
-            generic-panel(:row-bindings="{ justify: 'center' }")
-              v-col(cols="12" md="8" xl="6").text-center
-                span.mc-h2.lh-title.white--text Create your own appointment scheduling website in less than 10 minutes.
-                br
-                br
-                mc-btn(
-                  depressed
-                  event-label="signup"
-                  color="success"
-                  class="rounded-lg"
-                  :width="!$isWideScreen ? '228px' : '300'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                  :to="{ name: 'signup-health-facilities' }"
-                ).text-none
-                  span.mc-btn1 Start Free Today
-          div.cta-image.text-center
-            picture-source(
-              image="CTA"
-              custom-path="home/"
-              image-alt="CTA Home"
-              :image-file-extension="$useWebp? '.webp' : '.png'"
-              :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
-              :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
-              :image-styles="{ marginBottom: '-7px' }"
-            )
+      div.cta-container.mx-n3.mb-n3
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" md="8" xl="6").text-center
+              span.mc-h2.lh-title.white--text Create your own appointment scheduling website in less than 10 minutes.
+              br
+              br
+              mc-btn(
+                depressed
+                event-label="signup"
+                color="success"
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                :to="{ name: 'signup-health-facilities' }"
+              ).text-none
+                span.mc-btn1 Start Free Today
+        div.cta-image.text-center
+          picture-source(
+            image="CTA"
+            custom-path="home/"
+            image-alt="CTA Home"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
+            :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
+            :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
+            :image-styles="{ marginBottom: '-7px' }"
+          )
 
     //- Image Viewer
     mc-image-viewer(

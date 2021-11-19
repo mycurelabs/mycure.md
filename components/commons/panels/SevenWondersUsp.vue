@@ -1,19 +1,14 @@
 <template lang="pug">
   div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
     div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
-      img(
-        :src="require(`~/assets/images/${customImagePath}${image}.png`)"
-        :alt="image"
-        :style="backgroundStyle"
+      picture-source(
+        image-file-extension="png"
+        :image="image"
+        :image-alt="imageAlt || title"
+        :image-styles="backgroundStyle"
+        :extension-exclusive="extensionExclusive"
+        :custom-path="customImagePath"
       )
-      //- picture-source(
-      //-   image-file-extension="png"
-      //-   :image="image"
-      //-   :image-alt="imageAlt || title"
-      //-   :image-styles="backgroundStyle"
-      //-   :extension-exclusive="extensionExclusive"
-      //-   :custom-path="customImagePath"
-      //- )
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
