@@ -275,6 +275,7 @@
     choose-facility-type(
       v-model="chooseFacilityTypeDialog"
       :facility-types="availableFacilityTypes"
+      persistent
       @select="onFacilityTypeSelect($event)"
     )
     //- referral code dilog

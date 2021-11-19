@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="850" height="900")
+  v-dialog(v-model="dialog" width="850" height="900" :persistent="persistent")
     v-card.pa-4.rounded-xl
       v-card-text.pa-3
         v-container
@@ -33,6 +33,7 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    persistent: Boolean,
   },
   data () {
     return {
