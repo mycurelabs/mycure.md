@@ -62,6 +62,7 @@ $hyp1-mob: 18px;
 $btn1-mob: 16px;
 
 $letter-spacing: -0.5px;
+$body-color: #9D9D9D;
 
 // Creates custom font-class
 @mixin font-n($max-font-size) {
@@ -549,7 +550,7 @@ classBinder(this, {
   }
 }
 .mc-b1 {
-  color: #9D9D9D;
+  color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
     text-align: center;
@@ -562,7 +563,7 @@ classBinder(this, {
   }
 }
 .mc-b2 {
-  color: #9D9D9D;
+  color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
     text-align: center;
@@ -575,7 +576,7 @@ classBinder(this, {
   }
 }
 .mc-b3 {
-  color: #9D9D9D;
+  color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
     text-align: center;
@@ -588,7 +589,7 @@ classBinder(this, {
   }
 }
 .mc-list-b3 {
-  color: #9D9D9D;
+  color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
   }
@@ -600,7 +601,7 @@ classBinder(this, {
   }
 }
 .mc-b4 {
-  color: #9D9D9D;
+  color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
@@ -613,7 +614,7 @@ classBinder(this, {
   }
 }
 .mc-b5 {
-  color: #9D9D9D;
+  color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
