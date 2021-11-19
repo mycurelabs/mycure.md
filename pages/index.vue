@@ -3,7 +3,7 @@
     //- Remove for now to test SEO
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders
+      seven-wonders.margined
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -17,7 +17,7 @@
       router
     //- 3rd panel
     lazy-hydrate(when-idle)
-      care(:metrics-data="metricsData")
+      care(:metrics-data="metricsData").mb-16
     //- 4th panel
     lazy-hydrate(when-visible)
       hipaa(
@@ -168,6 +168,9 @@ export default {
 }
 .grey-bg {
   background-color: #fafafa;
+}
+.margined {
+  margin-bottom: 180px;
 }
 
 @media screen and (min-width: 1920px) {

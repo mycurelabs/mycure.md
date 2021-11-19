@@ -1,26 +1,7 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'video-bg-mobile' : 'mb-16'").mx-n3.mt-n5.main-container
-    div(v-if="!$isMobile")
-      picture-source(
-        image-file-extension="png"
-        image="dots-left"
-        image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
-        :extension-exclusive="true"
-        custom-path="commons/"
-      ).left-center
-      picture-source(
-        image-file-extension="png"
-        image="dots-right"
-        image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
-        :extension-exclusive="true"
-        custom-path="commons/"
-      ).right-center
-    v-container(:class="{'ml-n6': !$isMobile}").content
-      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
+  generic-blue-bg
+    v-container(:class="{'ml-n6': !$isMobile}")
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100vh', width: '100vw'}").mb-n16
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center").mb-5
@@ -84,6 +65,7 @@ import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
 import canUseWebp from '~/utils/can-use-webp';
 
 export default {
@@ -93,6 +75,7 @@ export default {
     SignupButton,
     Wonder,
     VueSlickCarousel,
+    GenericBlueBg,
   },
   data () {
     this.wonders = [
