@@ -8,19 +8,19 @@
         v-col(cols="12").pa-0
           v-row(justify="center")
             v-col(cols="12").text-center
-              h4.mc-content-set-1.primary--text.font-open-sans.font-weight-semibold MYCURE Testimonials
-              span.font-weight-semibold.mc-title-set-1 {{ isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?' }}
+              h4.mc-h7.font-open-sans TESTIMONIALS
+              span.font-weight-semibold.mc-h2 {{ isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?' }}
           v-row(justify="center").mt-5
             //- hr(size="8" color="#0099cc" width="10%")
           v-row(justify="center").black--text
-            v-col(v-if="!isBooking" cols="12" sm="5")
-              v-card(elevation="7" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
+            v-col(cols="12" sm="6")
+              v-card(elevation="2" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
                 v-card-text
                   v-col(cols="12")
                     v-icon(:large="$vuetify.breakpoint.width > 1024" :x-large="$isWideScreen" color="primary").mb-3 {{ mdiFormatQuoteOpen }}
                     br
-                    span.font-weight-light.mc-metatitle-set-1.font-open-sans MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals. Patients could check and follow their medical progress, check their medications and look for doctors anywhere and set up appointments.
-                    span.font-weight-semibold.mc-metatitle-set-1.font-open-sans.black--text &nbsp;I look forward to enjoying this app to improve my practice.
+                    span.font-weight-light.mc-b5.font-open-sans MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals. Patients could check and follow their medical progress, check their medications and look for doctors anywhere and set up appointments.
+                    span.font-weight-semibold.mc-b5.font-open-sans.black--text &nbsp;I look forward to enjoying this app to improve my practice.
                     v-row(align="center").pt-4
                       //- v-col(cols="3")
                         //- v-icon(large) mdi-circle
@@ -35,9 +35,9 @@
                       v-col
                         h1.font-weight-semibold.mc-metatitle-set-1 Dr. Nelson S. Abelardo
                         h1.font-weight-light.mc-metatitle-set-1 Cardiologist
-            v-col(v-if="!isBooking && $vuetify.breakpoint.width > 1023" cols="1")
-            v-col(cols="12" sm="5")
-              v-card(elevation="7" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
+            //- v-col(v-if="!isBooking && $vuetify.breakpoint.width > 1023" cols="1")
+            v-col(cols="12" sm="6")
+              v-card(elevation="2" :class="$isMobile ? 'pa-1' : 'pa-5'").rounded-xl
                 v-card-text
                   v-col(cols="12")
                     v-icon(:large="$vuetify.breakpoint.width > 1024" :x-large="$isWideScreen" color="primary").mb-3 {{ mdiFormatQuoteOpen }}
