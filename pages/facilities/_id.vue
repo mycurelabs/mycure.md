@@ -43,11 +43,11 @@
       //- PANEL 1 FOOTER
       div(:style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer.text-center
         span(v-if="formattedAddress").mr-6
-          v-icon.red--text mdi-map-marker
+          v-icon.red--text {{ mdiMapMarker }}
           span {{formattedAddress}}
         br(v-if="$isMobile")
         span(v-if="clinicPhone")
-          v-icon.green--text mdi-phone
+          v-icon.green--text {{ mdiPhone }}
           span {{clinicPhone}}
       //- MAIN PANELS
       main-workflow(
@@ -111,6 +111,7 @@
 
 <script>
 import { format } from 'date-fns';
+import { mdiMapMarker, mdiPhone } from '@mdi/js';
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import uniq from 'lodash/uniq';
@@ -247,6 +248,9 @@ export default {
       searchResults: [],
       searchText: null,
       searchFilters: {},
+      // icons
+      mdiMapMarker,
+      mdiPhone,
     };
   },
   head () {

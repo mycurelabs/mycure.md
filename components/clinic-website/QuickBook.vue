@@ -63,6 +63,11 @@
 import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import {
+  mdiMicroscope,
+  mdiCalendarBlank,
+  mdiClockOutline,
+} from '@mdi/js';
+import {
   fetchClinicServices,
 } from '~/services/services';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -101,17 +106,17 @@ export default {
   data () {
     this.quickAppointmentsContent = [
       {
-        icon: 'mdi-microscope',
+        icon: mdiMicroscope,
         title: 'Choose a service',
         content: 'Select from among the healthcare services available for you.',
       },
       {
-        icon: 'mdi-calendar-blank',
+        icon: mdiCalendarBlank,
         title: 'Book a schedule',
         content: 'Choose your best time and fill in the appointment form.',
       },
       {
-        icon: 'mdi-clock-outline',
+        icon: mdiClockOutline,
         title: 'Show up on time',
         content: 'Our friendly healthcare professionals will be there to see you.',
       },

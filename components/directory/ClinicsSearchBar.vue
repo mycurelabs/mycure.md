@@ -18,13 +18,6 @@
           @change="onSelectOrganization"
         ).font-14.font-weight-regular
           template(v-slot:append)
-            v-row
-              //- voice search
-                v-btn(
-                  icon
-                  color="primary"
-                ).mx-1.pt-1
-                  v-icon mdi-microphone
               v-btn(
                 v-if="!$isMobile"
                 fab
@@ -32,11 +25,12 @@
                 color="primary"
                 @click="searchFacilityBtn(true)"
               ).elevation-0
-                v-icon mdi-magnify
+                v-icon {{ mdiMagnify }}
 </template>
 
 <script>
 import debounce from 'lodash/debounce';
+import { mdiMagnify } from '@mdi/js';
 import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 import { fetchOrganizations } from '~/services/organizations';
 export default {
@@ -62,6 +56,7 @@ export default {
       debouncedSuggestionsSearch: debounce((event) => {
         this.handleSuggestions(event);
       }, 500),
+      mdiMagnify,
     };
   },
   watch: {

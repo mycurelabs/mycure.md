@@ -1,44 +1,55 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(fluid).white
     //- Remove for now to test SEO
     //- 1st panel
-    seven-wonders
+    lazy-hydrate(when-idle)
+      seven-wonders
     //- 2nd panel
-    care(:metrics-data="metricsData")
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
     //- 3rd panel
-    stakes(
-      panel-title="Your clinic system should not cause you more problems"
-      panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
-      :version="1"
-      :contents="stakesContent"
-      not-free
-    )
-    //- 4th panel
+    lazy-hydrate(when-visible)
+      stakes(
+        panel-title="Your clinic system should not cause you more problems"
+        panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
+        :version="1"
+        :contents="stakesContent"
+        not-free
+      )
+      //- 4th panel
     div.simple-container.mx-n3
-      simple
+      lazy-hydrate(when-visible)
+        simple
     //- 5th panel
-    patients
+    lazy-hydrate(when-visible)
+      patients
     //- 6th panel
     div.grey-bg.mx-n3
-      tools(:version="2")
+      lazy-hydrate(when-visible)
+        tools(:version="2")
     //- 7th panel
-    syncbase
+    lazy-hydrate(when-visible)
+      syncbase
     //- 8th panel
     div.grey-bg.mx-n3
-      hipaa(
-        :header-classes="headerClasses"
-        :description-classes="descriptionClasses"
-      )
+      lazy-hydrate(when-visible)
+        hipaa(
+          :header-classes="headerClasses"
+          :description-classes="descriptionClasses"
+        )
     //- 9th panel
-    steps(:steps="stepsContent" not-free)
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
     //- 10th panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     //- CTA
     div.cta-container.mx-n3.mb-n3
-      join-next-generation
+      lazy-hydrate(when-visible)
+        join-next-generation
       div.cta-image.text-center
         picture-source(
           image="CTA"
@@ -53,6 +64,7 @@
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
@@ -63,6 +75,7 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
+    LazyHydrate,
     Care,
     GenericMediaPanel,
     Hipaa: () => import('~/components/booking/Hipaa'),

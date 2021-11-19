@@ -55,10 +55,10 @@
                 )
                   template(slot="prevArrow")
                     v-btn(icon).ml-n4.custom-btn
-                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") mdi-chevron-left-circle
+                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronLeftCircle }}
                   template(slot="nextArrow")
                     v-btn(icon).mr-n4.custom-btn
-                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") mdi-chevron-right-circle
+                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
               //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
@@ -83,6 +83,7 @@
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
+import { mdiChevronRightCircle, mdiChevronLeftCircle } from '@mdi/js';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
@@ -161,6 +162,9 @@ export default {
     this.headerClasses = ['mc-title-set-4', 'lh-title'];
     return {
       isWebp: false,
+      // Icons
+      mdiChevronRightCircle,
+      mdiChevronLeftCircle,
     };
   },
   computed: {

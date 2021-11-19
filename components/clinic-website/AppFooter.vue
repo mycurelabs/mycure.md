@@ -36,6 +36,12 @@
 </template>
 
 <script>
+import {
+  mdiLinkedin,
+  mdiFacebook,
+  mdiTwitter,
+  mdiEmail,
+} from '@mdi/js';
 export default {
   components: {
     GenericPanel: () => import('~/components/generic/GenericPanel'),
@@ -43,10 +49,10 @@ export default {
   data () {
     this.feedbackLink = 'https://airtable.com/shrgkdR8ASEdbQ1Pa';
     this.icons = [
-      { icon: 'mdi-facebook', link: 'https://facebook.com/' },
-      { icon: 'mdi-twitter', link: 'https://twitter.com/' },
-      { icon: 'mdi-email', link: 'mailto:' },
-      { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
+      { icon: mdiFacebook, link: 'https://facebook.com/' },
+      { icon: mdiTwitter, link: 'https://twitter.com/' },
+      { icon: mdiEmail, link: 'mailto:' },
+      { icon: mdiLinkedin, link: 'https://www.linkedin.com/' },
     ];
     return {};
   },

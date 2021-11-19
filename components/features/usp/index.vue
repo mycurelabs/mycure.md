@@ -13,14 +13,14 @@
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               div(v-if="$isMobile").text-center
                 v-btn(text icon @click="startNow").align-center
-                  v-icon(large) mdi-arrow-down
+                  v-icon(large) {{ mdiArrowDown }}
               v-btn(
                 v-if="!$isMobile"
                 color="accent"
                 large
                 @click="onWatch"
               ).text-none.font-16.mt-5
-                v-icon(left) mdi-play-circle
+                v-icon(left) {{ mdiPlayCircle }}
                 | Watch Walkthrough
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
@@ -31,7 +31,7 @@
             large
             @click="onWatch"
           ).text-none.font-16.p-7
-            v-icon(left) mdi-play-circle
+            v-icon(left) {{ mdiPlayCircle }}
             | Watch Walkthrough
 
     //- Video
@@ -51,6 +51,7 @@
 
 <script>
 // utils
+import { mdiArrowDown, mdiPlayCircle } from '@mdi/js';
 import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   data () {
@@ -58,6 +59,9 @@ export default {
     this.metaTitle = 'MYCURE Features';
     return {
       videoDialog: false,
+      // icons
+      mdiArrowDown,
+      mdiPlayCircle,
     };
   },
   computed: {

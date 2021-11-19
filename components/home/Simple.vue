@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mdiStethoscope, mdiHospitalMarker, mdiFlask } from '@mdi/js';
 import PictureSource from '~/components/commons/PictureSource';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
@@ -49,19 +50,19 @@ export default {
       {
         text: 'For Physicians',
         route: 'doctors-clinics',
-        icon: 'mdi-stethoscope',
+        icon: mdiStethoscope,
         color: 'primary',
       },
       {
         text: 'For Clinics',
         route: 'clinics',
-        icon: 'mdi-hospital-marker',
+        icon: mdiHospitalMarker,
         color: 'info',
       },
       {
         text: 'For Diagnostics',
         route: 'diagnostics',
-        icon: 'mdi-flask',
+        icon: mdiFlask,
         color: 'error',
       },
       // - TODO: Bring back when page is visible
@@ -73,7 +74,11 @@ export default {
     this.headerClasses = ['mc-title-set-1', 'white--text', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-4', 'white--text', 'font-open-sans'];
     this.subheaderClasses = ['mc-subheader-set-2', 'white--text', 'font-open-sans'];
-    return {};
+    return {
+      mdiStethoscope,
+      mdiHospitalMarker,
+      mdiFlask,
+    };
   },
   computed: {
     imageBindings () {

@@ -25,12 +25,12 @@
               br
               media(v-if="address" align="top")
                 template(slot="media-image")
-                  v-icon.red--text mdi-map-marker
+                  v-icon.red--text {{ mdiMapMarker }}
                 template(slot="media-content")
                   p.font-gray {{address}}
               media(v-if="phone" align="top")
                 template(slot="media-image")
-                  v-icon.green--text mdi-phone
+                  v-icon.green--text {{ mdiPhone }}
                 template(slot="media-content")
                   p.font-gray {{phone}}
               br
@@ -39,6 +39,7 @@
 
 <script>
 import VClamp from 'vue-clamp';
+import { mdiMapMarker, mdiPhone } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import Media from '~/components/commons/media';
 import Schedules from '~/components/clinic-website/schedules';
@@ -79,7 +80,10 @@ export default {
   },
   data () {
     this.mainTitleClasses = ['mc-title-set-1'];
-    return {};
+    return {
+      mdiMapMarker,
+      mdiPhone,
+    };
   },
   computed: {
     sectionClasses () {

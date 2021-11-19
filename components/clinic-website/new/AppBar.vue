@@ -16,7 +16,7 @@
           icon
           @click="drawer = !drawer"
         )
-          v-icon(size="30").black--text mdi-menu
+          v-icon(size="30").black--text {{ mdiMenu }}
       template(v-else)
         v-container
           v-row(justify="center")
@@ -59,6 +59,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import { mdiMenu } from '@mdi/js';
 export default {
   data () {
     this.menus = [
@@ -73,6 +74,7 @@ export default {
     ];
     return {
       drawer: false,
+      mdiMenu,
     };
   },
   methods: {

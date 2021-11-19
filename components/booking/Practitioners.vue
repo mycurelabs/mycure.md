@@ -16,15 +16,6 @@
               v-col(cols="12" sm="6" justify="center")
                 v-row(align="center")
                   v-col(cols="3")
-                    //- v-icon(large) mdi-circle
-                    //- picture-source(
-                    //-   custom-path="/"
-                    //-   image-file-extension=".png"
-                    //-   image-alt="placeholder icon"
-                    //-   :image="bundle.image"
-                    //-   image-width="300"
-                    //-   image-height="300"
-                    //- )
                   v-col(justify="center")
                     h1.font-weight-semibold.mc-content-set-1 Dr. Gay Cadorna-Toledo
                     h1.font-weight-light.mc-content-set-2 MYCURE User since 2017

@@ -3,7 +3,7 @@
     //- BACK BUTTON
     v-row(v-if="showBackButton").mb-5
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
-        v-icon(small left) mdi-arrow-left
+        v-icon(small left) {{ mdiArrowLeft }}
         | Back
     //- LOADING
     v-row(v-if="loading" justify="center")
@@ -52,6 +52,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import { mdiArrowLeft } from '@mdi/js';
 import DocItemCard from '../DocItemCard';
 import ServiceItem from './service-item';
 export default {
@@ -108,6 +109,7 @@ export default {
   data () {
     return {
       itemsPage: 1,
+      mdiArrowLeft,
     };
   },
   computed: {

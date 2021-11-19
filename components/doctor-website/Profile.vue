@@ -10,7 +10,7 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
       color="primary"
       :large="$isWideScreen"
       :class="$isWideScreen ? 'pb-3' : 'pb-2'"
-    ).ml-1 mdi-check-decagram
+    ).ml-1 {{ mdiCheckDecagram }}
     div.mb-6
       h2(:class="sectionTextClasses").secondary--text About Me
       v-clamp(autoresize :max-lines="3") {{ bio }}
@@ -35,6 +35,7 @@ v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
 
 <script>
 import VClamp from 'vue-clamp';
+import { mdiCheckDecagram } from '@mdi/js';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
@@ -96,6 +97,7 @@ export default {
     return {
       // - UI State
       socialMenu: false,
+      mdiCheckDecagram,
     };
   },
   computed: {

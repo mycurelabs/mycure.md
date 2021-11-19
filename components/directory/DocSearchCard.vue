@@ -24,12 +24,12 @@
           span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="doctor.doc_website" color="secondary" outlined x-small).mt-1 verified
         div.d-flex.mt-1
-          v-icon(color="secondary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
+          v-icon(color="secondary" :small="!$isWideScreen" left) {{ mdiBriefcaseVariantOutline }}
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor && doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
             span(v-else).font-italic.grey--text.text--lighten-1 No information
         div(justify="start").mt-1.d-flex
-          v-icon(color="secondary" :small="!$isWideScreen" left) mdi-information-outline
+          v-icon(color="secondary" :small="!$isWideScreen" left) {{ mdiInformationOutline }}
           div(v-if="bio")
             v-clamp(
               autoresize
@@ -73,6 +73,10 @@
 
 <script>
 import VClamp from 'vue-clamp';
+import {
+  mdiBriefcaseVariantOutline,
+  mdiInformationOutline,
+} from '@mdi/js';
 import DocInfoCard from './DocInfoCard';
 import { formatAddress } from '~/utils/formats';
 import classBinder from '~/utils/class-binder';
@@ -105,6 +109,9 @@ export default {
       dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
+      // icons
+      mdiBriefcaseVariantOutline,
+      mdiInformationOutline,
     };
   },
   computed: {

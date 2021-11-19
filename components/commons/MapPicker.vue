@@ -9,7 +9,7 @@
         outlined
         hide-details
         clearable
-        prepend-inner-icon="mdi-map-search-outline"
+        :prepend-inner-icon="mdiMapSearchOutline"
         :dense="$isMobile"
       )#pac-input.mb-2
       //- map display
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mdiMapSearchOutline } from '@mdi/js';
 export default {
   props: {
     address: {
@@ -74,6 +75,7 @@ export default {
       mapMarker: null,
       resolvedAddress: {},
       searchText: null,
+      mdiMapSearchOutline,
     };
   },
   computed: {

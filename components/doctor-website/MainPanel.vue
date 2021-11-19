@@ -49,6 +49,11 @@
 
 <script>
 import SocialSharing from 'vue-social-sharing';
+import {
+  mdiEye,
+  mdiPulse,
+  mdiBookshelf,
+} from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import canUseWebp from '~/utils/can-use-webp';
 export default {
@@ -103,19 +108,19 @@ export default {
   data () {
     this.metricMappings = [
       {
-        icon: 'mdi-eye',
+        icon: mdiEye,
         title: 'views',
         value: 'websiteVisits',
         color: 'info',
       },
       {
-        icon: 'mdi-pulse',
+        icon: mdiPulse,
         title: 'lives saved',
         value: 'patients',
         color: 'error',
       },
       {
-        icon: 'mdi-bookshelf',
+        icon: mdiBookshelf,
         title: 'records',
         value: 'records',
         color: 'success',

@@ -1,213 +1,219 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(fluid).white
     //- 1st panel
-    usp(
-      has-custom-background
-      extension-exclusive
-      v-bind="imageBindings"
-      background-image="Booking-Landing-Page"
-      title="Easy Booking App to Grow Your Practice"
-      meta-title="MYCURE BOOKING"
-      description="Let your patients book and schedule appointments efficiently"
-      btn-text="Get Started Free"
-      parse-title
-      :parse-title-fields="['to ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        extension-exclusive
+        v-bind="imageBindings"
+        background-image="Booking-Landing-Page"
+        title="Easy Booking App to Grow Your Practice"
+        meta-title="MYCURE BOOKING"
+        description="Let your patients book and schedule appointments efficiently"
+        btn-text="Get Started Free"
+        parse-title
+        :parse-title-fields="['to ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
 
     //- 2nd panel
-    generic-media-panel(
-      :content="secondPanel"
-      :title-classes="['mc-h2']"
-      :super-title-classes="superTitleClasses"
-      :content-classes="[...descriptionClasses, 'justify-left']"
-      :class="{'mt-16': !$isMobile}"
-    )
-      template(slot="cta-button")
-        div(:class="{ 'text-center': $isMobile }")
-          signup-button(
-            depressed
-            color="primary"
-            facility-type="clinic"
-            class="rounded-lg"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none
-            span.mc-btn1 Get Started Free
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="secondPanel"
+        :title-classes="['mc-h2']"
+        :super-title-classes="superTitleClasses"
+        :content-classes="[...descriptionClasses, 'justify-left']"
+        :class="{'mt-16': !$isMobile}"
+      )
+        template(slot="cta-button")
+          div(:class="{ 'text-center': $isMobile }")
+            signup-button(
+              depressed
+              color="primary"
+              class="rounded-lg"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+            ).text-none
+              span.mc-btn1 Get Started Free
 
     //-3rd panel
-    generic-blue-bg
+    lazy-hydrate(when-visible)
+      generic-blue-bg
+        features(
+          image-dir="booking/"
+          content-col-size="10"
+          icon-container-col-size="12"
+          :each-icon-col="{ cols: 12, sm: 10 }"
+          :items="thirdPanelContents"
+        )
+          template(slot="title")
+            span.mc-h2.white--text Benefits of MYCURE Booking for Health Providers and Clinics
+          template(slot="description")
+            span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
+          template(slot="items")
+            div(:class="[{'d-flex': !$isMobile}, {'justify-space-around': !$isMobile}]")
+              v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key" :class="{'text-center': $isMobile}")
+                picture-source(
+                  v-if="item.icon"
+                  custom-path="booking/"
+                  :image="item.icon"
+                  :image-alt="item.title"
+                  :image-file-extension="item.iconExtension"
+                  :image-width="acquireIconsSize"
+                  :image-height="acquireIconsSize"
+                )
+                h2.hiw-subheading.font-weight-semibold.mc-h4.my-4.white--text {{ item.title }}
+                p.hiw-caption.font-open-sans.mc-b4.white--text {{ item.description }}
+
+    //- 5th panel
+    v-container
+      v-row(justify="center")
+        lazy-hydrate(when-visible)
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" md="8").text-center
+              h2(:class="titleClasses").font-weight-semibold.primary--text Activate your Appointment Scheduling Website
+              p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
+            v-col(cols="12").text-center
+              //- v-btn-toggle(v-model="websiteType" mandatory)
+              v-row.justify-center.gutterless
+                v-col(cols="6" md="3").pa-0
+                  v-btn(
+                    color="primary"
+                    depressed
+                    tile
+                    block
+                    :x-large="!$isMobile"
+                    :outlined="websiteType !== 'doctor'"
+                    @click="websiteType = 'doctor'"
+                  ).text-none Doctors
+                v-col(cols="6" md="3").pa-0
+                  v-btn(
+                    color="primary"
+                    depressed
+                    outlined
+                    tile
+                    block
+                    :x-large="!$isMobile"
+                    :outlined="websiteType !== 'clinic'"
+                    @click="websiteType = 'clinic'"
+                  ).text-none Clinics
+              br
+              br
+              v-tabs-items(v-model="websiteType")
+                v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
+                  picture-source(
+                    :image="mockup.image"
+                    :image-alt="`A ${websiteType} website mockup on laptop screen`"
+                    :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                    :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
+                    :image-file-extension="$useWebp? '.webp' : '.png'"
+                    custom-path="booking/"
+                  )
+    lazy-hydrate(when-visible)
+      testimonials(is-booking)
+    lazy-hydrate(when-visible)
+      generic-blue-bg
+        attendance-video
+    //- 4th panel
+    lazy-hydrate(when-visible)
       features(
+        :items="howItWorksContents"
         image-dir="booking/"
-        content-col-size="10"
         icon-container-col-size="12"
-        :each-icon-col="{ cols: 12, sm: 10 }"
-        :items="thirdPanelContents"
+        title-col-size="7"
+        :each-icon-col="{ cols: 12 }"
       )
         template(slot="title")
-          span.mc-h2.white--text Benefits of MYCURE Booking for Health Providers and Clinics
+          span.mc-h2.font-weight-semibold An Easy Booking App to Grow Your Practice
         template(slot="description")
-          span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
+          span.mc-b2 If you’re ready to modernize your appointment scheduling software with MYCURE Booking, getting started is easy.
+          br
         template(slot="items")
-          div(:class="[{'d-flex': !$isMobile}, {'justify-space-around': !$isMobile}]")
-            v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key" :class="{'text-center': $isMobile}")
+          v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key")
+            div.text-center
               picture-source(
                 v-if="item.icon"
                 custom-path="booking/"
                 :image="item.icon"
                 :image-alt="item.title"
                 :image-file-extension="item.iconExtension"
-                :image-width="acquireIconsSize"
-                :image-height="acquireIconsSize"
+                :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
+                :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
               )
-              h2.hiw-subheading.font-weight-semibold.mc-h4.my-4.white--text {{ item.title }}
-              p.hiw-caption.font-open-sans.mc-b4.white--text {{ item.description }}
-
-    //- 5th panel
-    v-container
-      v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center' }")
-          v-col(cols="12" md="8").text-center
-            h2(:class="titleClasses").font-weight-semibold.primary--text Activate your Appointment Scheduling Website
-            p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
-          v-col(cols="12").text-center
-            //- v-btn-toggle(v-model="websiteType" mandatory)
-            v-row.justify-center.gutterless
-              v-col(cols="6" md="3").pa-0
-                v-btn(
-                  color="primary"
-                  depressed
-                  tile
-                  block
-                  :x-large="!$isMobile"
-                  :outlined="websiteType !== 'doctor'"
-                  @click="websiteType = 'doctor'"
-                ).text-none Doctors
-              v-col(cols="6" md="3").pa-0
-                v-btn(
-                  color="primary"
-                  depressed
-                  outlined
-                  tile
-                  block
-                  :x-large="!$isMobile"
-                  :outlined="websiteType !== 'clinic'"
-                  @click="websiteType = 'clinic'"
-                ).text-none Clinics
             br
             br
-            v-tabs-items(v-model="websiteType")
-              v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
-                picture-source(
-                  :image="mockup.image"
-                  :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
-                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
-                  :image-file-extension="$useWebp? '.webp' : '.png'"
-                  custom-path="booking/"
-                )
-
-    testimonials(is-booking)
-    generic-blue-bg
-      attendance-video
-    //- 4th panel
-    features(
-      :items="howItWorksContents"
-      image-dir="booking/"
-      icon-container-col-size="12"
-      title-col-size="7"
-      :each-icon-col="{ cols: 12 }"
-    )
-      template(slot="title")
-        span.mc-h2.font-weight-semibold An Easy Booking App to Grow Your Practice
-      template(slot="description")
-        span.mc-b2 If you’re ready to modernize your appointment scheduling software with MYCURE Booking, getting started is easy.
-        br
-      template(slot="items")
-        v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key")
-          div.text-center
-            picture-source(
-              v-if="item.icon"
-              custom-path="booking/"
-              :image="item.icon"
-              :image-alt="item.title"
-              :image-file-extension="item.iconExtension"
-              :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
-              :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
-            )
-          br
-          br
-          h2.font-weight-semibold.mc-h3 {{ item.title }}
-          p.font-open-sans.mc-b3 {{ item.description }}
+            h2.font-weight-semibold.mc-h3 {{ item.title }}
+            p.font-open-sans.mc-b3 {{ item.description }}
 
     //- 6th panel
     div.mx-n3
-      generic-media-panel(
-        align="center"
-        :content="fifthPanelContents"
-        :title-classes="[...titleClasses, 'line-height-reducer', 'font-weight-semibold']"
-        :content-classes="descriptionClasses"
-      )
-        template(slot="cta-button")
-          v-row(justify="center")
-            v-col(cols="12" sm="6").pt-0
-              div(:class="{ 'text-center': $isMobile }")
-                v-btn(
-                  depressed
-                  color="#FOF7FD"
-                  class="rounded-lg"
-                  :block="$isRegularScreen"
-                  :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                ).text-none
-                  span.mc-btn1.primary--text Learn More
-            v-col(cols="12" sm="6").pt-0
-              div(:class="{ 'text-center': $isMobile }")
-                signup-button(
-                  depressed
-                  color="primary"
-                  facility-type="clinic"
-                  class="rounded-lg"
-                  :block="$isRegularScreen"
-                  :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                ).text-none
-                  span.mc-btn1 Get Started Free
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          align="center"
+          :content="fifthPanelContents"
+          :title-classes="[...titleClasses, 'line-height-reducer', 'font-weight-semibold']"
+          :content-classes="descriptionClasses"
+        )
+          template(slot="cta-button")
+            v-row(justify="center")
+              v-col(cols="12" sm="6").pt-0
+                div(:class="{ 'text-center': $isMobile }")
+                  v-btn(
+                    depressed
+                    color="#FOF7FD"
+                    class="rounded-lg"
+                    :block="$isRegularScreen"
+                    :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
+                    :height="!$isWideScreen ? '59px' : '73.68'"
+                  ).text-none
+                    span.mc-btn1.primary--text Learn More
+              v-col(cols="12" sm="6").pt-0
+                div(:class="{ 'text-center': $isMobile }")
+                  signup-button(
+                    depressed
+                    color="primary"
+                    class="rounded-lg"
+                    :block="$isRegularScreen"
+                    :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
+                    :height="!$isWideScreen ? '59px' : '73.68'"
+                  ).text-none
+                    span.mc-btn1 Get Started Free
     //- storybrand(
     //-   title="Using Modern Tools to Boost Your Practice"
     //-   :content="storybrandContent"
     //- )
     //- 7th panel
     //- plans.mb-n3
-    generic-blue-bg
-      div.cta-container.mx-n3.mb-n3
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" md="8" xl="6").text-center
-              span.mc-h2.lh-title.white--text Create your own appointment scheduling website in less than 10 minutes.
-              br
-              br
-              mc-btn(
-                depressed
-                event-label="signup"
-                color="success"
-                class="rounded-lg"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                :to="{ name: 'signup-health-facilities' }"
-              ).text-none
-                span.mc-btn1 Start Free Today
-        div.cta-image.text-center
-          picture-source(
-            image="CTA"
-            custom-path="home/"
-            image-alt="CTA Home"
-            :image-file-extension="$useWebp? '.webp' : '.png'"
-            :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
-            :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
-            :image-styles="{ marginBottom: '-7px' }"
-          )
+    lazy-hydrate(when-visible)
+      generic-blue-bg
+        div.cta-container.mx-n3.mb-n3
+          v-row(justify="center")
+            generic-panel(:row-bindings="{ justify: 'center' }")
+              v-col(cols="12" md="8" xl="6").text-center
+                span.mc-h2.lh-title.white--text Create your own appointment scheduling website in less than 10 minutes.
+                br
+                br
+                mc-btn(
+                  depressed
+                  event-label="signup"
+                  color="success"
+                  class="rounded-lg"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  :to="{ name: 'signup-health-facilities' }"
+                ).text-none
+                  span.mc-btn1 Start Free Today
+          div.cta-image.text-center
+            picture-source(
+              image="CTA"
+              custom-path="home/"
+              image-alt="CTA Home"
+              :image-file-extension="$useWebp? '.webp' : '.png'"
+              :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"
+              :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
+              :image-styles="{ marginBottom: '-7px' }"
+            )
 
     //- Image Viewer
     mc-image-viewer(
@@ -218,6 +224,7 @@
 
 <script>
 // utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // components
 import PictureSource from '~/components/commons/PictureSource';
@@ -226,6 +233,7 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    LazyHydrate,
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
