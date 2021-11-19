@@ -20,7 +20,7 @@
                 )
               v-col.pl-2
                 h3 {{ clinicName }}&nbsp;
-                  v-icon(v-if="isVerified" color="primary") mdi-check-decagram
+                  v-icon(v-if="isVerified" color="primary") {{ mdiCheckDecagram }}
               v-spacer
               v-btn(
                 depressed
@@ -48,13 +48,13 @@
             div(v-if="isVerified")
               i.font-12 Verified&nbsp;
               v-avatar(color="primary" size="20")
-                v-icon(dark small) mdi-check
+                v-icon(dark small) {{ mdiCheck }}
           v-spacer
           div
             v-menu
               template(v-slot:activator="{ on, attrs }")
                 v-btn(icon v-bind="attrs" v-on="on")
-                  v-icon mdi-menu
+                  v-icon {{ mdiMenu }}
               v-list
                 v-list-item(@click="goToPxpSignin")
                   v-list-item-title.text-none Login
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { mdiMenu, mdiCheck, mdiCheckDecagram } from '@mdi/js';
 export default {
   props: {
     picURL: {
@@ -85,6 +86,10 @@ export default {
   data () {
     return {
       loading: true,
+      // icons,
+      mdiMenu,
+      mdiCheck,
+      mdiCheckDecagram,
     };
   },
   mounted () {

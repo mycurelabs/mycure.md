@@ -41,14 +41,13 @@
                 h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
     template(v-if="isVerified")
       //- PANEL 1 FOOTER
-      div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
-        span(v-if="formattedAddress")
-          v-icon.red--text mdi-map-marker
+      div(:style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer.text-center
+        span(v-if="formattedAddress").mr-6
+          v-icon.red--text {{ mdiMapMarker }}
           span {{formattedAddress}}
-        v-spacer(v-if="!$isMobile")
-        br(v-else)
+        br(v-if="$isMobile")
         span(v-if="clinicPhone")
-          v-icon.green--text mdi-phone
+          v-icon.green--text {{ mdiPhone }}
           span {{clinicPhone}}
       //- MAIN PANELS
       main-workflow(
@@ -73,7 +72,7 @@
       //- Loading
       v-container(v-else)
         v-row(justify="center").text-center
-          v-progress-circular(indeterminate color="primary" size="150")
+          v-progress-circular(indeterminate color="primary" size="150").my-8
       //- ABOUT US
       about-us(
         :picURL="picURL"
@@ -112,6 +111,7 @@
 
 <script>
 import { format } from 'date-fns';
+import { mdiMapMarker, mdiPhone } from '@mdi/js';
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import uniq from 'lodash/uniq';
@@ -248,6 +248,9 @@ export default {
       searchResults: [],
       searchText: null,
       searchFilters: {},
+      // icons
+      mdiMapMarker,
+      mdiPhone,
     };
   },
   head () {

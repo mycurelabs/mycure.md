@@ -1,40 +1,51 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(fluid).white
     //- Remove for now to test SEO
     //- 1st panel
-    seven-wonders
+    lazy-hydrate(when-idle)
+      seven-wonders
     //- 2nd panel
-    stakes(
-      panel-title="Your Clinic Management System Should Not Cause You More Problems"
-      sub-title="As a healthcare provider, your entire day is committed to helping people. But so much of your time is lost to disorganization and inefficiency when you’re using the wrong electronic health records software."
-      :version="1"
-      :contents="stakesContent"
-      not-free
-    )
-    router
+    lazy-hydrate(when-visible)
+      stakes(
+        panel-title="Your Clinic Management System Should Not Cause You More Problems"
+        sub-title="As a healthcare provider, your entire day is committed to helping people. But so much of your time is lost to disorganization and inefficiency when you’re using the wrong electronic health records software."
+        :version="1"
+        :contents="stakesContent"
+        not-free
+      )
+    lazy-hydrate(when-visible)
+      router
     //- 3rd panel
-    care(:metrics-data="metricsData")
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
     //- 4th panel
-    hipaa(
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-    )
+    lazy-hydrate(when-visible)
+      hipaa(
+        :header-classes="headerClasses"
+        :description-classes="descriptionClasses"
+      )
     //- 5th panel
-    syncbase
+    lazy-hydrate(when-visible)
+      syncbase
     //- 6th panel
-    simple
+    lazy-hydrate(when-visible)
+      simple
     //- 7th panel
     div.grey-bg.mx-n3
-      patients
+      lazy-hydrate(when-visible)
+        patients
     //- 8th panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     //- 9th panel
-    tools(:version="2")
+    lazy-hydrate(when-visible)
+      tools(:version="2")
     //- 10th panel
-    steps(:steps="stepsContent" not-free).mb-n3
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free).mb-n3
     //- CTA
     //- div.cta-container.mx-n3.mb-n3
     //-   join-next-generation
@@ -52,6 +63,7 @@
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
@@ -63,6 +75,7 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
+    LazyHydrate,
     Care,
     GenericMediaPanel,
     Hipaa: () => import('~/components/booking/Hipaa'),

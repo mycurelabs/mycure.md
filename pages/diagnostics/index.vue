@@ -1,145 +1,159 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(fluid).white
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="Diagnostics-Landing-Page"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="Your Diagnostic Center Transformed"
-      meta-title="MYCURE Diagnostic"
-      description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
-      image="Diagnostics-Mobile-USP"
-      image-col-offset="1"
-      custom-image-path="diagnostics/"
-      parse-title
-      :parse-title-fields="['Diagnostic ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
-    )
-    stakes(
-      :version="3"
-      :media-content="stakesContent"
-      hide-btn
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="Diagnostics-Landing-Page"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="Your Diagnostic Center Transformed"
+        meta-title="MYCURE Diagnostic"
+        description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
+        image="Diagnostics-Mobile-USP"
+        image-col-offset="1"
+        custom-image-path="diagnostics/"
+        parse-title
+        :parse-title-fields="['Diagnostic ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+        @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
+      )
+    lazy-hydrate(when-visible)
+      stakes(
+        :version="3"
+        :media-content="stakesContent"
+        hide-btn
+      )
     //- 2nd panel
     div.grey-bg.mx-n3
-      features(
-        title="Embrace the power to choose"
-        description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
-        :items="features"
-        image-dir="diagnostics/"
-        panel-height="70vh"
-      )
+      lazy-hydrate(when-visible)
+        features(
+          title="Embrace the power to choose"
+          description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
+          :items="features"
+          image-dir="diagnostics/"
+          panel-height="70vh"
+        )
     //- 3rd to 4th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :content="info"
-      :key="key"
-      hide-btn
-      :title-classes="listHeaderClasses"
-      :content-classes="listContentClasses"
-    )
-      //- Check list
-      template(slot="additional-content" v-if="info.list")
-        template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : ( $isRegularScreen ? 'pt-2' : 'pt-1')").pr-2
-              img(
-                src="~/assets/images/mycure-check.png"
-                alt="Check icon"
-                :width="$isWideScreen ? '30' : '20'"
-                :height="$isWideScreen ? '30' : '20'"
-              )
-            v-col(cols="10" sm="11" md="11")
-              span.mc-content-set-1.font-open-sans.font-gray {{ item }}
+    template(v-for="info in infoPanels")
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="info"
+          hide-btn
+          :title-classes="listHeaderClasses"
+          :content-classes="listContentClasses"
+        )
+          //- Check list
+          template(slot="additional-content" v-if="info.list")
+            template(v-for="(item, i) in info.list")
+              v-row(dense)
+                v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : ( $isRegularScreen ? 'pt-2' : 'pt-1')").pr-2
+                  img(
+                    src="~/assets/images/mycure-check.png"
+                    alt="Check icon"
+                    :width="$isWideScreen ? '30' : '20'"
+                    :height="$isWideScreen ? '30' : '20'"
+                  )
+                v-col(cols="10" sm="11" md="11")
+                  span.mc-content-set-1.font-open-sans.font-gray {{ item }}
     //- 5th panel
     div.grey-bg.mx-n3
-      generic-media-panel(
-        :content="integrationsPanel"
-        hide-btn
-        align="center"
-        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
-      )
-        template(slot="content")
-          v-row(justify="start")
-            v-col(
-              v-for="(item, key) in integrationsPanel.list"
-              :key="key"
-              cols="6"
-              md="4"
-            ).text-center
-              picture-source(
-                custom-path="diagnostics/"
-                image-file-extension=".png"
-                extension-exclusive
-                :image="item.icon"
-                :image-alt="item.title"
-                :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
-                :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
-              )
-              br
-              h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="integrationsPanel"
+          hide-btn
+          align="center"
+          :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+        )
+          template(slot="content")
+            v-row(justify="start")
+              v-col(
+                v-for="(item, key) in integrationsPanel.list"
+                :key="key"
+                cols="6"
+                md="4"
+              ).text-center
+                picture-source(
+                  custom-path="diagnostics/"
+                  image-file-extension=".png"
+                  extension-exclusive
+                  :image="item.icon"
+                  :image-alt="item.title"
+                  :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                  :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                )
+                br
+                h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
     //- 6th panel
-    generic-media-panel(
-      :content="expandPanel"
-      hide-btn
-    )
-      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
-        signup-button(
-          depressed
-          color="success"
-          event-label="signup"
-          class="rounded-pill"
-          :width="!$isWideScreen ? '228px' : '300'"
-          :height="!$isWideScreen ? '59px' : '73.68'"
-        ).text-none
-          v-icon(left) mdi-web
-          span.generic-button-text Create my website
-    v-divider(v-if="$isMobile").divider
-    //- 7th panel
-    generic-media-panel(
-      :content="cmsPanel"
-      align="center"
-      :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
-    )
-      template(slot="cta-button")
-        div(:class="{'text-center': $isMobile}")
-          //- SEO issue non descriptiove link
-          mc-btn(
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="expandPanel"
+        hide-btn
+      )
+        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+          signup-button(
             depressed
-            event-label="clinics-info"
             color="success"
-            :to="{ name: 'clinics' }"
+            event-label="signup"
             class="rounded-pill"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
-            //- v-icon(left)  mdi-information-outline
-            span.generic-button-text See MYCURE for Clinics
+            v-icon(left) {{ mdiWeb }}
+            span.generic-button-text Create my website
+    v-divider(v-if="$isMobile").divider
+    //- 7th panel
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="cmsPanel"
+        align="center"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+      )
+        template(slot="cta-button")
+          div(:class="{'text-center': $isMobile}")
+            //- SEO issue non descriptiove link
+            mc-btn(
+              depressed
+              event-label="clinics-info"
+              color="success"
+              :to="{ name: 'clinics' }"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+            ).text-none
+              //- v-icon(left)  mdi-information-outline
+              span.generic-button-text See MYCURE for Clinics
     //- 7.5
-    care(:metrics-data="metricsData")
-    steps(:steps="stepsContent" not-free)
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
     //- 8th panel
-    think-long-term
+    lazy-hydrate(when-visible)
+      think-long-term
     //- 9th panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     //- 10th panel
     client-only
-      pricing(
-        title="Take the first step today"
-        description="Choose the best plan for your diagnostic center. Only pay for what you need."
-        type="diagnostic"
-        has-trial-option
-      ).mb-n3
-    call-to-action(:version="2" not-free)
+      lazy-hydrate(when-idle)
+        pricing(
+          title="Take the first step today"
+          description="Choose the best plan for your diagnostic center. Only pay for what you need."
+          type="diagnostic"
+          has-trial-option
+        ).mb-n3
+    lazy-hydrate(when-visible)
+      call-to-action(:version="2" not-free)
 </template>
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
+import { mdiWeb } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - constants
@@ -150,6 +164,7 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
@@ -220,6 +235,7 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      mdiWeb,
     };
   },
   head () {

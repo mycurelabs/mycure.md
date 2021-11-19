@@ -12,6 +12,7 @@
       :doctor-id="doctor.id"
       :appointment-type="appointmentType"
     )
+    v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     //- First panel
     main-panel(
       :metrics="doctorMetrics"
@@ -76,12 +77,38 @@
               :clinics-limit="clinicsLimit"
               :services="services"
               :is-preview-mode="isPreviewMode"
+              :facilities-loading="facilitiesLoading"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
             )#doctor-website-features
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
     ) {{ snackbarModel.text }}
+    //- v-speed-dial(v-model="shareBtn" bottom left fixed x-large direction="top" transition="slide-y-reverse-transition")
+    //-   template(v-slot:activator)
+    //-     v-btn(v-model="shareBtn" color="primary" fab)
+    //-       v-icon(v-if="shareBtn" color="white") mdi-close
+    //-       v-icon(v-else color="white") mdi-share-variant
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small color="#4267B2" v-bind="attrs" v-on="on")
+    //-         v-icon(color="white") mdi-facebook
+    //-     span Share to Facebook
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small v-bind="attrs" v-on="on").instag
+    //-         v-icon(color="white") mdi-instagram
+    //-     span Share to Instagram
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small color="#0E76A8" v-bind="attrs" v-on="on")
+    //-         v-icon(color="white") mdi-linkedin
+    //-     span Share to LinkedIn
+    //-   v-tooltip(right)
+    //-     template( v-slot:activator="{ on, attrs }")
+    //-       v-btn(fab small color="success" v-bind="attrs" v-on="on" @click="getShareLink")
+    //-         v-icon(color="white") mdi-link-variant
+    //-     span Copy Link to Clipboard
 </template>
 
 <script>
@@ -160,6 +187,9 @@ export default {
       // - Paginations
       page: 1,
       clinicsTotal: 0,
+      clipSuccess: false,
+      facilitiesLoading: false,
+      shareBtn: false,
     };
   },
   head () {
@@ -254,6 +284,7 @@ export default {
   methods: {
     async fetchDoctorInfo (page = 1) {
       try {
+        this.facilitiesLoading = true;
         const skip = this.clinicsLimit * (page - 1);
 
         /* Uses organization-members service */
@@ -280,6 +311,7 @@ export default {
           this.clinicsTotal = total;
           this.clinics = items;
         }
+        this.facilitiesLoading = false;
       } catch (error) {
         console.error(error);
         this.$nuxt.$router.push('/');
@@ -328,6 +360,10 @@ export default {
       };
       this.showSnack = true;
     },
+    getShareLink () {
+      navigator.clipboard.writeText(window.location.href);
+      this.clipSuccess = true;
+    },
   },
 };
 </script>
@@ -359,7 +395,9 @@ export default {
 .bottom-padding {
   padding-bottom: 500px;
 }
-
+.instag {
+  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+}
 @media screen and (min-width: 1000px) {
   .bottom-padding {
     padding-bottom: 150px;

@@ -1,63 +1,71 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  div.white
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="corporate-clinics-full"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="Manage your Company Clinic with Ease"
-      meta-title="MYCURE for Corporate Clinics"
-      description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."
-      btn-text="Get Started"
-      image="corporate-clinics-mobile"
-      custom-image-path="clinics/corporate/"
-      parse-title
-      parse-meta-title
-      :parse-title-fields="['your ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
-    stakes(
-      :version="4"
-      panelTitle="Problems of Not Using a Clinic Management System"
-      :contents="stakesContent"
-      not-free
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="corporate-clinics-full"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="Manage your Company Clinic with Ease"
+        meta-title="MYCURE for Corporate Clinics"
+        description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."
+        btn-text="Get Started"
+        image="corporate-clinics-mobile"
+        custom-image-path="clinics/corporate/"
+        parse-title
+        parse-meta-title
+        :parse-title-fields="['your ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
+    lazy-hydrate(when-visible)
+      stakes(
+        :version="4"
+        panelTitle="Problems of Not Using a Clinic Management System"
+        :contents="stakesContent"
+        not-free
+      )
     //- 2nd panel
     div.grey-bg.mx-n3
-    features(
-      extension-exclusive
-      image-dir="clinics/corporate/"
-      icon-container-col-size="10"
-      description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :icon-column-bindings="{ cols: 6, sm: 3 }"
-      :items="features"
-    )
-      template(slot="title")
-        h2(:class="headerClasses").primary--text Newest tools for the newest generation.
+      lazy-hydrate(when-visible)
+        features(
+          extension-exclusive
+          image-dir="clinics/corporate/"
+          icon-container-col-size="10"
+          description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
+          :icon-column-bindings="{ cols: 6, sm: 3 }"
+          :items="features"
+        )
+          template(slot="title")
+            h2(:class="headerClasses").primary--text Newest tools for the newest generation.
     //- 3rd panel
     div.info.mx-n3
       v-container
         v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8").white--text
-              h2(:class="headerClasses").mb-8.text-center.white--text Know the health status of your employees, stat!
-              div.text-center
-                span.mc-content-set-1.mb-10.white--text Easily access and share medical records with them through the MYCURE health portal.
+          lazy-hydrate(when-visible)
+            generic-panel(:row-bindings="{ justify: 'center' }")
+              v-col(cols="12" lg="8").white--text
+                h2(:class="headerClasses").mb-8.text-center.white--text Know the health status of your employees, stat!
+                div.text-center
+                  span.mc-content-set-1.mb-10.white--text Easily access and share medical records with them through the MYCURE health portal.
     //- 4th panel
-    generic-media-panel(
-      align="center"
-      hide-btn
-      :content="multiplePanel"
-      :title-classes="headerClasses"
-      :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
-    )
-    care(:metrics-data="metricsData")
-    steps(:steps="stepsContent" not-free)
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        align="center"
+        hide-btn
+        :content="multiplePanel"
+        :title-classes="headerClasses"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+      )
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     //- 9th panel
     //- div.info.mx-n3
     //-   v-container
@@ -75,15 +83,18 @@
     //-             span.generic-button-text Count me in
     //- 5th panel
     client-only
-      pricing(
-        type="clinic"
-        title="Take the first step today."
-      )
-    call-to-action(:version="4" not-free)
+      lazy-hydrate(when-idle)
+        pricing(
+          type="clinic"
+          title="Take the first step today."
+        )
+    lazy-hydrate(when-visible)
+      call-to-action(:version="4" not-free)
 </template>
 
 <script>
 // - utils
+import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
@@ -91,6 +102,7 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),

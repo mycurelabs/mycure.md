@@ -2,7 +2,7 @@
   div(v-if="!loading.page").white
     //- App Bar
     v-app-bar(
-      :height="$isMobile ? (searchMode ==='account' ? '240' : '305') : '290'"
+      height="200"
       app
       color="white"
       elevate-on-scroll

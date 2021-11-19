@@ -3,16 +3,12 @@
     //- BACK BUTTON
     v-row(v-if="showBackButton").mb-5
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
-        v-icon(small left) mdi-arrow-left
+        v-icon(small left) {{ mdiArrowLeft }}
         | Back
     //- LOADING
     v-row(v-if="loading" justify="center")
-      v-col(cols="12" md="4").text-center
-        v-progress-circular(
-          color="primary"
-          indeterminate
-          size="100"
-        )
+      v-col.text-center
+        v-skeleton-loader(type="card-heading, list-item-three-line, actions" elevation="2")
     //- EMPTY SERVICES
     v-row(v-else-if="items.length === 0" justify="center")
       v-col(cols="12" md="4").text-center
@@ -56,6 +52,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import { mdiArrowLeft } from '@mdi/js';
 import DocItemCard from '../DocItemCard';
 import ServiceItem from './service-item';
 export default {
@@ -112,6 +109,7 @@ export default {
   data () {
     return {
       itemsPage: 1,
+      mdiArrowLeft,
     };
   },
   computed: {

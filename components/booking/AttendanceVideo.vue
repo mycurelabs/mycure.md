@@ -12,7 +12,6 @@
               signup-button(
                 depressed
                 color="white"
-                facility-type="clinic"
                 class="rounded-lg"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"

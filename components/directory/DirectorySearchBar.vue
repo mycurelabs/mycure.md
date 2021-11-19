@@ -10,7 +10,7 @@
             borderless
             mandatory
             @change="onModeChange($event)"
-            :class="$isMobile ? 'mb-2' : 'mb-4'"
+            :class="{'mb-2': $isMobile }"
           )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
             v-btn(
@@ -40,7 +40,7 @@
                   item-text="name"
                   item-value="value"
                   placeholder="Service Type"
-                  prepend-inner-icon="mdi-filter"
+                  :prepend-inner-icon="mdiFilter"
                   clearable
                   dense
                   flat
@@ -58,7 +58,7 @@
                 v-text-field(
                   v-model="specialtiesDisplay"
                   placeholder="Specializations"
-                  prepend-inner-icon="mdi-filter"
+                  :prepend-inner-icon="mdiFilter"
                   dense
                   hide-details
                   outlined
@@ -69,7 +69,7 @@
                     v-icon(
                       v-if="searchObject.specializations.length > 0"
                       @click="searchObject.specializations = []; onSearch(false)"
-                    ) mdi-close
+                    ) {{ mdiClose }}
         v-row.pt-2
           v-col.pa-0
             v-combobox(
@@ -82,6 +82,7 @@
               flat
               outlined
               solo
+              hide-details
               :height="$isMobile ? '40px' : '60px'"
               :items="suggestionEntries"
               :menu-props="{ bottom: true, offsetY: true }"
@@ -103,11 +104,11 @@
                       large
                       @click="mapDialog = true"
                     ).elevation-0
-                      v-icon mdi-crosshairs-gps
+                      v-icon {{ mdiCrosshairsGps }}
                   span Use your location
               template(v-slot:item="data")
                 v-col(cols="12")
-                  v-row.py-3
+                  v-row(@click="searchObject.searchString = data.item.name; onSearch(true)").py-3
                     v-col.mc-content-set-5
                       v-row
                         v-col.py-0
@@ -115,15 +116,11 @@
                       v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
-                            v-icon(color="secondary" :small="!$isWideScreen") mdi-briefcase
+                            v-icon(color="secondary" :small="!$isWideScreen") {{ mdiBriefcase }}
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
-                        //- TODO: Location search not yet applicable for doctor
-                        //- v-col.pb-0
-                        //-   v-row.px-3
-                        //-     v-icon(color="secondary" small) mdi-map-marker
-                        //-     span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
+                            span(v-if="data.item.tags") &nbsp;{{ data.item.tags.length > 1 ? `+${data.item.tags.length - 1} other${data.item.tags.length > 2 ? 's' : ''}` : ''}}
                         v-spacer
-                    v-icon(color="secondary" large) mdi-arrow-right
+                    v-icon(color="secondary" large) {{ mdiArrowRight }}
     //- DIALOGS
     v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
@@ -132,7 +129,7 @@
             v-col
               h2 Filter by Specialization
             v-col(cols="1" align-self="center").pa-0
-              v-icon(large @click="dialog = false; onSearch(false)") mdi-close
+              v-icon(large @click="dialog = false; onSearch(false)") {{ mdiClose }}
         v-card-subtitle.pt-3.pb-0
           v-row.pa-3.mt-1
             v-text-field(
@@ -169,6 +166,13 @@
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
+import {
+  mdiFilter,
+  mdiClose,
+  mdiCrosshairsGps,
+  mdiBriefcase,
+  mdiArrowRight,
+} from '@mdi/js';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import { formatAddress } from '~/utils/formats';
 import SPECIALTIES from '~/assets/fixtures/specialties';
@@ -259,6 +263,12 @@ export default {
       searchDummy: null,
       dialog: false,
       searchTagText: null,
+      // Icons
+      mdiFilter,
+      mdiClose,
+      mdiCrosshairsGps,
+      mdiBriefcase,
+      mdiArrowRight,
     };
   },
   computed: {
@@ -378,7 +388,13 @@ export default {
         text: searchText,
         limit: 10,
         type: this.selectedMode,
+        tags: [],
       };
+      if (this.selectedMode === 'account') {
+        query.tags = this.searchObject.specializations.map(x => this.formatTagForQuery(x));
+      } else {
+        query.tag = this.formatTagForQuery(this.searchObject.searchString);
+      }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
       this.suggestionEntries = items || [];
     },
@@ -400,6 +416,13 @@ export default {
       finArray = str1.split('-');
       finArray = finArray.map(x => `${x.charAt(0).toUpperCase()}${x.slice(1)}`);
       return finArray.join(' ');
+    },
+    formatTagForQuery (string) {
+      let finArray = string.split(' ');
+      finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
+      let finStr = finArray.join('-');
+      finStr = this.selectedMode === 'account' ? `spc:${finStr}` : `sto:${finStr}`;
+      return finStr;
     },
     formatAddress (address) {
       return formatAddress(address, 'street1, street2, city, province, region, country');

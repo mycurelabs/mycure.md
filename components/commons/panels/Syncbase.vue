@@ -31,7 +31,7 @@
           div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Learn about MYCURE Syncbase
-              v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
+              v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") {{ mdiChevronRight }}
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
               color="success"
@@ -41,7 +41,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               @click="syncbaseVideoDialog = true"
             ).text-none
-                v-icon(left) mdi-play-circle
+                v-icon(left) {{ mdiPlayCircle }}
                 span.generic-button-text Watch how it works
         template(slot="image")
           div.vid-container
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mdiPlayCircle, mdiChevronRight } from '@mdi/js';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
   components: {
@@ -91,6 +92,8 @@ export default {
     this.headerClasses = ['mc-h2', 'primary--text'];
     return {
       syncbaseVideoDialog: false,
+      mdiPlayCircle,
+      mdiChevronRight,
     };
   },
   computed: {

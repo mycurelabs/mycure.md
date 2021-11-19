@@ -57,7 +57,7 @@
     v-dialog(v-model="paymentErrorDialog" width="400")
       v-card
         v-card-text.pa-10.text-center
-          v-icon(style="font-size: 40px;").error--text mdi-close
+          v-icon(style="font-size: 40px;").error--text {{ mdiClose }}
           h2 Error!
           p Checkout failed to proceed!
           v-btn(
@@ -69,7 +69,7 @@
     v-dialog(v-model="errorDialog" width="400")
       v-card
         v-card-text.pa-10.text-center
-          v-icon(style="font-size: 40px;").error--text mdi-close
+          v-icon(style="font-size: 40px;").error--text {{ mdiClose }}
           h2 Error!
           p {{ errorMessage }}
         v-card-actions
@@ -98,6 +98,7 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
+import { mdiClose } from '@mdi/js';
 import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
@@ -146,6 +147,8 @@ export default {
       subscriptionId: null,
       // Stripe session
       sessionId: '',
+      // icons
+      mdiClose,
     };
   },
   computed: {
@@ -375,6 +378,7 @@ export default {
         if (this.countryCallingCode !== '63') {
           this.emailVerificationMessageDialog = true;
         } else {
+          await this.sendOtp();
           this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
         }
       } catch (e) {

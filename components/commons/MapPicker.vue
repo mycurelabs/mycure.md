@@ -5,11 +5,11 @@
       v-text-field(
         type="text"
         placeholder="Search Address"
-        v-model="resolvedAddress.fullAddress"
+        v-model="searchText"
         outlined
         hide-details
         clearable
-        prepend-inner-icon="mdi-map-search-outline"
+        :prepend-inner-icon="mdiMapSearchOutline"
         :dense="$isMobile"
       )#pac-input.mb-2
       //- map display
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mdiMapSearchOutline } from '@mdi/js';
 export default {
   props: {
     address: {
@@ -73,6 +74,8 @@ export default {
       mapGeocoder: null,
       mapMarker: null,
       resolvedAddress: {},
+      searchText: null,
+      mdiMapSearchOutline,
     };
   },
   computed: {
@@ -230,6 +233,7 @@ export default {
       }, {
         // initial values
         fullAddress: result?.formatted_address,
+        searchText: result?.formatted_address,
         geometry: result?.geometry,
         name: result?.name,
         types: result?.types,
