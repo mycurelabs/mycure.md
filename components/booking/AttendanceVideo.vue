@@ -32,10 +32,9 @@
               v-else
               :width="$isMobile ? '300': '560'"
               :height="$isMobile ? '168.75': '315'"
-              allow="autoplay"
               src="https://www.youtube.com/embed/Xj9GgIHW0_s"
               title="YouTube video player" frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
               allowfullscreen
             )
             //- v-skeleton-loader(type="image" height="100%")
