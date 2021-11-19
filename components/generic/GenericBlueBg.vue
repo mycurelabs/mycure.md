@@ -1,29 +1,6 @@
 <template lang="pug">
   div.mx-n3.main-container
     div
-      //- img(
-      //-   src="~/assets/images/commons/blue-gradient-bg.png"
-      //-   alt="blue gradient background"
-      //-   :style="backgroundStyle"
-      //- )
-      //- img(
-      //-   src="~/assets/images/commons/dots-left.png"
-      //-   alt="dots gradient"
-      //- ).left-center
-      //- img(
-      //-   src="~/assets/images/commons/dots-right.png"
-      //-   alt="dots gradient"
-      //- ).right-center
-      picture-source(
-        image-file-extension="png"
-        image="blue-gradient-bg"
-        image-alt="blue gradient background"
-        :image-width="$isMobile ? '1024px' : $isRegularScreen ? '1904' : '100%'"
-        :image-height="panelHeight"
-        :image-styles="backgroundStyle"
-        :extension-exclusive="true"
-        custom-path="commons/"
-      )
       picture-source(
         image-file-extension="png"
         image="dots-left"
@@ -52,12 +29,6 @@ export default {
   components: {
     PictureSource,
   },
-  props: {
-    panelHeight: {
-      type: String,
-      default: '712px',
-    },
-  },
   data () {
     return {
       backgroundStyle: {
@@ -77,6 +48,7 @@ export default {
 <style scoped>
 .main-container {
   position: relative;
+  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
 }
 .content {
   position: relative;
@@ -93,5 +65,8 @@ export default {
   bottom: 10%;
   right: 0;
   z-index: 2;
+}
+.blue-bg {
+  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
 }
 </style>

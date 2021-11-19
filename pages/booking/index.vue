@@ -37,7 +37,7 @@
             span.mc-btn1 Get Started Free
 
     //-3rd panel
-    generic-blue-bg(:panel-height="$isMobile ? '859.4' : $isRegularScreen ? '712.93' : '789.11'")
+    generic-blue-bg
       features(
         image-dir="booking/"
         content-col-size="10"
@@ -109,7 +109,7 @@
                 )
 
     testimonials(is-booking)
-    generic-blue-bg(:panel-height="$isMobile ? '462.15' : $isRegularScreen ? '449.93' : '450.17'")
+    generic-blue-bg
       attendance-video
     //- 4th panel
     features(
@@ -180,7 +180,7 @@
     //- )
     //- 7th panel
     //- plans.mb-n3
-    generic-blue-bg(:panel-height="$isMobile ? '475.8' : $isRegularScreen ? '484' : '678.96'")
+    generic-blue-bg
       div.cta-container.mx-n3.mb-n3
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
