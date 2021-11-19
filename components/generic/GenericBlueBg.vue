@@ -29,19 +29,6 @@ export default {
   components: {
     PictureSource,
   },
-  data () {
-    return {
-      backgroundStyle: {
-        // width: '100%',
-        // height: '100%',
-        position: 'absolute',
-        left: '0',
-        top: '0',
-        zIndex: '1',
-        objectFit: 'cover',
-      },
-    };
-  },
 };
 </script>
 
@@ -65,8 +52,5 @@ export default {
   bottom: 10%;
   right: 0;
   z-index: 2;
-}
-.blue-bg {
-  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
 }
 </style>
