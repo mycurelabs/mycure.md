@@ -516,7 +516,7 @@ export default {
       if (!val) this.stripeCoupon = null;
     },
   },
-  created () {
+  mounted () {
     this.init();
     this.loading.page = false;
   },
