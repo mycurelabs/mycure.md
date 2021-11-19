@@ -160,7 +160,7 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
 import PictureSource from '~/components/commons/PictureSource';
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Usp from '~/components/commons/panels/OldSevenWondersUsp';
 
 export default {
   components: {
@@ -173,7 +173,7 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
-    Care: () => import('~/components/home/Care'),
+    Care: () => import('~/components/home/OldCare'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),

@@ -171,7 +171,7 @@ import { mdiWeb } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 // - constants
 // - components
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Usp from '~/components/commons/panels/OldSevenWondersUsp';
 import { getCountry, fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
@@ -186,7 +186,7 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Care: () => import('~/components/home/Care'),
+    Care: () => import('~/components/home/OldCare'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),

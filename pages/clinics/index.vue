@@ -129,7 +129,7 @@ import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Usp from '~/components/commons/panels/OldSevenWondersUsp';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 
@@ -146,7 +146,7 @@ export default {
     Usp,
     Workflow: () => import('~/components/outpatient-clinics/Workflow'),
     SignupButton: () => import('~/components/commons/SignupButton'),
-    Care: () => import('~/components/home/Care'),
+    Care: () => import('~/components/home/OldCare'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
