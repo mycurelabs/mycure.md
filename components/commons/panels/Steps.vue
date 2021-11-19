@@ -1,25 +1,6 @@
 <template lang="pug">
-  div.mx-n3.main-container
-    div
-      picture-source(
-        image-file-extension="png"
-        image="dots-left"
-        image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
-        :extension-exclusive="true"
-        custom-path="commons/"
-      ).left-center
-      picture-source(
-        image-file-extension="png"
-        image="dots-right"
-        image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
-        :extension-exclusive="true"
-        custom-path="commons/"
-      ).right-center
-    v-container.white--text.content
+  generic-blue-bg
+    v-container.white--text
       v-row(justify="center").pa-5.py-16
         v-col(cols="12")
           v-row(justify="center")
@@ -56,10 +37,12 @@
 
 <script>
 import PictureSource from '~/components/commons/PictureSource';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     SignupButton: () => import('~/components/commons/SignupButton'),
+    GenericBlueBg,
     PictureSource,
   },
   props: {
@@ -92,26 +75,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.main-container {
-  position: relative;
-  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
-}
-.content {
-  position: relative;
-  z-index: 3;
-}
-.left-center {
-  position: absolute;
-  top: 10%;
-  left: 0;
-  z-index: 2;
-}
-.right-center {
-  position: absolute;
-  bottom: 10%;
-  right: 0;
-  z-index: 2;
-}
-</style>

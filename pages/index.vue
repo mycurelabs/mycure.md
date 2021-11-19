@@ -14,7 +14,7 @@
         not-free
       )
     lazy-hydrate(when-visible)
-      router
+      page-router
     //- 3rd panel
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData").mb-16
@@ -70,7 +70,7 @@ import Care from '~/components/home/Care';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
-import Router from '~/components/home/Router';
+import PageRouter from '~/components/home/Router';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
@@ -82,7 +82,7 @@ export default {
     JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
     Patients: () => import('~/components/home/Patients'),
     PictureSource,
-    Router,
+    PageRouter,
     SevenWonders,
     Simple: () => import('~/components/home/Simple'),
     Stakes: () => import('~/components/commons/panels/Stakes'),

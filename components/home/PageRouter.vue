@@ -20,25 +20,6 @@
                 nuxt-link(:to="{ name: page.route }" :class="{'d-flex': !$isMobile}").button
                   span.mc-hyp1.primary--text Learn more&nbsp;
                   v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile").mt-n1 mdi-arrow-right
-        //- v-col(slot="additional-content" cols="12").order-last
-        //-   v-row(justify="center")
-        //-     v-col(v-for="(service, key) in services" :key="key").shrink
-        //-       v-hover(
-        //-         v-slot="{ hover }"
-        //-         open-delay="100"
-        //-       )
-        //-         mc-btn(
-        //-           depressed
-        //-           color="white"
-        //-           :block="$isMobile"
-        //-           :x-large="$isWideScreen"
-        //-           :large="!$isWideScreen"
-        //-           :to="{ name: service.route }"
-        //-           :outlined="!hover"
-        //-           :class="{'white--text': !hover, 'info--text': hover}"
-        //-         ).text-none
-        //-           v-icon(left) {{ service.icon }}
-        //-           strong {{ service.text }}
 </template>
 
 <script>
@@ -49,12 +30,6 @@ export default {
   components: {
     PictureSource,
     GenericPanel,
-    mdiDoctor,
-    mdiStethoscope,
-    mdiClipboardListOutline,
-    mdiCalendarClock,
-    mdiLaptop,
-    mdiWifiCheck,
   },
   data () {
     this.pages = [
@@ -102,7 +77,23 @@ export default {
     ];
     this.headerClasses = ['mc-h3'];
     this.descriptionClasses = ['mc-b2', 'font-open-sans'];
-    return {};
+    this.contentColumnBindings = {
+      cols: 12,
+      md: 6,
+      alignSelf: 'center',
+    };
+    this.mediaColumnBindings = {
+      cols: 12,
+      md: 6,
+    };
+    return {
+      mdiDoctor,
+      mdiStethoscope,
+      mdiClipboardListOutline,
+      mdiCalendarClock,
+      mdiLaptop,
+      mdiWifiCheck,
+    };
   },
   computed: {
     imageBindings () {
@@ -113,19 +104,6 @@ export default {
         imageWidth: this.$vuetify.breakpoint.width > 1919 ? '750px' : (this.$isRegularScreen ? '485px' : '250px'),
         imageHeight: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
         customPath: 'home/',
-      };
-    },
-    contentColumnBindings () {
-      return {
-        cols: 12,
-        md: 6,
-        alignSelf: 'center',
-      };
-    },
-    mediaColumnBindings () {
-      return {
-        cols: 12,
-        md: 6,
       };
     },
   },
