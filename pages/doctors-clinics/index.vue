@@ -124,7 +124,7 @@ import headMeta from '~/utils/head-meta';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Usp from '~/components/commons/panels/OldSevenWondersUsp';
 
 export default {
   components: {

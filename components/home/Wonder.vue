@@ -15,16 +15,18 @@
           :image-height="( $isMobile ? '145px' : '165px')"
           :image-alt="wonder.title"
           custom-path="home/"
-          :image-file-extension="$useWebp? '.webp' : '.png'"
+          extension-exclusive
+          image-file-extension=".png"
         )
+        //-   :image-file-extension="$useWebp? '.webp' : '.png'"
+        //- )
         br
         br
-        h2(:class="wonderHeaderClasses").font-weight-bold.lh-title {{ wonder.title }}
-        p(:class="wonderDescriptionClasses").mt-2 {{ wonder.description }}
+        h2.mc-h3 {{ wonder.title }}
+        p.mc-b3.mt-2 {{ wonder.description }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
@@ -42,22 +44,11 @@ export default {
       if (this.$isRegularScreen) return '325';
       return '300';
     },
-    wonderHeaderClasses () {
-      return classBinder(this, {
-        wide: ['font-m'],
-        regular: ['font-s'],
-      });
-    },
-    wonderDescriptionClasses () {
-      return classBinder(this, {
-        wide: ['font-s'],
-      });
-    },
     cardHeight () {
-      if (this.$isWideScreen) return '390';
-      if (this.wLG) return '345';
-      if (this.wSM) return '375';
-      return '350';
+      if (this.$isWideScreen) return '440';
+      if (this.wLG) return '370';
+      if (this.wSM) return '370';
+      return '380';
     },
     cardPadding () {
       if (this.$isWideScreen) return 'pt-6';

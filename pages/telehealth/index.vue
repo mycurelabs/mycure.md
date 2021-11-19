@@ -117,7 +117,7 @@
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Usp from '~/components/commons/panels/OldSevenWondersUsp';
 // - constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 
