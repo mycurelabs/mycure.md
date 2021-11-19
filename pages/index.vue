@@ -70,7 +70,7 @@ import Care from '~/components/home/Care';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
-import PageRouter from '~/components/home/Router';
+import PageRouter from '~/components/home/PageRouter';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
