@@ -19,12 +19,11 @@
         )
         br
         br
-        h2(:class="wonderHeaderClasses").font-weight-bold.lh-title {{ wonder.title }}
-        p(:class="wonderDescriptionClasses").mt-2 {{ wonder.description }}
+        h2.mc-h3 {{ wonder.title }}
+        p.mc-b3.mt-2 {{ wonder.description }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
@@ -41,17 +40,6 @@ export default {
       if (this.$isWideScreen) return '400';
       if (this.$isRegularScreen) return '325';
       return '300';
-    },
-    wonderHeaderClasses () {
-      return classBinder(this, {
-        wide: ['font-m'],
-        regular: ['font-s'],
-      });
-    },
-    wonderDescriptionClasses () {
-      return classBinder(this, {
-        wide: ['font-s'],
-      });
     },
     cardHeight () {
       if (this.$isWideScreen) return '390';

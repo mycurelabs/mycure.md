@@ -36,9 +36,9 @@
                   class="rounded-lg"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
-                  color="white"
+                  color="success"
                 ).text-none.mc-btn1
-                  span.generic-button-text.primary--text Get Started
+                  span.generic-button-text.white--text Get Started
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(

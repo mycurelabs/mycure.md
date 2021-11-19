@@ -303,10 +303,7 @@ export default {
     ];
     this.titleClasses = ['mc-h2', 'black--text'];
     this.superTitleClasses = ['mc-h7', 'font-open-sans'];
-    this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-weight-semibold', 'font-gray'];
-    this.buttonClasses = ['mc-button-set-1'];
-    this.howItWorksClass = ['mc-title-set-2'];
-    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-b2', 'font-open-sans'];
     this.imageBindings = {
       image: 'Booking-Mobile',
       customImagePath: 'booking/',

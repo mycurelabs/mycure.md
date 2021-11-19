@@ -14,16 +14,16 @@
               div(v-for="(content, index) in contents" :key="index")
                 div(v-if="!$isMobile")
                   v-row(justify="center")
-                    v-col(cols="5").pb-0
+                    v-col(cols="4").pb-0
                       span.mc-h3 {{ content.leftTitle }}
                     v-col(cols="1").pb-0
-                    v-col(cols="5").pb-0
+                    v-col(cols="4").pb-0
                       span.mc-h3 {{ content.rightTitle }}
                   v-row(justify="center")
-                    v-col(cols="5")
+                    v-col(cols="4")
                       p.mc-b3.font-gray.font-open-sans {{ content.leftDescription }}
                     v-col(cols="1")
-                    v-col(cols="5")
+                    v-col(cols="4")
                       p.mc-b3.font-gray.font-open-sans {{ content.rightDescription }}
                 div(v-else)
                   v-row(justify="center")
