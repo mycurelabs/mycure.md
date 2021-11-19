@@ -19,6 +19,47 @@ $font-lm: 2.3rem; // size between large-medium (for titles with font-m content)
 $font-l: 3rem;
 $font-xl: 3.75rem;
 $font-2xl: 6rem;
+// new font presets
+$h1-wide: 60px; //linespace lineheight
+$h2-wide: 48px; //linespace lineheight
+$h3-wide: 34px; //linespace
+$h4-wide: 24px;
+$h5-wide: 20px;
+$h6-wide: 24px;
+$h7-wide: 20px;
+$b1-wide: 30px;
+$b2-wide: 20px;
+$b3-wide: 18px;
+$b4-wide: 16px;
+$b5-wide: 16px;
+$hyp1-wide: 20px;
+$hyp2-wide: 18px;
+$btn1-wide: 20px;
+$h1-std: 48px; //linespace lineheight
+$h2-std: 34px; //linespace
+$h3-std: 24px;
+$h4-std: 20px;
+$h5-std: 18px;
+$h6-std: 18px;
+$h7-std: 14px;
+$b1-std: 20px;
+$b2-std: 16px;
+$b3-std: 16px;
+$b4-std: 14px;
+$b5-std: 14px;
+$hyp1-std: 16px;
+$hyp2-std: 14px;
+$btn1-std: 18px;
+$h1-mob: 34px;
+$h2-mob: 20px;
+$h4-mob: 18px;
+$h6-mob: 18px;
+$h7-mob: 14px;
+$b1-mob: 18px;
+$b2-mob: 16px;
+$b4-mob: 14px;
+$hyp1-mob: 18px;
+$btn1-mob: 16px;
 
 $letter-spacing: -0.5px;
 
@@ -110,6 +151,11 @@ $letter-spacing: -0.5px;
   } @else {
     font-size: $font-xs !important;
   }
+}
+@mixin mc-font-sizer($size, $line-height) {
+  letter-spacing: $letter-spacing;
+  line-height: $line-height;
+  font-size: $size !important;
 }
 
 /* ===== ADD GLOBAL CSS SETS HERE ===== */
@@ -399,6 +445,221 @@ classBinder(this, {
     font-size: 22px;
   }
   letter-spacing: 0px;
+}
+
+.mc-h1 {
+  font-weight: 600 !important;
+  // - Mobile
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h1-mob, 51px);
+    text-align: center;
+  }
+  // - Regular
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h1-std, 80px);
+  }
+  // - Wide
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h1-wide, 96px);
+  }
+}
+.mc-h2 {
+  font-weight: 600 !important;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h2-mob, 30px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h2-std, 48px);
+    line-height: 1.5;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h2-wide, 72px);
+    line-height: 1.5;
+  }
+}
+.mc-h3 {
+  font-weight: 600 !important;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h2-mob, 30px );
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h3-std, 34px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h3-wide, 54px);
+  }
+}
+.mc-h4 {
+  font-weight: 600 !important;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h4-mob, 27px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h4-std, 30px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h4-wide, 48px);
+  }
+}
+.mc-h5 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h6-mob, 24px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h5-std, 30px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h5-wide, 48px); 
+  }
+}
+.mc-h6 {
+  color: #0099CC;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h6-mob, 24px);
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h6-std, 30px);
+    letter-spacing: 3px;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h6-wide, 36px);
+    letter-spacing: 3px;
+  }
+}
+.mc-h7 {
+  color: #0099CC;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($h7-mob, 18px);
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($h7-std, 18px);
+    letter-spacing: 3px;
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($h7-wide, 24px);
+    letter-spacing: 3px;
+  }
+}
+.mc-b1 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b1-mob, 30px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b1-std, 40px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b1-wide, 54px);
+  }
+}
+.mc-b2 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b2-mob, 30px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b2-std, 30px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b2-wide, 40px);
+  }
+}
+.mc-b3 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b1-mob, 30px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b3-std, 24px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b3-wide, 36px); 
+  }
+}
+.mc-list-b3 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b1-mob, 30px);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b3-std, 24px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b3-wide, 36px); 
+  }
+}
+.mc-b4 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b4-mob, 24px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b4-std, 20px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b4-wide, 24px);
+  }
+}
+.mc-b5 {
+  color: #353A40;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b4-mob, 24px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b5-std, 30px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b5-wide, 40px);
+  }
+}
+.mc-hyp1 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($hyp1-mob, 25px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($hyp1-std, 20px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($hyp1-wide, 27px);
+  }
+}
+.mc-hyp2 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($hyp1-mob, 25px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($hyp2-std, 20px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($hyp2-wide, 25px);
+  }
+}
+.mc-btn1 {
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($btn1-mob, 22px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($btn1-std, 30px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($btn1-wide, 30px);
+  }
 }
 
 .otp-input {
