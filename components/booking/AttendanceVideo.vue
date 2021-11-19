@@ -19,7 +19,7 @@
               ).text-none
                 span.mc-btn1.primary--text Get Started Free
           v-spacer(v-if="!$isMobile")
-          v-col(cols="12" sm="6")
+          v-col(cols="12" sm="6" :class="{'text-center': $isMobile}")
             img(
               v-if="!showVideo"
               src="~/assets/images/booking/booking-video-still.png"
