@@ -183,6 +183,15 @@ export default {
   data () {
     this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
+    this.backgroundStyle = {
+      width: '42%',
+      height: '100%',
+      position: 'absolute',
+      left: '55%',
+      top: '0',
+      zIndex: '1',
+      objectFit: 'contain',
+    };
     return {};
   },
   computed: {
@@ -231,17 +240,6 @@ export default {
       return {
         justify: 'center',
         align: 'center',
-      };
-    },
-    backgroundStyle () {
-      return {
-        width: '42%',
-        height: '100%',
-        position: 'absolute',
-        left: '55%',
-        top: '0',
-        zIndex: '1',
-        objectFit: 'contain',
       };
     },
   },

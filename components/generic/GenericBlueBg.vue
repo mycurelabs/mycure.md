@@ -5,8 +5,8 @@
         image-file-extension="png"
         image="dots-left"
         image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegular ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegular ? '181.58' : '259.4'"
+        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
         :extension-exclusive="true"
         custom-path="commons/"
       ).left-center
@@ -14,8 +14,8 @@
         image-file-extension="png"
         image="dots-right"
         image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegular ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegular ? '181.58' : '259.4'"
+        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
         :extension-exclusive="true"
         custom-path="commons/"
       ).right-center
