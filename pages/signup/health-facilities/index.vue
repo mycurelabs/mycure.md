@@ -36,7 +36,7 @@
                   :disabled="loading.form"
                 ).ma-0.no-details-margin
                   template(v-slot:append v-if="firstName")
-                    v-icon(color="accent") mdi-check
+                    v-icon(color="accent") {{ mdiCheck }}
               v-col(
                 cols="12"
                 md="6"
@@ -52,7 +52,7 @@
                   :disabled="loading.form"
                 ).ma-0.no-details-margin
                   template(v-slot:append v-if="lastName")
-                    v-icon(color="accent") mdi-check
+                    v-icon(color="accent") {{ mdiCheck }}
               v-col(
                 cols="12"
                 md="6"
@@ -69,7 +69,7 @@
                   @keyup="checkEmail"
                 ).mb-0.no-details-margin
                   template(v-slot:append v-if="isEmailValid && emailUnique")
-                    v-icon(color="accent") mdi-check
+                    v-icon(color="accent") {{ mdiCheck }}
               v-col(
                 cols="12"
                 md="6"
@@ -89,7 +89,7 @@
                 ).mb-0.no-details-margin
                   template(slot="append")
                     div(style="margin-top: -8px")
-                      v-icon(v-if="mobileNoError && mobileUnique" color="accent").ml-n10 mdi-check
+                      v-icon(v-if="mobileNoError && mobileUnique" color="accent").ml-n10 {{ mdiCheck }}
                       v-tooltip(bottom)
                         template(v-slot:activator="{ on }")
                           v-btn(icon @click="countryDialog = true" v-on="on")
@@ -108,7 +108,7 @@
                   :type="showPass ? 'text' : 'password'"
                   :rules="passwordRules"
                   :disabled="loading.form"
-                  :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+                  :append-icon="showPass ? mdiEyeOff : mdiEye"
                   @click:append="showPass = !showPass"
                 ).no-details-margin
               v-col(
@@ -126,7 +126,7 @@
                   :disabled="loading.form"
                 ).no-details-margin
                   template(v-slot: append v-if="confirmPassword && confirmPassword === password")
-                    v-icon(color="accent") mdi-check
+                    v-icon(color="accent") {{ mdiCheck }}
             p.mt-5.mb-2 Facility Info
             v-row(:no-gutters="$isMobile").px-2
               v-col(
@@ -253,7 +253,7 @@
           v-text-field(
             v-model="searchString"
             label="Search Country"
-            append-icon="mdi-magnify"
+            :append-icon="mdiMagnify"
             solo
             hide-details
             clearable
@@ -321,13 +321,20 @@
                       color="primary"
                       @click="codeDialog = false"
                     )
-                      v-icon mdi-arrow-right
+                      v-icon {{ mdiArrowRight }}
 </template>
 
 <script>
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
+import {
+  mdiArrowRight,
+  mdiMagnify,
+  mdiCheck,
+  mdiEye,
+  mdiEyeOff,
+} from '@mdi/js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import headMeta from '~/utils/head-meta';
 import {
@@ -442,6 +449,12 @@ export default {
       codeDialog: false,
       emailUnique: true,
       mobileUnique: true,
+      // icons
+      mdiArrowRight,
+      mdiMagnify,
+      mdiCheck,
+      mdiEye,
+      mdiEyeOff,
     };
   },
   head () {

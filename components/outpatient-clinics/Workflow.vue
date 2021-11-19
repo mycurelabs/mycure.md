@@ -20,7 +20,7 @@
                   :height="!$isWideScreen ? '59px' : '73.68'"
                 @click="videoDialog = true"
               ).text-none.mb-10
-                v-icon(left) mdi-play-circle
+                v-icon(left) {{ mdiPlayCircle }}
                 span.generic-button-text Watch How It Works
             v-col(cols="12")
               v-row(justify="center")
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mdiPlayCircle } from '@mdi/js';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -98,6 +99,7 @@ export default {
     this.descriptionClasses = ['mc-content-set-1'];
     return {
       videoDialog: false,
+      mdiPlayCircle,
     };
   },
 };

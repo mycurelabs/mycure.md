@@ -48,7 +48,7 @@
             v-list(v-if="services.length" dense)
               v-list-item(v-for="(service, key) in services" :key="key")
                 v-list-item-icon
-                  v-icon(color="primary") mdi-check-circle-outline
+                  v-icon(color="primary") {{ mdiCheckCircleOutline }}
                 v-list-item-content
                   v-list-item-title {{ service }}
             p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { mdiCheckCircleOutline } from '@mdi/js';
 import Facilities from './Facilities';
 import LearningCorner from './LearningCorner';
 export default {
@@ -106,6 +107,7 @@ export default {
     ];
     return {
       activeTab: 'facilities',
+      mdiCheckCircleOutline,
     };
   },
 };

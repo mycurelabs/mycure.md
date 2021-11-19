@@ -8,7 +8,7 @@
           :width="!$isMobile ? 120 : 80"
           :height="!$isMobile ? 120 : 80"
         ).rounded-circle
-        v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
+        v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 {{ mdiCheckDecagram }}
       v-row(justify="center").pt-3
         div.d-inline-flex
           p.font-weight-bold.font-18.text-center {{ organization.name }}&nbsp;
@@ -83,6 +83,7 @@
 <script>
 // import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
+import { mdiCheckDecagram } from '@mdi/js';
 import uniqBy from 'lodash/uniqBy';
 import { formatAddress } from '~/utils/formats';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
@@ -114,6 +115,7 @@ export default {
     return {
       scheduleExpanded: false,
       isDescriptionExpanded: false,
+      mdiCheckDecagram,
     };
   },
   computed: {
