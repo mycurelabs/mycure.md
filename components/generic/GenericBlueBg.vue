@@ -18,6 +18,8 @@
         image-file-extension="png"
         image="blue-gradient-bg"
         image-alt="blue gradient background"
+        :image-width="$isMobile ? '1024px' : $isRegularScreen ? '1904' : '100%'"
+        :image-height="panelHeight"
         :image-styles="backgroundStyle"
         :extension-exclusive="true"
         custom-path="commons/"
@@ -26,7 +28,8 @@
         image-file-extension="png"
         image="dots-left"
         image-alt="dots gradient"
-        :image-styles="backgroundStyle"
+        :image-width="$isMobile ? '77.5' : $isRegular ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegular ? '181.58' : '259.4'"
         :extension-exclusive="true"
         custom-path="commons/"
       ).left-center
@@ -34,7 +37,8 @@
         image-file-extension="png"
         image="dots-right"
         image-alt="dots gradient"
-        :image-styles="backgroundStyle"
+        :image-width="$isMobile ? '77.5' : $isRegular ? '108.5' : '155'"
+        :image-height="$isMobile ? '129.7' : $isRegular ? '181.58' : '259.4'"
         :extension-exclusive="true"
         custom-path="commons/"
       ).right-center
@@ -48,11 +52,17 @@ export default {
   components: {
     PictureSource,
   },
+  props: {
+    panelHeight: {
+      type: String,
+      default: '712px',
+    },
+  },
   data () {
     return {
       backgroundStyle: {
-        width: '100%',
-        height: '100%',
+        // width: '100%',
+        // height: '100%',
         position: 'absolute',
         left: '0',
         top: '0',

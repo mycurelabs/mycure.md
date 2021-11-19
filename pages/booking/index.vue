@@ -37,7 +37,7 @@
             span.mc-btn1 Get Started Free
 
     //-3rd panel
-    generic-blue-bg
+    generic-blue-bg(:panel-height="$isMobile ? '859.4' : $isRegularScreen ? '712.93' : '789.11'")
       features(
         image-dir="booking/"
         content-col-size="10"
@@ -50,8 +50,8 @@
         template(slot="description")
           span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
         template(slot="items")
-          div.d-flex.justify-space-around
-            v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key")
+          div(:class="[{'d-flex': !$isMobile}, {'justify-space-around': !$isMobile}]")
+            v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key" :class="{'text-center': $isMobile}")
               picture-source(
                 v-if="item.icon"
                 custom-path="booking/"
@@ -109,7 +109,7 @@
                 )
 
     testimonials(is-booking)
-    generic-blue-bg
+    generic-blue-bg(:panel-height="$isMobile ? '462.15' : $isRegularScreen ? '449.93' : '450.17'")
       attendance-video
     //- 4th panel
     features(
@@ -180,7 +180,7 @@
     //- )
     //- 7th panel
     //- plans.mb-n3
-    generic-blue-bg
+    generic-blue-bg(:panel-height="$isMobile ? '475.8' : $isRegularScreen ? '484' : '678.96'")
       div.cta-container.mx-n3.mb-n3
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
