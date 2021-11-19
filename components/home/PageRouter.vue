@@ -11,10 +11,10 @@
               p.mc-b2 Integrated healthcare solutions for your practice shouldn’t be expensive or complicated. MYCURE’s mission is to create an affordable yet effective patient records system. Featuring a variety of tools, you can customize your experience to fit the needs of your practice perfectly.
         v-col(cols="12" md="4" v-for="(page, key) in pages" :key="key")
           v-card(style="background-color: #fafafa;" height="100%").rounded-lg.pa-5
-            v-row(align="start" :class="{'text-center': $isMobile}")
+            v-row(align="start" :justify="$isMobile ? 'center' : 'start' " :class="{'text-center': $isMobile}")
               //- v-skeleton-loader(type="image" width="30%" height="50%").ma-3.
               v-icon(large color="#0099CC").ma-3 {{ page.icon }}
-              v-col(:cols="{'12': $isMobile}")
+              v-col(:cols="contentColumn")
                 p.mc-h4 {{ page.text }}
                 p.mc-b4 {{ page.description }}
                 nuxt-link(:to="{ name: page.route }" :class="{'d-flex': !$isMobile}").button
@@ -105,6 +105,9 @@ export default {
         imageHeight: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
         customPath: 'home/',
       };
+    },
+    contentColumn () {
+      return this.$isMobile ? '12' : null;
     },
   },
 };

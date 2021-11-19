@@ -170,7 +170,7 @@ export default {
   background-color: #fafafa;
 }
 .margined {
-  margin-bottom: 180px;
+  margin-bottom: 200px;
 }
 
 @media screen and (min-width: 1920px) {
