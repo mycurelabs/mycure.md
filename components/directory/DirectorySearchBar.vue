@@ -149,6 +149,8 @@
             v-checkbox(
               v-if="searchTagText ? tagSearch(tag, searchTagText) : true"
               v-model="searchObject.specializations"
+              :on-icon="mdiCheckboxMarkedOutline"
+              :off-icon="mdiCheckboxBlankOutline"
               :value="tag"
               :label="tag"
             ).ma-0
@@ -172,6 +174,8 @@ import {
   mdiCrosshairsGps,
   mdiBriefcase,
   mdiArrowRight,
+  mdiCheckboxBlankOutline,
+  mdiCheckboxMarkedOutline,
 } from '@mdi/js';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import { formatAddress } from '~/utils/formats';
@@ -269,6 +273,8 @@ export default {
       mdiCrosshairsGps,
       mdiBriefcase,
       mdiArrowRight,
+      mdiCheckboxBlankOutline,
+      mdiCheckboxMarkedOutline,
     };
   },
   computed: {

@@ -201,6 +201,8 @@
               hide-details
               color="primary"
               height="57.97px"
+              :on-icon="mdiCheckboxMarkedOutline"
+              :off-icon="mdiCheckboxBlankOutline"
               :disabled="loading.form"
             ).mt-0
               template(slot="label")
@@ -222,6 +224,8 @@
               v-model="agree"
               color="primary"
               :disabled="loading.form"
+              :on-icon="mdiCheckboxMarkedOutline"
+              :off-icon="mdiCheckboxBlankOutline"
             ).ma-0.no-details-margin
               template(slot="label")
                 span I agree to MYCURE's&nbsp;
@@ -335,6 +339,8 @@ import {
   mdiCheck,
   mdiEye,
   mdiEyeOff,
+  mdiCheckboxMarkedOutline,
+  mdiCheckboxBlankOutline,
 } from '@mdi/js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import headMeta from '~/utils/head-meta';
@@ -456,6 +462,8 @@ export default {
       mdiCheck,
       mdiEye,
       mdiEyeOff,
+      mdiCheckboxMarkedOutline,
+      mdiCheckboxBlankOutline,
     };
   },
   head () {
