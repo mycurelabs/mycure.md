@@ -31,7 +31,6 @@
             signup-button(
               depressed
               color="primary"
-              facility-type="clinic"
               class="rounded-lg"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
@@ -42,7 +41,6 @@
     lazy-hydrate(when-visible)
       generic-blue-bg
         features(
-          :items="howItWorksContents"
           image-dir="booking/"
           content-col-size="10"
           icon-container-col-size="12"
@@ -175,7 +173,6 @@
                   signup-button(
                     depressed
                     color="primary"
-                    facility-type="clinic"
                     class="rounded-lg"
                     :block="$isRegularScreen"
                     :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
