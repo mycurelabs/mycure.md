@@ -41,11 +41,13 @@
 </template>
 
 <script>
+import PictureSource from '~/components/commons/PictureSource';
 import GenericPanel from '~/components/generic/GenericPanel';
 // import { fetchWebsiteMetrics } from '~/utils/axios';
 export default {
   components: {
     GenericPanel,
+    PictureSource,
   },
   props: {
     metricsData: {
