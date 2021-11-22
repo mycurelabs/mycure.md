@@ -268,18 +268,20 @@ export default {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
   },
-  async created () {
+  created () {
     this.loading = false;
-    if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
-      // Record new
-      await recordWebsiteVisit({ uid: this.doctor.id });
-    }
+  },
+  async mounted () {
     // Fetch metrics
     await this.fetchMetrics();
     // Fetch Doctor info
     this.fetchDoctorInfo();
-    // Record Page view for Google analytics
-    this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
+    if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
+      // Record new
+      await recordWebsiteVisit({ uid: this.doctor.id });
+      // Record Page view for Google analytics
+      this.$gtag.pageview(`/doctors/${this.$route.params.id}`);
+    }
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
