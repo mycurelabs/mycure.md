@@ -15,7 +15,7 @@
         v-for="(tab, key) in doctorTabs"
         :key="key"
         :value="tab.value"
-        @click="$refs.docFacilities.scrollToTop()"
+        @click="onTabClick"
       ).text-none {{ tab.name }}
     v-select(
       v-else
@@ -29,10 +29,9 @@
       item-value="value"
       :items="doctorTabs"
     )
-    v-tabs-items(v-model="activeTab").mt-3.transparent-bg
+    v-tabs-items(v-model="activeTab").mt-3.transparent-bg#doctor-website-tabs-items
       v-tab-item(value="facilities")
         facilities(
-          ref="docFacilities"
           :doctorId="doctorId"
           :clinics="clinics"
           :total="clinicsTotal"
@@ -61,6 +60,7 @@
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
 import { mdiCheckCircleOutline } from '@mdi/js';
 import Facilities from './Facilities';
 import LearningCorner from './LearningCorner';
@@ -109,6 +109,11 @@ export default {
       activeTab: 'facilities',
       mdiCheckCircleOutline,
     };
+  },
+  methods: {
+    onTabClick () {
+      VueScrollTo.scrollTo('#doctor-website-tabs-items', 500, { offset: -100, easing: 'ease' });
+    },
   },
 };
 </script>

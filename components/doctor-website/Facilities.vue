@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-row(style="max-height:700px; overflow-y: auto;" ref="facilitiesContainer")
+  v-row(style="max-height:700px; overflow-y: auto;")
     v-col(v-if="!clinics.length" cols="12")
       v-skeleton-loader(v-if="loading" type="article, actions")
       p(v-else).font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
@@ -69,11 +69,6 @@ export default {
       this.scrollToTop();
       this.$emit('onUpdatePage', val);
       return val;
-    },
-  },
-  methods: {
-    scrollToTop () {
-      this.$refs.facilitiesContainer.scrollTop = 0;
     },
   },
 };
