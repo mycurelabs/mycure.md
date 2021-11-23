@@ -3,7 +3,7 @@
     //- Remove for now to test SEO
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders(:class="uspMargin")
+      seven-wonders.mb-16
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -142,11 +142,11 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  computed: {
-    uspMargin () {
-      return this.$isWideScreen ? 'margin-wid' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1150 ? 'margin-tab' : 'margin-reg';
-    },
-  },
+  // computed: {
+  //   uspMargin () {
+  //     return this.$isWideScreen ? 'margin-wide' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1400 ? 'margin-tab' : 'margin-reg';
+  //   },
+  // },
   created () {
     this.loading = false;
   },
@@ -154,27 +154,10 @@ export default {
 </script>
 
 <style scoped>
-.simple-container {
-  background-color: #0099cc;
-}
-.cta-container {
-  background-color: #0099cc;
-  position: relative;
-  padding-bottom: 200px;
-}
-.cta-image {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.divider {
-  margin-right: 30% !important;
-  margin-left: 30% !important;
-}
 .grey-bg {
   background-color: #fafafa;
 }
-.margin-wid {
+.margin-wide {
   margin-bottom: 150px;
 }
 .margin-reg {
@@ -182,11 +165,5 @@ export default {
 }
 .margin-tab {
   margin-bottom: 250px;
-}
-
-@media screen and (min-width: 1920px) {
-  .cta-container {
-    padding-bottom: 300px;
-  }
 }
 </style>
