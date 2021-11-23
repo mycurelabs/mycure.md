@@ -21,17 +21,17 @@
                       span.mc-h3 {{ content.rightTitle }}
                   v-row(justify="center")
                     v-col(cols="4")
-                      p.mc-b3.font-gray.font-open-sans {{ content.leftDescription }}
+                      p.mc-b4.font-gray.font-open-sans {{ content.leftDescription }}
                     v-col(cols="1")
                     v-col(cols="4")
-                      p.mc-b3.font-gray.font-open-sans {{ content.rightDescription }}
+                      p.mc-b4.font-gray.font-open-sans {{ content.rightDescription }}
                 div(v-else)
                   v-row(justify="center")
                     v-col(cols="12")
                       span.primary--text.mc-h3.font-weight-bold {{ content.leftTitle }}
-                      p.mc-list-b3.font-gray {{ content.leftDescription }}
+                      p.mc-list-b4.font-gray {{ content.leftDescription }}
                       span.primary--text.mc-h3.font-weight-bold {{ content.rightTitle }}
-                      p.mc-list-b3.font-gray {{ content.rightDescription }}
+                      p.mc-list-b4.font-gray {{ content.rightDescription }}
 
             //- version 2
             div(v-if="version === 2").font-open-sans

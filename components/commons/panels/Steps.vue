@@ -19,7 +19,7 @@
                 :image-width="$isWideScreen ? '100' : '80'"
                 :image-height="$isWideScreen ? '100' : '80'"
               ).mr-3.ml-2
-              v-col(cols="8")
+              v-col(cols="9")
                 p.mc-h3 {{ step.title }}
                 p.mc-b3.font-open-sans.white--text {{ step.description }}
           div(v-if="!hideBtn")
@@ -39,7 +39,6 @@
 <script>
 import PictureSource from '~/components/commons/PictureSource';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     SignupButton: () => import('~/components/commons/SignupButton'),
@@ -62,20 +61,6 @@ export default {
     notFree: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    numberSize () {
-      const numberSize = [
-        classBinder(this, {
-          mobile: ['font-l'],
-          regular: ['font-xl'],
-          wide: ['font-2xl'],
-        }),
-        'font-weight-bold',
-        'primary--text',
-      ];
-      return numberSize;
     },
   },
 };
