@@ -1,10 +1,10 @@
 <template lang="pug">
   generic-blue-bg
     v-container(:class="{'ml-n6': !$isMobile}")
-      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100vh', width: '100vw'}").mb-n16
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '102vh', width: '100vw'}").mb-n16
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
-            v-row(justify="center").mb-5
+            v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="7" xl="8")
                 h1(:class="headerClasses").mb-2 Integrated Healthcare
                   br
@@ -179,6 +179,9 @@ export default {
 }
 .margin-desktop {
   margin-bottom: 150px;
+}
+.wide-margin-top {
+  margin-top: 30px;
 }
 .text-container {
   margin-bottom: 65px;

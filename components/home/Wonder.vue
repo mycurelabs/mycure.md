@@ -22,8 +22,8 @@
         //- )
         br
         br
-        h2.mc-h3 {{ wonder.title }}
-        p.mc-b3.mt-2 {{ wonder.description }}
+        h2.mc-h4.black--text {{ wonder.title }}
+        p.mc-b4.mt-2 {{ wonder.description }}
 </template>
 
 <script>
@@ -39,15 +39,10 @@ export default {
     },
   },
   computed: {
-    wonderHeight () {
-      if (this.$isWideScreen) return '400';
-      if (this.$isRegularScreen) return '325';
-      return '300';
-    },
     cardHeight () {
-      if (this.$isWideScreen) return '440';
-      if (this.wLG) return '370';
-      if (this.wSM) return '370';
+      if (this.$isWideScreen) return '400';
+      if (this.wLG) return '350';
+      if (this.wSM) return '350';
       return '380';
     },
     cardPadding () {

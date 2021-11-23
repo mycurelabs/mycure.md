@@ -3,7 +3,7 @@
     //- Remove for now to test SEO
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders.margined
+      seven-wonders(:class="uspMargin")
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -142,6 +142,11 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
+  computed: {
+    uspMargin () {
+      return this.$isWideScreen ? 'margin-wid' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1150 ? 'margin-tab' : 'margin-reg';
+    },
+  },
   created () {
     this.loading = false;
   },
@@ -169,8 +174,14 @@ export default {
 .grey-bg {
   background-color: #fafafa;
 }
-.margined {
-  margin-bottom: 200px;
+.margin-wid {
+  margin-bottom: 150px;
+}
+.margin-reg {
+  margin-bottom: 170px;
+}
+.margin-tab {
+  margin-bottom: 250px;
 }
 
 @media screen and (min-width: 1920px) {

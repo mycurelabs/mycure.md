@@ -19,11 +19,11 @@
           div(:class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Explore the Features
-              v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
+              v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
 </template>
 
 <script>
-import { mdiStethoscope, mdiHospitalMarker, mdiFlask } from '@mdi/js';
+import { mdiChevronRight } from '@mdi/js';
 import PictureSource from '~/components/commons/PictureSource';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
@@ -32,37 +32,10 @@ export default {
     GenericSubPagePanel,
   },
   data () {
-    this.services = [
-      {
-        text: 'For Physicians',
-        route: 'doctors-clinics',
-        icon: mdiStethoscope,
-        color: 'primary',
-      },
-      {
-        text: 'For Clinics',
-        route: 'clinics',
-        icon: mdiHospitalMarker,
-        color: 'info',
-      },
-      {
-        text: 'For Diagnostics',
-        route: 'diagnostics',
-        icon: mdiFlask,
-        color: 'error',
-      },
-      // - TODO: Bring back when page is visible
-      // {
-      //   text: 'For Hospitals',
-      //   route: 'hospitals',
-      // },
-    ];
     this.headerClasses = ['mc-h3'];
     this.descriptionClasses = ['mc-b2', 'font-open-sans'];
     return {
-      mdiStethoscope,
-      mdiHospitalMarker,
-      mdiFlask,
+      mdiChevronRight,
     };
   },
   computed: {
