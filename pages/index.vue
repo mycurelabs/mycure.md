@@ -3,7 +3,7 @@
     //- Remove for now to test SEO
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders.margined
+      seven-wonders.mb-16
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -142,6 +142,11 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
+  // computed: {
+  //   uspMargin () {
+  //     return this.$isWideScreen ? 'margin-wide' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1400 ? 'margin-tab' : 'margin-reg';
+  //   },
+  // },
   created () {
     this.loading = false;
   },
@@ -149,33 +154,16 @@ export default {
 </script>
 
 <style scoped>
-.simple-container {
-  background-color: #0099cc;
-}
-.cta-container {
-  background-color: #0099cc;
-  position: relative;
-  padding-bottom: 200px;
-}
-.cta-image {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.divider {
-  margin-right: 30% !important;
-  margin-left: 30% !important;
-}
 .grey-bg {
   background-color: #fafafa;
 }
-.margined {
-  margin-bottom: 200px;
+.margin-wide {
+  margin-bottom: 150px;
 }
-
-@media screen and (min-width: 1920px) {
-  .cta-container {
-    padding-bottom: 300px;
-  }
+.margin-reg {
+  margin-bottom: 170px;
+}
+.margin-tab {
+  margin-bottom: 250px;
 }
 </style>

@@ -25,7 +25,7 @@
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
                   span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
-                  v-icon(right color="primary") {{ mdiChevronRight }}
+                  v-icon(right color="primary").ma-0 {{ mdiChevronRight }}
 </template>
 
 <script>

@@ -18,7 +18,7 @@
           div.mb-3
             slot(name="super-title")
               h3(:class="defaultSuperTitleClasses") {{superTitle}}
-          div.mb-10
+          div.mb-4
             slot(name="title")
               h2(:class="defaultTitleClasses") {{ title }}
           div.mb-10

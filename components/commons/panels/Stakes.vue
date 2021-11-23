@@ -4,7 +4,7 @@
       v-row(justify="center" align="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").px-0
-            v-row(justify="center").mb-10
+            v-row(justify="center" :class="$isWideScreen ? 'mb-16' : 'mb-10'")
               v-col(cols="12" :sm="version === 2 ? 7 : 8")
                 div.text-center
                   p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4 {{ panelTitle }}

@@ -19,23 +19,23 @@
 
     //- 2nd panel
     lazy-hydrate(when-visible)
-      generic-media-panel(
-        :content="secondPanel"
-        :title-classes="['mc-h2']"
-        :super-title-classes="superTitleClasses"
-        :content-classes="[...descriptionClasses, 'justify-left']"
-        :class="{'mt-16': !$isMobile}"
-      )
-        template(slot="cta-button")
-          div(:class="{ 'text-center': $isMobile }")
-            signup-button(
-              depressed
-              color="primary"
-              class="rounded-lg"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-            ).text-none
-              span.mc-btn1 Get Started Free
+      div.grey-bg.py-14.mx-n3
+        generic-media-panel(
+          :content="secondPanel"
+          :title-classes="['mc-h2']"
+          :super-title-classes="superTitleClasses"
+          :content-classes="[...descriptionClasses, 'justify-left']"
+        )
+          template(slot="cta-button")
+            div(:class="{ 'text-center': $isMobile }")
+              signup-button(
+                depressed
+                color="primary"
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none
+                span.mc-btn1 Get Started Free
 
     //-3rd panel
     lazy-hydrate(when-visible)
@@ -46,14 +46,14 @@
           icon-container-col-size="12"
           :each-icon-col="{ cols: 12, sm: 10 }"
           :items="thirdPanelContents"
-        )
+        ).py-10
           template(slot="title")
             span.mc-h2.white--text Benefits of MYCURE Booking for Health Providers and Clinics
           template(slot="description")
             span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
           template(slot="items")
-            div(:class="[{'d-flex': !$isMobile}, {'justify-space-around': !$isMobile}]")
-              v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key" :class="{'text-center': $isMobile}")
+            div(:class="[{'d-flex': !$isMobile}, {'justify-space-around': !$isMobile}]").mt-16
+              v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
                 picture-source(
                   v-if="item.icon"
                   custom-path="booking/"
@@ -394,7 +394,7 @@ export default {
   color: #787878;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #f9f9f9;
 }
 .blue-bg {
   background-color: #0099cc;

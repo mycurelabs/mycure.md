@@ -9,7 +9,7 @@
     ).nav-bar
       v-container.pa-0
         v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          generic-panel(:column="$isMobile ? 12 : $vuetify. breakpoint.width < 1200 ? '11' : '10'" disable-parent-padding)
             v-col.d-flex
               nuxt-link(to="/")
                 img(
