@@ -27,7 +27,7 @@ $h4-wide: 24px;
 $h5-wide: 20px;
 $h6-wide: 24px;
 $h7-wide: 20px;
-$b1-wide: 30px;
+$b1-wide: 24px;
 $b2-wide: 20px;
 $b3-wide: 18px;
 $b4-wide: 16px;
@@ -578,7 +578,7 @@ classBinder(this, {
 .mc-b3 {
   color: $body-color;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b1-mob, 30px);
+    @include mc-font-sizer($b2-mob, 30px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
@@ -591,7 +591,7 @@ classBinder(this, {
 .mc-list-b3 {
   color: $body-color;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b1-mob, 30px);
+    @include mc-font-sizer($b2-mob, 30px);
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
     @include mc-font-sizer($b3-std, 24px);
@@ -603,7 +603,7 @@ classBinder(this, {
 .mc-b4 {
   color: $body-color;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b4-mob, 24px);
+    @include mc-font-sizer($b2-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
@@ -616,7 +616,7 @@ classBinder(this, {
 .mc-b5 {
   color: $body-color;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b4-mob, 24px);
+    @include mc-font-sizer($b2-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
