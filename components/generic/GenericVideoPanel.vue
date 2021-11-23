@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.my-5
+  v-container.py-16
     v-row(justify="center").py-16
       generic-panel(
         hide-btn
@@ -21,29 +21,21 @@
                   span.mc-btn1.white--text Get Started Free
           v-spacer(v-if="!$isMobile")
           v-col(cols="12" sm="6" :class="{'text-center': $isMobile}")
-            //- picture-source(
-            //-   v-if="!showVideo"
-            //-   v-bind="getImageBindings(content.imageBindings)"
-            //-   @click="showVideo = true"
-            //- )
-            //- img(
+            picture-source(
               v-if="!showVideo"
-              src="~/assets/images/booking/booking-video-still.png"
-              alt="booking video"
+              v-bind="getImageBindings(content.imageBindings)"
+              @click="showVideo = true"
+            )
+            iframe(
+              v-else
               :width="$isMobile ? '300': '560'"
               :height="$isMobile ? '168.75': '315'"
-              @click="showVideo = true"
-            //- )
-            slot(name="video")
-              iframe(
-                :width="$isMobile ? '300': '560'"
-                :height="$isMobile ? '168.75': '315'"
-                :src="content.video"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
-                allowfullscreen
-              )
+              :src="content.video"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
+              allowfullscreen
+            )
             //- v-skeleton-loader(type="image" height="100%")
 </template>
 

@@ -12,7 +12,7 @@
         image-width="90%"
         custom-image-path="doctors-clinics/"
         image-align="right"
-        btn-text="Get Started Free"
+        btn-text="Start For Free"
         parse-title
         extension-exclusive
         :description="uspDescription"
@@ -59,18 +59,33 @@
         )
     lazy-hydrate(when-visible)
       mycure-csi
-    div.grey-bg.mx-n3.py-16
-      lazy-hydrate(when-visible)
-        features(
-          title="Healthcare Providers Trust MYCURE Doctors"
-          :title-col-size="11"
-          :content-col-size="10"
-          :description="featuresDescription"
-          :items="features"
-          image-dir="doctors-clinics/"
-        )
+    lazy-hydrate(when-visible)
+      features(
+        title="Healthcare Providers Trust MYCURE Doctors"
+        :title-col-size="11"
+        :content-col-size="10"
+        :description="featuresDescription"
+        :items="features"
+        image-dir="doctors-clinics/"
+      ).my-16
     //- insert full featured
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="fullFeaturePanel"
+          hide-btn
+        )
+          template(slot="additional-content")
+            signup-button(
+              depressed
+              class="rounded-lg"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              color="primary"
+            ).text-none
+              span.mc-btn1.white--text Start For Free
     //- insert placeholder
+    lazy-hydrate(when-visible)
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo" hide-btn)
@@ -174,15 +189,15 @@ export default {
     ];
     this.stepsContent = [
       {
-        title: 'Create an Account',
+        title: 'Create your Free Account',
         description: 'This activates the features in your account for FREE.',
       },
       {
-        title: 'Set up your Website',
+        title: 'Fill out your Profile',
         description: 'Allow your patients to easily find and book you.',
       },
       {
-        title: 'Set up your EMR',
+        title: 'Start Filing Electronic Medical Records',
         description: 'Securely store and organize your patient records.',
       },
     ];
@@ -275,11 +290,28 @@ export default {
         description: 'See for yourself how MYCURE has brought together all the best features of other electronic health records platforms into one powerful, cloud-based app.',
         video: 'https://www.youtube.com/embed/r7oewF5qDz4',
         imageBindings: {
-          customPath: 'features/',
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
-          imageAlt: 'Woman in a video call using MYCURE telehealth',
-          width: "$isMobile ? '300': '560'",
-          height: "$isMobile ? '168.75': '315'",
+          customPath: 'doctors-clinics/',
+          image: 'Doctor-Video-Preview',
+          imageFileExtension: '.png',
+          extensionExclusive: true,
+          imageAlt: 'Woman in explaining MYCURE',
+          width: this.$isMobile ? '300' : '560',
+          height: this.$isMobile ? '168.75' : '315',
+        },
+      };
+    },
+    fullFeaturePanel () {
+      return {
+        title: 'A Full Featured Practice Management System At an Affordable Price',
+        description: 'MYCURE Doctors offers a variety of tools that you can mix and match to optimize efficiency for your practice, without the costly fees other platforms might charge. Daily reports, digital records, and appointments can all be accessed in one app – instead of having to go through multiple apps on your office’s devices. You can even fill out prescriptions to submit to pharmacies from the app.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'home/',
+          image: 'simple-and-powerful',
+          imageFileExtension: '.webp',
+          imageAlt: 'Health application in Macbook laptop',
+          width: this.$vuetify.breakpoint.width > 1919 ? '750px' : (this.$isRegularScreen ? '485px' : '250px'),
+          height: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
         },
       };
     },

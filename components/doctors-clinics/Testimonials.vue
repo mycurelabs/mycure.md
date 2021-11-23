@@ -10,7 +10,7 @@
             v-col(cols="12" sm="9").text-center
               h4.mc-h7.font-open-sans TESTIMONIALS
               span.font-weight-semibold.mc-h2 {{ title || (isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?') }}
-          v-row(justify="center").mt-5
+          v-row(justify="center").mt-12
             //- hr(size="8" color="#0099cc" width="10%")
           v-row(justify="center").black--text
             v-col(cols="12" sm="6")

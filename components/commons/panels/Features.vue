@@ -10,7 +10,7 @@
           div
             slot(name="description")
               p(:class="descriptionClasses") {{ description }}
-        v-col(cols="12")
+        v-col(cols="12").pt-10
           v-row(justify="center")
             v-col(cols="12" :md="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
               v-row(justify="center")
