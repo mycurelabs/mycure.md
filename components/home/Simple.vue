@@ -9,13 +9,14 @@
         :media-column-bindings="mediaColumnBindings"
         :title-classes="headerClasses"
         :content-classes="descriptionClasses"
+        hide-btn
       )
         div(slot="super-title")
           p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SIMPLE AND POWERFUL
         template(slot="image")
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
-        template(slot="cta-button")
+        //- template(slot="cta-button")
           //- div(:class="{'text-center ml-4': $isMobile}")
           //-   nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
           //-     span.mc-hyp1.primary--text Explore the Features
