@@ -12,9 +12,9 @@
       slot(name="image")
         img(v-if="$isMobile" :width="width" :src="image" :alt="image")
     v-col(v-bind="contentColumnBindings")
-      v-row(justify="center")
+      v-row(justify="center" height="100%")
         v-col(v-if="!$isMobile && contentRight" cols="2").pa-0
-        v-col(cols="12" sm="10").pa-0
+        v-col(cols="12" sm="10" align-self="center").pa-0
           div.mb-3
             slot(name="super-title")
               h3(:class="defaultSuperTitleClasses") {{superTitle}}

@@ -3,13 +3,13 @@
     v-row(justify="center" align="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" :md="titleColSize").text-center
-          span(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+          span(v-if="metaTitle" :class="metaTitleClasses") {{ metaTitle }}
           slot(name="title")
-            h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
+            h2(:class="titleClasses") {{ title }}
         v-col(cols="12" :md="contentColSize").text-center.py-3
           div
             slot(name="description")
-              p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
+              p(:class="descriptionClasses") {{ description }}
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12" :md="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
@@ -29,9 +29,9 @@
                           :image-height="imageHeight ? imageHeight : defaultImageSize"
                         )
                         br
-                        h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
-                        p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
-                        nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
+                        h3.mc-h4 {{ item.title }}
+                        p(v-if="item.description").mc-b4 {{ item.description }}
+                        nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").learnLink.mc-hyp1 Learn more
         slot(name="additional-content")
 </template>
 
@@ -86,10 +86,6 @@ export default {
       type: [Number, String],
       default: '8',
     },
-    primaryTitle: {
-      type: Boolean,
-      default: false,
-    },
     // - Space for description
     contentColSize: {
       type: [Number, String],
@@ -122,9 +118,9 @@ export default {
     },
   },
   data () {
-    this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
-    this.descriptionClasses = ['mc-content-set-1'];
-    this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
+    this.titleClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.metaTitleClasses = ['mc-h7'];
     return {};
   },
   computed: {

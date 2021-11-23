@@ -4,9 +4,10 @@
       v-row(justify="center").pa-5.py-16
         v-col(cols="12")
           v-row(justify="center")
-            h1.mc-h2 All these in 3 Simple Steps!
+            v-col(cols="12" sm="6").text-center
+              h1.mc-h2 {{ title || 'All these in 3 Simple Steps!' }}
           v-row
-            v-col.py-10
+            v-col.py-8
           v-row(justify="center")
             v-col(:cols="$isMobile ? 12 : 4" v-for="(step, index) in steps" :key="index" align="center")
               picture-source(
@@ -49,6 +50,10 @@ export default {
     steps: {
       type: Array,
       default: undefined,
+    },
+    title: {
+      type: String,
+      default: null,
     },
     hideBtn: {
       type: Boolean,

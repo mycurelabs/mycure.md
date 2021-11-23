@@ -15,15 +15,15 @@
         template(slot="image")
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
-        template(slot="cta-button")
-          div(:class="{'text-center ml-4': $isMobile}")
-            nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
-              span.mc-hyp1.primary--text Explore the Features
-              v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
+        //- template(slot="cta-button")
+        //-   div(:class="{'text-center ml-4': $isMobile}")
+        //-     nuxt-link(:to="{ name: 'features' }" :class="{'d-flex': !$isMobile}").button
+        //-       span.mc-hyp1.primary--text Explore the Features
+        //-       v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
 </template>
 
 <script>
-import { mdiChevronRight } from '@mdi/js';
+import { mdiArrowRight } from '@mdi/js';
 import PictureSource from '~/components/commons/PictureSource';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
@@ -35,7 +35,7 @@ export default {
     this.headerClasses = ['mc-h3'];
     this.descriptionClasses = ['mc-b2', 'font-open-sans'];
     return {
-      mdiChevronRight,
+      mdiArrowRight,
     };
   },
   computed: {

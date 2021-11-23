@@ -494,6 +494,7 @@ classBinder(this, {
 }
 .mc-h4 {
   font-weight: 600 !important;
+  color: #6F6F6F;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h4-mob, 27px);
     text-align: center;
@@ -518,6 +519,8 @@ classBinder(this, {
   }
 }
 .mc-h6 {
+  font-weight: 700 !important;
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: #0099CC;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h6-mob, 24px);
@@ -534,6 +537,8 @@ classBinder(this, {
   }
 }
 .mc-h7 {
+  font-weight: 700 !important;
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: #0099CC;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h7-mob, 18px);
@@ -550,6 +555,7 @@ classBinder(this, {
   }
 }
 .mc-b1 {
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
@@ -563,6 +569,7 @@ classBinder(this, {
   }
 }
 .mc-b2 {
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
@@ -576,6 +583,7 @@ classBinder(this, {
   }
 }
 .mc-b3 {
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
@@ -589,6 +597,7 @@ classBinder(this, {
   }
 }
 .mc-list-b3 {
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
@@ -601,6 +610,7 @@ classBinder(this, {
   }
 }
 .mc-b4 {
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 24px);
@@ -614,6 +624,7 @@ classBinder(this, {
   }
 }
 .mc-b5 {
+  font-family: 'Open Sans', 'sans-serif' !important;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 24px);
@@ -627,6 +638,8 @@ classBinder(this, {
   }
 }
 .mc-hyp1 {
+  font-family: 'Open Sans', 'sans-serif' !important;
+  font-weight: 600 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;
@@ -639,6 +652,8 @@ classBinder(this, {
   }
 }
 .mc-hyp2 {
+  font-family: 'Open Sans', 'sans-serif' !important;
+  font-weight: 600 !important; 
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;

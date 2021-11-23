@@ -145,8 +145,8 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 4,
-        xl: 5,
+        md: 5,
+        xl: 6,
       }),
     },
     // - Column for Image
@@ -154,9 +154,9 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 7,
+        md: 6,
         offsetMd: 1,
-        xl: 6,
+        xl: 5,
       }),
     },
     // - Alignment of image
@@ -184,10 +184,10 @@ export default {
     this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
     this.backgroundStyle = {
-      width: '42%',
+      width: '50%',
       height: '100%',
       position: 'absolute',
-      left: '55%',
+      left: '60%',
       top: '0',
       zIndex: '1',
       objectFit: 'contain',
