@@ -33,7 +33,7 @@
               :src="content.video"
               title="YouTube video player"
               frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
+              allow="autoplay;"
               allowfullscreen
             )
             //- v-skeleton-loader(type="image" height="100%")
