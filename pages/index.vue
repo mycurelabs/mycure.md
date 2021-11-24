@@ -117,7 +117,7 @@ export default {
         description: 'Select the application suited to your practice or facility.',
       },
       {
-        title: 'Automated',
+        title: 'Create your free account',
         description: 'This activates your Health Management System.',
       },
       {

@@ -25,11 +25,11 @@
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
                   span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
-                  v-icon(right color="primary").ma-0 {{ mdiChevronRight }}
+                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
 </template>
 
 <script>
-import { mdiChevronRight } from '@mdi/js';
+import { mdiArrowRight } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
@@ -47,7 +47,7 @@ export default {
       default: () => ([]),
     },
   },
-  data () { return { mdiChevronRight }; },
+  data () { return { mdiArrowRight }; },
 };
 </script>
 

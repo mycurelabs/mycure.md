@@ -19,7 +19,7 @@
                 p.mc-b4 {{ page.description }}
                 nuxt-link(:to="{ name: page.route }" :class="{'d-flex': !$isMobile}").button
                   span.mc-hyp1.primary--text Learn more&nbsp;
-                  v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile").mt-n1 {{ mdiArrowRight }}
+                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
 </template>
 
 <script>

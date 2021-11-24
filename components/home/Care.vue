@@ -50,15 +50,15 @@ export default {
       },
       stats: [
         {
-          title: 'Medical Records',
+          title: 'MEDICAL RECORDS',
           amountKey: 'medical-records',
         },
         {
-          title: 'Lives Saved',
+          title: 'LIVES SAVED',
           amountKey: 'lives',
         },
         {
-          title: 'Partner Providers',
+          title: 'PARTNER PROVIDERS',
           amountKey: 'providers',
         },
       ],

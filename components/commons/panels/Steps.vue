@@ -4,9 +4,10 @@
       v-row(justify="center").pa-5.py-16
         v-col(cols="12")
           v-row(justify="center")
-            h1.mc-h2 All these in 3 Simple Steps!
+            v-col(cols="12" sm="6").text-center
+              h1.mc-h2 {{ title || 'All these in 3 Simple Steps!' }}
           v-row
-            v-col.py-10
+            v-col.py-8
           v-row(justify="center")
             v-col(:cols="$isMobile ? 12 : 4" v-for="(step, index) in steps" :key="index" align="center")
               picture-source(
@@ -18,7 +19,7 @@
                 :image-width="$isWideScreen ? '100' : '80'"
                 :image-height="$isWideScreen ? '100' : '80'"
               ).mr-3.ml-2
-              v-col(cols="8")
+              v-col(cols="9")
                 p.mc-h3 {{ step.title }}
                 p.mc-b3.font-open-sans.white--text {{ step.description }}
           div(v-if="!hideBtn")
@@ -38,7 +39,6 @@
 <script>
 import PictureSource from '~/components/commons/PictureSource';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     SignupButton: () => import('~/components/commons/SignupButton'),
@@ -50,6 +50,10 @@ export default {
       type: Array,
       default: undefined,
     },
+    title: {
+      type: String,
+      default: null,
+    },
     hideBtn: {
       type: Boolean,
       default: false,
@@ -57,20 +61,6 @@ export default {
     notFree: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    numberSize () {
-      const numberSize = [
-        classBinder(this, {
-          mobile: ['font-l'],
-          regular: ['font-xl'],
-          wide: ['font-2xl'],
-        }),
-        'font-weight-bold',
-        'primary--text',
-      ];
-      return numberSize;
     },
   },
 };
