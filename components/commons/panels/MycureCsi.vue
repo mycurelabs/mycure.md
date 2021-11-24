@@ -31,6 +31,16 @@ export default {
     PictureSource,
     GenericBlueBg,
   },
+  props: {
+    title: {
+      type: String,
+      default: null,
+    },
+    description: {
+      type: String,
+      default: null,
+    },
+  },
   data () {
     this.items = [
       {
