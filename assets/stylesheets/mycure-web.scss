@@ -517,7 +517,6 @@ classBinder(this, {
 }
 .mc-h6 {
   font-weight: 700 !important;
-  font-family: 'Open Sans', 'sans-serif' !important;
   color: #0099CC;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h6-mob, 24px);
@@ -535,7 +534,6 @@ classBinder(this, {
 }
 .mc-h7 {
   font-weight: 700 !important;
-  font-family: 'Open Sans', 'sans-serif' !important;
   color: #0099CC;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h7-mob, 18px);
