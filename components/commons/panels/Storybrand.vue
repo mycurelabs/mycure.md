@@ -6,7 +6,7 @@
           v-col.pa-0
             v-row(justify="center")
               v-col(cols="10" align="center")
-                span.mc-h2.black--text {{ title }}
+                span.mc-h2.black--text.mb-16 {{ title }}
               v-col(cols="12").px-10
                 div(v-for="paragraph in content")
                   p(:class="$isWideScreen ? 'mb-8' : 'mb-5'").mc-b2.font-gray.font-open-sans {{ paragraph }}
