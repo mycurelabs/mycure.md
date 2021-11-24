@@ -160,7 +160,7 @@
               v-col(cols="12" sm="6").pt-0
                 div(:class="{ 'text-center': $isMobile }")
                   mc-btn(
-                    :to="{ name: 'outpatient-clinics' }"
+                    :to="{ name: 'clinics' }"
                     depressed
                     color="#FOF7FD"
                     class="rounded-lg"
