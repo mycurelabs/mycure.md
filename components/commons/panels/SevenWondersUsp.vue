@@ -179,19 +179,14 @@ export default {
       type: String,
       default: null,
     },
+    isDoctors: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
-    this.backgroundStyle = {
-      width: '50%',
-      height: '100%',
-      position: 'absolute',
-      left: '60%',
-      top: '0',
-      zIndex: '1',
-      objectFit: 'contain',
-    };
     return {};
   },
   computed: {
@@ -240,6 +235,17 @@ export default {
       return {
         justify: 'center',
         align: 'center',
+      };
+    },
+    backgroundStyle () {
+      return {
+        width: this.isDoctors ? '50%' : '42%',
+        height: '100%',
+        position: 'absolute',
+        left: '58%',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'contain',
       };
     },
   },

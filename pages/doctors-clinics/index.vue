@@ -19,11 +19,12 @@
         :parse-title-fields="['from ']"
         :media-column-bindings="{ cols: 12, md: 4, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 7 }"
+        is-doctors
       ).mb-16
     div.grey-bg.mx-n3
-      lazy-hydrate(when-visible)
-        v-container.py-16
-          v-row(justify="center")
+      v-container.py-16
+        v-row(justify="center")
+          lazy-hydrate(when-visible)
             generic-panel
               v-col(cols="12")
                 v-row(justify="center")
