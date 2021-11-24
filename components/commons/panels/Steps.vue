@@ -20,7 +20,7 @@
                 :image-width="$isWideScreen ? '100' : '80'"
                 :image-height="$isWideScreen ? '100' : '80'"
               ).mr-3.ml-2
-              v-col(cols="9")
+              v-col(:cols="stepColSize")
                 p.mc-h3 {{ step.title }}
                 p.mc-b3.font-open-sans.white--text {{ step.description }}
           div(v-if="!hideBtn")
@@ -50,6 +50,10 @@ export default {
     steps: {
       type: Array,
       default: undefined,
+    },
+    stepColSize: {
+      type: [Number, String],
+      default: '9',
     },
     title: {
       type: String,
