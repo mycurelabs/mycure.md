@@ -12,7 +12,7 @@
               p(:class="descriptionClasses") {{ description }}
         v-col(cols="12").pt-10
           v-row(justify="center")
-            v-col(cols="12" :md="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
+            v-col(cols="12" :sm="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
               v-row(justify="center")
                 slot(name="items")
                   v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center

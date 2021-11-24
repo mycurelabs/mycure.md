@@ -294,7 +294,7 @@ export default {
           image: 'Doctor-Video-Preview',
           imageFileExtension: '.png',
           extensionExclusive: true,
-          imageAlt: 'Woman in explaining MYCURE',
+          imageAlt: 'Video of woman explaining MYCURE',
           width: this.$isMobile ? '300' : '560',
           height: this.$isMobile ? '168.75' : '315',
         },

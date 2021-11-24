@@ -6,22 +6,22 @@
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12" md="10").text-center
-              h1(:class="titleClasses").font-weight-semibold.mb-10 Why do clinics switch to MYCURE?
+              h2(:class="titleClasses").mb-6 Why do clinics switch to MYCURE?
               v-row(justify="center")
-                v-col(cols="12" md="7" xl="8")
-                  p(:class="descriptionClasses").font-gray.font-open-sans.mb-10 MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
-              mc-btn(
-                event-label="click-cms-video"
-                event-category="Video"
-                color="success"
-                depressed
-                  class="rounded-pill"
-                  :width="!$isWideScreen ? '240px' : '299.7'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                @click="videoDialog = true"
-              ).text-none.mb-10
-                v-icon(left) {{ mdiPlayCircle }}
-                span.generic-button-text Watch How It Works
+                v-col(cols="12" sm="10")
+                  p(:class="descriptionClasses").mb-10 MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
+              //- mc-btn(
+              //-   event-label="click-cms-video"
+              //-   event-category="Video"
+              //-   color="success"
+              //-   depressed
+              //-     class="rounded-pill"
+              //-     :width="!$isWideScreen ? '240px' : '299.7'"
+              //-     :height="!$isWideScreen ? '59px' : '73.68'"
+              //-   @click="videoDialog = true"
+              //- ).text-none.mb-10
+              //-   v-icon(left) {{ mdiPlayCircle }}
+              //-   span.generic-button-text Watch How It Works
             v-col(cols="12")
               v-row(justify="center")
                 template(v-if="!$isMobile")
@@ -30,7 +30,8 @@
                       custom-path="clinics/"
                       image="problem-statement"
                       image-alt="Clinic workflow"
-                      :image-file-extension="$useWebp? '.webp' : '.png'"
+                      image-file-extension=".png"
+                      extension-exclusive
                       :image-width=" $isRegularScreen ? '850px' : '1300px' "
                       :image-height=" $isRegularScreen ? '677.73px' : '1036.52px' "
                     )
@@ -95,8 +96,8 @@ export default {
         icon: '8M-Journeys',
       },
     ];
-    this.titleClasses = ['mc-title-set-1'];
-    this.descriptionClasses = ['mc-content-set-1'];
+    this.titleClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
     return {
       videoDialog: false,
       mdiPlayCircle,

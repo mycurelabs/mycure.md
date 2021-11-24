@@ -5,7 +5,7 @@
         v-card-text(:class="$isMobile ? 'px-0' : ''")
           v-col.pa-0
             v-row(justify="center")
-              v-col(cols="10" align="center")
+              v-col(cols="12").px-10
                 span.mc-h2.black--text {{ title }}
               v-col(cols="12").px-10
                 div(v-for="paragraph in content")

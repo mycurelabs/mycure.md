@@ -8,7 +8,7 @@ export default {
         info: '#0099cc',
         warning: '#FFC107',
         error: '#f75a5f',
-        success: '#7fad33',
+        success: '#97CC00',
       },
       dark: {
         primary: '#0099cc',
@@ -17,7 +17,7 @@ export default {
         info: '#2196F3',
         warning: '#FFC107',
         error: '#f75a5f',
-        success: '#7fad33',
+        success: '#97CC00',
       },
     },
   },
