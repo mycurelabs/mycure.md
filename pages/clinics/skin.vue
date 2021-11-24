@@ -30,130 +30,78 @@
         //-     :height="!$isWideScreen ? '59px' : '73.68'"
         //-   ).text-none
         //-     span.generic-button-text Book a demo today
-    lazy-hydrate(when-visible)
-      stakes(
-        :version="3"
-        :media-content="stakesContent"
-        hide-btn
-      )
-    //- 2nd panel
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
+        stakes(
+          :version="3"
+          :media-content="stakesContent"
+          hide-btn
+        )
+    lazy-hydrate(when-visible)
+      v-container.py-16
+        v-row(justify="center")
+          generic-panel
+            v-col(cols="12").text-center
+              v-row(justify="center")
+                v-col(cols="12" sm="7").py-0
+                  h2.mc-h2.mb-5 Introducing MYCURE Beauty – No Ordinary EMR App
+              v-row(justify="center")
+                v-col(cols="12" sm="9")
+                  p.mc-b2 It’s a clinic management system built for the unique ecosystem of healthcare. Connect and securely share files with other providers within the MYCURE One network.
+    lazy-hydrate(when-visible)
+      generic-blue-bg
         features(
-          title="Easy to implement. Easy to maintain."
-          description="MYCURE designed specialized solutions for skin and aesthetic clinics."
+          title="Modern Tools to Boost Your Skin Clinic"
+          description="We’re here to make managing your clinic so much easier. We offer full functionality for our free clinic information system accounts, and you only need to upgrade as your practice grows. Instead of being overwhelmed by managing your practice, you can focus on what’s important to you: your clients."
           image-dir="clinics/skin/"
           title-col-size="10"
           extension-exclusive
           primary-title
           :items="features"
+          has-blue-bg
         )
-    //- 3rd panel
-    lazy-hydrate(when-visible)
-      generic-media-panel(:content="thirdPanel" align="center")
-        template(slot="content")
-          h2(:class="headerClasses" text-align) Beautiful user experience
-          br
-          div(:class="{'text-center': $isMobile}")
-            span.font-open-sans.font-gray.mc-title-set-2 You won't feel like you are at work.
-        template(slot="cta-button")
-          div(:class="{ 'text-center': $isMobile }")
-            signup-button(
-              depressed
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="success"
-            ).text-none.font-s
-              span.generic-button-text Get Started
-
-    //- 4th panel
-    lazy-hydrate(when-visible)
-      generic-media-panel(
-        hide-btn
-        :content="fourthPanel"
-        :title-classes="listHeaderClasses"
-        :content-classes="listContentClasses"
-      )
-        //- Check list
-        template(slot="additional-content")
-          template(v-for="(item, i) in fourthPanel.list")
-            v-row(dense align="center").my-2
-              img(
-                src="~/assets/images/mycure-check.png"
-                alt="Check icon"
-                :width="$isWideScreen ? '30' : '20'"
-                :height="$isWideScreen ? '30' : '20'"
-              )
-              span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
-          div.mb-10
-          div(:class="{ 'text-center': $isMobile }")
-            signup-button(
-              depressed
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="success"
-            ).text-none
-              v-icon(left) {{ mdiWeb }}
-              span.generic-button-text Create my website
-
-    //- 5th panel
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="fifthPanel"
-        :title-classes="[...headerClasses, 'primary--text']"
-        align="center"
+        :title-classes="headerClasses"
+        :content-classes="descriptionClasses"
+        hide-btn
+      ).mt-16
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="sixthPanel"
+        :title-classes="headerClasses"
+        :content-classes="descriptionClasses"
+        hide-btn
       )
-        template(slot="cta-button")
-          div(:class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="success"
-            ).text-none
-              span.generic-button-text Get Started
-            //- mc-btn(
-            //-   color="success"
-            //-   href="https://calendly.com/mycure/demo"
-            //-   target="_blank"
-            //-   rel="noopener noreferrer"
-            //-   depressed
-            //-   class="rounded-pill"
-            //-   :width="!$isWideScreen ? '228px' : '300'"
-            //-   :height="!$isWideScreen ? '59px' : '73.68'"
-            //- ).text-none
-            //-   span.generic-button-text Get Started
-
-    //- 6th panel
-    lazy-hydrate(when-visible)
-      syncbase(:version="3")
-    //- 6.5
-    lazy-hydrate(when-idle)
-      care(:metrics-data="metricsData")
-    lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free)
-    //- 7th panel
-    lazy-hydrate(when-visible)
-      think-long-term(extended)
     lazy-hydrate(when-visible)
       storybrand(
-        title="Using Modern Tools to Boost Your Practice"
+        title="Providers Trust MYCURE Beauty"
         :content="storybrandContent"
       )
-    //- 8th panel
+    lazy-hydrate(when-visible)
+      mycure-csi
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Invaluable Clinic Management at an Affordable Price"
+        :content="storybrandTwoContent"
+      )
     client-only
       lazy-hydrate(when-idle)
         pricing(
           type="clinic"
-          title="Take the first step today."
+          title="It's Time to Take the First Step"
           :pricing-details="pricingDetails"
         )
-    //- 9th panel
     lazy-hydrate(when-visible)
-      call-to-action(:version="3" not-free)
+      storybrand(
+        title="Modern Tools for Your Office"
+        :content="storybrandThreeContent"
+      )
+    lazy-hydrate(when-visible)
+      call-to-action(:version="1")
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free)
 </template>
 
 <script>
@@ -165,20 +113,21 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
-import Usp from '~/components/commons/panels/OldSevenWondersUsp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
     LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Care: () => import('~/components/home/OldCare'),
+    Care: () => import('~/components/home/Care'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
@@ -217,30 +166,34 @@ export default {
     ];
     this.stepsContent = [
       {
-        title: 'Create an Account',
+        title: 'Create your Free Account',
         description: 'This activates your Skin Management System.',
       },
       {
-        title: 'Set up your Account',
-        description: 'Customize your account based on your clinic’s needs.',
+        title: 'Set up your Profile',
+        description: 'Customize your profile based on your clinic’s needs.',
       },
       {
-        title: 'Share',
+        title: 'Start reaching new clients now',
         description: 'Share your beautiful, free website so your patients can start booking.',
       },
     ];
     this.storybrandContent = [
-      'At MYCURE, we know you are the kind of skin clinic that gives utmost importance to its clients. Providing the highest quality is non-negotiable both in the services provided and the tools you use. In order to be that way, you need a solution that also puts quality at its core.',
-      'The problem is it’s hard to find a provider that looks at its system not just as a service but as an experience. We believe that aesthetic clinics like yours should never have this choice. ',
-      'That’s why we\'ve built MYCURE Skin and Aesthetics Clinic Management System for those who value a flawless experience in their clinics like yours.',
+      'MYCURE Beauty is the latest in practice managements systems for aesthetic clinics. Its intuitive interface makes is easy to use for everyone on staff – from the providers to the administrative team. Your team will be able to pull up your patients’ records in a snap without wading through mountains of paperwork.',
+    ];
+    this.storybrandTwoContent = [
+      'MYCURE Beauty offers a variety of tools that you can mix and match to optimize efficiency for your practice, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
+    ];
+    this.storybrandThreeContent = [
+      'At MYCURE, we know your clients’ experience is of the utmost importance to you. Top quality care is non-negotiable, and you need a clinic management system solution that’s built around those same principles. But in your search for the right solution for you, you’ve probably seen too many that are focused on the product, not the experience you and your clients have with it. MYCURE is here to change the game.',
     ];
     this.pricingDetails = CLINICS_PRICING;
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.subHeaderClasses = ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.btnClasses = ['mc-button-set-1'];
-    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
-    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
+    this.headerClasses = ['mc-h2'];
+    this.subHeaderClasses = ['mc-b2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.btnClasses = ['mc-btn1'];
+    this.listHeaderClasses = ['mc-b3'];
+    this.listContentClasses = ['mc-list-b3'];
     return {
       loading: true,
       mdiWeb,
@@ -254,39 +207,21 @@ export default {
     });
   },
   computed: {
-    thirdPanel () {
+    fifthPanel () {
       return {
-        contentAlign: 'left',
-        imageBindings: {
-          image: 'beautiful-user-experience.png',
-          imageAlt: 'Body diagram in a tablet',
-          extensionExclusive: true,
-          customPath: 'clinics/skin/',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '305.91px' : (this.$isRegularScreen ? '508.96px' : '785.58px'),
-        },
-      };
-    },
-    fourthPanel () {
-      return {
-        title: 'Get more eyes on your brand',
-        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+        title: 'Maintain Communication with Clinic Staff',
+        description: 'MYCURE Doctors comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can quickly communicate with other doctors at your practice.',
         contentAlign: 'right',
         imageBindings: {
-          customPath: 'commons/',
-          image: 'expand-your-reach.webp',
-          imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
+          customPath: 'doctors-clinics/',
+          image: 'Practice.webp',
+          imageAlt: 'Physicians and health workers',
+          width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
         },
-        list: [
-          'Acquire patients beyond your reach',
-          'Hassle-free from booking to billing',
-          'Virtual to physical accommodation',
-        ],
       };
     },
-    fifthPanel () {
+    sixthPanel () {
       return {
         title: 'One view for multiple locations',
         description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
@@ -304,17 +239,17 @@ export default {
     },
     stakesContent () {
       return {
-        title: 'Is Status and Quality Important to Your Clinic?',
-        description: 'Don’t give a reason to lose to your competition. Complement your top notch skin services with a modern, robust and complete system.',
+        title: 'Wasted Time + Missed Opportunities = Income Lost',
+        description: 'At your dermatology or aesthetic clinic, your ability to keep your office organized affects the level of care you can provide your clients. Disorganization behind the scenes can result in frustrated clinicians, frustrated patients, and a mess to deal with for the office staff. But instead of continuing to suffer, there’s hope.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'skin-the-stakes.png',
-          mobileImage: 'skin-the-stakes.png',
-          imageAlt: 'Doctor listening to patient feedback',
-          customPath: 'clinics/skin/',
+          image: 'dental-the-stakes.png',
+          mobileImage: 'dental-the-stakes.png',
+          imageAlt: 'Doctor with tons of paper work',
+          customPath: 'clinics/dental/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
-          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '329.3px' : '531.38px'),
+          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '222.55px' : '359.11px'),
         },
       };
     },

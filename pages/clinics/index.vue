@@ -63,7 +63,7 @@
       mycure-csi
     lazy-hydrate(when-visible)
       generic-media-panel(
-        :content="eighthPanelContent"
+        :content="eighthPanel"
         :title-classes="headerClasses"
         :content-classes="descriptionClasses"
         hide-btn
@@ -127,7 +127,7 @@
         not-free
       )
     lazy-hydrate(when-visible)
-      call-to-action(:version="1" not-free).mt-16
+      call-to-action(:version="1").mt-16
 </template>
 
 <script>
@@ -306,7 +306,7 @@ export default {
         },
       };
     },
-    eighthPanelContent () {
+    eighthPanel () {
       return {
         title: 'Maintain Communication with Clinic Staff',
         description: 'MYCURE Doctors comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can quickly communicate with other doctors at your practice.',
