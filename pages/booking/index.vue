@@ -141,10 +141,10 @@
                 :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
                 :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
               )
-            br
-            br
-            h2.font-weight-semibold.mc-h3 {{ item.title }}
-            p.font-open-sans.mc-b3 {{ item.description }}
+              br
+              br
+              h2.font-weight-semibold.mc-h3 {{ item.title }}
+              p.font-open-sans.mc-b3 {{ item.description }}
 
     //- 6th panel
     div.mx-n3
@@ -159,7 +159,8 @@
             v-row(justify="center")
               v-col(cols="12" sm="6").pt-0
                 div(:class="{ 'text-center': $isMobile }")
-                  v-btn(
+                  mc-btn(
+                    :to="{ name: 'clinics' }"
                     depressed
                     color="#FOF7FD"
                     class="rounded-lg"
