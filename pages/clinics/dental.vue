@@ -6,32 +6,42 @@
         has-custom-background
         background-image="dental-clinics-usp-full-illu"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
-        title="The Dental Clinic Management System that makes you Smile"
-        meta-title="MYCURE for Dental Clinics"
-        description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
-        btn-text="Get Started"
+        title="An Advanced Clinic Management System for Dentists"
+        meta-title="MYCURE DENTAL CLINICS"
+        description="Everything your dental clinic needs from appointments, billing, inventory, to charting."
+        btn-text="Get Started Free"
         image="dental-clinics-usp-mobile-version"
         custom-image-path="clinics/dental/"
         parse-title
         parse-meta-title
-        :parse-title-fields="['Dental ', 'Management ', 'that ']"
+        :parse-title-fields="['Clinic ', 'System ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
     lazy-hydrate(when-visible)
-      stakes(
-        :version="3"
-        :media-content="stakesContent"
+      generic-media-panel(
+        :content="stakesContent"
+        :title-classes="headerClasses"
+        :content-classes="contentClasses"
         hide-btn
       )
+        template(slot="additional-content")
+          signup-button(
+            depressed
+            class="rounded-lg"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
+            color="primary"
+          ).text-none
+            span.mc-btn1.white--text Get Started Free
     //- 2nd panel
-    div.grey-bg.mx-n3
+    div.blue-bg.mx-n3
       lazy-hydrate(when-visible)
         problem-statement
     //- 3rd panel
     lazy-hydrate(when-visible)
       generic-media-panel(
-        :content="thirdPanel" align="center"
+        :content="thirdPanel"
       )
         template(slot="content")
           h2(:class="headerClasses") Always accessible dental charts.
@@ -43,106 +53,49 @@
           div(:class="{ 'text-center': $isMobile }")
             signup-button(
               depressed
-              color="success"
-              class="rounded-pill"
+              color="primary"
+              class="rounded-lg"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started
-    //- 4th panel
     lazy-hydrate(when-visible)
       straightforward
-    //- 5th panel
-    //- div.info.mx-n3
-    //-   v-container
-    //-     v-row(justify="center")
-    //-       generic-panel(:row-bindings="{ justify: 'center' }")
-    //-         v-col(cols="12" lg="8" xl="6").white--text.text-center
-    //-           h2(:class="['white--text', ...headerClasses]").mb-10 Still a student?
-    //-           h3(:class="studentPanelDescriptionClasses").mb-10 Join the next free webinar series for dentistry students.
-    //-           mc-btn(
-    //-             color="success"
-    //-             depressed
-    //-             rounded
-    //-             :large="!$isWideScreen"
-    //-             :x-large="$isWideScreen"
-    //-             :class="btnClasses"
-    //-           ).text-none Count me in
-
-    //- 6th panel
-    lazy-hydrate(when-visible)
-      generic-media-panel(
-        :content="directoryPanel"
-        :title-classes="listHeaderClasses"
-        :content-classes="listContentClasses"
-      )
-        //- Check list
-        template(slot="additional-content")
-          template(v-for="(item, i) in directoryPanel.list")
-            v-row(dense align="center").my-2
-              img(
-                src="~/assets/images/mycure-check.png"
-                alt="Check icon"
-                :width="$isWideScreen ? '30' : '20'"
-                :height="$isWideScreen ? '30' : '20'"
-              )
-              span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]").font-open-sans.font-gray {{ item }}
-          div.mb-10
-        template(slot="cta-button")
-          div(:class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              color="success"
-              event-label="signup"
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-            ).text-none
-              v-icon(left) {{ mdiWeb }}
-              span.generic-button-text Create my website
-
-    //- 7th panel
-    lazy-hydrate(when-visible)
-      generic-media-panel(
-        align="center"
-        :content="multiplePanel"
-        :title-classes="[...headerClasses, 'primary--text']"
-      )
-        template(slot="cta-button")
-          div(:class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              color="success"
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-            ).text-none
-              span.generic-button-text Get Started
-    //- 8th panel
-    lazy-hydrate(when-visible)
-     syncbase(:version="3")
-    lazy-hydrate(when-idle)
-      care(:metrics-data="metricsData")
-    lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free)
-    //- 9th panel
-    lazy-hydrate(when-visible)
-      think-long-term(extended)
-    //- 10th panel
     lazy-hydrate(when-visible)
       storybrand(
-        title="Using Modern Tools to Boost Your Practice"
+        title="Still a student?"
+        :content="['Join the next free webinar series for dentistry students.']"
+      )
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="multiplePanel"
+        :title-classes="headerClasses"
+        hide-btn
+      )
+    //- 8th panel
+    lazy-hydrate(when-visible)
+      syncbase(:version="2" title="Online or Off, MYCURE Clinics Is Here for You")
+    //- placeholder
+    lazy-hydrate(when-visible)
+      steps(
+        :steps="stepsContent"
+        title="Start Your MYCURE Dental Journey Today for Free"
+        not-free
+      )
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Use Modern Clinic Information System Tools to Boost Your Dental Clinic"
         :content="storybrandContent"
       )
     client-only
       lazy-hydrate(when-idle)
         pricing(
-          title="Take the first step today."
+          title="It’s time to take the first step"
+          description="Choose the best plan for your clinic. Only pay for what you need."
           type="clinic"
         )
-    //- 11th panel
     lazy-hydrate(when-visible)
-      call-to-action(:version="3")
+      call-to-action(:version="1").mt-16
 </template>
 
 <script>
@@ -152,7 +105,7 @@ import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
-import Usp from '~/components/commons/panels/OldSevenWondersUsp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
@@ -167,7 +120,7 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Care: () => import('~/components/home/OldCare'),
+    Care: () => import('~/components/home/Care'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
@@ -185,31 +138,24 @@ export default {
     };
     this.stepsContent = [
       {
-        title: 'Create an Account',
+        title: 'Create your Free Account',
         description: 'This activates your Dental Management System.',
       },
       {
-        title: 'Set up your Account',
-        description: 'Customize your account based on your clinic’s needs.',
+        title: 'Fill out your profile',
+        description: 'You can utilize our range of modules and features',
       },
       {
-        title: 'Share',
-        description: 'Share your beautiful, free website so your patients can start booking.',
+        title: 'Start filing electronic medical records',
+        description: 'Securely store and organize your patient records.',
       },
     ];
     this.storybrandContent = [
-      'At MYCURE, we know you are the kind of dental clinic that loves providing a great service to make your patients smile. You know that having a robust system to complement your practice. In order to be that way, you need a solution that is custom built to your specific processes and needs.',
-      'The problem is it’s hard to find such a system that is easy to use, flexible and affordable.  We believe that dental clinics like yours should never have to deal with this. We’ve talked to dozens of dental clinics and understand that there is a need for this. ',
-      'That’s why we\'ve built MYCURE Dental Clinic Management System for those who value a shiny experience that guarantees to bring smiles to your clinic and your patients.',
+      'At MYCURE, we know your clients’ experience is of the utmost importance to you. Top quality dental care is non-negotiable, and you need a clinic management system solution designed to support you. But in your search for the right solution for you, you’ve probably seen too many that are focused on the product, not the experience you and your clients have with it. MYCURE Dental is here to change the game.',
     ];
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1'];
-    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.btnClasses = ['mc-button-set-1'];
-    this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
-    this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];
-    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
-    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
+    this.headerClasses = ['mc-h2'];
+    this.contentClasses = ['mc-b2'];
+    this.btnClasses = ['mc-btn1'];
     return {
       loading: true,
       mdiWeb,
@@ -225,7 +171,7 @@ export default {
   computed: {
     thirdPanel () {
       return {
-        contentAlign: 'left',
+        contentAlign: 'right',
         imageBindings: {
           image: 'dental-charts.png',
           mobileImage: 'dental-charts-mobile.png',
@@ -235,25 +181,6 @@ export default {
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '231.38px' : (this.$isRegularScreen ? '385.52px' : '595.03px'),
         },
-      };
-    },
-    directoryPanel () {
-      return {
-        title: 'Get more eyes on your brand',
-        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
-        contentAlign: 'right',
-        imageBindings: {
-          customPath: 'commons/',
-          image: 'expand-your-reach.webp',
-          imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
-        },
-        list: [
-          'Acquire patients beyond your reach',
-          'Hassle-free from booking to billing',
-          'Virtual to physical accommodation',
-        ],
       };
     },
     multiplePanel () {
@@ -275,16 +202,16 @@ export default {
     stakesContent () {
       return {
         title: 'Don\'t Get Left Behind',
-        description: 'Do you still use paper charting to track history of your patient’s dental records? You may be losing to your competition.',
+        description: 'MYCURE Dental offers a variety of clinic information system tools that you can mix and match to maximize efficiency for your dental clinic, without the costly overhead. Daily reports, digital records, and appointments can all be accessed in one clinic management system – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'dental-the-stakes.png',
-          mobileImage: 'dental-the-stakes.png',
-          imageAlt: 'Doctor with tons of paper work',
-          customPath: 'clinics/dental/',
+          image: 'skin-the-stakes.png',
+          mobileImage: 'skin-the-stakes.png',
+          imageAlt: 'Doctor listening to patient feedback',
+          customPath: 'clinics/skin/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
-          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '222.55px' : '359.11px'),
+          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '329.3px' : '531.38px'),
         },
       };
     },
@@ -300,6 +227,6 @@ export default {
   background-color: #fafafa;
 }
 .blue-bg {
-  background-color: #0099cc;
+  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
 }
 </style>

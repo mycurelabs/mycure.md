@@ -14,11 +14,11 @@
             )
         v-col(cols="12" sm="10").text-center
           h2(:class="titleClasses").mb-5 Straightforward and simple.
-          p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 Accurately track baseline and updated dental charts, proposed procedures, and the actual work done.
+          p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 MYCURE Beauty comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can communicate with other doctors at your practice quickly.
           signup-button(
             depressed
-            color="success"
-            class="rounded-pill"
+            color="primary"
+            class="rounded-lg"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
@@ -36,9 +36,9 @@ export default {
     SignupButton,
   },
   data () {
-    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.btnClasses = ['mc-button-set-1'];
-    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.titleClasses = ['mc-h2'];
+    this.btnClasses = ['mc-btn1'];
+    this.contentClasses = ['mc-b2'];
     return {};
   },
 };

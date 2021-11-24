@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.my-8
     v-row(justify="center").pa-5
-      v-card(:width="!$isMobile ? '80%' : '100%'" elevation="5" :class="{'px-0': $isMobile}").rounded-xl.pa-10.my-16
+      v-card(:width="!$isMobile ? '80%' : '100%'" elevation="1" :class="{'px-0': $isMobile}").rounded-xl.pa-10.my-16.gray-bg
         v-card-text(:class="$isMobile ? 'px-0' : ''")
           v-col.pa-0
             v-row(justify="center")
@@ -51,3 +51,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.gray-bg {
+  background: #F8F8F8;
+}
+</style>
