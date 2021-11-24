@@ -9,7 +9,6 @@
         :media-column-bindings="mediaColumnBindings"
         :title-classes="headerClasses"
         :content-classes="descriptionClasses"
-        hide-btn
       )
         div(slot="super-title")
           p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SIMPLE AND POWERFUL
