@@ -121,7 +121,12 @@ export default {
           columns: [
             { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
+            { type: 'link', value: 'Skin Clinics', link: '/clinics/skin' },
+            { type: 'link', value: 'Dental Clinics', link: '/clinics/dental' },
+            { type: 'link', value: 'Corporate Clinics', link: '/clinics/corporate' },
             { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
+            { type: 'link', value: 'OFW Clinics', link: '/diagnostics/ofw' },
+            { type: 'link', value: 'Mobile Labs', link: '/diagnostics/mobile-labs' },
             // TODO: re-enable
             // { type: 'link', value: 'Telehealth', link: '/telehealth' },
             // { type: 'link', value: 'Booking', link: '/booking' },
