@@ -198,44 +198,6 @@ export const getMycureCountries = async (opts) => {
   }
 };
 
-// CREATING AN ACCOUNT
-export const signupIndividual = async (opts) => {
-  try {
-    const payload = {
-      email: opts.email,
-      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      password: opts.password,
-      personalDetails: {
-        name: {
-          firstName: opts.firstName,
-          lastName: opts.lastName,
-        },
-        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      },
-      // TODO: Update query to accomodate 'type: facility'
-      organization: {
-        type: 'personal-clinic',
-        superadmin: {
-          roles: ['doctor'],
-        },
-        name: `${opts.firstName}'s Clinic`,
-      },
-    };
-    if (opts.otp) { payload.totpToken = opts.otp; }
-    const { data } = await axios({
-      method: 'POST',
-      url: `${process.env.API_URL}/accounts`,
-      data: payload,
-    });
-    // await resendVerificationEmail({ email: opts.email, password: opts.password });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
 // CREATING AN ACCOUNT (FACILITY)
 export const signupFacility = async (opts) => {
   try {
@@ -263,6 +225,13 @@ export const signupFacility = async (opts) => {
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
     if (opts.invitation) { payload.invitation = opts.invitation; };
+    if (opts.organization.types.includes('doctor')) {
+      payload.apps = ['doctor'],
+      payload.source = {
+        platform: 'web',
+        app: 'emr'
+      };
+    }
     const { data } = await axios({
       method: 'POST',
       url: `${process.env.API_URL}/accounts`,
@@ -290,49 +259,6 @@ export const verifyMobileNo = async (opts) => {
       url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
-export const signupSpecialized = async (opts) => {
-  try {
-    const payload = {
-      skipMobileNoVerification: true, // only for specialized signup
-      email: opts.email,
-      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      password: opts.password,
-      personalDetails: {
-        name: {
-          firstName: opts.firstName,
-          lastName: opts.lastName,
-        },
-        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      },
-      organization: {
-        type: 'facility',
-        types: [opts.clinicType],
-        superadmin: {
-          roles: ['doctor'],
-        },
-        name: `${opts.firstName}'s Clinic`,
-        subscription: {
-          ...opts.subscription,
-          stripeCheckoutSuccessURL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
-          stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
-        },
-      },
-    };
-    if (opts.otp) { payload.totpToken = opts.otp; }
-    const { data } = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/accounts`,
-      data: payload,
-    });
-    // await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
   } catch (e) {
     console.error(e);
