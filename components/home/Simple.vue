@@ -17,10 +17,10 @@
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
         //- template(slot="cta-button")
-          //- div(:class="{'text-center ml-4': $isMobile}")
-          //-   nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
-          //-     span.mc-hyp1.primary--text Explore the Features
-          //-     v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
+        //-   div(:class="{'text-center ml-4': $isMobile}")
+        //-     nuxt-link(:to="{ name: 'booking' }" :class="{'d-flex': !$isMobile}").button
+        //-       span.mc-hyp1.primary--text Explore the Features
+        //-       v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
 </template>
 
 <script>
