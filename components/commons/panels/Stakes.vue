@@ -8,9 +8,9 @@
               v-col(cols="12" :sm="version === 2 ? 7 : 8")
                 div.text-center
                   p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4 {{ panelTitle }}
-                  p.mc-b2.mb-0 {{ subTitle }}
+                  p.mc-b2.mb-0.font-gray.font-open-sans {{ subTitle }}
             //- version 1
-            div(v-if="version === 1").font-open-sans.mt-6
+            div(v-if="version === 1").font-open-sans
               div(v-for="(content, index) in contents" :key="index")
                 div(v-if="!$isMobile")
                   v-row(justify="center")
@@ -21,16 +21,16 @@
                       span.mc-h3 {{ content.rightTitle }}
                   v-row(justify="center")
                     v-col(cols="4")
-                      p.mc-b3 {{ content.leftDescription }}
+                      p.mc-b3.font-gray.font-open-sans {{ content.leftDescription }}
                     v-col(cols="1")
                     v-col(cols="4")
-                      p.mc-b3 {{ content.rightDescription }}
+                      p.mc-b3.font-gray.font-open-sans {{ content.rightDescription }}
                 div(v-else)
                   v-row(justify="center")
                     v-col(cols="12")
-                      span.mc-h3 {{ content.leftTitle }}
-                      p.mc-list-b3 {{ content.leftDescription }}
-                      span.mc-h3 {{ content.rightTitle }}
+                      span.primary--text.mc-h3.font-weight-bold {{ content.leftTitle }}
+                      p.mc-list-b3.font-gray {{ content.leftDescription }}
+                      span.primary--text.mc-h3.font-weight-bold {{ content.rightTitle }}
                       p.mc-list-b3.font-gray {{ content.rightDescription }}
 
             //- version 2
@@ -60,7 +60,7 @@
             footer
             v-row(v-if="version !== 1" justify="center" :class="{'mt-10': version !== 4}")
               v-col(cols="12" sm="11")
-                p(:class="{'text-center': version === 1}").mc-b2 {{ panelDescription }}
+                p(:class="{'text-center': version === 1}").mc-b2.font-gray.font-open-sans {{ panelDescription }}
             v-row(justify="center")
               //- v-btn(
               //-   color="primary"
