@@ -1,7 +1,7 @@
 <template lang="pug">
   generic-blue-bg
-    v-container(:class="{'ml-n6': !$isMobile}")
-      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%', width: '100vw' }").mb-n16
+    v-container
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
