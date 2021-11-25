@@ -44,9 +44,9 @@ export default {
     this.btnClasses = ['mc-btn1'];
     return {
       statData: {
-        'medical-records': 0,
-        lives: 0,
-        providers: 0,
+        'medical-records': 1700000,
+        lives: 1450000,
+        providers: 780,
       },
       stats: [
         {
@@ -65,9 +65,9 @@ export default {
       isVisible: false,
       hasAnimated: false,
       // Realtime data
-      medicalRecordsData: 0,
-      patientsData: 0,
-      providersData: 0,
+      medicalRecordsData: 1700000,
+      patientsData: 1450000,
+      providersData: 780,
     };
   },
   computed: {
