@@ -226,10 +226,10 @@ export const signupFacility = async (opts) => {
     if (opts.otp) { payload.totpToken = opts.otp; }
     if (opts.invitation) { payload.invitation = opts.invitation; };
     if (opts.organization.types.includes('doctor')) {
-      payload.apps = ['doctor'],
+      payload.apps = ['doctor'];
       payload.source = {
         platform: 'web',
-        app: 'emr'
+        app: 'emr',
       };
     }
     const { data } = await axios({
