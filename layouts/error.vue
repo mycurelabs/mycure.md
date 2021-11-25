@@ -10,10 +10,10 @@
             v-row(justify="center").text-center
               v-col(v-if="error.message === 'doctor-not-found'")
                 h2 Doctor who?
-                p.pb-2.font-16 The doctor with username '{{$route.params.id}}' is not yet using MYCURE.
+                p.pb-2.font-16 Sorry, this doctor is not available in our directory.
               v-col(v-else-if="error.message === 'clinic-not-found'")
                 h2 Sorry!
-                p.pb-2.font-16 The health facility '{{$route.params.id}}' does not exist in our directory.
+                p.pb-2.font-16 Sorry, the health facility is not available in our directory.
               v-col(v-else)
                 strong.pb-2.font-18 Oh snap!
                 h2 The page you’re looking for can’t be found.

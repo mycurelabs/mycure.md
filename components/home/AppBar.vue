@@ -29,11 +29,12 @@
                     :large="$isWideScreen"
                     @click="openPxPortal(pxPortalLogIn)"
                   ).text-none.mr-2
-                    v-icon(small) mdi-account-outline
+                    v-icon(small) {{ mdiAccountOutline }}
                     span.font-weight-thin.font-12 Login
 </template>
 
 <script>
+import { mdiAccountOutline } from '@mdi/js';
 export default {
   components: {
     GenericPanel: () => import('~/components/generic/GenericPanel'),
@@ -43,6 +44,9 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return { mdiAccountOutline };
   },
   computed: {
     pxPortalSignUp () {

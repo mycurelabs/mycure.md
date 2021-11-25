@@ -1,119 +1,134 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(v-if="!loading" fluid).white.page-container
     //- 1st panel
-    usp(
-      has-custom-background
-      background-image="Doctor-Landing-Page"
-      :background-image-file-extension="$useWebp? '.webp' : '.png'"
-      title="Bring Out the Hero in You"
-      meta-title="MYCURE Doctor"
-      image="Doc-USP"
-      image-width="90%"
-      custom-image-path="doctors-clinics/"
-      image-align="right"
-      btn-text="Get Started Free"
-      parse-title
-      extension-exclusive
-      :description="uspDescription"
-      :parse-title-fields="['the ']"
-      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
-      :content-column-bindings="{ cols: 12, md: 5 }"
-    )
+    lazy-hydrate(when-idle)
+      usp(
+        has-custom-background
+        background-image="Doctor-Landing-Page"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
+        title="Bring Out the Hero in You"
+        meta-title="MYCURE Doctor"
+        image="Doc-USP"
+        image-width="90%"
+        custom-image-path="doctors-clinics/"
+        image-align="right"
+        btn-text="Get Started Free"
+        parse-title
+        extension-exclusive
+        :description="uspDescription"
+        :parse-title-fields="['the ']"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
+      )
     //- 2nd panel
     div.grey-bg.mx-n3
-      features(
-        title="Make it easy for your patients to schedule a consultation"
-        :title-col-size="11"
-        :description="featuresDescription"
-        :items="features"
-        image-dir="doctors-clinics/"
-      )
+      lazy-hydrate(when-visible)
+        features(
+          title="Make it easy for your patients to schedule a consultation"
+          :title-col-size="11"
+          :description="featuresDescription"
+          :items="features"
+          image-dir="doctors-clinics/"
+        )
     //- 3rd to 5th panels
-    generic-media-panel(
-      v-for="(content, key) in contents"
-      :key="key"
-      :content="content"
-      :title-classes="headerClasses"
-      hide-btn
-    )
+    template(v-for="content in contents")
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="content"
+          :title-classes="headerClasses"
+          hide-btn
+        )
     //-6th panel
-    generic-media-panel(
-      content-right
-      :content="sixthPanel"
-      :title-classes="listHeaderClasses"
-      :content-classes="listContentClasses"
-      hide-btn
-    )
-      //- Check list
-      template(slot="additional-content")
-        template(v-for="(item, i) in sixthPanel.list")
-          v-row(dense align="center").my-2
-            img(
-              src="~/assets/images/mycure-check.png"
-              alt="Check icon"
-              :width="$isWideScreen ? '30' : '20'"
-              :height="$isWideScreen ? '30' : '20'"
-            )
-            span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
-        div.mb-10
-        div(:class="{ 'text-center': $isMobile }")
-          signup-button(
-            depressed
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-            color="success"
-          ).text-none
-            span.generic-button-text Get Started Free
-            v-icon(small right) mdi-arrow-right
-    //- 7th panel
-    div.grey-bg.mx-n3
-      mycure-csi
-    //- 8th panel
-    div.blue-bg.mx-n3
+    lazy-hydrate(when-visible)
       generic-media-panel(
-        :content="eightPanel"
-        :title-classes="[...listHeaderClasses, 'white--text']"
-        :contentClasses="eightPanelContentClasses"
+        content-right
+        :content="sixthPanel"
+        :title-classes="listHeaderClasses"
+        :content-classes="listContentClasses"
         hide-btn
       )
+        //- Check list
         template(slot="additional-content")
-          template(v-for="item in eightPanel.list")
+          template(v-for="(item, i) in sixthPanel.list")
             v-row(dense align="center").my-2
-              v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
-              span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
+              span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
+          div.mb-10
+          div(:class="{ 'text-center': $isMobile }")
+            signup-button(
+              depressed
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              color="success"
+            ).text-none
+              span.generic-button-text Get Started Free
+              v-icon(small right) {{ mdiArrowRight }}
+    //- 7th panel
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        mycure-csi
+    //- 8th panel
+    div.blue-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="eightPanel"
+          :title-classes="[...listHeaderClasses, 'white--text']"
+          :contentClasses="eightPanelContentClasses"
+          hide-btn
+        )
+          template(slot="additional-content")
+            template(v-for="item in eightPanel.list")
+              v-row(dense align="center").my-2
+                v-icon(color="white" :large="$isWideScreen") {{ mdiCheckboxMarkedCircle }}
+                span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
-    different-video
-    steps(:steps="stepsContent")
-    testimonials
-    think-long-term
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
+    lazy-hydrate(when-visible)
+      different-video
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent")
+    lazy-hydrate(when-visible)
+      testimonials
+    lazy-hydrate(when-visible)
+      think-long-term
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Using Modern Tools to Boost Your Practice"
+        :content="storybrandContent"
+      )
     v-divider.divider
     //- 10th panel
     client-only
-      pricing(
-        center-items
-        type="doctor"
-        title="Start free and only pay as you grow"
-        :column-bindings="{ cols: '12', md: '4', xl: '3'}"
-      )
+      lazy-hydrate(when-idle)
+        pricing(
+          center-items
+          type="doctor"
+          title="Start free and only pay as you grow"
+          :column-bindings="{ cols: '12', md: '4', xl: '3'}"
+        )
     //- 11th panel
-    call-to-action(:fluid="!$isMobile")
+    lazy-hydrate(when-visible)
+      call-to-action(:fluid="!$isMobile")
 </template>
 
 <script>
 // utils
+import LazyHydrate from 'vue-lazy-hydration';
+import { mdiArrowRight, mdiCheckboxMarkedCircle } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Usp from '~/components/commons/panels/OldSevenWondersUsp';
 
 export default {
   components: {
+    LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
@@ -185,12 +200,15 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      // icons
+      mdiArrowRight,
+      mdiCheckboxMarkedCircle,
     };
   },
   head () {
     return headMeta({
-      title: 'MYCURE EMR Practice Management System for Doctors',
-      description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
+      title: 'EMR Practice Management System for Doctors - Start Free | MYCURE',
+      description: 'Find how a digital practice management system helps you focus on your patients. MYCURE helps digitize everything from prescriptions to medical records. Sign Up.',
       socialBanner: require('~/assets/images/banners/doc-og-banner.png'),
     });
   },

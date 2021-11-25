@@ -17,11 +17,12 @@
             @keyup.enter="debouncedSearch"
           ).mt-3.search-bar
             template(v-slot:append)
-              v-icon(color="white").search-icon mdi-magnify
+              v-icon(color="white").search-icon {{ mdiMagnify }}
 </template>
 
 <script>
 // utils
+import { mdiMagnify } from '@mdi/js';
 import debounce from 'lodash/debounce';
 export default {
   props: {
@@ -77,6 +78,7 @@ export default {
   data () {
     return {
       debouncedSearch: debounce(this.search, 500),
+      mdiMagnify,
     };
   },
   computed: {

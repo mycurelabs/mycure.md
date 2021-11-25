@@ -18,7 +18,7 @@
           div.mb-3
             slot(name="super-title")
               h3(:class="defaultSuperTitleClasses") {{superTitle}}
-          div.mb-10
+          div.mb-4
             slot(name="title")
               h2(:class="defaultTitleClasses") {{ title }}
           div.mb-10
@@ -195,10 +195,10 @@ export default {
     },
   },
   data () {
-    this.defaultTitleClasses = this.titleClasses ? this.titleClasses : ['mc-title-set-1', 'font-weight-semibold'];
-    this.defaultSuperTitleClasses = this.superTitleClasses ? this.superTitleClasses : ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
-    this.defaultCenterPanelTitleClasses = this.centerPanelTitleClasses ? this.centerPanelTitleClasses : ['mc-title-set-1', 'font-weight-semibold'];
-    this.defaultContentClasses = this.contentClasses ? this.contentClasses : ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.defaultTitleClasses = this.titleClasses ? this.titleClasses : ['mc-h2', 'font-weight-semibold'];
+    this.defaultSuperTitleClasses = this.superTitleClasses ? this.superTitleClasses : ['mc-h7', 'font-open-sans', 'font-weight-semibold'];
+    this.defaultCenterPanelTitleClasses = this.centerPanelTitleClasses ? this.centerPanelTitleClasses : ['mc-h1'];
+    this.defaultContentClasses = this.contentClasses ? this.contentClasses : ['mc-h2', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     return {};
   },

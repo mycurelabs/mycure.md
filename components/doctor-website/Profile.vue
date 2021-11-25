@@ -1,82 +1,41 @@
 <template lang="pug">
 v-card(:color="$isMobile ? '#f9f9f9' : 'white mt-n16'" flat width="100%")
-    v-card-text.text-center
-      v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
-        img(:src="picUrl").img-border
-    v-card-text
-      h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
-      br
-      //- v-row(justify="center")
-      //-   v-col(cols="6" sm="3").text-center
-      //-     div.mb-6
-      //-       v-menu(
-      //-         v-model="socialMenu"
-      //-         :close-on-content-click="false"
-      //-         offset-y
-      //-       )
-      //-         template(v-slot:activator="{ on }")
-      //-           div.text-center
-      //-             v-btn(
-      //-               v-on="on"
-      //-               icon
-      //-               small
-      //-               depressed
-      //-               color="primary"
-      //-             ).text-none
-      //-               v-icon(color="primary") mdi-export-variant
-      //-             br
-      //-             span.primary--text.font-12 Share
-      //-         v-card(color="primary" width="275")
-      //-           v-card-text
-      //-             h4.white--text Love this doctor? Let your friends know by sharing this website!
-      //-             v-row(no-gutters)
-      //-               v-col(cols="12")
-      //-                 div.d-flex
-      //-                   share-network(network="facebook" v-bind="networkBindings").social-image.pa-3
-      //-                     v-icon(large color="white") mdi-facebook
-      //-                   share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
-      //-                     v-icon(large color="white") mdi-twitter
-      //-                   //- share-network(network="linkedin" v-bind="networkBindings").social-image
-      //-                   //-   img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
-      //-                   share-network(network="email" v-bind="networkBindings").social-image.pa-3
-      //-                     v-icon(large color="white") mdi-email
-      //- br
-      div.mb-6
-        h2(:class="sectionTextClasses").secondary--text About Me
-        v-clamp(autoresize :max-lines="3") {{ bio }}
-          template(v-slot:after="{ expand, collapse, clamped, expanded }")
-            a(v-if="clamped" @click="expand").primary--text See more...
-            a(v-else-if="expanded" @click="collapse").primary--text See less
-      div(v-if="specialties.length").mb-6
-        h2(:class="sectionTextClasses").secondary--text Specializations
-        v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
-          span.font-gray {{ specialty }}
-      div(v-if="practicingSince").mb-6
-        h2(:class="sectionTextClasses").secondary--text Practicing Since
-        p {{ practicingSince | format-practicing-since }} - {{ practicingYears }} Years of Experience
-      //- Educational Background
-      div(v-if="education.length").mb-6
-        h2(:class="sectionTextClasses").secondary--text Education
-        div(v-for="(educ, key) in education" :key="key").mt-3
-          span {{ educ | format-school }}
-          br
-          span {{ educ.from }} - {{ educ.to }}
-      //- TODO: Confirm what functionality
-      //- v-btn(
-      //-   color="secondary"
-      //-   block
-      //-   depressed
-      //-   x-large
-      //-   :class="{ 'font-11' : $isMobile }"
-      //-   :disabled="!isBookable"
-      //-   @click="onBook"
-      //- ).text-none.rounded-xl
-      //-   v-icon(left) mdi-calendar-blank
-      //-   span Book an Appointment
+  v-card-text.text-center
+    v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
+      img(:src="picUrl").img-border
+  v-card-text
+    span(v-if="fullName" :class="mainTextClasses").font-weight-bold.lh-title.black--text {{ fullName }}
+    v-icon(
+      v-if="isBookable"
+      color="primary"
+      :large="$isWideScreen"
+      :class="$isWideScreen ? 'pb-3' : 'pb-2'"
+    ).ml-1 {{ mdiCheckDecagram }}
+    div.mb-6
+      h2(:class="sectionTextClasses").secondary--text About Me
+      v-clamp(autoresize :max-lines="3") {{ bio }}
+        template(v-slot:after="{ expand, collapse, clamped, expanded }")
+          a(v-if="clamped" @click="expand").primary--text See more...
+          a(v-else-if="expanded" @click="collapse").primary--text See less
+    div(v-if="specialties.length").mb-6
+      h2(:class="sectionTextClasses").secondary--text Tags
+      v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
+        span.font-gray {{ specialty }}
+    div(v-if="practicingSince").mb-6
+      h2(:class="sectionTextClasses").secondary--text Practicing Since
+      p {{ practicingSince | format-practicing-since }} - {{ practicingYears > 0 ? `${practicingYears} Year${practicingYears > 1 ? 's' : ''} of Experience` : ''}}
+    //- Educational Background
+    div(v-if="education.length").mb-6
+      h2(:class="sectionTextClasses").secondary--text Education
+      div(v-for="(educ, key) in education" :key="key").mt-3
+        span {{ educ | format-school }}
+        br
+        span {{ educ.from }} - {{ educ.to }}
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
+import { mdiCheckDecagram } from '@mdi/js';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
@@ -138,6 +97,7 @@ export default {
     return {
       // - UI State
       socialMenu: false,
+      mdiCheckDecagram,
     };
   },
   computed: {

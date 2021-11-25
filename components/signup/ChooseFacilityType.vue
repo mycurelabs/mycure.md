@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="850" height="900")
+  v-dialog(v-model="dialog" width="850" height="900" :persistent="persistent")
     v-card.pa-4.rounded-xl
       v-card-text.pa-3
         v-container
@@ -15,7 +15,8 @@
                 img(
                   :src="require(`~/assets/images/home/${type.image}.png`)"
                   :alt="type.image"
-                  width="50%"
+                  width="120px"
+                  height="163.59px"
                 )
                 v-card-text.text-center
                   h3.mt-3.primary--text {{ type.text }}
@@ -32,6 +33,7 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    persistent: Boolean,
   },
   data () {
     return {

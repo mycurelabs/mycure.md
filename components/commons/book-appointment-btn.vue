@@ -4,11 +4,12 @@
     :event-label="eventLabel"
     :href="url"
   ).text-none
-    v-icon(v-if="showIcon" left) mdi-calendar
+    v-icon(v-if="showIcon" left) {{ mdiCalendar }}
     span {{ btnText }}
 </template>
 
 <script>
+import { mdiCalendar } from '@mdi/js';
 export default {
   props: {
     // color: {
@@ -43,6 +44,9 @@ export default {
       type: String,
       default: 'book-doctor',
     },
+  },
+  data () {
+    return { mdiCalendar };
   },
   computed: {
     url () {

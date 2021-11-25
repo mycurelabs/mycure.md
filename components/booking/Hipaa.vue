@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel
         v-col(cols="12")
-          v-row(align="center" justify="center").my-6
+          v-row(align="center" justify="center")
             v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
               div.text-center
                 picture-source(
@@ -24,11 +24,12 @@
                   rel="noreferrer noopener"
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
-                  span(:class="descriptionClasses").primary--text Read more about MYCURE's Privacy Standards
-                  v-icon(right color="primary") mdi-chevron-right
+                  span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
+                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
 </template>
 
 <script>
+import { mdiArrowRight } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
@@ -46,6 +47,7 @@ export default {
       default: () => ([]),
     },
   },
+  data () { return { mdiArrowRight }; },
 };
 </script>
 

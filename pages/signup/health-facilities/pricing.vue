@@ -57,7 +57,7 @@
     v-dialog(v-model="paymentErrorDialog" width="400")
       v-card
         v-card-text.pa-10.text-center
-          v-icon(style="font-size: 40px;").error--text mdi-close
+          v-icon(style="font-size: 40px;").error--text {{ mdiClose }}
           h2 Error!
           p Checkout failed to proceed!
           v-btn(
@@ -66,15 +66,15 @@
             @click="retryPayment"
           ).text-none Retry Now
     //- Error
-    v-dialog(v-model="errorDialog" width="400" persistent)
+    v-dialog(v-model="errorDialog" width="400")
       v-card
         v-card-text.pa-10.text-center
-          v-icon(style="font-size: 40px;").error--text mdi-close
+          v-icon(style="font-size: 40px;").error--text {{ mdiClose }}
           h2 Error!
           p {{ errorMessage }}
         v-card-actions
           v-spacer
-          v-btn(color="success" depressed :to="initialRoute").text-none Back
+          v-btn(color="success" depressed @click="errorDialog = false").text-none Back
           v-spacer
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
@@ -98,6 +98,7 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
+import { mdiClose } from '@mdi/js';
 import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
@@ -119,7 +120,7 @@ export default {
     PictureSource,
     PricingCard,
   },
-  layout: 'user',
+  layout: 'empty',
   data () {
     this.subscriptionMappings = SUBSCRIPTION_MAPPINGS;
     this.publishableKey = process.env.STRIPE_PK;
@@ -146,6 +147,8 @@ export default {
       subscriptionId: null,
       // Stripe session
       sessionId: '',
+      // icons
+      mdiClose,
     };
   },
   computed: {
@@ -375,6 +378,7 @@ export default {
         if (this.countryCallingCode !== '63') {
           this.emailVerificationMessageDialog = true;
         } else {
+          await this.sendOtp();
           this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
         }
       } catch (e) {

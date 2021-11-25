@@ -16,13 +16,13 @@
             ).font-weight-bold.mb-0.mc-title-set-5 {{ clinic.name }}&nbsp;
           //- Address
           v-row.mt-2
-            v-icon(color="primary") mdi-home-variant-outline
+            v-icon(color="primary") {{ mdiHomeVariantOutline }}
             v-col.font-gray
               span.mc-content-set-5 Address
               v-clamp(autoresize :max-lines="2" :class="{ 'font-italic': !clinic.address }").font-weight-semibold {{ clinic.address | prettify-address }}&nbsp;&nbsp;
           //- Contact
           v-row
-            v-icon(color="primary") mdi-phone-in-talk
+            v-icon(color="primary") {{ mdiPhoneInTalk }}
             v-col.font-gray
               span.mc-content-set-5 Contact Number
               v-clamp(
@@ -32,7 +32,7 @@
               ).font-weight-semibold {{ phone || 'No information provided' }}
           //- Email
           v-row
-            v-icon(color="primary") mdi-email
+            v-icon(color="primary") {{ mdiEmail }}
             v-col.font-gray
               span.mc-content-set-5 Email
               v-clamp(
@@ -78,7 +78,7 @@
               :disabled="!canOnlineBook"
               @click="trackBooking('telehealth')"
             ).text-none.font-12.clinic-book-btn
-              v-icon(small left) {{ canOnlineBook ? 'mdi-video-outline' : 'mdi-close' }}
+              v-icon(small left) {{ canOnlineBook ? mdiVideoOutline : mdiClose }}
               span Online Consult
             v-btn(
               color="success"
@@ -90,7 +90,7 @@
               :class="$isMobile ? 'mt-2': 'mx-1'"
               @click="trackBooking('physical')"
             ).text-none.font-12.clinic-book-btn
-              v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
+              v-icon(small left) {{ canVisit ? mdiStethoscope : mdiClose }}
               span Visit Clinic
         v-col(v-else cols="12" sm="10").text-center
           span.font-italic.grey--text This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
@@ -106,7 +106,7 @@
               span.font-weight-regular - Opening Hours
           v-spacer
           v-btn(icon @click="scheduleDialog = false")
-            v-icon mdi-close
+            v-icon {{ mdiClose }}
         v-card-text.pt-3
           schedules-list(
             hideLabels
@@ -119,6 +119,14 @@
 import isNil from 'lodash/isNil';
 import intersection from 'lodash/intersection';
 import uniqWith from 'lodash/uniqWith';
+import {
+  mdiClose,
+  mdiStethoscope,
+  mdiVideoOutline,
+  mdiEmail,
+  mdiPhoneInTalk,
+  mdiHomeVariantOutline,
+} from '@mdi/js';
 import VClamp from 'vue-clamp';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
@@ -209,6 +217,12 @@ export default {
     ];
     return {
       scheduleDialog: false,
+      mdiClose,
+      mdiStethoscope,
+      mdiVideoOutline,
+      mdiEmail,
+      mdiPhoneInTalk,
+      mdiHomeVariantOutline,
     };
   },
   computed: {

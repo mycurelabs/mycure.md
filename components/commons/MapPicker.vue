@@ -2,42 +2,67 @@
   v-card
     v-card-text.map-container.pa-3
       //- address input
-      input(
+      v-text-field(
         type="text"
         placeholder="Search Address"
+        v-model="searchText"
         outlined
-        autofocus
-      )#pac-input.q-mb-md
-
+        hide-details
+        clearable
+        :prepend-inner-icon="mdiMapSearchOutline"
+        :dense="$isMobile"
+      )#pac-input.mb-2
       //- map display
-      div#map
-
+      div(v-if="!loading")#map
+      div(v-else).map-size.text-center
+        v-progress-circular(
+          color="primary"
+          indeterminate
+          size="100"
+        ).mt-6
     //- card actions
     v-card-actions
-      v-spacer
-      v-btn(
-        :loading="loading"
-        :disabled="loading"
-        label="Cancel"
-        text
-        @click="onCancel"
-      ) Cancel
-      v-btn(
-        :loading="loading"
-        :disabled="loading"
-        label="Save"
-        color="primary"
-        depressed
-        @click="onSave"
-      ) Select
+      v-col(cols="12")
+        v-row(justify="start")
+          v-col(:cols="$vuetify.breakpoint.width < 450 ? '12' : null").pa-0.mb-2
+            v-btn(
+              :loading="loading"
+              :disabled="loading"
+              :small="$isMobile"
+              color="success"
+              @click="getMyPos"
+            ) Use my position
+          v-spacer(v-if="!$isMobile")
+          v-btn(
+            :loading="loading"
+            :disabled="loading"
+            :small="$isMobile"
+            label="Cancel"
+            text
+            @click="onCancel"
+          ).mb-2 Cancel
+          v-btn(
+            :loading="loading"
+            :disabled="loading"
+            :small="$isMobile"
+            label="Save"
+            color="primary"
+            depressed
+            @click="onSave"
+          ).mb-2 Select
 </template>
 
 <script>
+import { mdiMapSearchOutline } from '@mdi/js';
 export default {
   props: {
     address: {
       type: Object,
       default: null,
+    },
+    dialog: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -49,6 +74,8 @@ export default {
       mapGeocoder: null,
       mapMarker: null,
       resolvedAddress: {},
+      searchText: null,
+      mdiMapSearchOutline,
     };
   },
   computed: {
@@ -62,6 +89,11 @@ export default {
       return [street1, city, region, country].filter(Boolean).join(', ');
     },
   },
+  watch: {
+    dialog (val) {
+      this.geocodePosition(this.mapMarker.getPosition());
+    },
+  },
   mounted () {
     this.initialize();
   },
@@ -73,6 +105,7 @@ export default {
       const position = this.addressGeometry || this.defaultMapPosition;
       this.mapMarker = this.createMapMarker(position);
       this.addMapMarkerDragEvent();
+      this.geocodePosition(this.mapMarker.getPosition());
     },
     initializeAddressAutocomplete () {
       this.mapGeocoder = new google.maps.Geocoder(); /* eslint-disable-line no-undef */
@@ -200,6 +233,7 @@ export default {
       }, {
         // initial values
         fullAddress: result?.formatted_address,
+        searchText: result?.formatted_address,
         geometry: result?.geometry,
         name: result?.name,
         types: result?.types,
@@ -213,6 +247,27 @@ export default {
       this.$emit('resolve', this.resolvedAddress);
       this.$emit('close', true);
     },
+    getMyPos () {
+      if (navigator.geolocation) {
+        this.loading = true;
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            this.mapMarker.setMap(null);
+            this.mapMarker = this.createMapMarker(pos);
+            this.geocodePosition(this.mapMarker.getPosition());
+            this.addMapMarkerDragEvent();
+            this.map.setCenter(pos);
+            this.loading = false;
+          },
+        );
+      } else {
+        console.log("Browser doesn't support Geolocation");
+      }
+    },
   },
 };
 </script>
@@ -223,9 +278,17 @@ export default {
 }
 
 #map {
-  min-height: 450px;
+  min-height: 400px;
   height: 100%;
-  min-width: 450px;
+  min-width: 250px;
+  max-width: 600px;
+  width: 100%;
+}
+.map-size {
+  padding: 150px 0;
+  min-height: 400px;
+  height: 100%;
+  min-width: 250px;
   max-width: 600px;
   width: 100%;
 }

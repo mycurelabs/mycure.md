@@ -15,6 +15,7 @@
         v-for="(tab, key) in doctorTabs"
         :key="key"
         :value="tab.value"
+        @click="onTabClick"
       ).text-none {{ tab.name }}
     v-select(
       v-else
@@ -28,7 +29,7 @@
       item-value="value"
       :items="doctorTabs"
     )
-    v-tabs-items(v-model="activeTab").mt-3.transparent-bg
+    v-tabs-items(v-model="activeTab").mt-3.transparent-bg#doctor-website-tabs-items
       v-tab-item(value="facilities")
         facilities(
           :doctorId="doctorId"
@@ -36,6 +37,7 @@
           :total="clinicsTotal"
           :limit="clinicsLimit"
           :is-preview-mode="isPreviewMode"
+          :loading="facilitiesLoading"
           @onUpdatePage="$emit('onUpdateClinicPage', $event)"
         )
       v-tab-item(value="services")
@@ -45,7 +47,7 @@
             v-list(v-if="services.length" dense)
               v-list-item(v-for="(service, key) in services" :key="key")
                 v-list-item-icon
-                  v-icon(color="primary") mdi-check-circle-outline
+                  v-icon(color="primary") {{ mdiCheckCircleOutline }}
                 v-list-item-content
                   v-list-item-title {{ service }}
             p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
@@ -58,6 +60,8 @@
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
+import { mdiCheckCircleOutline } from '@mdi/js';
 import Facilities from './Facilities';
 import LearningCorner from './LearningCorner';
 export default {
@@ -90,6 +94,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    facilitiesLoading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.doctorTabs = [
@@ -99,7 +107,13 @@ export default {
     ];
     return {
       activeTab: 'facilities',
+      mdiCheckCircleOutline,
     };
+  },
+  methods: {
+    onTabClick () {
+      VueScrollTo.scrollTo('#doctor-website-tabs-items', 500, { offset: -100, easing: 'ease' });
+    },
   },
 };
 </script>

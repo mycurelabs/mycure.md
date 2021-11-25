@@ -57,7 +57,12 @@
                 @click="openFile(material)"
               ).text-none.font-weight-bold.rounded-xl View
     template(v-else)
-      p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
+      v-row(v-if="loading")
+        v-col(cols="12")
+          v-skeleton-loader(type="list-item, card-heading")
+        v-col(cols="12" md="6")
+          v-skeleton-loader(type="article, actions")
+      p(v-else).text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>
 
 <script>
@@ -95,6 +100,7 @@ export default {
       filteredMaterials: [],
       selectedCategory: [],
       materialSorter: null,
+      loading: true,
     };
   },
   computed: {
@@ -121,9 +127,11 @@ export default {
   methods: {
     async fetchMaterials () {
       try {
+        this.loading = true;
         const items = await fetchLearningCornerMaterials({ account: this.doctorId });
         this.materials = items || [];
         this.filteredMaterials = [...this.materials];
+        this.loading = false;
       } catch (error) {
         console.error(error);
       }

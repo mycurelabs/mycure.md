@@ -27,10 +27,11 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none.mt-5
               span.generic-button-text Get Started Free
-              v-icon(small right) mdi-arrow-right
+              v-icon(small right) {{ mdiArrowRight }}
 </template>
 
 <script>
+import { mdiArrowRight } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
 
@@ -38,6 +39,11 @@ export default {
   components: {
     GenericPanel,
     SignupButton,
+  },
+  data () {
+    return {
+      mdiArrowRight,
+    };
   },
 };
 </script>

@@ -11,7 +11,7 @@
           depressed
           @click="dialog = false"
         ).text-none
-          v-icon mdi-close
+          v-icon {{ mdiClose }}
       v-card-text.pa-3
         v-container
           v-row
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js';
 import intersection from 'lodash/intersection';
 import PictureSource from '~/components/commons/PictureSource';
 
@@ -98,7 +99,9 @@ export default {
         alt: 'Doctor talking to a patient in a hospital room',
       },
     ];
-    return {};
+    return {
+      mdiClose,
+    };
   },
   computed: {
     dialog: {

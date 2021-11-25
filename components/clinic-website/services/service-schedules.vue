@@ -11,17 +11,18 @@
         v-col(cols="12" md="2").text-center
           h3(:class="{'error--text': day.value === 0}") {{ day.text }}
         v-col.grow
-          v-row(dense)
+          v-row(dense justify="center")
             v-col(
               v-for="(timeslot, key) in getSlots(day.value)"
               :key="key"
-              align="center"
-              justify="center"
               cols="12"
-            ).text-center
-              h4.font-weight-semibold
-                strong(v-if="!hideLabels" :class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
-                span {{ timeslot | format-time-range }}
+              sm="7"
+            )
+              v-row(dense justify="center")
+                v-col(cols="8" :align="$isMobile ? 'center' : null")
+                  h4.font-weight-semibold
+                    strong(v-if="!hideLabels" :class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
+                    span {{ timeslot | format-time-range }}
 </template>
 
 <script>

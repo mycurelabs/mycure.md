@@ -18,7 +18,6 @@
           @error="imageExists = false"
         ).bottom-right.ma-2.rounded-circle
     v-card-text(:class="$isWideScreen ? 'pt-4' : 'pt-2'").px-0
-      //- v-icon(v-if="hasWebsite" color="secondary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
       v-col.pa-0
         v-tooltip(bottom)
           template(v-slot:activator="{ on, attrs }")
@@ -30,7 +29,7 @@
             ).mb-0 {{ organization.name || 'No Clinic Name' }}&nbsp;
           span {{ organization.name }}
         div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
-          v-icon(color="secondary" :small="!$isWideScreen") mdi-map-marker
+          v-icon(color="secondary" :small="!$isWideScreen") {{ mdiMapMarker }}
           v-tooltip(bottom)
             template(v-slot:activator="{ on, attrs }")
               v-clamp(
@@ -41,7 +40,7 @@
               ).mt-1.ml-2 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
         div(:class="$isWideScreen ? 'mt-4' : 'mt-1'").d-flex
-          v-icon(color="secondary" :small="!$isWideScreen") mdi-email
+          v-icon(color="secondary" :small="!$isWideScreen") {{ mdiEmail }}
           v-tooltip(bottom)
             template(v-slot:activator="{ on, attrs }")
               v-clamp(
@@ -82,6 +81,7 @@
 <script>
 import VClamp from 'vue-clamp';
 import uniqBy from 'lodash/uniqBy';
+import { mdiMapMarker, mdiEmail } from '@mdi/js';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 import CoverPlaceholder from '~/assets/images/directory-results/Directory-Card-image-Clinic.png';
@@ -116,6 +116,9 @@ export default {
       scheduleExpanded: false,
       isDescriptionExpanded: false,
       imageExists: true,
+      // icons
+      mdiMapMarker,
+      mdiEmail,
     };
   },
   computed: {

@@ -14,7 +14,7 @@
               depressed
               text
               :large="$isWideScreen"
-              @click="openPxPortal(pxPortalLogIn)"
+              @click="openPxPortal(pxPortalSignUp)"
             ).text-none.font-weight-semibold.mr-2.font-16 Sign up
             v-btn(
               color="primary"

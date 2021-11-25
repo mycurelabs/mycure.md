@@ -15,23 +15,15 @@
               autoresize
               :max-lines="2"
               :class="[nameClass]"
-            ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
-          //- div(:class="{'text-center': $isMobile}").info--text.font-weight-semibold
-          //-   v-clamp(
-          //-     v-if="hasSpecialties"
-          //-     autoresize
-          //-     :max-lines="1"
-          //-   ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
-          //-   span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
-            //- v-chip(v-if="doctor.doc_website" color="secondary" outlined x-small).mt-1 verified
+            ).font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
           v-row(align="start").mt-2
-            v-icon(color="secondary" v-bind="iconBindings").mt-3 mdi-medical-bag
+            v-icon(color="secondary" v-bind="iconBindings").mt-3 {{ mdiMedicalBag }}
             v-col.font-gray
               span(:class="sectionHeaderClass") Specialization
               p(v-if="hasSpecialties").font-weight-semibold.mb-0 {{ specialtiesText }}&nbsp;&nbsp;
               p(v-else).font-weight-light.font-italic.mb-0.grey--text.text--lighten-1 No information
           v-row(:class="{'mt-2': !minified}" align="start")
-            v-icon(color="secondary" v-bind="iconBindings").mt-3 mdi-briefcase-variant-outline
+            v-icon(color="secondary" v-bind="iconBindings").mt-3 {{ mdiBriefcaseVariantOutline }}
             v-col.font-gray
               span(:class="sectionHeaderClass") Experience
               v-clamp(
@@ -45,7 +37,7 @@
                 :max-lines="1"
               ).font-weight-light.font-italic.grey--text.text--lighten-1 No information
           v-row(v-if="!minified" :class="{'mt-2': !minified}" align="start")
-            v-icon(color="secondary" v-bind="iconBindings").mt-3 mdi-information-outline
+            v-icon(color="secondary" v-bind="iconBindings").mt-3 {{ mdiInformationOutline }}
             v-col.font-gray
               span(:class="sectionHeaderClass") About
               v-clamp(
@@ -64,7 +56,7 @@
           :href="!readOnly && bookTeleconsultURL"
           :disabled="!hasTeleconsult"
         ).text-none.font-12.mx-1
-          v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
+          v-icon(small left) {{ hasTeleconsult ? mdiVideoOutline : mdiClose }}
           span Online Consult
         v-btn(
           color="success"
@@ -72,7 +64,7 @@
           :disabled="!isAvailable"
           :href="!readOnly && bookPhysicalURL"
         ).text-none.font-12.mx-1
-          v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
+          v-icon(small left) {{ isAvailable ? mdiStethoscope : mdiClose }}
           span Visit Doctor
       v-card-actions(v-else).pa-0
         v-row(justify="center")
@@ -86,13 +78,22 @@
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                 ).text-none.elevation-0.rounded-pill
-                  v-icon mdi-open-in-new
+                  v-icon {{ mdiOpenInNew }}
                   span.generic-button-text &nbsp;View Profile
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
+import {
+  mdiOpenInNew,
+  mdiClose,
+  mdiStethoscope,
+  mdiVideoOutline,
+  mdiInformationOutline,
+  mdiBriefcaseVariantOutline,
+  mdiMedicalBag,
+} from '@mdi/js';
 import uniqBy from 'lodash/uniqBy';
 import { formatAddress } from '~/utils/formats';
 
@@ -152,6 +153,18 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return {
+      // Icons
+      mdiOpenInNew,
+      mdiClose,
+      mdiStethoscope,
+      mdiVideoOutline,
+      mdiInformationOutline,
+      mdiBriefcaseVariantOutline,
+      mdiMedicalBag,
+    };
   },
   computed: {
     hasDoctorWebsite () {

@@ -41,7 +41,7 @@
         )
           v-card.text-center.rounded-xl.pa-8
             v-card-text
-              v-icon(color="primary" size="100px") mdi-map-marker-outline
+              v-icon(color="primary" size="100px") {{ mdiMapMarkerOutline }}
               v-row(justify="center").mt-5
                 v-col(cols="10")
                   h2.font-weight-bold.black--text Enable Location Services
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { mdiMapMarkerOutline } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
@@ -100,6 +101,7 @@ export default {
         color: null,
       },
       showSnack: false,
+      mdiMapMarkerOutline,
     };
   },
   head () {

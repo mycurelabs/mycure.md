@@ -28,6 +28,7 @@ const mapPackageInclusions = (plan, organizationType) => {
       valid: true,
     });
   } else {
+    // UI replacement
     inclusions.push({
       text: 'Unlimited Patients',
       valid: true,
@@ -35,6 +36,7 @@ const mapPackageInclusions = (plan, organizationType) => {
   }
 
   // Storage
+  // - Storage base is GB based.
   const storageValue = storageMax.base < 1 ? `${storageMax.base * 1000} MB Storage` : `${storageMax.base} GB Storage`;
   inclusions.push({
     text: storageValue,
@@ -88,6 +90,8 @@ const mapPackageInclusions = (plan, organizationType) => {
     return inclusions;
   }
 
+  // Non-doctor items
+  
   // Works Offline
   inclusions.push({
     text: 'Works Offline',
@@ -246,7 +250,9 @@ export const getSubscriptionPackages = async ({ types }) => {
  * @returns {Array} packages
  */
 export const getSubscriptionPackagesPricing = async (type, { isBooking = false } = {}) => {
+  // This is all the packages: both month and year
   const packages = await getSubscriptionPackages({ types: [type] });
+  // This is just the monthly packages
   const plans = packages.filter(pack => pack.planInterval === 'month') || [];
 
   if (!plans.length) return [];

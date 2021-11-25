@@ -17,18 +17,18 @@
               img(:src="picUrl").img-border
             br
             br
-            span.font-weight-bold.mc-title-set-2 Dr. {{ fullName }}
+            h1.font-weight-bold.mc-title-set-2 {{ fullName }}
             v-row(justify="center").mc-content-set-5.black--text
               //- Professional Info
               v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
                 span {{ specialties.slice(0, 3).join(', ')}}
-                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{practicingYears}} Years of Experience
+                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
               v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
                 v-avatar(size="50" :color="metric.color").lighten-3
-                  v-icon(:color="metric.color").darken-1 {{ metric.icon }}
+                  v-icon(:color="metric.color" size="30").darken-1 {{ metric.icon }}
                 br
                 span.lh-title
                   span.font-14.font-weight-bold {{ metricData[metric.value] }}
@@ -49,6 +49,11 @@
 
 <script>
 import SocialSharing from 'vue-social-sharing';
+import {
+  mdiEye,
+  mdiPulse,
+  mdiBookshelf,
+} from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import canUseWebp from '~/utils/can-use-webp';
 export default {
@@ -103,19 +108,19 @@ export default {
   data () {
     this.metricMappings = [
       {
-        icon: 'mdi-eye',
+        icon: mdiEye,
         title: 'views',
         value: 'websiteVisits',
         color: 'info',
       },
       {
-        icon: 'mdi-pulse',
+        icon: mdiPulse,
         title: 'lives saved',
         value: 'patients',
         color: 'error',
       },
       {
-        icon: 'mdi-bookshelf',
+        icon: mdiBookshelf,
         title: 'records',
         value: 'records',
         color: 'success',

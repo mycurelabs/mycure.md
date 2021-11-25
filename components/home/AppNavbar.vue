@@ -9,7 +9,7 @@
     ).nav-bar
       v-container.pa-0
         v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          generic-panel(:column="$isMobile ? 12 : $vuetify. breakpoint.width < 1200 ? '11' : '10'" disable-parent-padding)
             v-col.d-flex
               nuxt-link(to="/")
                 img(
@@ -30,7 +30,7 @@
                         large
                       ).text-none.font-12.font-weight-medium
                         | {{ nav.name }}
-                        v-icon(small right) mdi-chevron-down
+                        v-icon(small right) {{ mdiChevronDown }}
                     v-list
                       v-list-item(
                         v-for="(item, key) in nav.menuItems"
@@ -72,7 +72,7 @@
                 ).text-none.font-12.font-weight-medium SIGN UP
               template(v-else)
                 v-spacer
-                v-app-bar-nav-icon(@click.stop="drawer = !drawer")
+                v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
 
     v-navigation-drawer(
       v-if="$isMobile"
@@ -87,11 +87,12 @@
         img(
           src="~/assets/images/mycure-logo-white.png"
           width="120"
+          height="34.46px"
           alt="MYCURE logo"
         )
         v-spacer
         v-btn(icon @click="drawer = false")
-          v-icon mdi-close
+          v-icon {{ mdiClose }}
       v-list(dense nav)
         template(v-for="nav in navs")
           v-list-group(v-if="nav.isMenu" dark).elevation-0
@@ -131,6 +132,7 @@
 </template>
 
 <script>
+import { mdiChevronDown, mdiClose, mdiMenu } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
 import inPh from '~/utils/in-ph';
@@ -187,6 +189,10 @@ export default {
       drawer: false,
       inPh: false,
       loading: false,
+      // Icons.
+      mdiChevronDown,
+      mdiClose,
+      mdiMenu,
     };
   },
   async created () {

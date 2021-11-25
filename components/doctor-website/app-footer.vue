@@ -45,13 +45,7 @@
                   @click="toggleChat"
                 ).text-none.letter-spacing-normal Send us your feedback
               div(:class="{'flex-column': $isMobile}").d-flex
-                  v-btn(
-                  to="/directory/results?searchMode=account"
-                  text
-                  color="secondary"
-                ).text-none.letter-spacing-normal.font-weight-bold See more Doctors
-                  span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-                  v-btn(
+                v-btn(
                   to="/signup/health-facilities?type=doctor"
                   text
                   color="secondary"

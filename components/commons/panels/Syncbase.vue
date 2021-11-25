@@ -2,7 +2,7 @@
   v-container
     v-row(justify="center")
       generic-sub-page-panel(
-        content-right
+        :content-right="version !== 1"
         :title="panelTitle"
         :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
@@ -11,7 +11,7 @@
         :hide-btn="hideBtn"
       )
         div(v-if="version === 1" slot="super-title")
-          p(:class="{ 'text-center' : $isMobile }").primary--text.mc-content-set-1.font-open-sans.font-weight-semibold MYCURE Online & Offline
+          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold MYCURE ONLINE & OFFLINE
         div(slot="content")
           template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
@@ -30,8 +30,8 @@
           //- ).text-none.button
           div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
-              span(:class="[{'font-14':  $isMobile}, {'font-s':  $isRegularScreen}, {'font-m':  $isWideScreen}]").primary--text Learn about MYCURE Syncbase
-              v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
+              span.mc-hyp1.primary--text Learn about MYCURE Syncbase
+              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
               color="success"
@@ -41,7 +41,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               @click="syncbaseVideoDialog = true"
             ).text-none
-                v-icon(left) mdi-play-circle
+                v-icon(left) {{ mdiPlayCircle }}
                 span.generic-button-text Watch how it works
         template(slot="image")
           div.vid-container
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mdiPlayCircle, mdiArrowRight } from '@mdi/js';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
   components: {
@@ -85,17 +86,14 @@ export default {
     },
   },
   data () {
-    this.headerClasses = [
-      'mc-title-set-2',
-      'font-weight-semibold',
-      'primary--text',
-    ];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.btnClasses = ['mc-button-set-1'];
-    this.centerPanelTitleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold', 'primary--text'];
+    this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-btn1'];
+    this.centerPanelTitleClasses = ['mc-h2'];
+    this.headerClasses = ['mc-h2', 'primary--text'];
     return {
       syncbaseVideoDialog: false,
+      mdiPlayCircle,
+      mdiArrowRight,
     };
   },
   computed: {

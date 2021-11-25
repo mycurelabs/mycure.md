@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
         v-container
-          v-row(align="center" justify="center" :class="$isMobile? ( type === 'account' ? 'results-margin-mobile' : 'results-margin-mobile-org') : 'results-margin' ").results-summary
+          v-row(align="center" justify="center").results-summary.results-margin
             v-col(v-if="!loading" cols="12" :class="{'text-center': $isMobile}")
               v-row(align="center")
                 v-col(align="start")
@@ -44,10 +44,13 @@
                 v-model="page"
                 :length="itemsLength"
                 :total-visible="totalVisible"
+                :next-icon="mdiChevronRight"
+                :prev-icon="mdiChevronLeft"
               )
 </template>
 
 <script>
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import ClinicSearchCard from '~/components/directory/ClinicSearchCard';
 import DocSearchCard from '~/components/directory/DocSearchCard';
 
@@ -104,6 +107,13 @@ export default {
       default: null,
     },
   },
+  data () {
+    return {
+      // icons
+      mdiChevronRight,
+      mdiChevronLeft,
+    };
+  },
   computed: {
     page: {
       get () {
@@ -133,18 +143,6 @@ export default {
 }
 
 .results-margin {
-  margin-top: 280px;
-}
-.results-margin-mobile {
-  margin-top: 230px;
-}
-.results-margin-mobile-org {
-  margin-top: 300px;
-}
-
-@media screen and (max-width: 970px) {
-  .results-margin {
-    margin-top: 330px;
-  }
+  margin-top: 200px;
 }
 </style>

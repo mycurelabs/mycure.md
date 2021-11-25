@@ -95,11 +95,11 @@ export default {
       Disallow: () => '/payment',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
-    {
-      UserAgent: '*',
-      Disallow: () => '/signup',
-      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
-    },
+    // {
+    //   UserAgent: '*',
+    //   Disallow: () => '/signup',
+    //   Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    // },
     {
       UserAgent: '*',
       Disallow: () => '/forgot-password',
@@ -120,6 +120,11 @@ export default {
     {
       UserAgent: '*',
       Disallow: () => '/pharmacy',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/directory/results',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
   ],
@@ -148,6 +153,7 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
     optionsPath: './vuetify.options.js',
+    defaultAssets: false,
   },
 
   // Google Analytics Module
@@ -173,16 +179,18 @@ export default {
     hostname: process.env.WEB_MAIN_URL,
     gzip: true,
     exclude: [
-      '/signup/*',
+      // '/signup/*',
       '/payment/*',
       '/forgot-password',
       '/csi',
       '/hospitals',
       '/pharmacy',
+      '/directory/results',
     ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCss: true,
     transpile: [
       'vue-clamp',
       'resize-detector',
