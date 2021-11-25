@@ -151,14 +151,6 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
-  position: relative;
-  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
-}
-.content {
-  z-index: 3;
-  position: relative;
-}
 .line-spacing-title {
   line-height: 1.25em;
 }

@@ -43,4 +43,8 @@ export default {
 .pre-white-space {
   white-space: pre;
 }
+.page-container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 </style>
