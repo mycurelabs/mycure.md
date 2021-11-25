@@ -44,10 +44,13 @@
                 v-model="page"
                 :length="itemsLength"
                 :total-visible="totalVisible"
+                :next-icon="mdiChevronRight"
+                :prev-icon="mdiChevronLeft"
               )
 </template>
 
 <script>
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import ClinicSearchCard from '~/components/directory/ClinicSearchCard';
 import DocSearchCard from '~/components/directory/DocSearchCard';
 
@@ -103,6 +106,13 @@ export default {
       type: Number,
       default: null,
     },
+  },
+  data () {
+    return {
+      // icons
+      mdiChevronRight,
+      mdiChevronLeft,
+    };
   },
   computed: {
     page: {

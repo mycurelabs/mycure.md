@@ -18,10 +18,13 @@
         v-pagination(
           v-model="page"
           :length="length"
+          :next-icon="mdiChevronRight"
+          :prev-icon="mdiChevronLeft"
         )
 </template>
 
 <script>
+import { mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 // import VueScrollTo from 'vue-scrollto';
 import FacilityItem from './FacilityItem';
 export default {
@@ -57,6 +60,9 @@ export default {
   data () {
     return {
       page: 1,
+      // icons
+      mdiChevronRight,
+      mdiChevronLeft,
     };
   },
   computed: {
