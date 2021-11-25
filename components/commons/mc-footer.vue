@@ -1,95 +1,90 @@
 <template lang="pug">
-  div(v-if="!loading").footer-gray
-     v-container.pa-0
-        v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-            v-col(cols="12")
-              v-row(v-if="!$isMobile").mt-4.justify-space-around
+  v-container(v-if="!loading" fluid).footer-gray
+    v-row(justify="center")
+      generic-panel(disable-parent-padding :row-bindings="{ justify: 'center' }")
+        v-col(cols="12")
+          v-row(v-if="!$isMobile" justify="center").mt-4
+            v-col(cols="12").text-center
+              img(
+                src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+                alt="White MYCURE Logo"
+                width="150px"
+                height="41.89px"
+              )
+            v-col(cols="11")
+              v-row(justify="center")
                 template(v-for="(footerItem, index) in footerItems")
-                  v-col(cols="6" md="2").footer-section.shrink
-                    p(v-if="footerItem.type === 'footer-header'").font-poppins.mc-h4.mt-3 {{ footerItem.value.toUpperCase() }}
-                    img(
-                      v-else-if="footerItem.type === 'footer-logo'"
-                      src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-                      alt="White MYCURE Logo"
-                      width="150px"
-                      height="41.89px"
-                    )
+                  v-col.grow.footer-section
+                    p(v-if="footerItem.type === 'footer-header'").font-poppins.primary--text.mc-h4.mt-3 {{ footerItem.value.toUpperCase() }}
                     div(v-for="(col, index) in footerItem.columns").my-3
                       a(
                         v-if="col.type === 'link'"
                         :href="col.link"
-                      ).mc-hyp2-no-font-style.d-block {{col.value}}
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
                       a(
                         v-else-if="col.type === 'email'"
                         :href="`mailto:${col.value}`"
-                      ).mc-hyp2-no-font-style.d-block {{col.value}}
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
                       a(
                         v-else-if="col.type === 'chat'"
                         @click.stop="toggleChat()"
-                      ).mc-hyp2-no-font-style.d-block {{col.value}}
-                      span(v-else).primary--text.mc-hyp2-no-font-style.d-block {{col.value}}
-              v-row(v-if="$isMobile")
-                v-col(cols="12").text-center.mt-3
-                  img(
-                    src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-                    alt="White MYCURE Logo"
-                    width="150px"
-                    height="41.89px"
-                  )
-                  template(v-for="(col, index) in footerItems[0].columns")
-                    a(
-                      v-if="col.type === 'email'"
-                      :href="`mailto:${col.value}`"
-                    ).black--text.d-block.font-14 {{col.value}}
-                    span(v-else).black--text.d-block.font-14 {{ col.value }}
-                v-expansion-panels(flat).footer-gray.elevation-0.mx-2
-                  v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
-                    template(v-if="footerItem.type === 'footer-header'")
-                      v-expansion-panel-header.primary--text {{ footerItem.value }}
-                        template(v-slot:actions)
-                          v-icon(color="primary") {{ mdiChevronDown }}
-                      template(v-for="(col, index) in footerItem.columns")
-                        v-expansion-panel-content
-                          a(
-                            v-if="col.type === 'link'"
-                            :href="col.link"
-                            target="_blank"
-                            el="noopener noreferrer"
-                          ).black--text.d-block.font-14 {{col.value}}
-                          a(
-                            v-if="col.type === 'phone'"
-                            :href="`tel:${col.value}`"
-                          ).black--text.d-block.font-14 {{col.value}}
-                          a(
-                            v-if="col.type === 'email'"
-                            :href="`mailto:${col.value}`"
-                          ).black--text.d-block.font-14 {{col.value}}
-                          a(
-                            v-if="col.type === 'chat'"
-                            @click.stop="toggleChat()"
-                          ).black--text.d-block.font-14 {{col.value}}
-              v-row(align="center" no-gutters).mt-10
-                v-col(
-                  :class="{ 'text-center order-last' : $isMobile }"
-                  cols="12"
-                  md="7"
-                ).font-14
-                  span.call-number.black--text Copyright &copy; {{ new Date().getFullYear() }}
-                    a(href="https://mycure.md" rel="noopener noreferrer")
-                      strong.primary--text &nbsp;MYCURE Inc.&nbsp;
-                  span.call-number.black--text #[br(v-if="$isMobile")] All Rights Reserved.
-                v-col(v-if="$isMobile" cols="12")
-                  hr.mb-4
-                v-col(
-                  :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
-                  cols="12"
-                  md="5"
-                )
-                  template(v-for="(account, key) in socMed")
-                    a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                      img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
-</template>
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                      span(v-else).item-link.mc-hyp2-no-font-style.d-block {{col.value}}
+          v-row(v-else-if="$isMobile")
+            v-col(cols="12").text-center.mt-3
+              img(
+                src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+                alt="White MYCURE Logo"
+                width="150px"
+                height="41.89px"
+              )
+            v-expansion-panels(flat).footer-gray.elevation-0.mx-2
+              v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
+                template(v-if="footerItem.type === 'footer-header'")
+                  v-expansion-panel-header.primary--text {{ footerItem.value }}
+                    template(v-slot:actions)
+                      v-icon(color="primary") {{ mdiChevronDown }}
+                  template(v-for="(col, index) in footerItem.columns")
+                    v-expansion-panel-content
+                      a(
+                        v-if="col.type === 'link'"
+                        :href="col.link"
+                        target="_blank"
+                        el="noopener noreferrer"
+                      ).black--text.d-block.font-14 {{col.value}}
+                      a(
+                        v-if="col.type === 'phone'"
+                        :href="`tel:${col.value}`"
+                      ).black--text.d-block.font-14 {{col.value}}
+                      a(
+                        v-if="col.type === 'email'"
+                        :href="`mailto:${col.value}`"
+                      ).black--text.d-block.font-14 {{col.value}}
+                      a(
+                        v-if="col.type === 'chat'"
+                        @click.stop="toggleChat()"
+                      ).black--text.d-block.font-14 {{col.value}}
+          v-row(align="center" justify="center").mt-10
+            v-col(
+              :class="{ 'text-center order-last' : $isMobile }"
+              cols="12"
+              md="7"
+            ).font-14
+              span.call-number.black--text Copyright &copy; {{ new Date().getFullYear() }}
+                a(href="https://mycure.md" rel="noopener noreferrer")
+                  strong.primary--text &nbsp;MYCURE Inc.&nbsp;
+              span.call-number.black--text #[br(v-if="$isMobile")] All Rights Reserved.
+            v-col(v-if="$isMobile" cols="12")
+              hr.mb-4
+            v-col(
+              :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
+              cols="12"
+              md="4"
+            )
+              template(v-for="(account, key) in socMed")
+                a(:href="account.link" target="_blank" rel="noopener noreferrer")
+                  img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
+  </template>
 
 <script>
 import { mdiChevronDown } from '@mdi/js';
@@ -101,15 +96,6 @@ export default {
   data () {
     return {
       footerItems: [
-        {
-          type: 'footer-logo',
-          columns: [
-            { type: 'email', value: 'hello@mycure.md' },
-            { type: 'phone', value: 'PH: (+632) 7799 6262' },
-            { type: 'phone', value: 'PH: (+63) 917 303 4350' },
-            { type: 'phone', value: 'US: 1-671-646-2733' },
-          ],
-        },
         {
           type: 'footer-header',
           value: 'About',
@@ -150,6 +136,16 @@ export default {
           columns: [
             { type: 'link', value: 'Terms of Use', link: '/terms' },
             { type: 'link', value: 'Privacy Policy', link: '/privacy-policy' },
+          ],
+        },
+        {
+          type: 'footer-header',
+          value: 'Contact Us',
+          columns: [
+            { type: 'email', value: 'hello@mycure.md' },
+            { type: 'phone', value: 'PH: (+632) 7799 6262' },
+            { type: 'phone', value: 'PH: (+63) 917 303 4350' },
+            { type: 'phone', value: 'US: 1-671-646-2733' },
           ],
         },
       ],
@@ -210,5 +206,9 @@ a {
 
 .v-expansion-panel-header__icon i{
   color: #009fdf;
+}
+
+.item-link {
+  color: #6F6F6F;
 }
 </style>
