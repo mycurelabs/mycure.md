@@ -25,7 +25,7 @@
               :image-file-extension="$useWebp? '.webp' : '.png'"
             )
             br
-            h3.mc-b2.font-open-sans.font-gray {{ tool.name }}
+            h3.mc-h4.font-open-sans.font-gray {{ tool.name }}
             br
 </template>
 
