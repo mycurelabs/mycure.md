@@ -17,8 +17,12 @@
                   v-col.grow.footer-section
                     p(v-if="footerItem.type === 'footer-header'").font-poppins.primary--text.mc-h4.mt-3 {{ footerItem.value.toUpperCase() }}
                     div(v-for="(col, index) in footerItem.columns").my-3
-                      a(
+                      nuxt-link(
                         v-if="col.type === 'link'"
+                        :to="col.link"
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                      a(
+                        v-else-if="col.type === 'external'"
                         :href="col.link"
                       ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
                       a(
@@ -102,8 +106,8 @@ export default {
           columns: [
             // { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/fight-covid-19' },
             { type: 'link', value: 'Our Story', link: '/our-story' },
-            { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
-            { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },
+            { type: 'external', value: 'Blog', link: 'https://blog.mycure.md' },
+            { type: 'external', value: 'Careers', link: 'https://culture.mycure.md/' },
           ],
         },
         {
