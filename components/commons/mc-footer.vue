@@ -202,7 +202,7 @@ export default {
 
 <style scoped>
 .footer-gray {
-  background-color: #f0f0f0!important;
+  background-color: #F9F9F9!important;
 }
 a {
   text-decoration: none !important;
