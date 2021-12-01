@@ -6,21 +6,23 @@
           v-row.pa-3
             h2.mc.h2 {{ title }}
             v-spacer
-            v-btn(icon)
+            v-btn(v-if="items.length > 3" icon)
               v-icon(color="primary" @click="showPrev()") {{ mdiArrowLeftThinCircleOutline }}
-            v-btn(icon)
+            v-btn(v-if="items.length > 3" icon)
               v-icon(color="primary" @click="showNext()") {{ mdiArrowRightThinCircleOutline }}
         v-col(cols="12")
-          vue-slick-carousel(
-            ref="carousel"
-            draggable
-            :slidesToShow="3",
-          )
-            div(v-for="(item,key) in items" :key="key")
-              v-col(cols="10").pa-0
-                picture-source(v-bind="getImageBindings(item.imageBindings)")
-                h3.mc-h3.mb-4 {{ item.title }}
-                p.mc-b3 {{ item.description }}
+          v-row(justify="center")
+            v-col(:cols="noOfItems < 3 ? '8' : '12'" )
+              vue-slick-carousel(
+                ref="carousel"
+                draggable
+                :slidesToShow="noOfItems",
+              )
+                div(v-for="(item,key) in items" :key="key")
+                  v-col(cols="10").pa-0
+                    picture-source(v-bind="getImageBindings(item.imageBindings)")
+                    h3.mc-h3.mb-4 {{ item.title }}
+                    p.mc-b3 {{ item.description }}
 </template>
 
 <script>
@@ -43,6 +45,10 @@ export default {
     items: {
       type: Array,
       default: null,
+    },
+    noOfItems: {
+      type: Number,
+      default: 3,
     },
   },
   data () {

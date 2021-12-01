@@ -198,7 +198,7 @@ export default {
         description: 'MYCURE Telehealth is the latest generation in online practice management systems. Its intuitive interface makes is easy to use for everyone on staff – from the providers to the administrative team. Your team will be able to pull up your telemedicine patients’ medical records in a snap without wading through mountains of paperwork. ',
         video: 'https://www.youtube.com/embed/9gxJX_eokC0',
         imageBindings: {
-          customPath: 'clinics/',
+          customPath: 'telehealth/',
           image: 'video-preview',
           imageFileExtension: '.png',
           extensionExclusive: true,

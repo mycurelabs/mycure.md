@@ -153,7 +153,6 @@
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
-            v-icon(left) {{ mdiWeb }}
             span.mc-btn1 Join Today
     lazy-hydrate(when-visible)
       generic-media-panel(

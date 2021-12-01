@@ -18,7 +18,20 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    //- stakes
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="stakesContent"
+          :title-classes="headerClasses"
+          :content-classes="descriptionClasses"
+          hide-btn
+        )
+          template(slot="content")
+            v-col(cols="12")
+              v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
+                v-icon(color="red" small) {{ mdiClose }}
+                v-col.pa-0.mb-1
+                  p.mc-list-b3.mb-0.ml-2 {{ item }}
     lazy-hydrate(when-visible)
       workflow
     lazy-hydrate(when-visible)
@@ -255,6 +268,30 @@ export default {
         if (this.$isRegularScreen) return '621.8px';
         return '950.79px';
       }
+    },
+    stakesContent () {
+      return {
+        title: 'Placeholder Problem Statement',
+        itemList: [
+          'Wasted time and resources',
+          'Long wait times',
+          'Overworked staff',
+          'Cancelled appointments',
+          'Frustrated patients',
+          'Error-prone reports',
+          'Compliance issues',
+        ],
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'dental-the-stakes.png',
+          mobileImage: 'dental-the-stakes.png',
+          imageAlt: 'Doctor with tons of paper work',
+          customPath: 'clinics/dental/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '222.55px' : '359.11px'),
+        },
+      };
     },
   },
   created () {

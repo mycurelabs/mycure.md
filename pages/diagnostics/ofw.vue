@@ -108,7 +108,7 @@
         :content="['MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your practice, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.']"
       )
     lazy-hydrate(when-visible)
-      scroller(title="placeholder" :items="carouselItems")
+      scroller(title="placeholder" :items="carouselItems" :no-of-items="2")
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         generic-media-panel(
