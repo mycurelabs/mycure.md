@@ -54,8 +54,6 @@ export default {
       mdiArrowRightThinCircleOutline,
     };
   },
-  computed: {
-  },
   methods: {
     showNext () {
       this.$refs.carousel.next();

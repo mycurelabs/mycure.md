@@ -69,7 +69,7 @@
               )
               span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     lazy-hydrate(when-visible)
-        generic-video-panel(:content="telehealthVideo" not-white)
+      generic-video-panel(:content="telehealthVideo" not-white)
     client-only
       lazy-hydrate(when-idle)
         pricing(
