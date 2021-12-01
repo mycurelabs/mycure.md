@@ -8,7 +8,8 @@
         v-row(justify="center" align="center")
           v-col(cols="12" sm="5")
             h2(v-if="content.title").mc-h2.white--text.mb-5 {{ content.title }}
-            p(v-if="content.description").mc-b2.white--text {{ content.description }}
+            slot(name="description")
+              p(v-if="content.description").mc-b2.white--text {{ content.description }}
             div(v-if="!hideBtn" :class="{ 'text-center': $isMobile }")
               slot(name="button")
                 signup-button(

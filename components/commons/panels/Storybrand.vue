@@ -10,7 +10,7 @@
               v-col(cols="12").px-10
                 div(v-for="paragraph in content")
                   p(:class="$isWideScreen ? 'mb-8' : 'mb-5'").mc-b2.font-gray.font-open-sans {{ paragraph }}
-              v-col(cols="12" :class="$isMobile ? 'text-center' : 'text-right'")
+              v-col(cols="12" :class="$isMobile || isCenter ? 'text-center' : 'text-right'")
                 signup-button(
                   depressed
                   color="primary"
@@ -43,6 +43,10 @@ export default {
     title: {
       type: String,
       default: '',
+    },
+    isCenter: {
+      type: Boolean,
+      default: false,
     },
     content: {
       type: Array,
