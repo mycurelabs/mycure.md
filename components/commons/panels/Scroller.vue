@@ -1,43 +1,41 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      generic-panel(column="12")
+      generic-panel
         v-col(cols="12")
-          v-row
+          v-row.pa-3
             h2.mc.h2 {{ title }}
             v-spacer
-            v-btn(icon :disabled="false")
-              v-icon(color="primary" @click="showNext") {{ mdiArrowLeftThinCircleOutline }}
-            v-btn(icon :disabled="false")
-              v-icon(color="primary" @click="showPrev") {{ mdiArrowRightThinCircleOutline }}
+            v-btn(icon)
+              v-icon(color="primary" @click="showPrev()") {{ mdiArrowLeftThinCircleOutline }}
+            v-btn(icon)
+              v-icon(color="primary" @click="showNext()") {{ mdiArrowRightThinCircleOutline }}
         v-col(cols="12")
           vue-slick-carousel(
             ref="carousel"
             draggable
-            :dots="false"
-            :arrows="false"
             :slidesToShow="3",
           )
             div(v-for="(item,key) in items" :key="key")
-              v-col(cols="12")
-              picture-source(v-bind="getImageBindings(item.imageBindings)")
-              h3.mc-h3 {{ item.title }}
-              p.mc-b3 {{ item.description }}
+              v-col(cols="10").pa-0
+                picture-source(v-bind="getImageBindings(item.imageBindings)")
+                h3.mc-h3.mb-4 {{ item.title }}
+                p.mc-b3 {{ item.description }}
 </template>
 
 <script>
 import { mdiArrowLeftThinCircleOutline, mdiArrowRightThinCircleOutline } from '@mdi/js';
 import VueSlickCarousel from 'vue-slick-carousel';
 import GenericPanel from '~/components/generic/GenericPanel';
-import PricingCard from '~/components/commons/PricingCard';
 import SignupButton from '~/components/commons/SignupButton';
+import PictureSource from '~/components/commons/PictureSource';
 // import canUseWebp from '~/utils/can-use-webp';
 export default {
   components: {
     VueSlickCarousel,
     GenericPanel,
-    PricingCard,
     SignupButton,
+    PictureSource,
   },
   props: {
     hasTrialOption: {

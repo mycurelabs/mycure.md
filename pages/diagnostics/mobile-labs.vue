@@ -6,31 +6,46 @@
         has-custom-background
         background-image="Mobile-Clinics-Full"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
-        title="The simplest LIS for Mobile Labs"
-        meta-title="MYCURE LIS for Mobile Labs"
-        description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
-        btn-text="Get Started"
+        title="The Simplest Clinic Management System for Mobile Labs"
+        meta-title="MYCURE MOBILE LABS"
+        description="MYCURE Diagnostics is an easy to use, secure, cloud based clinic information system that you can set up no matter where your mobile labs clinic is based."
+        btn-text="Start Free Today"
         image="Mobile-Clinics-Mobile-Version"
         custom-image-path="diagnostics/mobile-labs/"
         parse-title
         parse-meta-title
-        :parse-title-fields="['LIS ']"
+        :parse-title-fields="['Clinic ', 'System ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-
-    //- 2nd panel
+    //- stakes
     lazy-hydrate(when-visible)
       workflow
-
-    //- 3rd panel
+    lazy-hydrate(when-visible)
+      generic-blue-bg
+        generic-media-panel(
+          :content="fourthPanel"
+          :title-classes="[...headerClasses, 'white--text']"
+          :content-classes="[...descriptionClasses, 'white--text']"
+          hide-btn
+        )
+          div(slot="additional-content")
+            signup-button(
+              depressed
+              color="success"
+              event-label="signup"
+              class="rounded-lg"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+            ).text-none
+              span.mc-btn1 Start for Free
     v-container
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" md="8").text-center
-              h2(:class="headerClasses").font-weight-semibold.mb-5 Create beautiful reports for your clients.
-              p(:class="descriptionClasses").mb-10.font-open-sans.font-gray Provide both printed and online copies of their medical exam results without the hassle.
+            v-col(cols="12" mmd="6").text-center
+              h2(:class="headerClasses").font-weight-semibold.mb-5 Advanced Tools for a Growing Mobile Lab
+              p(:class="descriptionClasses").mb-10.font-open-sans.font-gray We’re here to make managing your mobile lab so much easier. We offer full functionality for our free clinic management system accounts, and you only need to upgrade as your mobile lab grows. We’re here to help you make the world a healthier place.
             v-col(cols="12").text-center
               v-row.justify-center.gutterless
                 v-col(cols="6" md="3").pa-0
@@ -68,79 +83,56 @@
                     :image-width="$isMobile ? '276px' : ($isRegularScreen ? '945px' : '1445px')"
                     :image-height="reportsPanelImgHeight"
                   )
-
-    //- 4th panel
+    lazy-hydrate(when-visible)
+      mycure-csi(title="Mobile Lab" page="Diagnostics")
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="fifthPanel"
+        :title-classes="headerClasses"
+        :content-classes="descriptionClasses"
+        hide-btn
+      )
+    lazy-hydrate(when-visible)
+      syncbase(:version="2" title="Online or Off, MYCURE Diagnostics Is Here for You")
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="directoryPanel"
-        :title-classes="[...headerClasses, 'primary--text']"
+        :title-classes="headerClasses"
       )
         template(slot="cta-button")
-          v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="10" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
-              signup-button(
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="success"
-              ).text-none
-                v-icon(left) {{ mdiWeb }}
-                span.generic-button-text Create my website
+          div(:class="{'text-center ml-4': $isMobile}")
+            nuxt-link(to="/directory" :class="{'d-flex': !$isMobile}").text-none
+              span.mc-hyp1.primary--text Visit the Directory
+              v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
+    lazy-hydrate(when-idle)
+      care(:metrics-data="metricsData")
     lazy-hydrate(when-visible)
       storybrand(
-        title="Using Modern Tools to Boost Your Practice"
-        :content="storybrandContent"
+        title="Invaluable Practice Management System at an Affordable Price"
+        :content="['MYCURE Diagnostics offers a variety of tools that you can mix and match to maximize efficiency for your mobile lab clinic, without the costly overhead other clinic information systems might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices.']"
       )
-    //- 5th panel
     client-only
       lazy-hydrate(when-idle)
         pricing(
-          title="Take the first step today."
+          title="Take the first step"
+          description="Choose the best plan for your mobile lab. Only pay for what you need."
           type="diagnostic"
         )
-
-    //- 6th panel
     lazy-hydrate(when-visible)
-      call-to-action(:version="4")
-        template(slot="cta-button")
-          v-col(cols="12" md="7" lg="6" xl="5")
-            div(:class="{'text-center': $isMobile}")
-              signup-button(
-                event-label="signup"
-                color="success"
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-              ).text-none
-                span.generic-button-text Get Started
+      steps(:steps="stepsContent" not-free title="Get started today!" description="Joining MYCURE is simple. Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.")
+    lazy-hydrate(when-visible)
+      call-to-action(:version="1")
 
-    //- 7th panel
-    //- div.info.mx-n3
-    //-   v-container
-    //-     v-row(justify="center")
-    //-       generic-panel(:row-bindings="{ justify: 'center' }")
-    //-         v-col(cols="12").white--text.text-center
-    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-    //-           p(:class="descriptionClasses").white--text.mb-5 Start now and get all your questions answered.
-    //-           signup-button(
-    //-             depressed
-    //-             class="rounded-pill"
-    //-             :width="!$isWideScreen ? '228px' : '300'"
-    //-             :height="!$isWideScreen ? '59px' : '73.68'"
-    //-             color="success"
-    //-           ).text-none
-    //-             span.generic-button-text Start Now
 </template>
 
 <script>
 // - utils
 import LazyHydrate from 'vue-lazy-hydration';
-import { mdiWeb } from '@mdi/js';
+import { mdiWeb, mdiChevronRight } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
-import Usp from '~/components/commons/panels/OldSevenWondersUsp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
@@ -148,12 +140,21 @@ export default {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg.vue'),
     PictureSource: () => import('~/components/commons/PictureSource'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Workflow: () => import('~/components/mobile-labs/Workflow'),
     Usp,
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+  },
+  async asyncData (context) {
+    const metricsData = await fetchWebsiteMetrics();
+    return { metricsData };
   },
   data () {
     this.reportMockups = [
@@ -166,18 +167,33 @@ export default {
         value: 'lab',
       },
     ];
+    this.stepsContent = [
+      {
+        title: 'Create your Free Account',
+        description: 'You’ll have your own clinic management system ready for you',
+      },
+      {
+        title: 'Fill out your profile',
+        description: 'You can utilize our range of modules and features',
+      },
+      {
+        title: 'You can utilize our range of modules and features',
+        description: 'Get Started',
+      },
+    ];
     this.storybrandContent = [
       'At MYCURE, we know you are the kind of diagnostic center that prioritizes using modern tools to optimize efficiency and improve operations. In order to be that way, you need a solution that can automate routine tasks that will result in reducing costly errors.',
       'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
       'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
     ];
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1'];
-    this.btnClasses = ['mc-button-set-1'];
+    this.headerClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.btnClasses = ['mc-btn1'];
     return {
       reportType: 'imaging',
       loading: true,
       mdiWeb,
+      mdiChevronRight,
     };
   },
   head () {
@@ -188,15 +204,42 @@ export default {
     });
   },
   computed: {
-    directoryPanel () {
+    fourthPanel () {
       return {
-        title: 'Expand your Reach',
-        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
+        title: 'MYCURE Diagnostics is No Ordinary Practice Management System ',
+        description: 'It’s a platform built for the unique ecosystem of mobile lab clinics. Connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network. ',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'diagnostics/mobile-labs/',
+          extensionExclusive: true,
+          image: 'MYCURE-Mobile-Labs-Solution.png',
+          imageAlt: 'Physicians and health workers',
+        },
+      };
+    },
+    fifthPanel () {
+      return {
+        title: 'Maintain Communication with Clinic Staff',
+        description: 'MYCURE Diagnostics comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days',
         contentAlign: 'right',
         imageBindings: {
-          image: 'expand-your-reach.webp',
-          imageAlt: 'Man browsing a clinic website artwork',
+          customPath: 'doctors-clinics/',
+          image: 'Practice.webp',
+          imageAlt: 'Physicians and health workers',
+          width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+        },
+      };
+    },
+    directoryPanel () {
+      return {
+        title: 'Help Your Patients Find You',
+        description: 'Join MYCURE ONE, a global directory of healthcare providers, so patients can easily find and book appointments',
+        contentAlign: 'left',
+        imageBindings: {
           customPath: 'commons/',
+          image: 'expand-your-reach.webp',
+          imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },

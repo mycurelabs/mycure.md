@@ -129,7 +129,7 @@
                 v-col(cols="10" sm="11" md="11")
                   span.mc-b2.font-open-sans.font-gray {{ item }}
     lazy-hydrate(when-visible)
-      mycure-csi
+      mycure-csi(page="Diagnostics")
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="tenthPanel"
@@ -147,7 +147,7 @@
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           signup-button(
             depressed
-            color="success"
+            color="primary"
             event-label="signup"
             class="rounded-lg"
             :width="!$isWideScreen ? '228px' : '300'"
@@ -159,7 +159,7 @@
       generic-media-panel(
         :content="cmsPanel"
         align="center"
-        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+        :super-title-classes="['mc-h7']"
       )
         template(slot="cta-button")
           div(:class="{'text-center': $isMobile}")
@@ -167,7 +167,7 @@
             mc-btn(
               depressed
               event-label="clinics-info"
-              color="success"
+              color="primary"
               :to="{ name: 'clinics' }"
               class="rounded-lg"
               :width="!$isWideScreen ? '228px' : '300'"
@@ -186,8 +186,7 @@
     client-only
       lazy-hydrate(when-idle)
         pricing(
-          title="Take the first step today"
-          description="Choose the best plan for your diagnostic center. Only pay for what you need."
+          title="It's Time to Take the First Step"
           type="diagnostic"
           has-trial-option
         ).mb-n3
@@ -208,7 +207,6 @@ import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
 import PictureSource from '~/components/commons/PictureSource';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import GenericBlueBg from '~/components/generic/GenericBlueBg.vue';
 
 export default {
   components: {
@@ -219,9 +217,10 @@ export default {
     MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
     PictureSource,
     Pricing: () => import('~/components/commons/panels/Pricing'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    GenericBlueBg,
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg.vue'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Care: () => import('~/components/home/Care'),
     Steps: () => import('~/components/commons/panels/Steps'),

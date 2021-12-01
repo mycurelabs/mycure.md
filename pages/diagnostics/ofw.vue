@@ -54,6 +54,11 @@
                 v-icon(color="white" small) {{ mdiCheckCircle }}
                 v-col.pa-0.mb-1
                   p.mc-list-b3.mb-0.ml-2.white--text {{ item }}
+          //- template(slot="video")
+          //-   div.vid-container
+          //-     video(width="101%" playsinline autoplay muted loop).syncbase-animate
+          //-         source(src="~/assets/videos/PME-package-builder.mov" type="video/mov")
+          //-         | Your browser does not support the video tag.
     v-container.mt-16
       v-row(justify="center")
         lazy-hydrate(when-visible)
@@ -77,7 +82,7 @@
         hide-btn
       ).mb-16
     lazy-hydrate(when-visible)
-      mycure-csi
+      mycure-csi(page="Diagnostics")
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"
@@ -109,7 +114,7 @@
           :content="integrationsPanel"
           hide-btn
           align="center"
-          super-title-classes="mc-h7"
+          :super-title-classes="['mc-h7']"
         )
           template(slot="content")
             v-row(justify="start")
@@ -135,7 +140,8 @@
     client-only
       lazy-hydrate(when-idle)
         pricing(
-          title="Take the first step today."
+          title="It’s Time to Take the First Step"
+          description="Choose the best plan for your clinic. Only pay for what you need."
           type="diagnostic"
         )
     lazy-hydrate(when-visible)
@@ -346,5 +352,8 @@ export default {
 <style scoped>
 .grey-bg {
   background-color: #fafafa;
+}
+.vid-container {
+  overflow: hidden;
 }
 </style>

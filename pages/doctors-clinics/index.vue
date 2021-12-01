@@ -59,7 +59,7 @@
           hide-btn
         )
     lazy-hydrate(when-visible)
-      mycure-csi
+      mycure-csi(page="Doctors")
     lazy-hydrate(when-visible)
       features(
         title="Healthcare Providers Trust MYCURE Doctors"

@@ -22,22 +22,23 @@
                   span.mc-btn1.white--text Get Started Free
           v-spacer(v-if="!$isMobile")
           v-col(cols="12" sm="6" :class="{'text-center': $isMobile}")
-            picture-source(
-              v-if="!showVideo"
-              v-bind="getImageBindings(content.imageBindings)"
-              @click="showVideo = true"
-            )
-            iframe(
-              v-else
-              :width="$isMobile ? '300': '560'"
-              :height="$isMobile ? '168.75': '315'"
-              :src="content.video"
-              title="YouTube video player"
-              frameborder="0"
-              allow="autoplay;"
-              allowfullscreen
-            )
-            //- v-skeleton-loader(type="image" height="100%")
+            slot(name="video")
+              picture-source(
+                v-if="!showVideo"
+                v-bind="getImageBindings(content.imageBindings)"
+                @click="showVideo = true"
+              )
+              iframe(
+                v-else
+                :width="$isMobile ? '300': '560'"
+                :height="$isMobile ? '168.75': '315'"
+                :src="content.video"
+                title="YouTube video player"
+                frameborder="0"
+                allow="autoplay;"
+                allowfullscreen
+              )
+              //- v-skeleton-loader(type="image" height="100%")
 </template>
 
 <script>

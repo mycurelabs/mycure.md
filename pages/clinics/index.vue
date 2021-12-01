@@ -108,7 +108,8 @@
         title="Invaluable Clinic Management System at an Affordable Price"
         :content="storybrandContent"
       )
-    //- carousel component
+    lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
     client-only
@@ -157,6 +158,7 @@ export default {
     Workflow: () => import('~/components/outpatient-clinics/Workflow'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Care: () => import('~/components/home/Care'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
@@ -317,6 +319,72 @@ export default {
           height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
         },
       };
+    },
+    carouselItems () {
+      return [
+        // {
+        //   title: '',
+        //   description: '',
+        //   imageBindings: {
+        //     customPath: 'doctors-clinics/',
+        //     image: 'Practice.webp',
+        //     imageAlt: 'Physicians and health workers',
+        //     width: '100%',
+        //     height: '100%',
+        //   },
+        // },
+        {
+          title: 'A Lifeline for Your Clinic1',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Practice.webp',
+            imageAlt: 'Physicians and health workers',
+          },
+        },
+        {
+          title: 'A Lifeline for Your Clinic2',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Practice.webp',
+            imageAlt: 'Physicians and health workers',
+          },
+        },
+        {
+          title: 'A Lifeline for Your Clinic3',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Practice.webp',
+            imageAlt: 'Physicians and health workers',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'A Lifeline for Your Clinic4',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Practice.webp',
+            imageAlt: 'Physicians and health workers',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'A Lifeline for Your Clinic5',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Practice.webp',
+            imageAlt: 'Physicians and health workers',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {

@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container.my-8
     v-row(justify="center").pa-5
-      v-card(:width="!$isMobile ? '80%' : '100%'" elevation="1" :class="{'px-0': $isMobile}").rounded-xl.pa-10.my-16.gray-bg
+      v-card(:width="!$isMobile ? '80%' : '100%'" elevation="1" :class="{'px-0': $isMobile}" color="#f8f8f8").rounded-xl.pa-10.my-16
         v-card-text(:class="$isMobile ? 'px-0' : ''")
           v-col.pa-0
             v-row(justify="center")
-              v-col(cols="10" align="center")
+              v-col(cols="12" :class="{'text-center': isCenter}").px-10.mb-3
                 span.mc-h2.black--text.mb-16 {{ title }}
               v-col(cols="12").px-10
                 div(v-for="paragraph in content")
@@ -55,9 +55,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.gray-bg {
-  background: #F8F8F8;
-}
-</style>
