@@ -46,13 +46,15 @@
         v-model="itemsPage"
         :length="itemsPaginationLength"
         total-visible="10"
+        :next-icon="mdiChevronRight"
+        :prev-icon="mdiChevronLeft"
       )
       v-spacer
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import { mdiArrowLeft } from '@mdi/js';
+import { mdiArrowLeft, mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import DocItemCard from '../DocItemCard';
 import ServiceItem from './service-item';
 export default {
@@ -109,7 +111,10 @@ export default {
   data () {
     return {
       itemsPage: 1,
+      // icons
       mdiArrowLeft,
+      mdiChevronRight,
+      mdiChevronLeft,
     };
   },
   computed: {

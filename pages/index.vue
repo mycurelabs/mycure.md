@@ -1,9 +1,8 @@
 <template lang="pug">
-  v-container(fluid).white
-    //- Remove for now to test SEO
+  v-container(fluid).white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders.mb-16
+      seven-wonders(style="width: 100vw").mb-16.yellow
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(

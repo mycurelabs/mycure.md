@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.mx-n3.main-container
+  div.main-container
     div
       picture-source(
         image-file-extension="png"
@@ -36,6 +36,7 @@ export default {
 .main-container {
   position: relative;
   background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
+  /* width: 100vw; */
 }
 .content {
   position: relative;

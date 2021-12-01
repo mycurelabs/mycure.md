@@ -163,18 +163,15 @@ $body-color: #72727D;
 
 /*
 Sample Template
-
 classBinder(this, {
   mobile: ['font-m'],
   regular: ['font-l'],
   wide: ['font-xl'],
 });
-
 */
 
 /*
   USP Main title Classes
-
   Note: Feel free to replace this in accordance to the sets
 */
 
@@ -472,11 +469,9 @@ classBinder(this, {
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
     @include mc-font-sizer($h2-std, 48px);
-    line-height: 1.5;
   }
   @media (min-width: $min-xl) {
     @include mc-font-sizer($h2-wide, 72px);
-    line-height: 1.5;
   }
 }
 .mc-h3 {
@@ -520,7 +515,6 @@ classBinder(this, {
 }
 .mc-h6 {
   font-weight: 700 !important;
-  font-family: 'Open Sans', 'sans-serif' !important;
   color: #0099CC;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h6-mob, 24px);
@@ -538,7 +532,6 @@ classBinder(this, {
 }
 .mc-h7 {
   font-weight: 700 !important;
-  font-family: 'Open Sans', 'sans-serif' !important;
   color: #0099CC;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($h7-mob, 18px);
@@ -652,8 +645,19 @@ classBinder(this, {
   }
 }
 .mc-hyp2 {
-  font-family: 'Open Sans', 'sans-serif' !important;
   font-weight: 600 !important; 
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($hyp1-mob, 25px);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($hyp2-std, 20px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($hyp2-wide, 25px);
+  }
+}
+.mc-hyp2-no-font-style {
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;

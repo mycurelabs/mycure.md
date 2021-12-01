@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div.white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
       usp(

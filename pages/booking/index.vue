@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid).white
+  v-container(fluid).white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
       usp(
@@ -141,10 +141,10 @@
                 :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
                 :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
               )
-            br
-            br
-            h2.font-weight-semibold.mc-h3 {{ item.title }}
-            p.font-open-sans.mc-b3 {{ item.description }}
+              br
+              br
+              h2.font-weight-semibold.mc-h3 {{ item.title }}
+              p.font-open-sans.mc-b3 {{ item.description }}
 
     //- 6th panel
     div.mx-n3
@@ -159,7 +159,8 @@
             v-row(justify="center")
               v-col(cols="12" sm="6").pt-0
                 div(:class="{ 'text-center': $isMobile }")
-                  v-btn(
+                  mc-btn(
+                    :to="{ name: 'clinics' }"
                     depressed
                     color="#FOF7FD"
                     class="rounded-lg"
@@ -191,7 +192,7 @@
           v-row(justify="center")
             generic-panel(:row-bindings="{ justify: 'center' }")
               v-col(cols="12" md="8" xl="6").text-center
-                span.mc-h2.lh-title.white--text Create your own appointment scheduling website in less than 10 minutes.
+                span(:class="[$isWideScreen ? 'custom-wide-cta-text' : 'mc-h2']").lh-title.white--text Create your own appointment scheduling website in less than 10 minutes.
                 br
                 br
                 mc-btn(
@@ -411,6 +412,17 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+/*
+  This is just .mc-h2 standard class without other media queries.
+ */
+.custom-wide-cta-text {
+  font-weight: 600 !important;
+  line-height: 48px;
+  font-size: 34px;
+  letter-spacing: -0.5px;
+
 }
 @media screen and (min-width: 1920px) {
   .cta-container {

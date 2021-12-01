@@ -1,7 +1,7 @@
 <template lang="pug">
   generic-blue-bg
-    v-container(:class="{'ml-n6': !$isMobile}")
-      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%', width: '100vw' }").mb-n16
+    v-container
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
@@ -151,14 +151,6 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
-  position: relative;
-  background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);
-}
-.content {
-  z-index: 3;
-  position: relative;
-}
 .line-spacing-title {
   line-height: 1.25em;
 }

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(v-if="!loading" fluid).white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
       usp(

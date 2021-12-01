@@ -1,64 +1,74 @@
 <template lang="pug">
-  div(v-if="!loading").footer-gray
-    v-container
-      v-row(justify="center")
-        v-col(cols="12" md="10")
-          v-row(justify="center" align="center" no-gutters)
-            v-col.text-center
+  v-container(v-if="!loading" fluid).footer-gray
+    v-row(justify="center")
+      generic-panel(disable-parent-padding :row-bindings="{ justify: 'center' }")
+        v-col(cols="12")
+          v-row(v-if="!$isMobile" justify="center").mt-4
+            v-col(cols="12").text-center
               img(
                 src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
                 alt="White MYCURE Logo"
                 width="150px"
                 height="41.89px"
-              ).mt-4
-          v-row(v-if="!$isMobile").mt-4.justify-space-around
-            template(v-for="(footerItem, index) in footerItems")
-              v-col(cols="6" md="3").footer-section
-                h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
-                template(v-for="(col, index) in footerItem.columns")
-                  a(
-                    v-if="col.type === 'link'"
-                    :href="col.link"
-                  ).black--text.d-block.font-14 {{col.value}}
-                  a(
-                    v-if="col.type === 'phone'"
-                    :href="`tel:${col.value}`"
-                  ).black--text.d-block.font-14 {{col.value}}
-                  a(
-                    v-if="col.type === 'email'"
-                    :href="`mailto:${col.value}`"
-                  ).black--text.d-block.font-14 {{col.value}}
-                  a(
-                    v-if="col.type === 'chat'"
-                    @click.stop="toggleChat()"
-                  ).black--text.d-block.font-14 {{col.value}}
-          v-row(v-if="$isMobile")
+              )
+            v-col(cols="11")
+              v-row(justify="center")
+                template(v-for="(footerItem, index) in footerItems")
+                  v-col.grow.footer-section
+                    p(v-if="footerItem.type === 'footer-header'").font-poppins.primary--text.mc-h4.mt-3 {{ footerItem.value.toUpperCase() }}
+                    div(v-for="(col, index) in footerItem.columns").my-3
+                      nuxt-link(
+                        v-if="col.type === 'link'"
+                        :to="col.link"
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                      a(
+                        v-else-if="col.type === 'external'"
+                        :href="col.link"
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                      a(
+                        v-else-if="col.type === 'email'"
+                        :href="`mailto:${col.value}`"
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                      a(
+                        v-else-if="col.type === 'chat'"
+                        @click.stop="toggleChat()"
+                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                      span(v-else).item-link.mc-hyp2-no-font-style.d-block {{col.value}}
+          v-row(v-else-if="$isMobile")
+            v-col(cols="12").text-center.mt-3
+              img(
+                src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+                alt="White MYCURE Logo"
+                width="150px"
+                height="41.89px"
+              )
             v-expansion-panels(flat).footer-gray.elevation-0.mx-2
               v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
-                v-expansion-panel-header(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
-                  template(v-slot:actions)
-                    v-icon(color="primary") {{ mdiChevronDown }}
-                template(v-for="(col, index) in footerItem.columns")
-                  v-expansion-panel-content
-                    a(
-                      v-if="col.type === 'link'"
-                      :href="col.link"
-                      target="_blank"
-                      el="noopener noreferrer"
-                    ).black--text.d-block.font-14 {{col.value}}
-                    a(
-                      v-if="col.type === 'phone'"
-                      :href="`tel:${col.value}`"
-                    ).black--text.d-block.font-14 {{col.value}}
-                    a(
-                      v-if="col.type === 'email'"
-                      :href="`mailto:${col.value}`"
-                    ).black--text.d-block.font-14 {{col.value}}
-                    a(
-                      v-if="col.type === 'chat'"
-                      @click.stop="toggleChat()"
-                    ).black--text.d-block.font-14 {{col.value}}
-          v-row(align="center" no-gutters).mt-10
+                template(v-if="footerItem.type === 'footer-header'")
+                  v-expansion-panel-header.primary--text {{ footerItem.value }}
+                    template(v-slot:actions)
+                      v-icon(color="primary") {{ mdiChevronDown }}
+                  template(v-for="(col, index) in footerItem.columns")
+                    v-expansion-panel-content
+                      a(
+                        v-if="col.type === 'link'"
+                        :href="col.link"
+                        target="_blank"
+                        el="noopener noreferrer"
+                      ).black--text.d-block.font-14 {{col.value}}
+                      a(
+                        v-if="col.type === 'phone'"
+                        :href="`tel:${col.value}`"
+                      ).black--text.d-block.font-14 {{col.value}}
+                      a(
+                        v-if="col.type === 'email'"
+                        :href="`mailto:${col.value}`"
+                      ).black--text.d-block.font-14 {{col.value}}
+                      a(
+                        v-if="col.type === 'chat'"
+                        @click.stop="toggleChat()"
+                      ).black--text.d-block.font-14 {{col.value}}
+          v-row(align="center" justify="center").mt-10
             v-col(
               :class="{ 'text-center order-last' : $isMobile }"
               cols="12"
@@ -73,16 +83,20 @@
             v-col(
               :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
               cols="12"
-              md="5"
+              md="4"
             )
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
                   img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
-</template>
+  </template>
 
 <script>
 import { mdiChevronDown } from '@mdi/js';
+import GenericPanel from '~/components/generic/GenericPanel';
 export default {
+  components: {
+    GenericPanel,
+  },
   data () {
     return {
       footerItems: [
@@ -91,40 +105,33 @@ export default {
           value: 'About',
           columns: [
             // { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/fight-covid-19' },
-            { type: 'link', value: 'MYCURE Syncbase', link: '/syncbase' },
             { type: 'link', value: 'Our Story', link: '/our-story' },
-            { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
-            { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },
+            { type: 'external', value: 'Blog', link: 'https://blog.mycure.md' },
+            { type: 'external', value: 'Careers', link: 'https://culture.mycure.md/' },
           ],
         },
-        // {
-        //   type: 'footer-header',
-        //   value: 'Support',
-        //   columns: [
-        //     // { type: 'link', value: 'FAQs', link: '/faqs' },
-        //     { type: 'chat', value: 'Chat with us', link: '/our-story' },
-        //   ],
-        // },
-        // {
-        //   type: 'footer-header',
-        //   value: 'Patients',
-        //   columns: [
-        //     { type: 'link', value: 'Consult', link: '/' },
-        //     { type: 'link', value: 'Lab & Imaging', link: '/' },
-        //     { type: 'link', value: 'My Health', link: '/' },
-        //     { type: 'link', value: 'Medicine Delivery', link: '/' },
-        //   ],
-        // },
+        {
+          type: 'footer-header',
+          value: 'Solutions',
+          columns: [
+            { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
+            { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
+            { type: 'link', value: 'Skin Clinics', link: '/clinics/skin' },
+            { type: 'link', value: 'Dental Clinics', link: '/clinics/dental' },
+            { type: 'link', value: 'Corporate Clinics', link: '/clinics/corporate' },
+            { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
+            { type: 'link', value: 'OFW Clinics', link: '/diagnostics/ofw' },
+            { type: 'link', value: 'Mobile Labs', link: '/diagnostics/mobile-labs' },
+          ],
+        },
         {
           type: 'footer-header',
           value: 'Services',
           columns: [
-            { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
-            { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
-            { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
-            // TODO: re-enable
-            // { type: 'link', value: 'Telehealth', link: '/telehealth' },
-            // { type: 'link', value: 'Booking', link: '/booking' },
+            { type: 'link', value: 'CMS Features', link: '/features' },
+            { type: 'link', value: 'Appointment Scheduling', link: '/booking' },
+            { type: 'link', value: 'Work Offline', link: '/syncbase' },
+            { type: 'link', value: 'Virtual Practice', link: '/telehealth' },
           ],
         },
         {
@@ -195,7 +202,7 @@ export default {
 
 <style scoped>
 .footer-gray {
-  background-color: #f0f0f0!important;
+  background-color: #F9F9F9!important;
 }
 a {
   text-decoration: none !important;
@@ -203,5 +210,9 @@ a {
 
 .v-expansion-panel-header__icon i{
   color: #009fdf;
+}
+
+.item-link {
+  color: #6F6F6F;
 }
 </style>

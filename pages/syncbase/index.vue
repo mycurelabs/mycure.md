@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid).white
+  v-container(fluid).white.page-container
     //- 1st panel
     div(:class="$isMobile? 'syncbase-bg-mobile' : 'syncbase-bg'").mx-n3
       v-container
