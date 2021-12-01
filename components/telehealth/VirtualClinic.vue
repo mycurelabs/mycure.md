@@ -1,27 +1,26 @@
 <template lang="pug">
   generic-blue-bg
-    v-container.white--text
+    v-container.py-16
       v-row(justify="center")
         v-col(cols="12")
           generic-media-panel(
-            :content="contents"
+            :content="contentsPanel"
+            :title-classes="titleClasses"
+            :content-classes="contentClasses"
             hide-btn
-            :title-classes="listHeaderClasses"
-            :content-classes="listContentClasses"
           )
-          template(slot="additional-content")
-            mc-btn(
-              v-if="!$isMobile"
-              event-label="view-telehealth-demo"
-              color="success"
-              depressed
-              class="rounded-lg"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              @click="viewDemo"
-            ).text-none
-              span.generic-button-text View live demo
-        v-col(cols="12").text-center.ml-n10
+            template(slot="additional-content")
+              mc-btn(
+                v-if="!$isMobile"
+                event-label="view-telehealth-demo"
+                color="success"
+                depressed
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                @click="viewDemo"
+              ).text-none
+                span.generic-button-text View live demo
         generic-panel(:row-bindings="{ justify: 'center'}").pa-0
           v-col(
             v-for="(data, key) in contents"
@@ -33,11 +32,11 @@
             v-row(justify="center")
               v-col(align="center" :cols="$isMobile ? '12' : '2'").pb-0
                 div.text-center.pt-1
-                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '50px'" :height="$isWideScreen ? '80px' : '50px'")
+                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '50px'" :height="$isWideScreen ? '80px' : '50px'" color="white")
               v-col
-                h1(:class="headerClasses") {{ data.header }}
+                h1.mc-h3.white--text {{ data.header }}
                 br
-                p(:class="contentClasses") {{ data.description }}
+                p.mc-b3.white--text {{ data.description }}
 </template>
 
 <script>
@@ -68,13 +67,12 @@ export default {
         description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
       },
     ];
-    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold', { 'pt-5': this.$isMobile }];
-    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.titleClasses = ['mc-h2', 'white--text'];
+    this.contentClasses = ['mc-b2', 'white--text'];
     return {};
   },
   computed: {
-    contents () {
+    contentsPanel () {
       return {
         title: 'Your New Virtual Clinic – MYCURE Telehealth',
         description: 'Use the online practice management system tools that work best for you. Everything you need is here – and it’s FREE.',
@@ -82,8 +80,8 @@ export default {
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp',
           imageAlt: 'Virtual Clinic',
           customPath: 'telehealth/',
-          width: this.$isMobile ? '300px' : (this.$isRegularScreen ? '964px' : '1475px'),
-          height: this.$isMobile ? '192.08px' : (this.$isRegularScreen ? '617.23px' : '944.39px'),
+          width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '163.91px' : (this.$isRegularScreen ? '281.72px' : '454.59px'),
         },
         contentAlign: 'left',
       };

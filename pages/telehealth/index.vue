@@ -39,12 +39,12 @@
               v-col(cols="12")
                 v-row(justify="center")
                   v-col(cols="12" sm="8").text-center
-                    h2.mc-h2.mb-5 Being Disorganized Doesn’t Just Cost You Time, It Costs You Money
+                    h2.mc-h2.mb-5 Disorganization Doesn’t Just Cost You Time, It Costs Money
                     v-row(justify="center")
-                      v-col(cols="10")
+                      v-col(cols="12")
                         p.mc-b2 As a healthcare provider, your ability to keep your virtual practice organized affects the level of care you can provide your patients. Inefficiency with telemedicine and online appointment booking behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with afterwards. But instead of continuing to suffer, there’s hope.
-    //- lazy-hydrate(when-visible)
-    //-   virtual-clinic
+    lazy-hydrate(when-visible)
+      virtual-clinic
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="fourthPanel"
@@ -140,10 +140,10 @@ export default {
       'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
       'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
     ];
-    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
+    this.headerClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.listHeaderClasses = ['mc-h2'];
+    this.listContentClasses = ['mc-list-b3'];
     return {
       loading: true,
       getResponseDialog: false,
