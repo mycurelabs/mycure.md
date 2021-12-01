@@ -116,8 +116,6 @@ import headMeta from '~/utils/head-meta';
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import GenericBlueBg from '~/components/generic/GenericBlueBg.vue';
-import GenericVideoPanel from '~/components/generic/GenericVideoPanel.vue';
 
 export default {
   components: {
@@ -130,8 +128,8 @@ export default {
     Pricing: () => import('~/components/commons/panels/Pricing'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    GenericBlueBg,
-    GenericVideoPanel,
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg.vue'),
+    GenericVideoPanel: () => import('~/components/generic/GenericVideoPanel.vue'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Testimonials: () => import('~/components/doctors-clinics/Testimonials'),

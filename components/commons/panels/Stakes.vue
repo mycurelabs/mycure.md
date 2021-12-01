@@ -149,15 +149,15 @@ export default {
     },
     mediaHeaderClasses: {
       type: Array,
-      default: () => ['mc-h2'],
+      default: () => (['mc-h2']),
     },
     mediaSuperTitleClasses: {
       type: Array,
-      default: () => ['mc-h7'],
+      default: () => (['mc-h7']),
     },
     mediaDescriptionClasses: {
       type: Array,
-      default: () => ['mc-b2'],
+      default: () => (['mc-b2']),
     },
     hideBtn: {
       type: Boolean,

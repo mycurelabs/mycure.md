@@ -37,9 +37,9 @@
           :media-content="stakesContent"
           hide-btn
         )
-    lazy-hydrate(when-visible)
-      v-container.py-16
-        v-row(justify="center")
+    v-container.py-16
+      v-row(justify="center")
+        lazy-hydrate(when-visible)
           generic-panel
             v-col(cols="12").text-center
               v-row(justify="center")

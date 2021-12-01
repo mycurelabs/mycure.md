@@ -33,9 +33,9 @@
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-list-b3.mb-0.ml-2 {{ item }}
-    lazy-hydrate(when-visible)
-      v-container.py-16
-        v-row(justify="center")
+    v-container.py-16
+      v-row(justify="center")
+        lazy-hydrate(when-visible)
           generic-panel
             v-col(cols="12").text-center
               h2.mc-h2.mb-5 Stay in Control
@@ -88,7 +88,7 @@
           //-   :height="!$isWideScreen ? '59px' : '73.68'"
           //- ).text-none
           //-   span.mc-btn1 Create my website
-          nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").button
+          nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").text-none
             span.mc-hyp1 Create my website
             v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
     div.grey-bg.mx-n3
@@ -140,8 +140,6 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
-import GenericBlueBg from '~/components/generic/GenericBlueBg.vue';
-import GenericVideoPanel from '~/components/generic/GenericVideoPanel.vue';
 
 export default {
   components: {
@@ -154,8 +152,8 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    GenericBlueBg,
-    GenericVideoPanel,
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg.vue'),
+    GenericVideoPanel: () => import('~/components/generic/GenericVideoPanel.vue'),
     Workflow: () => import('~/components/outpatient-clinics/Workflow'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Care: () => import('~/components/home/Care'),
@@ -338,8 +336,5 @@ export default {
 }
 .blue-bg {
   background-color: #0099cc;
-}
-.button {
-  text-decoration: none;
 }
 </style>
