@@ -180,7 +180,8 @@
         title="Invaluable Radiology Information System at an Affordable Price"
         :content="['MYCURE Diagnostics offers a variety of laboratory and radiology information system tools that you can mix and match to maximize efficiency for your diagnostic center, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your lab’s devices.']"
       )
-    //- placeholder
+    lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
     client-only
@@ -226,6 +227,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   async asyncData (context) {
     const metricsData = await fetchWebsiteMetrics();
@@ -416,6 +418,58 @@ export default {
         if (this.$isRegularScreen) return '621.8px';
         return '950.79px';
       }
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'Gain New Insights into Your Lab’s Strengths and Weaknesses',
+          description: 'Keeping meticulous records is vital to providing quality dental care. But as your practice thrives, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Dental’s practice management system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor Gaining Insight',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'A Lifeline for Your Practice – Easy to Use Practice Management System',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1.png',
+            extensionExclusive: true,
+            imageAlt: 'Man searching through records',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Corporate Clinic Management System at an Affordable Price',
+          description: 'MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your corporate clinic, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-3.png',
+            extensionExclusive: true,
+            imageAlt: 'Patient looking at network',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Accessible Appointment Booking for Your Patients',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your corporate clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-2.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor looking at booking appointments',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {

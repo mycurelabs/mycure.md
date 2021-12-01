@@ -82,7 +82,8 @@
         :items="doctorFeatures"
         image-dir="doctors-clinics/"
       ).my-16
-    //- placeholder
+    lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
     lazy-hydrate(when-visible)
       steps(:steps="stepsContent" not-free step-col-size="11")
     lazy-hydrate(when-visible)
@@ -123,6 +124,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   async asyncData (context) {
     const metricsData = await fetchWebsiteMetrics();
@@ -271,6 +273,58 @@ export default {
           height: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
         },
       };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'Corporate Clinic Management System at an Affordable Price',
+          description: 'MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your corporate clinic, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-3.png',
+            extensionExclusive: true,
+            imageAlt: 'Patient looking at network',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Access to Medical Records Has Never Been Easier',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your practice thrives, you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics as an information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1.png',
+            extensionExclusive: true,
+            imageAlt: 'Man searching through records',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Accessible Appointment Booking for Your Patients',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your corporate clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-2.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor looking at booking appointments',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Gain Insights into Your Corporate Clinic’s Strengths and Weaknesses',
+          description: 'In the day to day of running a corporate or company clinic, you might not notice small errors that are compounding until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Clinics, you’ll be able to identify problems withing the practice management system before they result in inconveniences for your patients and staff.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor Gaining Insight',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {

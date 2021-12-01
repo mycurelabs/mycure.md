@@ -80,6 +80,8 @@
         :content="storybrandContent"
       )
     lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
+    lazy-hydrate(when-visible)
       mycure-csi
     lazy-hydrate(when-visible)
       storybrand(
@@ -131,6 +133,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   async asyncData (context) {
     const metricsData = await fetchWebsiteMetrics();
@@ -252,6 +255,58 @@ export default {
           height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '222.55px' : '359.11px'),
         },
       };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'Easy to Access Electronic Records',
+          description: 'Keeping meticulous records is vital to providing quality derma clinic care. But as your practice thrives, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Beauty’s clinic information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medications – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1.png',
+            extensionExclusive: true,
+            imageAlt: 'Man searching through records',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Book Appointments With Ease',
+          description: 'Make booking appointments easy with MYCURE Booking. We’re all living busy lives these days and having an app your clients can use is one of the best ways to maximize convenience. If your practice has more than one dermatologist, your clients will also see that they can make an appointment with another provider if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-2.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor looking at booking appointments',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Reach New Clients on the MYCURE One Network',
+          description: 'With your MYCURE profile, you’ll have a clean and professional website on the MYCURE One network that allows potential clients to find a provider in their area and schedule an appointment.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-3.png',
+            extensionExclusive: true,
+            imageAlt: 'Patient looking at network',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Gain Insight Into Your Practice’s Strengths and Weaknesses',
+          description: 'In the day to day of running an aesthetics or skin clinic, you’ve probably discovered that details that slip away often turn into major issues. Thanks to the daily reports tool on MYCURE Beauty, you’ll be able to identify problems before they result in stress for your clients and staff.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor Gaining Insight',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {

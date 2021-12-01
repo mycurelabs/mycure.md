@@ -107,7 +107,8 @@
         title="Invaluable Clinic Management System"
         :content="['MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your practice, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.']"
       )
-    //- scroller
+    lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         generic-media-panel(
@@ -180,6 +181,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   // async asyncData ({ error }) {
   //   const country = await getCountry() || {};
@@ -341,6 +343,34 @@ export default {
           height: this.$isMobile ? '168.75' : '315',
         },
       };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'A Lifeline for Your Practice – Easy to Use Practice Management System',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1.png',
+            extensionExclusive: true,
+            imageAlt: 'Man searching through records',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Gain Insights into Your Practice’s Strengths and Weaknesses',
+          description: 'In the day to day of running an OFW clinic, you might not notice some details that are slipping away until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Clinics, you’ll be able to identify problems before they result in inconveniences for your patients and staff.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor Gaining Insight',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {

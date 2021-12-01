@@ -27,21 +27,15 @@
 import { mdiArrowLeftThinCircleOutline, mdiArrowRightThinCircleOutline } from '@mdi/js';
 import VueSlickCarousel from 'vue-slick-carousel';
 import GenericPanel from '~/components/generic/GenericPanel';
-import SignupButton from '~/components/commons/SignupButton';
 import PictureSource from '~/components/commons/PictureSource';
 // import canUseWebp from '~/utils/can-use-webp';
 export default {
   components: {
     VueSlickCarousel,
     GenericPanel,
-    SignupButton,
     PictureSource,
   },
   props: {
-    hasTrialOption: {
-      type: Boolean,
-      default: false,
-    },
     title: {
       type: String,
       default: null,

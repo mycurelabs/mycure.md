@@ -69,7 +69,6 @@
         :items="features"
         image-dir="doctors-clinics/"
       ).my-16
-    //- insert full featured
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         generic-media-panel(
@@ -85,8 +84,8 @@
               color="primary"
             ).text-none
               span.mc-btn1.white--text Start For Free
-    //- insert placeholder
     lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo" hide-btn)
@@ -134,6 +133,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Testimonials: () => import('~/components/doctors-clinics/Testimonials'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   data () {
     // Panel content
@@ -313,6 +313,70 @@ export default {
           height: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
         },
       };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'Accessible Appointment Booking for Your Patients',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1.png',
+            extensionExclusive: true,
+            imageAlt: 'Man searching through records',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Accessible Appointment Booking for Your Patients',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-2.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor looking at booking appointments',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Reach New Patients with the MYCURE One Network',
+          description: 'With your MYCURE One profile, you’ll have a clean and professional website on the MYCURE One network that allows potential patients to find a healthcare provider in their area and schedule an appointment. From primary care providers to specialists, patients will be able to find you and make an appointment with ease.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-3.png',
+            extensionExclusive: true,
+            imageAlt: 'Patient looking at network',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'We Offer a HIPAA-compliant Telehealth Platform',
+          description: 'Your patients’ privacy matters to us, which is why we’ve gone the extra mile to meet the standards of the United States’ Health Insurance Portability and Accountability Act (HIPAA). You can have peace of mind that when you provide care through MYCURE Telehealth your patient’s information is safe and secure.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-4.png',
+            extensionExclusive: true,
+            imageAlt: 'seal of compliance',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Gain New Insights into Your Practice’s Strengths and Weaknesses',
+          description: 'In the day to day of running a clinic or medical practice, you might not notice details that are slipping away until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Doctors, you’ll be able to identify problems before they result in inconveniences for your patients and staff, making it a competitive practice management system.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor Gaining Insight',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {

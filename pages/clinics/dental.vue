@@ -75,7 +75,8 @@
     //- 8th panel
     lazy-hydrate(when-visible)
       syncbase(:version="2" title="Online or Off, MYCURE Clinics Is Here for You")
-    //- placeholder
+    lazy-hydrate(when-visible)
+      scroller(title="placeholder" :items="carouselItems")
     lazy-hydrate(when-visible)
       steps(
         :steps="stepsContent"
@@ -124,6 +125,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   async asyncData (context) {
     const metricsData = await fetchWebsiteMetrics();
@@ -214,6 +216,58 @@ export default {
           height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '329.3px' : '531.38px'),
         },
       };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'Full Service for Dentists Everywhere',
+          description: 'Keeping meticulous records is vital to providing quality dental care. But as your practice thrives, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Dental’s practice management system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1.png',
+            extensionExclusive: true,
+            imageAlt: 'Man searching through records',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Accessible Appointment Booking for Patients',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. Having an app your patients can use to see your availability is one of the best ways to maximize efficiency in your patients’ busy lives. If your clinic has more than one dentist on staff, your patients will also see that they can make an appointment with someone else if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-2.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor looking at booking appointments',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Reach New Patients Through the MYCURE One Network',
+          description: 'With your MYCURE profile, you’ll have a clean and professional website on the MYCURE One network that allows potential patients to find a dentist in their area and schedule an appointment.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-3.png',
+            extensionExclusive: true,
+            imageAlt: 'Patient looking at network',
+            width: '100%',
+            height: '100%',
+          },
+        },
+        {
+          title: 'Gain Insights into Your Practice’s Strengths and Weaknesses',
+          description: 'In the day to day of running a dental practice, you might not notice details that are slipping away until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Dental’s clinic information system, you’ll be able to identify problems before they result in inconveniences for your patients and staff. ',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5.png',
+            extensionExclusive: true,
+            imageAlt: 'Doctor Gaining Insight',
+            width: '100%',
+            height: '100%',
+          },
+        },
+      ];
     },
   },
   created () {
