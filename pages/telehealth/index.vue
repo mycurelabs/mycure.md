@@ -6,9 +6,9 @@
         has-custom-background
         background-image="Telehealth-Landing-Page"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
-        title="Everything you need to build your virtual practice"
-        meta-title="MYCURE Telehealth"
-        description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
+        title="Everything You Need to Build Your Telemedicine Practice"
+        meta-title="MYCURE TELEHEALTH"
+        description="Give your patients the quality telehealth care they deserve, without having to visit in-person."
         btn-text="Get Started Free"
         image="Telehealth-Mobile-USP"
         image-width="90%"
@@ -16,7 +16,7 @@
         custom-image-path="telehealth/"
         parse-title
         parse-meta-title
-        :parse-title-fields="['you ', 'your ']"
+        :parse-title-fields="['to ', 'Your ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
@@ -24,39 +24,32 @@
         template(slot="cta-button")
           mc-btn(
             depressed
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-            color="success"
-            @click="getResponseDialog = true"
-          ).text-none
-            span.generic-button-text Get Started Free
-    //- 2nd panel
-    lazy-hydrate(when-visible)
-      virtual-clinic
-    //- 3rd panel
-    lazy-hydrate(when-visible)
-      telehealth-video
-        //- GET RESPONSE
-        template(slot="cta-button")
-          br
-          mc-btn(
-            depressed
-            class="rounded-pill"
+            class="rounded-lg"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
             color="primary"
             @click="getResponseDialog = true"
           ).text-none
             span.generic-button-text Get Started Free
-    //- 4th panel
+    div.grey-bg.mx-n3
+      v-container.py-16
+        v-row(justify="center")
+          lazy-hydrate(when-visible)
+            generic-panel
+              v-col(cols="12")
+                v-row(justify="center")
+                  v-col(cols="12" sm="8").text-center
+                    h2.mc-h2.mb-5 Being Disorganized Doesn’t Just Cost You Time, It Costs You Money
+                    v-row(justify="center")
+                      v-col(cols="10")
+                        p.mc-b2 As a healthcare provider, your ability to keep your virtual practice organized affects the level of care you can provide your patients. Inefficiency with telemedicine and online appointment booking behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with afterwards. But instead of continuing to suffer, there’s hope.
+    //- lazy-hydrate(when-visible)
+    //-   virtual-clinic
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="fourthPanel"
         hide-btn
       )
-    v-divider(v-if="$isMobile").divider
-    //-5th panel
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="fifthPanel"
@@ -76,33 +69,24 @@
               )
               span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     lazy-hydrate(when-visible)
-      storybrand(
-        title="Using Modern Tools to Boost Your Practice"
-        :content="storybrandContent"
-      )
-    //- 6th panel
-    //- pricing(
-    //-   title="Start free and only pay as you grow."
-    //-   type="doctor"
-    //-   :column-bindings="{ cols: '12', md: '3', xl: '3'}"
-    //- )
-    //- 7th panel
+        generic-video-panel(:content="telehealthVideo" not-white)
+    client-only
+      lazy-hydrate(when-idle)
+        pricing(
+          title="Enjoy Our Pay as You Grow Pricing"
+          description="Choose the best plan for your mobile lab. Only pay for what you need."
+          type="doctor"
+          :column-bindings="{ cols: '12', md: '3', xl: '3'}"
+        )
     lazy-hydrate(when-visible)
-      call-to-action
-        //- GET RESPONSE
-        template(slot="cta-button")
-          v-col
-            v-row(:justify="$isMobile ? 'center' : 'start'")
-              v-col(:align="$isMobile ? 'center' : 'start'")
-                mc-btn(
-                  depressed
-                  class="rounded-pill"
-                  :width="!$isWideScreen ? '228px' : '300'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                  color="success"
-                  @click="getResponseDialog = true"
-                ).text-none
-                  span.generic-button-text Get Started Free
+      steps(:steps="stepsContent" title="Start Your MYCURE Telehealth Journey Today for Free")
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Let Us Do the Work for You"
+        :content="['Worrying about the shift to digital records? We’ve got you covered. We know it’s daunting to move your entire operations to a new system. Our lean implementation process ensures you get what you need: customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you every step of the way.']"
+      )
+    lazy-hydrate(when-visible)
+      call-to-action(:fluid="!$isMobile")
 
     //- GET RESPONSE DIALOG
     v-dialog(v-model="getResponseDialog" width="unset")
@@ -117,7 +101,7 @@
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
-import Usp from '~/components/commons/panels/OldSevenWondersUsp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 // - constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 
@@ -127,13 +111,29 @@ export default {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericVideoPanel: () => import('~/components/generic/GenericVideoPanel.vue'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
     Usp,
+    Steps: () => import('~/components/commons/panels/Steps'),
     VirtualClinic: () => import('~/components/telehealth/VirtualClinic'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
+    this.stepsContent = [
+      {
+        title: 'Create your Free Account',
+        description: 'This activates the features in your account for FREE.',
+      },
+      {
+        title: 'Fill out your Profile',
+        description: 'Allow your patients to easily find and book you.',
+      },
+      {
+        title: 'Start Filing Electronic Medical Records',
+        description: 'Securely store and organize your patient records.',
+      },
+    ];
     this.pricingDetails = DOCTORS_PRICING;
     this.storybrandContent = [
       'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
@@ -159,8 +159,8 @@ export default {
   computed: {
     fourthPanel () {
       return {
-        title: 'Safekeep your important medical data',
-        description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
+        title: 'Safekeep Important Medical Information',
+        description: 'Your patients\' medical records are securely stored and easy to retrieve in our system. We’ve taken the extra step of complying with international data privacy regulations to make sure your records on your online practice management system are kept safe.',
         imageBindings: {
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
           imageAlt: 'Securing of medical records',
@@ -168,7 +168,7 @@ export default {
           width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '197.52px' : (this.$isRegularScreen ? '339.47px' : '547.78px'),
         },
-        contentAlign: 'right',
+        contentAlign: 'left',
       };
     },
     fifthPanel () {
@@ -177,8 +177,8 @@ export default {
         description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
         list: [
           'Conference Calls',
-          'Collated Medical Records',
-          'Optimized Patient Queuing',
+          'Tabulated Cumulative Results',
+          'Quick Appointment Booking',
           'Booking Website',
         ],
         imageBindings: {
@@ -189,7 +189,23 @@ export default {
           width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '280px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
         },
-        contentAlign: 'left',
+        contentAlign: 'right',
+      };
+    },
+    telehealthVideo () {
+      return {
+        title: 'Healthcare Providers Trust MYCURE',
+        description: 'MYCURE Telehealth is the latest generation in online practice management systems. Its intuitive interface makes is easy to use for everyone on staff – from the providers to the administrative team. Your team will be able to pull up your telemedicine patients’ medical records in a snap without wading through mountains of paperwork. ',
+        video: 'https://www.youtube.com/embed/9gxJX_eokC0',
+        imageBindings: {
+          customPath: 'clinics/',
+          image: 'video-preview',
+          imageFileExtension: '.png',
+          extensionExclusive: true,
+          imageAlt: 'Woman in explaining MYCURE',
+          width: this.$isMobile ? '300' : '560',
+          height: this.$isMobile ? '168.75' : '315',
+        },
       };
     },
   },
@@ -203,5 +219,8 @@ export default {
 .divider {
   margin-right: 30% !important;
   margin-left: 30% !important;
+}
+.grey-bg {
+  background-color: #fafafa;
 }
 </style>

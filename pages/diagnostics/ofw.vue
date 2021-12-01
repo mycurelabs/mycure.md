@@ -82,7 +82,7 @@
         hide-btn
       ).mb-16
     lazy-hydrate(when-visible)
-      mycure-csi(page="Diagnostics")
+      mycure-csi(title="OFW Clinic" page="Diagnostics")
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"

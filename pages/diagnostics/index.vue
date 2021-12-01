@@ -129,7 +129,7 @@
                 v-col(cols="10" sm="11" md="11")
                   span.mc-b2.font-open-sans.font-gray {{ item }}
     lazy-hydrate(when-visible)
-      mycure-csi(page="Diagnostics")
+      mycure-csi(title="Lab's Records" page="Diagnostics")
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="tenthPanel"

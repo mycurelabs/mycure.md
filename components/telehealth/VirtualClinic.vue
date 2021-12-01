@@ -1,31 +1,27 @@
 <template lang="pug">
-  div
-    v-container
+  generic-blue-bg
+    v-container.white--text
       v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center'}")
-          v-col(cols="12").text-center
-            h2(:class="titleClasses").mb-5 Your New Virtual Clinic
-            p(:class="contentClasses").mb-10 Use the tools that work best for you. Everything you need is here. It’s FREE.
+        v-col(cols="12")
+          generic-media-panel(
+            :content="contents"
+            hide-btn
+            :title-classes="listHeaderClasses"
+            :content-classes="listContentClasses"
+          )
+          template(slot="additional-content")
             mc-btn(
               v-if="!$isMobile"
               event-label="view-telehealth-demo"
               color="success"
               depressed
-              class="rounded-pill"
+              class="rounded-lg"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
               @click="viewDemo"
             ).text-none
               span.generic-button-text View live demo
         v-col(cols="12").text-center.ml-n10
-          picture-source(
-            image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
-            image-alt="Virtual Clinic"
-            :image-width="$isMobile ? '300px' : ($isRegularScreen ? '964px' : '1475px')"
-            :image-height="$isMobile ? '192.08px' : ($isRegularScreen ? '617.23px' : '944.39px')"
-            :image-file-extension="$useWebp? '.webp' : '.png'"
-            custom-path="telehealth/"
-          )
         generic-panel(:row-bindings="{ justify: 'center'}").pa-0
           v-col(
             v-for="(data, key) in contents"
@@ -48,10 +44,14 @@
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 
 export default {
   components: {
     GenericPanel,
+    GenericBlueBg,
+    GenericMediaPanel,
     PictureSource,
     SignupButton,
   },
@@ -72,6 +72,22 @@ export default {
     this.headerClasses = ['mc-title-set-2', 'font-weight-semibold', { 'pt-5': this.$isMobile }];
     this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {};
+  },
+  computed: {
+    contents () {
+      return {
+        title: 'Your New Virtual Clinic – MYCURE Telehealth',
+        description: 'Use the online practice management system tools that work best for you. Everything you need is here – and it’s FREE.',
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp',
+          imageAlt: 'Virtual Clinic',
+          customPath: 'telehealth/',
+          width: this.$isMobile ? '300px' : (this.$isRegularScreen ? '964px' : '1475px'),
+          height: this.$isMobile ? '192.08px' : (this.$isRegularScreen ? '617.23px' : '944.39px'),
+        },
+        contentAlign: 'left',
+      };
+    },
   },
   methods: {
     viewDemo () {

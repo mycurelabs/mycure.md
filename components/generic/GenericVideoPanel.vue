@@ -7,14 +7,14 @@
       )
         v-row(justify="center" align="center")
           v-col(cols="12" sm="5")
-            h2(v-if="content.title").mc-h2.white--text.mb-5 {{ content.title }}
+            h2(v-if="content.title" :class="{'white--text': !notWhite}").mc-h2.mb-5 {{ content.title }}
             slot(name="description")
-              p(v-if="content.description").mc-b2.white--text {{ content.description }}
+              p(v-if="content.description" :class="{'white--text': !notWhite}").mc-b2 {{ content.description }}
             div(v-if="!hideBtn" :class="{ 'text-center': $isMobile }")
               slot(name="button")
                 signup-button(
                   depressed
-                  color="success"
+                  :color="notWhite ? 'primary' : 'success'"
                   class="rounded-lg"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
@@ -32,7 +32,7 @@
                 v-else
                 :width="$isMobile ? '300': '560'"
                 :height="$isMobile ? '168.75': '315'"
-                :src="content.video"
+                :src="`${content.video}?autoplay=1`"
                 title="YouTube video player"
                 frameborder="0"
                 allow="autoplay;"
@@ -68,6 +68,10 @@ export default {
       default: () => ({}),
     },
     hideBtn: {
+      type: Boolean,
+      default: false,
+    },
+    notWhite: {
       type: Boolean,
       default: false,
     },
