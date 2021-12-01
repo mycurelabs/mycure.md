@@ -32,9 +32,9 @@
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-list-b3.mb-0.ml-2 {{ item }}
-    lazy-hydrate(when-visible)
-      v-container.py-16
-        v-row(justify="center")
+    v-container.py-16
+      v-row(justify="center")
+        lazy-hydrate(when-visible)
           generic-panel
             v-col(cols="12").text-center
               h2.mc-h2.mb-5 Seamless Workflows Tailored for You
