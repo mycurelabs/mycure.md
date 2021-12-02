@@ -86,7 +86,7 @@
               ).text-none
                 span.mc-btn1.white--text Start For Free
     lazy-hydrate(when-visible)
-      scroller(title="placeholder" :items="carouselItems")
+      scroller(title="Benefits of Using MYCURE in Your Practice" :items="carouselItems")
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo" hide-btn)
@@ -190,15 +190,15 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'This activates the features in your account for FREE.',
+        description: 'MYCURE is easy to sign up and easy to set up.',
       },
       {
         title: 'Fill out your Profile',
-        description: 'Allow your patients to easily find and book you.',
+        description: 'Introduce yourself to your patients in a modern way.',
       },
       {
         title: 'Start Filing Electronic Medical Records',
-        description: 'Securely store and organize your patient records.',
+        description: 'Make every day work more convenient.',
       },
     ];
     this.storybrandContent = [
@@ -246,7 +246,7 @@ export default {
       return [
         {
           title: 'Lightning-fast prescriptions',
-          description: 'Create and print prescriptions and other medical forms in 10 seconds or less.',
+          description: 'Create, store, and print prescriptions and other medical forms in 10 seconds or less. You and your patients get secure digital copies of records where you can access anytime, anywhere they’re needed.',
           contentAlign: 'left',
           imageBindings: {
             customPath: 'doctors-clinics/',
@@ -318,8 +318,8 @@ export default {
     carouselItems () {
       return [
         {
-          title: 'Accessible Appointment Booking for Your Patients',
-          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          title: 'Get Access to Your Patient’s Records in a Flash',
+          description: 'Don’t waste time searching through musty filing cabinets just to find your patient’s medical history and lab results. Be as detailed as you need to be able to provide quality medical care for your patients. MYCURE is digital, so you don’t need to worry about having enough floor space to store all your patient records. Instead, use MYCURE Doctors to start switching to electronic medical records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
           imageBindings: {
             customPath: 'commons/',
             image: 'carousel-1.png',

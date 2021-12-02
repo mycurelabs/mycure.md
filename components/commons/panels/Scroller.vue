@@ -19,10 +19,12 @@
                 :slidesToShow="$isMobile ? 1 : noOfItems",
               )
                 div(v-for="(item,key) in items" :key="key")
-                  v-col(cols="10").pa-0
-                    picture-source(v-bind="getImageBindings(item.imageBindings)")
-                    h3.mc-h3.mb-4 {{ item.title }}
-                    p.mc-b3 {{ item.description }}
+                  v-col(cols="12").pa-0
+                    v-row(justify="center")
+                      v-col(cols="10")
+                        picture-source(v-bind="getImageBindings(item.imageBindings)")
+                        h3.mc-h3.mb-4 {{ item.title }}
+                        p.mc-b3 {{ item.description }}
 </template>
 
 <script>
