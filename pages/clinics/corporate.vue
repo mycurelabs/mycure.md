@@ -56,14 +56,15 @@
         :title-classes="headerClasses"
       )
         template(slot="additional-content")
-          signup-button(
-            depressed
-            class="rounded-lg"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-            color="primary"
-          ).text-none
-            span.mc-btn1.white--text Get Started
+          div(:class="{'text-center': $isMobile}")
+            signup-button(
+              depressed
+              class="rounded-lg"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              color="primary"
+            ).text-none
+              span.mc-btn1.white--text Get Started
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"

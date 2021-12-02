@@ -21,7 +21,7 @@
                 @click="viewDemo"
               ).text-none
                 span.generic-button-text View live demo
-        generic-panel(:row-bindings="{ justify: 'center'}").pa-0
+        generic-panel(:row-bindings="{ justify: 'center'}" disable-parent-padding).mb-16
           v-col(
             v-for="(data, key) in contents"
             cols="12"

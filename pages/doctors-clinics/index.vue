@@ -42,14 +42,15 @@
           hide-btn
         )
           template(slot="additional-content")
-            signup-button(
-              depressed
-              class="rounded-lg"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="success"
-            ).button
-              span.mc-btn1.white--text Get Started Free
+            div(:class="{'text-center': $isMobile}")
+              signup-button(
+                depressed
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                color="success"
+              ).button
+                span.mc-btn1.white--text Get Started Free
     template(v-for="content in contents")
       lazy-hydrate(when-visible)
         generic-media-panel(
@@ -76,14 +77,15 @@
           hide-btn
         )
           template(slot="additional-content")
-            signup-button(
-              depressed
-              class="rounded-lg"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="primary"
-            ).text-none
-              span.mc-btn1.white--text Start For Free
+            div(:class="{'text-center': $isMobile}")
+              signup-button(
+                depressed
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                color="primary"
+              ).text-none
+                span.mc-btn1.white--text Start For Free
     lazy-hydrate(when-visible)
       scroller(title="placeholder" :items="carouselItems")
     lazy-hydrate(when-visible)

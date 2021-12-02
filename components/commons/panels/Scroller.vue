@@ -12,11 +12,11 @@
               v-icon(color="primary" @click="showNext()") {{ mdiArrowRightThinCircleOutline }}
         v-col(cols="12")
           v-row(justify="center")
-            v-col(:cols="noOfItems < 3 ? '8' : '12'" )
+            v-col(:cols="$isMobile || noOfItems > 2 ? '12' : '8'" )
               vue-slick-carousel(
                 ref="carousel"
                 draggable
-                :slidesToShow="noOfItems",
+                :slidesToShow="$isMobile ? 1 : noOfItems",
               )
                 div(v-for="(item,key) in items" :key="key")
                   v-col(cols="10").pa-0

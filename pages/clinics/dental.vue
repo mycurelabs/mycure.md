@@ -26,14 +26,15 @@
         hide-btn
       )
         template(slot="additional-content")
-          signup-button(
-            depressed
-            class="rounded-lg"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-            color="primary"
-          ).text-none
-            span.mc-btn1.white--text Get Started Free
+          div(:class="{'text-center': $isMobile}")
+            signup-button(
+              depressed
+              class="rounded-lg"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              color="primary"
+            ).text-none
+              span.mc-btn1.white--text Get Started Free
     //- 2nd panel
     div.blue-bg.mx-n3
       lazy-hydrate(when-visible)
