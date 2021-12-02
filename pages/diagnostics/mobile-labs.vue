@@ -229,6 +229,8 @@ export default {
           extensionExclusive: true,
           image: 'MYCURE-Mobile-Labs-Solution.png',
           imageAlt: 'Physicians and health workers',
+          width: this.$isWideScreen ? '722.36px' : this.$isRegularScreen ? '427.37px' : '312.66px',
+          height: this.$isWideScreen ? '767.85px' : this.$isRegularScreen ? '502.1px' : '332.34px',
         },
       };
     },
