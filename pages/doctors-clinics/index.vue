@@ -15,7 +15,7 @@
         image="Doc-USP"
         :image-width="$isMobile ? '100%' : '90%'"
         custom-image-path="doctors-clinics/"
-        :parse-title-fields="['from ']"
+        :parse-title-fields="['Practice ', 'Clutter ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         is-doctors

@@ -242,7 +242,7 @@ export default {
         width: this.isDoctors ? '50%' : '40%',
         height: '100%',
         position: 'absolute',
-        left: '50%',
+        left: this.isDoctors ? '49%' : '52%',
         top: '0',
         zIndex: '1',
         objectFit: 'contain',
