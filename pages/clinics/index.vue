@@ -88,7 +88,7 @@
           //-   :height="!$isWideScreen ? '59px' : '73.68'"
           //- ).text-none
           //-   span.mc-btn1 Create my website
-          nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").text-none
+          nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").button
             span.mc-hyp1 Create my website
             v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
     div.grey-bg.mx-n3
@@ -402,5 +402,8 @@ export default {
 }
 .blue-bg {
   background-color: #0099cc;
+}
+.button {
+  text-decoration: none;
 }
 </style>

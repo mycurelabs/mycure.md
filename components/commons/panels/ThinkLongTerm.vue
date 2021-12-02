@@ -19,7 +19,7 @@
       template(slot="content")
         p(:class="descriptionClasses") {{ panel.description }}&nbsp;
       template(v-if="panel.route" slot="additional-content")
-        nuxt-link(:to="{ name: panel.route }" :class="{'d-flex': !$isMobile}").text-none
+        nuxt-link(:to="{ name: panel.route }" :class="{'d-flex': !$isMobile}").button
           span.mc-hyp1.primary--text {{ panel.routeText }}
           v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
         //- span(v-if="$nuxt.$route.name !== 'doctors-clinics' && panel.descriptionAppend") {{ panel.descriptionAppend }}
@@ -79,3 +79,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.button {
+  text-decoration: none;
+}
+</style>

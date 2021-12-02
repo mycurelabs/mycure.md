@@ -239,10 +239,10 @@ export default {
     },
     backgroundStyle () {
       return {
-        width: this.isDoctors ? '50%' : '42%',
+        width: this.isDoctors ? '50%' : '40%',
         height: '100%',
         position: 'absolute',
-        left: '58%',
+        left: '50%',
         top: '0',
         zIndex: '1',
         objectFit: 'contain',

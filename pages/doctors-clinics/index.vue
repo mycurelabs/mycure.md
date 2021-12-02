@@ -48,7 +48,7 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
-            ).text-none
+            ).button
               span.mc-btn1.white--text Get Started Free
     template(v-for="content in contents")
       lazy-hydrate(when-visible)
@@ -395,5 +395,8 @@ export default {
 .divider {
   margin-right: 40% !important;
   margin-left: 40% !important;
+}
+.button {
+  text-decoration: none;
 }
 </style>

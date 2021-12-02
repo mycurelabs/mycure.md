@@ -114,7 +114,7 @@
       )
         template(slot="cta-button")
           div(:class="{'text-center ml-4': $isMobile}")
-            nuxt-link(to="/directory" :class="{'d-flex': !$isMobile}").text-none
+            nuxt-link(to="/directory" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Visit the Directory
               v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
     lazy-hydrate(when-idle)
@@ -141,7 +141,7 @@
 <script>
 // - utils
 import LazyHydrate from 'vue-lazy-hydration';
-import { mdiWeb, mdiChevronRight } from '@mdi/js';
+import { mdiWeb, mdiChevronRight, mdiClose } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
@@ -207,6 +207,7 @@ export default {
       loading: true,
       mdiWeb,
       mdiChevronRight,
+      mdiClose,
     };
   },
   head () {
@@ -299,3 +300,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.button {
+  text-decoration: none;
+}
+</style>

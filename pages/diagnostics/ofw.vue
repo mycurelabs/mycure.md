@@ -99,7 +99,7 @@
       )
         template(slot="cta-button")
           div(:class="{'text-center ml-4': $isMobile}")
-            nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").text-none
+            nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Join Today
               v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
     lazy-hydrate(when-visible)
@@ -385,5 +385,8 @@ export default {
 }
 .vid-container {
   overflow: hidden;
+}
+.button {
+  text-decoration: none;
 }
 </style>
