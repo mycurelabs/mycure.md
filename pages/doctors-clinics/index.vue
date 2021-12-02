@@ -4,21 +4,20 @@
     lazy-hydrate(when-idle)
       usp(
         has-custom-background
+        extension-exclusive
         background-image="Doctor-Landing-Page"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
         title="Save Your Practice from Clutter & Inefficiency"
         meta-title="MYCURE DOCTORS"
-        image="Doc-USP"
-        image-width="90%"
-        custom-image-path="doctors-clinics/"
-        image-align="right"
-        btn-text="Start For Free"
-        parse-title
-        extension-exclusive
         :description="uspDescription"
+        parse-title
+        btn-text="Start For Free"
+        image="Doc-USP"
+        :image-width="$isMobile ? '100%' : '90%'"
+        custom-image-path="doctors-clinics/"
         :parse-title-fields="['from ']"
-        :media-column-bindings="{ cols: 12, md: 4, offsetMd: 1, xl: 6}"
-        :content-column-bindings="{ cols: 12, md: 7 }"
+        :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+        :content-column-bindings="{ cols: 12, md: 5 }"
         is-doctors
       ).mb-16
     div.grey-bg.mx-n3
@@ -326,8 +325,8 @@ export default {
             image: 'carousel-1.png',
             extensionExclusive: true,
             imageAlt: 'Man searching through records',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -338,8 +337,8 @@ export default {
             image: 'carousel-2.png',
             extensionExclusive: true,
             imageAlt: 'Doctor looking at booking appointments',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
         {
@@ -350,8 +349,8 @@ export default {
             image: 'carousel-3.png',
             extensionExclusive: true,
             imageAlt: 'Patient looking at network',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
         {
@@ -362,8 +361,8 @@ export default {
             image: 'carousel-4.png',
             extensionExclusive: true,
             imageAlt: 'seal of compliance',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '233.01px' : this.$isRegularScreen ? '152.3px' : '139.24px',
           },
         },
         {
@@ -374,8 +373,8 @@ export default {
             image: 'carousel-5.png',
             extensionExclusive: true,
             imageAlt: 'Doctor Gaining Insight',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
           },
         },
       ];

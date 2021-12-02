@@ -428,8 +428,8 @@ export default {
             image: 'carousel-5.png',
             extensionExclusive: true,
             imageAlt: 'Doctor Gaining Insight',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
           },
         },
         {
@@ -440,8 +440,8 @@ export default {
             image: 'carousel-1.png',
             extensionExclusive: true,
             imageAlt: 'Man searching through records',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -452,8 +452,8 @@ export default {
             image: 'carousel-3.png',
             extensionExclusive: true,
             imageAlt: 'Patient looking at network',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
         {
@@ -464,8 +464,8 @@ export default {
             image: 'carousel-2.png',
             extensionExclusive: true,
             imageAlt: 'Doctor looking at booking appointments',
-            width: '100%',
-            height: '100%',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
       ];
