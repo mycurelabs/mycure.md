@@ -4,7 +4,7 @@
       v-skeleton-loader(type="article, actions")
     template(v-else)
       v-col(v-if="!clinics.length" cols="12")
-        p.mc-b2.mt-1 This doctor has no listed organizations. Please come and check another time!)
+        p.mc-b2.mt-1 This doctor has no listed organizations. Please come and check another time!
       v-col(
         v-for="(clinic, key) in clinics"
         :key="key"

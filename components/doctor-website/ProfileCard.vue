@@ -10,7 +10,7 @@
               v-col(cols="9")
                 h3.mc-h3 {{ fullName }}
                 p.mc-b3.mb-0 {{ specialties.slice(0, 3).join(' | ')}}
-                p(v-if="practicingYear").mc-b3.mb-0 {{ `Practicing since ${practicingYear}` }}
+                p(v-if="practicingYear").mc-b4.mb-0 {{ `Practicing since ${practicingYear}` }}
               v-spacer
               v-btn(
                 icon

@@ -121,7 +121,7 @@
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
                   learning-corner(
                     :is-preview-mode="isPreviewMode"
-                    :doctor-id="doctorId"
+                    :doctor-id="doctor.id"
                   )
     v-snackbar(
       v-model="showSnack"
