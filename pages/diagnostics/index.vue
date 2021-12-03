@@ -178,8 +178,8 @@
         title="Invaluable Radiology Information System at an Affordable Price"
         :content="['MYCURE Diagnostics offers a variety of laboratory and radiology information system tools that you can mix and match to maximize efficiency for your diagnostic center, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your lab’s devices.']"
       )
-    lazy-hydrate(when-visible)
-      scroller(title="Benefits of Using MYCURE in Your Diagnostic Clinic" :items="carouselItems")
+    //- lazy-hydrate(when-visible)
+    //-   scroller(title="Benefits of Using MYCURE in Your Diagnostic Clinic" :items="carouselItems")
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
     client-only

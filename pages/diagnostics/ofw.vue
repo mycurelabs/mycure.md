@@ -242,7 +242,7 @@ export default {
         contentAlign: 'left',
         imageBindings: {
           customPath: 'clinics/ofw/',
-          image: 'Queue.png',
+          image: 'Queue.webp',
           mobileImage: 'Queue.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,

@@ -176,7 +176,7 @@ export default {
       return {
         contentAlign: 'right',
         imageBindings: {
-          image: 'dental-charts.png',
+          image: 'dental-charts.webp',
           mobileImage: 'dental-charts-mobile.png',
           imageAlt: 'Dental charts in a tablet',
           customPath: 'clinics/dental/',
@@ -208,7 +208,7 @@ export default {
         description: 'MYCURE Dental offers a variety of clinic information system tools that you can mix and match to maximize efficiency for your dental clinic, without the costly overhead. Daily reports, digital records, and appointments can all be accessed in one clinic management system – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'skin-the-stakes.png',
+          image: 'skin-the-stakes.webp',
           mobileImage: 'skin-the-stakes.png',
           imageAlt: 'Doctor listening to patient feedback',
           customPath: 'clinics/skin/',
