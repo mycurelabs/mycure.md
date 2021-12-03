@@ -33,7 +33,7 @@
             h2.mc-h2 = Lost Income
           template(slot="content")
             v-col(cols="12")
-              v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center").pa-3
+              v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-list-b3.mb-0.ml-2 {{ item }}
