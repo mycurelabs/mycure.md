@@ -282,8 +282,8 @@ export default {
           description: 'MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your corporate clinic, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
           imageBindings: {
             customPath: 'commons/',
-            image: 'carousel-3.png',
-            extensionExclusive: true,
+            image: 'carousel-3',
+            imageFileExtension: '.webp',
             imageAlt: 'Patient looking at network',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
             height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
@@ -294,8 +294,8 @@ export default {
           description: 'Keeping meticulous records is vital to providing quality medical care. But as your practice thrives, you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics as an information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
           imageBindings: {
             customPath: 'commons/',
-            image: 'carousel-1.png',
-            extensionExclusive: true,
+            image: 'carousel-1',
+            imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
             height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
@@ -306,8 +306,8 @@ export default {
           description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your corporate clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
           imageBindings: {
             customPath: 'commons/',
-            image: 'carousel-2.png',
-            extensionExclusive: true,
+            image: 'carousel-2',
+            imageFileExtension: '.webp',
             imageAlt: 'Doctor looking at booking appointments',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
             height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
@@ -318,8 +318,8 @@ export default {
           description: 'In the day to day of running a corporate or company clinic, you might not notice small errors that are compounding until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Clinics, you’ll be able to identify problems withing the practice management system before they result in inconveniences for your patients and staff.',
           imageBindings: {
             customPath: 'commons/',
-            image: 'carousel-5.png',
-            extensionExclusive: true,
+            image: 'carousel-5',
+            imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
             height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',

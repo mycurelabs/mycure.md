@@ -350,8 +350,8 @@ export default {
           description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
           imageBindings: {
             customPath: 'commons/',
-            image: 'carousel-1.png',
-            extensionExclusive: true,
+            image: 'carousel-1',
+            imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
             height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
@@ -362,8 +362,8 @@ export default {
           description: 'In the day to day of running an OFW clinic, you might not notice some details that are slipping away until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Clinics, you’ll be able to identify problems before they result in inconveniences for your patients and staff.',
           imageBindings: {
             customPath: 'commons/',
-            image: 'carousel-5.png',
-            extensionExclusive: true,
+            image: 'carousel-5',
+            imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
             height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
