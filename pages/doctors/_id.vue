@@ -57,7 +57,7 @@
       //-       span.error--text Heart
 
     //- Workflow area
-    v-container
+    v-container.mb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
@@ -69,7 +69,7 @@
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
-              ).mc-b2.font-weight-light.text-none {{ tab }}
+              ).mc-b2.font-weight-semibold.text-none {{ tab }}
             v-tabs-items(v-model="tabSelect")
               //- v-tab-item(
               //-   v-for="(tab, key) in tabsList"
@@ -92,20 +92,37 @@
                 )
               v-tab-item
                 //- Facilities
-                website-features(
-                  :doctorId="doctor.id"
-                  :clinics="clinics"
-                  :clinics-total="clinicsTotal"
-                  :clinics-limit="clinicsLimit"
-                  :services="services"
-                  :is-preview-mode="isPreviewMode"
-                  :facilities-loading="facilitiesLoading"
-                  @onUpdateClinicPage="fetchDoctorInfo($event)"
-                )#doctor-website-features
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                  facilities(
+                    :doctorId="doctor.id"
+                    :clinics="clinics"
+                    :total="clinicsTotal"
+                    :limit="clinicsLimit"
+                    :is-preview-mode="isPreviewMode"
+                    :loading="facilitiesLoading"
+                    @onUpdatePage="fetchDoctorInfo($event)"
+                  )
               v-tab-item
                 //- Services
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                  v-card(flat).rounded-xl.bordered-card
+                    v-card-text
+                      h2 Services Offered
+                      v-list(v-if="services ? (services.length) : false " dense)
+                        v-list-item(v-for="(service, key) in services" :key="key")
+                          v-list-item-icon
+                            v-icon(color="primary") {{ mdiCheckCircleOutline }}
+                          v-list-item-content
+                            v-list-item-title {{ service }}
+                      p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
+
               v-tab-item
                 //- Learning Corner
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                  learning-corner(
+                    :is-preview-mode="isPreviewMode"
+                    :doctor-id="doctorId"
+                  )
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
@@ -141,12 +158,15 @@
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
+import { mdiCheckCircleOutline } from '@mdi/js';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
+import Facilities from '~/components/doctor-website/Facilities';
 import GenericPanel from '~/components/generic/GenericPanel';
+import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import PatientPanel from '~/components/doctor-website/PatientPanel';
-import Profile from '~/components/doctor-website/Profile';
+import Profile from '~/components/doctor-website/NewProfile';
 import ProfileCard from '~/components/doctor-website/ProfileCard';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import {
@@ -171,7 +191,9 @@ export default {
   components: {
     ChooseAppointment,
     ChooseFacility,
+    Facilities,
     GenericPanel,
+    LearningCorner,
     MainPanel,
     PatientPanel,
     Profile,
@@ -220,6 +242,7 @@ export default {
       facilitiesLoading: false,
       shareBtn: false,
       tabSelect: null,
+      mdiCheckCircleOutline,
     };
   },
   head () {

@@ -1,9 +1,10 @@
 <template lang="pug">
   v-row(style="max-height:700px; overflow-y: auto;")
-    v-col(v-if="!clinics.length" cols="12")
-      v-skeleton-loader(v-if="loading" type="article, actions")
-      p(v-else).font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
+    v-col(v-if="loading" cols="12")
+      v-skeleton-loader(type="article, actions")
     template(v-else)
+      v-col(v-if="!clinics.length" cols="12")
+        p.mc-b2.mt-1 This doctor has no listed organizations. Please come and check another time!)
       v-col(
         v-for="(clinic, key) in clinics"
         :key="key"

@@ -1,0 +1,146 @@
+<template lang="pug">
+  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+    //- v-card-text.text-center
+    //-   v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
+    //-     img(:src="picUrl").img-border
+    v-col
+      v-row
+        v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
+          h3.mc-h3.mb-4 About Me
+          p.mc-b3 {{ bio }}
+          br
+          br
+          h4.mc-h4.mb-4.black--text Education
+          div(v-for="(educ, key) in education" :key="key").mt-3
+            span.mc-b4 {{ educ | format-school }}
+            br
+            span.mc-b4 {{ educ.from }} - {{ educ.to }}
+        v-spacer
+        v-divider(vertical).mx-10
+        v-col(cols="12" md="4" :class="{'text-center': $isMobile}")
+          h4.mc-h4.mb-4.black--text Tags
+          v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
+            span.mc-b4 {{ specialty }}
+        v-spacer
+
+      //- span(v-if="fullName" :class="mainTextClasses").font-weight-bold.lh-title.black--text {{ fullName }}
+      //- v-icon(
+      //-   v-if="isBookable"
+      //-   color="primary"
+      //-   :large="$isWideScreen"
+      //-   :class="$isWideScreen ? 'pb-3' : 'pb-2'"
+      //- ).ml-1 {{ mdiCheckDecagram }}
+      //- div.mb-6
+      //-   h2(:class="sectionTextClasses").secondary--text About Me
+      //-   v-clamp(autoresize :max-lines="3") {{ bio }}
+      //-     template(v-slot:after="{ expand, collapse, clamped, expanded }")
+      //-       a(v-if="clamped" @click="expand").primary--text See more...
+      //-       a(v-else-if="expanded" @click="collapse").primary--text See less
+      //- div(v-if="specialties.length").mb-6
+      //-   h2(:class="sectionTextClasses").secondary--text Tags
+      //-   v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
+      //-     span.font-gray {{ specialty }}
+      //- div(v-if="practicingSince").mb-6
+      //-   h2(:class="sectionTextClasses").secondary--text Practicing Since
+      //-   p {{ practicingSince | format-practicing-since }} - {{ practicingYears > 0 ? `${practicingYears} Year${practicingYears > 1 ? 's' : ''} of Experience` : ''}}
+      //- //- Educational Background
+      //- div(v-if="education.length").mb-6
+      //-   h2(:class="sectionTextClasses").secondary--text Education
+      //-   div(v-for="(educ, key) in education" :key="key").mt-3
+      //-     span {{ educ | format-school }}
+      //-     br
+      //-     span {{ educ.from }} - {{ educ.to }}
+</template>
+
+<script>
+// import VClamp from 'vue-clamp';
+// import { mdiCheckDecagram } from '@mdi/js';
+// import classBinder from '~/utils/class-binder';
+export default {
+  // components: {
+  //   VClamp,
+  // },
+  filters: {
+    formatSchool (educ) {
+      if (!educ.degree) return educ.school;
+      return `${educ.degree} - ${educ.school}`;
+    },
+    formatPracticingSince (date) {
+      if (`${date}`.length > 4) return new Date(date).getFullYear();
+      return date;
+    },
+  },
+  props: {
+    bio: {
+      type: String,
+      default: 'I am ready to accomodate you! How can I help you?',
+    },
+    specialties: {
+      type: Array,
+      default: () => ([]),
+    },
+    education: {
+      type: Array,
+      default: () => ([]),
+    },
+    isBookable: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data () {
+    return {
+      // - UI State
+      socialMenu: false,
+      // mdiCheckDecagram,
+    };
+  },
+  computed: {
+    doctorLink () {
+      if (process.client) {
+        return window.location.href;
+      }
+      return '';
+    },
+    windowTitle () {
+      if (process.client) {
+        return window.document.title;
+      }
+      return '';
+    },
+    networkBindings () {
+      return {
+        title: this.fullName ? `Consult with Dr. ${this.fullName}` : this.windowTitle,
+        url: this.doctorLink,
+        description: `Book a consultation with ${this.firstName} today!`,
+        media: this.picURL,
+      };
+    },
+  },
+  methods: {
+    onBook () {
+      if (this.isPreviewMode) return;
+      return this.$emit('book');
+    },
+  },
+};
+</script>
+
+<style scoped>
+.social-image {
+  text-decoration: none;
+}
+.social-image:hover {
+  cursor: pointer !important;
+}
+.social-icon {
+  z-index: 99;
+}
+.img-border {
+  border: 8px solid white;
+}
+</style>
