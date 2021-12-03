@@ -21,7 +21,7 @@
                 a(
                   href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
                   target="_blank"
-                  rel="noreferrer noopener"
+                  rel="noreferrer noopener nofollow"
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
                   span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
