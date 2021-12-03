@@ -10,7 +10,7 @@
                   nuxt-link(to="/")
                     img(
                       src="~/assets/images/MYCURE-Logo-black.png"
-                        width="55%"
+                      width="55%"
                       alt="MYCURE logo"
                     )
               v-row(justify="center" align="center").search-bar-container

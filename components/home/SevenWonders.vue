@@ -20,7 +20,7 @@
                   color="success"
                 ).text-none.mc-btn1
                   span.generic-button-text.white--text Get Started
-            v-row(justify="center")
+            v-row(justify="center" v-if="showCarousel")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
                   autoplay
@@ -76,6 +76,10 @@ export default {
     Wonder,
     VueSlickCarousel,
     GenericBlueBg,
+  },
+  props: {
+    // Can be triggered by consuming component for loading purposes
+    showCarousel: Boolean,
   },
   data () {
     this.wonders = [

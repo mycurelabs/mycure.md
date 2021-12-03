@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")
+  div
     v-app-bar(
       height="50"
       app
@@ -33,10 +33,9 @@
                         v-icon(small right) {{ mdiChevronDown }}
                     v-list
                       v-list-item(
-                        v-for="(item, key) in nav.menuItems"
+                        v-for="(item, key) in filteredMenuItems(nav.menuItems)"
                         :key="key"
                         :to="{ name: item.route }"
-                        v-if="isNavVisible(item)"
                         exact-path
                       )
                         v-list-item-title {{ item.name }}
@@ -210,9 +209,11 @@ export default {
         },
       });
     },
-    isNavVisible (nav) {
-      if (nav.route !== 'diagnostics-ofw') return true;
-      return this.inPh;
+    filteredMenuItems (menuItems) {
+      return menuItems.filter((item) => {
+        if (item.route !== 'diagnostics-ofw') return true;
+        return this.inPh;
+      });
     },
   },
 };
