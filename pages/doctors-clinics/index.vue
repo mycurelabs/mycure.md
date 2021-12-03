@@ -292,8 +292,7 @@ export default {
         imageBindings: {
           customPath: 'doctors-clinics/',
           image: 'Doctor-Video-Preview',
-          imageFileExtension: '.png',
-          extensionExclusive: true,
+          imageFileExtension: '.webp',
           imageAlt: 'Video of woman explaining MYCURE',
           width: this.$isMobile ? '300' : '560',
           height: this.$isMobile ? '168.75' : '315',

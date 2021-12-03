@@ -298,9 +298,8 @@ export default {
         imageBindings: {
           customPath: 'clinics/',
           image: 'video-preview',
-          imageFileExtension: '.png',
-          extensionExclusive: true,
-          imageAlt: 'Woman in explaining MYCURE',
+          imageFileExtension: '.webp',
+          imageAlt: 'Woman explaining MYCURE',
           width: this.$isMobile ? '300' : '560',
           height: this.$isMobile ? '168.75' : '315',
         },

@@ -30,8 +30,7 @@
                       custom-path="clinics/"
                       image="problem-statement"
                       image-alt="Clinic workflow"
-                      image-file-extension=".png"
-                      extension-exclusive
+                      image-file-extension=".webp"
                       :image-width=" $isRegularScreen ? '850px' : '1300px' "
                       :image-height=" $isRegularScreen ? '677.73px' : '1036.52px' "
                     )

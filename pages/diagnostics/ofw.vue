@@ -46,19 +46,25 @@
       )
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
-        generic-video-panel(:content="ofwVideo")
-          template(slot="description")
-            p(v-if="ofwVideo.description").mc-b2.white--text {{ ofwVideo.description }}
-            v-col(cols="12").mb-5
-              v-row(v-for="(item, key) in ofwVideo.itemList" :key="key" align="center")
-                v-icon(color="white" small) {{ mdiCheckCircle }}
-                v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2.white--text {{ item }}
-          //- template(slot="video")
-          //-   div.vid-container
-          //-     video(width="101%" playsinline autoplay muted loop).syncbase-animate
-          //-         source(src="~/assets/videos/PME-package-builder.mov" type="video/mov")
-          //-         | Your browser does not support the video tag.
+        v-container
+          v-row(justify="center")
+            generic-sub-page-panel(
+              :content-right="false"
+              :title="ofwVideo.title"
+              hide-btn
+            )
+              div(slot="content")
+                p(v-if="ofwVideo.description").mc-b2.white--text {{ ofwVideo.description }}
+                v-col(cols="12").mb-5
+                  v-row(v-for="(item, key) in ofwVideo.itemList" :key="key" align="center")
+                    v-icon(color="white" small) {{ mdiCheckCircle }}
+                    v-col.pa-0.mb-1
+                      p.mc-list-b3.mb-0.ml-2.white--text {{ item }}
+              template(slot="image")
+                div.vid-container
+                  video(width="101%" playsinline autoplay muted loop).syncbase-animate
+                      source(src="~/assets/videos/pme-package-builder.mp4" type="video/mp4")
+                      | Your browser does not support the video tag.
     v-container.mt-16
       v-row(justify="center")
         lazy-hydrate(when-visible)
@@ -325,7 +331,6 @@ export default {
       return {
         title: 'Design your own packages.',
         description: 'Easily create and customize pre-employment packages based on your client requirements.',
-        video: 'https://www.youtube.com/embed/YjymFVmKX_U',
         itemList: [
           'Laboratory',
           'Imaging',
@@ -333,15 +338,6 @@ export default {
           'Dental',
           'Physical Exam',
         ],
-        imageBindings: {
-          customPath: 'clinics/',
-          image: 'video-preview',
-          imageFileExtension: '.png',
-          extensionExclusive: true,
-          imageAlt: 'Woman in explaining MYCURE',
-          width: this.$isMobile ? '300' : '560',
-          height: this.$isMobile ? '168.75' : '315',
-        },
       };
     },
     carouselItems () {
@@ -388,5 +384,8 @@ export default {
 }
 .button {
   text-decoration: none;
+}
+.vid-container {
+  overflow: hidden;
 }
 </style>

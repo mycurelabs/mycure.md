@@ -99,9 +99,8 @@
               v-tabs-items(v-model="reportType")
                 v-tab-item(v-for="(mockup, key) in reportMockups" :key="key" :value="mockup.value")
                   picture-source(
-                    image-file-extension=".png"
+                    image-file-extension=".webp"
                     custom-path="diagnostics/mobile-labs/"
-                    extensionExclusive
                     :image="`${mockup.image}${$isMobile ? '-mobile' : ''}`"
                     :image-alt="`A ${reportType} sample report from MYCURE Clinic Management System on laptop screen`"
                     :image-width="$isMobile ? '276px' : ($isRegularScreen ? '945px' : '1445px')"
