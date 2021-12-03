@@ -1,15 +1,30 @@
 <template lang="pug">
-  div(:class="backgroundImage").panel-bg
-    v-container
+  generic-blue-bg(large-dots).panel-bg
+    v-container.white--text
       v-row(justify="center")
         //- Logo
         v-col(cols="10")
-           nuxt-link(to="/")
+          v-row(align="center").px-3.py-5
+            nuxt-link(to="/")
               img(
-                src="~/assets/images/MYCURE-logo.png"
+                src="~/assets/images/mycure-logo-white.png"
                 width="120"
                 alt="MYCURE logo"
               ).mt-1
+            v-spacer
+            v-btn(
+              text
+            ).text-none.mc-h7.white--text.font-weight-light Facilities
+            v-btn(
+              text
+            ).text-none.mc-h7.white--text.font-weight-light Services
+            v-btn(
+              text
+            ).text-none.mc-h7.white--text.font-weight-light Learning Center
+            v-btn(
+              icon
+            )
+              v-icon(color="white") {{ mdiShareVariant }}
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
@@ -17,34 +32,46 @@
               img(:src="picUrl").img-border
             br
             br
-            h1.font-weight-bold.mc-title-set-2 {{ fullName }}
-            v-row(justify="center").mc-content-set-5.black--text
-              //- Professional Info
-              v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
-                span {{ specialties.slice(0, 3).join(', ')}}
-                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
+            h1.mc-h2 {{ fullName }}
+            p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
+            br
+            span.mc-b2.font-weight-light.white--text {{ specialties.slice(0, 3).join(' | ')}}
+            //- v-row(justify="center")
+            //-   //- p(v-if="practicingYears").mc-h7.white--text.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
+            //-   //- Professional Info
+            //-   v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
+            //-     span {{ specialties.slice(0, 3).join(' | ')}}
           //- Analytics
           v-col(cols="12" md="8")
             v-row(justify="center")
               v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
-                v-avatar(size="50" :color="metric.color").lighten-3
-                  v-icon(:color="metric.color" size="30").darken-1 {{ metric.icon }}
+                picture-source(
+                  image-file-extension="webp"
+                  :image="metric.imgIcon"
+                  :image-alt="metric.imgIcon"
+                  :image-width="$isMobile ? '50' : $isRegularScreen ? '50' : '50'"
+                  :image-height="$isMobile ? '50' : $isRegularScreen ? '50' : '50'"
+                  :extension-exclusive="true"
+                  custom-path="doctor-website/"
+                ).mb-2
+                //- v-avatar(size="50" :color="metric.color").lighten-3.mb-2
+                //-   v-icon(:color="metric.color" size="30").darken-1 {{ metric.icon }}
                 br
                 span.lh-title
-                  span.font-14.font-weight-bold {{ metricData[metric.value] }}
+                  span.mc-h5.white--text {{ metricData[metric.value] }}
                   br
                   span.font-12 {{ metric.title }}
           //- Consult btn
           v-col(cols="10").text-center.justify-center
             v-btn(
               hover
-              rounded
               depressed
               x-large
+              color="success"
               :class="{ 'font-11' : $isMobile }"
               :disabled="!isBookable"
               @click="onBook"
-            ).text-none.font-weight-bold.custom-book-btn.font-18.white--text {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
+            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
 </template>
 
 <script>
@@ -53,13 +80,18 @@ import {
   mdiEye,
   mdiPulse,
   mdiBookshelf,
+  mdiShareVariant,
 } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import canUseWebp from '~/utils/can-use-webp';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     GenericPanel,
     SocialSharing,
+    GenericBlueBg,
+    PictureSource,
   },
   filters: {
     formatSchool (educ) {
@@ -88,6 +120,10 @@ export default {
       type: Number,
       default: null,
     },
+    practicingYear: {
+      type: Number,
+      default: null,
+    },
     metrics: {
       type: Object,
       default: () => ({}),
@@ -109,18 +145,21 @@ export default {
     this.metricMappings = [
       {
         icon: mdiEye,
+        imgIcon: 'views-icon',
         title: 'views',
         value: 'websiteVisits',
         color: 'info',
       },
       {
         icon: mdiPulse,
+        imgIcon: 'lives-icon',
         title: 'lives saved',
         value: 'patients',
         color: 'error',
       },
       {
         icon: mdiBookshelf,
+        imgIcon: 'records-icon',
         title: 'records',
         value: 'records',
         color: 'success',
@@ -134,6 +173,7 @@ export default {
     ];
     return {
       canUseWebp: null,
+      mdiShareVariant,
     };
   },
   computed: {
@@ -216,7 +256,7 @@ export default {
 .custom-book-btn {
   height: 50px !important;
   width: 250px;
-  background: linear-gradient(258.57deg, #59A3F1 14.32%, #3371B0 76.89%);
+  /* background: linear-gradient(258.57deg, #59A3F1 14.32%, #3371B0 76.89%); */
 }
 .book-text:hover {
   cursor: pointer;

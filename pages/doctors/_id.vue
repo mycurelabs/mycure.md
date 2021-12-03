@@ -23,11 +23,18 @@
       :professions="professions"
       :education="education"
       :practicing-years="practicingYears"
+      :practicing-year="practicingYear"
       :is-verified="isVerified"
       :is-bookable="isBookable"
       :is-preview-mode="isPreviewMode"
       @book="onBook"
     )
+    profile-card(
+      :pic-url="picURL"
+      :full-name="fullNameWithSuffixes"
+      :practicing-year="practicingYear"
+      :specialties="specialties"
+    ).profile-overlap
 
     //- Patient panel
     //- patient-panel(:metrics="doctorMetrics")
@@ -52,34 +59,53 @@
     //- Workflow area
     v-container
       v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center' }")
-          //- Profile
-          v-col(cols="12" lg="4" xl="3")
-            profile(
-              :pic-url="picURL"
-              :full-name="fullNameWithSuffixes"
-              :first-name="firstName"
-              :practicing-since="practicingSince"
-              :practicing-years="practicingYears"
-              :bio="bio"
-              :specialties="specialties"
-              :education="education"
-              :is-bookable="isBookable"
-              :is-preview-mode="isPreviewMode"
-              @book="onBook"
+        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+          v-col(cols="12")
+            v-tabs(
+              v-model="tabSelect"
+              background-color="transparent"
+              color="primary"
             )
-          //- Tabs
-          v-col(cols="12" lg="8" xl="7")
-            website-features(
-              :doctorId="doctor.id"
-              :clinics="clinics"
-              :clinics-total="clinicsTotal"
-              :clinics-limit="clinicsLimit"
-              :services="services"
-              :is-preview-mode="isPreviewMode"
-              :facilities-loading="facilitiesLoading"
-              @onUpdateClinicPage="fetchDoctorInfo($event)"
-            )#doctor-website-features
+              v-tab(
+                v-for="(tab, key) in tabsList"
+                :key="key"
+              ).mc-b2.font-weight-light.text-none {{ tab }}
+            v-tabs-items(v-model="tabSelect")
+              //- v-tab-item(
+              //-   v-for="(tab, key) in tabsList"
+              //-   :key="key"
+              //- )
+              v-tab-item
+                //- Profile
+                profile(
+                  :pic-url="picURL"
+                  :full-name="fullNameWithSuffixes"
+                  :first-name="firstName"
+                  :practicing-since="practicingSince"
+                  :practicing-years="practicingYears"
+                  :bio="bio"
+                  :specialties="specialties"
+                  :education="education"
+                  :is-bookable="isBookable"
+                  :is-preview-mode="isPreviewMode"
+                  @book="onBook"
+                )
+              v-tab-item
+                //- Facilities
+                website-features(
+                  :doctorId="doctor.id"
+                  :clinics="clinics"
+                  :clinics-total="clinicsTotal"
+                  :clinics-limit="clinicsLimit"
+                  :services="services"
+                  :is-preview-mode="isPreviewMode"
+                  :facilities-loading="facilitiesLoading"
+                  @onUpdateClinicPage="fetchDoctorInfo($event)"
+                )#doctor-website-features
+              v-tab-item
+                //- Services
+              v-tab-item
+                //- Learning Corner
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
@@ -121,6 +147,7 @@ import GenericPanel from '~/components/generic/GenericPanel';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import PatientPanel from '~/components/doctor-website/PatientPanel';
 import Profile from '~/components/doctor-website/Profile';
+import ProfileCard from '~/components/doctor-website/ProfileCard';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import {
   heartDoctor,
@@ -148,6 +175,7 @@ export default {
     MainPanel,
     PatientPanel,
     Profile,
+    ProfileCard,
     WebsiteFeatures,
   },
   layout: 'doctor-website',
@@ -167,6 +195,7 @@ export default {
   },
   data () {
     this.clinicsLimit = 6;
+    this.tabsList = ['Profile', 'Facilites', 'Services', 'Learning Corner'];
     return {
       // - UI State
       loading: true,
@@ -190,6 +219,7 @@ export default {
       clipSuccess: false,
       facilitiesLoading: false,
       shareBtn: false,
+      tabSelect: null,
     };
   },
   head () {
@@ -237,6 +267,10 @@ export default {
     },
     practicingSince () {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
+    },
+    practicingYear () {
+      const from = this.practicingSince || 0;
+      return new Date(from).getFullYear(); // eslint-disable-line
     },
     practicingYears () {
       let from = this.practicingSince || 0;
@@ -393,7 +427,9 @@ export default {
   color: white;
   text-decoration: none;
 }
-
+.profile-overlap {
+  margin-top: -80px;
+}
 .bottom-padding {
   padding-bottom: 500px;
 }
