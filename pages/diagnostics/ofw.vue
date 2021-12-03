@@ -191,7 +191,7 @@ export default {
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
-  async asyncData ({ error }) {
+  async asyncData () {
     // const country = await getCountry() || {};
     // const code = country.country_code || 'PH';
     const metricsData = await fetchWebsiteMetrics();
