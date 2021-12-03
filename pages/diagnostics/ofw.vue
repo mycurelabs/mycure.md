@@ -172,7 +172,7 @@ import headMeta from '~/utils/head-meta';
 // - constants
 // - components
 import Usp from '~/components/commons/panels/OldSevenWondersUsp';
-import { getCountry, fetchWebsiteMetrics } from '~/utils/axios';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
