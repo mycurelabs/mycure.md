@@ -95,11 +95,36 @@ export default {
       Disallow: () => '/payment',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
-    // {
-    //   UserAgent: '*',
-    //   Disallow: () => '/signup',
-    //   Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
-    // },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities/pricing',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities/otp-verification',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signin',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/directory',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
     {
       UserAgent: '*',
       Disallow: () => '/forgot-password',
@@ -125,6 +150,12 @@ export default {
     {
       UserAgent: '*',
       Disallow: () => '/directory/results',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    // Old page that keeps getting crawled for some reason
+    {
+      UserAgent: '*',
+      Disallow: () => '/electronic-medical-records',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
   ],
@@ -179,13 +210,17 @@ export default {
     hostname: process.env.WEB_MAIN_URL,
     gzip: true,
     exclude: [
-      // '/signup/*',
+      '/directory',
+      '/directory/*',
+      '/signin',
+      '/signup/*',
       '/payment/*',
       '/forgot-password',
       '/csi',
       '/hospitals',
       '/pharmacy',
-      '/directory/results',
+      // Old page that keeps getting crawled for some reason
+      '/electronic-medical-records'
     ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build

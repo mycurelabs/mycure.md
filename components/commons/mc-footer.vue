@@ -24,6 +24,7 @@
                       a(
                         v-else-if="col.type === 'external'"
                         :href="col.link"
+                        rel="noreferrer noopener nofollow"
                       ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
                       a(
                         v-else-if="col.type === 'email'"
