@@ -371,7 +371,7 @@ export default {
     },
     stakesContent () {
       return {
-        title: 'Placeholder Problem Statement',
+        title: 'Does your diagnostic clinic experience any of these problems?',
         itemList: [
           'Wasted time and resources',
           'Long wait times',

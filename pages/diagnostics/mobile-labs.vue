@@ -275,7 +275,7 @@ export default {
     },
     stakesContent () {
       return {
-        title: 'Placeholder Problem Statement',
+        title: 'Did you know that your mobile labs can escape all these problems?',
         itemList: [
           'Wasted time and resources',
           'Long wait times',
