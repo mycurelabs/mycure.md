@@ -84,7 +84,7 @@
         image-dir="doctors-clinics/"
       ).my-16
     lazy-hydrate(when-visible)
-      scroller(title="placeholder" :items="carouselItems")
+      scroller(title="Benefits of Using MYCURE in Your Corporate Clinic" :items="carouselItems")
     lazy-hydrate(when-visible)
       steps(:steps="stepsContent" not-free step-col-size="11")
     lazy-hydrate(when-visible)

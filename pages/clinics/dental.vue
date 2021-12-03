@@ -77,7 +77,7 @@
     lazy-hydrate(when-visible)
       syncbase(:version="2" title="Online or Off, MYCURE Clinics Is Here for You")
     lazy-hydrate(when-visible)
-      scroller(title="placeholder" :items="carouselItems")
+      scroller(title="Benefits of Using MYCURE in Your Dental Clinic" :items="carouselItems")
     lazy-hydrate(when-visible)
       steps(
         :steps="stepsContent"

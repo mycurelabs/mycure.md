@@ -80,7 +80,7 @@
         :content="storybrandContent"
       )
     lazy-hydrate(when-visible)
-      scroller(title="placeholder" :items="carouselItems")
+      scroller(title="Benefits of Using MYCURE in Your Clinic" :items="carouselItems")
     lazy-hydrate(when-visible)
       mycure-csi
     lazy-hydrate(when-visible)

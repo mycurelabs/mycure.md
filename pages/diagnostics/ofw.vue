@@ -33,14 +33,14 @@
             h2.mc-h2 = Lost Income
           template(slot="content")
             v-col(cols="12")
-              v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
+              v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center").pa-3
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-list-b3.mb-0.ml-2 {{ item }}
 
     lazy-hydrate(when-visible)
       storybrand(
-        title="Placeholder"
+        title="You help open opportunities to the Filipino people. We can help you make it simpler."
         :content="['As the worldwide leader in exported labor, it’s vital to have run an efficient medical clinic for overseas Filipino workers (OFW), so as not to delay patients when they need to travel to their new job. Not automating your system means continued errors and losses which will impact your clinic’s bottom line. MYCURE Clinics is an end-to-end clinic information system that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today, you’re missing out on more than you might think. MYCURE Clinics’ practice management system was designed with the patient experience in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s clinic management system. ']"
         is-center
       )
@@ -108,7 +108,7 @@
         :content="['MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your practice, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.']"
       )
     lazy-hydrate(when-visible)
-      scroller(title="placeholder" :items="carouselItems" :no-of-items="2")
+      scroller(title="Benefits of Using MYCURE in Your Clinic" :items="carouselItems" :no-of-items="2")
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         generic-media-panel(
@@ -298,10 +298,9 @@ export default {
         contentAlign: 'right',
         imageBindings: {
           image: 'mycure-ofw-the-stakes.png',
-          mobileImage: 'mycure-ofw-the-stakes.png',
+          mobileImage: 'mycure-ofw-the-stakes.webp',
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'clinics/ofw/',
-          extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '293.58px' : '473.72px'),
         },
