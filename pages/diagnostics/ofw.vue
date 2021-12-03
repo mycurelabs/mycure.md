@@ -297,10 +297,11 @@ export default {
         ],
         contentAlign: 'right',
         imageBindings: {
-          image: 'mycure-ofw-the-stakes.png',
-          mobileImage: 'mycure-ofw-the-stakes.webp',
+          image: 'mycure-ofw-the-stakes',
+          mobileImage: 'mycure-ofw-the-stakes',
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'clinics/ofw/',
+          imageFileExtension: '.webp',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '293.58px' : '473.72px'),
         },
