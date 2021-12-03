@@ -102,6 +102,21 @@ export default {
     },
     {
       UserAgent: '*',
+      Disallow: () => '/signup/health-facilities',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities/pricing',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities/otp-verification',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
       Disallow: () => '/signin',
       Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
     },
@@ -195,6 +210,7 @@ export default {
     hostname: process.env.WEB_MAIN_URL,
     gzip: true,
     exclude: [
+      '/directory',
       '/directory/*',
       '/signin',
       '/signup/*',
