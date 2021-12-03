@@ -5,7 +5,7 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").px-0
             v-row(justify="center" :class="$isWideScreen ? 'mb-16' : 'mb-10'")
-              v-col(cols="12" :sm="version === 2 ? 7 : 8")
+              v-col(cols="12" :sm="version === 2 ? 7 : 10")
                 div.text-center
                   p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4 {{ panelTitle }}
                   p.mc-b2.mb-0 {{ subTitle }}
@@ -34,7 +34,7 @@
                       p.mc-list-b3.font-gray {{ content.rightDescription }}
 
             //- version 2
-            div(v-if="version === 2").font-open-sans
+            div(v-if="version === 2")
               v-row(justify="center")
                 v-col(cols="12" sm="10")
                   v-row(justify="start")
@@ -47,16 +47,16 @@
                             :class="{'mt-2': $isWideScreen}"
                           ).white--text {{ index + 1 }}
                         v-col(:class="!$isMobile ? 'pa-0' : ['pr-0', 'pt-0']")
-                          span.font-gray.mc-list-content-set-1 {{ content }}
-            div(v-if="version === 4").font-open-sans
+                          span.mc-list-b3 {{ content }}
+            div(v-if="version === 4")
               v-row(justify="center")
                 v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" align="center").pb-0
                   picture-source(
                     v-bind="getImageBindings(content.imageBindings)"
                   )
-                  p(:class="$isWideScreen ? 'mt-8' : 'mt-4'").mc-h2 {{ content.title }}
+                  p(:class="$isWideScreen ? 'mt-8' : 'mt-4'").mc-h3 {{ content.title }}
                   div.px-5
-                    p.mc-b2.font-gray {{ content.description }}
+                    p.mc-b2 {{ content.description }}
             footer
             v-row(v-if="version !== 1" justify="center" :class="{'mt-10': version !== 4}")
               v-col(cols="12" sm="11")
@@ -81,7 +81,7 @@
     generic-media-panel(
       v-else
       :content="mediaContent"
-      :title-classes="[...mediaHeaderClasses, 'font-weight-semibold']"
+      :title-classes="mediaHeaderClasses"
       :super-title-classes="mediaSuperTitleClasses"
       :content-classes="[...mediaDescriptionClasses, 'justify-left']"
       :hide-btn="hideBtn"
@@ -149,15 +149,15 @@ export default {
     },
     mediaHeaderClasses: {
       type: Array,
-      default: () => ['mc-title-set-2'],
+      default: () => (['mc-h2']),
     },
     mediaSuperTitleClasses: {
       type: Array,
-      default: () => ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'primary--text'],
+      default: () => (['mc-h7']),
     },
     mediaDescriptionClasses: {
       type: Array,
-      default: () => ['mc-content-set-1', 'font-open-sans', 'font-gray'],
+      default: () => (['mc-b2']),
     },
     hideBtn: {
       type: Boolean,
@@ -169,8 +169,8 @@ export default {
     },
   },
   data () {
-    this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
-    this.headerClasses = ['mc-h2', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-b2'];
+    this.headerClasses = ['mc-h2'];
     return {
     };
   },

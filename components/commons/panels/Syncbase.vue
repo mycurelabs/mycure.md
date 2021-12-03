@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-sub-page-panel(
         :content-right="version !== 1"
-        :title="panelTitle"
+        :title="title ? title : panelTitle"
         :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
         :media-column-bindings="mediaColumnBindings"
@@ -16,7 +16,7 @@
           template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
           template(v-else)
-            p(:class="descriptionClasses") With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
+            p(:class="descriptionClasses") With the MYCURE Syncbase, you’ll be able to work as if you have an in-house server for your practice management system – with all the conveniences of the cloud. Even if the Internet is down, you can still create electronic health records on any of your devices, and they will automatically sync once you’re back online.
         template(v-if="!hideBtn" slot="cta-button")
           //- mc-btn(
           //-   color="primary"
@@ -83,6 +83,10 @@ export default {
     hideBtn: {
       type: Boolean,
       default: false,
+    },
+    title: {
+      type: String,
+      default: null,
     },
   },
   data () {
