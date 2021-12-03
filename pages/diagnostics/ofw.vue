@@ -192,11 +192,11 @@ export default {
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   async asyncData ({ error }) {
-    const country = await getCountry() || {};
-    const code = country.country_code || 'PH';
+    // const country = await getCountry() || {};
+    // const code = country.country_code || 'PH';
     const metricsData = await fetchWebsiteMetrics();
 
-    if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
+    // if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
     return { metricsData };
   },
   data () {
