@@ -27,8 +27,7 @@
                   v-btn(icon).mr-n4.custom-btn
                     v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="primary") {{ mdiChevronRightCircle }}
                 template(#customPaging="page")
-                  v-icon(v-if="page === currentSlide" color="primary" small) {{ mdiCircle }}
-                  v-icon(v-else color="primary" small) {{ mdiCircleOutline }}
+                  v-icon(color="primary" small) {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                 div(v-for="(item,key) in items" :key="key")
                   v-col(cols="12").pa-0
                     v-row(justify="center")

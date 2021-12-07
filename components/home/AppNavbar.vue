@@ -43,7 +43,7 @@
                     text
                     depressed
                     tile
-                        height="50"
+                    height="50"
                     :key="key"
                     :to="{ name: nav.route }"
                   ).text-none.font-12
