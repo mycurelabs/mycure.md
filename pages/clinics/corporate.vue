@@ -87,7 +87,7 @@
     lazy-hydrate(when-visible)
       scroller(title="Benefits of Using MYCURE in Your Corporate Clinic" :items="carouselItems")
     lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free step-col-size="11")
+      steps(:steps="stepsContent" not-free step-col-size="11" title="Get Started with MYCURE in 3 Simple Steps!")
     lazy-hydrate(when-visible)
       storybrand(
         title="Modern Tools to Boost Your Practice"
@@ -223,14 +223,14 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'You’ll have your own clinic management system ready for you',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Fill out your profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Start filing electronic medical records',
+        title: 'Get started!',
         description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];

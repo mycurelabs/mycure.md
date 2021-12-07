@@ -103,7 +103,7 @@
     lazy-hydrate(when-visible)
       call-to-action(:version="1")
     lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free)
+      steps(:steps="stepsContent" not-free title="Start Your Journey in Three Simple Steps" description="MYCURE Beauty is a practice management system designed to be user-friendly but powerful, so every member of your dermatology staff can get the most out the app. Setting up is easy.")
 </template>
 
 <script>
@@ -170,15 +170,15 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'This activates your Skin Management System.',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Set up your Profile',
-        description: 'Customize your profile based on your clinic’s needs.',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Start reaching new clients now',
-        description: 'Share your beautiful, free website so your patients can start booking.',
+        title: 'Get started!',
+        description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
     this.storybrandContent = [

@@ -124,16 +124,16 @@ export default {
   data () {
     this.stepsContent = [
       {
-        title: 'Create your Free Account',
-        description: 'This activates the features in your account for FREE.',
+        title: 'Create your Free MYCURE Account',
+        description: 'MYCURE is easy to sign up and easy to set up.',
       },
       {
-        title: 'Fill out your Profile',
-        description: 'Allow your patients to easily find and book you.',
+        title: 'Complete your Professional Profile',
+        description: 'Introduce yourself to your patients in a modern way.',
       },
       {
         title: 'Start Filing Electronic Medical Records',
-        description: 'Securely store and organize your patient records.',
+        description: 'Make every day work more convenient.',
       },
     ];
     this.pricingDetails = DOCTORS_PRICING;

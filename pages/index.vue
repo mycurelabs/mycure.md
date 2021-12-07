@@ -117,7 +117,7 @@ export default {
       },
       {
         title: 'Create your free account',
-        description: 'This activates your Health Management System.',
+        description: 'This activates your Health Information Management System.',
       },
       {
         title: 'Start customizing',

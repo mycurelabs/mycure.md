@@ -190,11 +190,11 @@ export default {
     ];
     this.stepsContent = [
       {
-        title: 'Create your Free Account',
+        title: 'Create your Free MYCURE Account',
         description: 'MYCURE is easy to sign up and easy to set up.',
       },
       {
-        title: 'Fill out your Profile',
+        title: 'Complete your Professional Profile',
         description: 'Introduce yourself to your patients in a modern way.',
       },
       {
