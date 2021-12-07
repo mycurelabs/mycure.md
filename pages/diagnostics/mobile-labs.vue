@@ -117,7 +117,7 @@
           div(:class="{'text-center ml-4': $isMobile}")
             nuxt-link(to="/directory" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Visit the Directory
-              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
     lazy-hydrate(when-visible)

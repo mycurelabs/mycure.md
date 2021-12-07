@@ -10,7 +10,7 @@
         :custom-path="customImagePath"
       )
     v-container(:class="{'px-0': !$isMobile}").content
-      v-row(justify="center" :style="{ height: panelHeight }" :class="{'py-16': !$isMobile}")
+      v-row(justify="center" :style="{ height: panelHeight }" :class="[{'py-16': !$isMobile}, {'mt-16': $isWideScreen}]")
         generic-sub-page-panel(
           :content="uspDescription"
           :content-classes="descriptionClasses"

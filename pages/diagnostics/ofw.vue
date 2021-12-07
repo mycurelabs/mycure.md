@@ -109,7 +109,7 @@
           div(:class="{'text-center ml-4': $isMobile}")
             nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Join Today
-              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
     lazy-hydrate(when-visible)
       storybrand(
         title="Invaluable Clinic Management System"

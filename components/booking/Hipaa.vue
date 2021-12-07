@@ -25,7 +25,7 @@
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
                   span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
-                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
+                  v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
 </template>
 
 <script>

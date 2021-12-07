@@ -19,7 +19,7 @@
           div(:class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'features' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Explore the Features
-              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
 </template>
 
 <script>
