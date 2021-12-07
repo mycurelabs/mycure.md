@@ -72,7 +72,7 @@
                     :outlined="reportType !== 'imaging'"
                     @click="reportType = 'imaging'"
                   ).text-none
-                    span.mc-button-set-1 Imaging
+                    span.mc-btn1 Imaging
                 v-col(cols="6" md="3").pa-0
                   v-btn(
                     color="primary"
@@ -83,7 +83,7 @@
                     :outlined="reportType !== 'lab'"
                     @click="reportType = 'lab'"
                   ).text-none
-                    span.mc-button-set-1 Laboratory
+                    span.mc-btn1 Laboratory
               br
               br
               v-tabs-items(v-model="reportType")
@@ -117,7 +117,7 @@
           div(:class="{'text-center ml-4': $isMobile}")
             nuxt-link(to="/directory" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Visit the Directory
-              v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
     lazy-hydrate(when-visible)
@@ -184,15 +184,15 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'You’ll have your own clinic management system ready for you',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Fill out your profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'You can utilize our range of modules and features',
-        description: 'Get Started',
+        title: 'Get started!',
+        description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
     this.storybrandContent = [
@@ -307,5 +307,8 @@ export default {
 <style scoped>
 .button {
   text-decoration: none;
+}
+.grey-bg {
+  background-color: #F9FEFF;
 }
 </style>

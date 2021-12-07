@@ -31,7 +31,7 @@
               v-else
               :width="$isMobile ? '300': '560'"
               :height="$isMobile ? '168.75': '315'"
-              src="https://www.youtube.com/embed/Xj9GgIHW0_s"
+              src="https://www.youtube.com/embed/Xj9GgIHW0_s?autoplay=1"
               title="YouTube video player" frameborder="0"
               allow="autoplay;"
               allowfullscreen

@@ -19,6 +19,8 @@
         :parse-title-fields="['to ', 'Your ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
+        background-img-pos="54%"
+        background-img-width="38%"
       )
         //- GET RESPONSE
         template(slot="cta-button")
@@ -30,7 +32,7 @@
             color="primary"
             @click="getResponseDialog = true"
           ).text-none
-            span.generic-button-text Get Started Free
+            span.mc-btn1 Get Started Free
     div.grey-bg.mx-n3
       v-container.py-16
         v-row(justify="center")
@@ -122,16 +124,16 @@ export default {
   data () {
     this.stepsContent = [
       {
-        title: 'Create your Free Account',
-        description: 'This activates the features in your account for FREE.',
+        title: 'Create your Free MYCURE Account',
+        description: 'MYCURE is easy to sign up and easy to set up.',
       },
       {
-        title: 'Fill out your Profile',
-        description: 'Allow your patients to easily find and book you.',
+        title: 'Complete your Professional Profile',
+        description: 'Introduce yourself to your patients in a modern way.',
       },
       {
         title: 'Start Filing Electronic Medical Records',
-        description: 'Securely store and organize your patient records.',
+        description: 'Make every day work more convenient.',
       },
     ];
     this.pricingDetails = DOCTORS_PRICING;
@@ -221,6 +223,6 @@ export default {
   margin-left: 30% !important;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

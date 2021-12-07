@@ -50,7 +50,7 @@
                     :width="!$isWideScreen ? '228px' : '300'"
                     :height="!$isWideScreen ? '59px' : '73.68'"
                   ).text-none
-                    span.generic-button-text Start for Free
+                    span.mc-btn1 Start for Free
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo")
@@ -90,7 +90,7 @@
           //-   span.mc-btn1 Create my website
           nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").button
             span.mc-hyp1 Create my website
-            v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+            v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         features(
@@ -133,7 +133,7 @@
 
 <script>
 // - utils
-import { mdiArrowRight, mdiClose } from '@mdi/js';
+import { mdiChevronRight, mdiClose } from '@mdi/js';
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
@@ -208,11 +208,11 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'You’ll have your own clinic management system ready for you',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Customize your Profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
         title: 'Get Started!',
@@ -227,7 +227,7 @@ export default {
     this.descriptionClasses = ['mc-b2'];
     return {
       loading: true,
-      mdiArrowRight,
+      mdiChevronRight,
       mdiClose,
     };
   },
@@ -392,7 +392,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 
 .divider {

@@ -21,7 +21,7 @@
                 ).text-none
                   span.mc-btn1.white--text Get Started Free
           v-spacer(v-if="!$isMobile")
-          v-col(cols="12" sm="6" :class="{'text-center': $isMobile}")
+          v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
             slot(name="video")
               picture-source(
                 v-if="!showVideo"

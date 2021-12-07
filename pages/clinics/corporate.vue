@@ -18,15 +18,16 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    lazy-hydrate(when-visible)
-      stakes(
-        :version="4"
-        panel-title="Not Using a Clinic Management System Is Costly"
-        sub-title="As a doctor, your ability to keep your corporate clinic organized influences the quality of care you can provide your patients. Inefficiency behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with for the office staff. But instead of continuing to suffer, there’s hope."
-        :contents="stakesContent"
-        hide-btn
-        not-free
-      )
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        stakes(
+          :version="4"
+          panel-title="Not Using a Clinic Management System Is Costly"
+          sub-title="As a doctor, your ability to keep your corporate clinic organized influences the quality of care you can provide your patients. Inefficiency behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with for the office staff. But instead of continuing to suffer, there’s hope."
+          :contents="stakesContent"
+          hide-btn
+          not-free
+        )
     lazy-hydrate(when-visible)
       generic-blue-bg
         features(
@@ -47,7 +48,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none.mt-4
-              span.generic-button-text Sign Up
+              span.mc-btn1 Sign Up
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"
@@ -86,7 +87,7 @@
     lazy-hydrate(when-visible)
       scroller(title="Benefits of Using MYCURE in Your Corporate Clinic" :items="carouselItems")
     lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free step-col-size="11")
+      steps(:steps="stepsContent" not-free step-col-size="11" title="Get Started with MYCURE in 3 Simple Steps!")
     lazy-hydrate(when-visible)
       storybrand(
         title="Modern Tools to Boost Your Practice"
@@ -222,14 +223,14 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'You’ll have your own clinic management system ready for you',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Fill out your profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Start filing electronic medical records',
+        title: 'Get started!',
         description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
@@ -336,6 +337,6 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

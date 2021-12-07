@@ -18,23 +18,24 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    lazy-hydrate(when-visible)
-      generic-media-panel(
-        :content="stakesContent"
-        :title-classes="headerClasses"
-        :content-classes="contentClasses"
-        hide-btn
-      )
-        template(slot="additional-content")
-          div(:class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              class="rounded-lg"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="primary"
-            ).text-none
-              span.mc-btn1.white--text Get Started Free
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="stakesContent"
+          :title-classes="headerClasses"
+          :content-classes="contentClasses"
+          hide-btn
+        )
+          template(slot="additional-content")
+            div(:class="{'text-center': $isMobile}")
+              signup-button(
+                depressed
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                color="primary"
+              ).text-none
+                span.mc-btn1.white--text Get Started Free
     //- 2nd panel
     div.blue-bg.mx-n3
       lazy-hydrate(when-visible)
@@ -59,7 +60,7 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.generic-button-text Get Started
+              span.mc-btn1 Get Started
     lazy-hydrate(when-visible)
       straightforward
     lazy-hydrate(when-visible)
@@ -142,15 +143,15 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'This activates your Dental Management System.',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Fill out your profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Start filing electronic medical records',
-        description: 'Securely store and organize your patient records.',
+        title: 'Get started!',
+        description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
     this.storybrandContent = [
@@ -279,7 +280,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .blue-bg {
   background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);

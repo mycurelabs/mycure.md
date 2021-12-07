@@ -18,6 +18,8 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
+        background-img-pos="48%"
+        background-img-width="44%"
       )
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
@@ -107,7 +109,7 @@
           div(:class="{'text-center ml-4': $isMobile}")
             nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Join Today
-              v-icon(left color="primary" :large="$isWideScreen") {{ mdiChevronRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
     lazy-hydrate(when-visible)
       storybrand(
         title="Invaluable Clinic Management System"
@@ -152,7 +154,7 @@
           type="diagnostic"
         )
     lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free title="Joining MYCURE is simple")
+      steps(:steps="stepsContent" not-free title="Get Started with MYCURE in 3 Simple Steps!")
     lazy-hydrate(when-visible)
       call-to-action(:version="1" not-free).mt-16
 </template>
@@ -205,14 +207,14 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'You’ll have your own clinic management system ready for you',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Customize your profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Start filing electronic medical records',
+        title: 'Get started!',
         description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
@@ -377,7 +379,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .vid-container {
   overflow: hidden;

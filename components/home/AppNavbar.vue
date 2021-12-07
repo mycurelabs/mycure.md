@@ -4,12 +4,11 @@
       height="50"
       app
       dark
-      elevate-on-scroll
-      style="padding-top: 1px;"
-    ).nav-bar
+      elevation="0"
+    ).nav-bar.py-0
       v-container.pa-0
         v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : $vuetify. breakpoint.width < 1200 ? '11' : '10'" disable-parent-padding)
+          generic-panel(:column="$isMobile ? 12 : $vuetify. breakpoint.width < 1200 ? '11' : '10'" disable-parent-padding).pa-0
             v-col.d-flex
               nuxt-link(to="/")
                 img(
@@ -17,7 +16,7 @@
                   alt="MYCURE logo"
                   width="120px"
                   height="34.46px"
-                ).mt-1.mr-4
+                ).mt-2.mr-4
               template(v-if="!$isMobile")
                 template(v-for="(nav, key) in navs")
                   v-menu(v-if="nav.isMenu" offset-y)
@@ -26,8 +25,8 @@
                         v-on="on"
                         text
                         depressed
+                        height="50"
                         tile
-                        large
                       ).text-none.font-12.font-weight-medium
                         | {{ nav.name }}
                         v-icon(small right) {{ mdiChevronDown }}
@@ -44,7 +43,7 @@
                     text
                     depressed
                     tile
-                    large
+                    height="50"
                     :key="key"
                     :to="{ name: nav.route }"
                   ).text-none.font-12
@@ -60,13 +59,14 @@
                   event-label="login"
                   text
                   depressed
-                  large
+                  height="50"
                   tile
                   :to="{ name: 'signin' }"
                 ).text-none.font-12 #[span.font-weight-medium LOG IN]
                 signup-button(
                   color="success"
-                  large
+                  height="50"
+                  elevation="0"
                   tile
                 ).text-none.font-12.font-weight-medium SIGN UP
               template(v-else)
@@ -220,6 +220,9 @@ export default {
 </script>
 
 <style scoped>
+.nav-bar >>> .v-toolbar__content {
+  padding: 0px 16px;
+}
 .nav-bar {
   background-color: rgba(0,0,0,0.8);
 }

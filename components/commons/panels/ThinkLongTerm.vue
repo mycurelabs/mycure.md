@@ -22,12 +22,12 @@
         div(:class="{'text-center': $isMobile}")
           nuxt-link(:to="{ name: panel.route }" :class="{'d-flex': !$isMobile}").button
             span.mc-hyp1.primary--text {{ panel.routeText }}
-            v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+            v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
         //- span(v-if="$nuxt.$route.name !== 'doctors-clinics' && panel.descriptionAppend") {{ panel.descriptionAppend }}
 </template>
 
 <script>
-import { mdiArrowRight } from '@mdi/js';
+import { mdiChevronRight } from '@mdi/js';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 export default {
   components: {
@@ -39,7 +39,7 @@ export default {
     // this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
     this.headerClasses = ['mc-h2'];
     return {
-      mdiArrowRight,
+      mdiChevronRight,
     };
   },
   computed: {

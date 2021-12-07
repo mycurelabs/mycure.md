@@ -18,7 +18,8 @@
         :parse-title-fields="['Practice ', 'Clutter ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
-        is-doctors
+        background-img-pos="48%"
+        background-img-width="52%"
       ).mb-16
     div.grey-bg.mx-n3
       v-container.py-16
@@ -48,7 +49,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
-              ).button
+              ).text-none
                 span.mc-btn1.white--text Get Started Free
     template(v-for="content in contents")
       lazy-hydrate(when-visible)
@@ -189,11 +190,11 @@ export default {
     ];
     this.stepsContent = [
       {
-        title: 'Create your Free Account',
+        title: 'Create your Free MYCURE Account',
         description: 'MYCURE is easy to sign up and easy to set up.',
       },
       {
-        title: 'Fill out your Profile',
+        title: 'Complete your Professional Profile',
         description: 'Introduce yourself to your patients in a modern way.',
       },
       {
@@ -387,7 +388,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .blue-bg {
   background-color: #0099cc;

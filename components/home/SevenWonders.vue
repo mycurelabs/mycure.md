@@ -18,17 +18,18 @@
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   color="success"
-                ).text-none.mc-btn1
-                  span.generic-button-text.white--text Get Started
+                ).text-none
+                  span.mc-btn1.white--text Get Started
             v-row(justify="center" v-if="showCarousel")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
                   autoplay
                   draggable
                   infinite
-                  :dots="false"
+                  :dots="true"
                   :slidesToShow="4",
                   :speed="1000"
+                  @afterChange="(slideIndex) => currentSlide = slideIndex"
                 )
                   template(slot="prevArrow")
                     v-btn(icon).ml-n4.custom-btn
@@ -36,6 +37,8 @@
                   template(slot="nextArrow")
                     v-btn(icon).mr-n4.custom-btn
                       v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
+                  template(#customPaging="page")
+                    v-icon(color="white" small).mt-5 {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
               v-col(v-else cols="10" sm="8" md="10")
@@ -58,7 +61,7 @@
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
-import { mdiChevronRightCircle, mdiChevronLeftCircle } from '@mdi/js';
+import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutline } from '@mdi/js';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
@@ -146,6 +149,9 @@ export default {
       // Icons
       mdiChevronRightCircle,
       mdiChevronLeftCircle,
+      mdiCircle,
+      mdiCircleOutline,
+      currentSlide: 0,
     };
   },
   async mounted () {
@@ -198,5 +204,8 @@ export default {
 }
 .custom-btn:hover {
     color: grey;
+}
+.slick-dots >>> .slick-active {
+  color: red;
 }
 </style>

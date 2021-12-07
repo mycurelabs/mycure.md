@@ -158,6 +158,6 @@ export default {
   background-position: center bottom;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

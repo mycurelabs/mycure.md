@@ -17,6 +17,8 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
+        background-img-pos="47%"
+        background-img-width="48%"
       )
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
@@ -50,7 +52,7 @@
                       :width="!$isWideScreen ? '228px' : '300'"
                       :height="!$isWideScreen ? '59px' : '73.68'"
                     ).text-none
-                      span.generic-button-text Start for Free
+                      span.mc-btn1 Start for Free
     lazy-hydrate(when-visible)
       generic-blue-bg
         features(
@@ -190,7 +192,7 @@
           has-trial-option
         ).mb-n3
     lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free step-col-size="11")
+      steps(:steps="stepsContent" not-free step-col-size="11" title="Get Started with MYCURE in 3 Simple Steps!")
     lazy-hydrate(when-visible)
       call-to-action(:version="1").mt-16
 </template>
@@ -263,14 +265,14 @@ export default {
     this.stepsContent = [
       {
         title: 'Create your Free Account',
-        description: 'You’ll have your own LIS ready for you',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Fill out your profile',
-        description: 'You can utilize our range of modules and features',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Start filing electronic medical records',
+        title: 'Get started!',
         description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
@@ -484,7 +486,7 @@ export default {
   background-size: contain;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .divider {
   margin-right: 30% !important;

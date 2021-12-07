@@ -9,8 +9,8 @@
               p.mc-b2.white--text.mb-0 {{ description }}
           v-row
             v-col.py-7
-          v-row(justify="center")
-            v-col(:cols="$isMobile ? 12 : 4" v-for="(step, index) in steps" :key="index" align="center")
+          v-row(v-if="$isMobile" justify="center")
+            v-col(cols="12" v-for="(step, index) in steps" :key="index" align="center")
               picture-source(
                 extension-exclusive
                 custom-path="commons/"
@@ -23,6 +23,25 @@
               v-col(:cols="stepColSize")
                 p.mc-h3 {{ step.title }}
                 p.mc-b3.font-open-sans.white--text {{ step.description }}
+          v-row(v-else justify="center")
+            v-col(cols="12").pa-0
+              v-row(justify="center")
+                v-col(cols="4" v-for="(step, index, key) in steps" :key="key" align="center")
+                  picture-source(
+                    extension-exclusive
+                    custom-path="commons/"
+                    :image="(index + 1).toString()"
+                    image-alt="Steps number"
+                    image-file-extension=".png"
+                    :image-width="$isWideScreen ? '100' : '80'"
+                    :image-height="$isWideScreen ? '100' : '80'"
+                  )
+                v-col(cols="4" v-for="(step, key) in steps" :key="key" align="center").py-0
+                  v-col(:cols="stepColSize").py-0
+                    p.mc-h3.mb-0 {{ step.title }}
+                v-col(cols="4" v-for="(step, key) in steps" :key="key" align="center").py-0
+                  v-col(:cols="stepColSize")
+                    p.mc-b3.font-open-sans.white--text {{ step.description }}
           div(v-if="!hideBtn")
             v-row
               v-col.py-3
@@ -34,7 +53,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
-                span.generic-button-text {{ notFree ? 'Get Started' : 'Get Started Free' }}
+                span.mc-btn1 {{ notFree ? 'Get Started' : 'Get Started Free' }}
 </template>
 
 <script>
