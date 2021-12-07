@@ -90,7 +90,7 @@
           //-   span.mc-btn1 Create my website
           nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").button
             span.mc-hyp1 Create my website
-            v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+            v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         features(
@@ -133,7 +133,7 @@
 
 <script>
 // - utils
-import { mdiArrowRight, mdiClose } from '@mdi/js';
+import { mdiChevronRight, mdiClose } from '@mdi/js';
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
@@ -227,7 +227,7 @@ export default {
     this.descriptionClasses = ['mc-b2'];
     return {
       loading: true,
-      mdiArrowRight,
+      mdiChevronRight,
       mdiClose,
     };
   },

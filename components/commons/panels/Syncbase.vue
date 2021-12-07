@@ -31,7 +31,7 @@
           div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Learn about MYCURE Syncbase
-              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
               color="success"
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { mdiPlayCircle, mdiArrowRight } from '@mdi/js';
+import { mdiPlayCircle, mdiChevronRight } from '@mdi/js';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
   components: {
@@ -97,7 +97,7 @@ export default {
     return {
       syncbaseVideoDialog: false,
       mdiPlayCircle,
-      mdiArrowRight,
+      mdiChevronRight,
     };
   },
   computed: {

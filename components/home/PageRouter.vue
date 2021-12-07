@@ -19,11 +19,11 @@
                 p.mc-b4 {{ page.description }}
                 nuxt-link(:to="{ name: page.route }" :class="{'d-flex': !$isMobile}").button
                   span.mc-hyp1.primary--text Learn more&nbsp;
-                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 3px;") {{ mdiChevronRight }}
 </template>
 
 <script>
-import { mdiDoctor, mdiStethoscope, mdiClipboardListOutline, mdiCalendarClock, mdiLaptop, mdiWifiCheck, mdiArrowRight } from '@mdi/js';
+import { mdiDoctor, mdiStethoscope, mdiClipboardListOutline, mdiCalendarClock, mdiLaptop, mdiWifiCheck, mdiChevronRight } from '@mdi/js';
 import PictureSource from '~/components/commons/PictureSource';
 import GenericPanel from '~/components/generic/GenericPanel';
 export default {
@@ -93,7 +93,7 @@ export default {
       mdiCalendarClock,
       mdiLaptop,
       mdiWifiCheck,
-      mdiArrowRight,
+      mdiChevronRight,
     };
   },
   computed: {
