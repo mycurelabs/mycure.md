@@ -4,20 +4,31 @@
       generic-panel
         v-col(cols="12")
           v-row.pa-3
-            h2.mc.h2 {{ title }}
+            h2.mc.h2.mb-5 {{ title }}
             v-spacer
-            v-btn(v-if="items.length > 3" icon)
-              v-icon(color="primary" @click="showPrev()") {{ mdiArrowLeftThinCircleOutline }}
-            v-btn(v-if="items.length > 3" icon)
-              v-icon(color="primary" @click="showNext()") {{ mdiArrowRightThinCircleOutline }}
+            //- v-btn(v-if="items.length > 3" icon)
+            //-   v-icon(color="primary" @click="showPrev()") {{ mdiArrowLeftThinCircleOutline }}
+            //- v-btn(v-if="items.length > 3" icon)
+            //-   v-icon(color="primary" @click="showNext()") {{ mdiArrowRightThinCircleOutline }}
         v-col(cols="12")
           v-row(justify="center")
             v-col(:cols="$isMobile || noOfItems > 2 ? '12' : '8'" )
               vue-slick-carousel(
                 ref="carousel"
+                :dots="true"
                 draggable
                 :slidesToShow="$isMobile ? 1 : noOfItems",
+                @afterChange="(slideIndex) => currentSlide = slideIndex"
               )
+                template(slot="prevArrow")
+                  v-btn(icon).ml-n4.custom-btn
+                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronLeftCircle }}
+                template(slot="nextArrow")
+                  v-btn(icon).mr-n4.custom-btn
+                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
+                template(#customPaging="page")
+                  v-icon(v-if="page === currentSlide" color="primary" small) {{ mdiCircle }}
+                  v-icon(v-else color="primary" small) {{ mdiCircleOutline }}
                 div(v-for="(item,key) in items" :key="key")
                   v-col(cols="12").pa-0
                     v-row(justify="center")
@@ -28,7 +39,7 @@
 </template>
 
 <script>
-import { mdiArrowLeftThinCircleOutline, mdiArrowRightThinCircleOutline } from '@mdi/js';
+import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutline } from '@mdi/js';
 import VueSlickCarousel from 'vue-slick-carousel';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -58,17 +69,22 @@ export default {
     this.descriptionClasses = ['mc-b2'];
     this.metaTitleClasses = ['mc-h7'];
     return {
-      mdiArrowLeftThinCircleOutline,
-      mdiArrowRightThinCircleOutline,
+      // mdiArrowLeftThinCircleOutline,
+      // mdiArrowRightThinCircleOutline,
+      mdiChevronRightCircle,
+      mdiChevronLeftCircle,
+      mdiCircle,
+      mdiCircleOutline,
+      currentSlide: 0,
     };
   },
   methods: {
-    showNext () {
-      this.$refs.carousel.next();
-    },
-    showPrev () {
-      this.$refs.carousel.prev();
-    },
+    // showNext () {
+    //   this.$refs.carousel.next();
+    // },
+    // showPrev () {
+    //   this.$refs.carousel.prev();
+    // },
     getImageBindings (imageBindings) {
       const [image, extension] = imageBindings.mobileImage && this.$isMobile
         ? imageBindings.mobileImage.split('.')

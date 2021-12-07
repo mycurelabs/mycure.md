@@ -26,9 +26,10 @@
                   autoplay
                   draggable
                   infinite
-                  :dots="false"
+                  :dots="true"
                   :slidesToShow="4",
                   :speed="1000"
+                  @afterChange="(slideIndex) => currentSlide = slideIndex"
                 )
                   template(slot="prevArrow")
                     v-btn(icon).ml-n4.custom-btn
@@ -36,6 +37,9 @@
                   template(slot="nextArrow")
                     v-btn(icon).mr-n4.custom-btn
                       v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
+                  template(#customPaging="page")
+                    v-icon(v-if="page === currentSlide" color="white" small).mt-6 {{ mdiCircle }}
+                    v-icon(v-else color="white" small).mt-6 {{ mdiCircleOutline }}
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
               v-col(v-else cols="10" sm="8" md="10")
@@ -58,7 +62,7 @@
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
-import { mdiChevronRightCircle, mdiChevronLeftCircle } from '@mdi/js';
+import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutline } from '@mdi/js';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
@@ -146,10 +150,18 @@ export default {
       // Icons
       mdiChevronRightCircle,
       mdiChevronLeftCircle,
+      mdiCircle,
+      mdiCircleOutline,
+      currentSlide: 0,
     };
   },
   async mounted () {
     this.isWebp = await canUseWebp();
+  },
+  methods: {
+    carochange (num) {
+      this.currentSlide = num;
+    },
   },
 };
 </script>
@@ -198,5 +210,8 @@ export default {
 }
 .custom-btn:hover {
     color: grey;
+}
+.slick-dots >>> .slick-active {
+  color: red;
 }
 </style>
