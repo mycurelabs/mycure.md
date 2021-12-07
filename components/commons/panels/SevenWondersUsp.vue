@@ -9,14 +9,15 @@
         :extension-exclusive="extensionExclusive"
         :custom-path="customImagePath"
       )
-    v-container.content
-      v-row(justify="center" align="center" :style="{ height: panelHeight }")
+    v-container(:class="{'px-0': !$isMobile}").content
+      v-row(justify="center" :style="{ height: panelHeight }" :class="{'py-16': !$isMobile}")
         generic-sub-page-panel(
           :content="uspDescription"
           :content-classes="descriptionClasses"
           :content-column-bindings="contentColumnBindings"
           :media-column-bindings="mediaColumnBindings"
           :generic-panel-bindings="genericPanelBindings"
+          :class="{'pa-0': !$isMobile}"
         )
           template(slot="title")
             h2(:class="titleClasses") {{ uspTitle }}
@@ -27,7 +28,7 @@
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
               :alt="image"
               :width="imageWidth"
-            )
+            ).mb-4
           template(slot="cta-button")
             div(:class="{'text-center': $isMobile}")
               slot(name="cta-button")
@@ -179,9 +180,13 @@ export default {
       type: String,
       default: null,
     },
-    isDoctors: {
-      type: Boolean,
-      default: false,
+    backgroundImgPos: {
+      type: String,
+      default: '52%',
+    },
+    backgroundImgWidth: {
+      type: String,
+      default: '40%',
     },
   },
   data () {
@@ -239,10 +244,10 @@ export default {
     },
     backgroundStyle () {
       return {
-        width: this.isDoctors ? '50%' : '40%',
+        width: this.backgroundImgWidth,
         height: '100%',
         position: 'absolute',
-        left: this.isDoctors ? '49%' : '52%',
+        left: this.backgroundImgPos,
         top: '0',
         zIndex: '1',
         objectFit: 'contain',

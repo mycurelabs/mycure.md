@@ -16,7 +16,7 @@
                   alt="MYCURE logo"
                   width="120px"
                   height="34.46px"
-                ).mt-2
+                ).mt-2.mr-4
               template(v-if="!$isMobile")
                 template(v-for="(nav, key) in navs")
                   v-menu(v-if="nav.isMenu" offset-y)

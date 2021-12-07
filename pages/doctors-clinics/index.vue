@@ -18,7 +18,8 @@
         :parse-title-fields="['Practice ', 'Clutter ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
-        is-doctors
+        background-img-pos="48%"
+        background-img-width="52%"
       ).mb-16
     div.grey-bg.mx-n3
       v-container.py-16
