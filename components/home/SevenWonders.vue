@@ -18,8 +18,8 @@
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   color="success"
-                ).text-none.mc-btn1
-                  span.generic-button-text.white--text Get Started
+                ).text-none
+                  span.mc-btn1.white--text Get Started
             v-row(justify="center" v-if="showCarousel")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(

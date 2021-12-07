@@ -20,7 +20,7 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 @click="viewDemo"
               ).text-none
-                span.generic-button-text View live demo
+                span.mc-btn1 View live demo
         generic-panel(:row-bindings="{ justify: 'center'}" disable-parent-padding).mb-16
           v-col(
             v-for="(data, key) in contents"

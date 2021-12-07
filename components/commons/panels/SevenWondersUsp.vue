@@ -39,7 +39,7 @@
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   :color="btnColor"
                 ).text-none
-                  span.generic-button-text {{ btnText }}
+                  span.mc-btn1 {{ btnText }}
 </template>
 
 <script>

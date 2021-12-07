@@ -11,7 +11,7 @@
     template(slot="content")
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
-      v-row.mt-10
+      v-row.mt-4
         slot(name="cta-button")
           v-col
             v-row(:justify="$isMobile ? 'center' : 'start'")

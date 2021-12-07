@@ -49,7 +49,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
-              ).button
+              ).text-none
                 span.mc-btn1.white--text Get Started Free
     template(v-for="content in contents")
       lazy-hydrate(when-visible)

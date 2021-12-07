@@ -72,7 +72,7 @@
                     :outlined="reportType !== 'imaging'"
                     @click="reportType = 'imaging'"
                   ).text-none
-                    span.mc-button-set-1 Imaging
+                    span.mc-btn1 Imaging
                 v-col(cols="6" md="3").pa-0
                   v-btn(
                     color="primary"
@@ -83,7 +83,7 @@
                     :outlined="reportType !== 'lab'"
                     @click="reportType = 'lab'"
                   ).text-none
-                    span.mc-button-set-1 Laboratory
+                    span.mc-btn1 Laboratory
               br
               br
               v-tabs-items(v-model="reportType")

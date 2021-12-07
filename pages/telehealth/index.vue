@@ -32,7 +32,7 @@
             color="primary"
             @click="getResponseDialog = true"
           ).text-none
-            span.generic-button-text Get Started Free
+            span.mc-btn1 Get Started Free
     div.grey-bg.mx-n3
       v-container.py-16
         v-row(justify="center")

@@ -50,7 +50,7 @@
                     :width="!$isWideScreen ? '228px' : '300'"
                     :height="!$isWideScreen ? '59px' : '73.68'"
                   ).text-none
-                    span.generic-button-text Start for Free
+                    span.mc-btn1 Start for Free
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo")

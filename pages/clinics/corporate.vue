@@ -48,7 +48,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none.mt-4
-              span.generic-button-text Sign Up
+              span.mc-btn1 Sign Up
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"

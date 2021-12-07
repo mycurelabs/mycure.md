@@ -88,7 +88,8 @@
                     :x-large="!$isMobile"
                     :outlined="websiteType !== 'doctor'"
                     @click="websiteType = 'doctor'"
-                  ).text-none Doctors
+                  ).text-none
+                    span.mc-btn1 Doctors
                 v-col(cols="6" md="3").pa-0
                   v-btn(
                     color="primary"
@@ -99,7 +100,8 @@
                     :x-large="!$isMobile"
                     :outlined="websiteType !== 'clinic'"
                     @click="websiteType = 'clinic'"
-                  ).text-none Clinics
+                  ).text-none
+                    span.mc-btn1 Clinics
               br
               br
               v-tabs-items(v-model="websiteType")
