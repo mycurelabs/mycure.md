@@ -6,8 +6,9 @@
           v-row(justify="center")
             v-col(cols="12" sm="6").text-center
               h1.mc-h2 {{ title || 'All these in 3 Simple Steps!' }}
+              p.mc-b2.white--text.mb-0 {{ description }}
           v-row
-            v-col.py-8
+            v-col.py-7
           v-row(justify="center")
             v-col(:cols="$isMobile ? 12 : 4" v-for="(step, index) in steps" :key="index" align="center")
               picture-source(
@@ -19,12 +20,12 @@
                 :image-width="$isWideScreen ? '100' : '80'"
                 :image-height="$isWideScreen ? '100' : '80'"
               ).mr-3.ml-2
-              v-col(cols="9")
+              v-col(:cols="stepColSize")
                 p.mc-h3 {{ step.title }}
                 p.mc-b3.font-open-sans.white--text {{ step.description }}
           div(v-if="!hideBtn")
             v-row
-              v-col.py-5
+              v-col.py-3
             v-row(justify="center")
               signup-button(
                 depressed
@@ -50,7 +51,15 @@ export default {
       type: Array,
       default: undefined,
     },
+    stepColSize: {
+      type: [Number, String],
+      default: '9',
+    },
     title: {
+      type: String,
+      default: null,
+    },
+    description: {
       type: String,
       default: null,
     },

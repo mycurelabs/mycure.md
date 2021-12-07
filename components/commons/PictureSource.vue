@@ -14,6 +14,7 @@
       :class="imageClasses"
       :style="imageStyles"
       @load="onLoad"
+      @click="onClick"
     )
 </template>
 
@@ -120,6 +121,9 @@ export default {
     },
     onLoad () {
       this.$emit('load');
+    },
+    onClick () {
+      this.$emit('click');
     },
   },
 };

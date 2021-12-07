@@ -125,9 +125,9 @@ export default {
     },
   },
   data () {
-    this.defaultTitleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.defaultContentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.defaultSuperTitleClasses = ['mc-subheader-set-4', 'font-open-sans', 'font-weight-bold', 'primary--text'];
+    this.defaultTitleClasses = ['mc-h2'];
+    this.defaultContentClasses = ['mc-b2'];
+    this.defaultSuperTitleClasses = ['mc-h7'];
     return {};
   },
   methods: {

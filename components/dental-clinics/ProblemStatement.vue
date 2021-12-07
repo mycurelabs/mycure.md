@@ -3,17 +3,8 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center'}")
         v-col(cols="12").text-center
-          h2(:class="titleClasses").mb-5 From your first extraction to full service operations.
+          h2(:class="titleClasses").mb-5 From your first sale to full scale.
           p(:class="contentClasses").mb-10 MYCURE is designed to help you grow your practice.
-          signup-button(
-            depressed
-            rounded
-            color="success"
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none.mb-10
-            span.generic-button-text Get Started
         v-col(cols="12")
           v-row(v-if="!$isMobile" justify="center")
             picture-source(
@@ -50,6 +41,16 @@
                       image-width="200px"
                       image-height="212.2px"
                     )
+        v-col(cols="12").text-center
+          signup-button(
+            depressed
+            rounded
+            color="success"
+            class="rounded-lg"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
+          ).text-none.mb-10
+            span.generic-button-text Get Started
 </template>
 
 <script>
@@ -72,9 +73,9 @@ export default {
       { image: 'Queueing', alt: 'Patients waiting in line artwork' },
       { image: 'Dentist', alt: 'Dentist treating a patient artwork' },
     ];
-    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.btnClasses = ['mc-button-set-1'];
+    this.titleClasses = ['mc-h2', 'white--text'];
+    this.contentClasses = ['mc-b2', 'white--text'];
+    this.btnClasses = ['mc-btn1'];
     return {};
   },
 };

@@ -145,8 +145,8 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 4,
-        xl: 5,
+        md: 5,
+        xl: 6,
       }),
     },
     // - Column for Image
@@ -154,9 +154,9 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 7,
+        md: 6,
         offsetMd: 1,
-        xl: 6,
+        xl: 5,
       }),
     },
     // - Alignment of image
@@ -179,19 +179,14 @@ export default {
       type: String,
       default: null,
     },
+    isDoctors: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
-    this.backgroundStyle = {
-      width: '42%',
-      height: '100%',
-      position: 'absolute',
-      left: '55%',
-      top: '0',
-      zIndex: '1',
-      objectFit: 'contain',
-    };
     return {};
   },
   computed: {
@@ -240,6 +235,17 @@ export default {
       return {
         justify: 'center',
         align: 'center',
+      };
+    },
+    backgroundStyle () {
+      return {
+        width: this.isDoctors ? '50%' : '40%',
+        height: '100%',
+        position: 'absolute',
+        left: this.isDoctors ? '49%' : '52%',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'contain',
       };
     },
   },

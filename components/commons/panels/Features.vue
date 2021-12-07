@@ -3,16 +3,16 @@
     v-row(justify="center" align="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" :md="titleColSize").text-center
-          span(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+          span(v-if="metaTitle" :class="{'white--text': hasBlueBg}").mc-h7 {{ metaTitle }}
           slot(name="title")
-            h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
+            h2(:class="{'white--text': hasBlueBg}").mc-h2 {{ title }}
         v-col(cols="12" :md="contentColSize").text-center.py-3
           div
             slot(name="description")
-              p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
-        v-col(cols="12")
+              p(:class="{'white--text': hasBlueBg}").mc-b2 {{ description }}
+        v-col(cols="12").pt-10
           v-row(justify="center")
-            v-col(cols="12" :md="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
+            v-col(cols="12" :sm="iconContainerColSize ? iconContainerColSize : '10'")
               v-row(justify="center")
                 slot(name="items")
                   v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
@@ -29,9 +29,9 @@
                           :image-height="imageHeight ? imageHeight : defaultImageSize"
                         )
                         br
-                        h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
-                        p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
-                        nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
+                        h3(:class="{'white--text': hasBlueBg}").mc-h4 {{ item.title }}
+                        p(v-if="item.description" :class="{'white--text': hasBlueBg}").mc-b4 {{ item.description }}
+                        nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }" :class="{'white--text': hasBlueBg}").learnLink.mc-hyp1 Learn more
         slot(name="additional-content")
 </template>
 
@@ -86,14 +86,10 @@ export default {
       type: [Number, String],
       default: '8',
     },
-    primaryTitle: {
-      type: Boolean,
-      default: false,
-    },
     // - Space for description
     contentColSize: {
       type: [Number, String],
-      default: '6',
+      default: '8',
     },
     // - Space for icons container
     iconContainerColSize: {
@@ -120,11 +116,12 @@ export default {
         cols: 10,
       }),
     },
+    hasBlueBg: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
-    this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
-    this.descriptionClasses = ['mc-content-set-1'];
-    this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
     return {};
   },
   computed: {
@@ -139,9 +136,6 @@ export default {
     },
     defaultImageSize () {
       return this.$isMobile ? '77px' : (this.$isRegularScreen ? '90px' : '120px');
-    },
-    defaultIconContainerSize () {
-      return this.$isWideScreen ? '5' : '7';
     },
   },
 };
