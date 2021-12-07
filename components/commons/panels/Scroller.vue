@@ -22,10 +22,10 @@
               )
                 template(slot="prevArrow")
                   v-btn(icon).ml-n4.custom-btn
-                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronLeftCircle }}
+                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="primary") {{ mdiChevronLeftCircle }}
                 template(slot="nextArrow")
                   v-btn(icon).mr-n4.custom-btn
-                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
+                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="primary") {{ mdiChevronRightCircle }}
                 template(#customPaging="page")
                   v-icon(v-if="page === currentSlide" color="primary" small) {{ mdiCircle }}
                   v-icon(v-else color="primary" small) {{ mdiCircleOutline }}
