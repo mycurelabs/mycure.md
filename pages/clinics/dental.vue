@@ -18,23 +18,24 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    lazy-hydrate(when-visible)
-      generic-media-panel(
-        :content="stakesContent"
-        :title-classes="headerClasses"
-        :content-classes="contentClasses"
-        hide-btn
-      )
-        template(slot="additional-content")
-          div(:class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              class="rounded-lg"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-              color="primary"
-            ).text-none
-              span.mc-btn1.white--text Get Started Free
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="stakesContent"
+          :title-classes="headerClasses"
+          :content-classes="contentClasses"
+          hide-btn
+        )
+          template(slot="additional-content")
+            div(:class="{'text-center': $isMobile}")
+              signup-button(
+                depressed
+                class="rounded-lg"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                color="primary"
+              ).text-none
+                span.mc-btn1.white--text Get Started Free
     //- 2nd panel
     div.blue-bg.mx-n3
       lazy-hydrate(when-visible)
@@ -279,7 +280,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .blue-bg {
   background: radial-gradient(50% 50% at 50% 50%, #0099CC 0%, #0173C6 100%);

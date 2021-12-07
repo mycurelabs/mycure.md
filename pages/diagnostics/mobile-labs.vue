@@ -308,4 +308,7 @@ export default {
 .button {
   text-decoration: none;
 }
+.grey-bg {
+  background-color: #F9FEFF;
+}
 </style>

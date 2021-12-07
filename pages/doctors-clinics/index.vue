@@ -388,7 +388,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .blue-bg {
   background-color: #0099cc;

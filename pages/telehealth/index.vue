@@ -223,6 +223,6 @@ export default {
   margin-left: 30% !important;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

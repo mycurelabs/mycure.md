@@ -18,15 +18,16 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    lazy-hydrate(when-visible)
-      stakes(
-        :version="4"
-        panel-title="Not Using a Clinic Management System Is Costly"
-        sub-title="As a doctor, your ability to keep your corporate clinic organized influences the quality of care you can provide your patients. Inefficiency behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with for the office staff. But instead of continuing to suffer, there’s hope."
-        :contents="stakesContent"
-        hide-btn
-        not-free
-      )
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        stakes(
+          :version="4"
+          panel-title="Not Using a Clinic Management System Is Costly"
+          sub-title="As a doctor, your ability to keep your corporate clinic organized influences the quality of care you can provide your patients. Inefficiency behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with for the office staff. But instead of continuing to suffer, there’s hope."
+          :contents="stakesContent"
+          hide-btn
+          not-free
+        )
     lazy-hydrate(when-visible)
       generic-blue-bg
         features(
@@ -336,6 +337,6 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

@@ -486,7 +486,7 @@ export default {
   background-size: contain;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .divider {
   margin-right: 30% !important;

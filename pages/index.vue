@@ -154,7 +154,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .margin-wide {
   margin-bottom: 150px;
