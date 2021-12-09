@@ -365,7 +365,7 @@ export default {
             imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
             width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
+            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
       ];

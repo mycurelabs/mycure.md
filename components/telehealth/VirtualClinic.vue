@@ -57,12 +57,12 @@ export default {
   data () {
     this.contents = [
       {
-        headerIcon: 'increase-revenue.png',
+        headerIcon: 'increase-revenue-white.png',
         header: 'Increase your revenue',
         description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure video and voice calls.',
       },
       {
-        headerIcon: 'build-clientele.png',
+        headerIcon: 'build-clientele-white.png',
         header: 'Build your clientele',
         description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
       },

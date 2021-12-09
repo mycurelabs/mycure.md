@@ -1,123 +1,128 @@
 <template lang="pug">
-  v-container(v-if="!pageLoading").main-container.my-16.pb-8
-    v-row(align="center" justify="center").mx-1
-      v-col(cols="12" sm="8" md="5")
-        v-col.text-center
-          img(
-            src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg"
-            alt="MYCURE logo"
-            @click="$nuxt.$router.push({ name: 'index' })"
-            width="95px"
-            height="110px"
-          ).link-to-home.mb-3
-          h1(:class="titleSizeClasses").font-weight-bold.pb-2 Sign in to MYCURE
-          span.grey--text Because you care the extra mile.
-        v-col
-          v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
-            v-text-field(
-              v-model="email"
-              label="Email Address"
-              :rules="emailRules"
-              outlined
-              @focus="onFocusEmail"
-            )
-            v-text-field(
-              v-model="password"
-              type="password"
-              label="Password"
-              :rules="passwordRules"
-              outlined
-              @focus="onFocusPassword"
-            )
-          v-alert(
-            :value="error"
-            type="error"
-          ) {{errorMsg}}
-          nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
-        v-col.text-center
-          v-btn(
-            width="45%"
-            color="primary"
-            :disabled="!valid || loading || signInDisabled"
-            :loading="loading"
-            @click="submit"
-            large
-          ) Sign in
-    v-dialog(v-model="otpDialog" width="400" persistent)
-      v-card
-        v-toolbar(flat)
-          h2 Enter 2FA Code
-        v-card-text
-          p {{label}}
-          //- input(
-          //-   v-model="otp"
-          //-   placeholder="Enter One-Time Pin (OTP)"
-          //-   type="text"
-          //-   maxlength="6"
-          //-   autofocus
-          //-   :rules="[v => !!v || 'OTP is required']"
-          //-   :disabled="loading"
-          //- )#otpField.otp-field.mb-5
-          v-row(justify="center")
-            v-flex(xs12 md10)
-              input(
-                v-model="firstDigit"
-                type="number"
-                step="1"
-                max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
-                @keypress="checkNumberInput($event, firstDigit)"
-              )#firstDigit.single-field
-              input(
-                v-model="secondDigit"
-                type="number"
-                step="1"
-                max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDeleteDigit(2)"
-                @keypress="checkNumberInput($event, secondDigit)"
-              )#secondDigit.single-field
-              input(
-                v-model="thirdDigit"
-                type="number"
-                step="1"
-                max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDeleteDigit(3)"
-                @keypress="checkNumberInput($event, thirdDigit)"
-              )#thirdDigit.single-field
-              input(
-                v-model="fourthDigit"
-                type="number"
-                step="1"
-                max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDeleteDigit(4)"
-                @keypress="checkNumberInput($event, fourthDigit)"
-              )#fourthDigit.single-field
-              input(
-                v-model="fifthDigit"
-                type="number"
-                step="1"
-                max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDeleteDigit(5)"
-                @keypress="checkNumberInput($event, fifthDigit)"
-              )#fifthDigit.single-field
-              input(
-                v-model="sixthDigit"
-                type="number"
-                step="1"
-                max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDeleteDigit(6)"
-                @keypress="checkNumberInput($event, sixthDigit)"
-              )#sixthDigit.single-field
-          //- v-btn(
-          //-   large
-          //-   color="primary"
-          //-   type="submit"
-          //- ) Submit
+  div(v-if="!pageLoading")
+    v-row(v-if="noRedirect").pa-1
+      v-col
+        v-btn(color="primary" icon to="/")
+          v-icon {{ mdiArrowLeft }}
+    v-container.my-16.pb-8
+      v-row(align="center" justify="center").mx-1
+        v-col(cols="12" sm="8" md="5")
+          v-col.text-center
+            img(
+              src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg"
+              alt="MYCURE logo"
+              @click="$nuxt.$router.push({ name: 'index' })"
+              width="95px"
+              height="110px"
+            ).link-to-home.mb-3
+            h1(:class="titleSizeClasses").font-weight-bold.pb-2 Sign in to MYCURE
+            span.grey--text Because you care the extra mile.
+          v-col
+            v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
+              v-text-field(
+                v-model="email"
+                label="Email Address"
+                :rules="emailRules"
+                outlined
+                @focus="onFocusEmail"
+              )
+              v-text-field(
+                v-model="password"
+                type="password"
+                label="Password"
+                :rules="passwordRules"
+                outlined
+                @focus="onFocusPassword"
+              )
+            v-alert(
+              :value="error"
+              type="error"
+            ) {{errorMsg}}
+            nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
+          v-col.text-center
+            v-btn(
+              width="45%"
+              color="primary"
+              :disabled="!valid || loading || signInDisabled"
+              :loading="loading"
+              @click="submit"
+              large
+            ) Sign in
+      v-dialog(v-model="otpDialog" width="400" persistent)
+        v-card
+          v-toolbar(flat)
+            h2 Enter 2FA Code
+          v-card-text
+            p {{label}}
+            //- input(
+            //-   v-model="otp"
+            //-   placeholder="Enter One-Time Pin (OTP)"
+            //-   type="text"
+            //-   maxlength="6"
+            //-   autofocus
+            //-   :rules="[v => !!v || 'OTP is required']"
+            //-   :disabled="loading"
+            //- )#otpField.otp-field.mb-5
+            v-row(justify="center")
+              v-flex(xs12 md10)
+                input(
+                  v-model="firstDigit"
+                  type="number"
+                  step="1"
+                  max="9"
+                  :class="{'night-field': dayOrNight === 'night'}"
+                  @keypress="checkNumberInput($event, firstDigit)"
+                )#firstDigit.single-field
+                input(
+                  v-model="secondDigit"
+                  type="number"
+                  step="1"
+                  max="9"
+                  :class="{'night-field': dayOrNight === 'night'}"
+                  v-on:keyup.delete="onDeleteDigit(2)"
+                  @keypress="checkNumberInput($event, secondDigit)"
+                )#secondDigit.single-field
+                input(
+                  v-model="thirdDigit"
+                  type="number"
+                  step="1"
+                  max="9"
+                  :class="{'night-field': dayOrNight === 'night'}"
+                  v-on:keyup.delete="onDeleteDigit(3)"
+                  @keypress="checkNumberInput($event, thirdDigit)"
+                )#thirdDigit.single-field
+                input(
+                  v-model="fourthDigit"
+                  type="number"
+                  step="1"
+                  max="9"
+                  :class="{'night-field': dayOrNight === 'night'}"
+                  v-on:keyup.delete="onDeleteDigit(4)"
+                  @keypress="checkNumberInput($event, fourthDigit)"
+                )#fourthDigit.single-field
+                input(
+                  v-model="fifthDigit"
+                  type="number"
+                  step="1"
+                  max="9"
+                  :class="{'night-field': dayOrNight === 'night'}"
+                  v-on:keyup.delete="onDeleteDigit(5)"
+                  @keypress="checkNumberInput($event, fifthDigit)"
+                )#fifthDigit.single-field
+                input(
+                  v-model="sixthDigit"
+                  type="number"
+                  step="1"
+                  max="9"
+                  :class="{'night-field': dayOrNight === 'night'}"
+                  v-on:keyup.delete="onDeleteDigit(6)"
+                  @keypress="checkNumberInput($event, sixthDigit)"
+                )#sixthDigit.single-field
+            //- v-btn(
+            //-   large
+            //-   color="primary"
+            //-   type="submit"
+            //- ) Submit
     v-dialog(v-if="checkDevice" v-model="bestUseDialog" width="300" persistent)
       v-card.text-center
         v-card-text.pa-8
@@ -137,6 +142,8 @@
 </template>
 
 <script>
+import isEmpty from 'lodash/isEmpty';
+import { mdiArrowLeft } from '@mdi/js';
 import dayOrNight from '~/utils/day-or-night';
 import { signin } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
@@ -175,6 +182,7 @@ export default {
       fourthDigit: null,
       fifthDigit: null,
       sixthDigit: null,
+      mdiArrowLeft,
     };
   },
   head () {
@@ -195,6 +203,10 @@ export default {
     },
     checkDevice () {
       return this.$vuetify.breakpoint.smAndDown;
+    },
+    // No redirect means there is no target query
+    noRedirect () {
+      return isEmpty(this.$route.query);
     },
   },
   watch: {
