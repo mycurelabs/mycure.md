@@ -37,18 +37,10 @@
                       :image-width="$isWideScreen ? '100' : '80'"
                       :image-height="$isWideScreen ? '100' : '80'"
                     )
-                  template
-                    v-col(cols="4" v-for="(step, index, key) in steps" :key="key" align="center")
-                      v-col(:cols="stepColSize").py-0
-                        template(v-if="step.title === 'Get started!'")
-                          p.mc-h3.mb-0 Get
-                            br
-                            | started!
-                        p(v-else).mc-h3.mb-0 {{ step.title }}
-                  template
-                    v-col(cols="4" v-for="(step, index, key) in steps" :key="key" align="center")
-                      v-col(:cols="stepColSize")
-                        p.mc-b3.font-open-sans.white--text {{ step.description }}
+                    v-col(:cols="stepColSize").py-0
+                      p.mc-h3.mb-0 {{ step.title }}
+                    v-col(:cols="stepColSize")
+                      p.mc-b3.font-open-sans.white--text {{ step.description }}
             div(v-if="!hideBtn")
               v-row
                 v-col.py-3

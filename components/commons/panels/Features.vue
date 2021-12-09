@@ -2,11 +2,11 @@
   v-container
     v-row(justify="center" align="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
-        v-col(cols="12" :md="titleColSize").text-center
+        v-col(cols="12" :md="titleColSize" :xl="titleColSizeXl").text-center
           span(v-if="metaTitle" :class="{'white--text': hasBlueBg}").mc-h7 {{ metaTitle }}
           slot(name="title")
             h2(:class="{'white--text': hasBlueBg}").mc-h2 {{ title }}
-        v-col(cols="12" :md="contentColSize").text-center.py-3
+        v-col(cols="12" :md="contentColSize" :xl="contentColSizeXl").text-center.py-3
           div
             slot(name="description")
               p(:class="{'white--text': hasBlueBg}").mc-b2 {{ description }}
@@ -86,8 +86,18 @@ export default {
       type: [Number, String],
       default: '8',
     },
+    // - Space for title
+    titleColSizeXl: {
+      type: [Number, String],
+      default: '8',
+    },
     // - Space for description
     contentColSize: {
+      type: [Number, String],
+      default: '8',
+    },
+    // - Space for description
+    contentColSizeXl: {
       type: [Number, String],
       default: '8',
     },

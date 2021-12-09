@@ -126,6 +126,8 @@
         image-dir="booking/"
         icon-container-col-size="12"
         title-col-size="7"
+        title-col-size-xl="9"
+        content-col-size-xl="6"
         :each-icon-col="{ cols: 12 }"
       )
         template(slot="title")
