@@ -21,7 +21,7 @@
                   depressed
                   :block="$isRegularScreen"
                   :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
-                  class="rounded-lg"
+                  class="rounded-md"
                   :height="!$isWideScreen ? '59px' : '73.68px'"
                   :href="'https://calendly.com/mycure/demo?month=2021-11'"
                 ).text-none
@@ -31,7 +31,7 @@
                   event-label="signup"
                   color="primary"
                   depressed
-                  class="rounded-lg"
+                  class="rounded-md"
                   :block="$isRegularScreen"
                   :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
                   :height="!$isWideScreen ? '59px' : '73.68px'"

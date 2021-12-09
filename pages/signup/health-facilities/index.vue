@@ -328,7 +328,7 @@
                     :dense="$isMobile"
                     clearable
                     :disabled="loading.form"
-                  ).rounded-lg
+                  ).rounded-md
               v-row(justify="end")
                 v-col(cols="1" align="end")
                   v-row(justify="end" align="end")

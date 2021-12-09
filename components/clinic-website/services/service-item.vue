@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.rounded-lg
+  v-card.rounded-md
     v-card-text
       v-row
         v-col(cols="12" md="8")

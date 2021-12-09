@@ -30,7 +30,7 @@
             div(:class="{'text-center': $isMobile}")
               signup-button(
                 depressed
-                class="rounded-lg"
+                class="rounded-md"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="primary"
@@ -56,7 +56,7 @@
             signup-button(
               depressed
               color="primary"
-              class="rounded-lg"
+              class="rounded-md"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none

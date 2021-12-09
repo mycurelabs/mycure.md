@@ -6,7 +6,7 @@
           v-col(cols="12").text-center.pa-0
             h2(:class="headerClasses").font-weight-semibold.white--text Built With Care for People Who Care
             p(:class="descriptionClasses").white--text.font-open-sans MYCURE is dedicated to help healthcare providers save lives every day.
-            v-card.rounded-lg.pa-5
+            v-card.rounded-md.pa-5
               v-row(
                 justify="center"
               ).stat-container

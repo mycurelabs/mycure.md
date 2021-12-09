@@ -91,7 +91,7 @@
               @click:clear="clearSearchText"
               @keyup.enter="onSearch(true)"
               @update:search-input="handleDebouncedSearch($event)"
-            ).rounded-lg
+            ).rounded-md
               template(v-if="isOrganization" slot="append")
                 v-tooltip(bottom)
                   template(v-slot:activator="{ on, attrs }")

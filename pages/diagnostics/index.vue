@@ -48,7 +48,7 @@
                       depressed
                       color="primary"
                       event-label="signup"
-                      class="rounded-lg"
+                      class="rounded-md"
                       :width="!$isWideScreen ? '228px' : '300'"
                       :height="!$isWideScreen ? '59px' : '73.68'"
                     ).text-none
@@ -150,7 +150,7 @@
             depressed
             color="primary"
             event-label="signup"
-            class="rounded-lg"
+            class="rounded-md"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
@@ -169,7 +169,7 @@
               event-label="clinics-info"
               color="primary"
               :to="{ name: 'clinics' }"
-              class="rounded-lg"
+              class="rounded-md"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none

@@ -43,7 +43,7 @@
           template(slot="additional-content").text-center
             signup-button(
               depressed
-              class="rounded-lg"
+              class="rounded-md"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
@@ -60,7 +60,7 @@
           div(:class="{'text-center': $isMobile}")
             signup-button(
               depressed
-              class="rounded-lg"
+              class="rounded-md"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="primary"

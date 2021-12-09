@@ -73,7 +73,7 @@
               signup-button(
                 depressed
                 color="primary"
-                class="rounded-lg"
+                class="rounded-md"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none.my-3
@@ -92,7 +92,7 @@
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
-            class="rounded-lg"
+            class="rounded-md"
             color="primary"
             facility-type="clinic"
             width="228px"

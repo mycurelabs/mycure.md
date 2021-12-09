@@ -18,7 +18,7 @@
           signup-button(
             depressed
             color="primary"
-            class="rounded-lg"
+            class="rounded-md"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none

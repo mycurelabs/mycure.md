@@ -14,7 +14,7 @@
                     p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
                 signup-button(
                   depressed
-                  class="rounded-lg"
+                  class="rounded-md"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   color="success"

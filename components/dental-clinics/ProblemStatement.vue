@@ -46,7 +46,7 @@
             depressed
             rounded
             color="success"
-            class="rounded-lg"
+            class="rounded-md"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none.my-6

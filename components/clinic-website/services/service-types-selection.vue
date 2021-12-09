@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.rounded-lg
+  v-card.rounded-md
     v-toolbar(flat).pa-1
       v-spacer
       img(

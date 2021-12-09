@@ -22,10 +22,10 @@
               )
                 template(slot="prevArrow")
                   v-btn(icon).ml-n4.custom-btn
-                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="primary") {{ mdiChevronLeftCircle }}
+                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen") {{ mdiChevronLeft }}
                 template(slot="nextArrow")
                   v-btn(icon).mr-n4.custom-btn
-                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="primary") {{ mdiChevronRightCircle }}
+                    v-icon(:large="!$isWideScreen" :x-large="$isWideScreen") {{ mdiChevronRight }}
                 template(#customPaging="page")
                   v-icon(color="primary" small) {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                 div(v-for="(item,key) in items" :key="key")
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutline } from '@mdi/js';
+import { mdiChevronRight, mdiChevronLeft, mdiCircle, mdiCircleOutline } from '@mdi/js';
 import VueSlickCarousel from 'vue-slick-carousel';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -70,8 +70,8 @@ export default {
     return {
       // mdiArrowLeftThinCircleOutline,
       // mdiArrowRightThinCircleOutline,
-      mdiChevronRightCircle,
-      mdiChevronLeftCircle,
+      mdiChevronRight,
+      mdiChevronLeft,
       mdiCircle,
       mdiCircleOutline,
       currentSlide: 0,

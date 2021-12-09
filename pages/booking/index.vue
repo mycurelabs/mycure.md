@@ -33,7 +33,7 @@
               signup-button(
                 depressed
                 color="primary"
-                class="rounded-lg"
+                class="rounded-md"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
@@ -167,7 +167,7 @@
                     :to="{ name: 'clinics' }"
                     depressed
                     color="#FOF7FD"
-                    class="rounded-lg"
+                    class="rounded-md"
                     :block="$isRegularScreen"
                     :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
                     :height="!$isWideScreen ? '59px' : '73.68'"
@@ -178,7 +178,7 @@
                   signup-button(
                     depressed
                     color="primary"
-                    class="rounded-lg"
+                    class="rounded-md"
                     :block="$isRegularScreen"
                     :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
                     :height="!$isWideScreen ? '59px' : '73.68'"
@@ -203,7 +203,7 @@
                   depressed
                   event-label="signup"
                   color="success"
-                  class="rounded-lg"
+                  class="rounded-md"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   :to="{ name: 'signup-health-facilities' }"

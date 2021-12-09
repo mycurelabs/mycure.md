@@ -3,7 +3,7 @@
     template(v-if="materials.length")
       v-row
         v-col(cols="12")
-          v-card(flat).bordered-card.rounded-lg
+          v-card(flat).bordered-card.rounded-md
             v-card-text
               v-row
                 v-col(cols="12" md="6")
