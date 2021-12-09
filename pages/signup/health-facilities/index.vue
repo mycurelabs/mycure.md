@@ -1,6 +1,9 @@
 <template lang="pug">
-  v-container(v-if="!loading.page" fluid fill-height).pa-0.ma-0
-    v-row(style="height: 100vh")
+  v-container(fluid fill-height).pa-0.ma-0
+    div(v-if="loading.page").white--text
+      h1.font-24 Register
+      p Level up your healthcare services and get more patients safely
+    v-row(v-else style="height: 100vh")
       v-col(cols="6" v-if="!$isMobile").pa-0.bg-panel
         v-row(style="height: 100vh" align="start" justify="center")
           v-col.text-center.pt-16.pr-14

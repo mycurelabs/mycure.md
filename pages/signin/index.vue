@@ -252,9 +252,9 @@ export default {
   },
   created () {
     this.init();
+    this.pageLoading = false;
   },
   mounted () {
-    this.pageLoading = false;
     window.$amplitude.logEvent('RET001 Page > Sign in');
   },
   methods: {
