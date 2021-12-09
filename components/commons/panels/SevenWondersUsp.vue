@@ -9,7 +9,7 @@
         :extension-exclusive="extensionExclusive"
         :custom-path="customImagePath"
       )
-    v-container(:class="{'px-0': !$isMobile}").content
+    v-container.content
       v-row(justify="center" :style="{ height: panelHeight }" :class="[{'py-16': !$isMobile}, {'mt-16': $isWideScreen}]")
         generic-sub-page-panel(
           :content="uspDescription"
@@ -17,7 +17,6 @@
           :content-column-bindings="contentColumnBindings"
           :media-column-bindings="mediaColumnBindings"
           :generic-panel-bindings="genericPanelBindings"
-          :class="{'pa-0': !$isMobile}"
         )
           template(slot="title")
             h2(:class="titleClasses") {{ uspTitle }}

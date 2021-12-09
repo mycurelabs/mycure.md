@@ -134,14 +134,14 @@ export default {
     getPanelBindings (content) {
       const contentColumnBindings = {
         cols: 12,
-        md: 6,
+        md: 5,
         // alignSelf: 'center',
-        // ...content.contentAlign === 'right' && { offsetMd: 1 },
+        ...content.contentAlign === 'right' && { offsetMd: 1 },
       };
       const mediaColumnBindings = {
         cols: 12,
         md: 6,
-        // ...content.contentAlign === 'left' && { offsetMd: 1 },
+        ...content.contentAlign === 'left' && { offsetMd: 1 },
       };
       const panelBindings = {
         centerPanelTitleClasses: this.centerPanelTitleClasses,

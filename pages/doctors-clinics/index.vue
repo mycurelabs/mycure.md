@@ -21,7 +21,7 @@
         background-img-pos="48%"
         background-img-width="52%"
       ).mb-16
-    div.grey-bg.mx-n3
+    div.grey-bg
       v-container.py-16
         v-row(justify="center")
           lazy-hydrate(when-visible)
@@ -70,7 +70,7 @@
         :items="features"
         image-dir="doctors-clinics/"
       ).my-16
-    div.grey-bg.mx-n3
+    div
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="fullFeaturePanel"

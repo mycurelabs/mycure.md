@@ -2,7 +2,7 @@
   v-container(fluid).white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders(:show-carousel="!loading").mb-16.yellow
+      seven-wonders(:show-carousel="!loading").mb-16
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(

@@ -4,31 +4,32 @@
     :row-bindings="genericPanelBindings"
     :disable-parent-padding="disableParentPadding"
   )
-    v-row(align="center")
-      v-col(v-if="centerPanelTitle" cols="12").text-center
-        div.mb-10
-          slot(name="center-panel-title")
-            h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
-      v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
-        slot(name="image")
-          img(v-if="$isMobile" :width="width" :src="image" :alt="image")
-      v-col(v-bind="contentColumnBindings")
-        v-row(justify="center" height="100%")
-          v-col(v-if="!$isMobile && contentRight" cols="2").pa-0
-          v-col(cols="12" sm="10" align-self="center").pa-0
-            div.mb-3
-              slot(name="super-title")
-                h3(:class="defaultSuperTitleClasses") {{superTitle}}
-            div.mb-4
-              slot(name="title")
-                h2(:class="defaultTitleClasses") {{ title }}
-            div.mb-10
-              slot(name="content")
-                p(v-if="content" :class="defaultContentClasses") {{ content }}
-            div(v-if="!hideBtn")
-              slot(name="cta-button")
-                v-btn {{ ctaButtonText }}
-      slot(name="additional-content")
+    v-col(cols="12")
+      v-row(align="center")
+        v-col(v-if="centerPanelTitle" cols="12").text-center
+          div.mb-10
+            slot(name="center-panel-title")
+              h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
+        v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
+          slot(name="image")
+            img(v-if="$isMobile" :width="width" :src="image" :alt="image")
+        v-col(v-bind="contentColumnBindings")
+          v-row(justify="center" height="100%")
+            v-col(v-if="!$isMobile && contentRight" cols="2").pa-0
+            v-col(cols="12" sm="12" align-self="center").pa-0
+              div.mb-3
+                slot(name="super-title")
+                  h3(:class="defaultSuperTitleClasses") {{superTitle}}
+              div.mb-4
+                slot(name="title")
+                  h2(:class="defaultTitleClasses") {{ title }}
+              div.mb-10
+                slot(name="content")
+                  p(v-if="content" :class="defaultContentClasses") {{ content }}
+              div(v-if="!hideBtn")
+                slot(name="cta-button")
+                  v-btn {{ ctaButtonText }}
+        slot(name="additional-content")
 </template>
 
 <script>
