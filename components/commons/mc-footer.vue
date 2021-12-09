@@ -13,27 +13,29 @@
               )
             v-col(cols="11")
               v-row(justify="center")
-                template(v-for="(footerItem, index) in footerItems")
-                  v-col.grow.footer-section
-                    p(v-if="footerItem.type === 'footer-header'").font-poppins.primary--text.mc-h4.mt-3 {{ footerItem.value.toUpperCase() }}
-                    div(v-for="(col, index) in footerItem.columns").my-3
-                      nuxt-link(
-                        v-if="col.type === 'link'"
-                        :to="col.link"
-                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
-                      a(
-                        v-else-if="col.type === 'external'"
-                        :href="col.link"
-                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
-                      a(
-                        v-else-if="col.type === 'email'"
-                        :href="`mailto:${col.value}`"
-                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
-                      a(
-                        v-else-if="col.type === 'chat'"
-                        @click.stop="toggleChat()"
-                      ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
-                      span(v-else).item-link.mc-hyp2-no-font-style.d-block {{col.value}}
+                v-col(cols="12").d-flex.justify-space-around
+                  template(v-for="(footerItem, index) in footerItems")
+                    div
+                      p(v-if="footerItem.type === 'footer-header'").font-poppins.primary--text.mc-h4.mt-3 {{ footerItem.value.toUpperCase() }}
+                      div(v-for="(col, index) in footerItem.columns").my-3
+                        nuxt-link(
+                          v-if="col.type === 'link'"
+                          :to="col.link"
+                        ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                        a(
+                          v-else-if="col.type === 'external'"
+                          :href="col.link"
+                          rel="noreferrer noopener nofollow"
+                        ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                        a(
+                          v-else-if="col.type === 'email'"
+                          :href="`mailto:${col.value}`"
+                        ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                        a(
+                          v-else-if="col.type === 'chat'"
+                          @click.stop="toggleChat()"
+                        ).mc-hyp2-no-font-style.item-link.d-block {{col.value}}
+                        span(v-else).item-link.mc-hyp2-no-font-style.d-block {{col.value}}
           v-row(v-else-if="$isMobile")
             v-col(cols="12").text-center.mt-3
               img(
@@ -84,10 +86,10 @@
               :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
               cols="12"
               md="4"
-            )
+            ).d-flex.justify-space-between
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                  img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
+                  img(:src="require(`~/assets/images/${ account.icon }`)" width="35" height="35" :alt="account.name").ma-2
   </template>
 
 <script>

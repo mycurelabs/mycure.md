@@ -125,23 +125,23 @@ export default {
     },
   },
   data () {
-    this.defaultTitleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.defaultContentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.defaultSuperTitleClasses = ['mc-subheader-set-4', 'font-open-sans', 'font-weight-bold', 'primary--text'];
+    this.defaultTitleClasses = ['mc-h2'];
+    this.defaultContentClasses = ['mc-b2'];
+    this.defaultSuperTitleClasses = ['mc-h7'];
     return {};
   },
   methods: {
     getPanelBindings (content) {
       const contentColumnBindings = {
         cols: 12,
-        md: 6,
+        md: 5,
         // alignSelf: 'center',
-        // ...content.contentAlign === 'right' && { offsetMd: 1 },
+        ...content.contentAlign === 'right' && { offsetMd: 1 },
       };
       const mediaColumnBindings = {
         cols: 12,
         md: 6,
-        // ...content.contentAlign === 'left' && { offsetMd: 1 },
+        ...content.contentAlign === 'left' && { offsetMd: 1 },
       };
       const panelBindings = {
         centerPanelTitleClasses: this.centerPanelTitleClasses,

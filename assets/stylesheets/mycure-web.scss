@@ -109,10 +109,10 @@ $body-color: #72727D;
 
 /* Font Styles */
 .font-poppins {
-  font-family: 'Poppins', 'sans-serif' !important;
+  font-family: 'Poppins', Sans-Serif, Helvetica !important;
 }
 .font-open-sans {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  font-family: 'Open Sans', Sans-Serif, Helvetica !important;
 }
 .font-weight-semibold {
   font-weight: 600 !important;
@@ -548,7 +548,7 @@ classBinder(this, {
   }
 }
 .mc-b1 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b1-mob, 30px);
@@ -562,7 +562,7 @@ classBinder(this, {
   }
 }
 .mc-b2 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
@@ -576,7 +576,7 @@ classBinder(this, {
   }
 }
 .mc-b3 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
@@ -590,7 +590,7 @@ classBinder(this, {
   }
 }
 .mc-list-b3 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 30px);
@@ -603,7 +603,7 @@ classBinder(this, {
   }
 }
 .mc-b4 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 24px);
@@ -617,7 +617,7 @@ classBinder(this, {
   }
 }
 .mc-b5 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($b2-mob, 24px);
@@ -631,7 +631,7 @@ classBinder(this, {
   }
 }
 .mc-hyp1 {
-  font-family: 'Open Sans', 'sans-serif' !important;
+  @extend .font-open-sans;
   font-weight: 600 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);

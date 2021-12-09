@@ -1,11 +1,11 @@
 <template lang="pug">
-  div
-    v-container
-      v-row(justify="center")
-        generic-panel
-          v-col(cols="12").text-center
-            span(:class="metaTitleClasses").primary--text Why MYCURE?
-            h2(:class="panelHeaderClasses").font-weight-semibold Think Long-Term
+  div.pt-16
+    //- v-container
+    //-   v-row(justify="center")
+    //-     generic-panel
+    //-       v-col(cols="12").text-center
+    //-         span(:class="metaTitleClasses").primary--text Why MYCURE?
+    //-         h2(:class="panelHeaderClasses").font-weight-semibold Think Long-Term
     generic-media-panel(
       v-for="(panel, key) in panels"
       align="center"
@@ -15,32 +15,41 @@
       :class="{'pb-16': key === 1}"
       hide-btn
       disable-parent-padding
-    )
+    ).my-16
       template(slot="content")
         p(:class="descriptionClasses") {{ panel.description }}&nbsp;
-          span(v-if="$nuxt.$route.name !== 'doctors-clinics' && panel.descriptionAppend") {{ panel.descriptionAppend }}
+      template(v-if="panel.route" slot="additional-content")
+        div(:class="{'text-center': $isMobile}")
+          nuxt-link(:to="{ name: panel.route }" :class="{'d-flex': !$isMobile}").button
+            span.mc-hyp1.primary--text {{ panel.routeText }}
+            v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
+        //- span(v-if="$nuxt.$route.name !== 'doctors-clinics' && panel.descriptionAppend") {{ panel.descriptionAppend }}
 </template>
 
 <script>
+import { mdiChevronRight } from '@mdi/js';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 export default {
   components: {
     GenericMediaPanel,
   },
   data () {
-    this.panelHeaderClasses = ['mc-title-set-1'];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
-    this.headerClasses = ['mc-title-set-2', 'primary--text', 'font-weight-semibold'];
-    return {};
+    // this.panelHeaderClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    // this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
+    this.headerClasses = ['mc-h2'];
+    return {
+      mdiChevronRight,
+    };
   },
   computed: {
     panels () {
       return [
         {
-          title: 'MYCURE is not just your ordinary medical app.',
-          description: 'It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network.',
-          descriptionAppend: 'MYCURE has open APIs to give you more flexibility in integrating with other systems.',
+          title: 'MYCURE Clinics is No Ordinary EHR App',
+          description: 'It’s a cloud-based clinic system built for the specialized needs of healthcare. Connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network.',
+          route: 'syncbase',
+          routeText: 'Learn About Syncbase',
           imageBindings: {
             image: 'preventing-failures.png',
             imageAlt: 'Doctor and patient communicating artwork',
@@ -52,8 +61,10 @@ export default {
           contentAlign: 'right',
         },
         {
-          title: 'As your practice grows, your tech tools need to upgrade too.',
-          description: 'The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.',
+          title: 'Advanced Tools for a Growing Clinic',
+          description: 'We’re here to make managing your multispecialty clinic so much easier. We offer full functionality for our free accounts, and you only need to upgrade as your practice grows. We want to help you make the world a healthier place.',
+          route: 'features',
+          routeText: 'See All Features',
           imageBindings: {
             image: 'as-your-practice-grows.png',
             imageAlt: 'Hospitals growing and scaling up artwork',
@@ -69,3 +80,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.button {
+  text-decoration: none;
+}
+</style>

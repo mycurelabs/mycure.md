@@ -1,78 +1,83 @@
 <template lang="pug">
-  div(v-if="!loading")
+  div
     v-app-bar(
       height="50"
       app
       dark
-      elevate-on-scroll
-      style="padding-top: 1px;"
-    ).nav-bar
-      v-container.pa-0
-        v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : $vuetify. breakpoint.width < 1200 ? '11' : '10'" disable-parent-padding)
-            v-col.d-flex
-              nuxt-link(to="/")
-                img(
-                  src="~/assets/images/mycure-logo-white.png"
-                  alt="MYCURE logo"
-                  width="120px"
-                  height="34.46px"
-                ).mt-1.mr-4
-              template(v-if="!$isMobile")
-                template(v-for="(nav, key) in navs")
-                  v-menu(v-if="nav.isMenu" offset-y)
-                    template(v-slot:activator="{ on }")
+      elevation="0"
+    ).nav-bar.py-0
+      v-container(fluid)
+        v-container
+          v-row(justify="center")
+            generic-panel(
+              :column="$isMobile ? 12 : 10"
+              :row-bindings="{ justify: 'center', align: 'center' }"
+              disable-parent-padding
+            )
+              v-col(cols="12")
+                v-row
+                  nuxt-link(to="/")
+                    img(
+                      src="~/assets/images/mycure-logo-white.png"
+                      alt="MYCURE logo"
+                      width="120px"
+                      height="34.46px"
+                    ).mt-2.mr-4
+                  template(v-if="!$isMobile")
+                    template(v-for="(nav, key) in navs")
+                      v-menu(v-if="nav.isMenu" offset-y)
+                        template(v-slot:activator="{ on }")
+                          v-btn(
+                            v-on="on"
+                            text
+                            depressed
+                            height="50"
+                            tile
+                          ).text-none.font-12.font-weight-medium
+                            | {{ nav.name }}
+                            v-icon(small right) {{ mdiChevronDown }}
+                        v-list
+                          v-list-item(
+                            v-for="(item, key) in filteredMenuItems(nav.menuItems)"
+                            :key="key"
+                            :to="{ name: item.route }"
+                            exact-path
+                          )
+                            v-list-item-title {{ item.name }}
                       v-btn(
-                        v-on="on"
+                        v-else
                         text
                         depressed
                         tile
-                        large
-                      ).text-none.font-12.font-weight-medium
-                        | {{ nav.name }}
-                        v-icon(small right) {{ mdiChevronDown }}
-                    v-list
-                      v-list-item(
-                        v-for="(item, key) in nav.menuItems"
+                        height="50"
                         :key="key"
-                        :to="{ name: item.route }"
-                        v-if="isNavVisible(item)"
-                        exact-path
-                      )
-                        v-list-item-title {{ item.name }}
-                  v-btn(
-                    v-else
-                    text
-                    depressed
-                    tile
-                    large
-                    :key="key"
-                    :to="{ name: nav.route }"
-                  ).text-none.font-12
-                    span.font-weight-medium {{ nav.name }}
-                //- v-btn(
-                //-   text
-                //-   depressed
-                //-   large
-                //-   :to="{ name: 'pxp' }"
-                //- ).text-none.mr-2.font-12 #[b For Patients]
-                v-spacer
-                mc-btn(
-                  event-label="login"
-                  text
-                  depressed
-                  large
-                  tile
-                  :to="{ name: 'signin' }"
-                ).text-none.font-12 #[span.font-weight-medium LOG IN]
-                signup-button(
-                  color="success"
-                  large
-                  tile
-                ).text-none.font-12.font-weight-medium SIGN UP
-              template(v-else)
-                v-spacer
-                v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
+                        :to="{ name: nav.route }"
+                      ).text-none.font-12
+                        span.font-weight-medium {{ nav.name }}
+                    //- v-btn(
+                    //-   text
+                    //-   depressed
+                    //-   large
+                    //-   :to="{ name: 'pxp' }"
+                    //- ).text-none.mr-2.font-12 #[b For Patients]
+                    v-spacer
+                    mc-btn(
+                      event-label="login"
+                      text
+                      depressed
+                      height="50"
+                      tile
+                      :to="{ name: 'signin' }"
+                    ).text-none.font-12 #[span.font-weight-medium LOG IN]
+                    signup-button(
+                      color="success"
+                      height="50"
+                      elevation="0"
+                      tile
+                    ).text-none.font-12.font-weight-medium SIGN UP
+                  template(v-else)
+                    v-spacer
+                    v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
 
     v-navigation-drawer(
       v-if="$isMobile"
@@ -210,15 +215,20 @@ export default {
         },
       });
     },
-    isNavVisible (nav) {
-      if (nav.route !== 'diagnostics-ofw') return true;
-      return this.inPh;
+    filteredMenuItems (menuItems) {
+      return menuItems.filter((item) => {
+        if (item.route !== 'diagnostics-ofw') return true;
+        return this.inPh;
+      });
     },
   },
 };
 </script>
 
 <style scoped>
+.nav-bar >>> .v-toolbar__content {
+  padding: 0px 16px;
+}
 .nav-bar {
   background-color: rgba(0,0,0,0.8);
 }

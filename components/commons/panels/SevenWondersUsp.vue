@@ -10,7 +10,7 @@
         :custom-path="customImagePath"
       )
     v-container.content
-      v-row(justify="center" align="center" :style="{ height: panelHeight }")
+      v-row(justify="center" :style="{ height: panelHeight }" :class="[{'py-16': !$isMobile}, {'mt-16': $isWideScreen}]")
         generic-sub-page-panel(
           :content="uspDescription"
           :content-classes="descriptionClasses"
@@ -27,18 +27,18 @@
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
               :alt="image"
               :width="imageWidth"
-            )
+            ).mb-4
           template(slot="cta-button")
             div(:class="{'text-center': $isMobile}")
               slot(name="cta-button")
                 signup-button(
                   depressed
-                  class="rounded-lg"
+                  class="rounded-md"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   :color="btnColor"
                 ).text-none
-                  span.generic-button-text {{ btnText }}
+                  span.mc-btn1 {{ btnText }}
 </template>
 
 <script>
@@ -145,8 +145,8 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 4,
-        xl: 5,
+        md: 5,
+        xl: 6,
       }),
     },
     // - Column for Image
@@ -154,9 +154,9 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 7,
+        md: 6,
         offsetMd: 1,
-        xl: 6,
+        xl: 5,
       }),
     },
     // - Alignment of image
@@ -179,19 +179,18 @@ export default {
       type: String,
       default: null,
     },
+    backgroundImgPos: {
+      type: String,
+      default: '52%',
+    },
+    backgroundImgWidth: {
+      type: String,
+      default: '40%',
+    },
   },
   data () {
     this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
-    this.backgroundStyle = {
-      width: '42%',
-      height: '100%',
-      position: 'absolute',
-      left: '55%',
-      top: '0',
-      zIndex: '1',
-      objectFit: 'contain',
-    };
     return {};
   },
   computed: {
@@ -240,6 +239,17 @@ export default {
       return {
         justify: 'center',
         align: 'center',
+      };
+    },
+    backgroundStyle () {
+      return {
+        width: this.backgroundImgWidth,
+        height: '100%',
+        position: 'absolute',
+        left: this.backgroundImgPos,
+        top: '0',
+        zIndex: '1',
+        objectFit: 'contain',
       };
     },
   },

@@ -40,10 +40,10 @@ export default {
   },
   computed: {
     cardHeight () {
-      if (this.$isWideScreen) return '400';
-      if (this.wLG) return '350';
-      if (this.wSM) return '350';
-      return '380';
+      if (this.$isWideScreen) return '365';
+      if (this.wLG) return '335';
+      if (this.wSM) return '320';
+      return '330';
     },
     cardPadding () {
       if (this.$isWideScreen) return 'pt-6';

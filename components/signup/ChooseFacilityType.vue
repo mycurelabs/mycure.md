@@ -4,6 +4,9 @@
       v-card-text.pa-3
         v-container
           v-row(justify="center")
+            v-col(cols="12" align="end" :class="{'mb-n10': !$isMobile}").pa-0
+              v-btn(@click="dialog=false" icon)
+                v-icon {{ mdiClose }}
             v-col(cols="12").text-center
               h1 Choose Health Facility Type
             v-col(cols="12" md="4" v-for="(type, key) in facilityTypes" :key="key")
@@ -23,6 +26,9 @@
 </template>
 
 <script>
+import {
+  mdiClose,
+} from '@mdi/js';
 export default {
   props: {
     value: {
@@ -38,6 +44,7 @@ export default {
   data () {
     return {
       typeValue: undefined,
+      mdiClose,
     };
   },
   computed: {

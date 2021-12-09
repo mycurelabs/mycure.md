@@ -1,6 +1,9 @@
 <template lang="pug">
-  v-container(v-if="!loading.page" fluid fill-height).pa-0.ma-0
-    v-row(style="height: 100vh")
+  v-container(fluid fill-height).pa-0.ma-0
+    div(v-if="loading.page").white--text
+      h1.font-24 Register
+      p Level up your healthcare services and get more patients safely
+    v-row(v-else style="height: 100vh")
       v-col(cols="6" v-if="!$isMobile").pa-0.bg-panel
         v-row(style="height: 100vh" align="start" justify="center")
           v-col.text-center.pt-16.pr-14
@@ -18,6 +21,19 @@
               v-col(cols="10")
                 h1.font-24 Register
                 p Level up your healthcare services and get more patients safely
+              v-spacer
+              v-tooltip(top)
+                template(v-slot:activator="{ on, attrs }")
+                  v-btn(
+                    v-bind="attrs"
+                    v-on="on"
+                    icon
+                    color="error"
+                    large
+                    @click="goToPrevPage"
+                  ).ma-4
+                    v-icon(large) {{ mdiArrowULeftTop }}
+                span Back
             p.mb-2 Personal Info
             v-row(:no-gutters="$isMobile").px-2
               v-col(
@@ -279,7 +295,7 @@
     choose-facility-type(
       v-model="chooseFacilityTypeDialog"
       :facility-types="availableFacilityTypes"
-      persistent
+      :persistent="false"
       @select="onFacilityTypeSelect($event)"
     )
     //- referral code dilog
@@ -315,7 +331,7 @@
                     :dense="$isMobile"
                     clearable
                     :disabled="loading.form"
-                  ).rounded-lg
+                  ).rounded-md
               v-row(justify="end")
                 v-col(cols="1" align="end")
                   v-row(justify="end" align="end")
@@ -341,6 +357,7 @@ import {
   mdiEyeOff,
   mdiCheckboxMarkedOutline,
   mdiCheckboxBlankOutline,
+  mdiArrowULeftTop,
 } from '@mdi/js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import headMeta from '~/utils/head-meta';
@@ -464,6 +481,7 @@ export default {
       mdiEyeOff,
       mdiCheckboxMarkedOutline,
       mdiCheckboxBlankOutline,
+      mdiArrowULeftTop,
     };
   },
   head () {
@@ -794,6 +812,9 @@ export default {
         },
       });
       this.chooseFacilityTypeDialog = false;
+    },
+    goToPrevPage () {
+      this.$router.go(-1);
     },
   },
 };

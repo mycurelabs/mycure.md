@@ -2,7 +2,7 @@
   v-container(fluid).white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders(style="width: 100vw").mb-16.yellow
+      seven-wonders(:show-carousel="!loading").mb-16
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -117,7 +117,7 @@ export default {
       },
       {
         title: 'Create your free account',
-        description: 'This activates your Health Management System.',
+        description: 'This activates your Health Information Management System.',
       },
       {
         title: 'Start customizing',
@@ -154,7 +154,7 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 .margin-wide {
   margin-bottom: 150px;

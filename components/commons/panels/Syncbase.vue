@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-sub-page-panel(
         :content-right="version !== 1"
-        :title="panelTitle"
+        :title="title ? title : panelTitle"
         :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
         :media-column-bindings="mediaColumnBindings"
@@ -16,7 +16,7 @@
           template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
           template(v-else)
-            p(:class="descriptionClasses") With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
+            p(:class="descriptionClasses") With the MYCURE Syncbase, you’ll be able to work as if you have an in-house server for your practice management system – with all the conveniences of the cloud. Even if the Internet is down, you can still create electronic health records on any of your devices, and they will automatically sync once you’re back online.
         template(v-if="!hideBtn" slot="cta-button")
           //- mc-btn(
           //-   color="primary"
@@ -31,7 +31,7 @@
           div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Learn about MYCURE Syncbase
-              v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
               color="success"
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { mdiPlayCircle, mdiArrowRight } from '@mdi/js';
+import { mdiPlayCircle, mdiChevronRight } from '@mdi/js';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
   components: {
@@ -84,6 +84,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    title: {
+      type: String,
+      default: null,
+    },
   },
   data () {
     this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
@@ -93,7 +97,7 @@ export default {
     return {
       syncbaseVideoDialog: false,
       mdiPlayCircle,
-      mdiArrowRight,
+      mdiChevronRight,
     };
   },
   computed: {
