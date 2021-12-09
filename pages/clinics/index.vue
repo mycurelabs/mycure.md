@@ -90,7 +90,7 @@
           //-   span.mc-btn1 Create my website
           nuxt-link(to="/signup/health-facilities?type=clinic" :class="{'d-flex': !$isMobile}").button
             span.mc-hyp1 Create my website
-            v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
+            v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         features(

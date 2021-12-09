@@ -31,7 +31,7 @@
           div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Learn about MYCURE Syncbase
-              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '8' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
               color="success"
