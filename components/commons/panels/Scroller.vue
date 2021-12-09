@@ -27,7 +27,7 @@
                   v-btn(icon).mr-n4.custom-btn
                     v-icon(:large="!$isWideScreen" :x-large="$isWideScreen") {{ mdiChevronRight }}
                 template(#customPaging="page")
-                  v-icon(color="primary" small) {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
+                  v-icon(color="primary" small bottom) {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                 div(v-for="(item,key) in items" :key="key")
                   v-col(cols="12").pa-0
                     v-row(justify="center")
@@ -35,6 +35,7 @@
                         picture-source(v-bind="getImageBindings(item.imageBindings)")
                         h3.mc-h3.mb-4 {{ item.title }}
                         p.mc-b3 {{ item.description }}
+                        br
 </template>
 
 <script>
