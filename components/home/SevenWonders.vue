@@ -10,7 +10,7 @@
                   br
                   | Solutions for Every Provider
                 v-row(justify="center").mt-5
-                  v-col(cols="12" md="10")
+                  v-col(cols="12" md="10" xl="8")
                     p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
                 signup-button(
                   depressed
