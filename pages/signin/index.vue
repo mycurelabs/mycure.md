@@ -1,10 +1,10 @@
 <template lang="pug">
-  div(v-if="!pageLoading")
+  div
     v-row(v-if="noRedirect").pa-1
       v-col
         v-btn(color="primary" icon to="/")
           v-icon {{ mdiArrowLeft }}
-    v-container.my-16.pb-8
+    v-container(v-if="!pageLoading").my-16.pb-8
       v-row(align="center" justify="center").mx-1
         v-col(cols="12" sm="8" md="5")
           v-col.text-center
@@ -123,22 +123,22 @@
             //-   color="primary"
             //-   type="submit"
             //- ) Submit
-    v-dialog(v-if="checkDevice" v-model="bestUseDialog" width="300" persistent)
-      v-card.text-center
-        v-card-text.pa-8
-          img(
-            src="~/assets/images/sign-in/MYCURE-modal-best-used-in-big-screens-image.png"
-            width="236px"
-            height="102.66px"
-            alt="PC Monitor, Laptop, and Tablet Screens artwork"
-          )
-          p.py-3
-            strong MYCURE&nbsp;
-            | is best used on
-            br
-            | tablets and laptops
-          v-btn(color="accent" @click="bestUseDialog = false" large)
-            strong.text-capitalize Got It
+      v-dialog(v-model="bestUseDialog" width="300" persistent)
+        v-card.text-center
+          v-card-text.pa-8
+            img(
+              src="~/assets/images/sign-in/MYCURE-modal-best-used-in-big-screens-image.png"
+              width="236px"
+              height="102.66px"
+              alt="PC Monitor, Laptop, and Tablet Screens artwork"
+            )
+            p.py-3
+              strong MYCURE&nbsp;
+              | is best used on
+              br
+              | tablets and laptops
+            v-btn(color="accent" @click="bestUseDialog = false" large)
+              strong.text-capitalize Got It
 </template>
 
 <script>
@@ -172,7 +172,7 @@ export default {
       errorMsg: '',
       isMFAMobileNoEnabled: false,
       otpDialog: false,
-      bestUseDialog: true,
+      bestUseDialog: false,
       otp: null,
       errors: [],
       // OTP Digits
@@ -216,6 +216,9 @@ export default {
           document.getElementById('firstDigit').focus();
         });
       }
+    },
+    checkDevice (val) {
+      if (val && !this.pageLoading) this.bestUseDialog = true;
     },
     firstDigit (val) {
       if (val?.length === 1) {
