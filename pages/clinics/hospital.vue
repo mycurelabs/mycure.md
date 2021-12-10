@@ -5,15 +5,16 @@
       usp(
         has-custom-background
         extension-exclusive
-        background-image="clinics-landing-page"
-        background-image-file-extension=".png"
+        background-image="FullService"
+        background-image-file-extension=".webp"
         title="MYCURE Hospital-OPD"
         meta-title="MYCURE HOSPITAL"
         description="Keep your hospital's out-patient department's (OPD) operations running smoothly with the MYCURE Hospital-OPD app. We've designed a platfor that benefits OPD Clinics of all sizes, from small to large."
+        parse-title
         btn-text="Start Free Today"
-        image="clinics-usp"
+        image="FullService"
         :image-width="$isMobile ? '100%' : '90%'"
-        custom-image-path="clinics/"
+        custom-image-path="diagnostics/"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
