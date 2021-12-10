@@ -57,7 +57,7 @@
       //-       span.error--text Heart
 
     //- Workflow area
-    v-container.mb-16
+    v-container.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
@@ -65,7 +65,7 @@
               v-model="tabSelect"
               background-color="transparent"
               color="primary"
-            )
+            ).mb-6
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
@@ -92,7 +92,8 @@
                 )
               v-tab-item
                 //- Facilities
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
                   facilities(
                     :doctorId="doctor.id"
                     :clinics="clinics"
@@ -104,21 +105,21 @@
                   )
               v-tab-item
                 //- Services
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").px-12.py-8.rounded-lg
                   v-card(flat).rounded-xl.bordered-card
                     v-card-text
-                      h2 Services Offered
+                      h3.mc-h3.black--text Services Offered
                       v-list(v-if="services ? (services.length) : false " dense)
-                        v-list-item(v-for="(service, key) in services" :key="key")
+                        v-list-item(v-for="(service, key) in services" :key="key").pl-0
                           v-list-item-icon
-                            v-icon(color="primary") {{ mdiCheckCircleOutline }}
+                            v-icon(color="primary") {{ mdiCheckCircle }}
                           v-list-item-content
-                            v-list-item-title {{ service }}
-                      p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
+                            v-list-item-title.mc-h4 {{ service }}
+                      p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item
                 //- Learning Corner
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
                   learning-corner(
                     :is-preview-mode="isPreviewMode"
                     :doctor-id="doctor.id"
@@ -158,7 +159,7 @@
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
-import { mdiCheckCircleOutline } from '@mdi/js';
+import { mdiCheckCircle } from '@mdi/js';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import Facilities from '~/components/doctor-website/Facilities';
@@ -242,7 +243,7 @@ export default {
       facilitiesLoading: false,
       shareBtn: false,
       tabSelect: null,
-      mdiCheckCircleOutline,
+      mdiCheckCircle,
     };
   },
   head () {
@@ -418,10 +419,6 @@ export default {
         color,
       };
       this.showSnack = true;
-    },
-    getShareLink () {
-      navigator.clipboard.writeText(window.location.href);
-      this.clipSuccess = true;
     },
   },
 };

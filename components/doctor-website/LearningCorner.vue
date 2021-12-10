@@ -3,11 +3,13 @@
     template(v-if="materials.length")
       v-row
         v-col(cols="12")
-          v-card(flat).bordered-card.rounded-md
+          v-card(flat).rounded-md.px-16.py-8
+            v-card-title
+              h3.mc-h3.mb-10 Learning Corner
             v-card-text
               v-row
-                v-col(cols="12" md="6")
-                  span.font-weight-bold Browse by Tag:&nbsp;
+                v-col(cols="12" md="4")
+                  span.font-weight-bold.black--text Browse by Tag:&nbsp;
                   br
                   br
                   v-autocomplete(
@@ -20,8 +22,8 @@
                     :disabled="isPreviewMode"
                     :items="categories"
                   )
-                v-col(cols="12" md="6")
-                  span.font-weight-bold Sort by
+                v-col(cols="12" md="4")
+                  span.font-weight-bold.black--text Sort by:
                   br
                   br
                   v-select(
@@ -29,7 +31,7 @@
                     outlined
                     dense
                     clearable
-                    label="Newest, Oldest, Alphabetically"
+                    label="Sort"
                     item-text="text"
                     item-value="value"
                     :items="sortTypes"
@@ -37,25 +39,25 @@
                     @change="sortMaterials(materialSorter)"
                     @clear="filteredMaterials = [...materials]"
                   )
-      v-row.pt-5
+      v-row.pt-5.grey-bg
         v-col(
           v-for="(material, key) in filteredMaterials"
           :key="key"
           cols="12"
           md="6"
         )
-          v-card(height="100%" flat).material-container.bordered-card.rounded-xl.pa-4
+          v-card(height="100%" flat).material-container.rounded-md.py-6.px-10
             v-card-text
-              h3.my-2 {{ material.title }}
+              h3.mc-h3.my-2.black--text {{ material.title }}
               i.font-gray.font-12.font-italic(v-if="material.category") {{ material.category }}
-              p.my-2 {{ material.description }}
+              p.my-2.mc-b4 {{ material.description }}
             v-card-actions.text-center.py-3.px-4
               v-btn(
                 depressed
                 block
                 color="primary"
                 @click="openFile(material)"
-              ).text-none.font-weight-bold.rounded-xl View
+              ).text-none.font-weight-bold.rounded-md View
     template(v-else)
       v-row(v-if="loading")
         v-col(cols="12")
@@ -174,5 +176,8 @@ export default {
 }
 .bordered-card {
   border: 0.5px solid rgb(218, 218, 218) !important;
+}
+.grey-bg {
+  background-color: #f9f9f9;
 }
 </style>

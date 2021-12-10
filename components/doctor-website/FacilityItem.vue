@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(width="100%" flat).px-1.py-1.rounded-lg.card-outter
+  v-card(width="100%" flat).px-1.py-8.rounded-lg
     v-card-text
       v-row(justify="center")
         v-col(cols="6" md="3" justify="center" align="center").pb-0.text-center
@@ -13,7 +13,7 @@
             v-clamp(
               autoresize
               :max-lines="2"
-            ).mb-0.mc-h3 {{ clinic.name }}&nbsp;
+            ).mb-0.mc-h3.black--text {{ clinic.name }}&nbsp;
             v-spacer
             v-btn(
               icon
@@ -65,7 +65,7 @@
         v-col
           //- span {{ `Teleconsult: ${}` }}
           //- span {{ `Physical Consultation: ${}` }}
-          span {{ operatingGroupedSchedules }}
+          span {{ scheduleDisplay }}
         //- v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
         //-   div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'success' : 'grey']").badge
         //-     | {{ day.text }}
@@ -136,6 +136,7 @@ import {
   mdiEmail,
   mdiPhoneInTalk,
   mdiMapMarker,
+  mdiShareVariant,
 } from '@mdi/js';
 import VClamp from 'vue-clamp';
 // - components
@@ -233,6 +234,7 @@ export default {
       mdiEmail,
       mdiPhoneInTalk,
       mdiMapMarker,
+      mdiShareVariant,
     };
   },
   computed: {
@@ -320,6 +322,50 @@ export default {
         .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || []
       , (a, b) => a.day === b.day && a.opening === b.opening);
     },
+    scheduleDisplay () {
+      const sched = this.operatingGroupedSchedules;
+      const formatSched = sched.map(x => ({ day: x.day, order: x.order }));
+      const finalSched = [];
+      let finalString = '';
+      formatSched.map((x) => {
+        if (finalSched.find(sched => sched.order === x.order - 1)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.order === x.order - 1));
+          finalSched[index].order = finalSched[index].order + 1;
+          return 0;
+        } else if (finalSched.find(sched => sched.day === x.day) || finalSched.find(sched => sched.order === x.order)) {
+          return 0;
+        } else {
+          finalSched.push(x);
+          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
+        }
+        return 0;
+      });
+      finalSched.map((x) => {
+        console.log(finalString);
+        const addString = x.day.concat(' - ', this.days[x.order - 1].day);
+        finalString = finalString.concat('', addString);
+        return 0;
+      });
+      return finalString;
+    },
+    // scheduleDisplay () {
+    //   const sched = this.operatingGroupedSchedules;
+    //   const formatSched = sched.map(x => ({ day: x.day, order: x.order }));
+    //   const finalSched = [{ day: '', order: 1 }];
+    //   formatSched.map((x) => {
+    //     if (finalSched.find(sched => sched.order === x.order - 1)) {
+    //       const index = finalSched.indexOf(finalSched.find(sched => sched.order === x.order + 1));
+    //       finalSched[index].order = finalSched[index].order + 1;
+    //     } else if (finalSched.find(sched => sched.day === x.day)) {
+    //       return 0;
+    //     } else {
+    //       finalSched.push(x);
+    //       if (finalSched.find(sched => sched.day === '')) finalSched.shift();
+    //     }
+    //     return 0;
+    //   });
+    //   return finalSched;
+    // },
   },
   methods: {
     visitWebsite (url) {

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").px-12.py-8.rounded-lg
     //- v-card-text.text-center
     //-   v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
     //-     img(:src="picUrl").img-border

@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding)
         v-col(cols="12")
-          v-card(elevation="1").rounded-xl.py-6.px-12
+          v-card(elevation="0").rounded-xl.py-6.px-12
             v-row.pa-3
               v-avatar(size="100")
                 img(:src="picUrl")
