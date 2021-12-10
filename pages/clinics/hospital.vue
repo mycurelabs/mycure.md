@@ -40,7 +40,7 @@
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
                 v-col(cols="12" sm="10")
-                  p.mc-b2 MYCURE Hospital-OPD is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Clinics’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s Clinic Management System (CMS).
+                  p.mc-b2 MYCURE Hospital-OPD is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Hospital-OPDs’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE Hospital-OPD.
                   signup-button(
                     depressed
                     color="primary"
@@ -59,7 +59,7 @@
     lazy-hydrate(when-visible)
       think-long-term(is-hospital)
     lazy-hydrate(when-visible)
-      mycure-csi(title="Hospital" page="Hospital-OPD")
+      mycure-csi(title="Hospital" custom-description="As a healthcare provider, you’re in charge of your patients’ private medical information. We know how important it is to protect that information, which is why MYCURE Hospital-OPD is backed by our CSI guarantee")
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="eighthPanel"
@@ -219,7 +219,7 @@ export default {
       },
     ];
     this.storybrandContent = [
-      'MYCURE Hospital-OPD offers a variety of tools that you can mix and match to maximize efficiency for your mobile lab clinic, without the costly overhead other clinic information systems might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices.',
+      'MYCURE Hospital-OPD offers a variety of tools that you can mix and match to maximize efficiency for your hospital, without the costly overhead other clinic information systems might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices.',
     ];
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-h2'];
@@ -232,7 +232,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'Flexible Clinic Management System | MYCURE Software for Clinics',
+      title: 'Robust CMS and EMR for Modern Hospital OPD',
       description: 'MYCURE Clinic is a software that helps hospitals, diagnostic centers to run their day-to-day operations. It manages patient records, appointments, & more',
       socialBanner: require('~/assets/images/banners/clinics-og-banner.png'),
     });
@@ -322,7 +322,7 @@ export default {
       return [
         {
           title: 'A Lifeline for Your OPD Clinic',
-          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use OPD Clinic’s cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient hospital grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use OPD Clinic’s cloud-based system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
           imageBindings: {
             customPath: 'commons/',
             image: 'carousel-1',
@@ -334,7 +334,7 @@ export default {
         },
         {
           title: 'Easy Appointment Booking for Your Patients',
-          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your outpatient clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your hospital has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
           imageBindings: {
             customPath: 'commons/',
             image: 'carousel-2',
@@ -346,7 +346,7 @@ export default {
         },
         {
           title: 'Reach New Patients With the MYCURE One Network',
-          description: 'With your MYCURE One profile, you’ll have a clean and professional website on the MYCURE One network that allows potential patients to find an outpatient clinic in their area and schedule an appointment. From primary care providers to specialists, patients will find you and make an appointment with ease.',
+          description: 'With your MYCURE One profile, you’ll have a clean and professional website on the MYCURE One network that allows potential patients to find a hospital in their area and schedule an appointment. From primary care providers to specialists, patients will find you and make an appointment with ease.',
           imageBindings: {
             customPath: 'commons/',
             image: 'carousel-3',
