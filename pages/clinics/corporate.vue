@@ -6,90 +6,101 @@
         has-custom-background
         background-image="corporate-clinics-full"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
-        title="Manage your Company Clinic with Ease"
-        meta-title="MYCURE for Corporate Clinics"
-        description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."
+        title="Save Your Corporate Clinic from Chaos"
+        meta-title="MYCURE CORPORATE CLINICS"
+        description="MYCURE Clinics is designed to help you keep your corporate clinic operating smoothly every single day."
         btn-text="Get Started"
         image="corporate-clinics-mobile"
         custom-image-path="clinics/corporate/"
         parse-title
         parse-meta-title
-        :parse-title-fields="['your ']"
+        :parse-title-fields="['Corporate ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    lazy-hydrate(when-visible)
-      stakes(
-        :version="4"
-        panelTitle="Problems of Not Using a Clinic Management System"
-        :contents="stakesContent"
-        not-free
-      )
-    //- 2nd panel
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
+        stakes(
+          :version="4"
+          panel-title="Not Using a Clinic Management System Is Costly"
+          sub-title="As a doctor, your ability to keep your corporate clinic organized influences the quality of care you can provide your patients. Inefficiency behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with for the office staff. But instead of continuing to suffer, there’s hope."
+          :contents="stakesContent"
+          hide-btn
+          not-free
+        )
+    lazy-hydrate(when-visible)
+      generic-blue-bg
         features(
           extension-exclusive
           image-dir="clinics/corporate/"
           icon-container-col-size="10"
-          description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
+          title="Meet MYCURE Clinics: The Newest Tool for the Newest Generation of Healthcare"
+          description="Everyone in your workplace is online. MYCURE Clinics helps you monitor their health and safety through the cloud. It’s a clinic management system built for the unique ecosystem of healthcare, allowing you to connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network."
           :icon-column-bindings="{ cols: 6, sm: 3 }"
           :items="features"
+          has-blue-bg
         )
-          template(slot="title")
-            h2(:class="headerClasses").primary--text Newest tools for the newest generation.
-    //- 3rd panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          lazy-hydrate(when-visible)
-            generic-panel(:row-bindings="{ justify: 'center' }")
-              v-col(cols="12" lg="8").white--text
-                h2(:class="headerClasses").mb-8.text-center.white--text Know the health status of your employees, stat!
-                div.text-center
-                  span.mc-content-set-1.mb-10.white--text Easily access and share medical records with them through the MYCURE health portal.
-    //- 4th panel
+          template(slot="additional-content").text-center
+            signup-button(
+              depressed
+              class="rounded-md"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              color="success"
+            ).text-none.mt-4
+              span.mc-btn1 Sign Up
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"
         hide-btn
-        :content="multiplePanel"
+        :content="statusPanel"
         :title-classes="headerClasses"
-        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
       )
-    lazy-hydrate(when-idle)
-      care(:metrics-data="metricsData")
+        template(slot="additional-content")
+          div(:class="{'text-center': $isMobile}")
+            signup-button(
+              depressed
+              class="rounded-md"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+              color="primary"
+            ).text-none
+              span.mc-btn1.white--text Get Started
     lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free)
+      generic-media-panel(
+        align="center"
+        hide-btn
+        :content="fifthPanel"
+        :title-classes="headerClasses"
+      )
+    lazy-hydrate(when-visible)
+      mycure-csi
+    lazy-hydrate(when-visible)
+      features(
+        title="Healthcare Providers Trust MYCURE"
+        :title-col-size="11"
+        :content-col-size="10"
+        description="MYCURE Clinics is the latest in clinic information and practice management systems. Its intuitive interface makes is easy to use for everyone on staff – from the providers to the administrative team. Your staff will be able to pull up your patients’ medical records in a snap without wading through the mountains of paperwork."
+        :items="doctorFeatures"
+        image-dir="doctors-clinics/"
+      ).my-16
+    lazy-hydrate(when-visible)
+      scroller(title="Benefits of Using MYCURE in Your Corporate Clinic" :items="carouselItems")
+    lazy-hydrate(when-visible)
+      steps(:steps="stepsContent" not-free step-col-size="11" title="Get Started with MYCURE in 3 Simple Steps!")
     lazy-hydrate(when-visible)
       storybrand(
-        title="Using Modern Tools to Boost Your Practice"
-        :content="storybrandContent"
+        title="Modern Tools to Boost Your Practice"
+        :content="['At MYCURE, we know your patients’ experience is of the utmost importance to you. Top quality care is non-negotiable, and you need clinic management system solution that has those same principles. But in your search for the right IT solution for you, you’ve probably seen too many that are focused on the product, not the experience you and your patients have with it. MYCURE Clinics is here to change the game.']"
       )
-    //- 9th panel
-    //- div.info.mx-n3
-    //-   v-container
-    //-     v-row(justify="center")
-    //-       generic-panel(:row-bindings="{ justify: 'center' }")
-    //-         v-col(cols="12").white--text.text-center
-    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
-    //-           signup-button(
-    //-             depressed
-    //-             class="rounded-pill"
-    //-             :width="!$isWideScreen ? '228px' : '300'"
-    //-             :height="!$isWideScreen ? '59px' : '73.68'"
-    //-             color="success"
-    //-           ).text-none
-    //-             span.generic-button-text Count me in
-    //- 5th panel
     client-only
       lazy-hydrate(when-idle)
         pricing(
           type="clinic"
           title="Take the first step today."
         )
-    lazy-hydrate(when-visible)
-      call-to-action(:version="4" not-free)
+
+    //- 3rd panel
 </template>
 
 <script>
@@ -98,21 +109,24 @@ import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 import { fetchWebsiteMetrics } from '~/utils/axios';
 // - components
-import Usp from '~/components/commons/panels/OldSevenWondersUsp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
+import GenericBlueBg from '~/components/generic/GenericBlueBg.vue';
 
 export default {
   components: {
     LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
-    Care: () => import('~/components/home/OldCare'),
+    GenericBlueBg,
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
   async asyncData (context) {
     const metricsData = await fetchWebsiteMetrics();
@@ -139,6 +153,33 @@ export default {
         title: 'COVID-19 Test and Vaccine Tracker',
         icon: 'covid-vaccine-tracker',
         iconExtension: '.png',
+      },
+    ];
+    this.doctorFeatures = [
+      {
+        title: 'Digital Records',
+        icon: 'Digital-Records',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'Telehealth',
+        icon: 'Telehealth',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'Daily Reports',
+        icon: 'Daily-Reports',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'Professional Website',
+        icon: 'Professional-Website',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'Appointment Booking',
+        icon: 'Appointment-Booking',
+        iconExtension: '.webp',
       },
     ];
     this.stakesContent = [
@@ -181,24 +222,19 @@ export default {
     ];
     this.stepsContent = [
       {
-        title: 'Create an Account',
-        description: 'This activates your Corporate Management System.',
+        title: 'Create your Free Account',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Set up your Account',
-        description: 'Customize your account based on your clinic’s needs.',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Serve and Save More',
-        description: 'Start using the system to serve your employees better.',
+        title: 'Get started!',
+        description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
-    this.storybrandContent = [
-      'At MYCURE, we know that corporate clinics have their own special needs and requirements.  You know that having a customized system to properly organize and secure employees’ health records is a high priority.',
-      'The problem is it’s hard to find such a clinic system that is specifically designed for companies.  We believe that clinics like yours should never have to deal with this.',
-      'That’s why we\'ve built MYCURE Corporate Clinic Management System so that you can focus more on your core business.',
-    ];
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.headerClasses = ['mc-h2'];
     return {
       loading: true,
     };
@@ -211,22 +247,86 @@ export default {
     });
   },
   computed: {
-    multiplePanel () {
+    fifthPanel () {
       return {
-        superTitle: 'For Multi-Branch Facilities',
-        title: 'One view for multiple locations',
-        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-        contentAlign: 'left',
+        title: 'Maintain Communication with Clinic Staff',
+        description: 'MYCURE Clinics comes with its own chat feature, allowing everyone to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can communicate with other providers quickly.',
+        contentAlign: 'right',
         imageBindings: {
-          customPath: 'clinics/skin/',
-          image: 'multiple-locations.png',
-          mobileImage: 'multiple-locations-mobile.png',
-          extensionExclusive: true,
-          imageAlt: 'Charts and graphs',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.07px' : '401.41px'),
+          customPath: 'doctors-clinics/',
+          image: 'Practice.webp',
+          imageAlt: 'Physicians and health workers',
+          width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
         },
       };
+    },
+    statusPanel () {
+      return {
+        title: 'Know the Status of Your Employees\' Health Quickly',
+        description: 'Easily access and share medical records securely through the MYCURE Clinics information system. We’re here to make practice management systems so much easier. We offer full functionality for our free accounts, and you only need to upgrade as your practice grows. We’re here to help you make the world a healthier place.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'home/',
+          image: 'simple-and-powerful',
+          imageFileExtension: '.webp',
+          imageAlt: 'Health application in Macbook laptop',
+          width: this.$vuetify.breakpoint.width > 1919 ? '750px' : (this.$isRegularScreen ? '485px' : '250px'),
+          height: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
+        },
+      };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'Corporate Clinic Management System at an Affordable Price',
+          description: 'MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your corporate clinic, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-3',
+            imageFileExtension: '.webp',
+            imageAlt: 'Patient looking at network',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
+          },
+        },
+        {
+          title: 'Access to Medical Records Has Never Been Easier',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your practice thrives, you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics as an information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1',
+            imageFileExtension: '.webp',
+            imageAlt: 'Man searching through records',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
+          },
+        },
+        {
+          title: 'Accessible Appointment Booking for Your Patients',
+          description: 'Make booking appointments easy for your patients with MYCURE Booking. We’re all living busy lives these days and having an app your patients can use to see your availability is one of the best ways to maximize efficiency. If your corporate clinic has more than one healthcare provider, your patients will also see that they can make an appointment with another doctor if you’re already booked for the day.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-2',
+            imageFileExtension: '.webp',
+            imageAlt: 'Doctor looking at booking appointments',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
+          },
+        },
+        {
+          title: 'Gain Insights into Your Corporate Clinic’s Strengths and Weaknesses',
+          description: 'In the day to day of running a corporate or company clinic, you might not notice small errors that are compounding until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Clinics, you’ll be able to identify problems withing the practice management system before they result in inconveniences for your patients and staff.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5',
+            imageFileExtension: '.webp',
+            imageAlt: 'Doctor Gaining Insight',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
+          },
+        },
+      ];
     },
   },
   created () {
@@ -237,6 +337,6 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

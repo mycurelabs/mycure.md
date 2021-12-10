@@ -7,9 +7,9 @@
         background-image="ofw-clinics-full"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
         title="The first and only medical software for OFW clinics"
-        meta-title="MYCURE for OFW Medical Clinics"
-        description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
-        btn-text="Get Started"
+        meta-title="MYCURE OFW CLINICS"
+        description="MYCURE Clinics is an easy to use, secure, cloud-based clinic management system where you can create, finalize, and release medical exam results online and off."
+        btn-text="Start Free Today"
         image="ofw-clinics-mobile"
         custom-image-path="clinics/ofw/"
         parse-title
@@ -18,25 +18,59 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
+        background-img-pos="48%"
+        background-img-width="44%"
+      )
+    div.grey-bg.mx-n3
+      lazy-hydrate(when-visible)
+        generic-media-panel(
+          :content="stakesContent"
+          :title-classes="headerClasses"
+          :content-classes="descriptionClasses"
+          hide-btn
+        )
+          template(slot="title")
+            h2.mc-h2 Wasted Time +
+            h2.mc-h2 Missed Opportunities
+            h2.mc-h2 = Lost Income
+          template(slot="content")
+            v-col(cols="12")
+              v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
+                v-icon(color="red" small) {{ mdiClose }}
+                v-col.pa-0.mb-1
+                  p.mc-list-b3.mb-0.ml-2 {{ item }}
+
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="You help open opportunities to the Filipino people. We can help you make it simpler."
+        :content="['As the worldwide leader in exported labor, it’s vital to have run an efficient medical clinic for overseas Filipino workers (OFW), so as not to delay patients when they need to travel to their new job. Not automating your system means continued errors and losses which will impact your clinic’s bottom line. MYCURE Clinics is an end-to-end clinic information system that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today, you’re missing out on more than you might think. MYCURE Clinics’ practice management system was designed with the patient experience in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s clinic management system. ']"
+        is-center
       )
     lazy-hydrate(when-visible)
-      stakes(
-        :version="3"
-        :media-content="stakesContent"
-        hide-btn
-      )
-        template(slot="title")
-          h2.mc-title-set-2.font-weight-semibold Wasted Time +
-          h2.mc-title-set-2.font-weight-semibold Missed Opportunities =
-          h2.mc-title-set-2.font-weight-semibold Lost Income
-    //- 2nd panel
-    v-container
+      generic-blue-bg.white--text
+        v-container
+          v-row(justify="center")
+            generic-sub-page-panel(
+              :content-right="false"
+              :title="ofwVideo.title"
+              hide-btn
+            )
+              div(slot="content")
+                p(v-if="ofwVideo.description").mc-b2.white--text {{ ofwVideo.description }}
+                v-col(cols="12").mb-5
+                  v-row(v-for="(item, key) in ofwVideo.itemList" :key="key" align="center")
+                    v-icon(color="white" small) {{ mdiCheckCircle }}
+                    v-col.pa-0.mb-1
+                      p.mc-list-b3.mb-0.ml-2.white--text {{ item }}
+              template(slot="image")
+                div.vid-container
+                  video(width="101%" playsinline autoplay muted loop).syncbase-animate
+                      source(src="~/assets/videos/pme-package-builder.mp4" type="video/mp4")
+                      | Your browser does not support the video tag.
+    v-container.mt-16
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel(:row-bindings="{ justify: 'center'}")
-            v-col(cols="12" lg="8").text-center
-              h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
-              p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide both printed and online copies of their medical exam results without the hassle.
             v-col(cols="12").text-center
               //- TODO: Add explicit width and height
               picture-source(
@@ -46,33 +80,50 @@
                 custom-path="clinics/ofw/"
                 image="beautiful-reports"
               )
-    //- h1.text-center.my-16 Design your own packages panel (placeholder)
-    //- 4th panel
+            v-col(cols="12" sm="11").text-center
+              h2(:class="headerClasses").mb-5 Create Beautiful Reports for Your OFW Clinic Clients
+              p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide printed and digital copies of medical exam results without the hassle. MYCURE Clinics designs clear and easy to read reports, which will make the paperwork process that much easier for your patients getting ready to travel.
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="queuePanel"
-        :title-classes="[...headerClasses, 'primary--text']"
+        :title-classes="headerClasses"
+        hide-btn
+      ).mb-16
+    lazy-hydrate(when-visible)
+      mycure-csi(title="OFW Clinic" page="Diagnostics")
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        align="center"
+        hide-btn
+        :content="fifthPanel"
+        :title-classes="headerClasses"
+      ).mt-16
+    lazy-hydrate(when-visible)
+      syncbase(:version="2" title="Online or Off, MYCURE Clinics Is Here for You")
+    lazy-hydrate(when-visible)
+      generic-media-panel(
+        :content="directoryPanel"
+        :title-classes="headerClasses"
       )
         template(slot="cta-button")
-          v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="10" md="7" lg="6" xl="7")
-              div(:class="{ 'text-center': $isMobile }")
-                signup-button(
-                  depressed
-                  class="rounded-pill"
-                  :width="!$isWideScreen ? '228px' : '300'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                  color="success"
-                ).text-none
-                  span.generic-button-text Get Started
-    //- 5th panel
+          div(:class="{'text-center ml-4': $isMobile}")
+            nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").button
+              span.mc-hyp1.primary--text Join Today
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
+    lazy-hydrate(when-visible)
+      storybrand(
+        title="Invaluable Clinic Management System"
+        :content="['MYCURE Clinics offers a variety of tools that you can mix and match to maximize efficiency for your practice, without the costly overhead other platforms might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices. You can even fill out prescriptions to submit to pharmacies.']"
+      )
+    lazy-hydrate(when-visible)
+      scroller(title="Benefits of Using MYCURE in Your Clinic" :items="carouselItems" :no-of-items="2")
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="integrationsPanel"
           hide-btn
           align="center"
-          :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
+          :super-title-classes="['mc-h7']"
         )
           template(slot="content")
             v-row(justify="start")
@@ -92,87 +143,32 @@
                   :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
                 )
                 br
-                h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
-    //- 6th panel
-    lazy-hydrate(when-visible)
-      generic-media-panel(
-        :content="directoryPanel"
-        :title-classes="[...headerClasses, 'primary--text']"
-      )
-        template(slot="cta-button")
-          v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="10" sm="5" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
-              signup-button(
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="success"
-              ).text-none
-                v-icon(left) {{ mdiWeb }}
-                span.generic-button-text Create my website
-            //- TODO: Bring back when sample website is available
-            //- v-col(cols="12" md="7" lg="6" xl="5")
-            //-   mc-btn(
-            //-     color="success"
-            //-     href="https://calendly.com/mycure/demo"
-            //-     target="_blank"
-            //-     rel="noopener noreferrer"
-            //-     depressed
-            //-     rounded
-            //-     block
-            //-     :large="!$isWideScreen"
-            //-     :x-large="$isWideScreen"
-            //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-            //-   ).text-none Book a full training
+                h3.b4.font-open-sans.font-gray {{ item.title }}
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
-    lazy-hydrate(when-visible)
-      steps(:steps="stepsContent" not-free)
-    lazy-hydrate(when-visible)
-      storybrand(
-        title="Using Modern Tools to Boost Your Practice"
-        :content="storybrandContent"
-      )
-    //- 7th panel
     client-only
       lazy-hydrate(when-idle)
         pricing(
-          title="Take the first step today."
+          title="It’s Time to Take the First Step"
+          description="Choose the best plan for your clinic. Only pay for what you need."
           type="diagnostic"
         )
-    //- 8th panel
     lazy-hydrate(when-visible)
-      call-to-action(:version="2" not-free)
-    //- 9th panel
-    //- div.info.mx-n3
-    //-   v-container
-    //-     v-row(justify="center")
-    //-       generic-panel(:row-bindings="{ justify: 'center' }")
-    //-         v-col(cols="12" lg="8").white--text.text-center
-    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-    //-           p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
-    //-           mc-btn(
-    //-             color="success"
-    //-             class="rounded-pill"
-    //-             :width="!$isWideScreen ? '228px' : '300'"
-    //-             :height="!$isWideScreen ? '59px' : '73.68'"
-    //-             depressed
-    //-             :large="!$isWideScreen"
-    //-             :x-large="$isWideScreen"
-    //-             :class="btnClasses"
-    //-           ).text-none Count me in
+      steps(:steps="stepsContent" not-free title="Get Started with MYCURE in 3 Simple Steps!")
+    lazy-hydrate(when-visible)
+      call-to-action(:version="1" not-free).mt-16
 </template>
 
 <script>
 // - utils
 import LazyHydrate from 'vue-lazy-hydration';
-import { mdiWeb } from '@mdi/js';
+import { mdiWeb, mdiCheckCircle, mdiClose, mdiChevronRight } from '@mdi/js';
 import headMeta from '~/utils/head-meta';
 // - constants
 // - components
-import Usp from '~/components/commons/panels/OldSevenWondersUsp';
-import { getCountry, fetchWebsiteMetrics } from '~/utils/axios';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
+// import { getCountry, fetchWebsiteMetrics } from '~/utils/axios';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
@@ -186,45 +182,51 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Care: () => import('~/components/home/OldCare'),
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg.vue'),
+    GenericVideoPanel: () => import('~/components/generic/GenericVideoPanel.vue'),
+    Care: () => import('~/components/home/Care'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Scroller: () => import('~/components/commons/panels/Scroller'),
   },
-  async asyncData ({ error }) {
-    const country = await getCountry() || {};
-    const code = country.country_code || 'PH';
-    const metricsData = await fetchWebsiteMetrics();
+  // async asyncData ({ error }) {
+  //   const country = await getCountry() || {};
+  //   const code = country.country_code || 'PH';
+  //   const metricsData = await fetchWebsiteMetrics();
 
-    if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
+  //   if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
+  //   return { metricsData };
+  // },
+  async asyncData () {
+    const metricsData = await fetchWebsiteMetrics();
     return { metricsData };
   },
   data () {
     this.stepsContent = [
       {
-        title: 'Create an Account',
-        description: 'This activates your OFW Clinic Management System.',
+        title: 'Create your Free Account',
+        description: 'MYCURE is very easy to set up. No program installation needed since it’s a web-based application.',
       },
       {
-        title: 'Set up your Account',
-        description: 'Customize your account based on your clinic’s needs.',
+        title: 'Customize your Clinic',
+        description: 'Utilize our range of modules and features that will tailor-fit your clinic operations and services.',
       },
       {
-        title: 'Serve and Save More',
-        description: 'Start processing more transactions while saving time in the process.',
+        title: 'Get started!',
+        description: 'Take advantage of our tutorials and training videos or book a virtual session with one of our specialists.',
       },
     ];
-    this.storybrandContent = [
-      'At MYCURE, we know your clinic is serving OFWs and you have unique needs and requirements.  You know that having a custom system to address your market can increase efficiency and decrease costly human errors.',
-      'The problem is it’s hard to find such a system that is easy to use and affordable.  We believe that clinics like yours should never have to deal with this. We understand that there is a need for this.',
-      'That’s why we\'ve built MYCURE OFW Clinic Management System for those who are rightfully serving this market, the ‘new heroes’ of the land.',
-    ];
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1'];
-    this.btnClasses = ['mc-button-set-1'];
+    this.headerClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.btnClasses = ['mc-btn1'];
     return {
       loading: true,
       mdiWeb,
+      mdiCheckCircle,
+      mdiClose,
+      mdiChevronRight,
     };
   },
   head () {
@@ -237,12 +239,12 @@ export default {
   computed: {
     queuePanel () {
       return {
-        title: 'Value everyone’s time more effectively.',
-        description: 'Handle group registrations like a breeze. Your clients can now easily register themselves via kiosks. Display multiple queues through auxiliary monitors or smart TVs. Incoming doctors even get notified in their devices for every new patient in line.',
-        contentAlign: 'right',
+        title: 'Improved Time Management',
+        description: 'Handle group registrations with ease. Your clients can register themselves via our kiosks, and you can utilize auxiliary monitors to display multiple queues. And every provider can receive notifications on their smart devices of their incoming patients.',
+        contentAlign: 'left',
         imageBindings: {
           customPath: 'clinics/ofw/',
-          image: 'Queue.png',
+          image: 'Queue.webp',
           mobileImage: 'Queue.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,
@@ -254,8 +256,8 @@ export default {
     integrationsPanel () {
       return {
         contentAlign: 'left',
-        title: 'Ready whenever you are',
-        superTitle: 'Powerful Integrations',
+        title: 'Ready whenever you are.',
+        superTitle: 'POWERFUL INTEGRATIONS',
         list: [
           {
             title: 'HL7',
@@ -277,9 +279,9 @@ export default {
     },
     directoryPanel () {
       return {
-        title: 'Expand your Reach',
-        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
-        contentAlign: 'right',
+        title: 'Help Your Patients Find You',
+        description: 'Join MYCURE ONE, a global directory of healthcare providers, so patients can easily find and book appointments',
+        contentAlign: 'left',
         imageBindings: {
           customPath: 'commons/',
           image: 'expand-your-reach.webp',
@@ -291,19 +293,82 @@ export default {
     },
     stakesContent () {
       return {
-        title: 'Wasted Time + Missed Opportunities  = Lost Income',
         description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
+        itemList: [
+          'Wasted time and resources',
+          'Long wait times',
+          'Overworked staff',
+          'Cancelled appointments',
+          'Frustrated patients',
+          'Error-prone reports',
+          'Compliance issues',
+        ],
         contentAlign: 'right',
         imageBindings: {
-          image: 'mycure-ofw-the-stakes.png',
-          mobileImage: 'mycure-ofw-the-stakes.png',
+          image: 'mycure-ofw-the-stakes',
+          mobileImage: 'mycure-ofw-the-stakes',
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'clinics/ofw/',
-          extensionExclusive: true,
+          imageFileExtension: '.webp',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '293.58px' : '473.72px'),
         },
       };
+    },
+    fifthPanel () {
+      return {
+        title: 'Maintain Communication with Clinic Staff',
+        description: 'MYCURE Clinics comes with its own chat feature, allowing everyone in your OFW clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can communicate with other doctors at your practice quickly.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'doctors-clinics/',
+          image: 'Practice.webp',
+          imageAlt: 'Physicians and health workers',
+          width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+        },
+      };
+    },
+    ofwVideo () {
+      return {
+        title: 'Design your own packages.',
+        description: 'Easily create and customize pre-employment packages based on your client requirements.',
+        itemList: [
+          'Laboratory',
+          'Imaging',
+          'Ancillary',
+          'Dental',
+          'Physical Exam',
+        ],
+      };
+    },
+    carouselItems () {
+      return [
+        {
+          title: 'A Lifeline for Your Practice – Easy to Use Practice Management System',
+          description: 'Keeping meticulous records is vital to providing quality medical care. But as your outpatient clinic grows, your file cabinets will grow and grow, and you and your office staff will run the risk of misplacing important paperwork. Instead, use MYCURE Clinics’ information system to digitize your patients’ records. You’ll be able to glance over electronic copies of complete health records – prior illnesses, vaccinations, and current medication – all in one place!',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-1',
+            imageFileExtension: '.webp',
+            imageAlt: 'Man searching through records',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
+          },
+        },
+        {
+          title: 'Gain Insights into Your Practice’s Strengths and Weaknesses',
+          description: 'In the day to day of running an OFW clinic, you might not notice some details that are slipping away until they’ve turned into a major issue. Thanks to the daily reports tool on MYCURE Clinics, you’ll be able to identify problems before they result in inconveniences for your patients and staff.',
+          imageBindings: {
+            customPath: 'commons/',
+            image: 'carousel-5',
+            imageFileExtension: '.webp',
+            imageAlt: 'Doctor Gaining Insight',
+            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
+            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
+          },
+        },
+      ];
     },
   },
   created () {
@@ -314,6 +379,15 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
+}
+.vid-container {
+  overflow: hidden;
+}
+.button {
+  text-decoration: none;
+}
+.vid-container {
+  overflow: hidden;
 }
 </style>

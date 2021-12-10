@@ -2,7 +2,7 @@
   generic-blue-bg
     v-container
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
-        generic-panel(:row-bindings="{ justify: 'center' }")
+        generic-panel(:row-bindings="{ justify: 'center', align: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="7" xl="8")
@@ -10,25 +10,26 @@
                   br
                   | Solutions for Every Provider
                 v-row(justify="center").mt-5
-                  v-col(cols="12" md="10")
+                  v-col(cols="12" md="10" xl="8")
                     p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
                 signup-button(
                   depressed
-                  class="rounded-lg"
+                  class="rounded-md"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   color="success"
-                ).text-none.mc-btn1
-                  span.generic-button-text.white--text Get Started
-            v-row(justify="center")
+                ).text-none
+                  span.mc-btn1.white--text Get Started
+            v-row(justify="center" v-if="showCarousel")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
                   autoplay
                   draggable
                   infinite
-                  :dots="false"
+                  :dots="true"
                   :slidesToShow="4",
                   :speed="1000"
+                  @afterChange="(slideIndex) => currentSlide = slideIndex"
                 )
                   template(slot="prevArrow")
                     v-btn(icon).ml-n4.custom-btn
@@ -36,6 +37,8 @@
                   template(slot="nextArrow")
                     v-btn(icon).mr-n4.custom-btn
                       v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
+                  template(#customPaging="page")
+                    v-icon(color="white" small).mt-5 {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
               v-col(v-else cols="10" sm="8" md="10")
@@ -58,7 +61,7 @@
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
-import { mdiChevronRightCircle, mdiChevronLeftCircle } from '@mdi/js';
+import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutline } from '@mdi/js';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
@@ -76,6 +79,10 @@ export default {
     Wonder,
     VueSlickCarousel,
     GenericBlueBg,
+  },
+  props: {
+    // Can be triggered by consuming component for loading purposes
+    showCarousel: Boolean,
   },
   data () {
     this.wonders = [
@@ -142,6 +149,9 @@ export default {
       // Icons
       mdiChevronRightCircle,
       mdiChevronLeftCircle,
+      mdiCircle,
+      mdiCircleOutline,
+      currentSlide: 0,
     };
   },
   async mounted () {
@@ -194,5 +204,8 @@ export default {
 }
 .custom-btn:hover {
     color: grey;
+}
+.slick-dots >>> .slick-active {
+  color: red;
 }
 </style>

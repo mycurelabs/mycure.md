@@ -12,7 +12,7 @@
               signup-button(
                 depressed
                 color="success"
-                class="rounded-lg"
+                class="rounded-md"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
@@ -31,9 +31,9 @@
               v-else
               :width="$isMobile ? '300': '560'"
               :height="$isMobile ? '168.75': '315'"
-              src="https://www.youtube.com/embed/Xj9GgIHW0_s"
+              src="https://www.youtube.com/embed/Xj9GgIHW0_s?autoplay=1"
               title="YouTube video player" frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
+              allow="autoplay;"
               allowfullscreen
             )
             //- v-skeleton-loader(type="image" height="100%")

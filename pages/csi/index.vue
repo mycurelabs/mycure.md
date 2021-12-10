@@ -153,6 +153,6 @@ export default {
 
 <style scoped>
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

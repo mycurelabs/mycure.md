@@ -63,6 +63,7 @@
               v-btn(
                 color="secondary"
                 :small="!$isWideScreen"
+                :disabled="!isWebsiteEnabled"
                 rounded
                 block
                 :class="$isWideScreen ? 'font-14' : 'font-10'"
@@ -128,6 +129,10 @@ export default {
     clinicWebsite () {
       const username = this.organization?.websiteId;
       return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
+    },
+    isWebsiteEnabled () {
+      // Check if there are public fields
+      return this.organization?.publicFields?.length;
     },
     fullSchedules () {
       // eslint-disable-next-line camelcase

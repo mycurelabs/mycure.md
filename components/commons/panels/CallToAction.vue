@@ -4,39 +4,39 @@
     :center-panel-title-classes="titleClasses"
     :content-classes="descriptionClasses"
     :super-title-classes="subheaderClasses"
-    :title-classes="[...titleClasses, 'primary--text']"
+    :title-classes="titleClasses"
     hide-btn
     align="center"
   )
     template(slot="content")
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
-      v-row.mt-10
+      v-row.mt-4
         slot(name="cta-button")
           v-col
             v-row(:justify="$isMobile ? 'center' : 'start'")
-              //- v-col(cols="10" sm="5" md="7" lg="6" xl="7").pr-0
-              //-   div(:class="{'text-center': $isMobile}")
-              //-     mc-btn(
-              //-       color="success"
-              //-       depressed
-              //-       :block="![2, 4].includes(version)"
-              //-       :width="(version === 2 || version === 4) ? (!$isWideScreen ? '228px' : '300') : '' "
-              //-       class="rounded-pill"
-              //-       :height="!$isWideScreen ? '59px' : '73.68'"
-              //-       :href="'https://calendly.com/mycure/demo'"
-              //-     ).text-none
-              //-       span.generic-button-text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
-              v-col(:align="$isMobile ? 'center' : 'start'")
+              v-col(cols="12" sm="6" :align="$isMobile ? 'center' : 'start'" :class="{'pr-0': !$isMobile}")
+                mc-btn(
+                  color="#F0F7FD"
+                  depressed
+                  :block="$isRegularScreen"
+                  :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
+                  class="rounded-md"
+                  :height="!$isWideScreen ? '59px' : '73.68px'"
+                  :href="'https://calendly.com/mycure/demo?month=2021-11'"
+                ).text-none
+                  span.mc-btn1.primary--text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
+              v-col(cols="12" sm="6" :align="$isMobile ? 'center' : 'start'")
                 signup-button(
                   event-label="signup"
-                  color="success"
+                  color="primary"
                   depressed
-                  class="rounded-pill"
-                  :width="!$isWideScreen ? '228px' : '300'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  class="rounded-md"
+                  :block="$isRegularScreen"
+                  :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
+                  :height="!$isWideScreen ? '59px' : '73.68px'"
                 ).text-none
-                  span.generic-button-text {{notFree ? 'Get Started' : 'Get Started Free'}}
+                  span.mc-btn1 {{notFree ? 'Get Started' : 'Get Started Free'}}
                 //-   :outlined="![2, 4].includes(version)"
 </template>
 
@@ -65,8 +65,8 @@ export default {
   },
   data () {
     this.versionOne = {
-      centerPanelTitle: 'Learn the basics with ease',
-      superTitle: 'Worrying about the shift to digital records? We got you covered.',
+      superTitle: 'LEARN THE BASICS WITH EASE',
+      title: 'Worrying about the shift to digital records? We got you covered.',
       description: [
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
@@ -95,10 +95,10 @@ export default {
       ],
       contentAlign: 'left',
     };
-    this.titleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.buttonClasses = ['mc-button-set-1'];
-    this.subheaderClasses = ['mc-subheader-set-2', 'font-open-sans', 'primary--text'];
+    this.titleClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.buttonClasses = ['mc-btn1'];
+    this.subheaderClasses = ['mc-h7'];
     return {};
   },
   computed: {

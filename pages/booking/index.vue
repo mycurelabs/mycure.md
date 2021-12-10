@@ -15,6 +15,8 @@
         :parse-title-fields="['to ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
+        background-img-pos="47%"
+        background-img-width="45%"
       )
 
     //- 2nd panel
@@ -31,7 +33,7 @@
               signup-button(
                 depressed
                 color="primary"
-                class="rounded-lg"
+                class="rounded-md"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
@@ -86,7 +88,8 @@
                     :x-large="!$isMobile"
                     :outlined="websiteType !== 'doctor'"
                     @click="websiteType = 'doctor'"
-                  ).text-none Doctors
+                  ).text-none
+                    span.mc-btn1 Doctors
                 v-col(cols="6" md="3").pa-0
                   v-btn(
                     color="primary"
@@ -97,7 +100,8 @@
                     :x-large="!$isMobile"
                     :outlined="websiteType !== 'clinic'"
                     @click="websiteType = 'clinic'"
-                  ).text-none Clinics
+                  ).text-none
+                    span.mc-btn1 Clinics
               br
               br
               v-tabs-items(v-model="websiteType")
@@ -122,6 +126,8 @@
         image-dir="booking/"
         icon-container-col-size="12"
         title-col-size="7"
+        title-col-size-xl="9"
+        content-col-size-xl="6"
         :each-icon-col="{ cols: 12 }"
       )
         template(slot="title")
@@ -163,7 +169,7 @@
                     :to="{ name: 'clinics' }"
                     depressed
                     color="#FOF7FD"
-                    class="rounded-lg"
+                    class="rounded-md"
                     :block="$isRegularScreen"
                     :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
                     :height="!$isWideScreen ? '59px' : '73.68'"
@@ -174,7 +180,7 @@
                   signup-button(
                     depressed
                     color="primary"
-                    class="rounded-lg"
+                    class="rounded-md"
                     :block="$isRegularScreen"
                     :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
                     :height="!$isWideScreen ? '59px' : '73.68'"
@@ -199,7 +205,7 @@
                   depressed
                   event-label="signup"
                   color="success"
-                  class="rounded-lg"
+                  class="rounded-md"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                   :to="{ name: 'signup-health-facilities' }"

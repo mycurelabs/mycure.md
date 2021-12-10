@@ -21,15 +21,15 @@
                 a(
                   href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
                   target="_blank"
-                  rel="noreferrer noopener"
+                  rel="noreferrer noopener nofollow"
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
                   span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
-                  v-icon(left color="primary" :small="!$isWideScreen" style="margin-top: 2px;") {{ mdiArrowRight }}
+                  v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
 </template>
 
 <script>
-import { mdiArrowRight } from '@mdi/js';
+import { mdiChevronRight } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
@@ -47,7 +47,7 @@ export default {
       default: () => ([]),
     },
   },
-  data () { return { mdiArrowRight }; },
+  data () { return { mdiChevronRight }; },
 };
 </script>
 

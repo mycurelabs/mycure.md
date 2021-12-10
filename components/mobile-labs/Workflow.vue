@@ -1,20 +1,8 @@
 <template lang="pug">
   v-container
     v-row(justify="center").py-16
-      v-col(cols="12" md="6").text-center
-        h1(:class="[...titleClasses, {'mx-n1': $isMobile}]").mb-5 Seamless workflows anywhere you go.
-        v-row(justify="center")
-          v-col(cols="12" md="10")
-            p(:class="descriptionClasses").mb-10 Value everyone's time more effectively. Handle location-based registrations like a breeze.
-        //- signup-button(
-        //-   depressed
-        //-   rounded
-        //-   :x-large="$isWideScreen"
-        //-   :large="!$isWideScreen"
-        //-   :class="btnClasses"
-        //-   color="success"
-        //- ).text-none
-        //-   span Start Free
+      v-col(cols="12").text-center
+        h1(:class="titleClasses").mb-5 Seamless Workflow Tailored for You
       v-col(cols="12")
         v-row(justify="center")
           template(v-if="!$isMobile")
@@ -40,6 +28,17 @@
                 )
                 br
                 h3.font-xs.font-open-sans.grey--text {{ item.title }}
+      v-col(cols="10").text-center
+        span.mc-b2 MYCURE Diagnostics is an end-to-end practice management system solution that eliminates the old challenges of processing paperwork manually and handles location-based registrations with ease. If you’re not using the technologies available today, you’re missing out on more than you might think. MYCURE Diagnostics was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE mobile labs clinic information system.
+      v-col(cols="12").text-center
+        signup-button(
+          depressed
+          color="primary"
+          class="rounded-md"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
+        ).text-none
+          span.mc-btn1 Start for Free
 </template>
 
 <script>
@@ -71,9 +70,9 @@ export default {
         icon: '4-Results-Mobile',
       },
     ];
-    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.btnClasses = ['mc-button-set-1'];
+    this.titleClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.btnClasses = ['mc-btn1'];
     return {
       videoDialog: false,
     };
