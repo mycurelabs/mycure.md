@@ -33,6 +33,12 @@ export default {
   components: {
     GenericMediaPanel,
   },
+  props: {
+    isHospital: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data () {
     // this.panelHeaderClasses = ['mc-h2'];
     this.descriptionClasses = ['mc-b2'];
@@ -46,10 +52,10 @@ export default {
     panels () {
       return [
         {
-          title: 'MYCURE Clinics is No Ordinary EHR App',
-          description: 'It’s a cloud-based clinic system built for the specialized needs of healthcare. Connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network.',
+          title: `MYCURE ${this.isHospital ? 'Hospital-OPD' : 'Clinics'} is No Ordinary EHR App`,
+          description: `It’s a cloud-based ${this.isHospital ? 'hospital' : 'clinic'} system built for the specialized needs of healthcare. Connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network.`,
           route: 'syncbase',
-          routeText: 'Learn About Syncbase',
+          routeText: this.isHospital ? 'Get Started Today' : 'Learn About Syncbase',
           imageBindings: {
             image: 'preventing-failures.png',
             imageAlt: 'Doctor and patient communicating artwork',
@@ -61,8 +67,8 @@ export default {
           contentAlign: 'right',
         },
         {
-          title: 'Advanced Tools for a Growing Clinic',
-          description: 'We’re here to make managing your multispecialty clinic so much easier. We offer full functionality for our free accounts, and you only need to upgrade as your practice grows. We want to help you make the world a healthier place.',
+          title: `Advanced Tools for a Growing ${this.isHospital ? 'Hospital' : 'Clinic'}`,
+          description: `We’re here to make managing your multispecialty ${this.isHospital ? 'hospital' : 'clinic'} so much easier. We offer full functionality for our free accounts, and you only need to upgrade as your practice grows. We want to help you make the world a healthier place.`,
           route: 'features',
           routeText: 'See All Features',
           imageBindings: {
