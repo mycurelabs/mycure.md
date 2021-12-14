@@ -64,7 +64,7 @@
           v-skeleton-loader(type="list-item, card-heading")
         v-col(cols="12" md="6")
           v-skeleton-loader(type="article, actions")
-      p(v-else).text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
+      p(v-else).my-12.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>
 
 <script>

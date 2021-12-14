@@ -124,7 +124,7 @@
                             v-icon(color="primary") {{ mdiCheckCircle }}
                           v-list-item-content
                             v-list-item-title.mc-h4 {{ service }}
-                      p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
+                      p(v-else).my-12.font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item(value="Learning Corner")
                 //- Learning Corner

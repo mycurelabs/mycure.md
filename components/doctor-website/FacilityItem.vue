@@ -40,7 +40,7 @@
               :class="{ 'font-italic': !email }"
             ).mc-b2 {{ email || 'No information provided'}}
       v-row(justify="end").px-8
-        v-col(cols="12" md="8")
+        v-col(cols="12")
           v-divider
       //- Schedules
       //- v-row.pt-2
