@@ -12,20 +12,19 @@
                 p.mc-b3.mb-0 {{ specialties.slice(0, 3).join(' | ')}}
                 p(v-if="practicingYear").mc-b4.mb-0 {{ `Practicing since ${practicingYear}` }}
               v-spacer
-              v-btn(
-                icon
-              )
-                v-icon(color="primary") {{ mdiShareVariant }}
+              share-button(direction="top" color="primary")
 </template>
 
 <script>
 import {
   mdiShareVariant,
 } from '@mdi/js';
+import ShareButton from '~/components/doctor-website/ShareButton';
 import GenericPanel from '~/components/generic/GenericPanel';
 export default {
   components: {
     GenericPanel,
+    ShareButton,
   },
   props: {
     picUrl: {

@@ -15,10 +15,6 @@
               :max-lines="2"
             ).mb-0.mc-h3.black--text {{ clinic.name }}&nbsp;
             v-spacer
-            v-btn(
-              icon
-            )
-              v-icon(color="primary") {{ mdiShareVariant }}
           //- Address
           v-row.mt-2.px-3
             v-icon(color="primary").mr-2 {{ mdiMapMarker }}
@@ -52,7 +48,7 @@
       //-   v-badge(
       //-     v-for="(day, key) in days"
       //-     :key="key"
-      //-     :color="isClinicOpen(day.order) ? 'success' : 'grey'"
+      //-     :color="isClinicOpen(day.order) ? 'primary' : '#EEEEEE'"
       //-     :content="day.dayName.charAt(0)"
       //-     inline
       //-     large
@@ -62,13 +58,9 @@
       //-   v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
       //-     a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
       v-row(justify="end").pt-2.px-8
-        v-col
-          //- span {{ `Teleconsult: ${}` }}
-          //- span {{ `Physical Consultation: ${}` }}
-          span {{ scheduleDisplay }}
-        //- v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
-        //-   div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'success' : 'grey']").badge
-        //-     | {{ day.text }}
+        v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
+          div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
+            | {{ day.text }}
         v-spacer
         v-col(v-if="operatingSchedules.length" cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
@@ -322,50 +314,6 @@ export default {
         .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || []
       , (a, b) => a.day === b.day && a.opening === b.opening);
     },
-    scheduleDisplay () {
-      const sched = this.operatingGroupedSchedules;
-      const formatSched = sched.map(x => ({ day: x.day, order: x.order }));
-      const finalSched = [];
-      let finalString = '';
-      formatSched.map((x) => {
-        if (finalSched.find(sched => sched.order === x.order - 1)) {
-          const index = finalSched.indexOf(finalSched.find(sched => sched.order === x.order - 1));
-          finalSched[index].order = finalSched[index].order + 1;
-          return 0;
-        } else if (finalSched.find(sched => sched.day === x.day) || finalSched.find(sched => sched.order === x.order)) {
-          return 0;
-        } else {
-          finalSched.push(x);
-          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
-        }
-        return 0;
-      });
-      finalSched.map((x) => {
-        console.log(finalString);
-        const addString = x.day.concat(' - ', this.days[x.order - 1].day);
-        finalString = finalString.concat('', addString);
-        return 0;
-      });
-      return finalString;
-    },
-    // scheduleDisplay () {
-    //   const sched = this.operatingGroupedSchedules;
-    //   const formatSched = sched.map(x => ({ day: x.day, order: x.order }));
-    //   const finalSched = [{ day: '', order: 1 }];
-    //   formatSched.map((x) => {
-    //     if (finalSched.find(sched => sched.order === x.order - 1)) {
-    //       const index = finalSched.indexOf(finalSched.find(sched => sched.order === x.order + 1));
-    //       finalSched[index].order = finalSched[index].order + 1;
-    //     } else if (finalSched.find(sched => sched.day === x.day)) {
-    //       return 0;
-    //     } else {
-    //       finalSched.push(x);
-    //       if (finalSched.find(sched => sched.day === '')) finalSched.shift();
-    //     }
-    //     return 0;
-    //   });
-    //   return finalSched;
-    // },
   },
   methods: {
     visitWebsite (url) {
@@ -387,6 +335,9 @@ export default {
         event_category: 'doctor-website',
         event_label: `book-${type}-organization-${this.clinicId}-doctor-${this.doctorId}`,
       });
+    },
+    seeclinic () {
+      console.dir(this.clinic);
     },
   },
 };

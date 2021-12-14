@@ -21,10 +21,7 @@
             v-btn(
               text
             ).text-none.mc-h7.white--text.font-weight-light Learning Center
-            v-btn(
-              icon
-            )
-              v-icon(color="white") {{ mdiShareVariant }}
+            share-button(color="white")
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
@@ -46,7 +43,7 @@
             v-row(justify="center")
               v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
                 picture-source(
-                  image-file-extension="webp"
+                  image-file-extension=".webp"
                   :image="metric.imgIcon"
                   :image-alt="metric.imgIcon"
                   :image-width="$isMobile ? '50' : $isRegularScreen ? '50' : '50'"
@@ -82,6 +79,7 @@ import {
   mdiBookshelf,
   mdiShareVariant,
 } from '@mdi/js';
+import ShareButton from '~/components/doctor-website/ShareButton';
 import GenericPanel from '~/components/generic/GenericPanel';
 import canUseWebp from '~/utils/can-use-webp';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
@@ -92,6 +90,7 @@ export default {
     SocialSharing,
     GenericBlueBg,
     PictureSource,
+    ShareButton,
   },
   filters: {
     formatSchool (educ) {
