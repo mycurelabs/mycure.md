@@ -157,6 +157,7 @@ export default {
         isMenu: true,
         menuItems: [
           { name: 'Outpatient Clinics', route: 'clinics' },
+          { name: 'Hospital OPD', route: 'clinics-hospital' },
           { name: 'Skin Clinics', route: 'clinics-skin' },
           { name: 'Dental Clinics', route: 'clinics-dental' },
           { name: 'Corporate Clinics', route: 'clinics-corporate' },

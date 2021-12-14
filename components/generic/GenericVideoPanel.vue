@@ -19,7 +19,7 @@
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                 ).text-none
-                  span.mc-btn1.white--text Get Started Free
+                  span.mc-btn1.white--text {{ btnText }}
           v-spacer(v-if="!$isMobile")
           v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
             slot(name="video")
@@ -74,6 +74,10 @@ export default {
     notWhite: {
       type: Boolean,
       default: false,
+    },
+    btnText: {
+      type: String,
+      default: 'Get Started Free',
     },
   },
   data () {

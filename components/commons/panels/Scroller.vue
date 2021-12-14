@@ -3,9 +3,9 @@
     v-row(justify="center")
       generic-panel
         v-col(cols="12")
-          v-row.pa-3
-            h2.mc.h2.mb-5 {{ title }}
-            v-spacer
+          v-row(:justify="centerTitle ? 'center' : 'start'").pa-3
+            h2.mc-h2.mb-5 {{ title }}
+            //- v-spacer
             //- v-btn(v-if="items.length > 3" icon)
             //-   v-icon(color="primary" @click="showPrev()") {{ mdiArrowLeftThinCircleOutline }}
             //- v-btn(v-if="items.length > 3" icon)
@@ -62,6 +62,10 @@ export default {
     noOfItems: {
       type: Number,
       default: 3,
+    },
+    centerTitle: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
