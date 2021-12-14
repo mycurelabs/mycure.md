@@ -14,7 +14,11 @@
             v-spacer
             v-btn(
               text
-              @click="onRedirect('Facilites')"
+              @click="onRedirect('Profile')"
+            ).text-none.mc-h7.white--text.font-weight-light Profile
+            v-btn(
+              text
+              @click="onRedirect('Facilities')"
             ).text-none.mc-h7.white--text.font-weight-light Facilities
             v-btn(
               text
@@ -25,7 +29,7 @@
               @click="onRedirect('Learning Corner')"
             ).text-none.mc-h7.white--text.font-weight-light Learning Corner
             share-button(color="white" @clip-success="$emit('clipSuccess')")
-        v-col(v-else cols="11").pt-8
+        v-col(v-else cols="10").pt-8
           v-row(align="center")
             nuxt-link(to="/")
               img(
@@ -34,20 +38,23 @@
                 alt="MYCURE logo"
               ).mt-1
             v-spacer
-            share-button(color="white" @clip-success="$emit('clipSuccess')")
-          v-row(justify="center")
-            v-btn(
-              text
-              @click="onRedirect('Facilites')"
-            ).text-none.mc-h7.white--text.font-weight-light Facilities
-            v-btn(
-              text
-              @click="onRedirect('Services')"
-            ).text-none.mc-h7.white--text.font-weight-light Services
-            v-btn(
-              text
-              @click="onRedirect('Learning Corner')"
-            ).text-none.mc-h7.white--text.font-weight-light Learning Corner
+            share-button(color="white" is-small @clip-success="$emit('clipSuccess')")
+            v-menu(offset-y)
+              template(v-slot:activator="{ on }")
+                v-btn(
+                  v-on="on"
+                  icon
+                  depressed
+                  tile
+                ).text-none.font-12.font-weight-medium
+                  v-icon(color="white") {{ mdiMenu }}
+              v-list
+                v-list-item(
+                  v-for="(tab, key) in tabs"
+                  :key="key"
+                  @click="onRedirect(tab)"
+                )
+                  v-list-item-title {{ tab }}
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
@@ -58,7 +65,9 @@
             h1.mc-h2 {{ fullName }}
             p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
             br
-            span.mc-b2.font-weight-light.white--text {{ specialties.slice(0, 3).join(' | ')}}
+            span(v-if="!$isMobile").mc-b2.font-weight-light.white--text {{ specialties.slice(0, 3).join(' | ')}}
+            div(v-else).text-center
+              p(v-for="specialty in specialties.slice(0, 4)").mb-0.mc-b2.font-weight-light.white--text {{ specialty }}
             //- v-row(justify="center")
             //-   //- p(v-if="practicingYears").mc-h7.white--text.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
             //-   //- Professional Info
@@ -104,6 +113,8 @@ import {
   mdiPulse,
   mdiBookshelf,
   mdiShareVariant,
+  mdiMenu,
+  mdiClose,
 } from '@mdi/js';
 import ShareButton from '~/components/doctor-website/ShareButton';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -196,9 +207,13 @@ export default {
       //   color: 'error',
       // },
     ];
+    this.tabs = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
     return {
       canUseWebp: null,
       mdiShareVariant,
+      drawer: false,
+      mdiMenu,
+      mdiClose,
     };
   },
   computed: {
@@ -245,6 +260,7 @@ export default {
       this.$emit('book');
     },
     onRedirect (type) {
+      console.log('success');
       if (this.isPreviewMode) return;
       this.$emit('redirect', type);
     },

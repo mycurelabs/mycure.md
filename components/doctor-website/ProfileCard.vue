@@ -9,10 +9,12 @@
                 img(:src="picUrl")
               v-col(cols="12" md="9")
                 h3.mc-h3 {{ fullName }}
-                p.mc-b3.mb-0 {{ specialties.slice(0, 3).join(' | ')}}
+                p(v-if="!$isMobile").mc-b3.mb-0 {{ specialties.slice(0, 3).join(' | ')}}
+                div(v-else)
+                  p(v-for="specialty in specialties.slice(0, 4)").mb-0.mc-b2.font-weight-light {{ specialty }}
                 p(v-if="practicingYear").mc-b4.mb-0 {{ `Practicing since ${practicingYear}` }}
               v-spacer
-              share-button(:direction="$isMobile ? 'right' : 'top'" color="primary" @clip-success="$emit('clipSuccess')")
+              share-button(:direction="$isMobile ? 'bottom' : 'top'" color="primary" @clip-success="$emit('clipSuccess')")
 </template>
 
 <script>

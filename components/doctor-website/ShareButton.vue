@@ -2,8 +2,8 @@
   v-speed-dial(v-model="shareBtn" x-large :direction="direction" transition="slide-y-reverse-transition")
     template(v-slot:activator)
       v-btn(icon v-model="shareBtn" color="primary")
-        v-icon(v-if="shareBtn" color="white") {{ mdiClose }}
-        v-icon(v-else :color="color") {{ mdiShareVariant }}
+        v-icon(:small="isSmall" v-if="shareBtn" color="white") {{ mdiClose }}
+        v-icon(:small="isSmall" v-else :color="color") {{ mdiShareVariant }}
     v-tooltip(right)
       template( v-slot:activator="{ on, attrs }")
         v-btn(
@@ -82,6 +82,10 @@ export default {
     direction: {
       type: String,
       default: 'bottom',
+    },
+    isSmall: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

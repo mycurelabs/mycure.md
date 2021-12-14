@@ -65,14 +65,6 @@
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
-            v-row(align="center" :style="$isMobile ? 'margin-bottom: 10px' : 'margin-bottom: -48px'").pa-3
-              img(
-                src="~/assets/images/MYCURE-icon.png"
-                width=" 20"
-                alt="MYCURE icon"
-              ).mr-2
-              span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-              span(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
 
             v-tabs(
               right
@@ -81,10 +73,20 @@
               slider-color="primary"
               active-class="black--text"
             ).mb-6
+              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                img(
+                  src="~/assets/images/MYCURE-icon.png"
+                  width=" 20"
+                  alt="MYCURE icon"
+                  @click="onHome"
+                ).mr-2
+                span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+                span(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
                 :href="`#${tab}`"
+                :class="{'ml-4': !$isMobile}"
               ).mc-b2.font-weight-bold.text-none {{ tab }}
               v-tab-item(value="Profile")
                 //- Profile
@@ -101,7 +103,7 @@
                   :is-preview-mode="isPreviewMode"
                   @book="onBook"
                 )
-              v-tab-item(value="Facilites")
+              v-tab-item(value="Facilities")
                 //- Facilities
                 //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
@@ -119,15 +121,16 @@
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
                   v-card(flat).rounded-xl.bordered-card
                     v-card-text
-                      h3.mc-h3.black--text Services Offered
-                      br
-                      v-list(v-if="services ? (services.length) : false " dense)
-                        v-list-item(v-for="(service, key) in services" :key="key").pl-0
-                          v-list-item-icon
-                            v-icon(color="primary") {{ mdiCheckCircle }}
-                          v-list-item-content
-                            v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
-                      p(v-else).my-12.font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
+                      div(v-if="services ? (services.length) : false ")
+                        h3.mc-h3.black--text Services Offered
+                        br
+                        v-list(dense)
+                          v-list-item(v-for="(service, key) in services" :key="key").pl-0
+                            v-list-item-icon
+                              v-icon(color="primary") {{ mdiCheckCircle }}
+                            v-list-item-content
+                              v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
+                      p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item(value="Learning Corner")
                 //- Learning Corner
@@ -230,7 +233,7 @@ export default {
   },
   data () {
     this.clinicsLimit = 6;
-    this.tabsList = ['Profile', 'Facilites', 'Services', 'Learning Corner'];
+    this.tabsList = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
     return {
       // - UI State
       loading: true,
