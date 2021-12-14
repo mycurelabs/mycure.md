@@ -11,6 +11,7 @@
           small
           rel="noopener noreferrer"
           :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
+          target="_blank"
           color="#4267B2"
           v-bind="attrs"
           v-on="on"
@@ -26,6 +27,7 @@
           small
           rel="noopener noreferrer"
           :href="`https://twitter.com/intent/tweet?url=${url}`"
+          target="_blank"
           color="#00ACEE"
           v-bind="attrs"
           v-on="on"
@@ -46,6 +48,7 @@
           small
           rel="noopener noreferrer"
           :href="`https://www.linkedin.com/sharing/share-offsite/?url=${url}`"
+          target="_blank"
           color="#0E76A8"
           v-bind="attrs"
           v-on="on"
