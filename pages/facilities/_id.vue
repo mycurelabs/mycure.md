@@ -14,8 +14,16 @@
       :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
       @select="onSelectServiceType($event)"
     )
+    //- testing ///////////////////////////////////////////////////////////////
+    main-panel(
+      :pic-url="picURL"
+      :clinic-name="clinicName"
+      :formatted-address="formattedAddress"
+      :clinic-phone="clinicPhone"
+    )
+    //- testing ///////////////////////////////////////////////////////////////
     //- APP BAR
-    app-bar
+    //- app-bar
     //- PANEL 1
     div(
       :class="background"
@@ -132,6 +140,7 @@ import {
 // - components
 import AboutUs from '~/components/clinic-website/AboutUs';
 import AppBar from '~/components/clinic-website/new/AppBar';
+import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AppFooter from '~/components/clinic-website/AppFooter';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseService from '~/components/clinic-website/ChooseService';
@@ -160,6 +169,7 @@ export default {
     SearchPanel,
     MainWorkflow,
     QuickBook,
+    MainPanel,
   },
   layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect, error }) {
