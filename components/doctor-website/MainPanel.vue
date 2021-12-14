@@ -25,7 +25,7 @@
               @click="onRedirect('Learning Corner')"
             ).text-none.mc-h7.white--text.font-weight-light Learning Corner
             share-button(color="white")
-        v-col(cols="11").pt-8
+        v-col(v-else cols="11").pt-8
           v-row(align="center")
             nuxt-link(to="/")
               img(

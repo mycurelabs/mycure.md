@@ -1,8 +1,5 @@
 <template lang="pug">
   v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
-    //- v-card-text.text-center
-    //-   v-avatar(size="200" :class="{'mt-n16': !$isMobile}").elevation-5
-    //-     img(:src="picUrl").img-border
     v-col
       v-row
         v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
@@ -22,44 +19,10 @@
           v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
             span.mc-b4 {{ specialty }}
         v-spacer
-
-      //- span(v-if="fullName" :class="mainTextClasses").font-weight-bold.lh-title.black--text {{ fullName }}
-      //- v-icon(
-      //-   v-if="isBookable"
-      //-   color="primary"
-      //-   :large="$isWideScreen"
-      //-   :class="$isWideScreen ? 'pb-3' : 'pb-2'"
-      //- ).ml-1 {{ mdiCheckDecagram }}
-      //- div.mb-6
-      //-   h2(:class="sectionTextClasses").secondary--text About Me
-      //-   v-clamp(autoresize :max-lines="3") {{ bio }}
-      //-     template(v-slot:after="{ expand, collapse, clamped, expanded }")
-      //-       a(v-if="clamped" @click="expand").primary--text See more...
-      //-       a(v-else-if="expanded" @click="collapse").primary--text See less
-      //- div(v-if="specialties.length").mb-6
-      //-   h2(:class="sectionTextClasses").secondary--text Tags
-      //-   v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
-      //-     span.font-gray {{ specialty }}
-      //- div(v-if="practicingSince").mb-6
-      //-   h2(:class="sectionTextClasses").secondary--text Practicing Since
-      //-   p {{ practicingSince | format-practicing-since }} - {{ practicingYears > 0 ? `${practicingYears} Year${practicingYears > 1 ? 's' : ''} of Experience` : ''}}
-      //- //- Educational Background
-      //- div(v-if="education.length").mb-6
-      //-   h2(:class="sectionTextClasses").secondary--text Education
-      //-   div(v-for="(educ, key) in education" :key="key").mt-3
-      //-     span {{ educ | format-school }}
-      //-     br
-      //-     span {{ educ.from }} - {{ educ.to }}
 </template>
 
 <script>
-// import VClamp from 'vue-clamp';
-// import { mdiCheckDecagram } from '@mdi/js';
-// import classBinder from '~/utils/class-binder';
 export default {
-  // components: {
-  //   VClamp,
-  // },
   filters: {
     formatSchool (educ) {
       if (!educ.degree) return educ.school;
@@ -94,9 +57,7 @@ export default {
   },
   data () {
     return {
-      // - UI State
       socialMenu: false,
-      // mdiCheckDecagram,
     };
   },
   computed: {

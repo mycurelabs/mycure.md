@@ -341,9 +341,6 @@ export default {
         event_label: `book-${type}-organization-${this.clinicId}-doctor-${this.doctorId}`,
       });
     },
-    seeclinic () {
-      console.dir(this.clinic);
-    },
   },
 };
 </script>
