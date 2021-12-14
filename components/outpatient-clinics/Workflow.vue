@@ -1,15 +1,15 @@
 <template lang="pug">
   v-container
     cms-video-dialog(v-model="videoDialog")
-    v-row(justify="center")
+    v-row(justify="center").pt-16
       generic-panel
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12" md="10").text-center
-              h2(:class="titleClasses").mb-6 Why do clinics switch to MYCURE?
+              h2(:class="titleClasses").mb-6 {{ title || 'Why do clinics switch to MYCURE?' }}
               v-row(justify="center")
                 v-col(cols="12" sm="10")
-                  p(:class="descriptionClasses").mb-10 MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
+                  p(:class="descriptionClasses").mb-10 {{ description || 'MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.' }}
               //- mc-btn(
               //-   event-label="click-cms-video"
               //-   event-category="Video"
@@ -59,6 +59,16 @@ export default {
     CmsVideoDialog,
     GenericPanel,
     PictureSource,
+  },
+  props: {
+    title: {
+      type: String,
+      default: null,
+    },
+    description: {
+      type: String,
+      default: null,
+    },
   },
   data () {
     this.items = [
