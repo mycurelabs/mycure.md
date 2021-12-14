@@ -9,14 +9,15 @@
         v-for="(clinic, key) in clinics"
         :key="key"
         cols="12"
-      )
+      ).grey-bg
         facility-item(
           :clinic="clinic"
           :doctor-id="doctorId"
           :is-preview-mode="isPreviewMode"
-        )
+        ).my-2
       v-col(cols="12")
         v-pagination(
+          v-if="length > 1"
           v-model="page"
           :length="length"
           :next-icon="mdiChevronRight"
@@ -96,5 +97,8 @@ export default {
   background-color: #04B1E7;
   border-radius: 6px;
   border: 3px solid #f3f0dd;
+}
+.grey-bg {
+  background-color: #f9f9f9;
 }
 </style>

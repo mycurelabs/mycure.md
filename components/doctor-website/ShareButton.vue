@@ -99,7 +99,7 @@ export default {
   methods: {
     getShareLink () {
       navigator.clipboard.writeText(window.location.href);
-      this.clipSuccess = true;
+      this.$emit('clipSuccess');
     },
     getLink () {
       this.url = window.location.href;

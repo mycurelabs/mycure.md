@@ -7,7 +7,7 @@
             :src="clinicPicURL"
             alt="Services"
             width="90%"
-          ).mt-3.rounded-xl
+          ).mt-3.rounded-circle
         v-col(cols="12" md="8").pt-5
           v-row.pa-3
             v-clamp(
@@ -74,9 +74,11 @@
         v-col(v-if="canOnlineBook || canVisit" cols="12").text-right
           div(:class="{'d-inline-flex': !$isMobile}")
             v-btn(
-              color="#F0F7FD"
+              color="primary"
               depressed
-              large
+              outlined
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
               :block="$isMobile"
               :href="!isPreviewMode && telehealthURL"
               :class="{'mx-1': !$isMobile}"
@@ -88,7 +90,8 @@
             v-btn(
               color="primary"
               depressed
-              large
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
               :block="$isMobile"
               :disabled="!canVisit"
               :href="!isPreviewMode && visitURL"

@@ -24,7 +24,7 @@
               text
               @click="onRedirect('Learning Corner')"
             ).text-none.mc-h7.white--text.font-weight-light Learning Corner
-            share-button(color="white")
+            share-button(color="white" @clip-success="$emit('clipSuccess')")
         v-col(v-else cols="11").pt-8
           v-row(align="center")
             nuxt-link(to="/")
@@ -34,7 +34,7 @@
                 alt="MYCURE logo"
               ).mt-1
             v-spacer
-            share-button(color="white")
+            share-button(color="white" @clip-success="$emit('clipSuccess')")
           v-row(justify="center")
             v-btn(
               text
@@ -65,7 +65,7 @@
             //-   v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
             //-     span {{ specialties.slice(0, 3).join(' | ')}}
           //- Analytics
-          v-col(cols="12" md="8")
+          v-col(cols="12" md="6")
             v-row(justify="center")
               v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
                 picture-source(

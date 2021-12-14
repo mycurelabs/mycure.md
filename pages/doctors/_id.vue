@@ -30,12 +30,14 @@
       @book="onBook"
       @redirect="onRedirect($event)"
       ref="top"
+      @clip-success="clipSuccess = true"
     )
     profile-card(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
       :practicing-year="practicingYear"
       :specialties="specialties"
+      @clip-success="clipSuccess = true"
     ).profile-overlap
 
     //- Patient panel
@@ -69,8 +71,8 @@
                 width=" 20"
                 alt="MYCURE icon"
               ).mr-2
-              span(@click="onHome" style="color: #72727D;") Home /&nbsp;
-              span(@click="onRedirect(tabSelect)") {{ tabSelect }}
+              span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+              span(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
 
             v-tabs(
               right
@@ -118,12 +120,13 @@
                   v-card(flat).rounded-xl.bordered-card
                     v-card-text
                       h3.mc-h3.black--text Services Offered
+                      br
                       v-list(v-if="services ? (services.length) : false " dense)
                         v-list-item(v-for="(service, key) in services" :key="key").pl-0
                           v-list-item-icon
                             v-icon(color="primary") {{ mdiCheckCircle }}
                           v-list-item-content
-                            v-list-item-title(:class="{'text-left': $isMobile}").mc-h4 {{ service }}
+                            v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
                       p(v-else).my-12.font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item(value="Learning Corner")
