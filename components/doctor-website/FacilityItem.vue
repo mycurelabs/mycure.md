@@ -58,13 +58,13 @@
       //-   v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
       //-     a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
       v-row(justify="end" align="center").px-8.my-5
-        div(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.mx-3
+        div(v-for="(day, index) in daysList" :key="index" :class="$isMobile ? 'mx-1' : 'mx-3' ").white--text
           div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
             | {{ day.text }}
         v-spacer
         //- v-col(v-if="operatingSchedules.length" cols="12" :align="$isMobile ? 'start' : 'end'").pl-0
         //-   v-row(align="center").pa-3
-        div(v-if="operatingSchedules.length")
+        div(v-if="operatingSchedules.length" :class="{'mt-2': $isMobile}")
           a(@click="scheduleDialog = true").primary--text.font-weight-semibold View full schedule
           v-icon(small).ml-3 {{ mdiInformationOutline }}
     v-spacer
@@ -300,7 +300,7 @@ export default {
     },
     textFontSize () {
       return classBinder(this, {
-        mobile: ['font-12'],
+        mobile: ['font-10'],
         regular: ['font-14'],
         wide: ['font-18'],
       });

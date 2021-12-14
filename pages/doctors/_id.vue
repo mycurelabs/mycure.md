@@ -63,7 +63,7 @@
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
-            v-row(align="center" style="margin-bottom: -48px").pa-3
+            v-row(align="center" :style="$isMobile ? 'margin-bottom: 10px' : 'margin-bottom: -48px'").pa-3
               img(
                 src="~/assets/images/MYCURE-icon.png"
                 width=" 20"
@@ -114,7 +114,7 @@
                   )
               v-tab-item(value="Services")
                 //- Services
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").px-12.py-8.rounded-lg
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
                   v-card(flat).rounded-xl.bordered-card
                     v-card-text
                       h3.mc-h3.black--text Services Offered
@@ -123,7 +123,7 @@
                           v-list-item-icon
                             v-icon(color="primary") {{ mdiCheckCircle }}
                           v-list-item-content
-                            v-list-item-title.mc-h4 {{ service }}
+                            v-list-item-title(:class="{'text-left': $isMobile}").mc-h4 {{ service }}
                       p(v-else).my-12.font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item(value="Learning Corner")

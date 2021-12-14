@@ -3,7 +3,7 @@
     v-container.white--text
       v-row(justify="center")
         //- Logo
-        v-col(cols="10")
+        v-col(v-if="!$isMobile" cols="10")
           v-row(align="center").px-3.py-5
             nuxt-link(to="/")
               img(
@@ -25,6 +25,29 @@
               @click="onRedirect('Learning Corner')"
             ).text-none.mc-h7.white--text.font-weight-light Learning Corner
             share-button(color="white")
+        v-col(cols="11").pt-8
+          v-row(align="center")
+            nuxt-link(to="/")
+              img(
+                src="~/assets/images/mycure-logo-white.png"
+                width="120"
+                alt="MYCURE logo"
+              ).mt-1
+            v-spacer
+            share-button(color="white")
+          v-row(justify="center")
+            v-btn(
+              text
+              @click="onRedirect('Facilites')"
+            ).text-none.mc-h7.white--text.font-weight-light Facilities
+            v-btn(
+              text
+              @click="onRedirect('Services')"
+            ).text-none.mc-h7.white--text.font-weight-light Services
+            v-btn(
+              text
+              @click="onRedirect('Learning Corner')"
+            ).text-none.mc-h7.white--text.font-weight-light Learning Corner
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
