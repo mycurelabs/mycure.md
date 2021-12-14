@@ -28,6 +28,8 @@
       :is-bookable="isBookable"
       :is-preview-mode="isPreviewMode"
       @book="onBook"
+      @redirect="onRedirect($event)"
+      ref="top"
     )
     profile-card(
       :pic-url="picURL"
@@ -57,25 +59,32 @@
       //-       span.error--text Heart
 
     //- Workflow area
-    v-container.pb-16
+    v-container(ref="tabs").pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
+            v-row(align="center" style="margin-bottom: -48px").pa-3
+              img(
+                src="~/assets/images/MYCURE-icon.png"
+                width=" 20"
+                alt="MYCURE icon"
+              ).mr-2
+              span(@click="onHome" style="color: #72727D;") Home /&nbsp;
+              span(@click="onRedirect(tabSelect)") {{ tabSelect }}
+
             v-tabs(
+              right
               v-model="tabSelect"
               background-color="transparent"
-              color="primary"
+              slider-color="primary"
+              active-class="black--text"
             ).mb-6
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
-              ).mc-b2.font-weight-semibold.text-none {{ tab }}
-            v-tabs-items(v-model="tabSelect")
-              //- v-tab-item(
-              //-   v-for="(tab, key) in tabsList"
-              //-   :key="key"
-              //- )
-              v-tab-item
+                :href="`#${tab}`"
+              ).mc-b2.font-weight-bold.text-none {{ tab }}
+              v-tab-item(value="Profile")
                 //- Profile
                 profile(
                   :pic-url="picURL"
@@ -90,7 +99,7 @@
                   :is-preview-mode="isPreviewMode"
                   @book="onBook"
                 )
-              v-tab-item
+              v-tab-item(value="Facilites")
                 //- Facilities
                 //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
@@ -103,7 +112,7 @@
                     :loading="facilitiesLoading"
                     @onUpdatePage="fetchDoctorInfo($event)"
                   )
-              v-tab-item
+              v-tab-item(value="Services")
                 //- Services
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").px-12.py-8.rounded-lg
                   v-card(flat).rounded-xl.bordered-card
@@ -117,7 +126,7 @@
                             v-list-item-title.mc-h4 {{ service }}
                       p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
-              v-tab-item
+              v-tab-item(value="Learning Corner")
                 //- Learning Corner
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
                   learning-corner(
@@ -242,7 +251,7 @@ export default {
       clipSuccess: false,
       facilitiesLoading: false,
       shareBtn: false,
-      tabSelect: null,
+      tabSelect: 'Profile',
       mdiCheckCircle,
     };
   },
@@ -419,6 +428,19 @@ export default {
         color,
       };
       this.showSnack = true;
+    },
+    onRedirect (type) {
+      this.tabSelect = type;
+      const element = this.$refs.tabs;
+      const top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    },
+    onHome () {
+      const element = this.$refs.top;
+      const top = element.offsetTop;
+
+      window.scrollTo(0, top);
     },
   },
 };

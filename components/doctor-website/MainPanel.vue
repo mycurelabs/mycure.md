@@ -14,13 +14,16 @@
             v-spacer
             v-btn(
               text
+              @click="onRedirect('Facilites')"
             ).text-none.mc-h7.white--text.font-weight-light Facilities
             v-btn(
               text
+              @click="onRedirect('Services')"
             ).text-none.mc-h7.white--text.font-weight-light Services
             v-btn(
               text
-            ).text-none.mc-h7.white--text.font-weight-light Learning Center
+              @click="onRedirect('Learning Corner')"
+            ).text-none.mc-h7.white--text.font-weight-light Learning Corner
             share-button(color="white")
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
@@ -217,6 +220,10 @@ export default {
     onBook () {
       if (this.isPreviewMode) return;
       this.$emit('book');
+    },
+    onRedirect (type) {
+      if (this.isPreviewMode) return;
+      this.$emit('redirect', type);
     },
   },
 };

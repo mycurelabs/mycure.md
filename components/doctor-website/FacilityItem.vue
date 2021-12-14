@@ -57,13 +57,16 @@
       //-   a(v-if="!$isMobile && fullSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
       //-   v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
       //-     a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
-      v-row(justify="end").pt-2.px-8
-        v-col(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.pr-0
+      v-row(justify="end" align="center").px-8.my-5
+        div(v-for="(day, index) in daysList" :key="index" :class="{'pl-0': $isMobile}").white--text.mx-3
           div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
             | {{ day.text }}
         v-spacer
-        v-col(v-if="operatingSchedules.length" cols="12" sm="4" :align="$isMobile ? 'start' : 'end'").pl-0
-          a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+        //- v-col(v-if="operatingSchedules.length" cols="12" :align="$isMobile ? 'start' : 'end'").pl-0
+        //-   v-row(align="center").pa-3
+        div(v-if="operatingSchedules.length")
+          a(@click="scheduleDialog = true").primary--text.font-weight-semibold View full schedule
+          v-icon(small).ml-3 {{ mdiInformationOutline }}
     v-spacer
     v-card-actions.pa-2.pb-4
       v-row(justify="center").px-8
@@ -129,6 +132,7 @@ import {
   mdiPhoneInTalk,
   mdiMapMarker,
   mdiShareVariant,
+  mdiInformationOutline,
 } from '@mdi/js';
 import VClamp from 'vue-clamp';
 // - components
@@ -227,6 +231,7 @@ export default {
       mdiPhoneInTalk,
       mdiMapMarker,
       mdiShareVariant,
+      mdiInformationOutline,
     };
   },
   computed: {
