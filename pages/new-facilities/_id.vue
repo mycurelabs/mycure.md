@@ -7,6 +7,8 @@
       :formatted-address="formattedAddress"
       :clinic-phone="clinicPhone"
       :style="{ height: $isMobile ? '130vh' : '120vh' }"
+      :is-bookable="isVerified && isAvailable"
+      @book="onBook"
       @redirect="onRedirect($event)"
     )
     //- insert panels here
@@ -38,7 +40,7 @@
                 :href="`#${tab}`"
                 :class="{'ml-4': !$isMobile}"
                 dense
-              ).mc-hyp2.font-weight-bold.text-none {{ tab }}
+              ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
               v-tab-item(value="Services")
                 div.grey-bg.pt-8
                   h3 hello
@@ -54,7 +56,13 @@
                   )
               v-tab-item(value="Contact Us")
                 div.grey-bg.pt-8
-                  contact-us(:clinic="clinic")
+                  contact-us(
+                    :address="formattedAddress"
+                    :clinic-phone="clinicPhone"
+                    :address-lat="clinic.address.lat"
+                    :address-lng="clinic.address.lng"
+                    :schedule="clinic.mf_schedule"
+                  )
 
 </template>
 
@@ -116,6 +124,19 @@ export default {
     };
   },
   computed: {
+    isBookingEnabled () {
+      return this.clinic?.types?.includes('clinic-booking');
+    },
+    isTelehealthEnabled () {
+      return this.clinic?.types?.includes('clinic-telehealth');
+    },
+    isVerified () {
+      return !!this.clinic?.websiteId;
+    },
+    isAvailable () {
+      // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
+      return this.isBookingEnabled || this.isTelehealthEnabled;
+    },
     picURL () {
       return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
     },
@@ -152,6 +173,9 @@ export default {
       const top = element.offsetTop;
 
       window.scrollTo(0, top);
+    },
+    onBook () {
+      // insert booking code
     },
   },
 };

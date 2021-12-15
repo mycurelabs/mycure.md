@@ -4,12 +4,14 @@
       v-col(cols="12" md="9")
         h3.mc-h3.title--text About Clinic
         br
-        v-avatar(size="120").elevation-4
-          img(:src="picUrl").img-border
         br
+        div(:class="{'text-center': $isMobile}")
+          v-avatar(size="120").elevation-4
+            img(:src="picUrl").img-border
         br
         h3.mc-h3.title--text.mb-4 {{ clinicName }}
-        span.mc-b4 {{ description }}
+        div(:class="{'text-center': $isMobile}")
+          span.mc-b4 {{ description }}
 </template>
 
 <script>

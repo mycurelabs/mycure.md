@@ -64,8 +64,13 @@
             br
             h1.mc-h2 {{ clinicName }}
             br
-            p.mc-b2.font-weight-light.white--text.mb-0 {{ formattedAddress }}
-            p.mc-b2.font-weight-light.white--text {{ clinicPhone }}
+            v-row(justify="center" align="center")
+              v-icon(small color="white").mr-1 {{ mdiMapMarker }}
+              span.mc-b2.font-weight-light.white--text {{ formattedAddress }}
+            v-row(justify="center" align="center")
+              v-icon(small color="white").mr-2 {{ mdiPhone }}
+              span.mc-b2.font-weight-light.white--text {{ clinicPhone }}
+            br
           //- Consult btn
           v-col(cols="10").text-center.justify-center
             v-btn(
@@ -84,6 +89,8 @@ import {
   mdiShareVariant,
   mdiMenu,
   mdiClose,
+  mdiMapMarker,
+  mdiPhone,
 } from '@mdi/js';
 import ShareButton from '~/components/doctor-website/ShareButton';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
@@ -135,6 +142,8 @@ export default {
       drawer: false,
       mdiMenu,
       mdiClose,
+      mdiMapMarker,
+      mdiPhone,
     };
   },
   methods: {

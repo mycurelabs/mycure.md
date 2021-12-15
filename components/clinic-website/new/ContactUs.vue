@@ -4,43 +4,103 @@
       v-col(cols="12" md="6")
         h3.mc-h3.title--text Contact Us
         br
-        v-col(cols="12" md="8")
-          //- span.mc-b4.mb-4 {{ address }}
-          h3.mc-h5.title--text.mb-.font-weight-semibold Facility Schedule
-          //- v-row(v-for="(sched, key) in schedules" :key="key")
-          //-   v-col(cols="4").py-2
-          //-     span.mc-b3.title--text.font-weight-semibold {{ sched.day }}
-          //-   v-col(cols="8").py-2
-          //-     span.mc-b3 {{ sched.time }}
-          span {{ clinic }}
+        v-col(cols="12")
+          v-row(align="center").pl-3
+            v-icon(small color="primary").mr-1 {{ mdiMapMarker }}
+            v-col.pa-0
+              span.mc-b2 {{ address }}
+          v-row(align="center").pl-3
+            v-icon(small color="primary").mr-2 {{ mdiPhone }}
+            span.mc-b2 {{ clinicPhone }}
+          br
+          br
+          h3.mc-h5.title--text.mb-.font-weight-semibold.mb-3 Facility Schedule
+          v-row(v-for="(sched, key) in compressedSchedules" :key="key")
+            v-col(cols="4").pt-1.pb-0
+              p(v-if="typeof (sched.day) === 'string'").mc-b3.title--text.font-weight-semibold.text-capitalize.mb-0 {{ sched.day }}
+              p(v-else).mc-b3.title--text.font-weight-semibold.text-capitalize.mb-0 {{ `${sched.day[0]} - ${sched.day[sched.day.length - 1]}` }}
+            v-col(cols="8").pt-1.pb-0
+              p(v-if="typeof (sched.time) === 'string'").mc-b3.mb-0 {{ sched.time }}
+              p(v-else v-for="(slot, key) in sched.time" :key="key").mc-b3.mb-0 {{ slot }}
       v-col(v-if="!$isMobile" cols="1")
         v-divider(vertical)
-      v-col(cols="12" md="5").pl-0
+      v-col(cols="12" md="5" :class="{'mt-8': $isMobile}")
         h3.mc-h4.title--text Location
         br
-        div#map
+        div(v-if="addressLat && addressLng" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
+        div(v-else)
+          span.mc-b3 Location not available
 </template>
 
 <script>
+import {
+  mdiMapMarker,
+  mdiPhone,
+} from '@mdi/js';
+import { format } from 'date-fns';
+import Schedules from '~/components/clinic-website/schedules';
 export default {
+  components: {
+    Schedules,
+  },
   props: {
     address: {
       type: String,
       default: null,
     },
-    position: {
-      type: Object,
+    schedule: {
+      type: Array,
       default: null,
     },
-    clinic: {
-      type: Object,
+    addressLat: {
+      type: Number,
+      default: null,
+    },
+    addressLng: {
+      type: Number,
+      default: null,
+    },
+    clinicPhone: {
+      type: String,
       default: null,
     },
   },
   data () {
-    this.defaultMapPosition = { lat: 14.5813167, lng: 120.9761788 };
+    this.days = [
+      {
+        order: 1,
+        day: 'mon',
+      },
+      {
+        order: 2,
+        day: 'tue',
+      },
+      {
+        order: 3,
+        day: 'wed',
+      },
+      {
+        order: 4,
+        day: 'thu',
+      },
+      {
+        order: 5,
+        day: 'fri',
+      },
+      {
+        order: 6,
+        day: 'sat',
+      },
+      {
+        order: 7,
+        day: 'sun',
+      },
+    ];
+    // this.defaultMapPosition = { lat: 14.5813167, lng: 120.9761788 };
     return {
       map: null,
+      mdiMapMarker,
+      mdiPhone,
     };
   },
   head () {
@@ -55,13 +115,57 @@ export default {
       ],
     };
   },
+  computed: {
+    addressGeometry () {
+      if (!this.addressLat || !this.addressLng) return null;
+      return { lat: this.addressLat, lng: this.addressLng };
+    },
+    groupedSchedules () {
+      const groupedSchedules = this.schedule
+        .map((schedule) => {
+          const { order } = this.days.find(day => day.day === schedule.day);
+          return {
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      return groupedSchedules;
+    },
+    compressedSchedules () {
+      const sched = this.groupedSchedules;
+      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
+      const finalSched = [{ day: '', time: '' }];
+      formatSched.map((x) => {
+        if (finalSched.find(sched => sched.time === x.time)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
+          if (typeof finalSched[index].day === 'string') {
+            finalSched[index].day = [finalSched[index].day, x.day];
+          } else {
+            finalSched[index].day = [...finalSched[index].day, x.day];
+          }
+        } else if (finalSched.find(sched => sched.day === x.day)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
+          finalSched[index].time = [finalSched[index].time, x.time];
+        } else {
+          finalSched.push(x);
+          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
+        }
+        return 0;
+      });
+      return finalSched;
+    },
+  },
   mounted () {
     this.initialize();
   },
   methods: {
     initialize () {
       this.mapGeocoder = new google.maps.Geocoder(); /* eslint-disable-line no-undef */
-      const center = this.addressGeometry || this.defaultMapPosition;
+      if (!this.addressGeometry) {
+        return null;
+      }
+      const center = this.addressGeometry;
       const mapOptions = {
         center,
         zoom: 15,
@@ -81,6 +185,9 @@ export default {
       };
       return new google.maps.Marker(placeMarkerOptions); /* eslint-disable-line no-undef */
     },
+    formatTime (time) {
+      return format(time, 'hh:mm A');
+    },
   },
 };
 </script>
@@ -88,12 +195,5 @@ export default {
 <style scoped>
 .img-border {
   border: 8px solid white;
-}
-#map {
-  min-height: 400px;
-  height: 50%;
-  min-width: 250px;
-  max-width: 600px;
-  width: 100%;
 }
 </style>
