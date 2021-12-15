@@ -235,6 +235,7 @@ export const getSubscriptionPackages = async ({ types }) => {
       { currency },
     ],
     ...country.country_code === 'US' && { tags: { $in: ['us'] } },
+    ...country.country_code !== 'US' && { tags: { $nin: ['us'] } },
   });
   return items;
 };
