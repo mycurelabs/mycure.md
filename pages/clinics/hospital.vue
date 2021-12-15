@@ -9,7 +9,7 @@
         background-image-file-extension=".webp"
         title="MYCURE Hospital-OPD"
         meta-title="MYCURE HOSPITALS"
-        description="Keep your hospital's out-patient department's (OPD) operations running smoothly with the MYCURE Hospital-OPD app. We've designed a platfor that benefits OPD Clinics of all sizes, from small to large."
+        description="Keep your hospital's out-patient department's (OPD) operations running smoothly with the MYCURE Hospital-OPD app. We've designed a platform that benefits OPD Clinics of all sizes, from small to large."
         parse-title
         btn-text="Start Free Today"
         image="FullService"
