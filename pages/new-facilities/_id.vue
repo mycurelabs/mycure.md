@@ -6,10 +6,16 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+// services
+import { fetchServices } from '~/services/services';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
+import { initLogger } from '~/utils/logger';
 // components
 // Insert components from '~/compononets/clinic-website/new'
+
+const log = initLogger('Facilities');
+
 export default {
   layout: 'empty',
   async asyncData ({ params, $sdk, redirect, error }) {
@@ -34,10 +40,66 @@ export default {
       loading: {
         page: false,
       },
+      itemsLimit: 10,
+      itemsTotal: {
+        services: 0,
+        doctors: 0,
+      },
     };
   },
-  created () {
-    //
+  computed: {
+    clinicId () {
+      return this.clinic.id;
+    },
+    isBookingEnabled () {
+      return this.clinic?.types?.includes('clinic-booking');
+    },
+    isTelehealthEnabled () {
+      return this.clinic?.types.includes('clinic-telehealth');
+    },
+  },
+  mounted () {
+    this.fetchServices();
+  },
+  methods: {
+    /** Fetches all services of facility
+     *
+     * @param {Object} serviceArgs
+     * @param {Object} serviceArgs.serviceProps - specific service fields
+     * @param {String} serviceArgs.searchText - search text to match services name
+     *
+     * @param {Number} page - for computing pagination
+     */
+    async fetchServices ({
+      /**
+       * @type {String} serviceProps.type - matches with Service#type
+       * @type {String} serviceProps.subtype  - matched with Service#subtype
+       * @type {String} serviceProps.insurer  - insurer id
+       * @type {Array} serviceProps.tags - matches with Service#tags
+       */
+      serviceProps = {},
+      searchText,
+    } = {}, page = 1) {
+      try {
+        const { type, subtype, insurer, tags } = serviceProps;
+        const skip = this.itemsLimit * (page - 1);
+        const query = {
+          facility: this.clinicId,
+          type,
+          subtype,
+          insurer,
+          searchText,
+          limit: this.itemsLimit,
+          skip,
+          tags,
+        };
+        const { items, total } = await fetchServices(query, true);
+        log('fetchServices#items: %O', items);
+        this.itemsTotal.services = total;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
 </script>
