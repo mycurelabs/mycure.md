@@ -11,6 +11,7 @@
       :organizations="clinics"
       :doctor-id="doctor.id"
       :appointment-type="appointmentType"
+      @select="onOrgSelect"
     )
     v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     //- First panel
@@ -175,6 +176,7 @@ import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
 import { mdiCheckCircle } from '@mdi/js';
+import { AMPLITUDE_KEYS } from './constants';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import Facilities from '~/components/doctor-website/Facilities';
@@ -195,6 +197,7 @@ import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import { fetchUserFacilities } from '~/services/organization-members';
 import { fetchOrganizations } from '~/services/organizations';
+import { amplitudeTracker } from '~/utils/amplitude-analytics';
 
 const BOOKABLE_FACILITY_TYPES = [
   'doctor-booking',
@@ -340,6 +343,9 @@ export default {
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
+    currentPath () {
+      return this.$route.fullPath || this.$route.name;
+    },
   },
   created () {
     this.loading = false;
@@ -421,11 +427,20 @@ export default {
       }
     },
     onSelectAppointment (type) {
+      if (type === 'physical') {
+        amplitudeTracker(AMPLITUDE_KEYS.onVisitClinicSelect, this.currentPath);
+      }
       this.appointmentType = type;
       this.facilityDialog = true;
+      amplitudeTracker(AMPLITUDE_KEYS.onClinicListDialogOpen, this.currentPath);
+    },
+    onOrgSelect () {
+      amplitudeTracker(AMPLITUDE_KEYS.onClinicSelect, this.currentPath);
     },
     onBook () {
+      amplitudeTracker(AMPLITUDE_KEYS.onBookAppointmentBtn, this.currentPath);
       this.appointmentDialog = true;
+      amplitudeTracker(AMPLITUDE_KEYS.onAppointmentDialogOpen, this.currentPath);
       // VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
