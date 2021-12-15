@@ -153,6 +153,9 @@ export default {
 
 <style scoped>
 
+.img-border {
+  border: 8px solid white;
+}
 @media screen and (max-width: 700px) {
   .panel-bg {
     height: 1000px;

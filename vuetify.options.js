@@ -9,6 +9,7 @@ export default {
         warning: '#FFC107',
         error: '#f75a5f',
         success: '#97CC00',
+        title: '#252B42',
       },
       dark: {
         primary: '#0099cc',
