@@ -11,6 +11,7 @@
       :organizations="clinics"
       :doctor-id="doctor.id"
       :appointment-type="appointmentType"
+      @select="onOrgSelect"
     )
     v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     //- First panel
@@ -23,11 +24,22 @@
       :professions="professions"
       :education="education"
       :practicing-years="practicingYears"
+      :practicing-year="practicingYear"
       :is-verified="isVerified"
       :is-bookable="isBookable"
       :is-preview-mode="isPreviewMode"
       @book="onBook"
+      @redirect="onRedirect($event)"
+      ref="top"
+      @clip-success="clipSuccess = true"
     )
+    profile-card(
+      :pic-url="picURL"
+      :full-name="fullNameWithSuffixes"
+      :practicing-year="practicingYear"
+      :specialties="specialties"
+      @clip-success="clipSuccess = true"
+    ).profile-overlap
 
     //- Patient panel
     //- patient-panel(:metrics="doctorMetrics")
@@ -50,36 +62,84 @@
       //-       span.error--text Heart
 
     //- Workflow area
-    v-container
+    v-container(ref="tabs").pb-16
       v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center' }")
-          //- Profile
-          v-col(cols="12" lg="4" xl="3")
-            profile(
-              :pic-url="picURL"
-              :full-name="fullNameWithSuffixes"
-              :first-name="firstName"
-              :practicing-since="practicingSince"
-              :practicing-years="practicingYears"
-              :bio="bio"
-              :specialties="specialties"
-              :education="education"
-              :is-bookable="isBookable"
-              :is-preview-mode="isPreviewMode"
-              @book="onBook"
-            )
-          //- Tabs
-          v-col(cols="12" lg="8" xl="7")
-            website-features(
-              :doctorId="doctor.id"
-              :clinics="clinics"
-              :clinics-total="clinicsTotal"
-              :clinics-limit="clinicsLimit"
-              :services="services"
-              :is-preview-mode="isPreviewMode"
-              :facilities-loading="facilitiesLoading"
-              @onUpdateClinicPage="fetchDoctorInfo($event)"
-            )#doctor-website-features
+        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+          v-col(cols="12")
+
+            v-tabs(
+              right
+              v-model="tabSelect"
+              background-color="transparent"
+              slider-color="primary"
+              active-class="black--text"
+            ).mb-6
+              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                img(
+                  src="~/assets/images/MYCURE-icon.png"
+                  width=" 20"
+                  alt="MYCURE icon"
+                  @click="onHome"
+                ).mr-2
+                span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+                span(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
+              v-tab(
+                v-for="(tab, key) in tabsList"
+                :key="key"
+                :href="`#${tab}`"
+                :class="{'ml-4': !$isMobile}"
+              ).mc-b2.font-weight-bold.text-none {{ tab }}
+              v-tab-item(value="Profile")
+                //- Profile
+                profile(
+                  :pic-url="picURL"
+                  :full-name="fullNameWithSuffixes"
+                  :first-name="firstName"
+                  :practicing-since="practicingSince"
+                  :practicing-years="practicingYears"
+                  :bio="bio"
+                  :specialties="specialties"
+                  :education="education"
+                  :is-bookable="isBookable"
+                  :is-preview-mode="isPreviewMode"
+                  @book="onBook"
+                )
+              v-tab-item(value="Facilities")
+                //- Facilities
+                //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
+                  facilities(
+                    :doctorId="doctor.id"
+                    :clinics="clinics"
+                    :total="clinicsTotal"
+                    :limit="clinicsLimit"
+                    :is-preview-mode="isPreviewMode"
+                    :loading="facilitiesLoading"
+                    @onUpdatePage="fetchDoctorInfo($event)"
+                  )
+              v-tab-item(value="Services")
+                //- Services
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
+                  v-card(flat).rounded-xl.bordered-card
+                    v-card-text
+                      div(v-if="services ? (services.length) : false ")
+                        h3.mc-h3.black--text Services Offered
+                        br
+                        v-list(dense)
+                          v-list-item(v-for="(service, key) in services" :key="key").pl-0
+                            v-list-item-icon
+                              v-icon(color="primary") {{ mdiCheckCircle }}
+                            v-list-item-content
+                              v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
+                      p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
+
+              v-tab-item(value="Learning Corner")
+                //- Learning Corner
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
+                  learning-corner(
+                    :is-preview-mode="isPreviewMode"
+                    :doctor-id="doctor.id"
+                  )
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
@@ -115,12 +175,17 @@
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
+import { mdiCheckCircle } from '@mdi/js';
+import { AMPLITUDE_KEYS } from './constants';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
+import Facilities from '~/components/doctor-website/Facilities';
 import GenericPanel from '~/components/generic/GenericPanel';
+import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import PatientPanel from '~/components/doctor-website/PatientPanel';
-import Profile from '~/components/doctor-website/Profile';
+import Profile from '~/components/doctor-website/NewProfile';
+import ProfileCard from '~/components/doctor-website/ProfileCard';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import {
   heartDoctor,
@@ -132,6 +197,7 @@ import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import { fetchUserFacilities } from '~/services/organization-members';
 import { fetchOrganizations } from '~/services/organizations';
+import { amplitudeTracker } from '~/utils/amplitude-analytics';
 
 const BOOKABLE_FACILITY_TYPES = [
   'doctor-booking',
@@ -144,10 +210,13 @@ export default {
   components: {
     ChooseAppointment,
     ChooseFacility,
+    Facilities,
     GenericPanel,
+    LearningCorner,
     MainPanel,
     PatientPanel,
     Profile,
+    ProfileCard,
     WebsiteFeatures,
   },
   layout: 'doctor-website',
@@ -167,6 +236,7 @@ export default {
   },
   data () {
     this.clinicsLimit = 6;
+    this.tabsList = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
     return {
       // - UI State
       loading: true,
@@ -190,6 +260,8 @@ export default {
       clipSuccess: false,
       facilitiesLoading: false,
       shareBtn: false,
+      tabSelect: 'Profile',
+      mdiCheckCircle,
     };
   },
   head () {
@@ -238,6 +310,10 @@ export default {
     practicingSince () {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
+    practicingYear () {
+      const from = this.practicingSince || 0;
+      return new Date(from).getFullYear(); // eslint-disable-line
+    },
     practicingYears () {
       let from = this.practicingSince || 0;
       if (!from) return 0;
@@ -266,6 +342,9 @@ export default {
     },
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
+    },
+    currentPath () {
+      return this.$route.fullPath || this.$route.name;
     },
   },
   created () {
@@ -348,11 +427,20 @@ export default {
       }
     },
     onSelectAppointment (type) {
+      if (type === 'physical') {
+        amplitudeTracker(AMPLITUDE_KEYS.onVisitClinicSelect, this.currentPath);
+      }
       this.appointmentType = type;
       this.facilityDialog = true;
+      amplitudeTracker(AMPLITUDE_KEYS.onClinicListDialogOpen, this.currentPath);
+    },
+    onOrgSelect () {
+      amplitudeTracker(AMPLITUDE_KEYS.onClinicSelect, this.currentPath);
     },
     onBook () {
+      amplitudeTracker(AMPLITUDE_KEYS.onBookAppointmentBtn, this.currentPath);
       this.appointmentDialog = true;
+      amplitudeTracker(AMPLITUDE_KEYS.onAppointmentDialogOpen, this.currentPath);
       // VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
@@ -362,9 +450,18 @@ export default {
       };
       this.showSnack = true;
     },
-    getShareLink () {
-      navigator.clipboard.writeText(window.location.href);
-      this.clipSuccess = true;
+    onRedirect (type) {
+      this.tabSelect = type;
+      const element = this.$refs.tabs;
+      const top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    },
+    onHome () {
+      const element = this.$refs.top;
+      const top = element.offsetTop;
+
+      window.scrollTo(0, top);
     },
   },
 };
@@ -393,7 +490,9 @@ export default {
   color: white;
   text-decoration: none;
 }
-
+.profile-overlap {
+  margin-top: -80px;
+}
 .bottom-padding {
   padding-bottom: 500px;
 }
