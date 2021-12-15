@@ -66,7 +66,8 @@
             br
             v-row(justify="center" align="center")
               v-icon(small color="white").mr-1 {{ mdiMapMarker }}
-              span.mc-b2.font-weight-light.white--text {{ formattedAddress }}
+              v-col.pa-0
+                span.mc-b2.font-weight-light.white--text {{ formattedAddress }}
             v-row(justify="center" align="center")
               v-icon(small color="white").mr-2 {{ mdiPhone }}
               span.mc-b2.font-weight-light.white--text {{ clinicPhone }}
@@ -136,7 +137,7 @@ export default {
     },
   },
   data () {
-    this.tabs = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
+    this.tabs = ['Services', 'Our Doctors', 'About Clinic', 'Contact Us'];
     return {
       mdiShareVariant,
       drawer: false,
