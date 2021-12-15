@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  div(v-if="!loading")
     //- 1st panel
     usp(@startNow="startNow")
     //- 2nd panel
@@ -31,9 +31,6 @@
     v-divider.edge-divider
     //- 11th panel
     modules
-    //- CTA
-    div.cta-container.pa-0
-      features-cta(@getStarted="goToSignupIndividual($event)")
 </template>
 
 <script>
@@ -50,7 +47,6 @@ import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
 import Syncbase from '~/components/features/syncbase';
 import Modules from '~/components/features/modules';
-import FeaturesCta from '~/components/features/cta';
 // - utils
 import headMeta from '~/utils/head-meta';
 
@@ -67,7 +63,6 @@ export default {
     Inventory,
     Syncbase,
     Modules,
-    FeaturesCta,
   },
   data () {
     return {
@@ -78,16 +73,18 @@ export default {
     return headMeta({
       title: 'MYCURE Clinic Management System and EMR Features',
       description: 'MYCURE Clinic Management System includes modularized features that are customizable, user-friendly and efficient for a more patient-centric care.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Features.png'),
+      socialBanner: require('~/assets/images/banners/features-og-banner.png'),
     });
+  },
+  created () {
+    this.loading = false;
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-    this.loading = false;
   },
   methods: {
-    goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+    goToSignup (email) {
+      this.$router.push({ name: 'signup-health-facilities', params: { email } });
     },
     startNow () {
       VueScrollTo.scrollTo('#roles-and-privileges', 500, { easing: 'ease', offset: -70 });
@@ -105,5 +102,8 @@ export default {
   margin-bottom: 0%;
   z-index: 1;
 }
-
+.edge-divider{
+  margin-right: 11% !important;
+  margin-left: 11% !important;
+}
 </style>

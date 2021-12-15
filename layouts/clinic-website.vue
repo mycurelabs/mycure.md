@@ -1,12 +1,25 @@
 <template lang="pug">
   v-app#app
-    nuxt
+    //- NOTE: remove loading
+    //- so solve seo issue
+    //- do not remove yet
+    //- div(v-if="!loading")
+    div
+      nuxt
 </template>
 
 <script>
 import 'babel-polyfill';
 
 export default {
+  data () {
+    return {
+      loading: true,
+    };
+  },
+  mounted () {
+    this.loading = false;
+  },
 };
 </script>
 

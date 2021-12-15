@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import FeatureModules from './constants';
+import { FEATURE_MODULE_GROUPS } from './constants';
 import ModuleItem from './module-item.vue';
 
 export default {
@@ -30,7 +30,7 @@ export default {
     ModuleItem,
   },
   data () {
-    this.moduleGroup = FeatureModules();
+    this.moduleGroup = FEATURE_MODULE_GROUPS;
     return {};
   },
   computed: {

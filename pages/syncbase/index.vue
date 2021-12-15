@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-container(fluid v-if="!loading").white
+  v-container(fluid).white.page-container
     //- 1st panel
-    div.mx-n3.syncbase-bg
+    div(:class="$isMobile? 'syncbase-bg-mobile' : 'syncbase-bg'").mx-n3
       v-container
         v-row(justify="center")
           generic-panel
@@ -29,7 +29,7 @@
     //-   dummy
     //- )
     //- 3rd panel
-    syncbase(hide-btn version-two)
+    syncbase(hide-btn :version="2")
     //- 4th panel
     div.mx-n3.grey-bg
       features(
@@ -47,14 +47,16 @@
             v-col(cols="12" md="10").text-center
               h2(:class="headerClasses").mb-10.white--text See it in action. Book a demo today!
               mc-btn(
-                depressed
                 color="success"
                 target="_blank"
                 rel="noopener noreferrer"
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
+                width="228px"
+                height="59px"
+                rounded
+                depressed
                 :href="'https://calendly.com/mycure/demo'"
-              ).font-s.text-none Book a Demo
+              ).text-none
+                span.generic-button-text Book a Demo
 </template>
 
 <script>
@@ -76,30 +78,32 @@ export default {
     this.features = [
       {
         title: 'Grade A+ SSL',
-        icon: 'Grade A+ SSL',
+        icon: 'Grade-A-Plus-SSL',
         iconExtension: '.webp',
       },
       {
-        title: 'Data Encryption',
-        icon: 'Data Encryption',
+        title: 'Data-Encryption',
+        icon: 'Data-Encryption',
         iconExtension: '.webp',
       },
       {
         title: 'User Designated Access',
-        icon: 'User Designated Access',
+        icon: 'User-Designated-Access',
         iconExtension: '.webp',
       },
       {
         title: 'Secure Cloud Hosting',
-        icon: 'Secure Cloud Hosting',
+        icon: 'Secure-Cloud-Hosting',
         iconExtension: '.webp',
       },
       {
         title: 'Data Privacy Standards',
-        icon: 'Data Privacy standards',
+        icon: 'Data-Privacy-standards',
         iconExtension: '.webp',
       },
     ];
+    this.headerClasses = ['mc-title-set-2', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-2', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -108,33 +112,11 @@ export default {
     // - TODO: Update
     return headMeta({
       title: 'MYCURE Syncbase',
-      description: 'Digitally process your medical records in your local network using multiple devices, even if the internet goes down. Then once back online, it automatically synchronizes data back in the cloud. It’s like getting the best of both worlds — reliability of an on-premise server, and affordability of the cloud. Like magic, but scientifically-blended. ',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      description: 'With MYCURE Syncbase, enjoy the convenience of a cloud-based system without having to worry about work interruptions when the internet goes down. ',
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   computed: {
-    // - Generic Media Panel Classes
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
     // - USP Classes
     titleClasses () {
       const classes = classBinder(this, {
@@ -159,7 +141,7 @@ export default {
       ];
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };
@@ -167,12 +149,15 @@ export default {
 
 <style scoped>
 .syncbase-bg {
-  width: 100vw;
-  background-image: url('../../assets/images/syncbase/Syncbase BG.png');
+  background-image: url('../../assets/images/syncbase/Syncbase-BG.png');
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: 100%;
+}
+.syncbase-bg-mobile {
+  background-image: url('../../assets/images/syncbase/Syncbase-BG.png');
+  background-position: center bottom;
 }
 .grey-bg {
-  background-color: #fafafa;
+  background-color: #F9FEFF;
 }
 </style>

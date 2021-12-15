@@ -30,13 +30,15 @@
           v-if="!isMobile"
           :src="require(`~/assets/images/${customPath}${ctaImage}.png`)"
           :alt="ctaImage"
-          width="70%"
+          :width="$isRegularScreen ? '797px' : '1217px'"
+          :height="$isRegularScreen ? '275.27px' : '420.33px'"
         )
         img(
           v-else
           :src="require(`~/assets/images/${customPath}${ctaMobileImage}.png`)"
           :alt="ctaMobileImage"
-          width="95%"
+          width="296px"
+          height="283.38"
         )
 </template>
 

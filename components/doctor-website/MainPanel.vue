@@ -14,36 +14,46 @@
           //- Profile picture and main info
           v-col(cols="12").text-center
             v-avatar(size="200").elevation-5
-              img(:src="picUrl")
+              img(:src="picUrl").img-border
             br
             br
-            h2 Dr. {{ fullName }}
-          //- Professional Info
-          v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
-            p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
-            br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key" color="#878E9B").ma-1.white--text {{ specialty }}
+            h1.font-weight-bold.mc-title-set-2 {{ fullName }}
+            v-row(justify="center").mc-content-set-5.black--text
+              //- Professional Info
+              v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
+                span {{ specialties.slice(0, 3).join(', ')}}
+                p(v-if="practicingYears").font-open-sans.font-weight-medium.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
+          //- Analytics
+          v-col(cols="12" md="8")
+            v-row(justify="center")
+              v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
+                v-avatar(size="50" :color="metric.color").lighten-3
+                  v-icon(:color="metric.color" size="30").darken-1 {{ metric.icon }}
+                br
+                span.lh-title
+                  span.font-14.font-weight-bold {{ metricData[metric.value] }}
+                  br
+                  span.font-12 {{ metric.title }}
           //- Consult btn
-          v-col(cols="10" v-if="!$isMobile").text-center.justify-center
-              div(v-if="isBookable" style="width: 25%; margin: auto;").white
-                strong(slot="badge").font-18.warning--text I'm available
-              v-hover(
-                v-slot="{ hover }"
-                open-delay="100"
-              )
-
-                v-btn(
-                  depressed
-                  x-large
-                  :color="hover ? 'info' : 'warning'"
-                  :class="{ 'font-11' : $isMobile }"
-                  :disabled="!isBookable"
-                  @click="onBook"
-                ).text-none.font-weight-bold.custom-book-btn.rounded-xl.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
+          v-col(cols="10").text-center.justify-center
+            v-btn(
+              hover
+              rounded
+              depressed
+              x-large
+              :class="{ 'font-11' : $isMobile }"
+              :disabled="!isBookable"
+              @click="onBook"
+            ).text-none.font-weight-bold.custom-book-btn.font-18.white--text {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
 </template>
 
 <script>
 import SocialSharing from 'vue-social-sharing';
+import {
+  mdiEye,
+  mdiPulse,
+  mdiBookshelf,
+} from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import canUseWebp from '~/utils/can-use-webp';
 export default {
@@ -78,6 +88,10 @@ export default {
       type: Number,
       default: null,
     },
+    metrics: {
+      type: Object,
+      default: () => ({}),
+    },
     isVerified: {
       type: Boolean,
       default: false,
@@ -92,12 +106,45 @@ export default {
     },
   },
   data () {
+    this.metricMappings = [
+      {
+        icon: mdiEye,
+        title: 'views',
+        value: 'websiteVisits',
+        color: 'info',
+      },
+      {
+        icon: mdiPulse,
+        title: 'lives saved',
+        value: 'patients',
+        color: 'error',
+      },
+      {
+        icon: mdiBookshelf,
+        title: 'records',
+        value: 'records',
+        color: 'success',
+      },
+      // {
+      //   icon: 'mdi-heart-outline',
+      //   title: 'hearts',
+      //   value: 'hearts',
+      //   color: 'error',
+      // },
+    ];
     return {
-      socialMenu: false,
       canUseWebp: null,
     };
   },
   computed: {
+    metricData () {
+      return {
+        websiteVisits: this.metrics.websiteVisits || 0,
+        patients: this.metrics.patients || 0,
+        records: this.metrics.records || 0,
+        // - hearts: this.metrics.hearts || 0,
+      };
+    },
     specialtiesMapped () {
       return this.specialties.join(', ');
     },
@@ -120,7 +167,8 @@ export default {
       return '';
     },
     backgroundImage () {
-      return this.canUseWebp ? 'bg-webp' : 'bg-png';
+      // return this.canUseWebp ? 'bg-webp' : 'bg-png';
+      return this.$isMobile ? 'bg-png' : 'bg-newpng';
     },
   },
   async mounted () {
@@ -148,26 +196,46 @@ export default {
   margin-left: -3px;
   top: 0;
 }
-.social-image:hover {
-  cursor: pointer !important;
-}
 .bg-png {
-  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.png');
+  background-image: url('../../assets/images/doctor-website/Doctor-Website-Background-Clouds.png');
 }
 .bg-webp {
-  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.webp');
+  background-image: url('../../assets/images/doctor-website/Doctor-Website-Background-Clouds.webp');
+}
+.bg-newpng {
+  background-image: url('../../assets/images/doctor-website/Doctor-Clinics-BG.png');
 }
 .panel-bg {
   background-size: cover;
   width: 100%;
-  height: 1100px;
+  height: 1000px;
   position: relative;
   /* top: 0;
   position: absolute; */
 }
 .custom-book-btn {
-  height: 70px !important;
-  width: 300px;
+  height: 50px !important;
+  width: 250px;
+  background: linear-gradient(258.57deg, #59A3F1 14.32%, #3371B0 76.89%);
+}
+.book-text:hover {
+  cursor: pointer;
+}
+.img-border {
+  border: 8px solid white;
+}
+.btn-banner {
+  width: 25%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-banner {
+    width: 50%;
+  }
+  .custom-book-btn {
+    width: 200px;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -175,14 +243,20 @@ export default {
     height: 1000px;
   }
 }
+
+@media screen and (min-width: 1300px) {
+  .btn-banner {
+    width: 200px;
+  }
+}
 @media screen and (min-width: 1600px) {
   .panel-bg {
-    height: 1300px;
+    height: 1100px;
   }
 }
 @media screen and (min-width: 1800px) {
   .panel-bg {
-    height: 1500px;
+    height: 1300px;
   }
 }
 </style>

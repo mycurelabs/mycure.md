@@ -21,13 +21,23 @@
     @click:clear="$emit('clear')"
   )
     template(v-slot:selection="data")
-      v-chip(small color="primary")
+      v-tooltip(v-if="avatar" bottom)
+        template(v-slot:activator="{ on, attrs }")
+          v-avatar(
+            size="20"
+            color="secondary"
+            v-on="on"
+          ).mx-1
+            v-img(v-if="data.item.picURL" :src="data.item.picURL")
+            span(v-else).white--text {{ data.item.insurerName.substring(0,1) }}
+        span {{ data.item.insurerName }}
+      v-chip(v-else small color="primary")
         span(:max-lines="1" autoresize).font-12 {{ `${data.item.insurerName.substr(0, 20)} ...` }}
 </template>
 
 <script>
 // import VClamp from 'vue-clamp';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { fetchInsuranceContracts } from '~/services/insurance-contracts';
 
 export default {
@@ -37,6 +47,11 @@ export default {
   props: {
     // FIXME: set proper type
     value: null, // eslint-disable-line
+    // - If coverage icons should be displayed instead of names in selection
+    avatar: {
+      type: Boolean,
+      default: false,
+    },
     label: {
       type: String,
       default: undefined,

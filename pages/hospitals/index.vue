@@ -113,9 +113,9 @@ export default {
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE for Hospitals',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      title: 'MYCURE Hospital Management System | REST API Integration',
+      description: 'MYCURE helps hospitals manage their entire system from bookings to medical records, processing fees, and API integration with existing systems.',
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   computed: {
@@ -141,7 +141,7 @@ export default {
       return descriptionClasses;
     },
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

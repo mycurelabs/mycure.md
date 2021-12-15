@@ -14,7 +14,7 @@
         v-on="on"
         v-model="dateFormatted"
         :label="label"
-        prepend-inner-icon="mdi-calendar"
+        :prepend-inner-icon="mdiCalendar"
         clearable
         :readonly="!readOnly"
         :disabled="readOnly"
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import split from 'lodash/split';
 import {
   format,
   getTime,
@@ -64,6 +64,7 @@ import {
   setHours,
   setMinutes,
 } from 'date-fns';
+import { mdiCalendar } from '@mdi/js';
 
 export default {
   props: {
@@ -156,6 +157,7 @@ export default {
     return {
       menu: false,
       mode: 'date',
+      mdiCalendar,
     };
   },
   computed: {
@@ -166,7 +168,7 @@ export default {
         return format(this.value, 'YYYY-MM-DD');
       },
       set (val) {
-        const [year, month, date] = _.split(val, '-');
+        const [year, month, date] = split(val, '-');
         const withYear = setYear(this.value, year);
         const withMonth = setMonth(withYear, month - 1); // month is 0 based
         const withDate = this.type === 'date'
@@ -185,7 +187,7 @@ export default {
         return format(this.value, 'HH:mm');
       },
       set (val) {
-        const [hours, minutes] = _.split(val, ':');
+        const [hours, minutes] = split(val, ':');
         const withHour = setHours(this.value, hours);
         const withMinutes = setMinutes(withHour, minutes);
 

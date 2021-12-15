@@ -1,43 +1,46 @@
 <template lang="pug">
   generic-media-panel(
     :content="callToActionPanel"
-    :center-panel-title-classes="headerClasses"
+    :center-panel-title-classes="titleClasses"
     :content-classes="descriptionClasses"
     :super-title-classes="subheaderClasses"
+    :title-classes="titleClasses"
     hide-btn
     align="center"
   )
     template(slot="content")
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
-      v-row.mt-10
-        v-col(v-if="version === 1" cols="12" md="7" lg="6" xl="5")
-          signup-button(
-            event-label="signup"
-            color="success"
-            depressed
-            rounded
-            block
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="buttonClasses"
-          ).text-none Get Started Free
-        v-col(cols="12" md="7" lg="6" xl="7")
-          mc-btn(
-            color="success"
-            depressed
-            rounded
-            block
-            :outlined="version === 1"
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-            :href="'https://calendly.com/mycure/demo'"
-          ).text-none {{ version === 1 ? 'Book a full training' : 'Start Now' }}
+      v-row.mt-4
+        slot(name="cta-button")
+          v-col
+            v-row(:justify="$isMobile ? 'center' : 'start'")
+              v-col(cols="12" sm="6" :align="$isMobile ? 'center' : 'start'" :class="{'pr-0': !$isMobile}")
+                mc-btn(
+                  color="#F0F7FD"
+                  depressed
+                  :block="$isRegularScreen"
+                  :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
+                  class="rounded-md"
+                  :height="!$isWideScreen ? '59px' : '73.68px'"
+                  :href="'https://calendly.com/mycure/demo?month=2021-11'"
+                ).text-none
+                  span.mc-btn1.primary--text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
+              v-col(cols="12" sm="6" :align="$isMobile ? 'center' : 'start'")
+                signup-button(
+                  event-label="signup"
+                  color="primary"
+                  depressed
+                  class="rounded-md"
+                  :block="$isRegularScreen"
+                  :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
+                  :height="!$isWideScreen ? '59px' : '73.68px'"
+                ).text-none
+                  span.mc-btn1 {{notFree ? 'Get Started' : 'Get Started Free'}}
+                //-   :outlined="![2, 4].includes(version)"
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import SignupButton from '~/components/commons/SignupButton';
 export default {
@@ -50,18 +53,23 @@ export default {
       type: Number,
       default: 1,
     },
+    notFree: {
+      type: Boolean,
+      default: false,
+    },
+    // Custom content, can be without `imageBindings`
+    content: {
+      type: Object,
+      default: null,
+    },
   },
   data () {
     this.versionOne = {
-      centerPanelTitle: 'Learn the basics with ease',
-      superTitle: 'Worrying about the shift to digital records? We got you covered.',
+      superTitle: 'LEARN THE BASICS WITH EASE',
+      title: 'Worrying about the shift to digital records? We got you covered.',
       description: [
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
-      imageBindings: {
-        image: 'Let us do the work.webp',
-        customPath: 'commons/',
-      },
       contentAlign: 'right',
     };
     this.versionTwo = {
@@ -70,62 +78,50 @@ export default {
       description: [
         'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
-      imageBindings: {
-        image: 'Let us do the work.webp',
-        customPath: 'commons/',
-      },
       contentAlign: 'right',
     };
+    this.versionThree = {
+      title: 'Learn the basics with ease',
+      description: [
+        'Worrying about the shift to digital records? We got you covered. We have happiness agents who’d love to guide you through each step via one-on-one training session.',
+      ],
+      contentAlign: 'right',
+    };
+    this.versionFour = {
+      centerPanelTitle: 'Let us do the work for you',
+      superTitle: 'Worrying about the shift to digital records? We got you covered.',
+      description: [
+        'Get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
+      ],
+      contentAlign: 'left',
+    };
+    this.titleClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
+    this.buttonClasses = ['mc-btn1'];
+    this.subheaderClasses = ['mc-h7'];
     return {};
   },
   computed: {
+    imgBindings () {
+      return {
+        image: 'let-us-the-work.webp',
+        imageAlt: 'Hospital and smartphone artwork',
+        customPath: 'commons/',
+        width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+        height: this.$isMobile ? '181.8px' : (this.$isRegularScreen ? '289.83px' : '467.65px'),
+      };
+    },
     callToActionPanel () {
+      if (this.content) return { ...this.content, imageBindings: this.imgBindings };
       switch (this.version) {
-        case 1: return this.versionOne;
-        case 2: return this.versionTwo;
-        default: return this.versionOne;
+        case 2: return { ...this.versionTwo, imageBindings: this.imgBindings };
+        case 3: return { ...this.versionThree, imageBindings: this.imgBindings };
+        case 4: return { ...this.versionFour, imageBindings: this.imgBindings };
+        default: return { ...this.versionOne, imageBindings: this.imgBindings };
       }
     },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    subheaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-25'],
-          wide: ['font-40'],
-        }),
-        'primary--text',
-        'font-open-sans',
-      ];
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    buttonClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
-        wide: ['font-s'],
-      });
+    ctaButtonClass () {
+      return ![2, 4].includes(this.version) ? (this.$isWideScreen ? 'font-s' : 'font-14') : (this.$isWideScreen ? 'font-m' : 'font-s');
     },
   },
 };

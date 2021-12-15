@@ -13,11 +13,12 @@
             clearable
             :disabled="isPreviewMode || loading"
             @change="onServiceTypeSelect"
-            @click:clear="clearServiceFilter"
+          @click:clear="clearServiceFilter"
           ).search-bar
         v-col(cols="12" md="4")
           search-insurance-contracts(
             solo
+            avatar
             :disabled="isPreviewMode || loading"
             @select="onInsuranceSelect"
             @clear="clearInsuranceFilter"
@@ -32,7 +33,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 // components
 import SearchInsuranceContracts from './services/search-insurance-contracts';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
@@ -59,6 +60,7 @@ export default {
     this.serviceTypeMappings = {
       'clinical-consultation': { text: 'Consult', value: 'clinical-consultation' },
       'clinical-procedure': { text: 'Procedure', value: 'clinical-procedure' },
+      telehealth: { text: 'Telehealth', value: 'telehealth' },
       lab: { text: 'Laboratory', value: 'lab' },
       imaging: { text: 'Imaging', value: 'imaging' },
       pe: { text: 'PE Package', value: 'pe' },
@@ -90,10 +92,20 @@ export default {
       this.$emit('search', { searchFilters: this.searchFilters });
     },
     onServiceTypeSelect () {
+      const mapServiceType = (type) => {
+        if (type === 'lab' || type === 'imaging') return 'diagnostic';
+        // Telehealth services are technically under 'clinical-consultation',
+        // They are differentiated through `service#tags`
+        if (type === 'telehealth') return 'clinical-consultation';
+        return type;
+      };
       this.searchFilters = {
         ...this.searchFilters,
-        type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
+        type: mapServiceType(this.serviceType),
         subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
+        // Differentiate the telehealth services
+        ...this.serviceType === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+        ...this.serviceType === 'telehealth' && { tags: { $in: ['telehealth'] } },
       };
       this.search();
     },
@@ -107,6 +119,7 @@ export default {
     clearServiceFilter () {
       delete this.searchFilters?.type;
       delete this.searchFilters?.subtype;
+      this.serviceType = null;
       this.search();
     },
     clearInsuranceFilter () {

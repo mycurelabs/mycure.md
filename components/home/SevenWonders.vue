@@ -1,43 +1,48 @@
 <template lang="pug">
-  div
-    div.container
-      //- picture-source(
-      //-   image="Homepage USP BG"
-      //-   image-alt="MYCURE Seven wonders of healthcare"
-      //-   image-file-extension=".webp"
-      //-   custom-path="home/"
-      //- ).background
-      img(
-        src="~/assets/images/home/Homepage USP BG.png"
-        alt="MYCURE Seven wonders of healthcare"
-        width="100%"
-      ).background
-      v-container.content.ml-n6
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12").text-center.text-container
-              v-row(justify="center")
-                v-col(cols="12" md="8" xl="12")
-                  h1(:class="headerClasses").mb-10 Enterprise-Grade Healthcare Solutions
-                  v-row(justify="center")
-                    v-col(cols="12" md="10")
-                      p(:class="{ 'font-24' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
-                  signup-button(
-                    depressed
-                    rounded
-                    :x-large="$isWideScreen"
-                    :large="$isRegularScreen"
-                    color="success"
-                  ).text-none.font-s
-                    span Get Started
-            template(v-if="!$isMobile")
-              v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-                wonder(:wonder="wonder")
-            template(v-else)
-              v-col(cols="10")
+  generic-blue-bg
+    v-container
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
+        generic-panel(:row-bindings="{ justify: 'center', align: 'center' }")
+          v-col(cols="12").text-center.text-container
+            v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
+              v-col(cols="12" md="7" xl="8")
+                h1(:class="headerClasses").mb-2 Integrated Healthcare
+                  br
+                  | Solutions for Every Provider
+                v-row(justify="center").mt-5
+                  v-col(cols="12" md="10" xl="8")
+                    p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
+                signup-button(
+                  depressed
+                  class="rounded-md"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  color="success"
+                ).text-none
+                  span.mc-btn1.white--text Get Started
+            v-row(justify="center" v-if="showCarousel")
+              v-col(v-if="!$isMobile" cols="12" xl="10")
+                vue-slick-carousel(
+                  autoplay
+                  draggable
+                  infinite
+                  :dots="true"
+                  :slidesToShow="4",
+                  :speed="1000"
+                  @afterChange="(slideIndex) => currentSlide = slideIndex"
+                )
+                  template(slot="prevArrow")
+                    v-btn(icon).ml-n4.custom-btn
+                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronLeftCircle }}
+                  template(slot="nextArrow")
+                    v-btn(icon).mr-n4.custom-btn
+                      v-icon(:large="!$isWideScreen" :x-large="$isWideScreen" color="white") {{ mdiChevronRightCircle }}
+                  template(#customPaging="page")
+                    v-icon(color="white" small).mt-5 {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
+                  div(v-for="(wonder,key) in wonders" :key="key")
+                    wonder(:wonder="wonder").mx-2
+              v-col(v-else cols="10" sm="8" md="10")
                 carousel(
-                  navigationNextLabel=" "
-                  navigationPrevLabel=" "
                   paginationColor="#f0f0f0"
                   autoplay
                   loop
@@ -52,32 +57,41 @@
                     :data-index="index+1"
                   ).pa-2
                     wonder(:wonder="wonder")
-    //- div(v-else).mobile-container.ml-n3
-    //-   img(
-    //-     src="~/assets/images/home/Homepage USP.png"
-    //-     alt="MYCURE Seven wonders of healthcare"
-    //-     width="100%"
-    //-   )
 </template>
 
 <script>
-// import VueSlickCarousel from 'vue-slick-carousel';
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import VueSlickCarousel from 'vue-slick-carousel';
+import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutline } from '@mdi/js';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
+import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   components: {
     GenericPanel,
     PictureSource,
     SignupButton,
     Wonder,
-    // VueSlickCarousel,
+    VueSlickCarousel,
+    GenericBlueBg,
+  },
+  props: {
+    // Can be triggered by consuming component for loading purposes
+    showCarousel: Boolean,
   },
   data () {
     this.wonders = [
+      {
+        title: 'Booking',
+        description: 'Book and schedule appointments efficiently',
+        infoLink: 'booking',
+        image: 'Booking',
+      },
       {
         title: 'Physicians',
         description: 'Easily create digital medical records',
@@ -94,7 +108,13 @@ export default {
         title: 'Diagnostics',
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
-        image: 'diagnostic',
+        image: 'Diagnostics',
+      },
+      {
+        title: 'Telehealth',
+        description: 'Everything you need to build your virtual practice',
+        infoLink: 'telehealth',
+        image: 'Telehealth',
       },
       // {
       //   title: 'Pharmacy',
@@ -123,69 +143,69 @@ export default {
       //   image: 'security',
       // },
     ];
-    return {};
+    this.headerClasses = ['mc-h1', 'lh-title', 'white--text'];
+    return {
+      isWebp: false,
+      // Icons
+      mdiChevronRightCircle,
+      mdiChevronLeftCircle,
+      mdiCircle,
+      mdiCircleOutline,
+      currentSlide: 0,
+    };
   },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-xl'],
-        wide: ['font-2xl'],
-      });
-    },
+  async mounted () {
+    this.isWebp = await canUseWebp();
   },
 };
 </script>
 
 <style scoped>
-/* .bg {
-  background-image: url('../../assets/images/home/Homepage USP v2B.png');
-  background-size: stretch;
-} */
 .line-spacing-title {
   line-height: 1.25em;
 }
-.background {
-  width: 100%;
-  height: 950px;
+.left-center {
   position: absolute;
+  top: 10%;
   left: 0;
-  top: 0;
-  overflow: hidden;
-  object-fit: cover;
+  z-index: 2;
+}
+.right-center {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  z-index: 2;
 }
 .container {
   width: 100vw;
-  height: 900px;
+}
+.margin-desktop {
+  margin-bottom: 150px;
+}
+.wide-margin-top {
+  margin-top: 30px;
 }
 .text-container {
   margin-bottom: 65px;
 }
-.mobile-container {
-  width: 100vw;
+.video-bg {
+  /* height: 1000px; */
+  background-image: url('~/assets/images/home/homepage-usp-bg.png');
+  background-position: left top;
+  background-size: 100%;
 }
-.content {
-  position: absolute;
-  width: 100vw;
+.video-bg-mobile {
+  /* height: 1000px; */
+  background-image: url('~/assets/images/home/homepage-usp-bg-mobile.png');
+  background-position: center bottom;
 }
-
-@media screen and (max-width: 952px) {
-  .container {
-    height: 1000px;
-  }
-  .background {
-    height: 1050px;
-  }
+.custom-btn::before {
+    color: transparent
 }
-@media screen and (min-width: 1920px) {
-  .text-container {
-    margin-bottom: 90px;
-  }
-  .container {
-    height: 950px;
-  }
-  .background {
-    height: 1000px;
-  }
+.custom-btn:hover {
+    color: grey;
+}
+.slick-dots >>> .slick-active {
+  color: red;
 }
 </style>

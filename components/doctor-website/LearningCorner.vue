@@ -1,68 +1,72 @@
 <template lang="pug">
-  v-row(justify="center" align="center" no-gutters)
-    v-col(cols="12").pt-10
-      template(v-if="materials.length")
-        v-row
-          v-col(cols="12" md="5").px-5
-            span.font-weight-bold Browse by Tag:&nbsp;
-            br
-            br
-            v-row
-              v-autocomplete(
-                v-model="selectedCategory"
-                label="Select Tags"
-                multiple
-                dense
-                outlined
-                clearable
-                :disabled="isPreviewMode"
-                :items="categories"
-              )
-          v-col(cols="12" md="7").px-5
-            span.font-weight-bold Sort by
-            br
-            br
-            v-row
-              v-select(
-                v-model="materialSorter"
-                outlined
-                dense
-                clearable
-                label="Newest, Oldest, Alphabetically"
-                item-text="text"
-                item-value="value"
-                :items="sortTypes"
-                :disabled="isPreviewMode"
-                @change="sortMaterials(materialSorter)"
-                @clear="filteredMaterials = [...materials]"
-              )
-        v-row.pt-5
-          v-col(cols="12")
-            v-row(align="stretch")
-              v-col(
-                v-for="(material, key) in filteredMaterials"
-                :key="key"
-                cols="12"
-                md="6"
-              )
-                v-card(height="100%").material-container
-                  v-card-text
-                    h3.my-2 {{ material.title }}
-                    p.my-2 {{ material.description }}
-                    i.primary--text.font-12(v-if="material.category") {{ material.category }}
-                  div.material-bottom.text-center.pa-3
-                    v-btn(
-                      depressed
-                      block
-                      color="primary"
-                      @click="openFile(material)"
-                    ).text-none.font-weight-bold View
-      template(v-else)
-        p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
+  div
+    template(v-if="materials.length")
+      v-row
+        v-col(cols="12")
+          v-card(flat).bordered-card.rounded-md
+            v-card-text
+              v-row
+                v-col(cols="12" md="6")
+                  span.font-weight-bold Browse by Tag:&nbsp;
+                  br
+                  br
+                  v-autocomplete(
+                    v-model="selectedCategory"
+                    label="Select Tags"
+                    multiple
+                    dense
+                    outlined
+                    clearable
+                    :disabled="isPreviewMode"
+                    :items="categories"
+                  )
+                v-col(cols="12" md="6")
+                  span.font-weight-bold Sort by
+                  br
+                  br
+                  v-select(
+                    v-model="materialSorter"
+                    outlined
+                    dense
+                    clearable
+                    label="Newest, Oldest, Alphabetically"
+                    item-text="text"
+                    item-value="value"
+                    :items="sortTypes"
+                    :disabled="isPreviewMode"
+                    @change="sortMaterials(materialSorter)"
+                    @clear="filteredMaterials = [...materials]"
+                  )
+      v-row.pt-5
+        v-col(
+          v-for="(material, key) in filteredMaterials"
+          :key="key"
+          cols="12"
+          md="6"
+        )
+          v-card(height="100%" flat).material-container.bordered-card.rounded-xl.pa-4
+            v-card-text
+              h3.my-2 {{ material.title }}
+              i.font-gray.font-12.font-italic(v-if="material.category") {{ material.category }}
+              p.my-2 {{ material.description }}
+            v-card-actions.text-center.py-3.px-4
+              v-btn(
+                depressed
+                block
+                color="primary"
+                @click="openFile(material)"
+              ).text-none.font-weight-bold.rounded-xl View
+    template(v-else)
+      v-row(v-if="loading")
+        v-col(cols="12")
+          v-skeleton-loader(type="list-item, card-heading")
+        v-col(cols="12" md="6")
+          v-skeleton-loader(type="article, actions")
+      p(v-else).text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>
 
 <script>
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import { fetchLearningCornerMaterials } from '~/utils/axios';
 
 export default {
@@ -96,6 +100,7 @@ export default {
       filteredMaterials: [],
       selectedCategory: [],
       materialSorter: null,
+      loading: true,
     };
   },
   computed: {
@@ -122,9 +127,11 @@ export default {
   methods: {
     async fetchMaterials () {
       try {
+        this.loading = true;
         const items = await fetchLearningCornerMaterials({ account: this.doctorId });
         this.materials = items || [];
         this.filteredMaterials = [...this.materials];
+        this.loading = false;
       } catch (error) {
         console.error(error);
       }
@@ -164,5 +171,8 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.bordered-card {
+  border: 0.5px solid rgb(218, 218, 218) !important;
 }
 </style>

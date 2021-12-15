@@ -1,72 +1,96 @@
 <template lang="pug">
-  v-card(flat color="#f0f0f0" height="100%").orgs-card
-    v-card-text.py-0.pl-0
-      div.d-flex
-        v-col.shrink
+  v-card(height="100%" elevation="3" rounded="lg").orgs-card
+    v-col.fill-height.mb-12.pa-8
+      v-row(justify="center")
+        img(
+          :src="picURL"
+          alt="Services"
+          :width="!$isMobile ? 120 : 80"
+          :height="!$isMobile ? 120 : 80"
+        ).rounded-circle
+        v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 {{ mdiCheckDecagram }}
+      v-row(justify="center").pt-3
+        div.d-inline-flex
+          p.font-weight-bold.font-18.text-center {{ organization.name }}&nbsp;
+      v-row(align="end")
+        div
+          template(v-if="!isDescriptionExpanded && organization.description")
+            v-clamp(:max-lines="2" autoresize) {{ organization.description }}
+            a(@click="isDescriptionExpanded = true").primary--text See more
+          template(v-else-if="isDescriptionExpanded")
+            p {{ organization.description }}
+            a(@click="isDescriptionExpanded = false").primary--text Collapse
+          div(v-if="organization !== undefined").mt-4
+            div.d-flex.my-1
+              img(
+                src="~/assets/images/directory-results/address.png"
+                width="16px"
+                height="16px"
+                alt="Address logo"
+              ).mr-2.pt-1.pl-1
+              v-clamp(:max-lines="2" autoresize v-if="organization.address") {{ address }}
+              p(v-else).font-italic No address available
+            div.d-flex.my-1
+              img(
+                src="~/assets/images/directory-results/contact.png"
+                width="16px"
+                height="16px"
+                alt="Phone logo"
+              ).mr-2.pt-1.pl-1
+              v-clamp(:max-lines="1" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
+              p(v-else).font-italic No phone number available
+            div.d-flex.my-1
+              img(
+                src="~/assets/images/directory-results/calendar.png"
+                width="16px"
+                height="16px"
+                alt="Calendar logo"
+              ).mr-2.pt-1.pl-1
+              div(v-if="fullSchedules.length")
+                //- div(v-if="!scheduleExpanded")
+                //-   v-clamp(:max-lines="2" autoresize).text-capitalize {{ formatTodaySchedule(schedulesToday) }}
+                //-     a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
+                //- div(v-else)
+                //-   div(v-for="(schedule, key) in groupedSchedules" :key="key")
+                //-     span.text-capitalize {{ formatIndividualSchedule(schedule) }}
+                //-     br
+                //-   a(@click="scheduleExpanded = false").primary--text View Less
+                span(v-if="filteredDays.length > 1").text-capitalize {{ filteredDays[0] }} - {{ filteredDays[filteredDays.length - 1] }}
+                span(v-else).text-capitalize {{ filteredDays[0] }}
+                br
+                br
+              p(v-else).font-italic No schedules available
+      //- v-row(justify="center" align="end")
+      v-btn(
+        color="primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        tile
+        block
+        x-large
+        @click="openFacility"
+      ).text-none.elevation-0.font-weight-light.card-actions.mb-n8.ml-n8.rounded-bl-lg.rounded-br-lg
+        //- need white version
           img(
-            :src="picURL"
-            alt="Services"
-            :width="!$isMobile ? 146 : 80"
-          )
-        v-col.grow
-          div.d-inline-flex
-            p.font-weight-bold.font-18 {{ organization.name }}&nbsp;
-              v-icon(v-if="hasWebsite" color="primary") mdi-check-decagram
-          div
-            template(v-if="!isDescriptionExpanded && organization.description")
-              span(:max-lines="2" autoresize) {{ organization.description }}
-              a(@click="isDescriptionExpanded = true").primary--text See more
-            template(v-else-if="isDescriptionExpanded")
-              p {{ organization.description }}
-              a(@click="isDescriptionExpanded = false").primary--text Collapse
-            div(v-if="organization !== undefined").mt-4
-              div.d-flex
-                v-icon(small color="error").mr-2.mb-auto.mt-1 mdi-map-marker
-                span(:max-lines="2" autoresize v-if="organization.address") {{ address }}
-                p(v-else).font-italic No address available
-              div.d-flex
-                v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
-                span(:max-lines="2" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
-                p(v-else).font-italic No phone number available
-              div.d-flex
-                v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
-                div(v-if="fullSchedules.length")
-                  //- div(v-if="!scheduleExpanded")
-                  //-   v-clamp(:max-lines="2" autoresize).text-capitalize {{ formatTodaySchedule(schedulesToday) }}
-                  //-     a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
-                  //- div(v-else)
-                  //-   div(v-for="(schedule, key) in groupedSchedules" :key="key")
-                  //-     span.text-capitalize {{ formatIndividualSchedule(schedule) }}
-                  //-     br
-                  //-   a(@click="scheduleExpanded = false").primary--text View Less
-                  span(v-if="filteredDays.length > 1").text-capitalize {{ filteredDays[0] }} - {{ filteredDays[filteredDays.length - 1] }}
-                  span(v-else).text-capitalize {{ filteredDays[0] }}
-                  br
-                  br
-                p(v-else).font-italic No schedules available
-      v-row(v-if="!readOnly && hasWebsite" :justify="$isMobile ? 'center' : 'end'")
-        v-col(cols="10" md="4")
-          v-btn(
-            color="primary"
-            target="_blank"
-            rel="noopener noreferrer"
-            rounded
-            block
-            @click="openFacility"
-          ).text-none.elevation-0
-            b Visit Facility
+            src="~/assets/images/directory-results/calendar.png"
+            width="16px"
+            height="16px"
+            alt="Calendar logo"
+          ).mr-2
+        b Book a Visit
 </template>
 
 <script>
 // import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
-import { uniqBy } from 'lodash';
+import { mdiCheckDecagram } from '@mdi/js';
+import uniqBy from 'lodash/uniqBy';
 import { formatAddress } from '~/utils/formats';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 
 export default {
   components: {
-    // VClamp,
+    VClamp: () => import('vue-clamp'),
   },
   props: {
     organization: {
@@ -91,6 +115,7 @@ export default {
     return {
       scheduleExpanded: false,
       isDescriptionExpanded: false,
+      mdiCheckDecagram,
     };
   },
   computed: {
@@ -144,7 +169,7 @@ export default {
       }
     },
     openFacility () {
-      this.$router.push(`/facilities/${this.organization.id}`);
+      this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
     },
     formatTodaySchedule (schedules) {
       if (!schedules || !schedules?.length) return 'Unavailable today';
@@ -178,5 +203,9 @@ export default {
 .orgs-card {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.35);
   border-radius: 10px;
+}
+.card-actions {
+  position: absolute;
+  bottom: 32px;
 }
 </style>

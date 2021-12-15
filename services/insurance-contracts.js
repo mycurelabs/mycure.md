@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { normalizePopulated } from '~/utils/services';
 
 export const fetchInsuranceContracts = async (sdk, opts) => {

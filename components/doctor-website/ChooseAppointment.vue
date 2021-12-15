@@ -1,71 +1,107 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="900" height="900" persistent)
+  v-dialog(v-model="dialog" width="600" height="800" persistent)
     v-card
       v-toolbar(flat)
         v-spacer
-        h2.primary--text Choose a Service
+        h2 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
+          v-if="!$isMobile"
           icon
           depressed
           @click="dialog = false"
         ).text-none
-          v-icon mdi-close
+          v-icon {{ mdiClose }}
       v-card-text.pa-3
         v-container
           v-row
-            v-col(cols="6" v-for="(service, key) in services" :key="key").text-center
-              v-card(height="100%").elevation-3.service-card
-                v-card-text
-                  img(
-                    :src="require(`~/assets/images/home/${service.image}.png`)"
-                    :alt="service.image"
-                    width="50%"
+            v-col(cols="12" md="6" v-for="(service, key) in services" :key="key").text-center
+              v-hover(
+                v-slot="{ hover }"
+                open-delay="100"
+              )
+                v-card(
+                  :disabled="!isAppointmentAvailable(service)"
+                  hover
+                  :color="hover ? service.color : 'white'"
+                  :class="[{'white--text': hover}, {'unavailable': !isAppointmentAvailable(service)}]"
+                  @click="onServiceSelect(service.type)"
+                ).service-card
+                  picture-source(
+                    :image="service.image"
+                    :image-alt="service.alt"
+                    :image-width="$isMobile ? '50%' : '100%'"
+                    :image-file-extension="$useWebp? '.webp' : '.png'"
+                    custom-path="doctor-website/"
                   )
-                v-card-actions.px-3.card-actions
-                  v-btn(
-                    depressed
-                    block
-                    :color="service.color"
-                    :disabled="service.btnBindings.disabled"
-                    @click="onServiceSelect(service.type)"
-                  ).text-none
-                    v-icon(left) {{ service.btnBindings.icon }}
-                    | {{ service.btnBindings.text }}
+                  v-card-text.text-center
+                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
+      v-card-actions(v-if="$isMobile")
+        v-spacer
+        v-btn(
+          color="error"
+          outlined
+          depressed
+          @click="dialog = false"
+        ).text-none Cancel
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js';
+import intersection from 'lodash/intersection';
+import PictureSource from '~/components/commons/PictureSource';
+
+const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
+const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
+
 export default {
+  components: {
+    PictureSource,
+  },
   props: {
     value: {
       type: Boolean,
       default: null,
     },
+    organizations: {
+      type: Array,
+      default: () => ([]),
+    },
+    isClinic: {
+      type: Boolean,
+      default: false,
+    },
+    // Required, when `isClinic` is true
+    hasDoctors: {
+      type: Boolean,
+      default: false,
+    },
+    // Required, when `isClinic` is true
+    hasPhysicalServices: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.services = [
       {
-        btnBindings: {
-          text: 'Teleconsult',
-          icon: 'mdi-stethoscope',
-          // - Temporary
-          disabled: true,
-        },
+        text: 'Online Consult',
         type: 'telehealth',
-        color: 'accent',
-        image: 'Telehealth',
+        color: 'secondary',
+        image: 'Teleconsult',
+        alt: 'Doctor talking to a patient online artwork',
       },
       {
-        btnBindings: {
-          text: 'Clinic Visit',
-          icon: 'mdi-calendar',
-        },
+        text: 'Visit Doctor',
         type: 'physical',
-        color: 'secondary',
-        image: 'Booking',
+        color: 'accent',
+        image: 'Clinic-Visit',
+        alt: 'Doctor talking to a patient in a hospital room',
       },
     ];
-    return {};
+    return {
+      mdiClose,
+    };
   },
   computed: {
     dialog: {
@@ -79,8 +115,27 @@ export default {
   },
   methods: {
     onServiceSelect (type) {
+      if (!this.isDocAvailable(type) && !this.isClinic) return;
       this.$emit('select', type);
       this.dialog = false;
+    },
+    isDocAvailable (type) {
+      switch (type) {
+        case 'telehealth':
+          return !!this.organizations?.find(org => org.teleconsultQueue &&
+            intersection(org.types, TELEHEALTH_FACILITY_TYPES)?.length);
+        case 'physical':
+          return !!this.organizations?.find(org => (org.doctorSchedules || org.$populated?.doctorSchedules) &&
+            intersection(org.types, BOOKING_FACILITY_TYPES)?.length);
+        default: return false;
+      }
+    },
+    isAppointmentAvailable (service) {
+      if (!this.isClinic) {
+        return this.isDocAvailable(service.type);
+      }
+      if (service.type === 'telehealth') return this.hasDoctors;
+      return this.hasPhysicalServices;
     },
   },
 };
@@ -88,13 +143,15 @@ export default {
 
 <style scoped>
 .service-card {
-  position: relative;
-  padding-bottom: 30px;
+  border: 2px solid #04B1E7;
 }
 
 .card-actions {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.unavailable {
+  filter: grayscale(100%);
 }
 </style>

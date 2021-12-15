@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import axios from 'axios';
 import { handleError } from './error-handler';
 
@@ -57,7 +57,7 @@ export const searchDoctors = async (opts) => {
       url += `&$search[text]=${opts?.searchString}`;
     }
 
-    if (!_.isEmpty(opts?.specialties)) {
+    if (!isEmpty(opts?.specialties)) {
       if (opts?.specialties.length === 1) {
         url += `&doc_specialties=${opts?.specialties[0]}`;
       } else {
@@ -67,7 +67,7 @@ export const searchDoctors = async (opts) => {
       }
     }
 
-    if (!_.isEmpty(opts?.sortBy)) {
+    if (!isEmpty(opts?.sortBy)) {
       url += `&$sort[${opts.sortBy.field}]=${opts?.sortBy.sort}`;
     }
 

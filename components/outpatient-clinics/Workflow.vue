@@ -1,38 +1,38 @@
 <template lang="pug">
   v-container
     cms-video-dialog(v-model="videoDialog")
-    v-row(justify="center")
+    v-row(justify="center").pt-16
       generic-panel
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12" md="10").text-center
-              h1(:class="titleClasses").font-weight-semibold.mb-10 Why do clinics switch to MYCURE?
+              h2(:class="titleClasses").mb-6 {{ title || 'Why do clinics switch to MYCURE?' }}
               v-row(justify="center")
-                v-col(cols="12" md="7" xl="8")
-                  p(:class="descriptionClasses").font-gray.font-open-sans.mb-10 MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
-              mc-btn(
-                event-label="click-cms-video"
-                event-category="Video"
-                color="success"
-                depressed
-                rounded
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-                :class="{'font-s': !$isMobile}"
-                @click="videoDialog = true"
-              ).text-none.mb-10
-                v-icon(left) mdi-play-circle
-                span Watch How It Works
+                v-col(cols="12" sm="10")
+                  p(:class="descriptionClasses").mb-10 {{ description || 'MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.' }}
+              //- mc-btn(
+              //-   event-label="click-cms-video"
+              //-   event-category="Video"
+              //-   color="success"
+              //-   depressed
+              //-     class="rounded-pill"
+              //-     :width="!$isWideScreen ? '240px' : '299.7'"
+              //-     :height="!$isWideScreen ? '59px' : '73.68'"
+              //-   @click="videoDialog = true"
+              //- ).text-none.mb-10
+              //-   v-icon(left) {{ mdiPlayCircle }}
+              //-   span.generic-button-text Watch How It Works
             v-col(cols="12")
               v-row(justify="center")
                 template(v-if="!$isMobile")
                   v-col(cols="12").text-center
                     picture-source(
                       custom-path="clinics/"
-                      image="Problem Statement"
+                      image="problem-statement"
                       image-alt="Clinic workflow"
                       image-file-extension=".webp"
-                      image-width="90%"
+                      :image-width=" $isRegularScreen ? '850px' : '1300px' "
+                      :image-height=" $isRegularScreen ? '677.73px' : '1036.52px' "
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
@@ -41,15 +41,16 @@
                         custom-path="clinics/"
                         :image="item.icon"
                         :image-alt="item.title"
-                        image-file-extension=".webp"
-                        image-width="40%"
+                        :image-file-extension="$useWebp? '.webp' : '.png'"
+                        image-width="111px"
+                        image-height="92px"
                       )
                       br
                       h3.font-xs.font-open-sans.grey--text {{ item.title }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
+import { mdiPlayCircle } from '@mdi/js';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -58,6 +59,16 @@ export default {
     CmsVideoDialog,
     GenericPanel,
     PictureSource,
+  },
+  props: {
+    title: {
+      type: String,
+      default: null,
+    },
+    description: {
+      type: String,
+      default: null,
+    },
   },
   data () {
     this.items = [
@@ -71,11 +82,11 @@ export default {
       },
       {
         title: 'Nurse Triage',
-        icon: '3M-Nurse Triage',
+        icon: '3m-nurse-triage',
       },
       {
         title: 'Doctor\'s Consult',
-        icon: '4M-Doctors Consult',
+        icon: '4m-doctors-consult',
       },
       {
         title: 'Diagnostics',
@@ -94,25 +105,12 @@ export default {
         icon: '8M-Journeys',
       },
     ];
+    this.titleClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
     return {
       videoDialog: false,
+      mdiPlayCircle,
     };
-  },
-  computed: {
-    titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
   },
 };
 </script>

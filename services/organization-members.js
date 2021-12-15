@@ -1,9 +1,10 @@
 import { normalizePopulated } from '~/utils/services';
+// import { fetchScheduleSlots } from './schedule-slots';
 
 export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
   const query = {
     organization: opts.organization,
-    roles: 'doctor',
+    roles: { $in: ['doctor'] },
     $populate: {
       personalDetails: {
         service: 'personal-details',
@@ -15,7 +16,7 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
         service: 'schedule-slots',
         method: 'find',
         localKey: 'uid',
-        foreignKey: 'account',
+        foreignKey: 'meta.providers',
         organization: opts.organization,
       },
     },
@@ -37,6 +38,16 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
   return { items: normalizePopulated(items), total };
 };
 
+/**
+ * FetchUserFacilities
+ *
+ * Fetch a user's facilities that they are part of.
+ * @param {Object} sdk
+ * @param {Object} opts
+ * @param {Number} opts.limit
+ * @param {Number} opts.skip
+ * @param {String} opts.id
+ */
 export const fetchUserFacilities = async (sdk, opts) => {
   const payload = {
     $limit: opts.limit,
@@ -49,9 +60,10 @@ export const fetchUserFacilities = async (sdk, opts) => {
         $populate: {
           doctorSchedules: {
             service: 'schedule-slots',
-            method: 'find',
             localKey: 'id',
+            method: 'find',
             foreignKey: 'organization',
+            'meta.providers': opts.id,
           },
         },
       },
@@ -59,5 +71,17 @@ export const fetchUserFacilities = async (sdk, opts) => {
   };
 
   const { items, total } = await sdk.service('organization-members').find(payload);
-  return { items: normalizePopulated(items), total };
+  return {
+    items: items.map(item => ({
+      ...item.$populated?.organization,
+      /**
+       * OrganizationMember#teleconsultQueue
+       *
+       * This prop is included to serve as indicator if the doctor can book
+       * telehealth in the clinic
+      */
+      ...item.teleconsultQueue && { teleconsultQueue: item.teleconsultQueue },
+    })),
+    total,
+  };
 };

@@ -1,17 +1,13 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    services.services
-    results-footer(v-if="!loading" absolute)
+    directory(v-if="!loading" :class="{'pb-5': $isMobile}").services
 </template>
 
 <script>
-import ResultsFooter from '~/components/services/ResultsFooter';
-import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    ResultsFooter,
-    Services,
+    Directory: () => import('~/components/directory'),
   },
   layout: 'results',
   // middleware: ['disable-route'],
@@ -21,13 +17,22 @@ export default {
     };
   },
   head () {
-    return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
-      description: 'Search for facilities and services in the MYCURE Healthcare Directory',
-      socialBanner: require('~/assets/images/banners/OG Patients.png'),
-    });
+    return {
+      ...headMeta({
+        title: 'MYCURE Booking Management Software',
+        description: 'Search for doctors and clinics in the MYCURE Directory',
+        socialBanner: require('~/assets/images/banners/patients-og-banner.png'),
+      }),
+      script: [
+        {
+          hid: 'google',
+          src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g&libraries=places&v=weekly',
+          defer: true,
+        },
+      ],
+    };
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

@@ -2,47 +2,46 @@
   div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
     div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
       picture-source(
-        :image-file-extension="backgroundImageFileExtension"
-        :image="backgroundImage"
-        :image-alt="title"
+        image-file-extension="png"
+        :image="image"
+        :image-alt="imageAlt || title"
         :image-styles="backgroundStyle"
         :extension-exclusive="extensionExclusive"
         :custom-path="customImagePath"
       )
     v-container.content
-      v-row(justify="center" align="center" :style="{ height: panelHeight }")
+      v-row(justify="center" :style="{ height: panelHeight }" :class="[{'py-16': !$isMobile}, {'mt-16': $isWideScreen}]")
         generic-sub-page-panel(
-          :title="uspTitle"
-          :title-classes="titleClasses"
-          :super-title="superTitle"
-          :super-title-classes="superTitleClasses"
           :content="uspDescription"
           :content-classes="descriptionClasses"
           :content-column-bindings="contentColumnBindings"
           :media-column-bindings="mediaColumnBindings"
           :generic-panel-bindings="genericPanelBindings"
         )
-          template(v-if="slottedTitle" slot="title")
-            slot(name="title")
+          template(slot="title")
+            h2(:class="titleClasses") {{ uspTitle }}
+          template(slot="super-title")
+            h1(:class="superTitleClasses") {{ superTitle }}
           template(slot="image" v-if="!hasCustomBackground || $isMobile")
             img(
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
               :alt="image"
               :width="imageWidth"
-            )
-          div(slot="cta-button" :class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              rounded
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="btnClasses"
-              :color="btnColor"
-            ).text-none.letter-spacing-normal {{ btnText }}
+            ).mb-4
+          template(slot="cta-button")
+            div(:class="{'text-center': $isMobile}")
+              slot(name="cta-button")
+                signup-button(
+                  depressed
+                  class="rounded-md"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  :color="btnColor"
+                ).text-none
+                  span.mc-btn1 {{ btnText }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -54,10 +53,6 @@ export default {
     SignupButton,
   },
   props: {
-    slottedTitle: {
-      type: Boolean,
-      default: false,
-    },
     title: {
       type: String,
       default: '',
@@ -102,7 +97,7 @@ export default {
     },
     btnColor: {
       type: String,
-      default: 'accent',
+      default: 'primary',
     },
     // - If custom btn
     slottedBtn: {
@@ -150,8 +145,8 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 4,
-        xl: 5,
+        md: 5,
+        xl: 6,
       }),
     },
     // - Column for Image
@@ -159,15 +154,20 @@ export default {
       type: Object,
       default: () => ({
         cols: 12,
-        md: 7,
+        md: 6,
         offsetMd: 1,
-        xl: 6,
+        xl: 5,
       }),
     },
     // - Alignment of image
     imageAlign: {
       type: String,
       default: 'left',
+    },
+    // - Custom alt of image
+    imageAlt: {
+      type: String,
+      default: null,
     },
     // USP Custom background
     hasCustomBackground: {
@@ -179,6 +179,19 @@ export default {
       type: String,
       default: null,
     },
+    backgroundImgPos: {
+      type: String,
+      default: '52%',
+    },
+    backgroundImgWidth: {
+      type: String,
+      default: '40%',
+    },
+  },
+  data () {
+    this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-btn1'];
+    return {};
   },
   computed: {
     // NOTE: For customizations
@@ -195,50 +208,18 @@ export default {
     },
     // Classes
     titleClasses () {
-      const classes = classBinder(this, {
-        mobile: ['font-m', 'text-center'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
       return [
+        'mc-h1',
         'lh-title',
         'font-weight-bold',
-        'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
-        classes,
       ];
     },
     superTitleClasses () {
-      const classes = classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
       return [
+        'mc-h6',
         'font-open-sans',
-        'primary--text',
-        'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
-        classes,
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-s'],
-        }),
       ];
     },
     panelHeight () {
@@ -262,13 +243,13 @@ export default {
     },
     backgroundStyle () {
       return {
-        width: '100%',
+        width: this.backgroundImgWidth,
         height: '100%',
         position: 'absolute',
-        left: '0',
+        left: this.backgroundImgPos,
         top: '0',
         zIndex: '1',
-        objectFit: 'cover',
+        objectFit: 'contain',
       };
     },
   },
@@ -289,15 +270,6 @@ export default {
 </script>
 
 <style scoped>
-.usp-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  object-fit: cover;
-}
 .main-container {
   position: relative;
 }

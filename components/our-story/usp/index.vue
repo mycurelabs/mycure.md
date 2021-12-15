@@ -7,6 +7,8 @@
       :btnText="uspContents.btnText"
       :btnIconLeft="uspContents.btnIconLeft"
       :coverImg="uspContents.coverImg"
+      :coverImgWidth="$isMobile ? '276px' : '1150px'"
+      :coverImgHeight="$isMobile ? '264.22px' : '283.44px'"
       :customPath="uspContents.customPath"
       @btnClick="watchVideo"
     )

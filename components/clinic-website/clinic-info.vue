@@ -16,12 +16,12 @@
         h3.font-21 Contact Us
         v-row(no-gutters)
           v-col.shrink
-            v-icon(color="error" medium) mdi-map-marker
+            v-icon(color="error" medium) {{ mdiMapMarker }}
           v-col.grow
             span.ml-2.font-14.font-gray {{ completeAddress }}
         v-row(no-gutters)
           v-col.shrink
-            v-icon(color="success" medium) mdi-phone
+            v-icon(color="success" medium) {{ mdiPhone }}
           v-col.grow
             span.ml-2.font-14.font-gray #[b {{ contactNumber }}]
       v-col(cols="12" :class="{ 'text-center': $isMobile }")
@@ -31,7 +31,7 @@
           depressed
           @click="onInquiry"
         ).text-none.font-12
-          v-icon(small left) mdi-forum
+          v-icon(small left) {{ mdiForum }}
           | Questions? Chat with us now.
     v-divider
     br
@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import { mdiMapMarker, mdiPhone, mdiForum } from '@mdi/js';
 import { formatAddress } from '~/utils/formats';
 
 export default {
@@ -64,7 +65,11 @@ export default {
     },
   },
   data () {
-    return {};
+    return {
+      mdiMapMarker,
+      mdiPhone,
+      mdiForum,
+    };
   },
   computed: {
     name () {

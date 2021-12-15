@@ -1,12 +1,12 @@
 <template lang="pug">
-  v-container
+  v-container.my-8
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12").text-center
-          h1(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Flexible. Scalable.
-          p(:class="subheaderClasses").primary--text.font-open-sans.font-weight-bold Customizable based on what you need
+          p.mc-h7.primary--text.font-open-sans.font-weight-semibold FLEXIBLE AND SCALABLE
+          h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Customizable Health Information System
           v-row(justify="center")
-            v-col(cols="12" md="6").text-center
+            v-col(cols="12" md="9").text-center
               p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
         v-row(:justify="!$isMobile ? 'start' : 'center'")
           v-col(
@@ -20,16 +20,16 @@
               :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
               :image="tool.icon"
               :image-alt="tool.name"
-              :image-width="toolWidth"
-              image-file-extension=".webp"
+              :image-width="$isMobile ? '77px' : ($isRegularScreen ? '90px' : '120px')"
+              :image-height="$isMobile ? '77px' : ($isRegularScreen ? '90px' : '120px')"
+              :image-file-extension="$useWebp? '.webp' : '.png'"
             )
             br
-            h3.font-xs.font-open-sans.font-gray {{ tool.name }}
+            h3.mc-h4.font-open-sans.font-gray {{ tool.name }}
             br
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
@@ -45,14 +45,14 @@ export default {
   },
   data () {
     this.defaultTools = [
-      { name: 'Privacy Standards', icon: 'Privacy Standards' },
+      { name: 'Privacy Standards', icon: 'Privacy-Standards' },
       { name: 'Interoperable Systems', icon: 'Interoperable' },
-      { name: 'Customizable Features', icon: 'Customizable Features' },
+      { name: 'Customizable Features', icon: 'Customizable-Features' },
     ];
     this.modules = [
       {
         name: 'Personal Details',
-        icon: 'Personal Details',
+        icon: 'personal-details-icon',
       },
       {
         name: 'Electronic Medical Records (EMR)',
@@ -84,7 +84,7 @@ export default {
       },
       {
         name: 'Physical Medical Exam',
-        icon: 'Physical Medical Exam',
+        icon: 'physical-medical-exam',
       },
       {
         name: 'Inventory',
@@ -92,7 +92,7 @@ export default {
       },
       {
         name: 'Ward Management',
-        icon: 'Ward Management',
+        icon: 'ward-management',
       },
       {
         name: 'Authentication & Authorization',
@@ -111,31 +111,13 @@ export default {
         icon: 'Notification',
       },
     ];
+    this.headerClasses = ['mc-h2'];
+    this.descriptionClasses = ['mc-b2'];
     return {};
   },
   computed: {
     items () {
       return this.version === 1 ? this.defaultTools : this.modules;
-    },
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-2xl'],
-      });
-    },
-    subheaderClasses () {
-      return classBinder(this, {
-        mobile: ['font-14'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
-        wide: ['font-m'],
-      });
     },
     panelHeight () {
       if (this.$isMobile) return 'auto';

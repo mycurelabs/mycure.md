@@ -1,29 +1,27 @@
 <template lang="pug">
-  div
-    v-container
+  generic-blue-bg
+    v-container.py-16
       v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center'}")
-          v-col(cols="12").text-center
-            h2(:class="titleClasses").mb-5 Your New Virtual Clinic
-            p(:class="contentClasses").mb-10 Use the tools that work best for you. Everything you need is here. It’s FREE.
-            mc-btn(
-              v-if="!$isMobile"
-              event-label="view-telehealth-demo"
-              color="primary"
-              depressed
-              rounded
-              :large="$isRegularScreen"
-              :x-large="$isWideScreen"
-              @click="viewDemo"
-            ).text-none.font-s View live demo
-          v-col(cols="12").text-center.ml-n10
-            picture-source(
-              image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
-              image-alt="Virtual Clinic"
-              image-width="102%"
-              image-file-extension=".webp"
-              custom-path="telehealth/"
-            )
+        v-col(cols="12")
+          generic-media-panel(
+            :content="contentsPanel"
+            :title-classes="titleClasses"
+            :content-classes="contentClasses"
+            hide-btn
+          )
+            template(slot="additional-content")
+              mc-btn(
+                v-if="!$isMobile"
+                event-label="view-telehealth-demo"
+                color="success"
+                depressed
+                class="rounded-md"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                @click="viewDemo"
+              ).text-none
+                span.mc-btn1 View live demo
+        generic-panel(:row-bindings="{ justify: 'center'}" disable-parent-padding).mb-16
           v-col(
             v-for="(data, key) in contents"
             cols="12"
@@ -31,74 +29,62 @@
             :offset-md="key === 1 ? 2 : null"
             :key="key"
           )
-            div.d-flex
-              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :height="$isMobile? '10%' : '30%'" :class="{'pt-3': $isMobile}")
-              h1(:class="headerClasses").ml-3 {{ data.header }}
-            br
-            p(:class="contentClasses") {{ data.description }}
+            v-row(justify="center")
+              v-col(align="center" :cols="$isMobile ? '12' : '2'").pb-0
+                div.text-center.pt-1
+                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '50px'" :height="$isWideScreen ? '60px' : '35px'" color="white")
+              v-col
+                h1.mc-h3.white--text {{ data.header }}
+                br
+                p.mc-b3.white--text {{ data.description }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 
 export default {
   components: {
     GenericPanel,
+    GenericBlueBg,
+    GenericMediaPanel,
     PictureSource,
     SignupButton,
   },
   data () {
     this.contents = [
       {
-        headerIcon: 'increase-revenue.png',
+        headerIcon: 'increase-revenue-white.png',
         header: 'Increase your revenue',
         description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure video and voice calls.',
       },
       {
-        headerIcon: 'build-clientele.png',
+        headerIcon: 'build-clientele-white.png',
         header: 'Build your clientele',
         description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
       },
     ];
+    this.titleClasses = ['mc-h2', 'white--text'];
+    this.contentClasses = ['mc-b2', 'white--text'];
     return {};
   },
   computed: {
-    titleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center', 'pt-5'],
-          regular: ['font-m'],
-          wide: ['font-l'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    contentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return contentClasses;
+    contentsPanel () {
+      return {
+        title: 'Your New Virtual Clinic – MYCURE Telehealth',
+        description: 'Use the online practice management system tools that work best for you. Everything you need is here – and it’s FREE.',
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp',
+          imageAlt: 'Virtual Clinic',
+          customPath: 'telehealth/',
+          width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '163.91px' : (this.$isRegularScreen ? '281.72px' : '454.59px'),
+        },
+        contentAlign: 'left',
+      };
     },
   },
   methods: {

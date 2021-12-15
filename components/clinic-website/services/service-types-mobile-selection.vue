@@ -7,12 +7,13 @@
       )
         v-card(color="grey" @click="$emit('select', type.value)")
           v-toolbar(flat)
-            h3 {{ type.text }}
+            h3 {{ type.text }}&nbsp;
             v-spacer
-            v-icon(color="primary") mdi-chevron-right
+            v-icon(color="primary") {{ mdiChevronRight }}
 </template>
 
 <script>
+import { mdiChevronRight } from '@mdi/js';
 export default {
   props: {
     serviceTypes: {
@@ -26,15 +27,18 @@ export default {
   },
   data () {
     this.types = [
-      { text: 'Consultations', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { text: 'Face-to-Face Consults', type: 'clinical-consultation', value: 'clinical-consultation' },
+      { text: 'Teleconsult', type: 'telehealth', value: 'telehealth' },
       { text: 'Laboratory', type: 'diagnostic', value: 'lab' },
       { text: 'Imaging', type: 'diagnostic', value: 'imaging' },
       { text: 'PE Packages', type: 'pe', value: 'pe' },
-      { text: 'Doctors', type: 'doctors', value: 'doctors' },
       { text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
       { text: 'Dental', type: 'dental', value: 'dental' },
+      { text: 'Our Doctors', type: 'doctors', value: 'doctors' },
     ];
-    return {};
+    return {
+      mdiChevronRight,
+    };
   },
   methods: {
     hasServiceType (type) {

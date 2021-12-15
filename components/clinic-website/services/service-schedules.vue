@@ -1,26 +1,28 @@
 <template lang="pug">
   v-row
-    v-col(cols="12").bordered-table
-      v-data-table(
-        :headers="headers"
-        :items="tableItems"
-        hide-default-footer
-        light
-        dense
-      ).schedule-table
-        tr(slot="item" slot-scope="props")
-          td(v-for="(day, key) in props.item" :key="key").text-xs-center
-            v-row(no-gutters)
-              v-col(cols="12" v-for="(timeslot, key) in day" :key="key")
-                v-chip(
-                  :class="{'mt-1': key !== 0}"
-                  color="primary"
-                  small
-                ).white--text
-                  v-tooltip(bottom)
-                    template(slot="activator" slot-scope="data")
-                      span(v-on="data.on") {{ timeslot | format-time-range-shortened }}
-                    | {{ timeslot | format-time-range }}
+    v-col(v-if="!hideLabels")
+      strong.font-weight-black.accent--text |&nbsp;
+        span.font-weight-bold Physical Appointment
+      br
+      strong.font-weight-black.info--text |&nbsp;
+        span.font-weight-bold Online Consult
+    v-col(cols="12")
+      v-row(v-for="(day, key) in days" :key="key" align="center").bordered-table.my-3
+        v-col(cols="12" md="2").text-center
+          h3(:class="{'error--text': day.value === 0}") {{ day.text }}
+        v-col.grow
+          v-row(dense justify="center")
+            v-col(
+              v-for="(timeslot, key) in getSlots(day.value)"
+              :key="key"
+              cols="12"
+              sm="7"
+            )
+              v-row(dense justify="center")
+                v-col(cols="8" :align="$isMobile ? 'center' : null")
+                  h4.font-weight-semibold
+                    strong(v-if="!hideLabels" :class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
+                    span {{ timeslot | format-time-range }}
 </template>
 
 <script>
@@ -57,16 +59,20 @@ export default {
       type: Boolean,
       default: true,
     },
+    hideLabels: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.days = [
-      { text: 'Monday', value: 1 },
-      { text: 'Tuesday', value: 2 },
-      { text: 'Wednesday', value: 3 },
-      { text: 'Thursday', value: 4 },
-      { text: 'Friday', value: 5 },
-      { text: 'Saturday', value: 6 },
-      { text: 'Sunday', value: 0 },
+      { text: 'MON', value: 1 },
+      { text: 'TUE', value: 2 },
+      { text: 'WED', value: 3 },
+      { text: 'THU', value: 4 },
+      { text: 'FRI', value: 5 },
+      { text: 'SAT', value: 6 },
+      { text: 'SUN', value: 0 },
     ];
     return {
       showList: false,
@@ -139,12 +145,31 @@ export default {
       }];
     },
   },
+  methods: {
+    getSlots (value) {
+      if (!this.items?.length) return [];
+      const items = [...this.items];
+      if (this.nonMfSchedule && value === 0) {
+        return items.filter(item => item.day === 0);
+      } else if (value === 0) {
+        return items.filter(item => item.order === 7);
+      }
+      if (this.nonMfSchedule) return items.filter(item => item.day === value);
+      return items.filter(item => item.order === value);
+    },
+    getSlotColor (timeslot) {
+      const { meta } = timeslot;
+      if (meta?.serviceSubtype === 'telehealth') return 'info';
+      return 'accent';
+    },
+  },
 };
 </script>
 
 <style scoped>
 .bordered-table {
-  border: 0.5px solid lightgrey;
+  border: 1px solid lightgrey;
+  border-radius: 5px !important;
 }
 
 .schedule-table {

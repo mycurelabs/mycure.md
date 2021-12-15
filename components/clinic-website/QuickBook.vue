@@ -3,19 +3,19 @@
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
-          v-col(cols="12")
+          v-col(cols="12" :class="{'text-center': $isMobile}")
             h1.mb-5.white--text Get An Appointment
           v-col(cols="12" md="6").pa-10
             template(v-for="item in quickAppointmentsContent")
               media
                 template(slot="media-image")
-                  v-avatar(size="45" color="#add35b")
-                    v-icon.white--text {{item.icon}}
+                  v-avatar(:size="$isMobile ? '50' : '75'" color="#add35b")
+                    v-icon(large).white--text {{item.icon}}
                 template(slot="media-content")
                   br
-                  h5.white--text {{item.title}}
-                  p.white--text {{item.content}}
-          v-col(cols="12" md="6").pa-10
+                  h5.white--text.step-title.ml-4  {{item.title}}
+                  p.white--text.step-caption.ml-4 {{item.content}}
+          v-col(cols="12" md="6" :class="{'pa-10': !$isMobile}")
             v-card(style="border-radius: 10px;")
               v-card-text.pa-10
                 h3.mb-5 Choose a service
@@ -48,22 +48,25 @@
                         v-list-item-subtitle(
                           :class="hasSchedules(props.item) ? 'success--text' : 'error--text'"
                         ) {{ hasSchedules(props.item) ? 'Available' : 'Unavailable' }}
-
                 div.d-flex
                   v-spacer
                   v-btn(
                     color="success"
                     depressed
                     large
-                    dark
                     :disabled="!selectedService || isPreviewMode || loading"
                     @click="bookService"
                   ).text-none Continue
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
+import {
+  mdiMicroscope,
+  mdiCalendarBlank,
+  mdiClockOutline,
+} from '@mdi/js';
 import {
   fetchClinicServices,
 } from '~/services/services';
@@ -103,23 +106,24 @@ export default {
   data () {
     this.quickAppointmentsContent = [
       {
-        icon: 'mdi-microscope',
+        icon: mdiMicroscope,
         title: 'Choose a service',
         content: 'Select from among the healthcare services available for you.',
       },
       {
-        icon: 'mdi-calendar-blank',
+        icon: mdiCalendarBlank,
         title: 'Book a schedule',
         content: 'Choose your best time and fill in the appointment form.',
       },
       {
-        icon: 'mdi-clock-outline',
+        icon: mdiClockOutline,
         title: 'Show up on time',
         content: 'Our friendly healthcare professionals will be there to see you.',
       },
     ];
     this.serviceTypeMappings = {
-      'clinical-consultation': { text: 'Consult', value: 'clinical-consultation' },
+      'clinical-consultation': { text: 'Face-to-Face Consult', value: 'clinical-consultation' },
+      telehealth: { text: 'Teleconsult', value: 'telehealth' },
       'clinical-procedure': { text: 'Procedure', value: 'clinical-procedure' },
       lab: { text: 'Laboratory', value: 'lab' },
       imaging: { text: 'Imaging', value: 'imaging' },
@@ -158,17 +162,32 @@ export default {
     async fetchServices () {
       try {
         this.loading = true;
+        const mapServiceType = (type) => {
+          if (type === 'lab' || type === 'imaging') return 'diagnostic';
+          // Telehealth services are technically under 'clinical-consultation',
+          // They are differentiated through `service#tags`
+          if (type === 'telehealth') return 'clinical-consultation';
+          return type;
+        };
         const { items } = await fetchClinicServices(this.$sdk, {
           facility: this.organization,
-          type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
+          type: mapServiceType(this.serviceType),
           subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
+          // Differentiate the telehealth services
+          ...this.serviceType === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
+          ...this.serviceType === 'telehealth' && { tags: { $in: ['telehealth'] } },
         });
 
         // - Assign schedules and include only those with schedules
         this.services = items.map((item) => {
-          const { type, subtype } = item;
+          const { type, subtype, tags } = item;
           const primaryType = subtype || type;
-          const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+          const schedules = this.serviceSchedules.find((schedule) => {
+            if (primaryType === 'clinical-consultation' && tags?.includes('telehealth')) {
+              return schedule.type === 'telehealth';
+            }
+            return schedule.type === primaryType;
+          });
           return {
             ...item,
             nonMfSchedule: !!schedules,
@@ -184,8 +203,9 @@ export default {
     bookService () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const bookURL = `${pxPortalUrl}/appointments/step-1?service=${this.selectedService}&organization=${this.organization}`;
-      window.open(bookURL, '_blank', 'noopener noreferrer');
+      const appointmentType = this.serviceType === 'telehealth' ? 'telehealth' : 'physical';
+      const bookURL = `${pxPortalUrl}/create-appointment/step-1?service=${this.selectedService}&clinic=${this.organization}&type=${appointmentType}`;
+      window.location.href = bookURL;
     },
     hasSchedules (item) {
       return item.schedules?.length;
@@ -196,3 +216,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.step-title {
+  font-size: 20px;
+}
+.step-caption {
+  font-size: 16px;
+}
+</style>

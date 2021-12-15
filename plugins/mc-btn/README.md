@@ -19,7 +19,7 @@ These props are based on google analytics event tracking parameters.
 <mc-btn
   large
   color="primary"
-  icon="mdi-play"
+  :icon="mdiPlay"
   event-label="play-music"
 >
   Play music

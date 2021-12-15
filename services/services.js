@@ -1,11 +1,22 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { normalizePopulated } from '~/utils/services';
 
+/**
+ *
+ * @param {SDK} sdk
+ * @param {Object} opts
+ * @param {String} opts.facility
+ * @param {String} opts.type
+ * @param {String} opts.subtype
+ * @param {String} opts.limit
+ * @param {String} opts.skip
+ */
 export const fetchClinicServices = async (sdk, opts) => {
   const query = {
     ...opts.facility && { facility: opts.facility },
     ...opts.type && { type: opts.type },
     ...opts.subtype && { subtype: opts.subtype },
+    ...opts.tags && { tags: opts.tags },
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $populate: {
@@ -32,10 +43,7 @@ export const fetchClinicServices = async (sdk, opts) => {
   }
 
   if (!isEmpty(opts.searchText)) {
-    if (isEmpty(query.$and)) query.$and = [];
-    query.$and.push(
-      { name: { $regex: `^${opts.searchText}`, $options: 'gi' } },
-    );
+    query.$search = opts.searchText;
   }
 
   const { items, total } = await sdk.service('services').find(query);

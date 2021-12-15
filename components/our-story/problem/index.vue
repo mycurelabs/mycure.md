@@ -3,7 +3,12 @@
     v-row(justify="center")
       generic-panel
         v-col(cols="12" md="4" align="center")
-          img(width="100%" v-lazy="require('~/assets/images/our-story/mycure-our-story-solving-problems-clinic-image.png')" alt="Our Story - Problem")
+          img(
+            v-lazy="require('~/assets/images/our-story/mycure-our-story-solving-problems-clinic-image.png')"
+            alt="Our Story - Problem"
+            :width="$isMobile ? '256px' : ($isRegularScreen ? '300px' : '465px')"
+            :height="$isMobile ? '256px' : ($isRegularScreen ? '300px' : '465px')"
+          )
         v-col(cols="12" md="7" offset-md="1")
           h1(:class="headerClasses").mb-10 The Problem We Are Trying To Solve
           div(:class="descriptionClasses")

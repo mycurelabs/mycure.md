@@ -1,10 +1,10 @@
 <template lang="pug">
-  fragment
+  div
     v-container(
       fluid
       style="height: 100vh"
-      :class="[backgroundClasses, backgroundImages]"
-    )
+      :class="[backgroundClasses]"
+    ).bg-png
       v-container
         v-container(style="height: 100%" fluid)
           v-row(align="start" justify="center")
@@ -13,14 +13,14 @@
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               div(v-if="$isMobile").text-center
                 v-btn(text icon @click="startNow").align-center
-                  v-icon(large) mdi-arrow-down
+                  v-icon(large) {{ mdiArrowDown }}
               v-btn(
                 v-if="!$isMobile"
                 color="accent"
                 large
                 @click="onWatch"
               ).text-none.font-16.mt-5
-                v-icon(left) mdi-play-circle
+                v-icon(left) {{ mdiPlayCircle }}
                 | Watch Walkthrough
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
@@ -31,7 +31,7 @@
             large
             @click="onWatch"
           ).text-none.font-16.p-7
-            v-icon(left) mdi-play-circle
+            v-icon(left) {{ mdiPlayCircle }}
             | Watch Walkthrough
 
     //- Video
@@ -51,15 +51,17 @@
 
 <script>
 // utils
+import { mdiArrowDown, mdiPlayCircle } from '@mdi/js';
 import { parseTextWithNewLine } from '~/utils/newline';
-import canUseWebp from '~/utils/can-use-webp';
 export default {
   data () {
     this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
     this.metaTitle = 'MYCURE Features';
     return {
       videoDialog: false,
-      canUseWebp: false,
+      // icons
+      mdiArrowDown,
+      mdiPlayCircle,
     };
   },
   computed: {
@@ -84,12 +86,6 @@ export default {
     backgroundClasses () {
       return !this.$isMobile ? 'bg' : 'bg-mobile';
     },
-    backgroundImages () {
-      return this.canUseWebp ? 'bg-webp' : 'bg-png';
-    },
-  },
-  async mounted () {
-    this.canUseWebp = await canUseWebp();
   },
   methods: {
     onWatch () {
@@ -112,7 +108,7 @@ export default {
   background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.webp');
 }
 .bg-png {
-  background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.png');
+  background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.png') !important;
 }
 .bg-mobile {
   background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png');

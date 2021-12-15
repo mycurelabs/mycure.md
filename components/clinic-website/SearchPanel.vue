@@ -8,6 +8,7 @@
         v-col(cols="10" :md="!hideBanner ? '6' : '12'").text-center
           h1(v-if="!hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
+            v-if="hasSearchables"
             solo
             clearable
             :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
@@ -16,12 +17,13 @@
             @keyup.enter="debouncedSearch"
           ).mt-3.search-bar
             template(v-slot:append)
-              v-icon(color="white").search-icon mdi-magnify
+              v-icon(color="white").search-icon {{ mdiMagnify }}
 </template>
 
 <script>
 // utils
-import { debounce } from 'lodash';
+import { mdiMagnify } from '@mdi/js';
+import debounce from 'lodash/debounce';
 export default {
   props: {
     value: {
@@ -64,10 +66,19 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    hasServices: {
+      type: Boolean,
+      default: false,
+    },
+    hasDoctors: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     return {
       debouncedSearch: debounce(this.search, 500),
+      mdiMagnify,
     };
   },
   computed: {
@@ -82,6 +93,9 @@ export default {
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
+    },
+    hasSearchables () {
+      return this.hasServices || this.hasDoctors;
     },
   },
   methods: {

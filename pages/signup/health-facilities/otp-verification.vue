@@ -1,100 +1,119 @@
 <template lang="pug">
-  v-row(align="center" justify="center" :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]").main-container
-    v-col(cols="11" md="8")
-      v-row(justify="center" align="center")
-        v-col(cols="12" md="6").pa-1.mb-3
-          img(
-            v-if="dayOrNight === 'night'"
-            src="~/assets/images/mycure-footer-logo.png"
-            @click="$nuxt.$router.push({ name: 'index' })"
-            alt="MYCURE logo"
-          ).link-to-home.mb-3
-          img(
-            v-else
-            src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-            @click="$nuxt.$router.push({ name: 'index' })"
-            alt="MYCURE logo"
-            width="175"
-          ).link-to-home.mb-3
-          br
-          h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
-          p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-          v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
-            v-col.grow
-              input(
-                v-model="firstDigit"
-                type="number"
-                step="1"
-                max="9"
-                @keypress="checkNumberInput($event, firstDigit)"
-              )#firstDigit.single-field
-              input(
-                v-model="secondDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(2)"
-                @keypress="checkNumberInput($event, secondDigit)"
-              )#secondDigit.single-field
-              input(
-                v-model="thirdDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(3)"
-                @keypress="checkNumberInput($event, thirdDigit)"
-              )#thirdDigit.single-field
-              input(
-                v-model="fourthDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(4)"
-                @keypress="checkNumberInput($event, fourthDigit)"
-              )#fourthDigit.single-field
-              input(
-                v-model="fifthDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(5)"
-                @keypress="checkNumberInput($event, fifthDigit)"
-              )#fifthDigit.single-field
-              input(
-                v-model="sixthDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(6)"
-                @keypress="checkNumberInput($event, sixthDigit)"
-              )#sixthDigit.single-field
-            v-col(v-if="loading").shrink
-              v-progress-circular(indeterminate size="15" color="primary")
-          p Didn't get the code?
-          v-btn(
-            style="width: 150px;"
-            :disabled="otpCountdown > 0 || loading"
-            @click="resendVerificationCode"
-            color="primary"
-            right
-            bottom
-            depressed
-          ).text-none.font-weight-bold
-            | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
-          v-row.mt-2
-            v-col
-              v-alert(
-                :value="verificationError"
-                type="error"
-                dismissible
-              ) Incorrect verification code
-          br
-          span Having trouble with your verification?
-          br
-          a(@click.stop="toggleChat()")
-            strong.primary--text Send us a chat for support.
-        v-col(cols="12" md="6").pa-1.text-center
+  v-container(fluid fill-height).pa-0.ma-0
+    v-row(style="height: 100vh")
+      v-col(cols="6" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
+        v-row(style="height: 100vh" align="center" justify="center")
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
+      v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'pt-10']").rounded-tl-xl.rounded-bl-xl
+          v-col(cols="12")
+            h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
+          br
+          br
+          br
+          v-col(cols="12")
+            p.mb-0 Please enter the OTP sent to
+            p.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
+          v-col(cols="12").my-4
+            v-otp-input(
+              ref="otpInput"
+              separator=""
+              input-classes="otp-input"
+              :num-inputs="6"
+              :should-auto-focus="true"
+              :is-input-num="true"
+              @on-change="otp = $event"
+              :class="{'mobile-otp': $isMobile}"
+            ).d-flex
+          //- Verify button
+          v-col(cols="12")
+            v-btn(
+              block
+              color="secondary"
+              large
+              :disabled="otp.length < 6"
+              @click="submit()"
+            ).white--text Verify
+          v-col(cols="12")
+            v-alert(
+              :value="verificationError"
+              type="error"
+              dismissible
+            ) Incorrect verification code
+          v-col(cols="12").text-center
+            span Didn't receive the OTP?&nbsp;
+            v-btn(
+              :disabled="otpCountdown > 0 || loading"
+              @click="resendVerificationCode"
+              color="secondary"
+              text
+              right
+              bottom
+              depressed
+            ).text-none
+              | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
+          br
+          br
+          br
+          v-col(cols="12")
+            p.mb-0 Having trouble with your verification?
+            a(@click.stop="toggleChat()").secondary--text Send us a chat for support.
+    //- v-row(align="center" justify="center" :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]").main-container
+    //-   v-col(cols="11" md="8")
+    //-     v-row(justify="center" align="center")
+    //-       v-col(cols="12" md="6").pa-1.mb-3
+    //-         img(
+    //-           v-if="dayOrNight === 'night'"
+    //-           src="~/assets/images/mycure-footer-logo.png"
+    //-           @click="$nuxt.$router.push({ name: 'index' })"
+    //-           alt="MYCURE logo"
+    //-         ).link-to-home.mb-3
+    //-         img(
+    //-           v-else
+    //-           src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+    //-           @click="$nuxt.$router.push({ name: 'index' })"
+    //-           alt="MYCURE logo"
+    //-           width="175"
+    //-         ).link-to-home.mb-3
+    //-         br
+    //-         h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
+    //-         p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
+    //-         v-row.my-5
+    //-           div.d-flex
+    //-             v-otp-input(
+    //-               ref="otpInput"
+    //-               separator=""
+    //-               input-classes="otp-input"
+    //-               :num-inputs="6"
+    //-               :should-auto-focus="true"
+    //-               :is-input-num="true"
+    //-               @on-complete="onOTPComplete($event)"
+    //-             )
+    //-         p Didn't get the code?
+    //-         v-btn(
+    //-           style="width: 150px;"
+    //-           :disabled="otpCountdown > 0 || loading"
+    //-           @click="resendVerificationCode"
+    //-           color="primary"
+    //-           right
+    //-           bottom
+    //-           depressed
+    //-         ).text-none.font-weight-bold
+    //-           | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
+    //-         v-row.mt-2
+    //-           v-col
+    //-             v-alert(
+    //-               :value="verificationError"
+    //-               type="error"
+    //-               dismissible
+    //-             ) Incorrect verification code
+    //-         br
+    //-         span Having trouble with your verification?
+    //-         br
+    //-         a(@click.stop="toggleChat()")
+    //-           strong.primary--text Send us a chat for support.
+    //-       v-col(cols="12" md="6").pa-1.text-center
+    //-         img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
 
     v-dialog(v-model="successDialog" width="400" height="auto" persistent)
       v-card
@@ -131,7 +150,7 @@ import { verifyMobileNo, signin, resendVerificationCode } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 const COUNTDOWN_MILLIS = 60000;
 export default {
-  layout: 'user',
+  layout: 'empty',
   data () {
     this.dayOrNight = dayOrNight();
     return {
@@ -156,13 +175,15 @@ export default {
       fifthDigit: null,
       sixthDigit: null,
       isPaymentSuccessful: false,
+      verifyButton: null,
+      otpVal: null,
     };
   },
   head () {
     return headMeta({
       title: 'MYCURE | Verify your Account',
       description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
   computed: {
@@ -171,38 +192,38 @@ export default {
     },
   },
   watch: {
-    firstDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
-      }
-    },
-    secondDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
-      }
-    },
-    thirdDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
-      }
-    },
-    fourthDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
-      }
-    },
-    fifthDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
-      }
-    },
-    sixthDigit (val) {
-      if (val?.length === 1) {
-        const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
-        this.otp = code;
-        this.submit();
-      }
-    },
+    // firstDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
+    //   }
+    // },
+    // secondDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+    //   }
+    // },
+    // thirdDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+    //   }
+    // },
+    // fourthDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+    //   }
+    // },
+    // fifthDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
+    //   }
+    // },
+    // sixthDigit (val) {
+    //   if (val?.length === 1) {
+    //     const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
+    //     this.otp = code;
+    //     this.submit();
+    //   }
+    // },
   },
   async created () {
     await this.init();
@@ -210,10 +231,11 @@ export default {
   methods: {
     init () {
       if (process.browser) {
-        this.$nextTick(() => {
-          document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
-        });
+        // this.$nextTick(() => {
+        //   document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+        // });
 
+        this.$vuetify.theme.dark = false;
         const step1Data = JSON.parse(localStorage.getItem('facility:step1:model'));
         if (!step1Data?.email) {
           this.$nuxt.$router.push({ name: 'signup-health-facilities' });
@@ -230,8 +252,16 @@ export default {
           this.otpCountdown = Number(JSON.parse(localStorage.getItem('otp:resend:countdown')));
           this.startCountDown();
         }
+
+        // Record track
+        this.$gtag.pageview('/signup/health-facilities/otp-verification');
       }
     },
+    // - Test
+    // onOTPComplete (otp) {
+    //   this.otp = `${otp}`;
+    //   this.submit();
+    // },
     // Verify mobile no and signup
     async submit () {
       try {
@@ -255,6 +285,7 @@ export default {
         console.error(e);
       } finally {
         this.loading = false;
+        this.otp = '';
       }
     },
     async resendVerificationCode () {
@@ -265,6 +296,11 @@ export default {
           password: this.step1Data.password,
         });
         await resendVerificationCode({ token: accessToken });
+        // Record track
+        this.$gtag.event('click', {
+          event_category: 'signup',
+          event_label: 'signup-step-3-otp-resend',
+        });
         this.snackBarModel = {
           text: 'OTP was resent successfully!',
           color: 'accent',
@@ -286,7 +322,12 @@ export default {
           email: this.step1Data.email,
           password: this.step1Data.password,
         });
-        process.browser && localStorage.clear();
+        localStorage.clear();
+        // Record track
+        this.$gtag.event('click', {
+          event_category: 'signup',
+          event_label: 'signup-step-3-otp-success',
+        });
         window.location = `${process.env.CMS_URL}?token=${accessToken}`;
       } catch (error) {
         console.error(error);
@@ -404,6 +445,10 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.mobile-otp >>> .otp-input {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 @media screen and (min-width: 768px) {
   .main-container {

@@ -175,7 +175,7 @@ export const getCountries = async () => {
     ];
     const { data } = await axios({
       method: 'get',
-      url: `https://restcountries.eu/rest/v2/all?fields=${fields.join(';')}`,
+      url: `https://restcountries.com/v2/all?fields=${fields.join(',')}`,
     });
     return data;
   } catch (e) {
@@ -198,49 +198,12 @@ export const getMycureCountries = async (opts) => {
   }
 };
 
-// CREATING AN ACCOUNT
-export const signupIndividual = async (opts) => {
-  try {
-    const payload = {
-      email: opts.email,
-      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      password: opts.password,
-      personalDetails: {
-        name: {
-          firstName: opts.firstName,
-          lastName: opts.lastName,
-        },
-        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      },
-      // TODO: Update query to accomodate 'type: facility'
-      organization: {
-        type: 'personal-clinic',
-        superadmin: {
-          roles: ['doctor'],
-        },
-        name: `${opts.firstName}'s Clinic`,
-      },
-    };
-    if (opts.otp) { payload.totpToken = opts.otp; }
-    const { data } = await axios({
-      method: 'POST',
-      url: `${process.env.API_URL}/accounts`,
-      data: payload,
-    });
-    // await resendVerificationEmail({ email: opts.email, password: opts.password });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
 // CREATING AN ACCOUNT (FACILITY)
 export const signupFacility = async (opts) => {
   try {
     const payload = {
-      // skipMobileNoVerification: opts.skipMobileNoVerification,
+      // Mobile no verification will be done after stripe checkout success
+      skipMobileNoVerification: opts.skipMobileNoVerification,
       email: opts.email,
       mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
@@ -261,6 +224,14 @@ export const signupFacility = async (opts) => {
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
+    if (opts.invitation) { payload.invitation = opts.invitation; };
+    if (opts.organization.types.includes('doctor')) {
+      payload.apps = ['doctor'];
+      payload.source = {
+        platform: 'web',
+        app: 'emr',
+      };
+    }
     const { data } = await axios({
       method: 'POST',
       url: `${process.env.API_URL}/accounts`,
@@ -295,43 +266,18 @@ export const verifyMobileNo = async (opts) => {
   }
 };
 
-export const signupSpecialized = async (opts) => {
+export const refetchStripeToken = async (opts) => {
   try {
-    const payload = {
-      skipMobileNoVerification: true, // only for specialized signup
-      email: opts.email,
-      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      password: opts.password,
-      personalDetails: {
-        name: {
-          firstName: opts.firstName,
-          lastName: opts.lastName,
-        },
-        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
-      },
-      organization: {
-        type: 'facility',
-        types: [opts.clinicType],
-        superadmin: {
-          roles: ['doctor'],
-        },
-        name: `${opts.firstName}'s Clinic`,
-        subscription: {
-          ...opts.subscription,
-          stripeCheckoutSuccessURL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
-          stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
-        },
-      },
-    };
-    if (opts.otp) { payload.totpToken = opts.otp; }
+    // Get account data
     const { data } = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/accounts`,
-      data: payload,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${opts.accessToken}`,
+      },
+      url: `${process.env.API_URL}/accounts/${opts.uid}`,
     });
-    // await resendVerificationEmail({ email: opts.email, password: opts.password });
-    return data;
+    // Get stripe session id
+    return data?.organization?.subscription?.updatesPending?.stripeSession;
   } catch (e) {
     console.error(e);
     throw handleError(e);
@@ -362,3 +308,4 @@ export * from './doctor-website';
 export * from './doctor-directory';
 export * from './clinics-website';
 export * from './organizations';
+export * from './website-metrics';

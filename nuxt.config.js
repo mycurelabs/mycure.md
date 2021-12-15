@@ -16,6 +16,7 @@ export default {
     STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
     STRIPE_PK: process.env.STRIPE_PK,
     WEB_MAIN_URL: process.env.WEB_MAIN_URL,
+    GMAPS_GEOCODING_API_KEY: process.env.GMAPS_GEOCODING_API_KEY,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -27,6 +28,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preload', type: 'image', href: '~/assets/images/home/homepage-usp-bg.webp' },
     ],
   },
 
@@ -35,25 +37,27 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/stylesheets/mycure-web.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/vue-media-query-mixin.js',
-    '~/plugins/vue-fragment.js',
     '~/plugins/vue-lazyload.js',
     '~/plugins/vue-gtag.js',
+    '~/plugins/vue-screen.js',
+    { src: '~/plugins/main.js' },
+    { src: '~/plugins/responsive.js', mode: 'client' },
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
-    { src: '~/plugins/main.js', mode: 'client' },
-    { src: '~/plugins/mc-btn', mode: 'client' },
-    { src: '~plugins/vue-cookie-law', mode: 'client' },
+    { src: '~/plugins/mc-btn' },
+    { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
-    { src: '~plugins/crisp.js', mode: 'client' },
-    { src: '~plugins/amplitude.js', mode: 'client' },
+    { src: '~/plugins/crisp.js', mode: 'client' },
+    { src: '~/plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
-    { src: '~/plugins/vue-typer.js', mode: 'client' },
     { src: '~/plugins/vue-stripe.js', mode: 'client' },
+    { src: '~/plugins/vue-browser-geolocation.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -61,6 +65,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/device',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
@@ -72,18 +77,74 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'vue-screen/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
+    '@nuxtjs/robots',
+    // Sitemap should always be declared last according to docs https://sitemap.nuxtjs.org/guide/setup
+    '@nuxtjs/sitemap',
   ],
+  // Robots
+  robots: [
+    {
+      UserAgent: '*',
+      Disallow: () => '/payment',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities/pricing',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/signup/health-facilities/otp-verification',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/forgot-password',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    // Temporary disallow CSI since content is not yet complete
+    {
+      UserAgent: '*',
+      Disallow: () => '/csi',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    // Hidden
+    {
+      UserAgent: '*',
+      Disallow: () => '/hospitals',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/pharmacy',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    {
+      UserAgent: '*',
+      Disallow: () => '/directory/results',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+    // Old page that keeps getting crawled for some reason
+    {
+      UserAgent: '*',
+      Disallow: () => '/electronic-medical-records',
+      Sitemap: `${process.env.WEB_MAIN_URL}/sitemap.xml`,
+    },
+  ],
+  // Google Web Font Loader Module
   webfontloader: {
     google: {
       families: [
         'Poppins:400,500,600,700,900',
-        'Open Sans:300,400',
+        'Open Sans:400,600',
       ],
     },
   },
@@ -103,8 +164,10 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
     optionsPath: './vuetify.options.js',
+    defaultAssets: false,
   },
 
+  // Google Analytics Module
   googleAnalytics: {
     id: process.env.GA_ID,
     autoTracking: {
@@ -122,9 +185,24 @@ export default {
       },
     },
   },
-
+  sitemap: {
+    lastmod: '2021-10-26',
+    hostname: process.env.WEB_MAIN_URL,
+    gzip: true,
+    exclude: [
+      '/signup/*',
+      '/payment/*',
+      '/forgot-password',
+      '/csi',
+      '/hospitals',
+      '/pharmacy',
+      // Old page that keeps getting crawled for some reason
+      '/electronic-medical-records'
+    ],
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCss: true,
     transpile: [
       'vue-clamp',
       'resize-detector',

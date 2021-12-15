@@ -9,11 +9,14 @@
 
 <script>
 const healthFacilityTypeMap = {
-  booking: 'doctor',
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
   diagnostics: 'diagnostic',
-  telehealth: 'doctor-telehealth',
+  'clinics-skin': 'clinic',
+  'clinics-dental': 'clinic',
+  'clinics-corporate': 'clinic',
+  'diagnostics-ofw': 'diagnostic',
+  'diagnostics-mobile-labs': 'diagnostic',
 };
 export default {
   props: {
@@ -27,6 +30,10 @@ export default {
     },
     facilityType: {
       type: String,
+      default: null,
+    },
+    queryOps: {
+      type: Object,
       default: null,
     },
   },
@@ -44,9 +51,20 @@ export default {
       if (this.pricingBundle) {
         route.query.subscription = this.pricingBundle;
       }
+      // TODO: Uncomment once other TH apps are deployed
+      // if (routeName === 'telehealth') {
+      //   route.query.from = 'telehealth';
+      // }
       if (routeName === 'booking') {
         route.query.from = 'booking';
+        // - This was done since booking is a special case in health facility types
+        if (this.queryOps?.type) route.query.type = this.queryOps.type;
       }
+      // Pricing pre-seletion
+      if (this.queryOps?.plan) route.query.plan = this.queryOps.plan;
+
+      // - Flag for trial
+      if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
       this.$router.push(route);
     },
   },

@@ -3,16 +3,12 @@
     //- BACK BUTTON
     v-row(v-if="showBackButton").mb-5
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
-        v-icon(small left) mdi-arrow-left
+        v-icon(small left) {{ mdiArrowLeft }}
         | Back
     //- LOADING
     v-row(v-if="loading" justify="center")
-      v-col(cols="12" md="4").text-center
-        v-progress-circular(
-          color="primary"
-          indeterminate
-          size="100"
-        )
+      v-col.text-center
+        v-skeleton-loader(type="card-heading, list-item-three-line, actions" elevation="2")
     //- EMPTY SERVICES
     v-row(v-else-if="items.length === 0" justify="center")
       v-col(cols="12" md="4").text-center
@@ -24,29 +20,46 @@
         :key="key"
         :class="{'mt-0': key === 0}"
       ).my-3
+        doc-item-card(
+          v-if="!!item.uid"
+          minified
+          show-book-buttons
+          :organization="organization"
+          :doctor="item"
+          :is-preview-mode="isPreviewMode"
+          :read-only="readOnly"
+          :is-booking-enabled="isBookingEnabled"
+        )
         service-item(
+          v-else
           :item="item"
           :organization="organization"
           :is-doctor="activeServiceType === 'doctors'"
           :is-preview-mode="isPreviewMode"
           :read-only="readOnly"
+          :is-booking-enabled="isBookingEnabled"
         )
     //- PAGINATION
-    v-row
+    v-row(v-if="items.length")
       v-spacer
       v-pagination(
         v-model="itemsPage"
         :length="itemsPaginationLength"
         total-visible="10"
+        :next-icon="mdiChevronRight"
+        :prev-icon="mdiChevronLeft"
       )
       v-spacer
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import { mdiArrowLeft, mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import DocItemCard from '../DocItemCard';
 import ServiceItem from './service-item';
 export default {
   components: {
+    DocItemCard,
     ServiceItem,
   },
   props: {
@@ -90,10 +103,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    isBookingEnabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     return {
       itemsPage: 1,
+      // icons
+      mdiArrowLeft,
+      mdiChevronRight,
+      mdiChevronLeft,
     };
   },
   computed: {

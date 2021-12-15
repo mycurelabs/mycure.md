@@ -1,8 +1,10 @@
 <template lang="pug">
   v-app#app
-    //- app-bar(v-if="!loading")
-    //- div(style="padding-top: 45px;")
-    div.mb-10
+    //- NOTE: remove loading
+    //- so solve seo issue
+    //- do not remove yet
+    //- div(v-if="!loading")
+    div
       nuxt
     app-footer(v-if="!loading")
 </template>
@@ -20,7 +22,7 @@ export default {
       loading: true,
     };
   },
-  mounted () {
+  created () {
     this.loading = false;
   },
 };

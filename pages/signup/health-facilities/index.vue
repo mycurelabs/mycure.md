@@ -1,238 +1,271 @@
 <template lang="pug">
-  v-container(v-if="!loading.page")
-    v-toolbar(
-      color="transparent"
-      dense
-      flat
-    )
-      img(
-        src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-        alt="White MYCURE Logo"
-        width="150"
-        @click="$router.push({ name: 'index' })"
-      )
-      v-spacer
-      span Already have an account?&nbsp;&nbsp;
-      v-btn(
-        depressed
-        color="primary"
-        :to="{ name: 'signin' }"
-      ).text-none Log In
-    v-row(justify="center" align="center").mt-2
-      v-col(cols="12" md="7" justify="center" align="center")
-        h1(v-if="!$isMobile").mb-5 Level up your healthcare services and get more patients safely
-        h2(v-else style="line-height: 1.25em;").mb-5 Level up your healthcare services and get more patients safely
-        v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
-          v-row(:no-gutters="$isMobile")
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-1.order-sm-1
-              //- First Name
-              v-text-field(
-                ref="firstNameRef"
-                v-model="firstName"
-                label="First Name"
-                outlined
-                :rules="isRequired"
-                :disabled="loading.form"
-              )
-                template(v-slot:append v-if="firstName")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-2.order-sm-2
-              //- Last Name
-              v-text-field(
-                v-model="lastName"
-                label="Last Name"
-                outlined
-                :rules="isRequired"
-                :disabled="loading.form"
-              )
-                template(v-slot:append v-if="lastName")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-3.order-sm-3
-              //- Email
-              v-text-field(
-                v-model="email"
-                label="Email"
-                outlined
-                :rules="emailRules"
-                :disabled="loading.form"
-                @keyup="checkEmail"
-              )
-                template(v-slot:append v-if="isEmailValid")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-4.order-sm-6
-              //- v-text-field(
-              //-   v-model="mobileNo"
-              //-   label="Mobile No."
-              //-   outlined
-              //-   :rules="[isRequired]"
-              //- )
-              //- Mobile No.
-              v-text-field(
-                v-model="mobileNo"
-                label="Mobile Number"
-                type="number"
-                outlined
-                :prefix="`+${countryCallingCode}`"
-                :disabled="loading.form"
-                :rules="[...isRequired, mobileNumberRule]"
-                @keypress="checkNumberInput($event)"
-              )
-                template(slot="append")
-                  div(style="margin-top: -8px")
-                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
-                    v-tooltip(bottom)
-                      template(v-slot:activator="{ on }")
-                        v-btn(icon @click="countryDialog = true" v-on="on")
-                          img(width="25" :src="countryFlag").flag-img.mt-2
-                      | Change Country
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-5.order-sm-4
-              //- Password
-              v-text-field(
-                v-model="password"
-                label="Password"
-                outlined
-                :type="showPass ? 'text' : 'password'"
-                :rules="passwordRules"
-                :disabled="loading.form"
-                :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                @click:append="showPass = !showPass"
-              )
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-6.order-sm-5
-              //- Confirm Password
-              v-text-field(
-                v-model="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                outlined
-                :rules="[...isRequired, matchPasswordRule]"
-                :disabled="loading.form"
-              )
-                template(v-slot: append v-if="confirmPassword && confirmPassword === password")
-                  v-icon(color="accent") mdi-check
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-7.order-sm-7
-              v-select(
-                v-model="facilityType"
-                label="Health Facility Type"
-                item-text="text"
-                item-value="value"
-                outlined
-                :items="facilityTypes"
-                :rules="isRequired"
-                :disabled="loading.form"
-                :error="errorFacilityType"
-                :error-messages="errorMessagesFacilityType"
-                return-object
-              )
-                template(v-slot:item="{ item }")
-                  span {{ item.text }}&nbsp;
-                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
-                template(v-slot:selection="{ item }")
-                  span {{ item.text }}&nbsp;
-                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
-              //- Pricing
-              //- v-autocomplete(
-              //-   v-if="facilityType"
-              //-   v-model="subscription"
-              //-   label="Pricing Bundle"
-              //-   item-text="title"
-              //-   item-value="value"
-              //-   outlined
-              //-   :items="pricingBundles"
-              //-   :rules="isRequired"
-              //-   :disabled="loading.form"
-              //-   return-object
-              //- )
-            v-col(
-              cols="12"
-              md="6"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-8.order-sm-8
-              v-select(
-                v-model="roles"
-                label="Your Role"
-                item-text="text"
-                item-value="value"
-                outlined
-                :error-messages="errorMessagesRoles"
-                :items="userRoles"
-                :rules="isRequired"
-                :disabled="loading.form"
-                :error="errorRoles"
-              )
-              v-text-field(
-                v-if="isDoctor"
-                type="number"
-                v-model="doc_PRCLicenseNo"
-                label="PRC License No"
-                outlined
-                hint="Please enter your PRC License No for verification"
-                :disabled="loading.form"
-                :rules="isRequired"
-              )
-            v-col(
-              cols="12"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-9.order-sm-9.mb-5
-              v-checkbox(
-                v-model="agree"
-                hide-details
-                color="primary"
-                style="margin-top: 0px"
-                :disabled="loading.form"
-              )
-                template(slot="label")
-                  span
-                    | I agree to MYCURE's&nbsp;
-                    a(@click.stop="goToTerms") Terms of Use&nbsp;
-                    | and&nbsp;
-                    a(@click.stop="goToPrivacy") Privacy Policy.
-              v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
-            v-col(
-              cols="12"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-10.order-sm-10
-              v-btn(
-                type="submit"
-                color="primary"
-                style="min-width: 200px;"
-                large
-                :disabled="isProceedDisabled"
-                :loading="loading.form"
-                :block="$isMobile"
-              ).text-none #[b Proceed #[v-icon mdi-arrow-right]]
-              stripe-checkout(
-                ref="checkoutRef"
-                :pk="stripePK"
-                :sessionId="stripeCheckoutSessionId"
-              )
+  v-container(fluid fill-height).pa-0.ma-0
+    div(v-if="loading.page").white--text
+      h1.font-24 Register
+      p Level up your healthcare services and get more patients safely
+    v-row(v-else style="height: 100vh")
+      v-col(cols="6" v-if="!$isMobile").pa-0.bg-panel
+        v-row(style="height: 100vh" align="start" justify="center")
+          v-col.text-center.pt-16.pr-14
+            img(
+              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+              alt="White MYCURE Logo"
+              width="300px"
+              height="83.76px"
+              @click="$router.push({ name: 'index' })"
+            ).link-to-home
+      v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'py-8']").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
+          v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
+            v-row
+              v-col(cols="10")
+                h1.font-24 Register
+                p Level up your healthcare services and get more patients safely
+              v-spacer
+              v-tooltip(top)
+                template(v-slot:activator="{ on, attrs }")
+                  v-btn(
+                    v-bind="attrs"
+                    v-on="on"
+                    icon
+                    color="error"
+                    large
+                    @click="goToPrevPage"
+                  ).ma-4
+                    v-icon(large) {{ mdiArrowULeftTop }}
+                span Back
+            p.mb-2 Personal Info
+            v-row(:no-gutters="$isMobile").px-2
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-1.order-sm-1
+                //- First Name
+                v-text-field(
+                  ref="firstNameRef"
+                  v-model="firstName"
+                  placeholder="First Name"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :rules="isRequired"
+                  :disabled="loading.form"
+                ).ma-0.no-details-margin
+                  template(v-slot:append v-if="firstName")
+                    v-icon(color="accent") {{ mdiCheck }}
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-2.order-sm-2
+                //- Last Name
+                v-text-field(
+                  v-model="lastName"
+                  placeholder="Last Name"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :rules="isRequired"
+                  :disabled="loading.form"
+                ).ma-0.no-details-margin
+                  template(v-slot:append v-if="lastName")
+                    v-icon(color="accent") {{ mdiCheck }}
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-3.order-sm-3
+                //- Email
+                v-text-field(
+                  v-model="email"
+                  placeholder="Email"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :rules="emailRules"
+                  :disabled="loading.form"
+                  @keyup="checkEmail"
+                ).mb-0.no-details-margin
+                  template(v-slot:append v-if="isEmailValid && emailUnique")
+                    v-icon(color="accent") {{ mdiCheck }}
+              v-col(
+                cols="12"
+                md="6"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-4.order-sm-6
+                //- Mobile No.
+                v-text-field(
+                  v-model="mobileNo"
+                  placeholder="Mobile Number"
+                  type="number"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :prefix="`+${countryCallingCode}`"
+                  :disabled="loading.form"
+                  :rules="[...isRequired, mobileNumberRule]"
+                  @keypress="checkNumberInput($event)"
+                ).mb-0.no-details-margin
+                  template(slot="append")
+                    div(style="margin-top: -8px")
+                      v-icon(v-if="mobileNoError && mobileUnique" color="accent").ml-n10 {{ mdiCheck }}
+                      v-tooltip(bottom)
+                        template(v-slot:activator="{ on }")
+                          v-btn(icon @click="countryDialog = true" v-on="on")
+                            img(width="25" height="18.75" :src="countryFlag" :alt="countryFlag").flag-img.mt-2
+                        | Change Country
+              v-col(
+                cols="12"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-5.order-sm-4
+                //- Password
+                v-text-field(
+                  v-model="password"
+                  placeholder="Password"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :type="showPass ? 'text' : 'password'"
+                  :rules="passwordRules"
+                  :disabled="loading.form"
+                  :append-icon="showPass ? mdiEyeOff : mdiEye"
+                  @click:append="showPass = !showPass"
+                ).no-details-margin
+              v-col(
+                cols="12"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-6.order-sm-5
+                //- Confirm Password
+                v-text-field(
+                  v-model="confirmPassword"
+                  placeholder="Confirm Password"
+                  type="password"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :rules="[...isRequired, matchPasswordRule]"
+                  :disabled="loading.form"
+                ).no-details-margin
+                  template(v-slot: append v-if="confirmPassword && confirmPassword === password")
+                    v-icon(color="accent") {{ mdiCheck }}
+            p.mt-5.mb-2 Facility Info
+            v-row(:no-gutters="$isMobile").px-2
+              v-col(
+                cols="12"
+                md="8"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-7.order-sm-7
+                div(@click="chooseFacilityTypeDialog = true")
+                  v-select(
+                    v-model="facilityType"
+                    placeholder="Health Facility Type"
+                    item-text="text"
+                    item-value="value"
+                    outlined
+                    :dense="!$isWideScreen"
+                    readonly
+                    append-icon="$dropdown"
+                    :items="availableFacilityTypes"
+                    :rules="isRequired"
+                    :error="errorFacilityType"
+                    :error-messages="errorMessagesFacilityType"
+                    @click:append="chooseFacilityTypeDialog = true"
+                  ).no-details-margin
+                    template(v-slot:item="{ item }")
+                      span {{ item.text }}&nbsp;
+                        v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+                    template(v-slot:selection="{ item }")
+                      span {{ item.text }}&nbsp;
+                        v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+              v-col(
+                cols="12"
+                md="4"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-8.order-sm-8
+                v-select(
+                  v-model="roles"
+                  placeholder="Your Role"
+                  item-text="text"
+                  item-value="value"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :error-messages="errorMessagesRoles"
+                  :items="userRoles"
+                  :rules="isRequired"
+                  :disabled="loading.form"
+                  :error="errorRoles"
+                ).no-details-margin
+              v-col(
+                cols="12"
+                :class="{ 'pa-1': !$isMobile }"
+              ).order-md-8.order-sm-8
+                v-text-field(
+                  v-if="isDoctor"
+                  v-model="doc_PRCLicenseNo"
+                  type="number"
+                  placeholder="PRC License No"
+                  outlined
+                  :dense="!$isWideScreen"
+                  :disabled="loading.form"
+                  :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'Value not allowed' : 'Please enter your PRC License No for verification')] "
+                ).no-details-margin
+                  //- hint="Please enter your PRC License No for verification"
+            div(v-if="!invitation").font-italic.font-gray.mt-4
+              span Have a referral code?&nbsp;
+              a(@click="codeDialog = true") Click here
+            div(v-else).font-italic.font-gray.mt-4
+              span Referral code has been applied.&nbsp;
+              a(@click="codeDialog = true") Change
+            br
+            v-checkbox(
+              v-model="hasPromoCode"
+              hide-details
+              color="primary"
+              height="57.97px"
+              :on-icon="mdiCheckboxMarkedOutline"
+              :off-icon="mdiCheckboxBlankOutline"
+              :disabled="loading.form"
+            ).mt-0
+              template(slot="label")
+                span Apply a promo code (Optional)&nbsp;&nbsp;
+                div(width="200px")
+                  v-text-field(
+                    v-if="hasPromoCode"
+                    v-model="stripeCoupon"
+                    :rules="[v => !!v && hasPromoCode && (stripeCoupon > 0) || (stripeCoupon < 0 ? 'Value not allowed' : 'Please input your promo code')]"
+                    placeholder="Promo Code"
+                    outlined
+                    dense
+                    clearable
+                    :disabled="loading.form"
+                    :class="{'pt-1': $isMobile}"
+                    @click.stop
+                  ).no-details-margin
+            v-checkbox(
+              v-model="agree"
+              color="primary"
+              :disabled="loading.form"
+              :on-icon="mdiCheckboxMarkedOutline"
+              :off-icon="mdiCheckboxBlankOutline"
+            ).ma-0.no-details-margin
+              template(slot="label")
+                span I agree to MYCURE's&nbsp;
+                  a(target="_blank" rel="noopener noreferrer" href="../terms" @click.stop style="text-decoration: none") Terms of Use&nbsp;
+                  | and&nbsp;
+                  a(target="_blank" rel="noopener noreferrer" href="../privacy-policy" @click.stop style="text-decoration: none") Privacy Policy
+            v-row.mt-1.mb-2
+              v-col(cols="12")
+                v-btn(
+                  type="submit"
+                  color="primary"
+                  block
+                  large
+                  :disabled="isProceedDisabled"
+                  :loading="loading.form"
+                ).text-none Proceed
+                stripe-checkout(
+                  ref="checkoutRef"
+                  :pk="stripePK"
+                  :sessionId="stripeCheckoutSessionId"
+                )
+            span Already have an account?&nbsp;
+            a(href="../signin" style="text-decoration: none") Log in
+    v-snackbar(:value="error" type="error" color="red" timeout="2000").mt-5 {{ errorMessage }}
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
@@ -240,16 +273,17 @@
           v-text-field(
             v-model="searchString"
             label="Search Country"
-            append-icon="mdi-magnify"
+            :append-icon="mdiMagnify"
             solo
             hide-details
             clearable
             flat
+            @click:clear="searchString = ''"
           )
         v-divider
         v-card-text(style="height: 300px").pa-0
           v-list
-            v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
+            v-list-item(v-for="(country, key) in countriesList" @click="selectCountry(country)" :key="key")
               v-list-item-action
                 img(width="25" :src="country.flag")
               v-list-item-content
@@ -257,31 +291,97 @@
               strong +{{ country.callingCodes[0] }}
     //- Email Verification Dialog
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
+    //- Choose Facility Type Dialog
+    choose-facility-type(
+      v-model="chooseFacilityTypeDialog"
+      :facility-types="availableFacilityTypes"
+      :persistent="false"
+      @select="onFacilityTypeSelect($event)"
+    )
+    //- referral code dilog
+    v-dialog(v-model="codeDialog" :width="$isMobile ? '100%' : '60%'" content-class="rounded-xl").ma-0
+      v-card(height="100%" width="100%").rounded-xl
+        v-card-text.pa-0
+          div(style="position: relative; left: 0; top: 0;")
+            img(
+              src="~/assets/images/sign-up/Referral-code.png"
+              width="100%"
+              style="background: #D7F7FE; position: relative; left: 0; top: 0;"
+            ).rounded-tl-xl.rounded-tr-xl
+            div(style="position: absolute; top: 35%; left: 0; width: 100%")
+              v-col(cols="12")
+                v-row(justify="center")
+                  v-col(cols="5" sm="4")
+                    img(
+                      width="100%"
+                      src="~/assets/images/sign-up/referral-fg.png"
+                    )
+          v-col(cols="12" :class="$isMobile ? 'pt-14' : 'pt-12' ").text-center.pt-12.px-4.pb-2
+            div.mt-10.mb-5
+              span.font-m.black--text.font-weight-bold Enter Referral Code
+            v-col(cols="12")
+              v-row(justify="center")
+                v-col(cols="12" sm="5")
+                  v-text-field(
+                    v-model="invitation"
+                    label="Referral Code (Optional)"
+                    hint="6 character referral code"
+                    outlined
+                    hide-details
+                    :dense="$isMobile"
+                    clearable
+                    :disabled="loading.form"
+                  ).rounded-md
+              v-row(justify="end")
+                v-col(cols="1" align="end")
+                  v-row(justify="end" align="end")
+                    v-btn(
+                      fab
+                      :width="$isWideScreen ? '100' : '70'"
+                      :height="$isWideScreen ? '100' : '70'"
+                      color="primary"
+                      @click="codeDialog = false"
+                    )
+                      v-icon {{ mdiArrowRight }}
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
+import omit from 'lodash/omit';
+import {
+  mdiArrowRight,
+  mdiMagnify,
+  mdiCheck,
+  mdiEye,
+  mdiEyeOff,
+  mdiCheckboxMarkedOutline,
+  mdiCheckboxBlankOutline,
+  mdiArrowULeftTop,
+} from '@mdi/js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-// import { get } from 'lodash';
+import headMeta from '~/utils/head-meta';
 import {
   getCountries,
   getCountry,
-  // signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
   emailRules,
   passwordRules,
 } from '~/utils/text-field-rules';
-// import { CLINICS_PRICING } from '~/constants/pricing';
-// import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+import { DOCTOR_TYPES } from '~/services/subscription-packages';
+import ChooseFacilityType from '~/components/signup/ChooseFacilityType';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
+
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
+
 export default {
   components: {
+    ChooseFacilityType,
     EmailVerificationDialog,
   },
-  layout: 'user',
+  layout: 'empty',
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
@@ -299,6 +399,7 @@ export default {
           types: ['doctor'],
         },
         value: 'doctor',
+        image: 'Doctor',
       },
       {
         text: 'Outpatient Clinic',
@@ -307,6 +408,7 @@ export default {
           types: ['clinic'],
         },
         value: 'clinic',
+        image: 'Outpatient',
       },
       {
         text: 'Diagnostics',
@@ -315,41 +417,8 @@ export default {
           types: ['diagnostic'],
         },
         value: 'diagnostic',
+        image: 'Diagnostics',
       },
-      // {
-      //   text: 'Doctor Booking',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['doctor', 'doctor-booking'],
-      //   },
-      //   value: 'doctor-booking',
-      // },
-      // {
-      //   text: 'Clinic Booking',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['clinic', 'clinic-booking'],
-      //   },
-      //   value: 'clinic-booking',
-      // },
-      // {
-      //   text: 'Doctor Telehealth',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['doctor', 'doctor-telehealth'],
-      //   },
-      //   value: 'doctor-telehealth',
-      //   chip: 'Telehealth',
-      // },
-      // {
-      //   text: 'Clinic Telehealth',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['clinic', 'clinic-telehealth'],
-      //   },
-      //   value: 'clinic-telehealth',
-      //   chip: 'Telehealth',
-      // },
     ];
     this.userRoles = [
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
@@ -368,14 +437,18 @@ export default {
       facilityType: {},
       subscription: null,
       doc_PRCLicenseNo: null,
+      invitation: null,
+      stripeCoupon: null,
       roles: [],
       agree: '',
+      hasPromoCode: null,
       // - Stripe
       stripeCheckoutSessionId: null,
       // Country Dialog
       countryDialog: false,
       searchString: '',
       countries: [],
+      countriesList: [],
       countryCallingCode: '',
       countryFlag: '',
       // UI States
@@ -385,6 +458,7 @@ export default {
         form: false,
       },
       emailVerificationMessageDialog: false,
+      chooseFacilityTypeDialog: false,
       // validity
       valid: false, // Overall form details validity
       isEmailValid: false, // email validity
@@ -396,16 +470,40 @@ export default {
       errorMessagesFacilityType: '',
       errorRoles: false,
       errorMessagesRoles: '',
+      codeDialog: false,
+      emailUnique: true,
+      mobileUnique: true,
+      // icons
+      mdiArrowRight,
+      mdiMagnify,
+      mdiCheck,
+      mdiEye,
+      mdiEyeOff,
+      mdiCheckboxMarkedOutline,
+      mdiCheckboxBlankOutline,
+      mdiArrowULeftTop,
     };
   },
+  head () {
+    return headMeta({
+      title: 'Signup to MYCURE',
+      description: 'Welcome to MYCURE Complete Clinic Management System. Sign up today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
+      socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
+    });
+  },
   computed: {
+    availableFacilityTypes () {
+      // Diagnostic is hidden in telehealth signup
+      return this.$route.query.from === 'telehealth'
+        ? [...this.facilityTypes].slice(0, 2)
+        : this.facilityTypes;
+    },
     isDoctor () {
       return this.roles.includes('doctor');
     },
-    // pricingBundles () {
-    //   if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
-    //   return this.pricingConstants.slice(0, 3);
-    // },
+    preBundle () {
+      return this.$route.query.plan;
+    },
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
@@ -416,14 +514,17 @@ export default {
     isProceedDisabled () {
       return this.loading.form || !this.valid || !this.agree || !this.areSelectionsValid;
     },
+    numPRC () {
+      return this.doc_PRCLicenseNo ? parseInt(this.doc_PRCLicenseNo) : 0;
+    },
   },
   watch: {
     searchString (val) {
-      if (typeof val !== 'string' || val === '') {
+      if (typeof val !== 'string') {
         return;
       }
       const needle = val.toLowerCase();
-      this.countries = this.countries.filter(v => v?.name?.toLowerCase().startsWith(needle)); // eslint-disable-line
+      this.countriesList = this.countries.filter(v => v?.name?.toLowerCase().includes(needle)); // eslint-disable-line
     },
     facilityType (val) {
       if (!isEmpty(val)) {
@@ -437,14 +538,18 @@ export default {
         this.errorMessagesRoles = '';
       }
     },
+    hasPromoCode (val) {
+      if (!val) this.stripeCoupon = null;
+    },
   },
-  created () {
-    this.loading.page = false;
+  mounted () {
     this.init();
+    this.loading.page = false;
   },
   methods: {
     async init () {
       try {
+        this.$vuetify.theme.dark = false;
         this.loading.form = true;
         // - Fetch countries
         await this.getCountries();
@@ -453,6 +558,7 @@ export default {
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
+        // - Check if there is pending session
         const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
         if (localStorageData) {
           this.firstName = localStorageData.firstName;
@@ -462,12 +568,22 @@ export default {
           this.mobileNo = localStorageData.mobileNo;
           this.roles = localStorageData.roles;
           this.doc_PRCLicenseNo = localStorageData.doc_PRCLicenseNo;
+          this.invitation = localStorageData.invitation;
+          this.stripeCoupon = localStorageData.stripeCoupon;
         }
 
         // Query params handling
         if (this.$route.query.email) this.email = this.$route.query.email;
-        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+
+        if (this.$route.query.type) {
+          this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+        } else {
+          this.chooseFacilityTypeDialog = true;
+        }
+
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
+        if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
+        if (this.stripeCoupon) this.hasPromoCode = true;
       } catch (e) {
         console.error(e);
       } finally {
@@ -497,27 +613,39 @@ export default {
         if (!this.$refs.formRef.validate()) {
           return;
         }
-
         // Map org types and subscription
+        const filledFacilityType = isObject(this.facilityType) ? this.facilityType.value : this.facilityType;
+        const { orgProps } = this.facilityTypes.find(type => type.value === filledFacilityType);
         const organizationPayload = {
-          ...this.facilityType.orgProps,
+          ...orgProps,
         };
+
+        // Route queries
+        const { trial, plan, from } = this.$route.query;
 
         // NOTE: See SignupButton component
         // for the logic of query params being
         // passed to the url before going to
         // signup page.
-        if (this.$route.query.from === 'booking') {
-          if (this.$route.query.type === 'doctor') {
+        // `from` has value of either 'telehealth' or 'booking'
+        if (from && ['telehealth', 'booking'].includes(from)) {
+          if (this.$route.query.type === 'doctor' || this.facilityType === 'doctor') {
             organizationPayload.types = [
               'doctor',
-              'doctor-booking',
+              `doctor-${from}`,
             ];
           }
-          if (this.$route.query.type === 'clinic') {
+          if (this.$route.query.type === 'clinic' || this.facilityType === 'clinic') {
             organizationPayload.types = [
               'clinic',
-              'clinic-booking',
+              `clinic-${from}`,
+            ];
+          }
+          // Diagnostic telehealth not yet available business-wise
+          if (from === 'booking' && (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic')) {
+            organizationPayload.types = [
+              'diagnostic',
+              `diagnostic-${from}`,
             ];
           }
         }
@@ -532,37 +660,43 @@ export default {
           organization: organizationPayload,
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
+          invitation: this.invitation,
+          stripeCoupon: this.stripeCoupon,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
+          // - To be omitted in actual submit in step 2
+          ...trial && { trial: true },
+          ...plan && { plan },
+          ...from && { from },
+          organizationType: this.facilityType,
         };
-
-        // HOTFIX:
-        // if (this.doc_PRCLicenseNo !== null) {
-        //   if (Number.isNaN(+this.doc_PRCLicenseNo)) {
-        //     alert('PRC License No must be a number');
-        //     return;
-        //   }
-        //   payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
-        // }
-        if (this.doc_PRCLicenseNo) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        // Only include PRC when user is a doctor
+        if (this.doc_PRCLicenseNo && this.isDoctor) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
 
         const [
           emailResultUnique,
           mobileResultUnique,
         ] = await Promise.all([
           this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
-          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', this.mobileNo),
+          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
         ]);
+        this.emailUnique = emailResultUnique;
+        this.mobileUnique = mobileResultUnique;
         if (!emailResultUnique || !mobileResultUnique) {
           this.error = true;
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
         };
         this.saveModel(payload);
+        // Record track
+        this.$gtag.event('submit', {
+          event_category: 'signup',
+          event_label: 'signup-step-1',
+        });
         this.$router.push({
           name: 'signup-health-facilities-pricing',
           query: {
             ...this.$route.query,
-            type: this.facilityType?.value,
+            type: this.facilityType?.value || this.$route.query.type,
           },
         });
         // const data = await signupFacility(payload);
@@ -606,9 +740,12 @@ export default {
         if (process.browser) {
           if (!localStorage.getItem('mycure:countries')) {
             this.countries = await getCountries();
+            this.countriesList = await getCountries();
+            console.log('countries', this.countries);
             localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
           } else {
             this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+            this.countriesList = JSON.parse(localStorage.getItem('mycure:countries'));
           }
         }
       } catch (e) {
@@ -661,6 +798,24 @@ export default {
       this.saveModel(null);
       this.$router.push({ name: 'signin' });
     },
+    onFacilityTypeSelect (type) {
+      this.facilityType = type;
+      /*
+        Remove the pricing plan query since you've changed facility type.
+        Remove the trial flag, when doctor has been selected.
+      */
+      this.$router.replace({
+        query: {
+          ...omit(this.$route.query, ['plan', 'trial']),
+          ...(!DOCTOR_TYPES.includes(type) && this.$route.query.trial) && { trial: true },
+          type,
+        },
+      });
+      this.chooseFacilityTypeDialog = false;
+    },
+    goToPrevPage () {
+      this.$router.go(-1);
+    },
   },
 };
 </script>
@@ -674,5 +829,27 @@ export default {
 ::v-deep input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.no-scroll-2 {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-details-margin >>> .v-text-field__details {
+  margin-bottom: 0px !important;
+}
+.bg-panel {
+  background-image: url('~/assets/images/sign-up/Signup-bg.png');
+  background-size: cover;
+  background-position: center center;
+}
+.rounded-ref-dialog {
+  border-radius: 50px;
 }
 </style>

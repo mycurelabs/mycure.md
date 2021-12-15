@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app#app
-    mc-navbar(v-if="!loading")
+    mc-navbar
     div(style="padding-top: 35px")
       nuxt
-    mc-footer(v-if="!loading")
+    mc-footer
 </template>
 
 <script>
@@ -21,9 +21,11 @@ export default {
       loading: true,
     };
   },
-  mounted () {
+  created () {
     this.$vuetify.theme.dark = false;
-    this.loading = false;
+  },
+  mounted () {
+    window.$crisp.push(['do', 'chat:show']);
   },
 };
 </script>
@@ -33,127 +35,16 @@ export default {
   max-width: 100%;
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif, 'Arial';
-};
-
-/* --FONT CSS-- */
-
-/* Font Styles */
-.font-poppins {
-  font-family: 'Poppins', 'sans-serif' !important;
 }
-.font-open-sans {
-  font-family: 'Open Sans', 'sans-serif' !important;
-}
-.font-weight-semibold {
-  font-weight: 600 !important;
-}
-/* Font Sizes */
-.font-2xl {
-  font-size: 65px !important;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-}
-.font-xl {
-  font-size: 55px;
-  line-height: 1;
-  letter-spacing: -0.5px;
-}
-.font-l {
-  font-size: 40px !important;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-}
-.font-m {
-  font-size: 28px !important;
-  letter-spacing: -0.5px;
-}
-.font-s {
-  font-size: 18px !important;
-}
-.font-xs {
-  font-size: 16px !important;
-}
-.font-60 {
-  font-size: 60px !important;
-}
-.font-50 {
-  font-size: 50px !important;
-}
-.font-48 {
-  font-size: 48px !important;
-}
-.font-45 {
-  font-size: 45px !important
-}
-.font-40 {
-  font-size: 40px !important
-}
-.font-36 {
-  font-size: 36px !important
-}
-.font-35 {
-  font-size: 35px !important
-}
-.font-30 {
-  font-size: 30px !important
-}
-.font-25 {
-  font-size: 25px !important
-}
-.font-24 {
-  font-size: 24px !important
-}
-.font-22 {
-  font-size: 22px !important
-}
-.font-21 {
-  font-size: 21px !important
-}
-.font-18 {
-  font-size: 18px !important
-}
-.font-16 {
-  font-size: 16px !important
-}
-.font-14 {
-  font-size: 14px !important
-}
-.font-12 {
-  font-size: 12px !important
-}
-.font-10 {
-  font-size: 10px !important;
-}
-/* Font Color */
-.font-gray {
-  /* color: rgba(0,0,0,0.5); */
-  color: #787878;
-}
-/* secondary */
-.header-gray {
-  color: #4D4D4D;
-}
-.font-usp-primary {
-  color: #033F58;
-}
-
-.font-usp-secondary {
-  color: #257890;
-}
-
 /* --OTHER CSS-- */
-.edge-divider{
-  margin-right: 11% !important;
-  margin-left: 11% !important;
-}
 .lh-title {
   line-height: 1.25em !important
 }
 .pre-white-space {
   white-space: pre;
 }
-.cta-btn {
-  padding: 25px 30px 25px 30px;
+.page-container {
+  padding-left: 0px;
+  padding-right: 0px;
 }
-
 </style>

@@ -29,7 +29,8 @@ export default {
   layout: 'empty',
   head () {
     return {
-      title: 'Trial Active - MYCURE Sign Up',
+      title: 'Payment Successful - MYCURE Sign Up',
+      description: 'Congratulations! You can now starting exploring MYCURE.',
     };
   },
   methods: {

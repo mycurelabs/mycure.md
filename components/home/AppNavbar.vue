@@ -4,53 +4,80 @@
       height="50"
       app
       dark
-      elevate-on-scroll
-      style="padding-top: 1px;"
-    ).nav-bar
-      v-container.pa-0
-        v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-            v-col.d-flex
-              nuxt-link(to="/")
-                img(
-                  src="~/assets/images/MYCURE Logo - white.png"
-                  width="120"
-                  alt="MYCURE logo"
-                ).mt-1.mr-1
-              template(v-if="!$isMobile")
-                v-btn(
-                  v-for="(nav, key) in navs"
-                  text
-                  depressed
-                  tile
-                  large
-                  :key="key"
-                  @click="onNavClick(nav)"
-                ).text-none.font-12
-                  span.font-weight-medium {{ nav.name }}
-                //- v-btn(
-                //-   text
-                //-   depressed
-                //-   large
-                //-   :to="{ name: 'pxp' }"
-                //- ).text-none.mr-2.font-12 #[b For Patients]
-                v-spacer
-                mc-btn(
-                  event-label="login"
-                  text
-                  depressed
-                  large
-                  tile
-                  :to="{ name: 'signin' }"
-                ).text-none.font-12 #[span.font-weight-medium LOG IN]
-                signup-button(
-                  color="success"
-                  large
-                  tile
-                ).text-none.font-12.font-weight-medium SIGN UP
-              template(v-else)
-                v-spacer
-                v-app-bar-nav-icon(@click.stop="drawer = !drawer")
+      elevation="0"
+    ).nav-bar.py-0
+      v-container(fluid)
+        v-container
+          v-row(justify="center")
+            generic-panel(
+              :column="$isMobile ? 12 : 10"
+              :row-bindings="{ justify: 'center', align: 'center' }"
+              disable-parent-padding
+            )
+              v-col(cols="12")
+                v-row
+                  nuxt-link(to="/")
+                    img(
+                      src="~/assets/images/mycure-logo-white.png"
+                      alt="MYCURE logo"
+                      width="120px"
+                      height="34.46px"
+                    ).mt-2.mr-4
+                  template(v-if="!$isMobile")
+                    template(v-for="(nav, key) in navs")
+                      v-menu(v-if="nav.isMenu" offset-y)
+                        template(v-slot:activator="{ on }")
+                          v-btn(
+                            v-on="on"
+                            text
+                            depressed
+                            height="50"
+                            tile
+                          ).text-none.font-12.font-weight-medium
+                            | {{ nav.name }}
+                            v-icon(small right) {{ mdiChevronDown }}
+                        v-list
+                          v-list-item(
+                            v-for="(item, key) in filteredMenuItems(nav.menuItems)"
+                            :key="key"
+                            :to="{ name: item.route }"
+                            exact-path
+                          )
+                            v-list-item-title {{ item.name }}
+                      v-btn(
+                        v-else
+                        text
+                        depressed
+                        tile
+                        height="50"
+                        :key="key"
+                        :to="{ name: nav.route }"
+                      ).text-none.font-12
+                        span.font-weight-medium {{ nav.name }}
+                    //- v-btn(
+                    //-   text
+                    //-   depressed
+                    //-   large
+                    //-   :to="{ name: 'pxp' }"
+                    //- ).text-none.mr-2.font-12 #[b For Patients]
+                    v-spacer
+                    mc-btn(
+                      event-label="login"
+                      text
+                      depressed
+                      height="50"
+                      tile
+                      :to="{ name: 'signin' }"
+                    ).text-none.font-12 #[span.font-weight-medium LOG IN]
+                    signup-button(
+                      color="success"
+                      height="50"
+                      elevation="0"
+                      tile
+                    ).text-none.font-12.font-weight-medium SIGN UP
+                  template(v-else)
+                    v-spacer
+                    v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
 
     v-navigation-drawer(
       v-if="$isMobile"
@@ -63,19 +90,34 @@
     )
       v-toolbar(flat color="black")
         img(
-          src="~/assets/images/MYCURE Logo - white.png"
+          src="~/assets/images/mycure-logo-white.png"
           width="120"
+          height="34.46px"
           alt="MYCURE logo"
         )
         v-spacer
         v-btn(icon @click="drawer = false")
-          v-icon mdi-close
+          v-icon {{ mdiClose }}
       v-list(dense nav)
         template(v-for="nav in navs")
+          v-list-group(v-if="nav.isMenu" dark).elevation-0
+            template(v-slot:activator)
+              v-list-item-title(dark) {{ nav.name }}
+            v-list
+              v-list-item(
+                v-for="(item, key) in nav.menuItems"
+                :key="key"
+                dense
+                link
+                exact-path
+                :to="{ name: item.route }"
+              )
+                v-list-item-title(dark) {{ item.name }}
           v-list-item(
+            v-else
             dense
             link
-            @click="onNavClick(nav)"
+            :to="{ name: nav.route }"
           )
             v-list-item-title {{ nav.name }}
       v-divider
@@ -95,9 +137,10 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
+import { mdiChevronDown, mdiClose, mdiMenu } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
+import inPh from '~/utils/in-ph';
 export default {
   components: {
     GenericPanel,
@@ -111,21 +154,33 @@ export default {
       },
       {
         name: 'Clinics',
-        route: 'clinics',
+        isMenu: true,
+        menuItems: [
+          { name: 'Outpatient Clinics', route: 'clinics' },
+          { name: 'Hospital OPD', route: 'clinics-hospital' },
+          { name: 'Skin Clinics', route: 'clinics-skin' },
+          { name: 'Dental Clinics', route: 'clinics-dental' },
+          { name: 'Corporate Clinics', route: 'clinics-corporate' },
+        ],
       },
       {
         name: 'Diagnostics',
-        route: 'diagnostics',
+        isMenu: true,
+        menuItems: [
+          { name: 'Diagnostic Centers', route: 'diagnostics' },
+          { name: 'OFW Clinics', route: 'diagnostics-ofw' },
+          { name: 'Mobile Labs', route: 'diagnostics-mobile-labs' },
+        ],
       },
       // TODO: re-enable
       // {
       //   name: 'Hospitals',
       //   route: 'hospitals',
       // },
-      // {
-      //   name: 'Telehealth',
-      //   route: 'telehealth',
-      // },
+      {
+        name: 'Telehealth',
+        route: 'telehealth',
+      },
       {
         name: 'Booking',
         route: 'booking',
@@ -138,17 +193,22 @@ export default {
     ];
     return {
       drawer: false,
+      inPh: false,
+      loading: false,
+      // Icons.
+      mdiChevronDown,
+      mdiClose,
+      mdiMenu,
     };
+  },
+  async created () {
+    // fetch packages
+    this.inPh = await inPh();
+    this.loading = false;
   },
   methods: {
     onNavClick (nav) {
-      if (nav.route === this.$route.name && nav.panel) {
-        VueScrollTo.scrollTo(`#${nav.panel}`, 500, {
-          easing: 'ease',
-          ...nav.panelOffset && { offset: nav.panelOffset },
-        });
-        return;
-      }
+      if (!nav.route) return;
       this.$router.push({
         name: nav.route,
         params: {
@@ -156,11 +216,20 @@ export default {
         },
       });
     },
+    filteredMenuItems (menuItems) {
+      return menuItems.filter((item) => {
+        if (item.route !== 'diagnostics-ofw') return true;
+        return this.inPh;
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
+.nav-bar >>> .v-toolbar__content {
+  padding: 0px 16px;
+}
 .nav-bar {
   background-color: rgba(0,0,0,0.8);
 }

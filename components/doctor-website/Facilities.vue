@@ -1,24 +1,31 @@
 <template lang="pug">
-  v-row#clinics-list-top
+  v-row(style="max-height:700px; overflow-y: auto;")
     v-col(v-if="!clinics.length" cols="12")
-      p.font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
+      v-skeleton-loader(v-if="loading" type="article, actions")
+      p(v-else).font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
     template(v-else)
       v-col(
         v-for="(clinic, key) in clinics"
         :key="key"
         cols="12"
-        md="6"
       )
-        facility-item(:clinic="clinic" :doctor-id="doctorId" :is-preview-mode="isPreviewMode")
+        facility-item(
+          :clinic="clinic"
+          :doctor-id="doctorId"
+          :is-preview-mode="isPreviewMode"
+        )
       v-col(cols="12")
         v-pagination(
           v-model="page"
           :length="length"
+          :next-icon="mdiChevronRight"
+          :prev-icon="mdiChevronLeft"
         )
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
+import { mdiChevronRight, mdiChevronLeft } from '@mdi/js';
+// import VueScrollTo from 'vue-scrollto';
 import FacilityItem from './FacilityItem';
 export default {
   components: {
@@ -45,10 +52,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: true,
+    },
   },
   data () {
     return {
       page: 1,
+      // icons
+      mdiChevronRight,
+      mdiChevronLeft,
     };
   },
   computed: {
@@ -58,7 +72,7 @@ export default {
   },
   watch: {
     page (val) {
-      VueScrollTo.scrollTo('#clinics-list-top', 500, { easing: 'ease' });
+      this.scrollToTop();
       this.$emit('onUpdatePage', val);
       return val;
     },
@@ -67,8 +81,19 @@ export default {
 </script>
 
 <style scoped>
-#clinics-list-top {
+/* #clinics-list-top {
   height: 700px;
+  width: 100%;
   overflow-y: scroll;
+} */
+
+#clinics-list-top::-webkit-scrollbar {
+  width: 11px;
+}
+
+#clinics-list-top::-webkit-scrollbar-thumb {
+  background-color: #04B1E7;
+  border-radius: 6px;
+  border: 3px solid #f3f0dd;
 }
 </style>

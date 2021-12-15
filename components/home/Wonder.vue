@@ -2,25 +2,31 @@
   v-hover(v-slot="{ hover }")
     v-card(
       color="#fafafa"
-      height="100%"
       rounded="xl"
+      :height="cardHeight"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 5"
-    )
+      :class="cardPadding"
+    ).ma-1
       v-card-text.text-center
-        img(
-          :src="require(`~/assets/images/home/${wonder.image}.png`)"
-          :width="$isMobile ? '60%' : '75%'"
-          :alt="wonder.title"
+        picture-source(
+          :image="wonder.image"
+          :image-width="( $isMobile ? '107px' : '115px')"
+          :image-height="( $isMobile ? '145px' : '165px')"
+          :image-alt="wonder.title"
+          custom-path="home/"
+          extension-exclusive
+          image-file-extension=".png"
         )
+        //-   :image-file-extension="$useWebp? '.webp' : '.png'"
+        //- )
         br
         br
-        h2(:class="wonderHeaderClasses").font-weight-bold.lh-title {{ wonder.title }}
-        p(:class="wonderDescriptionClasses").mt-2 {{ wonder.description }}
+        h2.mc-h4.black--text {{ wonder.title }}
+        p.mc-b4.mt-2 {{ wonder.description }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
@@ -33,21 +39,17 @@ export default {
     },
   },
   computed: {
-    wonderHeight () {
-      if (this.$isWideScreen) return '400';
-      if (this.$isRegularScreen) return '325';
-      return '300';
+    cardHeight () {
+      if (this.$isWideScreen) return '365';
+      if (this.wLG) return '335';
+      if (this.wSM) return '320';
+      return '330';
     },
-    wonderHeaderClasses () {
-      return classBinder(this, {
-        wide: ['font-m'],
-        regular: ['font-s'],
-      });
-    },
-    wonderDescriptionClasses () {
-      return classBinder(this, {
-        wide: ['font-s'],
-      });
+    cardPadding () {
+      if (this.$isWideScreen) return 'pt-6';
+      if (this.wLG) return 'pt-6';
+      if (this.wSM) return 'pt-6';
+      return 'pt-3';
     },
   },
 };
