@@ -14,7 +14,7 @@
                   p(v-for="specialty in specialties.slice(0, 4)").mb-0.mc-b2.font-weight-light {{ specialty }}
                 p(v-if="practicingYear").mc-b4.mb-0 {{ `Practicing since ${practicingYear}` }}
               v-spacer
-              share-button(:direction="$isMobile ? 'bottom' : 'top'" color="primary" @clip-success="$emit('clipSuccess')")
+              share-button(:direction="$isMobile ? 'bottom' : 'top'" color="primary" @clipSuccess="$emit('clipSuccess')")
 </template>
 
 <script>
