@@ -6,8 +6,7 @@
       :clinic-name="clinicName"
       :formatted-address="formattedAddress"
       :clinic-phone="clinicPhone"
-      :style="{ height: isVerified ? $isMobile ? '120vh' : '130vh' : '120vh' }"
-      @book="onBook"
+      :style="{ height: $isMobile ? '130vh' : '120vh' }"
       @redirect="onRedirect($event)"
     )
     //- insert panels here
@@ -55,7 +54,7 @@
                   )
               v-tab-item(value="Contact Us")
                 div.grey-bg.pt-8
-                  h3 hello
+                  contact-us(:clinic="clinic")
 
 </template>
 
@@ -67,6 +66,7 @@ import { formatAddress } from '~/utils/formats';
 // components
 import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
+import ContactUs from '~/components/clinic-website/new/ContactUs';
 import GenericPanel from '~/components/generic/GenericPanel';
 // Insert components from '~/compononets/clinic-website/new'
 export default {
@@ -74,6 +74,7 @@ export default {
     MainPanel,
     GenericPanel,
     AboutClinic,
+    ContactUs,
   },
   layout: 'empty',
   async asyncData ({ params, $sdk, redirect, error }) {
@@ -100,6 +101,18 @@ export default {
         page: false,
       },
       tabSelect: 'Services',
+    };
+  },
+  head () {
+    return {
+      script: [
+        {
+          hid: 'google',
+          src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g&libraries=places&v=weekly',
+          defer: true,
+          // callback: () => { this.loading.page = false; },
+        },
+      ],
     };
   },
   computed: {
