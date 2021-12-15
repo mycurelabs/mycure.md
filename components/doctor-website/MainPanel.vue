@@ -5,7 +5,7 @@
         //- Logo
         v-col(v-if="!$isMobile" cols="10")
           v-row(align="center").px-3.py-5
-            nuxt-link(to="/")
+            nuxt-link(to="/directory")
               img(
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"
