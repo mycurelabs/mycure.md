@@ -31,14 +31,14 @@
       @book="onBook"
       @redirect="onRedirect($event)"
       ref="top"
-      @clip-success="clipSuccess = true"
+      @clipSuccess="clipSuccess = true"
     )
     profile-card(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
       :practicing-year="practicingYear"
       :specialties="specialties"
-      @clip-success="clipSuccess = true"
+      @clipSuccess="clipSuccess = true"
     ).profile-overlap
 
     //- Patient panel

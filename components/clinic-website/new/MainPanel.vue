@@ -28,7 +28,7 @@
               text
               @click="onRedirect('Contact Us')"
             ).text-none.mc-h7.white--text.font-weight-light Contact Us
-            share-button(color="white" @clip-success="$emit('clipSuccess')")
+            share-button(color="white" @clipSuccess="$emit('clipSuccess')")
         v-col(v-else cols="10").pt-8
           v-row(align="center")
             nuxt-link(to="/")
@@ -38,7 +38,7 @@
                 alt="MYCURE logo"
               ).mt-1
             v-spacer
-            share-button(color="white" is-small @clip-success="$emit('clipSuccess')")
+            share-button(color="white" is-small @clipSuccess="$emit('clipSuccess')")
             v-menu(offset-y)
               template(v-slot:activator="{ on }")
                 v-btn(
@@ -64,8 +64,14 @@
             br
             h1.mc-h2 {{ clinicName }}
             br
-            p.mc-b2.font-weight-light.white--text.mb-0 {{ formattedAddress }}
-            p.mc-b2.font-weight-light.white--text {{ clinicPhone }}
+            v-row(justify="center" align="center")
+              v-icon(small color="white").mr-1 {{ mdiMapMarker }}
+              v-col.pa-0
+                span.mc-b2.font-weight-light.white--text {{ formattedAddress }}
+            v-row(justify="center" align="center")
+              v-icon(small color="white").mr-2 {{ mdiPhone }}
+              span.mc-b2.font-weight-light.white--text {{ clinicPhone }}
+            br
           //- Consult btn
           v-col(cols="10").text-center.justify-center
             v-btn(
@@ -84,6 +90,8 @@ import {
   mdiShareVariant,
   mdiMenu,
   mdiClose,
+  mdiMapMarker,
+  mdiPhone,
 } from '@mdi/js';
 import ShareButton from '~/components/doctor-website/ShareButton';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
@@ -129,12 +137,14 @@ export default {
     },
   },
   data () {
-    this.tabs = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
+    this.tabs = ['Services', 'Our Doctors', 'About Clinic', 'Contact Us'];
     return {
       mdiShareVariant,
       drawer: false,
       mdiMenu,
       mdiClose,
+      mdiMapMarker,
+      mdiPhone,
     };
   },
   methods: {
@@ -153,6 +163,9 @@ export default {
 
 <style scoped>
 
+.img-border {
+  border: 8px solid white;
+}
 @media screen and (max-width: 700px) {
   .panel-bg {
     height: 1000px;
