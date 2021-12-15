@@ -7,7 +7,8 @@
             v-row(align="center" justify="center")
               v-col(cols="12" sm="5")
                 h2.mc-h2.mb-4.white--text {{ `Protect Your ${title} Thanks to MYCURE CSI` }}
-                p.mc-b2.white--text {{ `As a healthcare provider, your patients trust you with their private electronic health records. We know how important it is to protect that information. This is why MYCURE ${page} is backed by our CSI guarantee` }}
+                p(v-if="!customDescription").mc-b2.white--text {{ `As a healthcare provider, your patients trust you with their private electronic health records. We know how important it is to protect that information. This is why MYCURE ${page} is backed by our CSI guarantee` }}
+                p(v-else).mc-b2.white--text {{ customDescription }}
               v-spacer(v-if="!$isMobile")
               v-col(cols="6" sm="2" v-for="(item, key) in items" :key="key").text-center
                 picture-source(
@@ -40,6 +41,10 @@ export default {
     page: {
       type: String,
       default: 'Clinics',
+    },
+    customDescription: {
+      type: String,
+      default: null,
     },
   },
   data () {
