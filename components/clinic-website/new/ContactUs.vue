@@ -8,7 +8,7 @@
           v-row(align="center").pl-3
             v-icon(small color="primary").mr-1 {{ mdiMapMarker }}
             v-col.pa-0
-              span.mc-b2 {{ address }}
+              span.mc-b2 {{ formattedAddress }}
           v-row(align="center").pl-3
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
             span.mc-b2 {{ clinicPhone }}
@@ -27,7 +27,7 @@
       v-col(cols="12" md="5" :class="{'mt-8': $isMobile}")
         h3.mc-h4.title--text Location
         br
-        div(v-if="addressLat && addressLng" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
+        div(v-if="address.lat && address.lng" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
         div(v-else)
           span.mc-b3 Location not available
 </template>
@@ -38,6 +38,7 @@ import {
   mdiPhone,
 } from '@mdi/js';
 import { format } from 'date-fns';
+import { formatAddress } from '~/utils/formats';
 import Schedules from '~/components/clinic-website/schedules';
 export default {
   components: {
@@ -45,19 +46,11 @@ export default {
   },
   props: {
     address: {
-      type: String,
+      type: Object,
       default: null,
     },
     schedule: {
       type: Array,
-      default: null,
-    },
-    addressLat: {
-      type: Number,
-      default: null,
-    },
-    addressLng: {
-      type: Number,
       default: null,
     },
     clinicPhone: {
@@ -66,36 +59,7 @@ export default {
     },
   },
   data () {
-    this.days = [
-      {
-        order: 1,
-        day: 'mon',
-      },
-      {
-        order: 2,
-        day: 'tue',
-      },
-      {
-        order: 3,
-        day: 'wed',
-      },
-      {
-        order: 4,
-        day: 'thu',
-      },
-      {
-        order: 5,
-        day: 'fri',
-      },
-      {
-        order: 6,
-        day: 'sat',
-      },
-      {
-        order: 7,
-        day: 'sun',
-      },
-    ];
+    this.days = [{ order: 1, day: 'mon' }, { order: 2, day: 'tue' }, { order: 3, day: 'wed' }, { order: 4, day: 'thu' }, { order: 5, day: 'fri' }, { order: 6, day: 'sat' }, { order: 7, day: 'sun' }];
     // this.defaultMapPosition = { lat: 14.5813167, lng: 120.9761788 };
     return {
       map: null,
@@ -117,8 +81,8 @@ export default {
   },
   computed: {
     addressGeometry () {
-      if (!this.addressLat || !this.addressLng) return null;
-      return { lat: this.addressLat, lng: this.addressLng };
+      if (!this.address.lat || !this.address.lng) return null;
+      return { lat: this.address.lat, lng: this.address.lng };
     },
     groupedSchedules () {
       const groupedSchedules = this.schedule
@@ -154,6 +118,10 @@ export default {
         return 0;
       });
       return finalSched;
+    },
+    formattedAddress () {
+      if (!this.address) return '';
+      return formatAddress(this.address, 'street1, street2, city, province, country');
     },
   },
   mounted () {

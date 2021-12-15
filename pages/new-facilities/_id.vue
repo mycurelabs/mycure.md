@@ -1,5 +1,6 @@
 <template lang="pug">
   div(v-if="!loading.page").main-container
+    v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     main-panel(
       ref="top"
       :pic-url="picURL"
@@ -10,6 +11,7 @@
       :is-bookable="isVerified && isAvailable"
       @book="onBook"
       @redirect="onRedirect($event)"
+      @clipSuccess="clipSuccess = true"
     )
     //- insert panels here
     //- insert search panel
@@ -32,8 +34,8 @@
                   alt="MYCURE icon"
                   @click="onHome"
                 ).mr-2
-                span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-                span(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
+                a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+                a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
@@ -57,10 +59,8 @@
               v-tab-item(value="Contact Us")
                 div.grey-bg.pt-8
                   contact-us(
-                    :address="formattedAddress"
+                    :address="clinic.address"
                     :clinic-phone="clinicPhone"
-                    :address-lat="clinic.address.lat"
-                    :address-lng="clinic.address.lng"
                     :schedule="clinic.mf_schedule"
                   )
 
@@ -109,6 +109,7 @@ export default {
         page: false,
       },
       tabSelect: 'Services',
+      clipSuccess: false,
     };
   },
   head () {
