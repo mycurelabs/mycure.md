@@ -57,12 +57,12 @@
                   v-list-item-title {{ tab }}
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
-          v-col(cols="12").text-center
+          v-col(cols="12").text-center.mb-3
             v-avatar(size="200").elevation-5
               img(:src="picUrl").img-border
             br
             br
-            h1.mc-h2 {{ fullName }}
+            h1.mc-h2.mb-1 {{ fullName }}
             p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
             br
             span(v-if="!$isMobile").mc-b2.font-weight-light.white--text {{ specialties.slice(0, 3).join(' | ')}}

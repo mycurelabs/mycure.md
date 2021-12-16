@@ -3,15 +3,15 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding)
         v-col(cols="12")
-          v-card(elevation="0").rounded-lg.py-6.px-12
+          v-card(elevation="0").rounded-lg.py-10.px-12
             v-row(:justify="$isMobile? 'center' : 'start'").pa-3
               v-avatar(size="100")
-                img(:src="picUrl")
-              v-col(cols="12" md="9")
-                h3.mc-h3 {{ fullName }}
-                p(v-if="!$isMobile").mc-b3.mb-0 {{ specialties.slice(0, 3).join(' | ')}}
+                img(:src="picUrl" :class="{'mr-4': !$isMobile}")
+              v-col(cols="12" md="9").py-0
+                h3.mc-h3.mb-1 {{ fullName }}
+                p(v-if="!$isMobile").mc-b3.mb-2 {{ specialties.slice(0, 3).join(' | ')}}
                 div(v-else)
-                  p(v-for="specialty in specialties.slice(0, 4)").mb-0.mc-b2.font-weight-light {{ specialty }}
+                  p(v-for="specialty in specialties.slice(0, 4)").mb-2.mc-b2.font-weight-light {{ specialty }}
                 p(v-if="practicingYear").mc-b4.mb-0 {{ `Practicing since ${practicingYear}` }}
               v-spacer
               share-button(:direction="$isMobile ? 'bottom' : 'top'" color="primary" @clip-success="$emit('clipSuccess')")

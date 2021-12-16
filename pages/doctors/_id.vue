@@ -18,7 +18,7 @@
     main-panel(
       :metrics="doctorMetrics"
       :pic-url="picURL"
-      :full-name="fullNameWithSuffixes"
+      :full-name="fullName"
       :bio="bio"
       :specialties="specialties"
       :professions="professions"
@@ -71,6 +71,8 @@
               right
               show-arrows
               v-model="tabSelect"
+              :next-icon="mdiArrowRightThinCircleOutline"
+              :prev-icon="mdiArrowLeftThinCircleOutline"
               background-color="transparent"
               slider-color="primary"
               active-class="black--text"
@@ -88,59 +90,62 @@
                 v-for="(tab, key) in tabsList"
                 :key="key"
                 :href="`#${tab}`"
-                :class="{'ml-4': !$isMobile}"
+                :class="{'ml-8': !$isMobile}"
               ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
               v-tab-item(value="Facilities")
-                //- Facilities
-                //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
-                  facilities(
-                    :doctorId="doctor.id"
-                    :clinics="clinics"
-                    :total="clinicsTotal"
-                    :limit="clinicsLimit"
-                    :is-preview-mode="isPreviewMode"
-                    :loading="facilitiesLoading"
-                    @onUpdatePage="fetchDoctorInfo($event)"
-                  )
+                div.grey-bg.pt-8
+                  //- Facilities
+                  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-md
+                    facilities(
+                      :doctorId="doctor.id"
+                      :clinics="clinics"
+                      :total="clinicsTotal"
+                      :limit="clinicsLimit"
+                      :is-preview-mode="isPreviewMode"
+                      :loading="facilitiesLoading"
+                      @onUpdatePage="fetchDoctorInfo($event)"
+                    )
               v-tab-item(value="Profile")
-                //- Profile
-                profile(
-                  :pic-url="picURL"
-                  :full-name="fullNameWithSuffixes"
-                  :first-name="firstName"
-                  :practicing-since="practicingSince"
-                  :practicing-years="practicingYears"
-                  :bio="bio"
-                  :specialties="specialties"
-                  :education="education"
-                  :is-bookable="isBookable"
-                  :is-preview-mode="isPreviewMode"
-                  @book="onBook"
-                )
+                div.grey-bg.pt-8
+                  //- Profile
+                  v-card(flat width="100%" color="white").rounded.md
+                    profile(
+                      :pic-url="picURL"
+                      :full-name="fullNameWithSuffixes"
+                      :first-name="firstName"
+                      :practicing-since="practicingSince"
+                      :practicing-years="practicingYears"
+                      :bio="bio"
+                      :specialties="specialties"
+                      :education="education"
+                      :is-bookable="isBookable"
+                      :is-preview-mode="isPreviewMode"
+                      @book="onBook"
+                    )
               v-tab-item(value="Services")
-                //- Services
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
-                  v-card(flat).rounded-xl.bordered-card
-                    v-card-text
-                      div(v-if="services ? (services.length) : false ")
-                        h3.mc-h3.black--text Services Offered
-                        br
-                        v-list(dense)
-                          v-list-item(v-for="(service, key) in services" :key="key").pl-0
-                            v-list-item-icon
-                              v-icon(color="primary") {{ mdiCheckCircle }}
-                            v-list-item-content
-                              v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
-                      p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
+                div.grey-bg.pt-8
+                  v-card(flat width="100%" color="white").rounded.md
+                    //- Services
+                    div(:class="$isMobile ? 'px-4' : 'px-12'").py-8
+                      v-card(flat).rounded-xl.bordered-card
+                        v-card-text
+                          div(v-if="services ? (services.length) : false ")
+                            h3.mc-h3.black--text Services Offered
+                            br
+                            v-list(dense)
+                              v-list-item(v-for="(service, key) in services" :key="key").pl-0
+                                v-list-item-icon
+                                  v-icon(color="primary") {{ mdiCheckCircle }}
+                                v-list-item-content
+                                  v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
+                          p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item(value="Learning Corner")
                 //- Learning Corner
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
-                  learning-corner(
-                    :is-preview-mode="isPreviewMode"
-                    :doctor-id="doctor.id"
-                  )
+                learning-corner(
+                  :is-preview-mode="isPreviewMode"
+                  :doctor-id="doctor.id"
+                )
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
@@ -176,7 +181,7 @@
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
-import { mdiCheckCircle } from '@mdi/js';
+import { mdiCheckCircle, mdiArrowRightThinCircleOutline, mdiArrowLeftThinCircleOutline } from '@mdi/js';
 import { AMPLITUDE_KEYS } from './constants';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
@@ -263,6 +268,8 @@ export default {
       shareBtn: false,
       tabSelect: 'Facilities',
       mdiCheckCircle,
+      mdiArrowRightThinCircleOutline,
+      mdiArrowLeftThinCircleOutline,
     };
   },
   head () {
@@ -453,22 +460,28 @@ export default {
     },
     onRedirect (type) {
       this.tabSelect = type;
-      const element = this.$refs.tabs;
-      const top = element.offsetTop;
 
-      window.scrollTo(0, top);
+      window.scrollTo({
+        top: this.$refs.tabs.offsetTop,
+        left: 0,
+        behavior: 'smooth',
+      });
     },
     onHome () {
-      const element = this.$refs.top;
-      const top = element.offsetTop;
-
-      window.scrollTo(0, top);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
     },
   },
 };
 </script>
 
 <style scoped>
+.grey-bg {
+  background-color: #f9f9f9;
+}
 .main-container {
   background-color: #f9f9f9;
   width: 100vw;
