@@ -69,6 +69,7 @@
 
             v-tabs(
               right
+              show-arrows
               v-model="tabSelect"
               background-color="transparent"
               slider-color="primary"
@@ -82,13 +83,26 @@
                   @click="onHome"
                 ).mr-2
                 span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-                span(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
+                span(@click="onRedirect(tabSelect)").mc-b2.title--text {{ tabSelect }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
                 :href="`#${tab}`"
                 :class="{'ml-4': !$isMobile}"
-              ).mc-b2.font-weight-bold.text-none {{ tab }}
+              ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
+              v-tab-item(value="Facilities")
+                //- Facilities
+                //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
+                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
+                  facilities(
+                    :doctorId="doctor.id"
+                    :clinics="clinics"
+                    :total="clinicsTotal"
+                    :limit="clinicsLimit"
+                    :is-preview-mode="isPreviewMode"
+                    :loading="facilitiesLoading"
+                    @onUpdatePage="fetchDoctorInfo($event)"
+                  )
               v-tab-item(value="Profile")
                 //- Profile
                 profile(
@@ -104,19 +118,6 @@
                   :is-preview-mode="isPreviewMode"
                   @book="onBook"
                 )
-              v-tab-item(value="Facilities")
-                //- Facilities
-                //- v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").pa-16.rounded-lg
-                v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").rounded-lg
-                  facilities(
-                    :doctorId="doctor.id"
-                    :clinics="clinics"
-                    :total="clinicsTotal"
-                    :limit="clinicsLimit"
-                    :is-preview-mode="isPreviewMode"
-                    :loading="facilitiesLoading"
-                    @onUpdatePage="fetchDoctorInfo($event)"
-                  )
               v-tab-item(value="Services")
                 //- Services
                 v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
@@ -236,7 +237,7 @@ export default {
   },
   data () {
     this.clinicsLimit = 6;
-    this.tabsList = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
+    this.tabsList = ['Facilities', 'Profile', 'Services', 'Learning Corner'];
     return {
       // - UI State
       loading: true,
@@ -260,7 +261,7 @@ export default {
       clipSuccess: false,
       facilitiesLoading: false,
       shareBtn: false,
-      tabSelect: 'Profile',
+      tabSelect: 'Facilities',
       mdiCheckCircle,
     };
   },
