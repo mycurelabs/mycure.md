@@ -127,18 +127,22 @@
                   v-card(flat width="100%" color="white").rounded.md
                     //- Services
                     div(:class="$isMobile ? 'px-4' : 'px-12'").py-8
-                      v-card(flat).rounded-xl.bordered-card
-                        v-card-text
-                          div(v-if="services ? (services.length) : false ")
-                            h3.mc-h3.black--text Services Offered
-                            br
-                            v-list(dense)
-                              v-list-item(v-for="(service, key) in services" :key="key").pl-0
-                                v-list-item-icon
-                                  v-icon(color="primary") {{ mdiCheckCircle }}
-                                v-list-item-content
-                                  v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
-                          p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
+                      v-col
+                        div(v-if="services ? (services.length) : false ")
+                          h3.mc-h3.black--text.mb-8 Services Offered
+                          v-row(justify="center").pa-3
+                            v-col(cols="12" md="6" v-for="(service, key) in services" :key="key")
+                              v-row
+                                v-icon(color="primary").mr-3 {{ mdiCheckCircle }}
+                                span(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
+
+                          //- v-list(dense)
+                          //-   v-list-item().pl-0
+                          //-     v-list-item-icon
+                          //-       v-icon(color="primary") {{ mdiCheckCircle }}
+                          //-     v-list-item-content
+                          //-       v-list-item-title(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
+                        p(v-else).font-open-sans.font-gray This doctor has not listed any services yet. You may check this website from time to time for updates!
 
               v-tab-item(value="Learning Corner")
                 //- Learning Corner
