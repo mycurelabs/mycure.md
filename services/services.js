@@ -28,8 +28,10 @@ export const fetchClinicServices = async (sdk, opts) => {
         foreignKey: 'ref',
         $populate: {
           contractData: {
-            service: 'insurance-contracts',
-            key: 'contract',
+            service: 'organizations',
+            localKey: 'insurer',
+            foreignKey: 'id',
+            method: 'findOne',
           },
         },
       },
