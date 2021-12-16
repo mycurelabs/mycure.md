@@ -66,9 +66,8 @@
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
-
             v-tabs(
-              right
+              :right="!$isMobile"
               v-model="tabSelect"
               background-color="transparent"
               slider-color="primary"
@@ -89,6 +88,7 @@
                 :href="`#${tab}`"
                 :class="{'ml-4': !$isMobile}"
               ).mc-b2.font-weight-bold.text-none {{ tab }}
+              //- Tab Items
               v-tab-item(value="Profile")
                 //- Profile
                 profile(
@@ -172,11 +172,14 @@
 </template>
 
 <script>
+// external packages
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
 import { mdiCheckCircle } from '@mdi/js';
+// constants
 import { AMPLITUDE_KEYS } from './constants';
+// components
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import Facilities from '~/components/doctor-website/Facilities';
@@ -184,9 +187,10 @@ import GenericPanel from '~/components/generic/GenericPanel';
 import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import PatientPanel from '~/components/doctor-website/PatientPanel';
-import Profile from '~/components/doctor-website/NewProfile';
+import Profile from '~/components/doctor-website/Profile';
 import ProfileCard from '~/components/doctor-website/ProfileCard';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
+// utils
 import {
   heartDoctor,
   getDoctorWebsite,
@@ -195,9 +199,10 @@ import {
 } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
+import { amplitudeTracker } from '~/utils/amplitude-analytics';
+// services
 import { fetchUserFacilities } from '~/services/organization-members';
 import { fetchOrganizations } from '~/services/organizations';
-import { amplitudeTracker } from '~/utils/amplitude-analytics';
 
 const BOOKABLE_FACILITY_TYPES = [
   'doctor-booking',
