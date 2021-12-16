@@ -19,6 +19,7 @@ export const fetchClinicServices = async (sdk, opts) => {
     ...opts.tags && { tags: opts.tags },
     $limit: opts.limit || 10,
     $skip: opts.skip,
+    archivedAt: null,
     $populate: {
       coveragesData: {
         service: 'insurance-coverages',
