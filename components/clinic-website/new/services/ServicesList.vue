@@ -1,0 +1,239 @@
+<template lang="pug">
+  v-row(justify="center")
+    //- LOADING
+    template(v-if="loading.section")
+      v-col(cols="12").text-center
+        v-skeleton-loader(type="card-heading, list-item-three-line" elevation="2")
+    //- template(v-else-if="items.length === 0")
+    //-   v-col(cols="12").text-center
+    //-     h2.mc-h2 No services available
+    template(v-else)
+      v-col(v-if="!$isMobile" cols="12" md="4" xl="3")
+        v-card(color="white" flat)
+          v-toolbar(flat).pa-1
+            v-spacer
+            h2.mc-h4.black--text Our Services
+            v-spacer
+          v-divider.my-3
+          div
+            v-list(subheader v-if="hasConsultations")
+              v-subheader.mc-hyp2.black--text Consultation
+              v-list-item-group(v-model="activeServiceType")
+                v-list-item(
+                  v-for="(type, key) in ['clinical-consultation', 'telehealth']"
+                  :key="key"
+                  :value="type"
+                )
+                  v-list-item-icon
+                    v-icon {{ typeMappings[type].icon }}
+                  v-list-item-content
+                    v-list-item-title {{ typeMappings[type].text }}
+            v-list(subheader v-if="hasAncillary")
+              v-subheader.mc-hyp2.black--text Ancillary Services
+              v-list-item-group(v-model="activeServiceType")
+                v-list-item(
+                  v-for="(type, key) in ancillaryServiceTypes"
+                  :key="key"
+                  :value="type"
+                )
+                  v-list-item-icon
+                    v-icon {{ typeMappings[type].icon }}
+                  v-list-item-content
+                    v-list-item-title {{ typeMappings[type].text }}
+
+      //- SERVICE ITEM
+      v-col(
+        cols="12"
+        md="8"
+        xl="9"
+      )
+        v-row(v-if="itemsTotal")
+          span.mc-btn1 Showing {{ itemsTotal }} results
+          v-spacer
+          v-pagination(
+            v-model="itemsPage"
+            :length="itemsPaginationLength"
+            total-visible="10"
+            :next-icon="mdiChevronRight"
+            :prev-icon="mdiChevronLeft"
+            circle
+            @input="onPaginate($event)"
+          )
+        template(v-if="loading.list")
+          v-skeleton-loader(
+            v-for="n in 3"
+            :key="n"
+            type="card-heading, list-item-three-line, actions" elevation="2"
+          )
+        template(v-else)
+          div(
+            v-for="(item, key) in items"
+            :key="key"
+          ).my-3
+            //- service-item(
+            //-   :item="item"
+            //-   :organization="organization"
+            //-   :is-preview-mode="isPreviewMode"
+            //-   :read-only="readOnly"
+            //-   :is-booking-enabled="isBookingEnabled"
+            //- )
+            h3 {{ item.name }}
+</template>
+
+<script>
+import VueScrollTo from 'vue-scrollto';
+import isEmpty from 'lodash/isEmpty';
+import {
+  mdiAccountTieVoiceOutline,
+  mdiVideoOutline,
+  mdiFlaskOutline,
+  mdiRadiologyBoxOutline,
+  mdiPackageVariantClosed,
+  mdiPulse,
+  mdiToothOutline,
+  mdiArrowLeft,
+  mdiChevronLeft,
+  mdiChevronRight,
+} from '@mdi/js';
+import ServiceItem from './ServiceItem';
+import GenericPanel from '~/components/generic/GenericPanel';
+
+const CONSULT_TYPES = [
+  'clinical-consultation',
+  'telehealth',
+];
+
+const ANCILLARY_TYPES = [
+  'lab',
+  'imaging',
+  'pe',
+  'clinical-procedure',
+  'dental',
+];
+
+export default {
+  components: {
+    GenericPanel,
+    ServiceItem,
+  },
+  props: {
+    value: {
+      type: String,
+      default: null,
+    },
+    organization: {
+      type: String,
+      default: null,
+    },
+    // - It should have the service info, and schedules
+    items: {
+      type: Array,
+      default: () => ([]),
+    },
+    itemsTotal: {
+      type: Number,
+      default: 0,
+    },
+    itemsPaginationLength: {
+      type: Number,
+      default: 0,
+    },
+    serviceTypes: {
+      type: Array,
+      default: () => ([]),
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
+    // Loading props
+    /**
+     * @param {Boolean} loading.section - whole services section loading
+     * @param {Boolean} loading.list - only list loading
+     */
+    loading: {
+      type: Object,
+      default: () => ({
+        section: false,
+        list: false,
+      }),
+    },
+    isBookingEnabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data () {
+    this.typeMappings = {
+      'clinical-consultation': {
+        icon: mdiAccountTieVoiceOutline,
+        text: 'Face-to-Face Consults',
+      },
+      telehealth: {
+        icon: mdiVideoOutline,
+        text: 'Teleconsults',
+      },
+      lab: {
+        icon: mdiFlaskOutline,
+        text: 'Laboratory',
+      },
+      imaging: {
+        icon: mdiRadiologyBoxOutline,
+        text: 'Imaging',
+      },
+      pe: {
+        icon: mdiPackageVariantClosed,
+        text: 'PE Packages',
+      },
+      dental: {
+        icon: mdiToothOutline,
+        text: 'Dental',
+      },
+      'clinical-procedure': {
+        icon: mdiPulse,
+        text: 'Procedures',
+      },
+    };
+    return {
+      itemsPage: 1,
+      // icons
+      mdiArrowLeft,
+      mdiChevronRight,
+      mdiChevronLeft,
+    };
+  },
+  computed: {
+    activeServiceType: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
+    consultServiceTypes () {
+      return this.serviceTypes.filter(type => CONSULT_TYPES.includes(type));
+    },
+    hasConsultations () {
+      return !isEmpty(this.consultServiceTypes);
+    },
+    ancillaryServiceTypes () {
+      return this.serviceTypes.filter(type => ANCILLARY_TYPES.includes(type));
+    },
+    hasAncillary () {
+      return !isEmpty(this.ancillaryServiceTypes);
+    },
+  },
+  watch: {
+    activeServiceType (val) {
+      this.itemsPage = 1;
+    },
+  },
+  methods: {
+    onPaginate (page) {
+      this.$emit('paginate', page);
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+    },
+  },
+};
+</script>

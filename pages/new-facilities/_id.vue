@@ -2,21 +2,20 @@
   div(v-if="!loading.page").main-container
     v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     main-panel(
-      ref="top"
       :pic-url="picURL"
       :clinic-name="clinicName"
       :formatted-address="formattedAddress"
       :clinic-phone="clinicPhone"
       :style="{ height: $isMobile ? '130vh' : '120vh' }"
-      :is-bookable="isVerified && isAvailable"
+      :is-bookable="isVerified && isOnline"
       @book="onBook"
       @redirect="onRedirect($event)"
       @clipSuccess="clipSuccess = true"
-    )
+    )#top
     //- insert panels here
     //- insert search panel
     //- Workflow area
-    v-container(ref="tabs").pb-16
+    v-container#tabs.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
@@ -45,7 +44,17 @@
               ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
               v-tab-item(value="Services")
                 div.grey-bg.pt-8
-                  h3 hello
+                  services-list(
+                    v-model="activeServiceType"
+                    :loading="loading.services"
+                    :items="items.services"
+                    :items-total="itemsTotal"
+                    :items-pagination-length="itemsPaginationLength"
+                    :service-types="serviceTypes"
+                    :organization="clinicId"
+                    :is-preview-mode="isPreviewMode"
+                    @paginate="onPaginate({ type: 'service' }, $event)"
+                  )
               v-tab-item(value="Our Doctors")
                 div.grey-bg.pt-8
                   h3 hello
@@ -67,9 +76,11 @@
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
 import isEmpty from 'lodash/isEmpty';
+import intersection from 'lodash/intersection';
 // services
-import { fetchServices } from '~/services/services';
+import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
 import { initLogger } from '~/utils/logger';
@@ -78,9 +89,21 @@ import { formatAddress } from '~/utils/formats';
 import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
+import ServicesList from '~/components/clinic-website/new/services/ServicesList';
 import GenericPanel from '~/components/generic/GenericPanel';
 
 const log = initLogger('Facilities');
+
+const SERVICE_TYPES = [
+  'clinical-consultation',
+  'clinical-procedure',
+  'dental',
+  'pe',
+  'lab',
+  'imaging',
+];
+
+const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
 
 export default {
   components: {
@@ -88,6 +111,7 @@ export default {
     GenericPanel,
     AboutClinic,
     ContactUs,
+    ServicesList,
   },
   layout: 'empty',
   async asyncData ({ params, $sdk, redirect, error }) {
@@ -112,14 +136,24 @@ export default {
     return {
       loading: {
         page: false,
+        services: {
+          section: false,
+          list: false,
+        },
       },
-      itemsLimit: 10,
-      itemsTotal: {
-        services: 0,
-        doctors: 0,
+      items: {
+        services: [],
+        doctors: [],
       },
+      itemsLimit: 2,
+      itemsTotal: 0,
+      serviceTypes: [],
+      activeServiceType: null,
       tabSelect: 'Services',
       clipSuccess: false,
+      // save current service query to use in refetch on pagination
+      currentServicePropsQuery: null,
+      currentDoctorPropsQuery: null,
     };
   },
   head () {
@@ -144,12 +178,18 @@ export default {
     isTelehealthEnabled () {
       return this.clinic?.types.includes('clinic-telehealth');
     },
+    isOnline () {
+      // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
+      return this.isBookingEnabled || this.isTelehealthEnabled;
+    },
     isVerified () {
       return !!this.clinic?.websiteId;
     },
-    isAvailable () {
-      // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
-      return this.isBookingEnabled || this.isTelehealthEnabled;
+    mode () {
+      return this.$route.query.mode;
+    },
+    isPreviewMode () {
+      return this.mode === 'preview';
     },
     picURL () {
       return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
@@ -162,6 +202,7 @@ export default {
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
     },
     clinicPhone () {
+      if (!this.clinic) return '';
       const { phone, phones } = this.clinic;
       if (phones?.length) return phones.join(', ');
       return phone || '';
@@ -170,11 +211,32 @@ export default {
       return this.clinic?.description ||
       `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
+    // pagination
+    itemsPaginationLength () {
+      return Math.ceil(this.itemsTotal / this.itemsLimit) || 0;
+    },
+  },
+  watch: {
+    activeServiceType: {
+      async handler (val) {
+        if (!val) return;
+        await this.fetchServices({
+          serviceProps: this.getServiceQuery(this.activeServiceType),
+        }, 1);
+      },
+    },
   },
   mounted () {
-    this.fetchServices();
+    if (this.isOnline) {
+      this.init();
+    }
   },
   methods: {
+    async init () {
+      this.loading.services.section = true;
+      await this.fetchServiceTypes();
+      this.loading.services.section = false;
+    },
     /** Fetches all services of facility
      *
      * @param {Object} serviceArgs
@@ -194,6 +256,9 @@ export default {
       searchText,
     } = {}, page = 1) {
       try {
+        this.loading.services.list = true;
+        // save current service query to use in refetch on pagination
+        this.currentServicePropsQuery = serviceProps;
         const { type, subtype, insurer, tags } = serviceProps;
         const skip = this.itemsLimit * (page - 1);
         const query = {
@@ -208,24 +273,64 @@ export default {
         };
         const { items, total } = await fetchServices(query, true);
         log('fetchServices#items: %O', items);
-        this.itemsTotal.services = total;
+        this.items.services = items;
+        this.itemsTotal = total;
       } catch (error) {
         console.error(error);
+      } finally {
+        this.loading.services.list = false;
+      }
+    },
+    /**
+     * Fetches the available service types of the clinic
+     */
+    async fetchServiceTypes () {
+      try {
+        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
+        this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
+        if (this.isTelehealthEnabled) {
+          this.serviceTypes.push('telehealth');
+        }
+        if (!isEmpty(this.serviceTypes)) this.activeServiceType = this.serviceTypes[0];
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    // utils
+    /** For getting actual service type and subtype value of the current tab
+    * Usually used for mapping query for fetching of services
+    */
+    getServiceQuery (activeServiceType) {
+      if (DIAGNOSTIC_SERVICE_TYPES.includes(activeServiceType)) {
+        return { type: 'diagnostic', subtype: activeServiceType };
+      } else if (activeServiceType === 'telehealth') {
+        return { type: 'clinical-consultation', tags: { $in: ['telehealth'] } };
+      } else if (activeServiceType === 'clinical-consultation') {
+        return { type: 'clinical-consultation', tags: { $nin: ['telehealth'] } };
+      } else {
+        return { type: activeServiceType };
       }
     },
     // Event handlers
+    onPaginate ({
+      type, // service or doctors
+      searchText, // search Text
+    }, page = 1) {
+      if (!type) return;
+      if (type === 'service') {
+        return this.fetchServices({
+          serviceProps: this.currentServicePropsQuery,
+          searchText,
+        }, page);
+      }
+      // else, return doctors
+    },
     onRedirect (type) {
       this.tabSelect = type;
-      const element = this.$refs.tabs;
-      const top = element.offsetTop;
-
-      window.scrollTo(0, top);
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },
     onHome () {
-      const element = this.$refs.top;
-      const top = element.offsetTop;
-
-      window.scrollTo(0, top);
+      VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
     },
     onBook () {
       // insert booking code

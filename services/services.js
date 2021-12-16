@@ -6,8 +6,7 @@ import { initLogger } from '~/utils/logger';
 
 const log = initLogger('ServicesAPI');
 
-// Old Clinic website (new service calls are below)
-
+// FIXME: OLD CLINIC SERVICES FETCH - DO NOT USE THIS ANYMORE (USE THE NEW ONE BELOW)
 /**
  *
  * @param {SDK} sdk
