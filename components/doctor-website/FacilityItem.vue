@@ -22,22 +22,21 @@
               autoresize
               :max-lines="2"
               :class="{ 'font-italic': !clinic.address }"
+              :style="!clinic.address ? 'color: #BFBFBF;' : ''"
             ).mc-b2 {{ clinic.address | prettify-address }}&nbsp;&nbsp;
           //- Contact
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiPhoneInTalk }}
-            v-clamp(
-              autoresize
-              :max-lines="1"
+            span(
               :class="{ 'font-italic': !phone }"
+              :style="!phone ? 'color: #BFBFBF;' : ''"
             ).mc-b2 {{ phone || 'No information provided' }}
           //- Email
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiEmail }}
-            v-clamp(
-              autoresize
-              :max-lines="1"
+            span(
               :class="{ 'font-italic': !email }"
+              :style="!email ? 'color: #BFBFBF;' : ''"
             ).mc-b2 {{ email || 'No information provided'}}
       v-row(justify="end").px-8
         v-col(cols="12")

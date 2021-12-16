@@ -126,6 +126,9 @@ export default {
       this.filteredMaterials = [...this.materials];
     },
   },
+  created () {
+    this.loading = true;
+  },
   async mounted () {
     await this.fetchMaterials();
   },

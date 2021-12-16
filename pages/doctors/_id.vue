@@ -83,9 +83,12 @@
                   width=" 20"
                   alt="MYCURE icon"
                   @click="onHome"
-                ).mr-2
-                span(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-                span(@click="onRedirect(tabSelect)").mc-b2.title--text {{ tabSelect }}
+                ).mr-1
+                v-btn(@click="onHome" text dense style="color: #72727D;").text-none.px-1
+                  span.mc-b2 Home
+                span(style="color: #72727D;") &nbsp;/&nbsp;
+                v-btn(@click="onRedirect(tabSelect)" text dense).px-2.text-none
+                  span.mc-b2.title--text.font-weight-bold {{ tabSelect }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
@@ -361,6 +364,7 @@ export default {
   },
   created () {
     this.loading = false;
+    this.facilitiesLoading = true;
   },
   async mounted () {
     // Fetch metrics
