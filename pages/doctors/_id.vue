@@ -30,9 +30,8 @@
       :is-preview-mode="isPreviewMode"
       @book="onBook"
       @redirect="onRedirect($event)"
-      ref="top"
       @clip-success="clipSuccess = true"
-    )
+    )#top
     profile-card(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -62,7 +61,7 @@
       //-       span.error--text Heart
 
     //- Workflow area
-    v-container(ref="tabs").pb-16
+    v-container.pb-16#tabs
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
@@ -70,6 +69,7 @@
             v-tabs(
               right
               show-arrows
+              hide-slider
               v-model="tabSelect"
               :next-icon="mdiArrowRightThinCircleOutline"
               :prev-icon="mdiArrowLeftThinCircleOutline"
@@ -88,13 +88,14 @@
                   span.mc-b2 Home
                 span(style="color: #72727D;") &nbsp;/&nbsp;
                 v-btn(@click="onRedirect(tabSelect)" text dense).px-2.text-none
-                  span.mc-b2.title--text.font-weight-bold {{ tabSelect }}
+                  span.mc-b2.primary--text.font-weight-bold {{ tabSelect }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
                 :href="`#${tab}`"
                 :class="{'ml-8': !$isMobile}"
-              ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
+              ).text-none
+                span.mc-hyp2.font-weight-semibold {{ tab }}
               v-tab-item(value="Facilities")
                 div.grey-bg.pt-8
                   //- Facilities
@@ -187,7 +188,7 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
-// import VueScrollTo from 'vue-scrollto';
+import VueScrollTo from 'vue-scrollto';
 import { mdiCheckCircle, mdiArrowRightThinCircleOutline, mdiArrowLeftThinCircleOutline } from '@mdi/js';
 import { AMPLITUDE_KEYS } from './constants';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
@@ -469,18 +470,10 @@ export default {
     onRedirect (type) {
       this.tabSelect = type;
 
-      window.scrollTo({
-        top: this.$refs.tabs.offsetTop,
-        left: 0,
-        behavior: 'smooth',
-      });
+      VueScrollTo.scrollTo('#tabs', 500, { offset: 0, easing: 'ease' });
     },
     onHome () {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
+      VueScrollTo.scrollTo('#top', 500, { offset: 0, easing: 'ease' });
     },
   },
 };

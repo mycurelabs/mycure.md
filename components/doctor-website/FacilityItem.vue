@@ -42,22 +42,16 @@
         v-col(cols="12")
           v-divider
       //- Schedules
-      v-row(v-if="!$isMobile" justify="center")
+      v-row(justify="center")
         v-col(cols="12" md="11")
-          v-row(justify="end" align="center").my-1
-            div(v-for="(day, index) in daysList" :key="index").white--text.mx-3
+          v-row(justify="center" align="center" :class="$isMobile ? 'mb-2' : 'my-1'")
+            div(v-for="(day, index) in daysList" :key="index" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-3' ").white--text
               div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
                 | {{ day.text }}
-            v-spacer
-            a(v-if="operatingSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
-            v-icon(v-if="operatingSchedules.length" small color="primary").ml-1 {{ mdiInformationOutline }}
-      v-row(v-else justify="center")
-        v-col(cols="12")
-          v-row(justify="center").mb-2
-            div(v-for="(day, index) in daysList" :key="index").text-center.white--text.mx-1
-              div(:class="[textFontSize, badgeSize, isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
-                | {{ day.text }}
-          v-row(justify="center" align="center")
+            v-spacer(v-if="!$isMobile")
+            a(v-if="operatingSchedules.length && !$isMobile" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
+            v-icon(v-if="operatingSchedules.length && !$isMobile" small color="primary").ml-1 {{ mdiInformationOutline }}
+          v-row(v-if="$isMobile" justify="center" align="center")
             a(v-if="operatingSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
             v-icon(v-if="operatingSchedules.length" small color="primary").ml-1 {{ mdiInformationOutline }}
     v-spacer
