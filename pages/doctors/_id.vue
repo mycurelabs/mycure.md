@@ -66,10 +66,9 @@
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
-
             v-tabs(
-              right
               show-arrows
+              :right="!$isMobile"
               v-model="tabSelect"
               :next-icon="mdiArrowRightThinCircleOutline"
               :prev-icon="mdiArrowLeftThinCircleOutline"
@@ -94,7 +93,7 @@
                 :key="key"
                 :href="`#${tab}`"
                 :class="{'ml-8': !$isMobile}"
-              ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
+              ).mc-hyp2.font-weight-semibold.text-none {{ tab }}=
               v-tab-item(value="Facilities")
                 div.grey-bg.pt-8
                   //- Facilities
@@ -185,11 +184,13 @@
 </template>
 
 <script>
+// external packages
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
 import { mdiCheckCircle, mdiArrowRightThinCircleOutline, mdiArrowLeftThinCircleOutline } from '@mdi/js';
 import { AMPLITUDE_KEYS } from './constants';
+// components
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import Facilities from '~/components/doctor-website/Facilities';
@@ -197,9 +198,10 @@ import GenericPanel from '~/components/generic/GenericPanel';
 import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import PatientPanel from '~/components/doctor-website/PatientPanel';
-import Profile from '~/components/doctor-website/NewProfile';
+import Profile from '~/components/doctor-website/Profile';
 import ProfileCard from '~/components/doctor-website/ProfileCard';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
+// utils
 import {
   heartDoctor,
   getDoctorWebsite,
@@ -208,9 +210,10 @@ import {
 } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
+import { amplitudeTracker } from '~/utils/amplitude-analytics';
+// services
 import { fetchUserFacilities } from '~/services/organization-members';
 import { fetchOrganizations } from '~/services/organizations';
-import { amplitudeTracker } from '~/utils/amplitude-analytics';
 
 const BOOKABLE_FACILITY_TYPES = [
   'doctor-booking',
