@@ -66,8 +66,7 @@
             br
             v-row(justify="center" align="center")
               v-icon(small color="white").mr-1 {{ mdiMapMarker }}
-              v-col.pa-0
-                span.mc-b2.font-weight-light.white--text {{ formattedAddress }}
+              span.mc-b2.font-weight-light.white--text &nbsp;{{ formattedAddress }}
             v-row(justify="center" align="center")
               v-icon(small color="white").mr-2 {{ mdiPhone }}
               span.mc-b2.font-weight-light.white--text {{ clinicPhone }}

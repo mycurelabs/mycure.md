@@ -47,8 +47,8 @@
         md="8"
         xl="9"
       )
-        v-row(v-if="itemsTotal")
-          span.mc-btn1 Showing {{ itemsTotal }} results
+        v-row(v-if="itemsTotal").pt-1
+          span.mc-btn1 Showing {{ itemsTotal }} result{{ itemsTotal > 1 ? 's' : '' }}
           v-spacer
           v-pagination(
             v-model="itemsPage"
@@ -59,25 +59,23 @@
             circle
             @input="onPaginate($event)"
           )
-        template(v-if="loading.list")
+        div(v-if="loading.list").pt-3
           v-skeleton-loader(
             v-for="n in 3"
             :key="n"
             type="card-heading, list-item-three-line, actions" elevation="2"
           )
-        template(v-else)
+        div(v-else).pt-3
           div(
             v-for="(item, key) in items"
             :key="key"
           ).my-3
-            //- service-item(
-            //-   :item="item"
-            //-   :organization="organization"
-            //-   :is-preview-mode="isPreviewMode"
-            //-   :read-only="readOnly"
-            //-   :is-booking-enabled="isBookingEnabled"
-            //- )
-            h3 {{ item.name }}
+            service-item(
+              :item="item"
+              :organization="organization"
+              :is-preview-mode="isPreviewMode"
+              :is-booking-enabled="isBookingEnabled"
+            )
 </template>
 
 <script>
