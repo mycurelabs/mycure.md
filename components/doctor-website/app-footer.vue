@@ -1,55 +1,76 @@
 <template lang="pug">
-  v-footer(dark color="#343A40")
+  v-footer
     v-container.my-3
       v-row(justify="center")
         generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-          v-row(align="center" no-gutters)
+          v-col(cols="12").pa-0
+            v-row(align="start" no-gutters width="100%")
+              v-col(
+                :class="{ 'text-center' : $isMobile }"
+                cols="12"
+                md="7"
+              )
+                div(:class="{'text-center justify-center': $isMobile}").d-flex
+                  p.mt-1.mr-2 #[b Powered by]
+                  img(
+                    src="~/assets/images/mycure-logo.png"
+                    width="120px"
+                    height="34.46px"
+                    alt="MYCURE logo"
+                  ).ml-3div(:class="{'flex-column': $isMobile}").d-flex
+          v-row(align="center" no-gutters).mb-16
             v-col(
               :class="{ 'text-center' : $isMobile }"
               cols="12"
-              md="5"
-            ).white--text
-              div(:class="{'text-center justify-center': $isMobile}").d-flex
-                p.mt-1 #[b Powered by]
-                img(
-                  src="~/assets/images/mycure-logo-white.png"
-                  width="120px"
-                  height="34.46px"
-                  alt="MYCURE logo"
-                ).ml-3
-              span &copy; 2016 - {{ new Date().getFullYear() }}
-              span #[br(v-if="$isMobile")] All Rights Reserved.
-            v-col(v-if="$isMobile" cols="12")
-              hr.mb-5
-            v-spacer
-            v-col
-              div(:class="{'flex-column': $isMobile}").d-flex
-                v-btn(
-                  to="/terms"
-                  text
-                  color="secondary"
-                ).text-none.letter-spacing-normal Terms of Use
-                span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+              md="7"
+            )
+              v-btn(
+                to="/signup/health-facilities?type=doctor"
+                text
+              ).text-none.px-0
+                span(style="color: #72727D") Create my own MD Website
+            v-col(cols="12" md="5")
+              v-row
+                v-col(cols="12" md="6").text-center
+                  v-btn(
+                    to="/directory/results?searchMode=account"
+                    text
+                  ).text-none
+                    span(style="color: #72727D") Find more Doctors
+                v-col(cols="12" md="6").text-center
+                  v-btn(
+                    text
+                    href="https://airtable.com/shrgkdR8ASEdbQ1Pa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    @click="toggleChat"
+                  ).text-none
+                    span(style="color: #72727D") Send us your feedback
+          v-row(align="center" no-gutters).mb-3.mt-8
+            v-col(cols="12" md="8")
+              v-row.pa-3
+                div
+                  span Copyright &copy; {{ new Date().getFullYear() }}
+                  span #[br(v-if="$isMobile")] All Rights Reserved.
+                v-spacer
                 v-btn(
                   to="/privacy-policy"
                   text
-                  color="secondary"
-                ).text-none.letter-spacing-normal Privacy Policy
-                span(v-if="!$isMobile").mt-1.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+                ).text-none
+                  span(style="color: #72727D") Privacy Policy
                 v-btn(
+                  to="/terms"
                   text
-                  href="https://airtable.com/shrgkdR8ASEdbQ1Pa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="secondary"
-                  @click="toggleChat"
-                ).text-none.letter-spacing-normal Send us your feedback
-              div(:class="{'flex-column': $isMobile}").d-flex
-                v-btn(
-                  to="/signup/health-facilities?type=doctor"
-                  text
-                  color="secondary"
-                ).text-none.letter-spacing-normal Create my own Doctor Website
+                ).text-none
+                  span(style="color: #72727D") Terms of Use
+            v-col(
+              :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
+              cols="12"
+              md="4"
+            )
+              template(v-for="(account, key) in socMed")
+                a(:href="account.link" target="_blank" rel="noopener noreferrer")
+                  img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name").mx-2
 </template>
 
 <script>
@@ -62,6 +83,42 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    this.socMed = [
+      {
+        name: 'MYCURE - Instagram',
+        link: 'https://www.instagram.com/mycure.md/',
+        icon: 'mycure-homepage-wireframe-icon-ig.png',
+        id: 'footer-ig-btn',
+      },
+      {
+        name: 'MYCURE - LinkedIn',
+        link: 'https://www.linkedin.com/company/mycure',
+        icon: 'mycure-homepage-wireframe-icon-linkedin.png',
+        id: 'footer-linkedin-btn',
+      },
+      {
+        name: 'MYCURE - YouTube',
+        link: 'https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg',
+        icon: 'mycure-homepage-wireframe-icon-ytub-e.png',
+        id: 'footer-yt-btn',
+      },
+      {
+        name: 'MYCURE - Facebook',
+        link: 'https://www.facebook.com/mycure.md',
+        icon: 'mycure-homepage-wireframe-icon-fb.png',
+        id: 'footer-fb-btn',
+      },
+      {
+        name: 'MYCURE - Twitter',
+        link: 'https://twitter.com/mycureapp',
+        icon: 'mycure-homepage-wireframe-icon-twitter.png',
+        id: 'footer-twitter-btn',
+      },
+    ];
+    return {
+    };
   },
   methods: {
     toggleChat () {
