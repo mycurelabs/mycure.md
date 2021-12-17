@@ -68,6 +68,7 @@
                     :organization="clinicId"
                     :is-preview-mode="isPreviewMode"
                     @paginate="onPaginate({ type: 'doctors' }, $event)"
+                    @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
                   )
               //- ABOUT CLINIC
               v-tab-item(value="about")
@@ -357,14 +358,17 @@ export default {
      *
      */
     async fetchDoctors ({
-      // doctorProps = {},
+      doctorProps = {},
       searchText,
     } = {}, page = 1) {
       try {
+        console.log('doctor props', doctorProps);
         this.loading.doctors.list = true;
         const skip = this.itemsLimit * (page - 1);
+        const { specializations } = doctorProps;
         const { items, total } = await fetchClinicWebsiteDoctors({
           ...searchText && { searchText },
+          ...specializations.length && { specializations },
           organization: this.clinicId,
           limit: this.itemsLimit,
           skip,
@@ -407,6 +411,24 @@ export default {
       }
       // else, return doctors
       return this.fetchDoctors({
+        searchText,
+      }, page);
+    },
+    onFilterDoctor ({
+      specializations,
+      searchText,
+    }, page = 1) {
+      const specializationsMapped = specializations.map((spec) => {
+        let finArray = spec.split(' ');
+        finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
+        const finStr = finArray.join('-');
+        return {
+          code: finStr,
+          name: spec,
+        };
+      });
+      return this.fetchDoctors({
+        doctorProps: { specializations: specializationsMapped },
         searchText,
       }, page);
     },

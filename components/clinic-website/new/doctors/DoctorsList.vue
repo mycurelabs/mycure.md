@@ -15,8 +15,23 @@
             h2.mc-h4.black--text Our Doctors
             v-spacer
           v-divider.my-3
-          //- TODO: insert specialization dropdown and dialog
-
+          v-card-text
+            specialization-filter(
+              v-model="specializationFiltersArray"
+              @filter="onFilter($event)"
+            )
+            //- v-text-field(
+            //-   v-model="specializationFilter"
+            //-   placeholder="Filter Specializations"
+            //-   :prepend-inner-icon="mdiFilter"
+            //-   dense
+            //-   hide-details
+            //-   outlined
+            //-   :disabled="dialog"
+            //-   :append-
+            //-   @click="dialog = true"
+            //- )
+            //-   template(slot="append")
       //- SERVICES
       v-col(
         cols="12"
@@ -38,12 +53,14 @@
 <script>
 import VueScrollTo from 'vue-scrollto';
 import DoctorsPaginated from './DoctorsPaginated';
+import SpecializationFilter from './SpecializationFilter';
 import GenericPanel from '~/components/generic/GenericPanel';
 
 export default {
   components: {
     GenericPanel,
     DoctorsPaginated,
+    SpecializationFilter,
   },
   props: {
     organization: {
@@ -83,7 +100,7 @@ export default {
   data () {
     return {
       itemsPage: 1,
-      specializationFilter: null,
+      specializationFiltersArray: [],
     };
   },
   computed: {
@@ -96,6 +113,10 @@ export default {
   methods: {
     onPaginate (page) {
       this.$emit('paginate', page);
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+    },
+    onFilter (specialties) {
+      this.$emit('filter', specialties);
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },
   },
