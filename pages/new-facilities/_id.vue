@@ -145,7 +145,7 @@ export default {
         services: [],
         doctors: [],
       },
-      itemsLimit: 2,
+      itemsLimit: 5,
       itemsTotal: 0,
       serviceTypes: [],
       activeServiceType: null,

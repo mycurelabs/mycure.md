@@ -10,7 +10,7 @@
         v-col(cols="12" md="3" :class="{'text-right': !$isMobile}")
           h3(v-if="price").mc-h3
             money(:value="price" symbol="₱" text-class="mc-h3")
-          h3(v-else).mc-h3 No price stated
+          span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
           v-row.pl-1.pr-2
@@ -24,8 +24,8 @@
             v-spacer
             a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}
-      v-divider
-      v-row(v-if="hasCoverages").my-3
+      v-divider.my-5
+      v-row(v-if="hasCoverages")
         v-avatar(
           size="25"
           color="secondary"
@@ -34,33 +34,20 @@
           span(v-else).white--text {{ coverages[0].name.substring(0,1) }}
         span {{ previewCoverages }}
           template(v-if="coveragesTotal > previewCoveragesLimit")
-          | ...
-          a(@click="dialog.coverages = true").primary--text &nbsp;and {{ coveragesTotal - previewCoveragesLimit }} more
-        //- v-tooltip(
-        //-   v-for="(coverage, key) in previewCoverages"
-        //-   :key="key"
-        //-   top
-        //- )
-        //-   template(v-slot:activator="{ on, attrs }")
-        //-     v-avatar(
-        //-       size="40"
-        //-       color="secondary"
-        //-       v-on="on"
-        //-     ).mx-1
-        //-       v-img(v-if="coverage.picURL" :src="coverage.picURL")
-        //-       span(v-else).white--text {{ coverage.name.substring(0,1) }}
-        //-   span {{ coverage.name || 'HMO' }}
-      v-row(justify="end").text-right
-        v-btn(
-          color="primary"
-          depressed
-          large
-          :block="$isMobile"
-          :disabled="!isAvailable"
-          :href="bookPhysicalURL"
-          @click="trackBooking"
-        ).text-none
-          span.mc-btn1 Book Now
+            | ...
+            a(@click="dialog.coverages = true").primary--text &nbsp;and {{ coveragesTotal - previewCoveragesLimit }} more
+    v-card-actions
+      v-spacer
+      v-btn(
+        color="primary"
+        depressed
+        x-large
+        :block="$isMobile"
+        :disabled="!isAvailable"
+        :href="bookPhysicalURL"
+        @click="trackBooking"
+      ).text-none
+        span.mc-btn1 Book Now
 
     //- DIALOGS
     //- Schedule dialog
