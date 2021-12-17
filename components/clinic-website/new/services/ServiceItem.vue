@@ -146,10 +146,6 @@ export default {
       type: String,
       default: null,
     },
-    isBookingEnabled: {
-      type: Boolean,
-      default: false,
-    },
   },
   data () {
     this.daysList = [

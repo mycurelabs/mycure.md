@@ -49,7 +49,7 @@
                     :loading="loading.services"
                     :items="items.services"
                     :items-total="itemsTotal"
-                    :items-pagination-length="itemsPaginationLength"
+                    :items-limit="itemsLimit"
                     :service-types="serviceTypes"
                     :organization="clinicId"
                     :is-preview-mode="isPreviewMode"
@@ -210,10 +210,6 @@ export default {
     description () {
       return this.clinic?.description ||
       `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
-    },
-    // pagination
-    itemsPaginationLength () {
-      return Math.ceil(this.itemsTotal / this.itemsLimit) || 0;
     },
   },
   watch: {

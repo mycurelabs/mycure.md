@@ -41,41 +41,22 @@
                   v-list-item-content
                     v-list-item-title {{ typeMappings[type].text }}
 
-      //- SERVICE ITEM
+      //- SERVICES
       v-col(
         cols="12"
         md="8"
         xl="9"
       )
-        v-row(v-if="itemsTotal").pt-1
-          span.mc-btn1 Showing {{ itemsTotal }} result{{ itemsTotal > 1 ? 's' : '' }}
-          v-spacer
-          v-pagination(
-            v-model="itemsPage"
-            :length="itemsPaginationLength"
-            total-visible="10"
-            :next-icon="mdiChevronRight"
-            :prev-icon="mdiChevronLeft"
-            circle
-            @input="onPaginate($event)"
-          )
-        div(v-if="loading.list").pt-3
-          v-skeleton-loader(
-            v-for="n in 3"
-            :key="n"
-            type="card-heading, list-item-three-line, actions" elevation="2"
-          )
-        div(v-else).pt-3
-          div(
-            v-for="(item, key) in items"
-            :key="key"
-          ).my-3
-            service-item(
-              :item="item"
-              :organization="organization"
-              :is-preview-mode="isPreviewMode"
-              :is-booking-enabled="isBookingEnabled"
-            )
+        services-paginated(
+          :loading="loading.list"
+          :items="items"
+          :items-total="itemsTotal"
+          :items-limit="itemsLimit"
+          :itemsPage.sync="itemsPage"
+          :organization="organization"
+          :is-preview-mode="isPreviewMode"
+          @update:itemsPage="onPaginate($event)"
+        )
 </template>
 
 <script>
@@ -89,11 +70,8 @@ import {
   mdiPackageVariantClosed,
   mdiPulse,
   mdiToothOutline,
-  mdiArrowLeft,
-  mdiChevronLeft,
-  mdiChevronRight,
 } from '@mdi/js';
-import ServiceItem from './ServiceItem';
+import ServicesPaginated from './ServicesPaginated';
 import GenericPanel from '~/components/generic/GenericPanel';
 
 const CONSULT_TYPES = [
@@ -112,7 +90,7 @@ const ANCILLARY_TYPES = [
 export default {
   components: {
     GenericPanel,
-    ServiceItem,
+    ServicesPaginated,
   },
   props: {
     value: {
@@ -132,9 +110,9 @@ export default {
       type: Number,
       default: 0,
     },
-    itemsPaginationLength: {
+    itemsLimit: {
       type: Number,
-      default: 0,
+      default: 5,
     },
     serviceTypes: {
       type: Array,
@@ -155,10 +133,6 @@ export default {
         section: false,
         list: false,
       }),
-    },
-    isBookingEnabled: {
-      type: Boolean,
-      default: false,
     },
   },
   data () {
@@ -194,10 +168,6 @@ export default {
     };
     return {
       itemsPage: 1,
-      // icons
-      mdiArrowLeft,
-      mdiChevronRight,
-      mdiChevronLeft,
     };
   },
   computed: {

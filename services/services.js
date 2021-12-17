@@ -82,6 +82,7 @@ export const fetchServices = async (opts, withSchedules = false) => {
     ...opts.type && { type: opts.type },
     ...opts.subtype && { subtype: opts.subtype },
     ...opts.tags && { tags: opts.tags },
+    archivedAt: null,
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $populate: {
