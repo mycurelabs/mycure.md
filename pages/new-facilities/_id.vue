@@ -179,7 +179,7 @@ export default {
         services: [],
         doctors: [],
       },
-      itemsLimit: 5,
+      itemsLimit: 4,
       itemsTotal: {
         services: 0,
         doctors: 0,
@@ -265,7 +265,6 @@ export default {
     },
     tabSelect: {
       async handler (val) {
-        console.log('changed', val);
         if (val === 'services' && isEmpty(this.items.services)) {
           return await this.fetchServices({
             serviceProps: this.getServiceQuery(this.activeServiceType),
@@ -368,7 +367,7 @@ export default {
         const { specializations } = doctorProps;
         const { items, total } = await fetchClinicWebsiteDoctors({
           ...searchText && { searchText },
-          ...specializations.length && { specializations },
+          ...specializations?.length && { specializations },
           organization: this.clinicId,
           limit: this.itemsLimit,
           skip,
