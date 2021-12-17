@@ -9,15 +9,28 @@
               alt="MYCURE Doctor"
               width="90%"
             )
-        v-col(cols="12" md="9" :class="{'text-right': !$isMobile}")
-          //- TODO: insert doctor details
+        v-spacer
+        v-col(cols="12" md="8")
+          v-clamp(
+            autoresize
+            :max-lines="1"
+          ).mc-h3 Dr. {{ fullNameWithSuffixes }}
+          div.my-4
+            v-clamp(
+              autoresize
+              :max-lines="1"
+              :class="{'font-italic': !specializations.length }"
+            ).mc-h5 {{ formattedSpecializations }}
+          p(v-if="yearsOfExperience").mc-b2
+            v-icon(color="secondary" :small="!$isWideScreen" left) {{ mdiBriefcaseVariantOutline }}
+            span &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
       v-divider.my-5
       v-row
         v-col(cols="12")
-          v-row(dense)
-            h5.mc-h5.pt-3 Schedule
+          v-row(dense :justify="$isMobile ? 'center' : 'start'")
+            h5.mc-h5.pt-2 Schedule
             v-spacer
-            v-col(cols="12" md="4" xl="3")
+            v-col(cols="12" md="4" xl="3").mr-n2
               v-select(
                 v-model="appointmentType"
                 :items="appointmentTypes"
@@ -30,7 +43,7 @@
               )
                 template(v-slot:selection="{ item }")
                   span.mc-b4 {{ item.text }}
-          v-row.pl-1.pr-2.mt-n1
+          v-row(dense).pl-1.mt-n1
             div(v-for="(day, key) in daysList" :key="key").d-flex
               v-badge(
                 :color="isDoctorAvailable(day.value) ? 'success' : '#EEEEEE'"
@@ -39,7 +52,13 @@
                 x-large
               )
             v-spacer
-            a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
+            v-btn(
+              text
+              color="primary"
+              :disabled="!isAvailable"
+              @click="dialog.schedules = true"
+            ).text-none
+              span.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}
     v-card-actions
       v-btn(
@@ -70,10 +89,12 @@
 </template>
 
 <script>
+import VClamp from 'vue-clamp';
 import {
   mdiInformationOutline,
   mdiClose,
   mdiMenuDown,
+  mdiBriefcaseVariantOutline,
 } from '@mdi/js';
 import isNil from 'lodash/isNil';
 import Schedules from '../services/AppointmentSchedules';
@@ -85,6 +106,7 @@ export default {
   components: {
     Money,
     Schedules,
+    VClamp,
   },
   filters: {
     formatName (provider) {
@@ -131,14 +153,43 @@ export default {
       mdiInformationOutline,
       mdiClose,
       mdiMenuDown,
+      mdiBriefcaseVariantOutline,
     };
   },
   computed: {
     picURL () {
       return this.item?.picURL || require('~/assets/images/commons/mycure-default-avatar.png');
     },
+    fullNameWithSuffixes () {
+      if (!this.item?.name) return '';
+      let fullName = this.item.name.firstName;
+      if (this.item.name.middleInitial) fullName = fullName + ' ' + this.item.name.middleInitial;
+      fullName = fullName + ' ' + this.item.name.lastName;
+      if (this.item.name.generationalSuffix) fullName = fullName + ' ' + this.item.name.generationalSuffix;
+      if (this.item.name.doc_professions) fullName = fullName + ', ' + this.item.name.doc_professions;
+      if (this.item.name.academicSuffix) fullName = fullName + ', ' + this.item.name.academicSuffix;
+      if (this.item.name.professionalSuffix) fullName = fullName + ', ' + this.item.name.professionalSuffix;
+      return fullName;
+    },
+    specializations () {
+      return this.item?.doc_specialties || [];
+    },
+    formattedSpecializations () {
+      return this.specializations.join(', ') || 'No specializations listed';
+    },
+    yearsOfExperience () {
+      const doc_practicingSince = this.item?.doc_practicingSince; // eslint-disable-line
+      let from = doc_practicingSince; // eslint-disable-line
+      if (`${from}`.length > 4) from = new Date(doc_practicingSince).getFullYear(); // eslint-disable-line
+      const to = new Date().getFullYear();
+      return to - from;
+    },
+    // - SCHEDULES
     fullSchedules () {
-      return this.item?.schedulesData || [];
+      /* NOTE: filtering was done because there are some schedules that are not clinical-consultation
+       that were somehow assigned to the doctor. Possibly due to past bad data
+      */
+      return this.item?.schedulesData?.filter(schedule => schedule.meta?.serviceType === 'clinical-consultation') || [];
     },
     groupedSchedules () {
       const schedules = [...this.fullSchedules];

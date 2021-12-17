@@ -335,7 +335,9 @@ export default {
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
-        this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
+        if (this.isBookingEnabled) {
+          this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
+        }
         if (this.isTelehealthEnabled) {
           this.serviceTypes.push('telehealth');
         }
