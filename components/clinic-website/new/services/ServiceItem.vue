@@ -44,8 +44,8 @@
         x-large
         :block="$isMobile"
         :disabled="!isAvailable"
-        :href="bookPhysicalURL"
-        @click="trackBooking"
+        :href="bookURL"
+        @click="trackBooking(appointmentType)"
       ).text-none
         span.mc-btn1 Book Now
 
@@ -215,23 +215,20 @@ export default {
     isAvailable () {
       return this.fullSchedules.length;
     },
-    bookPhysicalURL () {
-      if (this.isPreviewMode) return null;
-      const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const id = this.item?.id;
-      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=physical`;
+    isTelehealthService () {
+      return this.item.type === 'clinical-consultation' && this.item.tags?.includes('telehealth');
     },
-    bookTelehealthURL () {
+    appointmentType () {
+      return this.isTelehealthService ? 'telehealth' : 'physical';
+    },
+    bookURL () {
       if (this.isPreviewMode) return null;
-      const pxPortalUrl = process.env.PX_PORTAL_URL;
-      const id = this.item?.id;
-      return `${pxPortalUrl}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=telehealth`;
+      const PX_PORTAL_URL = process.env.PX_PORTAL_URL;
+      const id = this.item.id;
+      return `${PX_PORTAL_URL}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=${this.appointmentType}`;
     },
   },
   methods: {
-    isTelehealthService (service) {
-      return service.type === 'clinical-consultation' && service.tags?.includes('telehealth');
-    },
     isServiceAvailable (dayValue) {
       const matchedDay = this.fullSchedules.find(schedule => schedule.day === dayValue);
       return !isNil(matchedDay);
@@ -256,10 +253,10 @@ export default {
       this.previewProviders = [];
     },
     // Google analytics
-    trackBooking () {
+    trackBooking (appointmentType) {
       this.$gtag.event('book', {
         event_category: 'clinic-website',
-        event_label: `book-appointment-clinic-${this.organization}-service-${this.item.id}`,
+        event_label: `book-${appointmentType}-clinic-${this.organization}-service-${this.item.id}`,
       });
     },
   },
