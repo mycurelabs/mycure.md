@@ -191,7 +191,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Terms and Conditions',
+      title: 'MYCURE Terms, Conditions and EULA Information',
       description: 'Learn more about our Terms and Conditions so you can maximize using MYCURE Clinic Management System in your practice. Last updated: February 21, 2018.',
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Terms_and_Conditions.png?alt=media&token=3884660e-7f81-4586-9dc6-c500991e0b03',
