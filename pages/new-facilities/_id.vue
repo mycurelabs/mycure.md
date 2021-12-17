@@ -42,6 +42,8 @@
                 :class="{'ml-4': !$isMobile}"
                 dense
               ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
+
+              //- SERVICES
               v-tab-item(value="services")
                 div.grey-bg.pt-8
                   services-list(
@@ -55,11 +57,13 @@
                     :is-preview-mode="isPreviewMode"
                     @paginate="onPaginate({ type: 'service' }, $event)"
                   )
+              //- DOCTORS
               v-tab-item(value="doctors")
                 div.grey-bg.pt-8
                   //- doctors-list(
                   //-   v-model="active"
                   //- )
+              //- ABOUT CLINIC
               v-tab-item(value="about")
                 div.grey-bg.pt-8
                   about-clinic(
@@ -67,6 +71,7 @@
                     :clinic-name="clinicName"
                     :description="description"
                   )
+              //- CONTACT US
               v-tab-item(value="contact")
                 div.grey-bg.pt-8
                   contact-us(
@@ -88,6 +93,7 @@ import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 import { getOrganization } from '~/utils/axios/organizations';
 import { initLogger } from '~/utils/logger';
 import { formatAddress } from '~/utils/formats';
+import headMeta from '~/utils/head-meta';
 // components
 import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
@@ -180,6 +186,11 @@ export default {
   },
   head () {
     return {
+      ...headMeta({
+        title: `${this.clinicName || 'Facility Website'}`,
+        description: this.description,
+        socialBanner: this.picURL,
+      }),
       script: [
         {
           hid: 'google',
@@ -231,7 +242,7 @@ export default {
     },
     description () {
       return this.clinic?.description ||
-      `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+      `${this.name || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
     },
   },
   watch: {
