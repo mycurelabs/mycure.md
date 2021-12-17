@@ -426,7 +426,7 @@ export default {
     async fetchDoctorMembers (searchText, page = 1) {
       try {
         const skip = this.itemsLimit * (page - 1);
-        const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
+        const { items, total } = await fetchClinicWebsiteDoctors({
           organization: this.orgId,
           searchText,
           limit: this.itemsLimit,
@@ -639,7 +639,7 @@ export default {
       if (day === 0) day = 7;
       if (!this.searchResults?.length) return;
       this.searchResults = this.searchResults.filter((result) => {
-        const schedules = result.scheduleData || result.schedules;
+        const schedules = result.schedulesData || result.schedules;
         const matchDay = schedules?.find(schedule => schedule.order || schedule.day === day);
         return !!matchDay;
       }) || [];

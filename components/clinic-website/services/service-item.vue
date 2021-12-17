@@ -189,7 +189,7 @@ export default {
       return this.item?.price;
     },
     fullSchedules () {
-      return this.item?.scheduleData || this.item?.schedules || [];
+      return this.item?.schedulesData || this.item?.schedules || [];
     },
     groupedSchedules () {
       const schedules = [...this.fullSchedules];

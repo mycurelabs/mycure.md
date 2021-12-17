@@ -243,7 +243,7 @@ export default {
       return this.doctor?.doc_specialties?.length;
     },
     fullSchedules () {
-      return this.doctor?.scheduleData || this.doctor?.schedules || [];
+      return this.doctor?.schedulesData || this.doctor?.schedules || [];
     },
     groupedSchedules () {
       const schedules = [...this.fullSchedules];

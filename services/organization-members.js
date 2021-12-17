@@ -1,7 +1,8 @@
+import sdk from '@mycure/sdk-js';
 import { normalizePopulated } from '~/utils/services';
 // import { fetchScheduleSlots } from './schedule-slots';
 
-export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
+export const fetchClinicWebsiteDoctors = async (opts) => {
   const query = {
     organization: opts.organization,
     roles: { $in: ['doctor'] },
@@ -12,7 +13,7 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
         localKey: 'uid',
         foreignKey: 'uid',
       },
-      scheduleData: {
+      schedulesData: {
         service: 'schedule-slots',
         method: 'find',
         localKey: 'uid',

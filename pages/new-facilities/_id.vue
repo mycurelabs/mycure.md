@@ -34,38 +34,40 @@
                   @click="onHome"
                 ).mr-2
                 a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-                a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect }}
+                a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"
-                :href="`#${tab}`"
+                :href="`#${tab.value}`"
                 :class="{'ml-4': !$isMobile}"
                 dense
-              ).mc-hyp2.font-weight-semibold.text-none {{ tab }}
-              v-tab-item(value="Services")
+              ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
+              v-tab-item(value="services")
                 div.grey-bg.pt-8
                   services-list(
                     v-model="activeServiceType"
                     :loading="loading.services"
                     :items="items.services"
-                    :items-total="itemsTotal"
+                    :items-total="itemsTotal.services"
                     :items-limit="itemsLimit"
                     :service-types="serviceTypes"
                     :organization="clinicId"
                     :is-preview-mode="isPreviewMode"
                     @paginate="onPaginate({ type: 'service' }, $event)"
                   )
-              v-tab-item(value="Our Doctors")
+              v-tab-item(value="doctors")
                 div.grey-bg.pt-8
-                  h3 hello
-              v-tab-item(value="About Clinic")
+                  //- doctors-list(
+                  //-   v-model="active"
+                  //- )
+              v-tab-item(value="about")
                 div.grey-bg.pt-8
                   about-clinic(
                     :pic-url="picURL"
                     :clinic-name="clinicName"
                     :description="description"
                   )
-              v-tab-item(value="Contact Us")
+              v-tab-item(value="contact")
                 div.grey-bg.pt-8
                   contact-us(
                     :address="clinic.address"
@@ -81,6 +83,7 @@ import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 // services
 import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
+import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
 import { initLogger } from '~/utils/logger';
@@ -104,6 +107,12 @@ const SERVICE_TYPES = [
 ];
 
 const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
+const TABS_LIST = [
+  { text: 'Services', value: 'services' },
+  { text: 'Our Doctors', value: 'doctors' },
+  { text: 'About Clinic', value: 'about' },
+  { text: 'Contact Us', value: 'contact' },
+];
 
 export default {
   components: {
@@ -112,6 +121,12 @@ export default {
     AboutClinic,
     ContactUs,
     ServicesList,
+  },
+  filters: {
+    formatBreadCrumbs (crumb) {
+      const tab = TABS_LIST.find(tab => tab.value === crumb);
+      return tab ? tab.text : 'Section';
+    },
   },
   layout: 'empty',
   async asyncData ({ params, $sdk, redirect, error }) {
@@ -132,11 +147,15 @@ export default {
     }
   },
   data () {
-    this.tabsList = ['Services', 'Our Doctors', 'About Clinic', 'Contact Us'];
+    this.tabsList = TABS_LIST;
     return {
       loading: {
         page: false,
         services: {
+          section: false,
+          list: false,
+        },
+        doctors: {
           section: false,
           list: false,
         },
@@ -146,7 +165,10 @@ export default {
         doctors: [],
       },
       itemsLimit: 5,
-      itemsTotal: 0,
+      itemsTotal: {
+        services: 0,
+        doctors: 0,
+      },
       serviceTypes: [],
       activeServiceType: null,
       tabSelect: 'Services',
@@ -221,6 +243,19 @@ export default {
         }, 1);
       },
     },
+    tabSelect: {
+      async handler (val) {
+        console.log('changed', val);
+        if (val === 'services' && isEmpty(this.items.services)) {
+          return await this.fetchServices({
+            serviceProps: this.getServiceQuery(this.activeServiceType),
+          }, 1);
+        }
+        if (val === 'doctors' && isEmpty(this.items.doctors)) {
+          return await this.fetchDoctors();
+        }
+      },
+    },
   },
   mounted () {
     if (this.isOnline) {
@@ -235,19 +270,17 @@ export default {
     },
     /** Fetches all services of facility
      *
-     * @param {Object} serviceArgs
-     * @param {Object} serviceArgs.serviceProps - specific service fields
-     * @param {String} serviceArgs.searchText - search text to match services name
+     * @param {Object} serviceOpts
+     * @param {Object} serviceOpts.serviceProps - specific service fields
+     * @param {String} serviceOpts.serviceProps.type - matches with Service#type
+     * @param {String} serviceOpts.serviceProps.subtype  - matched with Service#subtype
+     * @param {String} serviceOpts.serviceProps.insurer  - insurer id
+     * @param {Array} serviceOpts.serviceProps.tags - matches with Service#tags
+     * @param {String} serviceOpts.searchText - search text to match services name
      *
      * @param {Number} page - for computing pagination
      */
     async fetchServices ({
-      /**
-       * @type {String} serviceProps.type - matches with Service#type
-       * @type {String} serviceProps.subtype  - matched with Service#subtype
-       * @type {String} serviceProps.insurer  - insurer id
-       * @type {Array} serviceProps.tags - matches with Service#tags
-       */
       serviceProps = {},
       searchText,
     } = {}, page = 1) {
@@ -270,7 +303,7 @@ export default {
         const { items, total } = await fetchServices(query, true);
         log('fetchServices#items: %O', items);
         this.items.services = items;
-        this.itemsTotal = total;
+        this.itemsTotal.services = total;
       } catch (error) {
         console.error(error);
       } finally {
@@ -290,6 +323,38 @@ export default {
         if (!isEmpty(this.serviceTypes)) this.activeServiceType = this.serviceTypes[0];
       } catch (e) {
         console.error(e);
+      }
+    },
+    /**
+     * Fetches all doctors of facility
+     *
+     * @param {Object} doctorOpts
+     * @param {Object} doctorOpts.doctorProps.specializations - specialization filter
+     * @param {String} doctorOpts.searchText - search text for doctors
+     *
+     * @param {Number} page - page number
+     *
+     */
+    async fetchDoctors ({
+      // doctorProps = {},
+      searchText,
+    } = {}, page = 1) {
+      try {
+        this.loading.doctors.list = true;
+        const skip = this.itemsLimit * (page - 1);
+        const { items, total } = await fetchClinicWebsiteDoctors({
+          ...searchText && { searchText },
+          organization: this.orgId,
+          limit: this.itemsLimit,
+          skip,
+        });
+        this.itemsTotal.doctors = total;
+        this.items.doctors = items || [];
+        console.log('fetchDoctors#items: %O', items);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.doctors.list = false;
       }
     },
     // utils
