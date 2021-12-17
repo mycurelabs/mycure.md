@@ -55,14 +55,20 @@
                     :service-types="serviceTypes"
                     :organization="clinicId"
                     :is-preview-mode="isPreviewMode"
-                    @paginate="onPaginate({ type: 'service' }, $event)"
+                    @paginate="onPaginate({ type: 'services' }, $event)"
                   )
               //- DOCTORS
               v-tab-item(value="doctors")
                 div.grey-bg.pt-8
-                  //- doctors-list(
-                  //-   v-model="active"
-                  //- )
+                  doctors-list(
+                    :loading="loading.doctors"
+                    :items="items.doctors"
+                    :items-total="itemsTotal.doctors"
+                    :items-limit="itemsLimit"
+                    :organization="clinicId"
+                    :is-preview-mode="isPreviewMode"
+                    @paginate="onPaginate({ type: 'doctors' }, $event)"
+                  )
               //- ABOUT CLINIC
               v-tab-item(value="about")
                 div.grey-bg.pt-8
@@ -98,6 +104,7 @@ import headMeta from '~/utils/head-meta';
 import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
+import DoctorsList from '~/components/clinic-website/new/doctors/DoctorsList';
 import ServicesList from '~/components/clinic-website/new/services/ServicesList';
 import GenericPanel from '~/components/generic/GenericPanel';
 
@@ -126,6 +133,7 @@ export default {
     GenericPanel,
     AboutClinic,
     ContactUs,
+    DoctorsList,
     ServicesList,
   },
   filters: {
@@ -355,7 +363,7 @@ export default {
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicWebsiteDoctors({
           ...searchText && { searchText },
-          organization: this.orgId,
+          organization: this.clinicId,
           limit: this.itemsLimit,
           skip,
         });
@@ -385,17 +393,20 @@ export default {
     },
     // Event handlers
     onPaginate ({
-      type, // service or doctors
+      type, // services or doctors
       searchText, // search Text
     }, page = 1) {
       if (!type) return;
-      if (type === 'service') {
+      if (type === 'services') {
         return this.fetchServices({
           serviceProps: this.currentServicePropsQuery,
           searchText,
         }, page);
       }
       // else, return doctors
+      return this.fetchDoctors({
+        searchText,
+      }, page);
     },
     onRedirect (type) {
       this.tabSelect = type;
