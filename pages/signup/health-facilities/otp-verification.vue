@@ -181,7 +181,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE | Verify your Account',
+      title: 'MYCURE | OTP Verification of your Account',
       description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });

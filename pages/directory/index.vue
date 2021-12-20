@@ -107,7 +107,7 @@ export default {
   head () {
     return {
       ...headMeta({
-        title: 'MYCURE Directory',
+        title: 'MYCURE - Directory for Doctors and Clinics',
         description: 'Search for clinics, doctors, and specialties in the MYCURE Directory',
         socialBanner: require('~/assets/images/banners/patients-og-banner.png'),
       }),
