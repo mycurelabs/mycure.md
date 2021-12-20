@@ -25,8 +25,11 @@
             a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}
       v-divider.my-5
+      //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
+      //- can't use $populate and $search together in the query.
       v-row(v-if="hasCoverages")
         v-avatar(
+          v-if="coverages[0]"
           size="25"
           color="secondary"
         ).mx-1
@@ -117,6 +120,7 @@ import {
   mdiCalendarCheck,
 } from '@mdi/js';
 import isNil from 'lodash/isNil';
+import isEmpty from 'lodash/isEmpty';
 import Schedules from './AppointmentSchedules';
 import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
@@ -194,7 +198,8 @@ export default {
       return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
     },
     hasCoverages () {
-      return this.item?.$hasCoverages;
+      console.log('cov data', this.item?.coveragesData);
+      return this.item?.$hasCoverages || !isEmpty(this.item?.coveragesData);
     },
     coverages () {
       if (!this.hasCoverages) return [];
@@ -203,7 +208,7 @@ export default {
           name: coverage.contractData?.name || coverage.name || 'HMO',
           ...coverage.contractData?.picURL && { picURL: coverage.contractData.picURL },
         };
-      });
+      }) || [];
     },
     previewCoverages () {
       return this.coverages.slice(0, this.previewCoveragesLimit)
