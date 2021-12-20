@@ -19,8 +19,9 @@
                   :disabled="disabled"
                   @keyup.enter="debouncedSearch"
                 ).mt-3.search-bar
-                  template(v-slot:append-outer)
-                    v-icon(color="primary") {{ mdiMagnify }}
+                  template(v-slot:append)
+                    div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
+                      v-icon(color="white") {{ mdiMagnify }}
     v-container(v-if="!$isMobile").search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6

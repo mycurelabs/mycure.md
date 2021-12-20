@@ -144,6 +144,7 @@
                     return-object
                     @change="onServiceTypeFilter"
                   )
+                  //- We limit this to the Services Tab only to avoid confusion that it may also be applied to Doctors
                   search-insurers(
                     v-if="searchTabSelect === 'search-services'"
                     avatar
@@ -653,7 +654,7 @@ export default {
       }, 1);
     },
     onInsuranceSelect (insurer) {
-      // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the text to null
+      // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
       this.searchText = null;
       const serviceProps = {
         ...this.currentServicePropsQuery,
