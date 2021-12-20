@@ -40,7 +40,7 @@
                       @keyup.enter="debouncedSearch"
                     ).mt-3.search-bar
                       template(v-slot:append)
-                        div.primary.search-icon.pt-3.text-center
+                        div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
                           v-icon(color="white") {{ mdiMagnify }}
 </template>
 

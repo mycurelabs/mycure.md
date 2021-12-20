@@ -122,36 +122,47 @@
           //- FILTERS
           v-col(cols="12" md="4" xl="3")
             v-card(color="white" flat)
-              v-toolbar(flat).pa-1
-                v-spacer
-                h2.mc-h4.black--text Services
-                v-spacer
-              v-divider.my-3
-              v-card-text
-                v-select(
-                  v-model="serviceSearchTypeFilter"
-                  placeholder="Select Service Type (All)"
-                  item-text="text"
-                  dense
-                  clearable
-                  outlined
-                  :disabled="loading.search"
-                  :append-icon="mdiMenuDown"
-                  :clear-icon="mdiClose"
-                  :items="serviceTypeOptions"
-                  return-object
-                  @change="onServiceTypeFilter"
-                )
-              v-toolbar(flat).pa-1
-                v-spacer
-                h2.mc-h4.black--text Doctors
-                v-spacer
-              v-divider.my-3
-              v-card-text
-                specialization-filter(
-                  v-model="specializationFiltersArray"
-                  @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
-                )
+              template(v-if="showResults('services')")
+                v-toolbar(flat).pa-1
+                  v-spacer
+                  h2.mc-h4.black--text Services
+                  v-spacer
+                v-divider.my-3
+                v-card-text
+                  v-select(
+                    v-model="serviceSearchTypeFilter"
+                    placeholder="Select Service Type (All)"
+                    item-text="text"
+                    dense
+                    clearable
+                    outlined
+                    :disabled="loading.search"
+                    :append-icon="mdiMenuDown"
+                    :clear-icon="mdiClose"
+                    :items="serviceTypeOptions"
+                    return-object
+                    @change="onServiceTypeFilter"
+                  )
+                  search-insurers(
+                    v-if="searchTabSelect === 'search-services'"
+                    avatar
+                    outlined
+                    clearable
+                    :disabled="isPreviewMode"
+                    @select="onInsuranceSelect"
+                    @clear="clearInsuranceFilter"
+                  )
+              template(v-if="showResults('doctors')")
+                v-toolbar(flat).pa-1
+                  v-spacer
+                  h2.mc-h4.black--text Doctors
+                  v-spacer
+                v-divider.my-3
+                v-card-text
+                  specialization-filter(
+                    v-model="specializationFiltersArray"
+                    @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                  )
           //- RESULTS
           v-col(cols="12" md="8" xl="9")
             services-paginated(
@@ -214,6 +225,7 @@ import AboutClinic from '~/components/clinic-website/new/AboutClinic';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
 import DoctorsList from '~/components/clinic-website/new/doctors/DoctorsList';
 import DoctorsPaginated from '~/components/clinic-website/new/doctors/DoctorsPaginated';
+import SearchInsurers from '~/components/clinic-website/new/services/SearchInsurers';
 import SearchPanel from '~/components/clinic-website/new/SearchPanel';
 import ServicesList from '~/components/clinic-website/new/services/ServicesList';
 import ServicesPaginated from '~/components/clinic-website/new/services/ServicesPaginated';
@@ -251,6 +263,7 @@ export default {
     ContactUs,
     DoctorsList,
     DoctorsPaginated,
+    SearchInsurers,
     SearchPanel,
     ServicesList,
     ServicesPaginated,
@@ -552,6 +565,7 @@ export default {
     },
     search () {
       if (!this.searchMode) {
+        this.currentServicePropsQuery = {};
         this.searchMode = true;
         this.searchTabSelect = 'search-all';
         return;
@@ -562,6 +576,7 @@ export default {
     async searchAll () {
       await Promise.all([
         this.fetchServices({
+          serviceProps: this.currentServicePropsQuery,
           ...this.searchText && { searchText: this.searchText },
         }, 1),
         this.fetchDoctors({
@@ -628,6 +643,22 @@ export default {
     },
     onServiceTypeFilter () {
       const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    onInsuranceSelect (insurer) {
+      // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the text to null
+      this.searchText = null;
+      const serviceProps = {
+        ...this.currentServicePropsQuery,
+        insurer,
+      };
+      return this.fetchServices({ serviceProps }, 1);
+    },
+    clearInsuranceFilter () {
+      const serviceProps = omit(this.currentServicePropsQuery, 'insurer');
       return this.fetchServices({
         serviceProps,
         ...this.searchText && { searchText: this.searchText },
