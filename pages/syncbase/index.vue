@@ -111,7 +111,7 @@ export default {
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE Syncbase',
+      title: 'MYCURE Syncbase online-offline technology',
       description: 'With MYCURE Syncbase, enjoy the convenience of a cloud-based system without having to worry about work interruptions when the internet goes down. ',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });

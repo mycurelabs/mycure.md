@@ -5,8 +5,8 @@
         image-file-extension="png"
         image="dots-left"
         image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
+        :image-width="dotsWidth"
+        :image-height="dotsHeight"
         :extension-exclusive="true"
         custom-path="commons/"
       ).left-center
@@ -14,8 +14,8 @@
         image-file-extension="png"
         image="dots-right"
         image-alt="dots gradient"
-        :image-width="$isMobile ? '77.5' : $isRegularScreen ? '108.5' : '155'"
-        :image-height="$isMobile ? '129.7' : $isRegularScreen ? '181.58' : '259.4'"
+        :image-width="dotsWidth"
+        :image-height="dotsHeight"
         :extension-exclusive="true"
         custom-path="commons/"
       ).right-center
@@ -28,6 +28,28 @@ import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     PictureSource,
+  },
+  props: {
+    largeDots: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    dotsWidth () {
+      if (this.largeDots) {
+        return this.$isMobile ? '155' : this.$isRegularScreen ? '217' : '310';
+      } else {
+        return this.$isMobile ? '77.5' : this.$isRegularScreen ? '108.5' : '155';
+      }
+    },
+    dotsHeight () {
+      if (this.largeDots) {
+        return this.$isMobile ? '259.4' : this.$isRegularScreen ? '363.16' : '518.8';
+      } else {
+        return this.$isMobile ? '129.7' : this.$isRegularScreen ? '181.58' : '259.4';
+      }
+    },
   },
 };
 </script>

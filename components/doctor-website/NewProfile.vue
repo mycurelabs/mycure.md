@@ -1,18 +1,17 @@
 <template lang="pug">
-  v-card(color="white" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
+  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
     v-col
       v-row
         v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
           h3.mc-h3.mb-4 About Me
-          p.mc-b3 {{ bio || `This doctor has not shared any info yet, but we're sure they're great!` }}
+          p.mc-b3 {{ bio }}
           br
           br
-          template(v-if="education.length")
-            h4.mc-h4.mb-4.black--text Education
-            div(v-for="(educ, key) in education" :key="key").mt-3
-              span.mc-b4 {{ educ | format-school }}
-              br
-              span.mc-b4 {{ educ.from }} - {{ educ.to }}
+          h4.mc-h4.mb-4.black--text Education
+          div(v-for="(educ, key) in education" :key="key").mt-3
+            span.mc-b4 {{ educ | format-school }}
+            br
+            span.mc-b4 {{ educ.from }} - {{ educ.to }}
         v-spacer
         v-divider(vertical).mx-10
         v-col(cols="12" md="4" :class="{'text-center': $isMobile}")

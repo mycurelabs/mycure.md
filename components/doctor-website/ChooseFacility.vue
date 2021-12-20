@@ -90,6 +90,7 @@ export default {
         event_label: `book-${this.appointmentType}-organization-${organization}-doctor-${this.doctorId}`,
       });
       window.open(pxpURL);
+      this.$emit('select', organization);
       this.dialog = false;
     },
     isOrgBookable (organization) {
