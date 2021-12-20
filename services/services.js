@@ -118,11 +118,8 @@ export const fetchServices = async (opts, withSchedules = false) => {
   }
 
   log('fetchServices#query: %O', query);
-  console.log('fetchServices#query: %O', query);
   const { items: services, total } = await sdk.service('services').find(query);
   log('fetchServices#services: %O', services);
-  console.log('fetchServices#services: %O', services);
-  console.log('fetchServices#total: %O', total);
 
   if (withSchedules) {
     const schedulePromises = services.map(async (service) => {
@@ -152,7 +149,6 @@ export const fetchServices = async (opts, withSchedules = false) => {
     });
     const servicesWithSchedules = await Promise.all(schedulePromises);
     log('fetchServices#servicesWithSchedules: %O', servicesWithSchedules);
-    console.log('fetchServices#servicesWithSchedules: %O', servicesWithSchedules);
     return { items: normalizePopulated(servicesWithSchedules), total };
   }
   return { items: normalizePopulated(services), total };

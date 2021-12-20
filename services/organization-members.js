@@ -3,7 +3,6 @@ import { normalizePopulated } from '~/utils/services';
 // import { fetchScheduleSlots } from './schedule-slots';
 
 export const fetchClinicWebsiteDoctors = async (opts) => {
-  console.log('opts', opts);
   const query = {
     organization: opts.organization,
     roles: { $in: ['doctor'] },

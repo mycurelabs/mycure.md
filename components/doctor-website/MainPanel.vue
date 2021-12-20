@@ -260,7 +260,6 @@ export default {
       this.$emit('book');
     },
     onRedirect (type) {
-      console.log('success');
       if (this.isPreviewMode) return;
       this.$emit('redirect', type);
     },
