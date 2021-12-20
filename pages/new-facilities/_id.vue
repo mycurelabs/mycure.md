@@ -201,6 +201,7 @@
 <script>
 import VueScrollTo from 'vue-scrollto';
 import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
 import intersection from 'lodash/intersection';
 import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose } from '@mdi/js';
@@ -291,8 +292,10 @@ export default {
   data () {
     // - ENUM
     this.serviceTypeOptions = [
-      { text: 'Face-to-face consults', type: 'clinical-consultation', tags: { $nin: ['telehealth'] } },
-      { text: 'Teleconsults', type: 'clinical-consultation', tags: { $in: ['telehealth'] } },
+      // - TODO: Currently we cannot query with Service#tags and a $search operator, so both F2F and Telehealth consults were put
+      // - in one category. To follow up with Nad.
+      { text: 'Consultations', type: 'clinical-consultation' },
+      // { text: 'Teleconsults', type: 'clinical-consultation', tags: 'telehealth' },
       { text: 'Procedures', type: 'clinical-procedure' },
       { text: 'Dental', type: 'dental' },
       { text: 'Physical Exam', type: 'pe' },
@@ -483,7 +486,6 @@ export default {
     } = {}, page = 1) {
       try {
         this.loading.services.list = true;
-        console.warn('searchText', searchText);
         // save current service query to use in refetch on pagination
         this.currentServicePropsQuery = serviceProps;
         const { type, subtype, insurer, tags } = serviceProps;
@@ -502,6 +504,11 @@ export default {
         log('fetchServices#items: %O', items);
         this.items.services = items;
         this.itemsTotal.services = total;
+
+        // - NOTE: This is just front-end filtering, the best solution would be done in backend
+        if (this.dateFilter) {
+          this.filterByDate(this.dateFilter);
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -661,7 +668,13 @@ export default {
         ...this.searchText && { searchText: this.searchText },
       }, 1);
     },
-    onDateFilter (unixDate) {
+    onDateFilter () {
+      return this.fetchServices({
+        serviceProps: this.currentServicePropsQuery,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    filterByDate (unixDate) {
       if (!unixDate) return;
       const date = new Date(unixDate);
       let day = date.getDay();
@@ -669,15 +682,12 @@ export default {
       this.items.services = this.items.services.filter((result) => {
         const schedules = result.schedulesData;
         const matchDay = schedules?.find(schedule => schedule.day === day);
-        return !!matchDay;
+        return !isNil(matchDay);
       }) || [];
     },
     clearDateFilter () {
       this.dateFilter = null;
-      return this.fetchServices({
-        serviceProps: this.currentServicePropsQuery,
-        ...this.searchText && { searchText: this.searchText },
-      });
+      this.onDateFilter();
     },
     onRedirect (type) {
       // Make sure it is normal mode first before scrolling
