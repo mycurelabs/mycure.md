@@ -16,9 +16,10 @@
     search-panel(
       v-model="searchText"
       :clinic="clinic"
+      @search="search"
     )
-    //- Workflow area
-    v-container#tabs.pb-16
+    //- NORMAL MODE - Workflow area
+    v-container(v-if="!searchMode")#tabs.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
@@ -39,13 +40,14 @@
                 a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
                 a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
               v-tab(
-                v-for="(tab, key) in tabsList"
+                v-for="(tab, key) in normalTabsList"
                 :key="key"
                 :href="`#${tab.value}`"
                 :class="{'ml-4': !$isMobile}"
                 dense
               ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
 
+              //- NORMAL VIEW TABS
               //- SERVICES
               v-tab-item(value="services")
                 div.grey-bg.pt-8
@@ -89,6 +91,92 @@
                     :clinic-phone="clinicPhone"
                     :schedule="clinic.mf_schedule"
                   )
+    //- SEARCH MODE: Search results
+    v-container(v-else)#tabs.pb-16
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+          v-col(cols="12")
+            v-tabs(
+              right
+              v-model="searchTabSelect"
+              background-color="transparent"
+              slider-color="primary"
+              active-class="black--text"
+            ).mb-6
+              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                img(
+                  src="~/assets/images/MYCURE-icon.png"
+                  width=" 20"
+                  alt="MYCURE icon"
+                  @click="onHome"
+                ).mr-2
+                a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+                a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
+              v-tab(
+                v-for="(tab, key) in searchTabsList"
+                :key="key"
+                :href="`#${tab.value}`"
+                :class="{'ml-4': !$isMobile}"
+                dense
+              ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
+          //- FILTERS
+          v-col(cols="12" md="4" xl="3")
+            v-card(color="white" flat)
+              v-toolbar(flat).pa-1
+                v-spacer
+                h2.mc-h4.black--text Services
+                v-spacer
+              v-divider.my-3
+              v-card-text
+                v-select(
+                  v-model="serviceSearchTypeFilter"
+                  placeholder="Select Service Type (All)"
+                  item-text="text"
+                  dense
+                  clearable
+                  outlined
+                  :disabled="loading.search"
+                  :append-icon="mdiMenuDown"
+                  :clear-icon="mdiClose"
+                  :items="serviceTypeOptions"
+                  return-object
+                  @change="onServiceTypeFilter"
+                )
+              v-toolbar(flat).pa-1
+                v-spacer
+                h2.mc-h4.black--text Doctors
+                v-spacer
+              v-divider.my-3
+              v-card-text
+                specialization-filter(
+                  v-model="specializationFiltersArray"
+                  @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                )
+          //- RESULTS
+          v-col(cols="12" md="8" xl="9")
+            services-paginated(
+              v-if="showResults('services')"
+              :loading="loading.services.list"
+              :items="items.services"
+              :items-total="itemsTotal.services"
+              :items-limit="itemsLimit"
+              :itemsPage.sync="itemsPage.services"
+              :organization="clinicId"
+              :is-preview-mode="isPreviewMode"
+              @update:itemsPage="onPaginate({ type: 'services' }, $event)"
+            )
+            v-divider(v-if="searchTabSelect === 'search-all'").my-10
+            doctors-paginated(
+              v-if="showResults('doctors')"
+              :loading="loading.doctors.list"
+              :items="items.doctors"
+              :items-total="itemsTotal.doctors"
+              :items-limit="itemsLimit"
+              :itemsPage.sync="itemsPage.doctors"
+              :organization="clinicId"
+              :is-preview-mode="isPreviewMode"
+              @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
+            )
     //- DIALOGS
     //- CHOOSE APPOINTMENT TYPE
     //- choose-appointment(
@@ -110,6 +198,8 @@
 import VueScrollTo from 'vue-scrollto';
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
+import omit from 'lodash/omit';
+import { mdiMenuDown, mdiClose } from '@mdi/js';
 // services
 import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -123,13 +213,16 @@ import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
 import DoctorsList from '~/components/clinic-website/new/doctors/DoctorsList';
+import DoctorsPaginated from '~/components/clinic-website/new/doctors/DoctorsPaginated';
 import SearchPanel from '~/components/clinic-website/new/SearchPanel';
 import ServicesList from '~/components/clinic-website/new/services/ServicesList';
+import ServicesPaginated from '~/components/clinic-website/new/services/ServicesPaginated';
+import SpecializationFilter from '~/components/clinic-website/new/doctors/SpecializationFilter';
 import GenericPanel from '~/components/generic/GenericPanel';
 
 const log = initLogger('Facilities');
 
-const SERVICE_TYPES = [
+const ALLOWED_SERVICE_TYPES = [
   'clinical-consultation',
   'clinical-procedure',
   'dental',
@@ -140,10 +233,14 @@ const SERVICE_TYPES = [
 
 const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
 const TABS_LIST = [
-  { text: 'Services', value: 'services' },
-  { text: 'Our Doctors', value: 'doctors' },
-  { text: 'About Clinic', value: 'about' },
-  { text: 'Contact Us', value: 'contact' },
+  { text: 'Services', value: 'services', type: 'normal' },
+  { text: 'Our Doctors', value: 'doctors', type: 'normal' },
+  { text: 'About Clinic', value: 'about', type: 'normal' },
+  { text: 'Contact Us', value: 'contact', type: 'normal' },
+  // - Search Tabs
+  { text: 'All', value: 'search-all', type: 'search' },
+  { text: 'Services', value: 'search-services', type: 'search' },
+  { text: 'Doctors', value: 'search-doctors', type: 'search' },
 ];
 
 export default {
@@ -153,8 +250,11 @@ export default {
     AboutClinic,
     ContactUs,
     DoctorsList,
+    DoctorsPaginated,
     SearchPanel,
     ServicesList,
+    ServicesPaginated,
+    SpecializationFilter,
   },
   filters: {
     formatBreadCrumbs (crumb) {
@@ -181,7 +281,16 @@ export default {
     }
   },
   data () {
-    this.tabsList = TABS_LIST;
+    // - ENUM
+    this.serviceTypeOptions = [
+      { text: 'Face-to-face consults', type: 'clinical-consultation', tags: { $nin: ['telehealth'] } },
+      { text: 'Teleconsults', type: 'clinical-consultation', tags: { $in: ['telehealth'] } },
+      { text: 'Procedures', type: 'clinical-procedure' },
+      { text: 'Dental', type: 'dental' },
+      { text: 'Physical Exam', type: 'pe' },
+      { text: 'Laboratory', type: 'diagnostic', subtype: 'lab' },
+      { text: 'Imaging', type: 'diagnostic', subtype: 'imaging' },
+    ];
     return {
       loading: {
         page: false,
@@ -193,6 +302,7 @@ export default {
           section: false,
           list: false,
         },
+        search: false,
       },
       dialogs: {
         appointment: false,
@@ -207,14 +317,29 @@ export default {
         services: 0,
         doctors: 0,
       },
-      searchText: null,
       serviceTypes: [],
+      // search models
+      searchText: null, // search text
+      searchMode: false, // show search results view
+      // filters
+      specializationFiltersArray: [],
+      serviceSearchTypeFilter: {}, // dropdown filter for service type
+      // tab models
+      tabSelect: 'services',
+      searchTabSelect: 'search-all',
       activeServiceType: null,
-      tabSelect: 'Services',
       clipSuccess: false,
       // save current service query to use in refetch on pagination
       currentServicePropsQuery: null,
       currentDoctorPropsQuery: null,
+      // pagination models
+      itemsPage: {
+        services: 1,
+        doctors: 1,
+      },
+      // icons,
+      mdiMenuDown,
+      mdiClose,
     };
   },
   head () {
@@ -277,6 +402,14 @@ export default {
       return this.clinic?.description ||
       `${this.name || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
     },
+    // - Tabs shown in normal view of clinic
+    normalTabsList () {
+      return TABS_LIST.filter(tab => tab.type === 'normal');
+    },
+    // - Tabs shown in search mode of clinic
+    searchTabsList () {
+      return TABS_LIST.filter(tab => tab.type === 'search');
+    },
   },
   watch: {
     activeServiceType: {
@@ -297,6 +430,18 @@ export default {
         if (val === 'doctors' && isEmpty(this.items.doctors)) {
           return await this.fetchDoctors();
         }
+      },
+    },
+    searchMode: {
+      async handler (val) {
+        if (val) {
+          this.searchAll();
+          return;
+        }
+        await this.fetchServices({
+          serviceProps: this.getServiceQuery(this.activeServiceType),
+          ...this.searchText && { searchText: this.searchText },
+        }, 1);
       },
     },
   },
@@ -329,6 +474,7 @@ export default {
     } = {}, page = 1) {
       try {
         this.loading.services.list = true;
+        console.warn('searchText', searchText);
         // save current service query to use in refetch on pagination
         this.currentServicePropsQuery = serviceProps;
         const { type, subtype, insurer, tags } = serviceProps;
@@ -360,7 +506,7 @@ export default {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
         if (this.isBookingEnabled) {
-          this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
+          this.serviceTypes = intersection(ALLOWED_SERVICE_TYPES, items) || [];
         }
         if (this.isTelehealthEnabled) {
           this.serviceTypes.push('telehealth');
@@ -404,6 +550,25 @@ export default {
         this.loading.doctors.list = false;
       }
     },
+    search () {
+      if (!this.searchMode) {
+        this.searchMode = true;
+        this.searchTabSelect = 'search-all';
+        return;
+      }
+      // Invoke searches when already in search mode
+      this.searchAll();
+    },
+    async searchAll () {
+      await Promise.all([
+        this.fetchServices({
+          ...this.searchText && { searchText: this.searchText },
+        }, 1),
+        this.fetchDoctors({
+          ...this.searchText && { searchText: this.searchText },
+        }, 1),
+      ]);
+    },
     // utils
     /** For getting actual service type and subtype value of the current tab
     * Usually used for mapping query for fetching of services
@@ -419,26 +584,33 @@ export default {
         return { type: activeServiceType };
       }
     },
+    // - Determine if set of results should be visible
+    showResults (type) {
+      if (type === 'services') {
+        return this.searchTabSelect === 'search-services' || this.searchTabSelect === 'search-all';
+      } else if (type === 'doctors') {
+        return this.searchTabSelect === 'search-doctors' || this.searchTabSelect === 'search-all';
+      }
+      return false;
+    },
     // Event handlers
     onPaginate ({
       type, // services or doctors
-      searchText, // search Text
     }, page = 1) {
       if (!type) return;
       if (type === 'services') {
         return this.fetchServices({
           serviceProps: this.currentServicePropsQuery,
-          searchText,
+          ...this.searchText && { searchText: this.searchText },
         }, page);
       }
       // else, return doctors
       return this.fetchDoctors({
-        searchText,
+        ...this.searchText && { searchText: this.searchText },
       }, page);
     },
     onFilterDoctor ({
       specializations,
-      searchText,
     }, page = 1) {
       const specializationsMapped = specializations.map((spec) => {
         let finArray = spec.split(' ');
@@ -451,14 +623,27 @@ export default {
       });
       return this.fetchDoctors({
         doctorProps: { specializations: specializationsMapped },
-        searchText,
+        ...this.searchText && { searchText: this.searchText },
       }, page);
+    },
+    onServiceTypeFilter () {
+      const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
     },
     onRedirect (type) {
       this.tabSelect = type;
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },
     onHome () {
+      // If showing search results, simply return to normal view
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
       VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
     },
     onBook () {

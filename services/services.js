@@ -95,12 +95,15 @@ export const fetchServices = async (opts, withSchedules = false) => {
         foreignKey: 'ref',
         $populate: {
           contractData: {
-            service: 'insurance-contracts',
-            key: 'contract',
+            service: 'organizations',
+            localKey: 'insurer',
+            foreignKey: 'id',
+            method: 'findOne',
           },
         },
       },
     },
+    $total: true,
   };
 
   if (opts.insurer) {
@@ -119,6 +122,7 @@ export const fetchServices = async (opts, withSchedules = false) => {
   const { items: services, total } = await sdk.service('services').find(query);
   log('fetchServices#services: %O', services);
   console.log('fetchServices#services: %O', services);
+  console.log('fetchServices#total: %O', total);
 
   if (withSchedules) {
     const schedulePromises = services.map(async (service) => {

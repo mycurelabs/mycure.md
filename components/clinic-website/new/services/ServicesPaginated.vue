@@ -18,6 +18,8 @@
         :key="n"
         type="card-heading, list-item-three-line, actions" elevation="2"
       )
+    //- TODO: Change to itemsTotal once backend fix for showing total when there is search text is done
+    p(v-else-if="!items.length").mc-b2.pt-3 No services are listed for online booking.
     div(v-else).pt-3
       div(
         v-for="(item, key) in items"

@@ -22,6 +22,7 @@ export const fetchClinicWebsiteDoctors = async (opts) => {
         organization: opts.organization,
       },
     },
+    $total: true,
   };
 
   if (opts.specializations) {

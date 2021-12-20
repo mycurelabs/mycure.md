@@ -200,8 +200,8 @@ export default {
       if (!this.hasCoverages) return [];
       return this.item?.coveragesData?.map((coverage) => {
         return {
-          name: coverage.name || coverage.contractData?.insurerName || 'HMO',
-          ...coverage.contractData?.insurerPicURL && { picURL: coverage.contractData.insurerPicURL },
+          name: coverage.contractData?.name || coverage.name || 'HMO',
+          ...coverage.contractData?.picURL && { picURL: coverage.contractData.picURL },
         };
       });
     },
