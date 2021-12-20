@@ -12,8 +12,11 @@
       @redirect="onRedirect($event)"
       @clipSuccess="clipSuccess = true"
     )#top
-    //- insert panels here
-    //- insert search panel
+    //- Search panel
+    search-panel(
+      v-model="searchText"
+      :clinic="clinic"
+    )
     //- Workflow area
     v-container#tabs.pb-16
       v-row(justify="center")
@@ -86,7 +89,21 @@
                     :clinic-phone="clinicPhone"
                     :schedule="clinic.mf_schedule"
                   )
-
+    //- DIALOGS
+    //- CHOOSE APPOINTMENT TYPE
+    //- choose-appointment(
+    //-   is-clinic
+    //-   v-model="dialogs.appointment"
+    //-   :has-doctors="hasDoctors"
+    //-   :has-physical-services="hasPhysicalServices"
+    //-   @select="onSelectAppointment($event)"
+    //- )
+    //- //- CHOOSE SERVICE DIALOG
+    //- choose-service(
+    //-   v-model="dialogS.serviceType"
+    //-   :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
+    //-   @select="onSelectServiceType($event)"
+    //- )
 </template>
 
 <script>
@@ -106,6 +123,7 @@ import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
 import DoctorsList from '~/components/clinic-website/new/doctors/DoctorsList';
+import SearchPanel from '~/components/clinic-website/new/SearchPanel';
 import ServicesList from '~/components/clinic-website/new/services/ServicesList';
 import GenericPanel from '~/components/generic/GenericPanel';
 
@@ -135,6 +153,7 @@ export default {
     AboutClinic,
     ContactUs,
     DoctorsList,
+    SearchPanel,
     ServicesList,
   },
   filters: {
@@ -175,6 +194,10 @@ export default {
           list: false,
         },
       },
+      dialogs: {
+        appointment: false,
+        service: false,
+      },
       items: {
         services: [],
         doctors: [],
@@ -184,6 +207,7 @@ export default {
         services: 0,
         doctors: 0,
       },
+      searchText: null,
       serviceTypes: [],
       activeServiceType: null,
       tabSelect: 'Services',
@@ -361,7 +385,6 @@ export default {
       searchText,
     } = {}, page = 1) {
       try {
-        console.log('doctor props', doctorProps);
         this.loading.doctors.list = true;
         const skip = this.itemsLimit * (page - 1);
         const { specializations } = doctorProps;
