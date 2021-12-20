@@ -2,6 +2,7 @@
   div(v-if="!loading.page").main-container
     v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     main-panel(
+      :tabs="normalTabsList"
       :pic-url="picURL"
       :clinic-name="clinicName"
       :formatted-address="formattedAddress"
@@ -92,7 +93,7 @@
                     :schedule="clinic.mf_schedule"
                   )
     //- SEARCH MODE: Search results
-    v-container(v-else)#tabs.pb-16
+    v-container(v-else)#search-tabs.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
@@ -152,6 +153,13 @@
                     @select="onInsuranceSelect"
                     @clear="clearInsuranceFilter"
                   )
+                  date-picker-menu(
+                    v-model="dateFilter"
+                    outlined
+                    :disabled="isPreviewMode || loading"
+                    @clear="clearDateFilter"
+                    @change="onDateFilter($event)"
+                  )
               template(v-if="showResults('doctors')")
                 v-toolbar(flat).pa-1
                   v-spacer
@@ -188,21 +196,6 @@
               :is-preview-mode="isPreviewMode"
               @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
             )
-    //- DIALOGS
-    //- CHOOSE APPOINTMENT TYPE
-    //- choose-appointment(
-    //-   is-clinic
-    //-   v-model="dialogs.appointment"
-    //-   :has-doctors="hasDoctors"
-    //-   :has-physical-services="hasPhysicalServices"
-    //-   @select="onSelectAppointment($event)"
-    //- )
-    //- //- CHOOSE SERVICE DIALOG
-    //- choose-service(
-    //-   v-model="dialogS.serviceType"
-    //-   :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
-    //-   @select="onSelectServiceType($event)"
-    //- )
 </template>
 
 <script>
@@ -223,6 +216,7 @@ import headMeta from '~/utils/head-meta';
 import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
+import DatePickerMenu from '~/components/commons/date-picker-menu';
 import DoctorsList from '~/components/clinic-website/new/doctors/DoctorsList';
 import DoctorsPaginated from '~/components/clinic-website/new/doctors/DoctorsPaginated';
 import SearchInsurers from '~/components/clinic-website/new/services/SearchInsurers';
@@ -261,6 +255,7 @@ export default {
     GenericPanel,
     AboutClinic,
     ContactUs,
+    DatePickerMenu,
     DoctorsList,
     DoctorsPaginated,
     SearchInsurers,
@@ -337,6 +332,7 @@ export default {
       // filters
       specializationFiltersArray: [],
       serviceSearchTypeFilter: {}, // dropdown filter for service type
+      dateFilter: null,
       // tab models
       tabSelect: 'services',
       searchTabSelect: 'search-all',
@@ -568,6 +564,7 @@ export default {
         this.currentServicePropsQuery = {};
         this.searchMode = true;
         this.searchTabSelect = 'search-all';
+        VueScrollTo.scrollTo('#search-tabs', 500, { offset: -100, easing: 'ease' });
         return;
       }
       // Invoke searches when already in search mode
@@ -664,7 +661,30 @@ export default {
         ...this.searchText && { searchText: this.searchText },
       }, 1);
     },
+    onDateFilter (unixDate) {
+      if (!unixDate) return;
+      const date = new Date(unixDate);
+      let day = date.getDay();
+      if (day === 0) day = 7;
+      this.items.services = this.items.services.filter((result) => {
+        const schedules = result.schedulesData;
+        const matchDay = schedules?.find(schedule => schedule.day === day);
+        return !!matchDay;
+      }) || [];
+    },
+    clearDateFilter () {
+      this.dateFilter = null;
+      return this.fetchServices({
+        serviceProps: this.currentServicePropsQuery,
+        ...this.searchText && { searchText: this.searchText },
+      });
+    },
     onRedirect (type) {
+      // Make sure it is normal mode first before scrolling
+      if (this.searchMode) {
+        this.searchMode = false;
+        this.onRedirect(type);
+      }
       this.tabSelect = type;
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },

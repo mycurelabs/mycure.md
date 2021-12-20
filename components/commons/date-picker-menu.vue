@@ -16,6 +16,7 @@
         :label="label"
         :prepend-inner-icon="mdiCalendar"
         clearable
+        :clear-icon="mdiClose"
         :readonly="!readOnly"
         :disabled="readOnly"
         :filled="filled"
@@ -64,7 +65,7 @@ import {
   setHours,
   setMinutes,
 } from 'date-fns';
-import { mdiCalendar } from '@mdi/js';
+import { mdiCalendar, mdiClose } from '@mdi/js';
 
 export default {
   props: {
@@ -158,6 +159,7 @@ export default {
       menu: false,
       mode: 'date',
       mdiCalendar,
+      mdiClose,
     };
   },
   computed: {

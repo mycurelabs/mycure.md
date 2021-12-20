@@ -13,21 +13,11 @@
               ).mt-1
             v-spacer
             v-btn(
+              v-for="(tab, key) in tabs"
+              :key="key"
               text
-              @click="onRedirect('Services')"
-            ).text-none.mc-h7.white--text.font-weight-light Services
-            v-btn(
-              text
-              @click="onRedirect('Our Doctors')"
-            ).text-none.mc-h7.white--text.font-weight-light Our Doctors
-            v-btn(
-              text
-              @click="onRedirect('About Clinic')"
-            ).text-none.mc-h7.white--text.font-weight-light About Clinic
-            v-btn(
-              text
-              @click="onRedirect('Contact Us')"
-            ).text-none.mc-h7.white--text.font-weight-light Contact Us
+              @click="onRedirect(tab.value)"
+            ).text-none.mc-h7.white--text.font-weight-light {{ tab.text }}
             share-button(color="white" @clipSuccess="$emit('clipSuccess')")
         v-col(v-else cols="10").pt-8
           v-row(align="center")
@@ -106,6 +96,10 @@ export default {
     },
   },
   props: {
+    tabs: {
+      type: Array,
+      default: () => ([]),
+    },
     picUrl: {
       type: String,
       default: null,
@@ -136,7 +130,6 @@ export default {
     },
   },
   data () {
-    this.tabs = ['Services', 'Our Doctors', 'About Clinic', 'Contact Us'];
     return {
       mdiShareVariant,
       drawer: false,
@@ -152,7 +145,6 @@ export default {
       this.$emit('book');
     },
     onRedirect (type) {
-      console.log('success');
       if (this.isPreviewMode) return;
       this.$emit('redirect', type);
     },
