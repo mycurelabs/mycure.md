@@ -18,86 +18,70 @@
                     height="34.46px"
                     alt="MYCURE logo"
                   ).ml-3
-          v-row(v-if="!$isMobile" align="center" no-gutters).mb-16
-            v-btn(
-              to="/signup/health-facilities?type=doctor"
-              text
-            ).text-none.px-0
-              span(style="color: #72727D") Create my own MD website
-            v-spacer
-            v-row
-            v-btn(
-              to="/directory/results?searchMode=account"
-              text
-            ).text-none.px-2
-              span(style="color: #72727D") Find more Doctors
-            v-btn(
-              text
-              href="https://airtable.com/shrgkdR8ASEdbQ1Pa"
-              target="_blank"
-              rel="noopener noreferrer"
-              @click="toggleChat"
-            ).text-none.px-2
-              span(style="color: #72727D") Send us your feedback
-          v-row(v-if="!$isMobile" align="center" no-gutters).mb-3.mt-8
-            v-col(cols="12" md="9")
-              v-row(align="center").pa-3
-                div
-                  span Copyright &copy; {{ new Date().getFullYear() }}
-                  span #[br(v-if="$isMobile")] All Rights Reserved.
-                v-spacer
-                v-btn(
-                  to="/privacy-policy"
-                  text
-                ).text-none
-                  span(style="color: #72727D") Privacy Policy
-                v-btn(
-                  to="/terms"
-                  text
-                ).text-none
-                  span(style="color: #72727D") Terms of Use
-            v-col(
-              :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
-              cols="12"
-              md="3"
-            )
-              template(v-for="(account, key) in socMed")
-                a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                  img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name" :class="$vuetify.breakpoint.width < 1250 ? 'mx-1' : 'mx-2'")
-          v-row(v-else).mt-4
-            v-col(cols="12").text-center.py-1
+          v-col(v-if="!$isMobile" cols="12").pa-0
+            v-row(align="center" no-gutters).mb-16
               v-btn(
                 to="/signup/health-facilities?type=doctor"
                 text
               ).text-none.px-0
-                span(style="color: #72727D") Create my own MD Website
-            v-col(cols="12").text-center.py-1
+                span(style="color: #72727D") Create my own MD website
+              v-spacer
               v-btn(
                 to="/directory/results?searchMode=account"
                 text
-              ).text-none
+              ).text-none.px-2
                 span(style="color: #72727D") Find more Doctors
-            v-col(cols="12").text-center.py-1
               v-btn(
                 text
                 href="https://airtable.com/shrgkdR8ASEdbQ1Pa"
                 target="_blank"
                 rel="noopener noreferrer"
                 @click="toggleChat"
-              ).text-none
+              ).text-none.px-2
                 span(style="color: #72727D") Send us your feedback
-            v-col(cols="12").text-center.py-1
+          v-col(v-if="!$isMobile" cols="12").pa-0
+            v-row(align="center" no-gutters).mb-3.mt-8
+              v-col(cols="12" md="9")
+                v-row(align="center").pa-3
+                  div
+                    span Copyright &copy; {{ new Date().getFullYear() }}
+                    span #[br(v-if="$isMobile")] All Rights Reserved.
+                  v-spacer
+                  v-btn(
+                    to="/privacy-policy"
+                    text
+                  ).text-none
+                    span(style="color: #72727D") Privacy Policy
+                  v-btn(
+                    to="/terms"
+                    text
+                  ).text-none
+                    span(style="color: #72727D") Terms of Use
+              v-col(
+                :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
+                cols="12"
+                md="3"
+              )
+                template(v-for="(account, key) in socMed")
+                  a(:href="account.link" target="_blank" rel="noopener noreferrer")
+                    img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name" :class="$vuetify.breakpoint.width < 1250 ? 'mx-1' : 'mx-2'")
+          v-row(v-else).mt-4
+            v-col(v-for="(link, key) in links" :key="key" cols="12").text-center.py-1
               v-btn(
-                to="/privacy-policy"
+                v-if="!link.external"
+                :to="link.to"
                 text
-              ).text-none
-                span(style="color: #72727D") Privacy Policy
-            v-col(cols="12").text-center.pt-1
+              ).text-none.px-0
+                span(style="color: #72727D") {{ link.text }}
               v-btn(
-                to="/terms"
+                v-else
                 text
+                :href="link.to"
+                target="_blank"
+                rel="noopener noreferrer"
+                @click="toggleChat"
               ).text-none
-                span(style="color: #72727D") Terms of Use
+                span(style="color: #72727D") {{ link.text }}
             v-col(cols="12").text-center
               div
                 span Copyright &copy; {{ new Date().getFullYear() }}
@@ -146,6 +130,33 @@ export default {
         link: 'https://twitter.com/mycureapp',
         icon: 'mycure-homepage-wireframe-icon-twitter.png',
         id: 'footer-twitter-btn',
+      },
+    ];
+    this.links = [
+      {
+        to: '/signup/health-facilities?type=doctor',
+        text: 'Create my own MD website',
+        external: false,
+      },
+      {
+        to: '/directory/results?searchMode=account',
+        text: 'Find more Doctors',
+        external: false,
+      },
+      {
+        to: 'https://airtable.com/shrgkdR8ASEdbQ1Pa',
+        text: 'Send us your feedback',
+        external: true,
+      },
+      {
+        to: '/privacy-policy',
+        text: 'Privacy Policy',
+        external: false,
+      },
+      {
+        to: '/terms',
+        text: 'Terms of Use',
+        external: false,
       },
     ];
     return {
