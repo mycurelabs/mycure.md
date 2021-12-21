@@ -44,7 +44,7 @@
                   :key="key"
                   @click="onRedirect(tab)"
                 )
-                  v-list-item-title {{ tab }}
+                  v-list-item-title {{ tab.text }}
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center

@@ -52,12 +52,12 @@
                 x-large
               )
             v-spacer(v-if="!$isMobile")
+            br(v-else)
             v-btn(
               text
               color="primary"
               :disabled="!isAvailable"
               @click="dialog.schedules = true"
-              :class="{'mt-1': $isMobile}"
             ).text-none
               span.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}

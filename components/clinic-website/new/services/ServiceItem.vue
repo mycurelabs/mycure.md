@@ -22,7 +22,8 @@
                 x-large
               )
             v-spacer(v-if="!$isMobile")
-            a(@click="dialog.schedules = true" :class="{'mt-2': $isMobile}").primary--text.mc-hyp2 View full schedule
+            br(v-else)
+            a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
