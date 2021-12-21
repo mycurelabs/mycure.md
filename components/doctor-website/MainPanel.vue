@@ -5,7 +5,7 @@
         //- Logo
         v-col(v-if="!$isMobile" cols="10")
           v-row(align="center").px-3.py-5
-            nuxt-link(to="/")
+            nuxt-link(to="/directory")
               img(
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"
@@ -14,12 +14,12 @@
             v-spacer
             v-btn(
               text
-              @click="onRedirect('Profile')"
-            ).text-none.mc-h7.white--text.font-weight-light Profile
-            v-btn(
-              text
               @click="onRedirect('Facilities')"
             ).text-none.mc-h7.white--text.font-weight-light Facilities
+            v-btn(
+              text
+              @click="onRedirect('Profile')"
+            ).text-none.mc-h7.white--text.font-weight-light Profile
             v-btn(
               text
               @click="onRedirect('Services')"
@@ -57,12 +57,12 @@
                   v-list-item-title {{ tab }}
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
-          v-col(cols="12").text-center
+          v-col(cols="12").text-center.mb-3
             v-avatar(size="200").elevation-5
               img(:src="picUrl").img-border
             br
             br
-            h1.mc-h2 {{ fullName }}
+            h1.mc-h2.mb-1 {{ fullName }}
             p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
             br
             span(v-if="!$isMobile").mc-b2.font-weight-light.white--text {{ specialties.slice(0, 3).join(' | ')}}
@@ -96,11 +96,12 @@
           //- Consult btn
           v-col(cols="10").text-center.justify-center
             v-btn(
+              color="success"
               hover
               depressed
-              x-large
-              color="success"
-              :class="{ 'font-11' : $isMobile }"
+              class="rounded-md"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               :disabled="!isBookable"
               @click="onBook"
             ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
@@ -207,7 +208,7 @@ export default {
       //   color: 'error',
       // },
     ];
-    this.tabs = ['Profile', 'Facilities', 'Services', 'Learning Corner'];
+    this.tabs = ['Facilities', 'Profile', 'Services', 'Learning Corner'];
     return {
       canUseWebp: null,
       mdiShareVariant,
@@ -246,10 +247,6 @@ export default {
       }
       return '';
     },
-    backgroundImage () {
-      // return this.canUseWebp ? 'bg-webp' : 'bg-png';
-      return this.$isMobile ? 'bg-png' : 'bg-newpng';
-    },
   },
   async mounted () {
     this.canUseWebp = await canUseWebp();
@@ -269,27 +266,6 @@ export default {
 </script>
 
 <style scoped>
-.divider-container {
-  position: relative;
-  height: 150px;
-}
-.divider {
-  border-left: 2px solid black;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  margin-left: -3px;
-  top: 0;
-}
-.bg-png {
-  background-image: url('../../assets/images/doctor-website/Doctor-Website-Background-Clouds.png');
-}
-.bg-webp {
-  background-image: url('../../assets/images/doctor-website/Doctor-Website-Background-Clouds.webp');
-}
-.bg-newpng {
-  background-image: url('../../assets/images/doctor-website/Doctor-Clinics-BG.png');
-}
 .panel-bg {
   background-size: cover;
   width: 100%;
@@ -297,11 +273,6 @@ export default {
   position: relative;
   /* top: 0;
   position: absolute; */
-}
-.custom-book-btn {
-  height: 50px !important;
-  width: 250px;
-  /* background: linear-gradient(258.57deg, #59A3F1 14.32%, #3371B0 76.89%); */
 }
 .book-text:hover {
   cursor: pointer;
