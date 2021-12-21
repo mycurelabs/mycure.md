@@ -13,12 +13,12 @@
                 div(:class="{'text-center justify-center': $isMobile}").d-flex
                   p.mt-1.mr-2 #[b Powered by]
                   img(
-                    src="~/assets/images/mycure-logo.png"
+                    src="~/assets/images/MYCURE-logo.png"
                     width="120px"
                     height="34.46px"
                     alt="MYCURE logo"
-                  ).ml-3div(:class="{'flex-column': $isMobile}").d-flex
-          v-row(align="center" no-gutters).mb-16
+                  ).ml-3
+          v-row(v-if="!$isMobile" align="center" no-gutters).mb-16
             v-col(
               :class="{ 'text-center' : $isMobile }"
               cols="12"
@@ -46,7 +46,7 @@
                     @click="toggleChat"
                   ).text-none
                     span(style="color: #72727D") Send us your feedback
-          v-row(align="center" no-gutters).mb-3.mt-8
+          v-row(v-if="!$isMobile" align="center" no-gutters).mb-3.mt-8
             v-col(cols="12" md="8")
               v-row.pa-3
                 div
@@ -71,6 +71,44 @@
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
                   img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name").mx-2
+          v-row(v-else).mt-4
+            v-col(cols="12").text-center.py-1
+              v-btn(
+                to="/signup/health-facilities?type=doctor"
+                text
+              ).text-none.px-0
+                span(style="color: #72727D") Create my own MD Website
+            v-col(cols="12").text-center.py-1
+              v-btn(
+                to="/directory/results?searchMode=account"
+                text
+              ).text-none
+                span(style="color: #72727D") Find more Doctors
+            v-col(cols="12").text-center.py-1
+              v-btn(
+                text
+                href="https://airtable.com/shrgkdR8ASEdbQ1Pa"
+                target="_blank"
+                rel="noopener noreferrer"
+                @click="toggleChat"
+              ).text-none
+                span(style="color: #72727D") Send us your feedback
+            v-col(cols="12").text-center.py-1
+              v-btn(
+                to="/privacy-policy"
+                text
+              ).text-none
+                span(style="color: #72727D") Privacy Policy
+            v-col(cols="12").text-center.pt-1
+              v-btn(
+                to="/terms"
+                text
+              ).text-none
+                span(style="color: #72727D") Terms of Use
+            v-col(cols="12").text-center
+              div
+                span Copyright &copy; {{ new Date().getFullYear() }}
+                span #[br(v-if="$isMobile")] All Rights Reserved.
 </template>
 
 <script>
