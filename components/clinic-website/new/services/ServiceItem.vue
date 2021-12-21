@@ -1,13 +1,13 @@
 <template lang="pug">
   v-card.rounded-md.pa-3
     v-card-text
-      v-row
-        v-col(cols="12" md="9" :class="{'text-center': $isMobile}")
+      v-row(:justify="$isMobile ? 'center' : 'end'")
+        v-col(cols="12" md="8" :class="{'text-center': $isMobile}")
           h4.mc-h4.black--text {{ title }}&nbsp;
           span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
             v-icon(small color="success") {{ mdiCalendarCheck }}
-
-        v-col(cols="12" md="3" :class="{'text-right': !$isMobile}")
+        v-spacer
+        div.pa-3
           h3(v-if="price").mc-h3
             money(:value="price" symbol="₱" text-class="mc-h3")
           span(v-else).font-italic No price stated
