@@ -2,9 +2,9 @@
   v-card.rounded-md.pa-3
     v-card-text
       v-row
-        v-col(cols="12" md="9")
+        v-col(cols="12" md="9" :class="{'text-center': $isMobile}")
           h4.mc-h4.black--text {{ title }}&nbsp;
-          span(v-if="isAvailable").success--text Available for Online Booking&nbsp;
+          span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
             v-icon(small color="success") {{ mdiCalendarCheck }}
 
         v-col(cols="12" md="3" :class="{'text-right': !$isMobile}")
@@ -13,7 +13,7 @@
           span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
-          v-row.pl-1.pr-2
+          v-row(:justify="$isMobile ? 'center' : 'start'").pl-1.pr-2
             div(v-for="(day, key) in daysList" :key="key").d-flex
               v-badge(
                 :color="isServiceAvailable(day.value) ? 'success' : '#EEEEEE'"
@@ -21,8 +21,8 @@
                 inline
                 x-large
               )
-            v-spacer
-            a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
+            v-spacer(v-if="!$isMobile")
+            a(@click="dialog.schedules = true" :class="{'mt-2': $isMobile}").primary--text.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you

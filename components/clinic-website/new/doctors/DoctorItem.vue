@@ -2,14 +2,14 @@
   v-card.rounded-md.pa-3
     v-card-text
       v-row(:justify="$isMobile ? 'center' : 'start'")
-        v-col(cols="5" md="3" justify="center" align="center").text-center
+        v-col(cols="12" md="3" justify="center" align="center").text-center
           v-avatar(size="150")
             img(
               :src="picURL"
               alt="MYCURE Doctor"
               width="90%"
             )
-        v-spacer
+        v-spacer(v-if="!$isMobile")
         v-col(cols="12" md="8")
           v-clamp(
             autoresize
@@ -43,7 +43,7 @@
               )
                 template(v-slot:selection="{ item }")
                   span.mc-b4 {{ item.text }}
-          v-row(dense).pl-1.mt-n1
+          v-row(dense :justify="$isMobile ? 'center' : 'start'").pl-1.mt-n1
             div(v-for="(day, key) in daysList" :key="key").d-flex
               v-badge(
                 :color="isDoctorAvailable(day.value) ? 'success' : '#EEEEEE'"
@@ -51,12 +51,13 @@
                 inline
                 x-large
               )
-            v-spacer
+            v-spacer(v-if="!$isMobile")
             v-btn(
               text
               color="primary"
               :disabled="!isAvailable"
               @click="dialog.schedules = true"
+              :class="{'mt-1': $isMobile}"
             ).text-none
               span.mc-hyp2 View full schedule
               v-icon(small color="primary" right) {{ mdiInformationOutline }}
@@ -148,7 +149,7 @@ export default {
       dialog: {
         schedules: false,
       },
-      appointmentType: 'physical',
+      appointmentType: 'telehealth',
       // icons
       mdiInformationOutline,
       mdiClose,

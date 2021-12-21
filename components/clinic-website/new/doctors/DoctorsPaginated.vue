@@ -1,17 +1,18 @@
 <template lang="pug">
   div
-    v-row(v-if="itemsTotal").pt-1
+    v-row(v-if="itemsTotal" align="center").pt-1.px-3
       span.mc-btn1 Showing {{ itemsTotal }} result{{ itemsTotal > 1 ? 's' : '' }}
       v-spacer
-      v-pagination(
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="10"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
+      v-col(:cols="$isMobile ? '12' : ''").pa-0
+        v-pagination(
+          :value="itemsPage"
+          :length="itemsPaginationLength"
+          total-visible="10"
+          :next-icon="mdiChevronRight"
+          :prev-icon="mdiChevronLeft"
+          circle
+          @input="onPaginate($event)"
+        )
     div(v-if="loading").pt-3
       v-skeleton-loader(
         v-for="n in 3"
