@@ -22,9 +22,9 @@
                 x-large
               )
             v-spacer(v-if="!$isMobile")
-            br(v-else)
-            a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
-              v-icon(small color="primary" right) {{ mdiInformationOutline }}
+            v-col(:cols="$isMobile ? '12' : ''" :class="{'text-center': $isMobile}")
+              a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
+                v-icon(small color="primary" right) {{ mdiInformationOutline }}
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
       //- can't use $populate and $search together in the query.
