@@ -62,11 +62,12 @@
               span.mc-b2.font-weight-light.white--text {{ clinicPhone }}
             br
           //- Consult btn
-          v-col(cols="10").text-center.justify-center
+          v-col(cols="12").text-center.justify-center.px-0
             v-btn(
               hover
               depressed
-              x-large
+              :width="$isWideScreen ? '300px' : '228px'"
+              :height="!$isWideScreen ? '59px' : '73.68px'"
               color="success"
               :class="{ 'font-11' : $isMobile }"
               :disabled="!isBookable"
