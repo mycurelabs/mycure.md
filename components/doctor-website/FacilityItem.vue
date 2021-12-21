@@ -16,14 +16,15 @@
             ).mb-0.mc-h3.black--text {{ clinic.name }}&nbsp;
             v-spacer
           //- Address
-          v-row.mt-2.px-3
+          v-row(align="top").mt-2.px-3
             v-icon(color="primary").mr-2 {{ mdiMapMarker }}
-            v-clamp(
-              autoresize
-              :max-lines="2"
-              :class="{ 'font-italic': !clinic.address }"
-              :style="!clinic.address ? 'color: #BFBFBF;' : ''"
-            ).mc-b2 {{ clinic.address | prettify-address }}&nbsp;&nbsp;
+            v-col.pa-0
+              v-clamp(
+                autoresize
+                :max-lines="2"
+                :class="[{ 'font-italic': !clinic.address }, { 'text-left': $isMobile }]"
+                :style="!clinic.address ? 'color: #BFBFBF;' : ''"
+              ).mc-b2 {{ clinic.address | prettify-address }}&nbsp;&nbsp;
           //- Contact
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiPhoneInTalk }}

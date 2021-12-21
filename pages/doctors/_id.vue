@@ -75,6 +75,7 @@
               background-color="transparent"
               slider-color="primary"
               active-class="black--text"
+              style="color: #A2A5AE;"
             ).mb-6
               v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
                 img(
