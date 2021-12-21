@@ -1,7 +1,8 @@
 <template lang="pug">
   div
-    v-row(v-if="itemsTotal").pt-1
-      span.mc-btn1 Showing {{ itemsTotal }} result{{ itemsTotal > 1 ? 's' : '' }}
+    v-row(v-if="itemsTotal" align="center").pt-1.px-3
+      v-col(cols="12" md="5").pa-0
+        span.mc-btn1 Showing {{ itemsTotal }} result{{ itemsTotal > 1 ? 's' : '' }}
       v-spacer
       v-pagination(
         :value="itemsPage"

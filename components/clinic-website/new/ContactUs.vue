@@ -5,8 +5,8 @@
         h3.mc-h3.title--text Contact Us
         br
         v-col(cols="12")
-          v-row(align="center").pl-3
-            v-icon(small color="primary").mr-1 {{ mdiMapMarker }}
+          v-row(:align="$isMobile ? 'start' : 'center'").pl-3
+            v-icon(small color="primary" :class="{'mt-2': $isMobile}").mr-1 {{ mdiMapMarker }}
             v-col.pa-0
               span.mc-b2 {{ formattedAddress }}
           v-row(align="center").pl-3
