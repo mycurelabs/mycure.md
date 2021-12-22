@@ -9,7 +9,13 @@
       :class="cardPadding"
     ).ma-1
       v-card-text.text-center
+        v-skeleton-loader(
+          v-if="loading"
+          type="image"
+          :height="$isMobile ? '145px' : '165px'"
+        )
         picture-source(
+          v-else
           :image="wonder.image"
           :image-width="( $isMobile ? '107px' : '115px')"
           :image-height="( $isMobile ? '145px' : '165px')"
@@ -36,6 +42,10 @@ export default {
     wonder: {
       type: Object,
       default: () => ({}),
+    },
+    loading: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {

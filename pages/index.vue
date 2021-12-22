@@ -2,7 +2,7 @@
   v-container(fluid).white.page-container
     //- 1st panel
     lazy-hydrate(when-idle)
-      seven-wonders(:show-carousel="!loading").mb-16
+      seven-wonders(:loading="loading").mb-16
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -146,7 +146,7 @@ export default {
   //     return this.$isWideScreen ? 'margin-wide' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1400 ? 'margin-tab' : 'margin-reg';
   //   },
   // },
-  created () {
+  mounted () {
     this.loading = false;
   },
 };
