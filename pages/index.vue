@@ -1,8 +1,8 @@
 <template lang="pug">
   v-container(fluid).white.page-container
     //- 1st panel
-    lazy-hydrate(when-idle)
-      seven-wonders(:loading="loading").mb-16
+    //- SKIPPING lazy hydrate due to it being the very first panel
+    seven-wonders(:loading="loading").mb-16
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
