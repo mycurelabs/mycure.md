@@ -1,5 +1,6 @@
 <template lang="pug">
-  div.main-container
+  //- Remove holiday bg class once going back to normal
+  div.main-container.holiday-bg-png
     div
       picture-source(
         v-if="!hideDots"
@@ -78,5 +79,24 @@ export default {
   bottom: 10%;
   right: 0;
   z-index: 2;
+}
+
+.holiday-bg-png {
+  background-size: cover;
+  background-image: url('../../assets/images/special/Homepage-herobg-std.png');
+}
+
+.holiday-bg-webp {
+  background-size: cover;
+  background-image: url('../../assets/images/special/Homepage-herobg-std.webp');
+}
+
+@media screen and (min-width: 1920px) {
+  .holiday-bg-png {
+    background-image: url('../../assets/images/special/Homepage-herobg-wid.png');
+  }
+  .holiday-bg-webp {
+    background-image: url('../../assets/images/special/Homepage-herobg-wid.webp');
+  }
 }
 </style>

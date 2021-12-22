@@ -2,7 +2,6 @@
   //- TODO: remove hide dots once going back to normal, as well as the background
   generic-blue-bg(
     hide-dots
-    :class="isWebp ? 'holiday-bg-webp' : 'holiday-bg-png'"
   )
     v-container
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
@@ -24,7 +23,7 @@
                   color="success"
                 ).text-none
                   span.mc-btn1.white--text Get Started
-            v-row(justify="center" v-if="showCarousel")
+            v-row(justify="center" v-if="!loading")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
                   autoplay
@@ -43,7 +42,7 @@
                   template(#customPaging="page")
                     v-icon(color="white" small).mt-5 {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                   div(v-for="(wonder,key) in wonders" :key="key")
-                    wonder(:wonder="wonder").mx-2
+                    wonder(:wonder="wonder" :loading="loading").mx-2
               v-col(v-else cols="10" sm="8" md="10")
                 carousel(
                   paginationColor="#f0f0f0"
@@ -59,7 +58,7 @@
                     :key="index"
                     :data-index="index+1"
                   ).pa-2
-                    wonder(:wonder="wonder")
+                    wonder(:wonder="wonder" :loading="loading")
 </template>
 
 <script>
@@ -72,7 +71,7 @@ import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
-import canUseWebp from '~/utils/can-use-webp';
+// import canUseWebp from '~/utils/can-use-webp';
 
 export default {
   components: {
@@ -85,7 +84,10 @@ export default {
   },
   props: {
     // Can be triggered by consuming component for loading purposes
-    showCarousel: Boolean,
+    loading: {
+      type: Boolean,
+      default: true,
+    },
   },
   data () {
     this.wonders = [
@@ -157,9 +159,10 @@ export default {
       currentSlide: 0,
     };
   },
-  async mounted () {
-    this.isWebp = await canUseWebp();
-  },
+  // async mounted () {
+  //   // TODO: Seems to not work correctly in homepage
+  //   this.isWebp = await canUseWebp();
+  // },
 };
 </script>
 
@@ -210,24 +213,5 @@ export default {
 }
 .slick-dots >>> .slick-active {
   color: red;
-}
-
-.holiday-bg-png {
-  background-size: cover;
-  background-image: url('../../assets/images/special/Homepage-herobg-std.png');
-}
-
-.holiday-bg-webp {
-  background-size: cover;
-  background-image: url('../../assets/images/special/Homepage-herobg-std.webp');
-}
-
-@media screen and (min-width: 1920px) {
-  .holiday-bg-png {
-    background-image: url('../../assets/images/special/Homepage-herobg-wid.png');
-  }
-  .holiday-bg-webp {
-    background-image: url('../../assets/images/special/Homepage-herobg-wid.webp');
-  }
 }
 </style>
