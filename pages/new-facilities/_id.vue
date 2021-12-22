@@ -21,7 +21,7 @@
       :clinic-name="clinicName"
       :formatted-address="formattedAddress"
       :clinic-phone="clinicPhone"
-      :style="{ height: $isMobile ? '130vh' : '120vh' }"
+      :style="{ height: $isMobile ? '110vh' : '110vh' }"
       :is-bookable="isVerified && isOnline"
       @book="dialogs.appointment = true"
       @redirect="onRedirect($event)"

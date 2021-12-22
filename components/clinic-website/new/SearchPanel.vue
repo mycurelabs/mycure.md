@@ -4,30 +4,30 @@
       fluid
       :style="backgroundStyle"
     ).background-container
-      template(v-if="$isMobile")
-        v-card(height="250").rounded-lg
-          v-card-text.pt-8
-            h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
-          v-card-text
-            v-row(justify="center")
-              v-col(cols="12" md="10")
-                v-text-field(
-                  v-model="searchText"
-                  solo
-                  clearable
-                  placeholder="Search services and doctors"
-                  :disabled="disabled"
-                  @keyup.enter="debouncedSearch"
-                ).mt-3.search-bar
-                  template(v-slot:append)
-                    div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
-                      v-icon(color="white") {{ mdiMagnify }}
+    template(v-if="$isMobile").search-bar-container
+      v-card(height="250" style="margin-top: -100px").rounded-lg.mx-8
+        v-card-text.pt-8
+          h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
+        v-card-text
+          v-row(justify="center")
+            v-col(cols="12" md="10")
+              v-text-field(
+                v-model="searchText"
+                solo
+                clearable
+                placeholder="Search services and doctors"
+                :disabled="disabled"
+                @keyup.enter="debouncedSearch"
+              ).mt-3.search-bar
+                template(v-slot:append)
+                  div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
+                    v-icon(color="white") {{ mdiMagnify }}
     v-container(v-if="!$isMobile").search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12").text-center
-            v-card(height="250").rounded-lg
-              v-card-text.pt-8
+            v-card(:height="$isWideScreen ? '300' : '250'").rounded-lg
+              v-card-text(:class="$isWideScreen ? 'pt-12' : 'pt-10'")
                 h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
               v-card-text
                 v-row(justify="center")
@@ -107,7 +107,7 @@ export default {
 
 .background-container {
   width: 100%;
-  height: 325px;
+  height: 225px;
   background-size: cover;
   background-position: center;
 }
@@ -140,6 +140,18 @@ export default {
   }
   .background-container {
     height: 375px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .search-bar-container {
+    margin-top: -200px;
+  }
+  .full-container {
+    width: 100%;
+    height: 625px;
+  }
+  .background-container {
+    height: 425px;
   }
 }
 </style>

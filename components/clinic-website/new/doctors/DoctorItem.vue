@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.rounded-md.pa-3
+  v-card(flat).rounded-md.pa-3
     v-card-text
       v-row(:justify="$isMobile ? 'center' : 'start'")
         v-col(cols="12" md="3" justify="center" align="center").text-center

@@ -5,6 +5,7 @@
         span.mc-btn1 Showing {{ itemsTotal }} result{{ itemsTotal > 1 ? 's' : '' }}
       v-spacer
       v-pagination(
+        v-if="itemsTotal > 4"
         :value="itemsPage"
         :length="itemsPaginationLength"
         total-visible="10"
@@ -25,7 +26,7 @@
       div(
         v-for="(item, key) in items"
         :key="key"
-      ).my-3
+      ).py-4
         doctor-item(
           :item="item"
           :organization="organization"

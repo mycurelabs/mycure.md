@@ -1,16 +1,16 @@
 <template lang="pug">
-  generic-blue-bg(large-dots).panel-bg
+  generic-blue-bg(large-dots)
     v-container.white--text
       v-row(justify="center")
         //- Logo
         v-col(v-if="!$isMobile" cols="10")
           v-row(align="center").px-3.py-5
-            nuxt-link(to="/")
+            nuxt-link(to="/directory")
               img(
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"
                 alt="MYCURE logo"
-              ).mt-1
+              ).mb-n2
             v-spacer
             v-btn(
               v-for="(tab, key) in tabs"
@@ -18,7 +18,7 @@
               text
               @click="onRedirect(tab.value)"
             ).text-none.mc-h7.white--text.font-weight-light {{ tab.text }}
-            share-button(color="white" @clipSuccess="$emit('clipSuccess')")
+            share-button(color="white" @clipSuccess="$emit('clipSuccess')").ml-5
         v-col(v-else cols="10").pt-8
           v-row(align="center")
             nuxt-link(to="/")
@@ -26,7 +26,7 @@
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"
                 alt="MYCURE logo"
-              ).mt-1
+              ).mb-n2
             v-spacer
             share-button(color="white" is-small @clipSuccess="$emit('clipSuccess')")
             v-menu(offset-y)
@@ -48,15 +48,18 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
-            v-avatar(size="200").elevation-5
-              img(:src="picUrl").img-border
+            v-avatar(:size="$isWideScreen ? '250' : '210'").elevation-5.img-border
+              img(:src="picUrl")
             br
             br
             h1.mc-h2 {{ clinicName }}
             br
-            v-row(justify="center" align="center")
-              v-icon(small color="white").mr-1 {{ mdiMapMarker }}
-              span.mc-b2.font-weight-light.white--text &nbsp;{{ formattedAddress }}
+            v-row(justify="center")
+              v-col(cols="12" md="5")
+                v-row(justify="center")
+                  span.mc-b2.font-weight-light.white--text &nbsp;
+                    v-icon(small color="white").mr-1 {{ mdiMapMarker }}
+                    | {{ formattedAddress }}
             v-row(justify="center" align="center")
               v-icon(small color="white").mr-2 {{ mdiPhone }}
               span.mc-b2.font-weight-light.white--text {{ clinicPhone }}
@@ -66,7 +69,7 @@
             v-btn(
               hover
               depressed
-              :width="$isWideScreen ? '300px' : '228px'"
+              :width="$isWideScreen ? '300px' : '240px'"
               :height="!$isWideScreen ? '59px' : '73.68px'"
               color="success"
               :class="{ 'font-11' : $isMobile }"
