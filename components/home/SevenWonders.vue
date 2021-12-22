@@ -23,7 +23,7 @@
                   color="success"
                 ).text-none
                   span.mc-btn1.white--text Get Started
-            v-row(justify="center")
+            v-row(justify="center" v-if="!loading")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
                   autoplay
