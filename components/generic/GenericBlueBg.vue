@@ -2,6 +2,7 @@
   div.main-container
     div
       picture-source(
+        v-if="!hideDots"
         image-file-extension="png"
         image="dots-left"
         image-alt="dots gradient"
@@ -11,6 +12,7 @@
         custom-path="commons/"
       ).left-center
       picture-source(
+        v-if="!hideDots"
         image-file-extension="png"
         image="dots-right"
         image-alt="dots gradient"
@@ -34,6 +36,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    hideDots: Boolean,
   },
   computed: {
     dotsWidth () {
