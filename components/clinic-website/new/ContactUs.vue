@@ -2,14 +2,14 @@
   v-card(flat :class="$isMobile ? 'px-4' : 'px-12'").py-8
     v-row
       v-col(cols="12" md="6")
-        h3.mc-h3.title--text Contact Us
+        h3.mc-h4.title--text.px-3 Contact Us
         br
         v-col(cols="12")
           v-row(align="start").pl-3
-            span.mc-b2
-              v-icon(small color="primary").mr-1 {{ mdiMapMarker }}
-              | {{ formattedAddress }}
-          v-row(align="center").pl-3
+            v-icon(small color="primary" :class="$isWideScreen ? 'mt-3' : 'mt-2'").mr-1 {{ mdiMapMarker }}
+            v-col.pa-0
+              span.mc-b2 {{ formattedAddress }}
+          v-row(align="center").pl-3.pt-1
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
             span.mc-b2 {{ clinicPhone }}
           br

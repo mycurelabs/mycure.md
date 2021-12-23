@@ -3,9 +3,7 @@
     v-card-text
       v-row(:justify="$isMobile ? 'center' : 'end'")
         v-col(cols="12" md="8" :class="{'text-center': $isMobile}")
-          h4.mc-h4.black--text {{ title }}&nbsp;
-          span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
-            v-icon(small color="success") {{ mdiCalendarCheck }}
+          h4.mc-h4.title--text {{ title }}&nbsp;
         v-spacer
         div.pa-3
           h3(v-if="price").mc-h3
@@ -13,45 +11,60 @@
           span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
-          v-row(:justify="$isMobile ? 'center' : 'start'").pl-1.pr-2
-            div(v-for="(day, key) in daysList" :key="key").d-flex
-              v-badge(
-                :color="isServiceAvailable(day.value) ? 'success' : '#EEEEEE'"
-                :content="day.text"
-                inline
-                x-large
-              )
+          a(@click="dialog.schedules = true").title--text.mc-hyp2 Schedule
+            v-icon(small color="primary" right).mt-n1 {{ mdiInformationOutline }}
+          v-row(:justify="$isMobile ? 'center' : 'start'" align="center").px-2.mt-4
+            div(v-for="(day, key) in daysList" :key="key" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-1' ")
+              div(:class="[badgeSize , isServiceAvailable(day.value) ? 'success' : '#EEEEEE']" :style="isServiceAvailable(day.value) ? 'color: white' : 'color: #BFBFBF'").badge {{ day.text }}
             v-spacer(v-if="!$isMobile")
-            v-col(:cols="$isMobile ? '12' : ''" :class="{'text-center': $isMobile}")
-              a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
-                v-icon(small color="primary" right) {{ mdiInformationOutline }}
+            div(:width="$isMobile ? '100%' : 'auto'").my-3
+              a(@click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
       //- can't use $populate and $search together in the query.
-      v-row(v-if="hasCoverages")
-        v-avatar(
-          v-if="coverages[0]"
-          size="25"
-          color="secondary"
-        ).mx-1
-          v-img(v-if="coverages[0].picURL" :src="coverages[0].picURL")
-          span(v-else).white--text {{ coverages[0].name.substring(0,1) }}
-        span {{ previewCoverages }}
-          template(v-if="coveragesTotal > previewCoveragesLimit")
-            | ...
-            a(@click="dialog.coverages = true").primary--text &nbsp;and {{ coveragesTotal - previewCoveragesLimit }} more
+      //- v-row(v-if="hasCoverages")
+      //-   v-avatar(
+      //-     v-if="coverages[0]"
+      //-     size="25"
+      //-     color="secondary"
+      //-   ).mx-1
+      //-     v-img(v-if="coverages[0].picURL" :src="coverages[0].picURL")
+      //-     span(v-else).white--text {{ coverages[0].name.substring(0,1) }}
+      //-   span {{ previewCoverages }}
+      //-     template(v-if="coveragesTotal > previewCoveragesLimit")
+      //-       | ...
+      //-       a(@click="dialog.coverages = true").primary--text &nbsp;and {{ coveragesTotal - previewCoveragesLimit }} more
     v-card-actions
-      v-spacer
+      //- span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
+      span(v-if="!$isMobile && isAvailable" style="color: #72727D").mc-b4 Available for Online Booking&nbsp;
+        v-icon(small color="#72727D") {{ mdiCalendarCheck }}
+      v-spacer(v-if="!$isMobile")
       v-btn(
+        v-if="!$isMobile"
         color="primary"
         depressed
         x-large
+        :width="!$isWideScreen ? '152px' : '200'"
         :block="$isMobile"
         :disabled="!isAvailable"
         :href="bookURL"
         @click="trackBooking(appointmentType)"
       ).text-none
         span.mc-btn1 Book Now
+      v-col(v-else cols="12").text-center
+        v-btn(
+          color="primary"
+          depressed
+          x-large
+          :width="!$isWideScreen ? '152px' : '200'"
+          :block="$isMobile"
+          :disabled="!isAvailable"
+          :href="bookURL"
+          @click="trackBooking(appointmentType)"
+        ).text-none.mb-6
+          span.mc-btn1 Book Now
+        span(v-if="isAvailable" style="color: #72727D").mc-b4 Available for Online Booking&nbsp;
+          v-icon(small color="#72727D") {{ mdiCalendarCheck }}
 
     //- DIALOGS
     //- Schedule dialog
@@ -125,6 +138,7 @@ import isEmpty from 'lodash/isEmpty';
 import Schedules from './AppointmentSchedules';
 import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
+import classBinder from '~/utils/class-binder';
 import DefaultAvatar from '~/assets/images/commons/mycure-default-avatar.png';
 
 export default {
@@ -233,6 +247,13 @@ export default {
       const id = this.item.id;
       return `${PX_PORTAL_URL}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=${this.appointmentType}`;
     },
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
+      });
+    },
   },
   methods: {
     isServiceAvailable (dayValue) {
@@ -276,5 +297,17 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: rgb(163, 163, 163);
+}
+.badge-size {
+  height: 27px;
+  width: 27px;
+}
+.badge-size-mobile {
+  height: 24px;
+  width: 24px;
+}
+.badge-size-wide {
+  height: 30px;
+  width: 30px;
 }
 </style>

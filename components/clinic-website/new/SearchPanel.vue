@@ -20,7 +20,13 @@
                 @keyup.enter="debouncedSearch"
               ).mt-3.search-bar
                 template(v-slot:append)
-                  div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
+                  v-btn(
+                    height="36"
+                    width="36"
+                    color="primary"
+                    @click="debouncedSearch"
+                  ).px-0
+                    //- div().primary.search-icon.pt-3.text-center
                     v-icon(color="white") {{ mdiMagnify }}
     v-container(v-if="!$isMobile").search-bar-container
       v-row(justify="center")
@@ -34,14 +40,19 @@
                   v-col(cols="12" md="10")
                     v-text-field(
                       v-model="searchText"
-                      solo
+                      outlined
                       clearable
+                      color="primary"
                       placeholder="Search services and doctors"
                       :disabled="disabled"
                       @keyup.enter="debouncedSearch"
-                    ).mt-3.search-bar
-                      template(v-slot:append)
-                        div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
+                    ).mt-3
+                      template(slot="append").ma-0
+                        v-btn(
+                          color="primary"
+                          @click="debouncedSearch"
+                        ).px-0
+                          //- div().primary.search-icon.pt-3.text-center
                           v-icon(color="white") {{ mdiMagnify }}
 </template>
 

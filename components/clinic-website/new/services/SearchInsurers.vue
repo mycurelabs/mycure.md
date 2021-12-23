@@ -7,6 +7,7 @@
     return-object
     clearable
     chips
+    :prepend-inner-icon="mdiShieldCheck"
     :allow-overflow="false"
     :label="!noLabel ? 'Search HMO' : null"
     :placeholder="placeholder"
@@ -40,7 +41,7 @@
 
 <script>
 // import VClamp from 'vue-clamp';
-import { mdiClose, mdiMenuDown } from '@mdi/js';
+import { mdiClose, mdiMenuDown, mdiShieldCheck } from '@mdi/js';
 import debounce from 'lodash/debounce';
 import { fetchOrganizations } from '~/services/organizations';
 
@@ -99,6 +100,7 @@ export default {
       debouncedFetchContracts: debounce(this.fetchContracts, 500),
       mdiClose,
       mdiMenuDown,
+      mdiShieldCheck,
     };
   },
   watch: {

@@ -8,7 +8,7 @@
             nuxt-link(to="/directory")
               img(
                 src="~/assets/images/mycure-logo-white.png"
-                width="120"
+                :width="$isWideScreen ? '132' : '120'"
                 alt="MYCURE logo"
               ).mb-n2
             v-spacer
@@ -18,10 +18,10 @@
               text
               @click="onRedirect(tab.value)"
             ).text-none.mc-h7.white--text.font-weight-light {{ tab.text }}
-            share-button(color="white" @clipSuccess="$emit('clipSuccess')").ml-5
+            share-button(color="white" @clipSuccess="$emit('clipSuccess')" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
         v-col(v-else cols="10").pt-8
           v-row(align="center")
-            nuxt-link(to="/")
+            nuxt-link(to="/directory")
               img(
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"

@@ -11,7 +11,7 @@
 
 <script>
 import 'babel-polyfill';
-import AppFooter from '~/components/clinic-website/AppFooter';
+import AppFooter from '~/components/clinic-website/new/AppFooter';
 export default {
   components: {
     AppFooter,
