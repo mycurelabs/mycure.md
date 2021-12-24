@@ -1,5 +1,19 @@
 <template lang="pug">
   div(v-if="!loading.page").main-container
+    //- CHOOSE APPOINTMENT TYPE
+    choose-appointment(
+      is-clinic
+      v-model="dialogs.appointment"
+      :has-doctors="isTelehealthEnabled"
+      :has-physical-services="isBookingEnabled"
+      @select="onSelectAppointment($event)"
+    )
+    //- CHOOSE SERVICE DIALOG
+    choose-service(
+      v-model="dialogs.serviceType"
+      :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
+      @select="onSelectServiceType($event)"
+    )
     v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     main-panel(
       :tabs="normalTabsList"
@@ -9,7 +23,7 @@
       :clinic-phone="clinicPhone"
       :style="{ height: $isMobile ? '130vh' : '120vh' }"
       :is-bookable="isVerified && isOnline"
-      @book="onBook"
+      @book="dialogs.appointment = true"
       @redirect="onRedirect($event)"
       @clipSuccess="clipSuccess = true"
     )#top
@@ -217,6 +231,8 @@ import headMeta from '~/utils/head-meta';
 // components
 import MainPanel from '~/components/clinic-website/new/MainPanel';
 import AboutClinic from '~/components/clinic-website/new/AboutClinic';
+import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
+import ChooseService from '~/components/clinic-website/ChooseService';
 import ContactUs from '~/components/clinic-website/new/ContactUs';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
 import DoctorsList from '~/components/clinic-website/new/doctors/DoctorsList';
@@ -257,6 +273,8 @@ export default {
     GenericPanel,
     AboutClinic,
     ContactUs,
+    ChooseAppointment,
+    ChooseService,
     DatePickerMenu,
     DoctorsList,
     DoctorsPaginated,
@@ -272,7 +290,7 @@ export default {
       return tab ? tab.text : 'Section';
     },
   },
-  layout: 'empty',
+  layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect, error }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
@@ -708,8 +726,22 @@ export default {
       }
       VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
     },
-    onBook () {
-      // insert booking code
+    onSelectAppointment (type) {
+      this.dialogs.appointment = false;
+      if (type === 'physical') {
+        this.dialogs.serviceType = true;
+        return;
+      }
+      if (type === 'telehealth') {
+        this.tabSelect = 'doctors';
+        // - scroll down to doctors list
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      }
+    },
+    onSelectServiceType (serviceType) {
+      this.tabSelect = 'services';
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      this.activeServiceType = serviceType;
     },
   },
 };

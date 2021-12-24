@@ -30,8 +30,9 @@
       :is-preview-mode="isPreviewMode"
       @book="onBook"
       @redirect="onRedirect($event)"
-      @clip-success="clipSuccess = true"
-    )#top
+      ref="top"
+      @clipSuccess="clipSuccess = true"
+    )
     profile-card(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"

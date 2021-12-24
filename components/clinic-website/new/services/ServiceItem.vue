@@ -1,19 +1,19 @@
 <template lang="pug">
   v-card.rounded-md.pa-3
     v-card-text
-      v-row
-        v-col(cols="12" md="9")
+      v-row(:justify="$isMobile ? 'center' : 'end'")
+        v-col(cols="12" md="8" :class="{'text-center': $isMobile}")
           h4.mc-h4.black--text {{ title }}&nbsp;
-          span(v-if="isAvailable").success--text Available for Online Booking&nbsp;
+          span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
             v-icon(small color="success") {{ mdiCalendarCheck }}
-
-        v-col(cols="12" md="3" :class="{'text-right': !$isMobile}")
+        v-spacer
+        div.pa-3
           h3(v-if="price").mc-h3
             money(:value="price" symbol="₱" text-class="mc-h3")
           span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
-          v-row.pl-1.pr-2
+          v-row(:justify="$isMobile ? 'center' : 'start'").pl-1.pr-2
             div(v-for="(day, key) in daysList" :key="key").d-flex
               v-badge(
                 :color="isServiceAvailable(day.value) ? 'success' : '#EEEEEE'"
@@ -21,9 +21,10 @@
                 inline
                 x-large
               )
-            v-spacer
-            a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
-              v-icon(small color="primary" right) {{ mdiInformationOutline }}
+            v-spacer(v-if="!$isMobile")
+            v-col(:cols="$isMobile ? '12' : ''" :class="{'text-center': $isMobile}")
+              a(@click="dialog.schedules = true").primary--text.mc-hyp2 View full schedule
+                v-icon(small color="primary" right) {{ mdiInformationOutline }}
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
       //- can't use $populate and $search together in the query.
