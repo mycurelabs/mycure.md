@@ -46,12 +46,9 @@
                       @keyup.enter="debouncedSearch"
                     ).mt-3.search-bar
                       template(v-slot:append)
-                        v-btn(
-                          height="36px"
-                          width="36px"
-                          color="primary"
+                        div(
                           @click="debouncedSearch"
-                        ).px-1.mx-2
+                        ).search-icon.text-center.pt-2
                           v-icon(color="white") {{ mdiMagnify }}
                         //- div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
 </template>
@@ -132,15 +129,15 @@ export default {
 }
 .search-bar >>> .v-input__append-inner {
   margin-top: 0 !important;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 0 !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px !important;
 }
 .search-icon {
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px;
   background-color: #0099CC;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 
 .search-icon:hover {
