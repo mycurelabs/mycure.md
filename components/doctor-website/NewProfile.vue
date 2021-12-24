@@ -7,7 +7,7 @@
           p.mc-b3 {{ bio }}
           br
           br
-          h4.mc-h4.mb-4.black--text Education
+          h4.mc-h3.mb-4.black--text Education
           div(v-for="(educ, key) in education" :key="key").mt-3
             span.mc-b4 {{ educ | format-school }}
             br
@@ -15,7 +15,7 @@
         v-spacer
         v-divider(vertical).mx-10
         v-col(cols="12" md="4" :class="{'text-center': $isMobile}")
-          h4.mc-h4.mb-4.black--text Tags
+          h4.mc-h3.mb-4.black--text Tags
           v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
             span.mc-b4 {{ specialty }}
         v-spacer
