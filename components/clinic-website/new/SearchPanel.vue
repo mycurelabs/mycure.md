@@ -13,7 +13,7 @@
             v-col(cols="12" md="10")
               v-text-field(
                 v-model="searchText"
-                solo
+                outlined
                 clearable
                 placeholder="Search services and doctors"
                 :disabled="disabled"
@@ -21,12 +21,11 @@
               ).mt-3.search-bar
                 template(v-slot:append)
                   v-btn(
-                    height="36"
-                    width="36"
+                    height="36px"
+                    width="36px"
                     color="primary"
                     @click="debouncedSearch"
-                  ).px-0
-                    //- div().primary.search-icon.pt-3.text-center
+                  ).px-1.mx-2
                     v-icon(color="white") {{ mdiMagnify }}
     v-container(v-if="!$isMobile").search-bar-container
       v-row(justify="center")
@@ -42,18 +41,19 @@
                       v-model="searchText"
                       outlined
                       clearable
-                      color="primary"
                       placeholder="Search services and doctors"
                       :disabled="disabled"
                       @keyup.enter="debouncedSearch"
-                    ).mt-3
-                      template(slot="append").ma-0
+                    ).mt-3.search-bar
+                      template(v-slot:append)
                         v-btn(
+                          height="36px"
+                          width="36px"
                           color="primary"
                           @click="debouncedSearch"
-                        ).px-0
-                          //- div().primary.search-icon.pt-3.text-center
+                        ).px-1.mx-2
                           v-icon(color="white") {{ mdiMagnify }}
+                        //- div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
 </template>
 
 <script>
@@ -128,6 +128,12 @@ export default {
 }
 .search-bar >>> .v-input__slot {
   border-radius: 5px 5px 5px 5px;
+  padding-right: 0 !important;
+}
+.search-bar >>> .v-input__append-inner {
+  margin-top: 0 !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-right: 0 !important;
 }
 .search-icon {
