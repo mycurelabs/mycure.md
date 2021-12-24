@@ -28,7 +28,7 @@
                   h3(:class="[hover ? 'white--text' : 'secondary--text', {'font-12': $isMobile}]") {{ type.text }}
       v-card-actions
         v-spacer
-        v-btn(color="error" outlined depressed x-large @click="dialog = false").text-none Cancel
+        v-btn(color="error" outlined depressed x-large @click="onSelect({value: 'close'})").text-none Cancel
 </template>
 
 <script>
@@ -113,7 +113,9 @@ export default {
   methods: {
     onSelect (type) {
       this.$emit('select', type.value);
-      VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
+      if (type.value !== 'close') {
+        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
+      }
       this.dialog = false;
     },
   },

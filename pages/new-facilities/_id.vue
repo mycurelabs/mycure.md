@@ -774,8 +774,11 @@ export default {
       }
     },
     onSelectServiceType (serviceType) {
-      this.tabSelect = 'services';
-      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      this.dialogs.serviceType = false;
+      if (serviceType !== 'close') {
+        this.tabSelect = 'services';
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      }
       this.activeServiceType = serviceType;
     },
   },
