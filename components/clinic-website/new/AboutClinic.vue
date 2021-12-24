@@ -12,6 +12,12 @@
         h3.mc-h3.title--text.mb-4 {{ clinicName }}
         div(:class="{'text-center': $isMobile}")
           span.mc-b4 {{ description }}
+        br
+        h3.mc-h4.title--text Insurance Accreditations
+        br
+        v-avatar(v-for="(insurer, key) in insurers" color="secondary" :key="key" size="100").elevation-4.mx-2
+          img(v-if="insurer.coveragesData.picURL" :src="insurer.coveragesData.picURL")
+          span(v-else).white--text {{ insurer.insurerName.substring(0,1) }}
 </template>
 
 <script>
@@ -27,6 +33,10 @@ export default {
     },
     description: {
       type: String,
+      default: null,
+    },
+    insurers: {
+      type: Array,
       default: null,
     },
   },

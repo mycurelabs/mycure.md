@@ -102,6 +102,7 @@
                     :clinic-name="clinicName"
                     :description="description"
                     :items="items.services"
+                    :insurers="items.insurers"
                   )
               //- CONTACT US
               v-tab-item(value="contact")
@@ -234,7 +235,7 @@ import intersection from 'lodash/intersection';
 import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
-import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
+import { fetchServices, fetchClinicServiceTypes, fetchClinicInsurers } from '~/services/services';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
@@ -346,6 +347,7 @@ export default {
           list: false,
         },
         search: false,
+        insurers: false,
       },
       dialogs: {
         appointment: false,
@@ -354,6 +356,7 @@ export default {
       items: {
         services: [],
         doctors: [],
+        insurers: [],
       },
       itemsLimit: 4,
       itemsTotal: {
@@ -501,6 +504,7 @@ export default {
     async init () {
       this.loading.services.section = true;
       await this.fetchServiceTypes();
+      await this.fetchClinicInsurers();
       this.loading.services.section = false;
     },
     /** Fetches all services of facility
@@ -599,6 +603,21 @@ export default {
         console.error(e);
       } finally {
         this.loading.doctors.list = false;
+      }
+    },
+    async fetchClinicInsurers () {
+      try {
+        this.loading.insurers = true;
+        const query = {
+          insured: this.clinicId,
+        };
+        const { items } = await fetchClinicInsurers(query);
+        log('fetchClinicInsurers#items: %O', items);
+        this.items.insurers = items;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.services.list = false;
       }
     },
     search () {
