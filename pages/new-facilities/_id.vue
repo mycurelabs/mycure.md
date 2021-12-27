@@ -771,11 +771,21 @@ export default {
       if (type === 'telehealth') {
         this.tabSelect = 'doctors';
         // - scroll down to doctors list
+        if (this.searchMode) {
+          this.searchText = null;
+          this.searchMode = false;
+          return;
+        }
         VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
       }
     },
     onSelectServiceType (serviceType) {
       this.dialogs.serviceType = false;
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
       if (serviceType !== 'close') {
         this.tabSelect = 'services';
         VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });

@@ -83,7 +83,7 @@
                   a(:href="account.link" target="_blank" rel="noopener noreferrer")
                     img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name" :class="$vuetify.breakpoint.width < 1250 ? 'mx-1' : 'mx-2'")
           v-row(v-else justify="center").mt-4
-            v-col(v-for="(link, key) in links" :key="key" cols="8").py-1
+            v-col(v-for="(link, key) in links" :key="key" cols="8" xs="6").py-1
               v-btn(
                 v-if="!link.external"
                 :to="link.to"
