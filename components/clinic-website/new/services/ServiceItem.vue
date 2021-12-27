@@ -24,10 +24,10 @@
                 :style="isServiceAvailable(day.value) ? 'color: white' : 'color: #BFBFBF'"
               ).badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
-            div(v-if="!$isMobile")
-              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-hyp2.my-3 View Insurance Providers
-            v-col(v-else cols="12").text-center.pa-0
-              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-hyp2.my-3 View Insurance Providers
+            div(v-if="!$isMobile").my-3
+              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
+            v-col(v-else cols="12").text-center.pa-0.my-3
+              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
       //- can't use $populate and $search together in the query.
