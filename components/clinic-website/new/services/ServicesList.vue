@@ -27,7 +27,7 @@
                   v-list-item-icon
                     v-icon {{ typeMappings[type].icon }}
                   v-list-item-content
-                    v-list-item-title {{ typeMappings[type].text }}
+                    v-list-item-title.mc-hyp2.font-weight-regular {{ typeMappings[type].text }}
             v-list(subheader v-if="hasAncillary")
               v-subheader.mc-hyp2.black--text Ancillary Services
               v-list-item-group(v-model="activeServiceType")
@@ -39,7 +39,7 @@
                   v-list-item-icon
                     v-icon {{ typeMappings[type].icon }}
                   v-list-item-content
-                    v-list-item-title {{ typeMappings[type].text }}
+                    v-list-item-title.mc-hyp2.font-weight-regular {{ typeMappings[type].text }}
 
       //- SERVICES
       v-col(

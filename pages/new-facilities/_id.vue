@@ -21,7 +21,7 @@
       :clinic-name="clinicName"
       :formatted-address="formattedAddress"
       :clinic-phone="clinicPhone"
-      :style="{ height: $isMobile ? '130vh' : '120vh' }"
+      :style="{ height: $isMobile ? '110vh' : '110vh' }"
       :is-bookable="isVerified && isOnline"
       @book="dialogs.appointment = true"
       @redirect="onRedirect($event)"
@@ -39,11 +39,15 @@
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
             v-tabs(
-              right
+              show-arrows
+              hide-slider
+              :right="!$isMobile"
+              :next-icon="mdiChevronRight"
+              :prev-icon="mdiChevronLeft"
               v-model="tabSelect"
               background-color="transparent"
-              slider-color="primary"
               active-class="black--text"
+              style="color: #A2A5AE;"
             ).mb-6
               v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
                 img(
@@ -97,6 +101,8 @@
                     :pic-url="picURL"
                     :clinic-name="clinicName"
                     :description="description"
+                    :items="items.services"
+                    :insurers="items.insurers"
                   )
               //- CONTACT US
               v-tab-item(value="contact")
@@ -111,22 +117,29 @@
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12")
+            v-btn(v-if="$isMobile" @click="onHome" text).mb-5
+              v-icon {{ mdiChevronLeft }}
+              | Back
             v-tabs(
-              right
+              hide-slider
+              :right="!$isMobile"
               v-model="searchTabSelect"
               background-color="transparent"
               slider-color="primary"
               active-class="black--text"
             ).mb-6
               v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
-                img(
-                  src="~/assets/images/MYCURE-icon.png"
-                  width=" 20"
-                  alt="MYCURE icon"
-                  @click="onHome"
-                ).mr-2
-                a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-                a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
+                v-btn(@click="onHome" text).text-none.font-16
+                  v-icon {{ mdiChevronLeft }}
+                  | Back
+              //-   img(
+              //-     src="~/assets/images/MYCURE-icon.png"
+              //-     width=" 20"
+              //-     alt="MYCURE icon"
+              //-     @click="onHome"
+              //-   ).mr-2
+              //-   a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+              //-   a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
               v-tab(
                 v-for="(tab, key) in searchTabsList"
                 :key="key"
@@ -152,6 +165,7 @@
                     clearable
                     outlined
                     :disabled="loading.search"
+                    :prepend-inner-icon="mdiAccountWrenchOutline"
                     :append-icon="mdiMenuDown"
                     :clear-icon="mdiClose"
                     :items="serviceTypeOptions"
@@ -219,9 +233,10 @@ import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import intersection from 'lodash/intersection';
 import omit from 'lodash/omit';
-import { mdiMenuDown, mdiClose } from '@mdi/js';
+import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
 import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
+import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
@@ -262,7 +277,7 @@ const TABS_LIST = [
   { text: 'About Clinic', value: 'about', type: 'normal' },
   { text: 'Contact Us', value: 'contact', type: 'normal' },
   // - Search Tabs
-  { text: 'All', value: 'search-all', type: 'search' },
+  // { text: 'All', value: 'search-all', type: 'search' },
   { text: 'Services', value: 'search-services', type: 'search' },
   { text: 'Doctors', value: 'search-doctors', type: 'search' },
 ];
@@ -333,6 +348,7 @@ export default {
           list: false,
         },
         search: false,
+        insurers: false,
       },
       dialogs: {
         appointment: false,
@@ -341,6 +357,7 @@ export default {
       items: {
         services: [],
         doctors: [],
+        insurers: [],
       },
       itemsLimit: 4,
       itemsTotal: {
@@ -371,6 +388,9 @@ export default {
       // icons,
       mdiMenuDown,
       mdiClose,
+      mdiChevronRight,
+      mdiChevronLeft,
+      mdiAccountWrenchOutline,
     };
   },
   head () {
@@ -485,6 +505,7 @@ export default {
     async init () {
       this.loading.services.section = true;
       await this.fetchServiceTypes();
+      await this.fetchClinicInsurers();
       this.loading.services.section = false;
     },
     /** Fetches all services of facility
@@ -583,6 +604,21 @@ export default {
         console.error(e);
       } finally {
         this.loading.doctors.list = false;
+      }
+    },
+    async fetchClinicInsurers () {
+      try {
+        this.loading.insurers = true;
+        const query = {
+          insured: this.clinicId,
+        };
+        const { items } = await fetchClinicInsurers(query);
+        log('fetchClinicInsurers#items: %O', items);
+        this.items.insurers = items;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.services.list = false;
       }
     },
     search () {
@@ -735,12 +771,25 @@ export default {
       if (type === 'telehealth') {
         this.tabSelect = 'doctors';
         // - scroll down to doctors list
+        if (this.searchMode) {
+          this.searchText = null;
+          this.searchMode = false;
+          return;
+        }
         VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
       }
     },
     onSelectServiceType (serviceType) {
-      this.tabSelect = 'services';
-      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      this.dialogs.serviceType = false;
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
+      if (serviceType !== 'close') {
+        this.tabSelect = 'services';
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      }
       this.activeServiceType = serviceType;
     },
   },

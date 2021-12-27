@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.rounded-md.pa-3
+  v-card(flat).rounded-md.pa-3
     v-card-text
       v-row(:justify="$isMobile ? 'center' : 'start'")
         v-col(cols="12" md="3" justify="center" align="center").text-center
@@ -13,13 +13,13 @@
         v-col(cols="12" md="8")
           v-clamp(
             autoresize
-            :max-lines="1"
-          ).mc-h3 Dr. {{ fullNameWithSuffixes }}
+          ).mc-h3.title-text Dr. {{ fullNameWithSuffixes }}
           div.my-4
             v-clamp(
               autoresize
               :max-lines="1"
               :class="{'font-italic': !specializations.length }"
+              :style="{'colr: #A2A5AE;': !specializations.length }"
             ).mc-h5 {{ formattedSpecializations }}
           p(v-if="yearsOfExperience").mc-b2
             v-icon(color="secondary" :small="!$isWideScreen" left) {{ mdiBriefcaseVariantOutline }}
@@ -43,16 +43,11 @@
               )
                 template(v-slot:selection="{ item }")
                   span.mc-b4 {{ item.text }}
-          v-row(dense :justify="$isMobile ? 'center' : 'start'").pl-1.mt-n1
-            div(v-for="(day, key) in daysList" :key="key").d-flex
-              v-badge(
-                :color="isDoctorAvailable(day.value) ? 'success' : '#EEEEEE'"
-                :content="day.text"
-                inline
-                x-large
-              )
+          v-row(dense :justify="$isMobile ? 'center' : 'start'" align="center").pl-1.mt-n1
+            div(v-for="(day, key) in daysList" :key="key" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-1' ").white--text
+              div(:class="isDoctorAvailable(day.value) ? 'success' : '#EEEEEE'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
-            v-col(:cols="$isMobile ? '12' : ''" :class="{'text-center': $isMobile}")
+            div(:width="$isMobile ? '100%' : 'auto'").mt-2
               v-btn(
                 text
                 color="primary"
@@ -242,5 +237,22 @@ export default {
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: rgb(163, 163, 163);
+}
+.badge-size {
+  height: 24px;
+  width: 24px;
+}
+
+@media screen and (min-width: 1015px) {
+  .badge-size {
+    height: 27px;
+    width: 27px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .badge-size {
+    height: 30px;
+    width: 30px;
+  }
 }
 </style>

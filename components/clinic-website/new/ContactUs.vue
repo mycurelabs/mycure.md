@@ -2,14 +2,14 @@
   v-card(flat :class="$isMobile ? 'px-4' : 'px-12'").py-8
     v-row
       v-col(cols="12" md="6")
-        h3.mc-h3.title--text Contact Us
+        h3.mc-h4.title--text.px-3 Contact Us
         br
         v-col(cols="12")
-          v-row(:align="$isMobile ? 'start' : 'center'").pl-3
-            v-icon(small color="primary" :class="{'mt-2': $isMobile}").mr-1 {{ mdiMapMarker }}
+          v-row(align="start").pl-3
+            v-icon(small color="primary" :class="$isWideScreen ? 'mt-3' : 'mt-2'").mr-1 {{ mdiMapMarker }}
             v-col.pa-0
               span.mc-b2 {{ formattedAddress }}
-          v-row(align="center").pl-3
+          v-row(align="center").pl-3.pt-1
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
             span.mc-b2 {{ clinicPhone }}
           br
@@ -110,7 +110,11 @@ export default {
           }
         } else if (finalSched.find(sched => sched.day === x.day)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
-          finalSched[index].time = [finalSched[index].time, x.time];
+          if (typeof finalSched[index].time === 'string') {
+            finalSched[index].time = [finalSched[index].time, x.time];
+          } else {
+            finalSched[index].time = [...finalSched[index].time, x.time];
+          }
         } else {
           finalSched.push(x);
           if (finalSched.find(sched => sched.day === '')) finalSched.shift();

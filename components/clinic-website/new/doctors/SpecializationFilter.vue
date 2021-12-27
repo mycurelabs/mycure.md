@@ -7,33 +7,36 @@
       hide-details
       outlined
       :disabled="dialog"
+      :prepend-inner-icon="mdiBriefcaseOutline"
       :append-icon="mdiMenuDown"
       @click="dialog = true"
     )
     //- DIALOG
-    v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onClose")
-      v-card.pa-5
+    v-dialog(v-model="dialog" :width="$isWideScreen ? '800' : '600'" height="95%" @click:outside="onClose")
+      v-card(tile).pa-5
         v-card-title
           v-row
             v-col
-              h2 Filter by Specialization
+              h2.mc-h2 Filter by Specialization
             v-col(cols="1" align-self="center").pa-0
               v-icon(large @click="onClose") {{ mdiClose }}
         v-card-subtitle.pt-3.pb-0
-          v-row.pa-3.mt-1
+          v-row(justify="end").pa-3.mt-1
             v-text-field(
               v-model="searchSpecialtyText"
               placeholder="Search"
               outlined
               dense
+              hide-details
             )
             v-btn(
               v-if=""
               color="secondary"
               text
               @click="clearSpecializations"
+              :class="{'px-0': $isMobile}"
             ).font-12 CLEAR FILTERS
-        v-card-text
+        v-card-text.mt-5
           div(v-for="(specialty, key) in filteredSpecialties" :key="key")
             v-checkbox(
               :value="specialty.selected"
@@ -41,6 +44,7 @@
               :off-icon="mdiCheckboxBlankOutline"
               :label="specialty.text"
               @change="onSpecialtySelect(specialty)"
+              class="mc-b2"
             ).ma-0
 </template>
 
@@ -50,6 +54,7 @@ import {
   mdiClose,
   mdiCheckboxMarkedOutline,
   mdiCheckboxBlankOutline,
+  mdiBriefcaseOutline,
 } from '@mdi/js';
 import SPECIALTIES from '~/assets/fixtures/specialties';
 
@@ -69,6 +74,7 @@ export default {
       mdiClose,
       mdiCheckboxMarkedOutline,
       mdiCheckboxBlankOutline,
+      mdiBriefcaseOutline,
     };
   },
   computed: {
@@ -81,7 +87,11 @@ export default {
       },
     },
     selectedSpecializationsText () {
-      return this.specializationFiltersArray?.join(', ') || '';
+      if (this.specializationFiltersArray.length > 1) {
+        return this.specializationFiltersArray[0].concat(` +${this.specializationFiltersArray.length - 1}`) || '';
+      } else {
+        return this.specializationFiltersArray || '';
+      }
     },
     filteredSpecialties () {
       return this.specialties.map((specialty) => {

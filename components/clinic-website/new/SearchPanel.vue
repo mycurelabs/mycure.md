@@ -4,45 +4,53 @@
       fluid
       :style="backgroundStyle"
     ).background-container
-      template(v-if="$isMobile")
-        v-card(height="250").rounded-lg
-          v-card-text.pt-8
-            h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
-          v-card-text
-            v-row(justify="center")
-              v-col(cols="12" md="10")
-                v-text-field(
-                  v-model="searchText"
-                  solo
-                  clearable
-                  placeholder="Search services and doctors"
-                  :disabled="disabled"
-                  @keyup.enter="debouncedSearch"
-                ).mt-3.search-bar
-                  template(v-slot:append)
-                    div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
-                      v-icon(color="white") {{ mdiMagnify }}
-    v-container(v-if="!$isMobile").search-bar-container
+    template(v-if="$isMobile").search-bar-container
+      v-card(height="250" style="margin-top: -100px").rounded-lg.mx-8
+        v-card-text.pt-8
+          h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
+        v-card-text
+          v-row(justify="center")
+            v-col(cols="12" md="10")
+              v-text-field(
+                v-model="searchText"
+                outlined
+                clearable
+                placeholder="Search services and doctors"
+                :disabled="disabled"
+                @keyup.enter="debouncedSearch"
+              ).mt-3.search-bar
+                template(v-slot:append)
+                  v-btn(
+                    height="36px"
+                    width="36px"
+                    color="primary"
+                    @click="debouncedSearch"
+                  ).px-1.mx-2
+                    v-icon(color="white") {{ mdiMagnify }}
+    v-container(v-else).search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12").text-center
-            v-card(height="250").rounded-lg
-              v-card-text.pt-8
+            v-card(:height="$isWideScreen ? '300' : '250'").rounded-lg
+              v-card-text(:class="$isWideScreen ? 'pt-12' : 'pt-10'")
                 h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
               v-card-text
                 v-row(justify="center")
                   v-col(cols="12" md="10")
                     v-text-field(
                       v-model="searchText"
-                      solo
+                      outlined
                       clearable
                       placeholder="Search services and doctors"
                       :disabled="disabled"
                       @keyup.enter="debouncedSearch"
                     ).mt-3.search-bar
                       template(v-slot:append)
-                        div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
+                        div(
+                          @click="debouncedSearch"
+                        ).search-icon.text-center.pt-2
                           v-icon(color="white") {{ mdiMagnify }}
+                        //- div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
 </template>
 
 <script>
@@ -107,7 +115,7 @@ export default {
 
 .background-container {
   width: 100%;
-  height: 325px;
+  height: 225px;
   background-size: cover;
   background-position: center;
 }
@@ -119,11 +127,17 @@ export default {
   border-radius: 5px 5px 5px 5px;
   padding-right: 0 !important;
 }
+.search-bar >>> .v-input__append-inner {
+  margin-top: 0 !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px !important;
+}
 .search-icon {
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px;
   background-color: #0099CC;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 
 .search-icon:hover {
@@ -140,6 +154,18 @@ export default {
   }
   .background-container {
     height: 375px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .search-bar-container {
+    margin-top: -200px;
+  }
+  .full-container {
+    width: 100%;
+    height: 625px;
+  }
+  .background-container {
+    height: 425px;
   }
 }
 </style>
