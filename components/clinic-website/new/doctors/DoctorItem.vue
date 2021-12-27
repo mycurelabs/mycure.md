@@ -45,7 +45,7 @@
                   span.mc-b4 {{ item.text }}
           v-row(dense :justify="$isMobile ? 'center' : 'start'" align="center").pl-1.mt-n1
             div(v-for="(day, key) in daysList" :key="key" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-1' ").white--text
-              div(:class="[badgeSize , isDoctorAvailable(day.value) ? 'success' : '#EEEEEE']").badge {{ day.text }}
+              div(:class="isDoctorAvailable(day.value) ? 'success' : '#EEEEEE'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
             div(:width="$isMobile ? '100%' : 'auto'").mt-2
               v-btn(
@@ -96,7 +96,6 @@ import isNil from 'lodash/isNil';
 import Schedules from '../services/AppointmentSchedules';
 import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
-import classBinder from '~/utils/class-binder';
 import DefaultAvatar from '~/assets/images/commons/mycure-default-avatar.png';
 
 export default {
@@ -209,13 +208,6 @@ export default {
       const id = this.item.uid;
       return `${PX_PORTAL_URL}/create-appointment/step-1?doctor=${id}&clinic=${this.organization}&type=${this.appointmentType}`;
     },
-    badgeSize () {
-      return classBinder(this, {
-        mobile: ['badge-size-mobile'],
-        regular: ['badge-size'],
-        wide: ['badge-size-wide'],
-      });
-    },
   },
   methods: {
     isDoctorAvailable (dayValue) {
@@ -247,15 +239,20 @@ export default {
   background: rgb(163, 163, 163);
 }
 .badge-size {
-  height: 27px;
-  width: 27px;
-}
-.badge-size-mobile {
   height: 24px;
   width: 24px;
 }
-.badge-size-wide {
-  height: 30px;
-  width: 30px;
+
+@media screen and (min-width: 1015px) {
+  .badge-size {
+    height: 27px;
+    width: 27px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .badge-size {
+    height: 30px;
+    width: 30px;
+  }
 }
 </style>

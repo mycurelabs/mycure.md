@@ -87,7 +87,7 @@ export default {
       },
     },
     selectedSpecializationsText () {
-      if (this.specializationFiltersArray[1]) {
+      if (this.specializationFiltersArray.length > 1) {
         return this.specializationFiltersArray[0].concat(` +${this.specializationFiltersArray.length - 1}`) || '';
       } else {
         return this.specializationFiltersArray || '';

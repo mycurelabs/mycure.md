@@ -14,8 +14,15 @@
           a(@click="dialog.schedules = true").title--text.mc-hyp2 Schedule
             v-icon(small color="primary" right).mt-n1 {{ mdiInformationOutline }}
           v-row(:justify="$isMobile ? 'center' : 'start'" align="center").px-2.mt-4
-            div(v-for="(day, key) in daysList" :key="key" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-1' ")
-              div(:class="[badgeSize , isServiceAvailable(day.value) ? 'success' : '#EEEEEE']" :style="isServiceAvailable(day.value) ? 'color: white' : 'color: #BFBFBF'").badge {{ day.text }}
+            div(
+              v-for="(day, key) in daysList"
+              :key="key"
+              :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-1'"
+            )
+              div(
+                :class="isServiceAvailable(day.value) ? 'success' : '#EEEEEE'"
+                :style="isServiceAvailable(day.value) ? 'color: white' : 'color: #BFBFBF'"
+              ).badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
             div(:width="$isMobile ? '100%' : 'auto'").my-3
               a(@click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
@@ -138,7 +145,6 @@ import isEmpty from 'lodash/isEmpty';
 import Schedules from './AppointmentSchedules';
 import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
-import classBinder from '~/utils/class-binder';
 import DefaultAvatar from '~/assets/images/commons/mycure-default-avatar.png';
 
 export default {
@@ -247,13 +253,6 @@ export default {
       const id = this.item.id;
       return `${PX_PORTAL_URL}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=${this.appointmentType}`;
     },
-    badgeSize () {
-      return classBinder(this, {
-        mobile: ['badge-size-mobile'],
-        regular: ['badge-size'],
-        wide: ['badge-size-wide'],
-      });
-    },
   },
   methods: {
     isServiceAvailable (dayValue) {
@@ -299,15 +298,20 @@ export default {
   background: rgb(163, 163, 163);
 }
 .badge-size {
-  height: 27px;
-  width: 27px;
-}
-.badge-size-mobile {
   height: 24px;
   width: 24px;
 }
-.badge-size-wide {
-  height: 30px;
-  width: 30px;
+
+@media screen and (min-width: 1015px) {
+  .badge-size {
+    height: 27px;
+    width: 27px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .badge-size {
+    height: 30px;
+    width: 30px;
+  }
 }
 </style>

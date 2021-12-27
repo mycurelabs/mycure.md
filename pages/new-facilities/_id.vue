@@ -235,7 +235,8 @@ import intersection from 'lodash/intersection';
 import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
-import { fetchServices, fetchClinicServiceTypes, fetchClinicInsurers } from '~/services/services';
+import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
+import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';

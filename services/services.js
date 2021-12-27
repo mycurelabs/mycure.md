@@ -153,25 +153,3 @@ export const fetchServices = async (opts, withSchedules = false) => {
   }
   return { items: normalizePopulated(services), total };
 };
-
-export const fetchClinicInsurers = async (opts) => {
-  if (!opts.insured) return;
-  const query = {
-    insured: opts.insured,
-    type: 'insurance-facility',
-    insurerSubtype: 'hmo',
-    $populate: {
-      coveragesData: {
-        service: 'organizations',
-        localKey: 'insurer',
-        foreignKey: 'id',
-        method: 'findOne',
-      },
-    },
-    $total: true,
-  };
-  log('fetchServices#query: %O', query);
-  const { items: providers } = await sdk.service('insurance-contracts').find(query);
-  log('fetchServices#services: %O', providers);
-  return { items: normalizePopulated(providers) };
-};

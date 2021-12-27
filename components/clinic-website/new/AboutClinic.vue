@@ -17,7 +17,7 @@
         br
         v-avatar(v-for="(insurer, key) in insurers" color="secondary" :key="key" size="100").elevation-4.ma-2
           img(v-if="insurer.coveragesData.picURL" :src="insurer.coveragesData.picURL")
-          span(v-else).white--text {{ insurer.insurerName.substring(0,1) }}
+          span(v-else).white--text {{ getInsurerName(insurer) }}
 </template>
 
 <script>
@@ -38,6 +38,11 @@ export default {
     insurers: {
       type: Array,
       default: null,
+    },
+  },
+  computed: {
+    getInsurerName (insurer) {
+      return insurer.insurerName?.substring(0, 1) || insurer.coveragesData?.name || '*';
     },
   },
 };
