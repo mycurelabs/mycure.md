@@ -24,7 +24,7 @@
                 :style="isServiceAvailable(day.value) ? 'color: white' : 'color: #BFBFBF'"
               ).badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
-            div(:width="$isMobile ? '100%' : 'auto'").my-3
+            div(v-if="coverages.length > 0" :width="$isMobile ? '100%' : 'auto'").my-3
               a(@click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
       v-divider.my-5
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
