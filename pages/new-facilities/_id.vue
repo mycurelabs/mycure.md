@@ -80,6 +80,7 @@
                     :organization="clinicId"
                     :is-preview-mode="isPreviewMode"
                     @paginate="onPaginate({ type: 'services' }, $event)"
+                    @filter="onServiceTypeFilterEvent($event)"
                   )
               //- DOCTORS
               v-tab-item(value="doctors")
@@ -151,11 +152,11 @@
           v-col(cols="12" md="4" xl="3")
             v-card(color="white" flat)
               template(v-if="showResults('services')")
-                v-toolbar(flat).pa-1
+                v-toolbar(v-if="!$isMobile" flat).pa-1
                   v-spacer
                   h2.mc-h4.black--text Services
                   v-spacer
-                v-divider.my-3
+                v-divider(v-if="!$isMobile").my-3
                 v-card-text
                   v-select(
                     v-model="serviceSearchTypeFilter"
@@ -190,11 +191,11 @@
                     @change="onDateFilter($event)"
                   )
               template(v-if="showResults('doctors')")
-                v-toolbar(flat).pa-1
+                v-toolbar(v-if="!$isMobile" flat).pa-1
                   v-spacer
                   h2.mc-h4.black--text Doctors
                   v-spacer
-                v-divider.my-3
+                v-divider(v-if="!$isMobile").my-3
                 v-card-text
                   specialization-filter(
                     v-model="specializationFiltersArray"
@@ -211,6 +212,7 @@
               :itemsPage.sync="itemsPage.services"
               :organization="clinicId"
               :is-preview-mode="isPreviewMode"
+              :search-mode="searchMode"
               @update:itemsPage="onPaginate({ type: 'services' }, $event)"
             )
             v-divider(v-if="searchTabSelect === 'search-all'").my-10
@@ -702,6 +704,13 @@ export default {
     },
     onServiceTypeFilter () {
       const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    onServiceTypeFilterEvent (val) {
+      const serviceProps = omit(val, 'text');
       return this.fetchServices({
         serviceProps,
         ...this.searchText && { searchText: this.searchText },

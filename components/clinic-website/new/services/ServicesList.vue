@@ -56,6 +56,7 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
           @update:itemsPage="onPaginate($event)"
+          @update:serviceType="onServiceTypeFilter($event)"
         )
 </template>
 
@@ -201,6 +202,9 @@ export default {
     onPaginate (page) {
       this.$emit('paginate', page);
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+    },
+    onServiceTypeFilter (val) {
+      this.$emit('filter', val);
     },
   },
 };

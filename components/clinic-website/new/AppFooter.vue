@@ -5,13 +5,11 @@
         generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
           v-col(cols="12").pa-0
             v-row(align="start" no-gutters width="100%")
-              v-col(v-if="$isMobile" cols="2")
               v-col(
-                cols="10"
+                cols="12"
                 md="7"
-                :class="{'pl-1': $isMobile}"
-              )
-                div.d-flex
+              ).text-center
+                v-row(:justify="$isMobile ? 'center' : 'start'").pa-3
                   p.mt-1.mr-2 #[b Powered by]
                   img(
                     src="~/assets/images/MYCURE-logo.png"
@@ -83,7 +81,7 @@
                   a(:href="account.link" target="_blank" rel="noopener noreferrer")
                     img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name" :class="$vuetify.breakpoint.width < 1250 ? 'mx-1' : 'mx-2'")
           v-row(v-else justify="center").mt-4
-            v-col(v-for="(link, key) in links" :key="key" cols="8" xs="6").py-1
+            v-col(v-for="(link, key) in links" :key="key" cols="12").py-1.text-center
               v-btn(
                 v-if="!link.external"
                 :to="link.to"
@@ -99,8 +97,8 @@
                 @click="toggleChat"
               ).text-none.px-0
                 span(style="color: #72727D") {{ link.text }}
-            v-col(cols="8")
-              v-row.pa-2
+            v-col(cols="12").text-center
+              v-row(justify="center").pa-2
                 a(v-for="(account, key) in socMed" :href="account.link" target="_blank" rel="noopener noreferrer")
                   img(:src="require(`~/assets/images/${ account.icon }`)" width="25" height="25" :alt="account.name" :class="$vuetify.breakpoint.width < 1250 ? 'mx-1' : 'mx-2'")
             v-col(cols="12").text-center

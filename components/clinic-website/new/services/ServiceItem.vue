@@ -11,24 +11,21 @@
           span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
-          a(@click="dialog.schedules = true").title--text.mc-hyp2 Schedule
-            v-icon(small color="primary" right).mt-n1 {{ mdiInformationOutline }}
-          v-row(:justify="$isMobile ? 'center' : 'start'" align="center").px-2.mt-4
+          a(@click="dialog.schedules = true").title--text.mc-b4.font-weight-semibold Schedule
+            v-icon(small color="primary" right style="margin-top: -2px") {{ mdiInformationOutline }}
+          v-row(:justify="$isMobile ? 'center' : 'start'" align="center" :class="$isMobile ? 'mt-6' : 'mt-4'").px-2
             div(
               v-for="(day, key) in daysList"
               :key="key"
-              :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-1'"
-            )
-              div(
-                :class="isServiceAvailable(day.value) ? 'success' : '#EEEEEE'"
-                :style="isServiceAvailable(day.value) ? 'color: white' : 'color: #BFBFBF'"
-              ).badge.badge-size {{ day.text }}
+              :class="[{'text-center': $isMobile}, isServiceAvailable(day.value) ? 'white--text' : 'disabledText--text']"
+            ).mx-1
+              div(:class="isServiceAvailable(day.value) ? 'success' : 'disabled'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
             div(v-if="!$isMobile").my-3
-              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
-            v-col(v-else cols="12").text-center.pa-0.my-3
-              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-hyp2 View Insurance Providers
-      v-divider.my-5
+              a(v-if="coverages.length > 0" @click="dialog.coverages = true").primary--text.mc-b4.font-weght-semibold View Insurance Providers
+            v-col(v-else-if="coverages.length > 0" cols="12").text-center.pa-0.mt-6.mb-3
+              a(@click="dialog.coverages = true").primary--text.mc-b4.font-weight-semibold View Insurance Providers
+      v-divider.my-3
       //- NOTE: When services are fetched with $search operator, no coverages are fetched and populated. Possibly because you
       //- can't use $populate and $search together in the query.
       //- v-row(v-if="hasCoverages")
@@ -43,7 +40,7 @@
       //-     template(v-if="coveragesTotal > previewCoveragesLimit")
       //-       | ...
       //-       a(@click="dialog.coverages = true").primary--text &nbsp;and {{ coveragesTotal - previewCoveragesLimit }} more
-    v-card-actions
+    v-card-actions.px-4
       //- span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
       span(v-if="!$isMobile && isAvailable" style="color: #72727D").mc-b4 Available for Online Booking&nbsp;
         v-icon(small color="#72727D") {{ mdiCalendarCheck }}
@@ -73,7 +70,7 @@
         ).text-none.mb-6
           span.mc-btn1 Book Now
         span(v-if="isAvailable" style="color: #72727D").mc-b4 Available for Online Booking&nbsp;
-          v-icon(small color="#72727D") {{ mdiCalendarCheck }}
+          v-icon(v-if="!$isMobile" small color="#72727D") {{ mdiCalendarCheck }}
 
     //- DIALOGS
     //- Schedule dialog
@@ -300,8 +297,8 @@ export default {
   background: rgb(163, 163, 163);
 }
 .badge-size {
-  height: 24px;
-  width: 24px;
+  height: 25px;
+  width: 25px;
 }
 
 @media screen and (min-width: 1015px) {

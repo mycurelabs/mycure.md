@@ -5,7 +5,7 @@
         span.mc-btn1 Showing {{ itemsTotal }} doctor{{ itemsTotal > 1 ? 's' : '' }}
       v-spacer(v-if="!$isMobile")
       v-pagination(
-        v-if="itemsTotal > 4"
+        v-if="itemsTotal > 4 && !$isMobile"
         :value="itemsPage"
         :length="itemsPaginationLength"
         total-visible="5"
@@ -32,6 +32,16 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
         )
+      v-pagination(
+        v-if="itemsTotal > 4 && $isMobile"
+        :value="itemsPage"
+        :length="itemsPaginationLength"
+        total-visible="5"
+        :next-icon="mdiChevronRight"
+        :prev-icon="mdiChevronLeft"
+        circle
+        @input="onPaginate($event)"
+      )
 </template>
 
 <script>

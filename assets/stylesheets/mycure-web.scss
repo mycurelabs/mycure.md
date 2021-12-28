@@ -606,7 +606,7 @@ classBinder(this, {
   @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b2-mob, 24px);
+    @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {

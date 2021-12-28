@@ -2,8 +2,9 @@
   v-card(flat :class="$isMobile ? 'px-4' : 'px-12'").py-8
     v-row
       v-col(cols="12" md="6")
-        h3.mc-h4.title--text.px-3 Contact Us
-        br
+        div(v-if="!$isMobile")
+          h3.mc-h4.title--text.px-3 Contact Us
+          br
         v-col(cols="12")
           v-row(align="start").pl-3
             v-icon(small color="primary" :class="$isWideScreen ? 'mt-3' : 'mt-2'").mr-1 {{ mdiMapMarker }}
@@ -14,7 +15,8 @@
             span.mc-b2 {{ clinicPhone }}
           br
           br
-          h3.mc-h5.title--text.mb-.font-weight-semibold.mb-3 Facility Schedule
+          h3.mc-h4.title--text.mb-1.font-weight-semibold Facility Schedule
+          br
           v-row(v-for="(sched, key) in compressedSchedules" :key="key")
             v-col(cols="4").pt-1.pb-0
               p(v-if="typeof (sched.day) === 'string'").mc-b3.title--text.font-weight-semibold.text-capitalize.mb-0 {{ sched.day }}
