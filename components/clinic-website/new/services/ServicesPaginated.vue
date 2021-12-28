@@ -19,17 +19,17 @@
           template(slot="prepend")
             span.mc-b4.font-weight-bold.title--text Filter:
       v-spacer(v-if="!$isMobile")
-      v-pagination(
-        v-if="itemsTotal > 4 && !$isMobile"
-        justify="center"
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="5"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
+      //- v-pagination(
+      //-   v-if="itemsTotal > 4 && !$isMobile"
+      //-   justify="center"
+      //-   :value="itemsPage"
+      //-   :length="itemsPaginationLength"
+      //-   total-visible="5"
+      //-   :next-icon="mdiChevronRight"
+      //-   :prev-icon="mdiChevronLeft"
+      //-   circle
+      //-   @input="onPaginate($event)"
+      //- )
     div(v-if="loading").pt-3
       v-skeleton-loader(
         v-for="n in 3"
@@ -49,7 +49,7 @@
           :is-preview-mode="isPreviewMode"
         )
       v-pagination(
-        v-if="itemsTotal > 4 && $isMobile"
+        v-if="itemsTotal > 4"
         justify="center"
         :value="itemsPage"
         :length="itemsPaginationLength"

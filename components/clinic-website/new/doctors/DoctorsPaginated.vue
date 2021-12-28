@@ -4,16 +4,16 @@
       v-col(v-if="!$isMobile" cols="12" md="5").pa-0
         span.mc-btn1 Showing {{ itemsTotal }} doctor{{ itemsTotal > 1 ? 's' : '' }}
       v-spacer(v-if="!$isMobile")
-      v-pagination(
-        v-if="itemsTotal > 4 && !$isMobile"
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="5"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
+      //- v-pagination(
+      //-   v-if="itemsTotal > 4 && !$isMobile"
+      //-   :value="itemsPage"
+      //-   :length="itemsPaginationLength"
+      //-   total-visible="5"
+      //-   :next-icon="mdiChevronRight"
+      //-   :prev-icon="mdiChevronLeft"
+      //-   circle
+      //-   @input="onPaginate($event)"
+      //- )
     div(v-if="loading").pt-3
       v-skeleton-loader(
         v-for="n in 3"
@@ -33,7 +33,7 @@
           :is-preview-mode="isPreviewMode"
         )
       v-pagination(
-        v-if="itemsTotal > 4 && $isMobile"
+        v-if="itemsTotal > 4"
         :value="itemsPage"
         :length="itemsPaginationLength"
         total-visible="5"

@@ -46,7 +46,7 @@
               :prev-icon="mdiChevronLeft"
               v-model="tabSelect"
               background-color="transparent"
-              active-class="black--text"
+              :active-class="$isMobile ? 'primary--text' : 'black--text'"
               style="color: #A2A5AE;"
             ).mb-6
               v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
