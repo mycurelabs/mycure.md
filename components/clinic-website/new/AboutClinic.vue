@@ -18,9 +18,10 @@
       v-col(cols="12")
         h3.mc-h4.title--text Insurance Accreditations
         br
-        v-avatar(v-for="(insurer, key) in insurers" color="secondary" :key="key" size="80").elevation-4.ma-2
-          img(v-if="insurer.coveragesData.picURL" :src="insurer.coveragesData.picURL")
-          span(v-else).white--text {{ getInsurerName(insurer) }}
+        v-row(:justify="$isMobile ? 'center' : 'start'").pa-3
+          v-avatar(v-for="(insurer, key) in insurers" color="secondary" :key="key" size="80").elevation-4.ma-2
+            img(v-if="insurer.coveragesData.picURL" :src="insurer.coveragesData.picURL")
+            span(v-else).white--text {{ getInsurerName(insurer) }}
 </template>
 
 <script>
