@@ -1,6 +1,6 @@
 <template lang="pug">
   v-card(flat).rounded-md.pa-3
-    v-card-text
+    v-card-text(:class="{'px-0': $isMobile}")
       v-row(:justify="$isMobile ? 'center' : 'end'")
         v-col(cols="12" md="8" :class="{'text-center': $isMobile}")
           h4.mc-h4.title--text {{ title }}&nbsp;
@@ -40,7 +40,7 @@
       //-     template(v-if="coveragesTotal > previewCoveragesLimit")
       //-       | ...
       //-       a(@click="dialog.coverages = true").primary--text &nbsp;and {{ coveragesTotal - previewCoveragesLimit }} more
-    v-card-actions.px-4
+    v-card-actions(:class="{'px-4': !$isMobile}")
       //- span(v-if="isAvailable").mc-b4.success--text Available for Online Booking&nbsp;
       span(v-if="!$isMobile && isAvailable" style="color: #72727D").mc-b4 Available for Online Booking&nbsp;
         v-icon(small color="#72727D") {{ mdiCalendarCheck }}

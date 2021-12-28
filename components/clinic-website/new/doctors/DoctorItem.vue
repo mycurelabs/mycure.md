@@ -50,7 +50,12 @@
             ).mx-1
               div(:class="isDoctorAvailable(day.value) ? 'success' : 'disabled'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
-            div(:width="$isMobile ? '100%' : 'auto'").mt-2
+            a(
+              v-if="!$isMobile"
+              @click="dialog.schedules = true"
+              :class="isAvailable ? 'primary--text' : ['disabledText--text', 'disable-click']"
+            ).mc-b4.font-weght-semibold View full schedule
+            v-col(v-else cols="12")
               a(
                 @click="dialog.schedules = true"
                 :class="isAvailable ? 'primary--text' : ['disabledText--text', 'disable-click']"
