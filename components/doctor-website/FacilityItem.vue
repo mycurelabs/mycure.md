@@ -40,14 +40,18 @@
               :style="!email ? 'color: #BFBFBF;' : ''"
             ).mc-b2 {{ email || 'No information provided'}}
       v-row(justify="end").px-8
-        v-col(cols="12")
+        v-col(cols="12").py-6
           v-divider
       //- Schedules
       v-row(justify="center")
         v-col(cols="12" md="11")
           v-row(justify="center" align="center" :class="$isMobile ? 'mb-2' : 'my-1'")
-            div(v-for="(day, index) in daysList" :key="index" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-3' ").white--text
-              div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
+            div(
+              v-for="(day, index) in daysList"
+              :key="index"
+              :class="[{'text-center': $isMobile}, isClinicOpen(day.value) ? 'white--text' : 'unavailable--text', $isMobile ? 'mx-1' : 'mx-3']"
+            )
+              div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : 'disabled']" style="padding-top: 2px").badge
                 | {{ day.text }}
             v-spacer(v-if="!$isMobile")
             a(v-if="operatingSchedules.length && !$isMobile" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
@@ -57,7 +61,7 @@
             v-icon(v-if="operatingSchedules.length" small color="primary").ml-1 {{ mdiInformationOutline }}
     v-spacer
     v-card-actions.pa-2.pb-4
-      v-row(justify="center").px-8
+      v-row(justify="center" :class="{'px-8': !$isMobile}").mt-3
         //- v-spacer(v-if="!$isMobile")
         v-col(v-if="canOnlineBook || canVisit" cols="12").text-right
           div(:class="{'d-inline-flex': !$isMobile}")
@@ -89,7 +93,7 @@
               //- v-icon(small left) {{ canVisit ? mdiStethoscope : mdiClose }}
               span.mc-btn1 Book a Visit
         v-col(v-else cols="12" sm="10").text-center
-          span.font-italic.grey--text This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
+          span(style="color: #BFBFBF").font-italic This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
       //- v-spacer(v-if="!$isMobile")
 
     //- Schedule Dialog
