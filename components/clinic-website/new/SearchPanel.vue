@@ -20,10 +20,14 @@
                 @keyup.enter="debouncedSearch"
               ).mt-3.search-bar
                 template(v-slot:append)
-                  div(
-                    @click="debouncedSearch"
-                  ).search-icon.text-center.pt-2
-                    v-icon(color="white") {{ mdiMagnify }}
+                  v-tooltip(top)
+                    template(v-slot:activator="{ on, attrs }")
+                      div(
+                        @click="debouncedSearch"
+                        v-on="on"
+                      ).search-icon.text-center.pt-2
+                        v-icon(color="white") {{ mdiMagnify }}
+                    span Search
     v-container(v-else).search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6
@@ -43,10 +47,14 @@
                       @keyup.enter="debouncedSearch"
                     ).mt-3.search-bar
                       template(v-slot:append)
-                        div(
-                          @click="debouncedSearch"
-                        ).search-icon.text-center.pt-2
-                          v-icon(color="white") {{ mdiMagnify }}
+                        v-tooltip(top)
+                          template(v-slot:activator="{ on, attrs }")
+                            div(
+                              @click="debouncedSearch"
+                              v-on="on"
+                            ).search-icon.text-center.pt-2
+                              v-icon(color="white") {{ mdiMagnify }}
+                          span Search
                         //- div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
 </template>
 

@@ -166,13 +166,14 @@
                     clearable
                     outlined
                     :disabled="loading.search"
-                    :prepend-inner-icon="mdiAccountWrenchOutline"
                     :append-icon="mdiMenuDown"
                     :clear-icon="mdiClose"
                     :items="serviceTypeOptions"
                     return-object
                     @change="onServiceTypeFilter"
                   )
+                    template(slot="prepend-inner")
+                      v-icon.mr-2 {{ mdiAccountWrenchOutline }}
                   //- We limit this to the Services Tab only to avoid confusion that it may also be applied to Doctors
                   search-insurers(
                     v-if="searchTabSelect === 'search-services'"

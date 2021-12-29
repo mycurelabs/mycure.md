@@ -1,16 +1,16 @@
 <template lang="pug">
-  v-card(flat).rounded-md.pa-3
+  v-card(flat :class="$isWideScreen ? 'pa-8' : 'pa-3'").rounded-md
     v-card-text
       v-row(:justify="$isMobile ? 'center' : 'start'")
-        v-col(cols="12" md="3" justify="center" align="center").text-center
-          v-avatar(size="150")
+        v-col(cols="12" md="3" align="center")
+          v-avatar(:size="$isWideScreen ? '200' : '150'")
             img(
               :src="picURL"
               alt="MYCURE Doctor"
               width="90%"
             )
         v-spacer(v-if="!$isMobile")
-        v-col(cols="12" md="8")
+        v-col(cols="12" md="8" xl="9")
           v-clamp(
             autoresize
           ).mc-h3.title--text Dr. {{ fullNameWithSuffixes }}
@@ -20,34 +20,40 @@
               :max-lines="1"
               :class="[{'font-italic': !specializations.length }, {'unavailable--text': !specializations.length }]"
             ).mc-h5 {{ formattedSpecializations }}
-          p(v-if="yearsOfExperience").mc-b2
-            v-icon(color="secondary" :small="!$isWideScreen" left) {{ mdiBriefcaseVariantOutline }}
-            span &nbsp;{{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
-      v-divider.my-5
-      v-row
+          span(v-if="yearsOfExperience").mc-b2
+            v-icon(color="secondary" :small="!$isWideScreen" left).mt-n1 {{ mdiBriefcaseVariant }}
+            | {{ yearsOfExperience }} year{{ yearsOfExperience > 1 ? 's' : '' }} of experience
+      v-divider(:class="$isWideScreen ? ['mb-5', 'mt-14'] : ['mb-3', 'mt-10']")
+      v-row.mb-5
         v-col(cols="12")
-          v-row(dense :justify="$isMobile ? 'center' : 'start'")
-            span.mc-b4.pt-2.title--text.font-weight-bold Schedule
+          v-row(dense :justify="$isMobile ? 'center' : 'start'" align="center").py-4.pl-3
+            v-col(cols="12" md="4" xl="7").pa-0
+              span.mc-b4.pt-2.title--text.font-weight-bold Schedule
             v-spacer
-            v-col(cols="12" md="4" xl="3").mr-n2
-              v-select(
-                v-model="appointmentType"
-                :items="appointmentTypes"
-                item-text="text"
-                item-value="value"
-                dense
-                flat
-                solo
-                :append-icon="mdiMenuDown"
-              )
-                template(v-slot:selection="{ item }")
-                  span.mc-b4 {{ item.text }}
+            v-col(:cols="$isMobile ? '12' : null")
+              v-tooltip(top)
+                template(v-slot:activator="{ on, attrs }")
+                  div(v-on="on").mr-n4
+                    v-select(
+                      v-model="appointmentType"
+                      :items="appointmentTypes"
+                      item-text="text"
+                      item-value="value"
+                      dense
+                      flat
+                      solo
+                      hide-details
+                      :append-icon="mdiMenuDown"
+                    )
+                      template(v-slot:selection="{ item }")
+                        span.mc-b4 {{ item.text }}
+                span Select Consultation Type
           v-row(dense :justify="$isMobile ? 'center' : 'start'" align="center").pl-1.mt-n1
             div(
               v-for="(day, key) in daysList"
               :key="key"
-              :class="[{'text-center': $isMobile}, isDoctorAvailable(day.value) ? 'white--text' : 'unavailable--text']"
-            ).mx-1
+              :class="[{'text-center': $isMobile}, isDoctorAvailable(day.value) ? 'white--text' : 'unavailable--text', $isWideScreen ? 'mx-3' : 'mx-1']"
+            )
               div(:class="isDoctorAvailable(day.value) ? 'success' : 'disabled'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
             a(
@@ -95,7 +101,7 @@ import {
   mdiInformationOutline,
   mdiClose,
   mdiMenuDown,
-  mdiBriefcaseVariantOutline,
+  mdiBriefcaseVariant,
 } from '@mdi/js';
 import isNil from 'lodash/isNil';
 import Schedules from '../services/AppointmentSchedules';
@@ -154,7 +160,7 @@ export default {
       mdiInformationOutline,
       mdiClose,
       mdiMenuDown,
-      mdiBriefcaseVariantOutline,
+      mdiBriefcaseVariant,
     };
   },
   computed: {
@@ -260,8 +266,8 @@ export default {
 }
 @media screen and (min-width: 1904px) {
   .badge-size {
-    height: 30px;
-    width: 30px;
+    height: 33px;
+    width: 33px;
   }
 }
 </style>

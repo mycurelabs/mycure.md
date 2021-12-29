@@ -11,8 +11,11 @@
           span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
-          a(@click="dialog.schedules = true").title--text.mc-b4.font-weight-semibold Schedule
-            v-icon(small color="primary" right style="margin-top: -2px") {{ mdiInformationOutline }}
+          v-tooltip(top)
+            template(v-slot:activator="{ on, attrs }")
+              a(@click="dialog.schedules = true" v-on="on").title--text.mc-b4.font-weight-semibold Schedule
+                v-icon(small color="primary" right style="margin-top: -2px") {{ mdiInformationOutline }}
+            span View full schedule
           v-row(:justify="$isMobile ? 'center' : 'start'" align="center" :class="$isMobile ? 'mt-6' : 'mt-4'").px-2
             div(
               v-for="(day, key) in daysList"

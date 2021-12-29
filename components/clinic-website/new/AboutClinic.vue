@@ -14,7 +14,7 @@
         div(:class="{'text-center': $isMobile}")
           span.mc-b4 {{ description }}
       v-col(cols="12")
-        v-divider(width="100%" color="#DEDEDE").my-4
+        v-divider(width="100%" color="#DEDEDE").mb-7.mt-10
       v-col(cols="12")
         h3.mc-h4.title--text Insurance Accreditations
         br

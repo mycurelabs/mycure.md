@@ -5,12 +5,16 @@
         //- Logo
         v-col(v-if="!$isMobile" cols="10")
           v-row(align="center").px-3.py-5
-            nuxt-link(to="/directory")
-              img(
-                src="~/assets/images/mycure-logo-white.png"
-                :width="$isWideScreen ? '132' : '120'"
-                alt="MYCURE logo"
-              ).mb-n2
+            v-tooltip(bottom)
+              template(v-slot:activator="{ on, attrs }")
+                div(v-on="on")
+                  nuxt-link(to="/directory")
+                    img(
+                      src="~/assets/images/mycure-logo-white.png"
+                      :width="$isWideScreen ? '132' : '120'"
+                      alt="MYCURE logo"
+                    ).mb-n2
+              span MYCURE Search Directory
             v-spacer
             v-btn(
               v-for="(tab, key) in tabs"
@@ -18,17 +22,29 @@
               text
               @click="onRedirect(tab.value)"
             ).text-none.mc-h7.white--text.font-weight-light {{ tab.text }}
-            share-button(color="white" @clipSuccess="$emit('clipSuccess')" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
+            v-tooltip(bottom)
+              template(v-slot:activator="{ on, attrs }")
+                div(v-on="on")
+                  share-button(color="white" @clipSuccess="$emit('clipSuccess')" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
+              span Share Clinic
         v-col(v-else cols="10").pt-8
           v-row(align="center")
-            nuxt-link(to="/directory")
-              img(
-                src="~/assets/images/mycure-logo-white.png"
-                width="120"
-                alt="MYCURE logo"
-              ).mb-n2
+            v-tooltip(bottom)
+              template(v-slot:activator="{ on, attrs }")
+                div(v-on="on")
+                  nuxt-link(to="/directory")
+                    img(
+                      src="~/assets/images/mycure-logo-white.png"
+                      width="120"
+                      alt="MYCURE logo"
+                    ).mb-n2
+              span MYCURE Search Directory
             v-spacer
-            share-button(color="white" is-small @clipSuccess="$emit('clipSuccess')")
+            v-tooltip(left)
+              template(v-slot:activator="{ on, attrs }")
+                div(v-on="on")
+                  share-button(color="white" @clipSuccess="$emit('clipSuccess')" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
+              span Share Clinic
             v-menu(offset-y)
               template(v-slot:activator="{ on }")
                 v-btn(

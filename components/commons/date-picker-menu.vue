@@ -14,7 +14,6 @@
         v-on="on"
         v-model="dateFormatted"
         :label="label"
-        :prepend-inner-icon="mdiCalendar"
         clearable
         :clear-icon="mdiClose"
         :readonly="!readOnly"
@@ -31,6 +30,8 @@
         :class="{ 'bordered': bordered }"
         @click:clear="$emit('clear')"
       )
+        template(slot="prepend-inner")
+          v-icon.mr-2 {{ mdiCalendar }}
     v-date-picker(
       v-if="mode === 'date'"
       v-model="date"
