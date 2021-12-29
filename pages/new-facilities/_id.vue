@@ -37,7 +37,7 @@
     v-container(v-if="!searchMode")#tabs.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
-          v-col(cols="12")
+          v-col(cols="12" :class="{'px-0': $isMobile}")
             v-tabs(
               show-arrows
               hide-slider
