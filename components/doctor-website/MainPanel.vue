@@ -10,7 +10,7 @@
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"
                 alt="MYCURE logo"
-              ).mt-1
+              ).mb-n2
             v-spacer
             v-btn(
               text
@@ -28,7 +28,7 @@
               text
               @click="onRedirect('Learning Corner')"
             ).text-none.mc-h7.white--text.font-weight-light Learning Corner
-            share-button(color="white" @clip-success="$emit('clipSuccess')")
+            share-button(color="white" @clipSuccess="$emit('clipSuccess')" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
         v-col(v-else cols="10").pt-8
           v-row(align="center")
             nuxt-link(to="/")
@@ -57,22 +57,17 @@
                   v-list-item-title {{ tab }}
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
-          v-col(cols="12").text-center.mb-3
+          v-col(cols="12").text-center
             v-avatar(size="200").elevation-5
               img(:src="picUrl").img-border
             br
             br
-            h1.mc-h2.mb-1 {{ fullName }}
-            p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
-            br
+            h1.mc-h2 {{ fullName }}
             span(v-if="!$isMobile").mc-b2.font-weight-light.white--text {{ specialties.slice(0, 3).join(' | ')}}
-            div(v-else).text-center
+            div(v-else).text-center.mb-4
               p(v-for="specialty in specialties.slice(0, 4)").mb-0.mc-b2.font-weight-light.white--text {{ specialty }}
-            //- v-row(justify="center")
-            //-   //- p(v-if="practicingYears").mc-h7.white--text.mb-0 {{ `${practicingYears} Year${ practicingYears > 1 ? 's' : ''} of Experience` }}
-            //-   //- Professional Info
-            //-   v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-8
-            //-     span {{ specialties.slice(0, 3).join(' | ')}}
+            v-col(cols="12").pt-8
+              p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
           //- Analytics
           v-col(cols="12" md="6")
             v-row(justify="center")
