@@ -7,10 +7,11 @@
       hide-details
       outlined
       :disabled="dialog"
-      :prepend-inner-icon="mdiBriefcaseOutline"
       :append-icon="mdiMenuDown"
       @click="dialog = true"
     )
+      template(slot="prepend-inner")
+        v-icon.mr-2 {{mdiBriefcaseOutline}}
     //- DIALOG
     v-dialog(v-model="dialog" :width="$isWideScreen ? '800' : '600'" height="95%" @click:outside="onClose")
       v-card(tile).pa-5

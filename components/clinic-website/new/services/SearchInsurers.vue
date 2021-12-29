@@ -7,7 +7,6 @@
     return-object
     clearable
     chips
-    :prepend-inner-icon="mdiShieldCheck"
     :allow-overflow="false"
     :label="!noLabel ? 'Search HMO' : null"
     :placeholder="placeholder"
@@ -23,6 +22,8 @@
     :class="{ 'bg-white': whiteBg }"
     @click:clear="$emit('clear')"
   )
+    template(slot="prepend-inner")
+      v-icon.mr-2 {{ mdiShieldCheck }}
     template(v-slot:selection="data")
       v-tooltip(v-if="avatar" bottom)
         template(v-slot:activator="{ on, attrs }")

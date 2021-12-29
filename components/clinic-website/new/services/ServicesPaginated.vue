@@ -1,20 +1,35 @@
 <template lang="pug">
   div
     v-row(v-if="itemsTotal" align="center" justify="center").pt-1.px-3
-      v-col(v-if="!$isMobile" cols="12" md="5").pa-0
-        span.mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
+      v-col(cols="12" md="5").pa-0
+        span(v-if="!$isMobile" style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
+        v-select(
+          v-else-if="!searchMode"
+          v-model="selectedServiceType"
+          placeholder="Select Service Type"
+          item-text="text"
+          dense
+          solo
+          :disabled="loading.search"
+          :append-icon="mdiMenuDown"
+          :items="serviceTypeOptions"
+          return-object
+          @change="onServiceTypeFilter"
+        )
+          template(slot="prepend")
+            span.mc-b4.font-weight-bold.title--text Filter:
       v-spacer(v-if="!$isMobile")
-      v-pagination(
-        v-if="itemsTotal > 4"
-        justify="center"
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="5"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
+      //- v-pagination(
+      //-   v-if="itemsTotal > 4 && !$isMobile"
+      //-   justify="center"
+      //-   :value="itemsPage"
+      //-   :length="itemsPaginationLength"
+      //-   total-visible="5"
+      //-   :next-icon="mdiChevronRight"
+      //-   :prev-icon="mdiChevronLeft"
+      //-   circle
+      //-   @input="onPaginate($event)"
+      //- )
     div(v-if="loading").pt-3
       v-skeleton-loader(
         v-for="n in 3"
@@ -33,10 +48,21 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
         )
+      v-pagination(
+        v-if="itemsTotal > 4"
+        justify="center"
+        :value="itemsPage"
+        :length="itemsPaginationLength"
+        total-visible="5"
+        :next-icon="mdiChevronRight"
+        :prev-icon="mdiChevronLeft"
+        circle
+        @input="onPaginate($event)"
+      )
 </template>
 
 <script>
-import { mdiChevronRight, mdiChevronLeft } from '@mdi/js';
+import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import ServiceItem from './ServiceItem';
 export default {
   components: {
@@ -64,12 +90,30 @@ export default {
       type: String,
       default: null,
     },
+    searchMode: {
+      type: Boolean,
+      default: false,
+    },
     isPreviewMode: Boolean,
   },
   data () {
+    this.serviceTypeOptions = [
+      // - TODO: Currently we cannot query with Service#tags and a $search operator, so both F2F and Telehealth consults were put
+      // - in one category. To follow up with Nad.
+      { text: 'Consultations', type: 'clinical-consultation' },
+      // { text: 'Teleconsults', type: 'clinical-consultation', tags: 'telehealth' },
+      { text: 'Procedures', type: 'clinical-procedure' },
+      { text: 'Dental', type: 'dental' },
+      { text: 'Physical Exam', type: 'pe' },
+      { text: 'Laboratory', type: 'diagnostic', subtype: 'lab' },
+      { text: 'Imaging', type: 'diagnostic', subtype: 'imaging' },
+    ];
     return {
+      selectedServiceType: {},
       mdiChevronRight,
       mdiChevronLeft,
+      mdiMenuDown,
+      mdiClose,
     };
   },
   computed: {
@@ -81,6 +125,10 @@ export default {
   methods: {
     onPaginate (page) {
       this.$emit('update:itemsPage', page);
+    },
+    onServiceTypeFilter () {
+      console.log(this.selectedServiceType);
+      this.$emit('update:serviceType', this.selectedServiceType);
     },
   },
 };

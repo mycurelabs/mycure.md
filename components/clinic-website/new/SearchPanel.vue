@@ -7,7 +7,7 @@
     template(v-if="$isMobile").search-bar-container
       v-card(height="250" style="margin-top: -100px").rounded-lg.mx-8
         v-card-text.pt-8
-          h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
+          h3.mc-h3.title--text Easily book your next visit to {{ name || 'this health facility' }}
         v-card-text
           v-row(justify="center")
             v-col(cols="12" md="10")
@@ -15,25 +15,26 @@
                 v-model="searchText"
                 outlined
                 clearable
-                placeholder="Search services and doctors"
+                placeholder="Search"
                 :disabled="disabled"
                 @keyup.enter="debouncedSearch"
               ).mt-3.search-bar
                 template(v-slot:append)
-                  v-btn(
-                    height="36px"
-                    width="36px"
-                    color="primary"
-                    @click="debouncedSearch"
-                  ).px-1.mx-2
-                    v-icon(color="white") {{ mdiMagnify }}
+                  v-tooltip(top)
+                    template(v-slot:activator="{ on, attrs }")
+                      div(
+                        @click="debouncedSearch"
+                        v-on="on"
+                      ).search-icon.text-center.pt-2
+                        v-icon(color="white") {{ mdiMagnify }}
+                    span Search
     v-container(v-else).search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12").text-center
-            v-card(:height="$isWideScreen ? '300' : '250'").rounded-lg
+            v-card(:height="$isWideScreen ? '280' : '240'").rounded-lg
               v-card-text(:class="$isWideScreen ? 'pt-12' : 'pt-10'")
-                h2.mc-h2.black--text Easily book your next visit to {{ name || 'this health facility' }}
+                h3.mc-h3.title--text Easily book your next visit to {{ name || 'this health facility' }}
               v-card-text
                 v-row(justify="center")
                   v-col(cols="12" md="10")
@@ -46,10 +47,14 @@
                       @keyup.enter="debouncedSearch"
                     ).mt-3.search-bar
                       template(v-slot:append)
-                        div(
-                          @click="debouncedSearch"
-                        ).search-icon.text-center.pt-2
-                          v-icon(color="white") {{ mdiMagnify }}
+                        v-tooltip(top)
+                          template(v-slot:activator="{ on, attrs }")
+                            div(
+                              @click="debouncedSearch"
+                              v-on="on"
+                            ).search-icon.text-center.pt-2
+                              v-icon(color="white") {{ mdiMagnify }}
+                          span Search
                         //- div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
 </template>
 

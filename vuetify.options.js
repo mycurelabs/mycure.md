@@ -10,6 +10,8 @@ export default {
         error: '#f75a5f',
         success: '#ADD35B',
         title: '#252B42',
+        disabled: '#EEEEEE',
+        unavailable: '#BFBFBF',
       },
       dark: {
         primary: '#0099cc',
@@ -20,6 +22,8 @@ export default {
         error: '#f75a5f',
         success: '#ADD35B',
         title: '#252B42',
+        disabled: '#EEEEEE',
+        unavailable: '#BFBFBF',
       },
     },
   },

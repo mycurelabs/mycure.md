@@ -37,7 +37,7 @@
     v-container(v-if="!searchMode")#tabs.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
-          v-col(cols="12")
+          v-col(cols="12" :class="{'px-0': $isMobile}")
             v-tabs(
               show-arrows
               hide-slider
@@ -46,7 +46,7 @@
               :prev-icon="mdiChevronLeft"
               v-model="tabSelect"
               background-color="transparent"
-              active-class="black--text"
+              :active-class="$isMobile ? 'primary--text' : 'black--text'"
               style="color: #A2A5AE;"
             ).mb-6
               v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
@@ -80,6 +80,7 @@
                     :organization="clinicId"
                     :is-preview-mode="isPreviewMode"
                     @paginate="onPaginate({ type: 'services' }, $event)"
+                    @filter="onServiceTypeFilterEvent($event)"
                   )
               //- DOCTORS
               v-tab-item(value="doctors")
@@ -151,11 +152,11 @@
           v-col(cols="12" md="4" xl="3")
             v-card(color="white" flat)
               template(v-if="showResults('services')")
-                v-toolbar(flat).pa-1
+                v-toolbar(v-if="!$isMobile" flat).pa-1
                   v-spacer
                   h2.mc-h4.black--text Services
                   v-spacer
-                v-divider.my-3
+                v-divider(v-if="!$isMobile").my-3
                 v-card-text
                   v-select(
                     v-model="serviceSearchTypeFilter"
@@ -165,13 +166,14 @@
                     clearable
                     outlined
                     :disabled="loading.search"
-                    :prepend-inner-icon="mdiAccountWrenchOutline"
                     :append-icon="mdiMenuDown"
                     :clear-icon="mdiClose"
                     :items="serviceTypeOptions"
                     return-object
                     @change="onServiceTypeFilter"
                   )
+                    template(slot="prepend-inner")
+                      v-icon.mr-2 {{ mdiAccountWrenchOutline }}
                   //- We limit this to the Services Tab only to avoid confusion that it may also be applied to Doctors
                   search-insurers(
                     v-if="searchTabSelect === 'search-services'"
@@ -190,11 +192,11 @@
                     @change="onDateFilter($event)"
                   )
               template(v-if="showResults('doctors')")
-                v-toolbar(flat).pa-1
+                v-toolbar(v-if="!$isMobile" flat).pa-1
                   v-spacer
                   h2.mc-h4.black--text Doctors
                   v-spacer
-                v-divider.my-3
+                v-divider(v-if="!$isMobile").my-3
                 v-card-text
                   specialization-filter(
                     v-model="specializationFiltersArray"
@@ -211,6 +213,7 @@
               :itemsPage.sync="itemsPage.services"
               :organization="clinicId"
               :is-preview-mode="isPreviewMode"
+              :search-mode="searchMode"
               @update:itemsPage="onPaginate({ type: 'services' }, $event)"
             )
             v-divider(v-if="searchTabSelect === 'search-all'").my-10
@@ -706,6 +709,14 @@ export default {
         serviceProps,
         ...this.searchText && { searchText: this.searchText },
       }, 1);
+    },
+    onServiceTypeFilterEvent (val) {
+      const serviceProps = omit(val, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+      // this.activeServiceType = val.type;
     },
     onInsuranceSelect (insurer) {
       // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
