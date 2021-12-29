@@ -715,6 +715,7 @@ export default {
         serviceProps,
         ...this.searchText && { searchText: this.searchText },
       }, 1);
+      // this.activeServiceType = val.type;
     },
     onInsuranceSelect (insurer) {
       // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null

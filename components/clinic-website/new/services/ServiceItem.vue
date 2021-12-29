@@ -17,7 +17,7 @@
             div(
               v-for="(day, key) in daysList"
               :key="key"
-              :class="[{'text-center': $isMobile}, isServiceAvailable(day.value) ? 'white--text' : 'disabledText--text']"
+              :class="[{'text-center': $isMobile}, isServiceAvailable(day.value) ? 'white--text' : 'unavailable--text']"
             ).mx-1
               div(:class="isServiceAvailable(day.value) ? 'success' : 'disabled'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")

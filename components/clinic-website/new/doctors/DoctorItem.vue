@@ -18,7 +18,7 @@
             v-clamp(
               autoresize
               :max-lines="1"
-              :class="[{'font-italic': !specializations.length }, {'disabledText--text': !specializations.length }]"
+              :class="[{'font-italic': !specializations.length }, {'unavailable--text': !specializations.length }]"
             ).mc-h5 {{ formattedSpecializations }}
           p(v-if="yearsOfExperience").mc-b2
             v-icon(color="secondary" :small="!$isWideScreen" left) {{ mdiBriefcaseVariantOutline }}
@@ -46,19 +46,19 @@
             div(
               v-for="(day, key) in daysList"
               :key="key"
-              :class="[{'text-center': $isMobile}, isDoctorAvailable(day.value) ? 'white--text' : 'disabledText--text']"
+              :class="[{'text-center': $isMobile}, isDoctorAvailable(day.value) ? 'white--text' : 'unavailable--text']"
             ).mx-1
               div(:class="isDoctorAvailable(day.value) ? 'success' : 'disabled'").badge.badge-size {{ day.text }}
             v-spacer(v-if="!$isMobile")
             a(
               v-if="!$isMobile"
               @click="dialog.schedules = true"
-              :class="isAvailable ? 'primary--text' : ['disabledText--text', 'disable-click']"
+              :class="isAvailable ? 'primary--text' : ['unavailable--text', 'disable-click']"
             ).mc-b4.font-weght-semibold View full schedule
             v-col(v-else cols="12")
               a(
                 @click="dialog.schedules = true"
-                :class="isAvailable ? 'primary--text' : ['disabledText--text', 'disable-click']"
+                :class="isAvailable ? 'primary--text' : ['unavailable--text', 'disable-click']"
               ).mc-b4.font-weght-semibold View full schedule
                 //- v-icon(small color="primary" right) {{ mdiInformationOutline }}
     v-card-actions

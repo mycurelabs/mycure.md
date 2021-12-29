@@ -11,7 +11,7 @@ export default {
         success: '#ADD35B',
         title: '#252B42',
         disabled: '#EEEEEE',
-        disabledText: '#BFBFBF',
+        unavailable: '#BFBFBF',
       },
       dark: {
         primary: '#0099cc',
@@ -23,7 +23,7 @@ export default {
         success: '#ADD35B',
         title: '#252B42',
         disabled: '#EEEEEE',
-        disabledText: '#BFBFBF',
+        unavailable: '#BFBFBF',
       },
     },
   },

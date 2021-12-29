@@ -204,6 +204,7 @@ export default {
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },
     onServiceTypeFilter (val) {
+      console.log(val);
       this.$emit('filter', val);
     },
   },

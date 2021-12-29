@@ -109,7 +109,7 @@ export default {
       { text: 'Imaging', type: 'diagnostic', subtype: 'imaging' },
     ];
     return {
-      selectedServiceType: 'Consultations',
+      selectedServiceType: {},
       mdiChevronRight,
       mdiChevronLeft,
       mdiMenuDown,
@@ -127,6 +127,7 @@ export default {
       this.$emit('update:itemsPage', page);
     },
     onServiceTypeFilter () {
+      console.log(this.selectedServiceType);
       this.$emit('update:serviceType', this.selectedServiceType);
     },
   },

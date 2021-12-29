@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    v-row(v-if="itemsTotal" align="center" justify="center").pt-1.px-3
-      v-col(v-if="!$isMobile" cols="12" md="5").pa-0
+    v-row(v-if="itemsTotal && !$isMobile" align="center" justify="center").pt-1.px-3
+      v-col(cols="12" md="5").pa-0
         span.mc-btn1 Showing {{ itemsTotal }} doctor{{ itemsTotal > 1 ? 's' : '' }}
-      v-spacer(v-if="!$isMobile")
+      v-spacer
       //- v-pagination(
       //-   v-if="itemsTotal > 4 && !$isMobile"
       //-   :value="itemsPage"
