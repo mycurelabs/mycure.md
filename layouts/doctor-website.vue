@@ -11,7 +11,7 @@
 
 <script>
 import AppBar from '~/components/doctor-website/app-bar';
-import AppFooter from '~/components/doctor-website/app-footer';
+import AppFooter from '~/components/clinic-website/AppFooter';
 export default {
   components: {
     AppBar,

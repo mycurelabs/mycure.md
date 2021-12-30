@@ -49,7 +49,7 @@ $b4-std: 14px;
 $b5-std: 14px;
 $hyp1-std: 16px;
 $hyp2-std: 14px;
-$btn1-std: 18px;
+$btn1-std: 16px;
 $h1-mob: 34px;
 $h2-mob: 20px;
 $h4-mob: 18px;
@@ -606,7 +606,7 @@ classBinder(this, {
   @extend .font-open-sans;
   color: $body-color;
   @media (max-width: $max-sm) {
-    @include mc-font-sizer($b2-mob, 24px);
+    @include mc-font-sizer($b4-mob, 24px);
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
