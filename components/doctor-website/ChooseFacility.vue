@@ -5,9 +5,8 @@
         v-container
           v-row(justify="center")
             v-col(cols="12").text-center
-              h1 Choose a Facility
-              br
-              span Where are you booking your {{ appointmentType }} appointment?
+              h1.mc-h2.font-weight-semibold Choose a Facility
+              span.mc-b4 Where are you booking your {{ appointmentType }} appointment?
             v-col(cols="12" v-if="!availableOrganizations.length").text-center
               h3.font-open-sans.font-gray.font-weight-regular There are no available facilities at this time.
             template(v-else)

@@ -40,24 +40,37 @@
               :style="!email ? 'color: #BFBFBF;' : ''"
             ).mc-b2 {{ email || 'No information provided'}}
       v-row(justify="end").px-8
-        v-col(cols="12")
+        v-col(cols="12").py-6
           v-divider
       //- Schedules
       v-row(justify="center")
         v-col(cols="12" md="11")
-          v-row(justify="center" align="center" :class="$isMobile ? 'mb-2' : 'my-1'")
-            div(v-for="(day, index) in daysList" :key="index" :class="$isMobile ? ['text-center', 'mx-1'] : 'mx-3' ").white--text
-              div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
+          v-row(v-if="!$isMobile" justify="center" align="center").my-1
+            div(
+              v-for="(day, index) in daysList"
+              :key="index"
+              :class="[{'text-center': $isMobile}, isClinicOpen(day.value) ? 'white--text' : 'unavailable--text' ]"
+            ).mx-3
+              div(:class="[textFontSize, isClinicOpen(day.value) ? 'primary' : 'disabled']").badge.badge-size
                 | {{ day.text }}
-            v-spacer(v-if="!$isMobile")
+            v-spacer
             a(v-if="operatingSchedules.length && !$isMobile" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
             v-icon(v-if="operatingSchedules.length && !$isMobile" small color="primary").ml-1 {{ mdiInformationOutline }}
-          v-row(v-if="$isMobile" justify="center" align="center")
-            a(v-if="operatingSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
-            v-icon(v-if="operatingSchedules.length" small color="primary").ml-1 {{ mdiInformationOutline }}
+          div(v-else).mb-2
+            v-row.d-flex.justify-space-around.mb-3
+              div(
+                v-for="(day, index) in daysList"
+                :key="index"
+                :class="[{'text-center': $isMobile}, isClinicOpen(day.value) ? 'white--text' : 'unavailable--text' ]"
+              )
+                div(:class="[textFontSize, isClinicOpen(day.value) ? 'primary' : 'disabled']").badge.badge-size
+                  | {{ day.text }}
+            v-row(v-if="$isMobile" justify="center" align="center")
+              a(v-if="operatingSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
+              v-icon(v-if="operatingSchedules.length" small color="primary").ml-1 {{ mdiInformationOutline }}
     v-spacer
     v-card-actions.pa-2.pb-4
-      v-row(justify="center").px-8
+      v-row(justify="center" :class="{'px-8': !$isMobile}").mt-3
         //- v-spacer(v-if="!$isMobile")
         v-col(v-if="canOnlineBook || canVisit" cols="12").text-right
           div(:class="{'d-inline-flex': !$isMobile}")
@@ -89,7 +102,7 @@
               //- v-icon(small left) {{ canVisit ? mdiStethoscope : mdiClose }}
               span.mc-btn1 Book a Visit
         v-col(v-else cols="12" sm="10").text-center
-          span.font-italic.grey--text This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
+          span(style="color: #BFBFBF").font-italic This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
       //- v-spacer(v-if="!$isMobile")
 
     //- Schedule Dialog
@@ -282,16 +295,9 @@ export default {
         .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
       , (a, b) => a.day === b.day && a.startTime === b.startTime);
     },
-    badgeSize () {
-      return classBinder(this, {
-        mobile: ['badge-size-mobile'],
-        regular: ['badge-size'],
-        wide: ['badge-size-wide'],
-      });
-    },
     textFontSize () {
       return classBinder(this, {
-        mobile: ['font-10'],
+        mobile: ['font-12'],
         regular: ['font-14'],
         wide: ['font-18'],
       });
@@ -343,23 +349,27 @@ export default {
 .clinic-book-btn {
   width: 150px;
 }
-.badge-size {
-  height: 30px;
-  width: 30px;
-}
-.badge-size-mobile {
-  height: 22px;
-  width: 22px;
-}
-.badge-size-wide {
-  height: 40px;
-  width: 40px;
-}
 .badge {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: rgb(163, 163, 163);
+}
+.badge-size {
+  height: 24px;
+  width: 24px;
+}
+@media screen and (min-width: 1015px) {
+  .badge-size {
+    height: 27px;
+    width: 27px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .badge-size {
+    height: 33px;
+    width: 33px;
+  }
 }
 </style>

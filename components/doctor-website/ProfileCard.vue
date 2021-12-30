@@ -16,7 +16,7 @@
               v-spacer
               v-tooltip(top :disabled="shareModel")
                 template(v-slot:activator="{ on, attrs }")
-                  div(v-on="on")
+                  div(v-on="on" :class="{'mt-5': $isMobile}")
                     share-button(:direction="$isMobile ? 'bottom' : 'top'" color="primary" @clicked="shareModel = !shareModel" @clip-success="$emit('clipSuccess')")
                 span Share Clinic
 </template>
