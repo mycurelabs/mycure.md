@@ -9,15 +9,15 @@
           v-row(align="start").pl-3
             v-icon(small color="primary" :class="$isWideScreen ? 'mt-3' : 'mt-2'").mr-1 {{ mdiMapMarker }}
             v-col.pa-0
-              span.mc-b2 {{ formattedAddress }}
+              span(:class="[{'font-italic': !formattedAddress }, {'unavailable--text': !formattedAddress }]").mc-b2 {{ formattedAddress || 'No address available' }}
           v-row(align="center").pl-3.pt-1
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
-            span.mc-b2 {{ clinicPhone }}
+            span(:class="[{'font-italic': !clinicPhone }, {'unavailable--text': !clinicPhone }]").mc-b2 {{ clinicPhone || 'No contact number available'}}
           br
           br
           h3.mc-h4.title--text.mb-1.font-weight-semibold Facility Schedule
           br
-          span(v-if="!compressedSchedules[0].day").mc-b2 Schedule not available
+          span(v-if="!compressedSchedules[0].day").mc-b2.unavailable--text.font-italic Schedule not available
           v-row(v-for="(sched, key) in compressedSchedules" :key="key")
             v-col(cols="4" :class="{'px-1': $isMobile}").pt-1.pb-0
               p(v-if="typeof (sched.day) === 'string'").mc-b3.title--text.font-weight-semibold.text-capitalize.mb-0 {{ sched.day }}
@@ -30,9 +30,9 @@
       v-col(cols="12" md="5" :class="{'mt-8': $isMobile}")
         h3.mc-h4.title--text Location
         br
-        div(v-if="address.lat || address.lng" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
+        div(v-if="address" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
         div(v-else)
-          span.mc-b3 Location not available
+          span.mc-b3.unavailable--text.font-italic Location not available
 </template>
 
 <script>
@@ -136,11 +136,14 @@ export default {
   },
   mounted () {
     this.initialize();
+    console.log('boop2');
   },
   methods: {
     initialize () {
       this.mapGeocoder = new google.maps.Geocoder(); /* eslint-disable-line no-undef */
+      console.log('boop111');
       if (!this.addressGeometry) {
+        console.log('boop1');
         return null;
       }
       const center = this.addressGeometry;
