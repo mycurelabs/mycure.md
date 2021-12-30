@@ -1,11 +1,11 @@
 <template lang="pug">
-  div(style="overflow: hidden; background: #fafafa")
+  div(v-if="!loading.page").main-container
     //- CHOOSE APPOINTMENT TYPE
     choose-appointment(
       is-clinic
       v-model="dialogs.appointment"
-      :has-doctors="hasDoctors"
-      :has-physical-services="hasPhysicalServices"
+      :has-doctors="isTelehealthEnabled"
+      :has-physical-services="isBookingEnabled"
       @select="onSelectAppointment($event)"
     )
     //- CHOOSE SERVICE DIALOG
@@ -14,133 +14,261 @@
       :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
       @select="onSelectServiceType($event)"
     )
-    //- APP BAR
-    app-bar
-    //- PANEL 1
-    div(
-      :class="background"
-      :style="{ height: isVerified ? $isMobile ? '120vh' : '130vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
-    ).panel-bg
+    v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
+    main-panel(
+      :tabs="normalTabsList"
+      :pic-url="picURL"
+      :clinic-name="clinicName"
+      :formatted-address="formattedAddress"
+      :clinic-phone="clinicPhone"
+      :style="{ height: $isMobile ? '110vh' : '110vh' }"
+      :is-bookable="isVerified && isOnline"
+      @book="dialogs.appointment = true"
+      @redirect="onRedirect($event)"
+      @clipSuccess="clipSuccess = true"
+    )#top
+    //- Search panel
+    search-panel(
+      v-model="searchText"
+      :clinic="clinic"
+      @search="search"
+    )
+    //- NORMAL MODE - Workflow area
+    v-container(v-if="!searchMode")#tabs.pb-16
       v-row(justify="center")
-        v-col(cols="10").text-center
-          v-avatar(:size="$isMobile ? '150' : '200'").mb-5
-            img(:src="picURL")
-          h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
-          template(v-if="isVerified && isAvailable")
-            v-hover(
-              v-slot="{ hover }"
-              open-delay="100"
+        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+          v-col(cols="12" :class="{'px-0': $isMobile}")
+            v-tabs(
+              show-arrows
+              hide-slider
+              :right="!$isMobile"
+              :next-icon="mdiChevronRight"
+              :prev-icon="mdiChevronLeft"
+              v-model="tabSelect"
+              background-color="transparent"
+              :active-class="$isMobile ? 'primary--text' : 'black--text'"
+              style="color: #A2A5AE;"
+            ).mb-6
+              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                img(
+                  src="~/assets/images/MYCURE-icon.png"
+                  width=" 20"
+                  alt="MYCURE icon"
+                  @click="onHome"
+                ).mr-1
+                v-btn(@click="onHome" text dense).text-none.px-1
+                  span.mc-b2.primary--text Home
+                span(style="color: #72727D;") &nbsp;/&nbsp;
+                v-btn(@click="onRedirect(tabSelect)" text dense style="color: #72727D").px-2.text-none
+                  span.mc-b2.font-weight-bold {{ tabSelect | format-bread-crumbs }}
+              v-tab(
+                v-for="(tab, key) in normalTabsList"
+                :key="key"
+                :href="`#${tab.value}`"
+                :class="{'ml-4': !$isMobile}"
+                dense
+              ).text-none
+                span.mc-hyp2.font-weight-semibold {{ tab.text }}
+
+              //- NORMAL VIEW TABS
+              //- SERVICES
+              v-tab-item(value="services")
+                div.grey-bg.pt-8
+                  services-list(
+                    v-model="activeServiceType"
+                    :loading="loading.services"
+                    :items="items.services"
+                    :items-total="itemsTotal.services"
+                    :items-limit="itemsLimit"
+                    :service-types="serviceTypes"
+                    :organization="clinicId"
+                    :is-preview-mode="isPreviewMode"
+                    @paginate="onPaginate({ type: 'services' }, $event)"
+                    @filter="onServiceTypeFilterEvent($event)"
+                  )
+              //- DOCTORS
+              v-tab-item(value="doctors")
+                div.grey-bg.pt-8
+                  doctors-list(
+                    :loading="loading.doctors"
+                    :items="items.doctors"
+                    :items-total="itemsTotal.doctors"
+                    :items-limit="itemsLimit"
+                    :organization="clinicId"
+                    :is-preview-mode="isPreviewMode"
+                    @paginate="onPaginate({ type: 'doctors' }, $event)"
+                    @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                  )
+              //- ABOUT CLINIC
+              v-tab-item(value="about")
+                div.grey-bg.pt-8
+                  about-clinic(
+                    :pic-url="picURL"
+                    :clinic-name="clinicName"
+                    :description="description"
+                    :items="items.services"
+                    :insurers="items.insurers"
+                  )
+              //- CONTACT US
+              v-tab-item(value="contact")
+                div.grey-bg.pt-8
+                  contact-us(
+                    :address="clinic.address"
+                    :clinic-phone="clinicPhone"
+                    :schedule="clinic.mf_schedule"
+                  )
+    //- SEARCH MODE: Search results
+    v-container(v-else)#search-tabs.pb-16
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+          v-col(cols="12" :class="{'px-0': $isMobile}")
+            v-btn(v-if="$isMobile" @click="onHome" text).mb-5
+              v-icon {{ mdiChevronLeft }}
+              | Back
+            v-tabs(
+              hide-slider
+              :right="!$isMobile"
+              v-model="searchTabSelect"
+              background-color="transparent"
+              slider-color="primary"
+              active-class="black--text"
+            ).mb-6
+              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                v-btn(@click="onHome" text).text-none.font-16
+                  v-icon {{ mdiChevronLeft }}
+                  | Back
+              //-   img(
+              //-     src="~/assets/images/MYCURE-icon.png"
+              //-     width=" 20"
+              //-     alt="MYCURE icon"
+              //-     @click="onHome"
+              //-   ).mr-2
+              //-   a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+              //-   a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
+              v-tab(
+                v-for="(tab, key) in searchTabsList"
+                :key="key"
+                :href="`#${tab.value}`"
+                :class="{'ml-4': !$isMobile}"
+                dense
+              ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
+          //- FILTERS
+          v-col(cols="12" md="4" xl="3" :class="{'px-0': $isMobile}")
+            v-card(color="white" flat)
+              template(v-if="showResults('services')")
+                v-toolbar(v-if="!$isMobile" flat).pa-1
+                  v-spacer
+                  h2.mc-h4.black--text Services
+                  v-spacer
+                v-divider(v-if="!$isMobile").my-3
+                v-card-text
+                  v-select(
+                    v-model="serviceSearchTypeFilter"
+                    placeholder="Select Service Type (All)"
+                    item-text="text"
+                    dense
+                    clearable
+                    outlined
+                    :disabled="loading.search"
+                    :append-icon="mdiMenuDown"
+                    :clear-icon="mdiClose"
+                    :items="serviceTypeOptions"
+                    return-object
+                    @change="onServiceTypeFilter"
+                  )
+                    template(slot="prepend-inner")
+                      v-icon.mr-2 {{ mdiAccountWrenchOutline }}
+                  //- We limit this to the Services Tab only to avoid confusion that it may also be applied to Doctors
+                  search-insurers(
+                    v-if="searchTabSelect === 'search-services'"
+                    avatar
+                    outlined
+                    clearable
+                    :disabled="isPreviewMode"
+                    @select="onInsuranceSelect"
+                    @clear="clearInsuranceFilter"
+                  )
+                  date-picker-menu(
+                    v-model="dateFilter"
+                    outlined
+                    :disabled="isPreviewMode || loading"
+                    @clear="clearDateFilter"
+                    @change="onDateFilter($event)"
+                  )
+              template(v-if="showResults('doctors')")
+                v-toolbar(v-if="!$isMobile" flat).pa-1
+                  v-spacer
+                  h2.mc-h4.black--text Doctors
+                  v-spacer
+                v-divider(v-if="!$isMobile").my-3
+                v-card-text
+                  specialization-filter(
+                    v-model="specializationFiltersArray"
+                    @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                  )
+          //- RESULTS
+          v-col(cols="12" md="8" xl="9" :class="{'px-0': $isMobile}")
+            services-paginated(
+              v-if="showResults('services')"
+              :loading="loading.services.list"
+              :items="items.services"
+              :items-total="itemsTotal.services"
+              :items-limit="itemsLimit"
+              :itemsPage.sync="itemsPage.services"
+              :organization="clinicId"
+              :is-preview-mode="isPreviewMode"
+              :search-mode="searchMode"
+              @update:itemsPage="onPaginate({ type: 'services' }, $event)"
             )
-              v-btn(
-                large
-                rounded
-                dark
-                :color="hover ? 'info' : 'warning'"
-                @click="dialogs.appointment = true"
-              ).text-none.custom-clinic-button
-                h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
-    template(v-if="isVerified")
-      //- PANEL 1 FOOTER
-      div(:style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer.text-center
-        span(v-if="formattedAddress").mr-6
-          v-icon.red--text {{ mdiMapMarker }}
-          span {{formattedAddress}}
-        br(v-if="$isMobile")
-        span(v-if="clinicPhone")
-          v-icon.green--text {{ mdiPhone }}
-          span {{clinicPhone}}
-      //- MAIN PANELS
-      main-workflow(
-        v-if="!loading.page"
-        v-model="activeTab"
-        :is-preview-mode="isPreviewMode"
-        :search-results-mode="searchResultsMode"
-        :search-results="searchResults"
-        :service-types="serviceTypes"
-        :has-doctors="hasDoctors"
-        :items="listItems"
-        :items-pagination-length="itemsPaginationLength"
-        :organization="clinic"
-        :loading="loading.list"
-        :has-next-page="hasNextPage"
-        :has-previous-page="hasPreviousPage"
-        @back="onMainPageReturn"
-        @search="onServiceSearch"
-        @paginate="onPaginate($event)"
-        @filter:date="filterByDate"
-      )
-      //- Loading
-      v-container(v-else)
-        v-row(justify="center").text-center
-          v-progress-circular(indeterminate color="primary" size="150").my-8
-      //- ABOUT US
-      about-us(
-        :picURL="picURL"
-        :name="clinicName"
-        :description="description"
-        :phone="clinicPhone"
-        :address="formattedAddress"
-        :schedules="compressedSchedules"
-      )
-      //- QUICK BOOK
-      //- Only show this panel, if booking is enabled
-      quick-book(
-        v-if="isBookingEnabled"
-        :is-preview-mode="isPreviewMode"
-        :service-types="serviceTypes"
-        :service-schedules="serviceSchedules"
-        :organization-schedules="groupedSchedules"
-        :organization="orgId"
-      )
-    div(v-else).mx-n3.mb-n3.info
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" md="10").text-center
-              h2.mc-title-set-1.mb-10.white--text Do you own this business?
-              mc-btn(
-                depressed
-                color="success"
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-                :to="{ name: 'signup-health-facilities' }"
-              ).font-s.text-none Claim for free now!
-    //- FOOTER
-    app-footer
+            v-divider(v-if="searchTabSelect === 'search-all'").my-10
+            doctors-paginated(
+              v-if="showResults('doctors')"
+              :loading="loading.doctors.list"
+              :items="items.doctors"
+              :items-total="itemsTotal.doctors"
+              :items-limit="itemsLimit"
+              :itemsPage.sync="itemsPage.doctors"
+              :organization="clinicId"
+              :is-preview-mode="isPreviewMode"
+              @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
+            )
 </template>
 
 <script>
-import { format } from 'date-fns';
-import { mdiMapMarker, mdiPhone } from '@mdi/js';
-import isEmpty from 'lodash/isEmpty';
-import intersection from 'lodash/intersection';
-// import uniq from 'lodash/uniq';
 import VueScrollTo from 'vue-scrollto';
-// - utils
-import { getOrganization } from '~/utils/axios/organizations';
-import { formatAddress } from '~/utils/formats';
-import canUseWebp from '~/utils/can-use-webp';
-import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
-// - services
+import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
+import intersection from 'lodash/intersection';
+import omit from 'lodash/omit';
+import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
+// services
+import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
+import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
-import { fetchScheduleSlots } from '~/services/schedule-slots';
-import {
-  fetchClinicServices,
-  fetchClinicServiceTypes,
-} from '~/services/services';
-// - components
-import AboutUs from '~/components/clinic-website/AboutUs';
-import AppBar from '~/components/clinic-website/new/AppBar';
-import AppFooter from '~/components/clinic-website/AppFooter';
+// utils
+import { getOrganization } from '~/utils/axios/organizations';
+import { initLogger } from '~/utils/logger';
+import { formatAddress } from '~/utils/formats';
+import headMeta from '~/utils/head-meta';
+// components
+import MainPanel from '~/components/clinic-website/MainPanel';
+import AboutClinic from '~/components/clinic-website/AboutClinic';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseService from '~/components/clinic-website/ChooseService';
-import GenericPanel from '~/components/generic/GenericPanel';
+import ContactUs from '~/components/clinic-website/ContactUs';
+import DatePickerMenu from '~/components/commons/date-picker-menu';
+import DoctorsList from '~/components/clinic-website/doctors/DoctorsList';
+import DoctorsPaginated from '~/components/clinic-website/doctors/DoctorsPaginated';
+import SearchInsurers from '~/components/clinic-website/services/SearchInsurers';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
-import MainWorkflow from '~/components/clinic-website/MainWorkflow';
-import QuickBook from '~/components/clinic-website/QuickBook';
+import ServicesList from '~/components/clinic-website/services/ServicesList';
+import ServicesPaginated from '~/components/clinic-website/services/ServicesPaginated';
+import SpecializationFilter from '~/components/clinic-website/doctors/SpecializationFilter';
+import GenericPanel from '~/components/generic/GenericPanel';
 
-const SERVICE_TYPES = [
+const log = initLogger('Facilities');
+
+const ALLOWED_SERVICE_TYPES = [
   'clinical-consultation',
   'clinical-procedure',
   'dental',
@@ -149,17 +277,40 @@ const SERVICE_TYPES = [
   'imaging',
 ];
 
+const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
+const TABS_LIST = [
+  { text: 'Services', value: 'services', type: 'normal' },
+  { text: 'Our Doctors', value: 'doctors', type: 'normal' },
+  { text: 'About Clinic', value: 'about', type: 'normal' },
+  { text: 'Contact Us', value: 'contact', type: 'normal' },
+  // - Search Tabs
+  // { text: 'All', value: 'search-all', type: 'search' },
+  { text: 'Services', value: 'search-services', type: 'search' },
+  { text: 'Doctors', value: 'search-doctors', type: 'search' },
+];
+
 export default {
   components: {
-    AboutUs,
-    AppBar,
-    AppFooter,
+    MainPanel,
+    GenericPanel,
+    AboutClinic,
+    ContactUs,
     ChooseAppointment,
     ChooseService,
-    GenericPanel,
+    DatePickerMenu,
+    DoctorsList,
+    DoctorsPaginated,
+    SearchInsurers,
     SearchPanel,
-    MainWorkflow,
-    QuickBook,
+    ServicesList,
+    ServicesPaginated,
+    SpecializationFilter,
+  },
+  filters: {
+    formatBreadCrumbs (crumb) {
+      const tab = TABS_LIST.find(tab => tab.value === crumb);
+      return tab ? tab.text : 'Section';
+    },
   },
   layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect, error }) {
@@ -180,131 +331,114 @@ export default {
     }
   },
   data () {
-    this.days = [
-      {
-        order: 1,
-        day: 'mon',
-        dayName: 'Monday',
-      },
-      {
-        order: 2,
-        day: 'tue',
-        dayName: 'Tuesday',
-      },
-      {
-        order: 3,
-        day: 'wed',
-        dayName: 'Wednesday',
-      },
-      {
-        order: 4,
-        day: 'thu',
-        dayName: 'Thursday',
-      },
-      {
-        order: 5,
-        day: 'fri',
-        dayName: 'Friday',
-      },
-      {
-        order: 6,
-        day: 'sat',
-        dayName: 'Saturday',
-      },
-      {
-        order: 7,
-        day: 'sun',
-        dayName: 'Sunday',
-      },
+    // - ENUM
+    this.serviceTypeOptions = [
+      // - TODO: Currently we cannot query with Service#tags and a $search operator, so both F2F and Telehealth consults were put
+      // - in one category. To follow up with Nad.
+      { text: 'Consultations', type: 'clinical-consultation' },
+      // { text: 'Teleconsults', type: 'clinical-consultation', tags: 'telehealth' },
+      { text: 'Procedures', type: 'clinical-procedure' },
+      { text: 'Dental', type: 'dental' },
+      { text: 'Physical Exam', type: 'pe' },
+      { text: 'Laboratory', type: 'diagnostic', subtype: 'lab' },
+      { text: 'Imaging', type: 'diagnostic', subtype: 'imaging' },
     ];
-    this.itemsLimit = 5;
     return {
-      // UI State
       loading: {
-        page: true,
-        list: false,
+        page: false,
+        services: {
+          section: false,
+          list: false,
+        },
+        doctors: {
+          section: false,
+          list: false,
+        },
+        search: false,
+        insurers: false,
       },
       dialogs: {
-        serviceType: false,
         appointment: false,
+        service: false,
       },
-      activeTab: null, // - possible values: all service type values, and 'doctors'
-      // Pagination
-      page: 1,
-      pageCount: 2,
-      // Data Models
-      orgDoctors: [],
-      filteredServices: [],
+      items: {
+        services: [],
+        doctors: [],
+        insurers: [],
+      },
+      itemsLimit: 4,
+      itemsTotal: {
+        services: 0,
+        doctors: 0,
+      },
       serviceTypes: [],
-      serviceSchedules: [],
-      canUseWebp: null,
-      hasItemsToBook: false, // has either physical / telehealth services
-      hasPhysicalServices: false, // has physical appointments
-      // Items to show in tab list
-      listItems: [],
-      // total items
-      itemsTotal: 0,
-      doctorsTotal: 0,
-      servicesTotal: 0,
-      // search
-      searchResultsMode: false,
-      searchResults: [],
-      searchText: null,
-      searchFilters: {},
-      // icons
-      mdiMapMarker,
-      mdiPhone,
+      // search models
+      searchText: null, // search text
+      searchMode: false, // show search results view
+      // filters
+      specializationFiltersArray: [],
+      serviceSearchTypeFilter: {}, // dropdown filter for service type
+      dateFilter: null,
+      // tab models
+      tabSelect: 'services',
+      searchTabSelect: 'search-all',
+      activeServiceType: null,
+      clipSuccess: false,
+      // save current service query to use in refetch on pagination
+      currentServicePropsQuery: null,
+      currentDoctorPropsQuery: null,
+      // pagination models
+      itemsPage: {
+        services: 1,
+        doctors: 1,
+      },
+      // icons,
+      mdiMenuDown,
+      mdiClose,
+      mdiChevronRight,
+      mdiChevronLeft,
+      mdiAccountWrenchOutline,
     };
   },
   head () {
-    return headMeta({
-      title: `${this.clinic?.name || 'Facility Website'}`,
-      description: 'Visit my professional website and schedule an appointment with me today.',
-      socialBanner: this.picURL,
-    });
+    return {
+      ...headMeta({
+        title: `${this.clinicName || 'Facility Website'}`,
+        description: this.description,
+        socialBanner: this.picURL,
+      }),
+      script: [
+        {
+          hid: 'google',
+          src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g&libraries=places&v=weekly',
+          defer: true,
+          // callback: () => { this.loading.page = false; },
+        },
+      ],
+    };
   },
   computed: {
+    clinicId () {
+      return this.clinic.id;
+    },
     isBookingEnabled () {
       return this.clinic?.types?.includes('clinic-booking');
     },
     isTelehealthEnabled () {
-      return this.clinic?.types?.includes('clinic-telehealth');
+      return this.clinic?.types.includes('clinic-telehealth');
     },
-    bookURL () {
-      if (this.isPreviewMode) return null;
-      const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/create-appointment/step-1?clinic=${this.orgId}&type=physical`;
+    isOnline () {
+      // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
+      return this.isBookingEnabled || this.isTelehealthEnabled;
     },
-    formattedAddress () {
-      if (!this.clinic?.address) return '';
-      return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
+    isVerified () {
+      return !!this.clinic?.websiteId;
     },
-    clinicPhone () {
-      const { phone, phones } = this.clinic;
-      if (phones?.length) return phones.join(', ');
-      return phone || '';
-    },
-    // old
     mode () {
       return this.$route.query.mode;
     },
     isPreviewMode () {
       return this.mode === 'preview';
-    },
-    orgId () {
-      return this.clinic?.id;
-    },
-    isVerified () {
-      return !!this.clinic?.websiteId;
-    },
-    // Clinic is available if it has booking / telehealth services and items to book
-    isAvailable () {
-      return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
-    },
-    isDummyOrg () {
-      const { tags } = this.clinic;
-      if (!tags?.length) return false;
-      return tags.includes('dummy');
     },
     picURL () {
       return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
@@ -312,140 +446,99 @@ export default {
     clinicName () {
       return this.clinic?.name || 'MYCURE Clinic';
     },
-    schedules () {
-      return this.clinic?.mf_schedule || []; // eslint-disable-line
+    formattedAddress () {
+      if (!this.clinic?.address) return '';
+      return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
     },
-    // - Grouped General clinic schedules
-    groupedSchedules () {
-      const groupedSchedules = this.schedules
-        .map((schedule) => {
-          const { order } = this.days.find(day => day.day === schedule.day);
-          return {
-            order,
-            ...schedule,
-          };
-        })
-        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
-      return groupedSchedules;
-    },
-    // - Schedules simplified to get overall time period instead of multiple periods
-    compressedSchedules () {
-      const sched = this.groupedSchedules;
-      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
-      const finalSched = [{ day: '', time: '' }];
-      formatSched.map((x) => {
-        if (finalSched.find(sched => sched.time === x.time)) {
-          const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
-          if (typeof finalSched[index].day === 'string') {
-            finalSched[index].day = [finalSched[index].day, x.day];
-          } else {
-            finalSched[index].day = [...finalSched[index].day, x.day];
-          }
-        } else if (finalSched.find(sched => sched.day === x.day)) {
-          const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
-          finalSched[index].time = [finalSched[index].time, x.time];
-        } else {
-          finalSched.push(x);
-          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
-        }
-        return 0;
-      });
-      return finalSched;
-    },
-    formattedDoctors () {
-      if (!this.orgDoctors?.length) return [];
-      return this.orgDoctors.map((doctor) => {
-        const practicingSince = doctor.personalDetails?.doc_practicingSince; // eslint-disable-line
-        const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
-
-        return {
-          ...doctor,
-          picURL: doctor.personalDetails?.picURL,
-          doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
-          specialties: doctor.personalDetails?.doc_specialties?.join(', '), // eslint-disable-line
-          yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
-        };
-      }) || [];
-    },
-    itemsPaginationLength () {
-      return Math.ceil(this.itemsTotal / this.itemsLimit) || 0;
-    },
-    hasDoctors () {
-      return !isEmpty(this.orgDoctors);
-    },
-    hasNextPage () {
-      const nextSkip = this.itemsLimit * (this.page);
-      return nextSkip < this.itemsTotal;
-    },
-    hasPreviousPage () {
-      const previousSkip = this.itemsLimit * (this.page - 1);
-      return previousSkip > 0;
+    clinicPhone () {
+      if (!this.clinic) return '';
+      const { phone, phones } = this.clinic;
+      if (phones?.length) return phones.join(', ');
+      return phone || '';
     },
     description () {
       return this.clinic?.description ||
-      `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+      `${this.name || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
     },
-    background () {
-      // if (this.isVerified && this.canUseWebp) return 'bg-webp';
-      // if (this.isVerified && !this.canUseWebp) return 'bg-png';
-      if (!this.isVerified && this.canUseWebp) return 'construct-bg-webp';
-      if (!this.isVerified && !this.canUseWebp) return 'construct-bg-png';
-      return 'bg-png';
+    // - Tabs shown in normal view of clinic
+    normalTabsList () {
+      return TABS_LIST.filter(tab => tab.type === 'normal');
     },
-    // Classes
-    clinicNameClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
+    // - Tabs shown in search mode of clinic
+    searchTabsList () {
+      return TABS_LIST.filter(tab => tab.type === 'search');
     },
   },
-  async created () {
-    // Initial window setups
-    this.$vuetify.theme.dark = false;
-    this.canUseWebp = await canUseWebp();
-
-    if (this.isBookingEnabled) {
-      await Promise.all([
-        this.fetchServiceTypes(),
-        this.fetchServices()]);
-    }
-    await this.fetchDoctorMembers();
-    this.listItems = [...this.filteredServices];
-    this.itemsTotal = this.servicesTotal;
-    if (this.servicesTotal) this.hasPhysicalServices = true;
-    if (this.servicesTotal || this.doctorsTotal) this.hasItemsToBook = true;
-    this.loading.page = false;
+  watch: {
+    activeServiceType: {
+      async handler (val) {
+        if (!val) return;
+        await this.fetchServices({
+          serviceProps: this.getServiceQuery(this.activeServiceType),
+        }, 1);
+      },
+    },
+    tabSelect: {
+      async handler (val) {
+        if (val === 'services' && isEmpty(this.items.services)) {
+          return await this.fetchServices({
+            serviceProps: this.getServiceQuery(this.activeServiceType),
+          }, 1);
+        }
+        if (val === 'doctors' && isEmpty(this.items.doctors)) {
+          return await this.fetchDoctors();
+        }
+      },
+    },
+    searchMode: {
+      async handler (val) {
+        if (val) {
+          this.searchAll();
+          return;
+        }
+        await this.fetchServices({
+          serviceProps: this.getServiceQuery(this.activeServiceType),
+          ...this.searchText && { searchText: this.searchText },
+        }, 1);
+      },
+    },
   },
   mounted () {
-    if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
+    if (this.isOnline) {
+      this.init();
+    }
   },
   methods: {
-    // - Fetches all doctors of facility
-    async fetchDoctorMembers (searchText, page = 1) {
-      try {
-        const skip = this.itemsLimit * (page - 1);
-        const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
-          organization: this.orgId,
-          searchText,
-          limit: this.itemsLimit,
-          skip,
-        });
-        this.doctorsTotal = total;
-        this.orgDoctors = items || [];
-        return { items: this.orgDoctors, total: this.doctorsTotal };
-      } catch (error) {
-        console.error(error);
-      }
+    async init () {
+      this.loading.services.section = true;
+      await this.fetchServiceTypes();
+      await this.fetchClinicInsurers();
+      this.loading.services.section = false;
     },
-    // - Fetches all services of facility
-    async fetchServices (service = {}, searchText, page = 1) {
+    /** Fetches all services of facility
+     *
+     * @param {Object} serviceOpts
+     * @param {Object} serviceOpts.serviceProps - specific service fields
+     * @param {String} serviceOpts.serviceProps.type - matches with Service#type
+     * @param {String} serviceOpts.serviceProps.subtype  - matched with Service#subtype
+     * @param {String} serviceOpts.serviceProps.insurer  - insurer id
+     * @param {Array} serviceOpts.serviceProps.tags - matches with Service#tags
+     * @param {String} serviceOpts.searchText - search text to match services name
+     *
+     * @param {Number} page - for computing pagination
+     */
+    async fetchServices ({
+      serviceProps = {},
+      searchText,
+    } = {}, page = 1) {
       try {
-        const { type, subtype, insurer, tags } = service;
+        this.loading.services.list = true;
+        // save current service query to use in refetch on pagination
+        this.currentServicePropsQuery = serviceProps;
+        const { type, subtype, insurer, tags } = serviceProps;
         const skip = this.itemsLimit * (page - 1);
         const query = {
-          facility: this.orgId,
+          facility: this.clinicId,
           type,
           subtype,
           insurer,
@@ -454,195 +547,235 @@ export default {
           skip,
           tags,
         };
-        const { items, total } = await fetchClinicServices(this.$sdk, query);
-        this.servicesTotal = total;
+        const { items, total } = await fetchServices(query, true);
+        log('fetchServices#items: %O', items);
+        this.items.services = items;
+        this.itemsTotal.services = total;
 
-        /*
-          Checks if there is a specific schedule for the service type
-        */
-        if (this.serviceTypes?.length && !this.serviceSchedules?.length) {
-          await this.fetchServiceTypes();
+        // - NOTE: This is just front-end filtering, the best solution would be done in backend
+        if (this.dateFilter) {
+          this.filterByDate(this.dateFilter);
         }
-        this.filteredServices = items.map((item) => {
-          const { type, subtype, tags } = item;
-          const primaryType = subtype || type;
-          const schedules = this.serviceSchedules.find((schedule) => {
-            if (primaryType === 'clinical-consultation' && tags?.includes('telehealth')) {
-              return schedule.type === 'telehealth';
-            }
-            return schedule.type === primaryType;
-          });
-
-          // Filter schedules according to section
-          if (item.refSection) {
-            return {
-              ...item,
-              schedules: schedules?.items?.filter(slot => slot.meta?.testSection === item.refSection) || [],
-            };
-          }
-          return {
-            ...item,
-            // nonMfSchedule: !!schedules,
-            schedules: schedules?.items || [],
-          };
-        }) || [];
-        return { items: this.filteredServices, total: this.servicesTotal };
       } catch (error) {
         console.error(error);
+      } finally {
+        this.loading.services.list = false;
       }
     },
     /**
-     * Fetches all service types and their schedules from a facility
-     *
-     * @returns {Object[]}
-     * @param type - service type
-     * @param items - all schedule-slots of that service type
-     *
-     * Note that further filtering between face-to-face consultations and telehealth is done
-     * because they both have the same service#type 'clinical-consultation'.
-     *
-     * They are differentiated by the presence of tags. Telehealth services have 'telehealth'
-     * in their service#tags
-     * */
+     * Fetches the available service types of the clinic
+     */
     async fetchServiceTypes () {
       try {
-        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
-        this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
-        const typeSchedulesPromises = this.serviceTypes.map(async (type) => {
-          const serviceScheduleQuery = {
-            organization: this.orgId,
-            meta: {
-              serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
-              ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
-              // Fetch Telehealth Schedules separately, so do not include them here
-              ...type === 'clinical-consultation' && { serviceSubtype: { $nin: ['telehealth'] } },
-            },
-            $populate: {
-              providers: {
-                service: 'personal-details',
-                localKey: 'meta.providers',
-                method: 'find',
-                foreignKey: 'id',
-                foreignOps: '$in',
-              },
-            },
-          };
-          const data = await fetchScheduleSlots(this.$sdk, serviceScheduleQuery);
-          return {
-            type,
-            items: data.items,
-          };
-        });
-        this.serviceSchedules = await Promise.all(typeSchedulesPromises) || [];
-
-        /**
-         * Fetch telehealth services without providers
-         *
-         * Those with providers are already available from the 'Our Doctors' section
-         * of the Clinic Website
-         */
-        const telehealthSchedules = await fetchScheduleSlots(this.$sdk, {
-          organization: this.orgId,
-          meta: {
-            serviceType: 'clinical-consultation',
-            serviceSubtype: 'telehealth',
-            providers: { $exists: false },
-          },
-        });
-
-        // Include telehealth in Service types and schedules
-        if (telehealthSchedules && this.isTelehealthEnabled) {
-          console.log('service types', this.serviceTypes);
-          if (!this.serviceTypes?.length) {
-            this.serviceTypes = ['telehealth'];
-          } else {
-            this.serviceTypes.splice(1, 0, 'telehealth');
-          }
-          this.serviceSchedules.push({
-            type: 'telehealth',
-            items: telehealthSchedules.items,
-          });
-          console.log('service scheds', this.serviceSchedules);
+        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
+        if (this.isBookingEnabled) {
+          this.serviceTypes = intersection(ALLOWED_SERVICE_TYPES, items) || [];
         }
+        if (this.isTelehealthEnabled) {
+          this.serviceTypes.push('telehealth');
+        }
+        if (!isEmpty(this.serviceTypes)) this.activeServiceType = this.serviceTypes[0];
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    /**
+     * Fetches all doctors of facility
+     *
+     * @param {Object} doctorOpts
+     * @param {Object} doctorOpts.doctorProps.specializations - specialization filter
+     * @param {String} doctorOpts.searchText - search text for doctors
+     *
+     * @param {Number} page - page number
+     *
+     */
+    async fetchDoctors ({
+      doctorProps = {},
+      searchText,
+    } = {}, page = 1) {
+      try {
+        this.loading.doctors.list = true;
+        const skip = this.itemsLimit * (page - 1);
+        const { specializations } = doctorProps;
+        const { items, total } = await fetchClinicWebsiteDoctors({
+          ...searchText && { searchText },
+          ...specializations?.length && { specializations },
+          organization: this.clinicId,
+          limit: this.itemsLimit,
+          skip,
+        });
+        this.itemsTotal.doctors = total;
+        this.items.doctors = items || [];
+        console.log('fetchDoctors#items: %O', items);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.doctors.list = false;
+      }
+    },
+    async fetchClinicInsurers () {
+      try {
+        this.loading.insurers = true;
+        const query = {
+          insured: this.clinicId,
+        };
+        const { items } = await fetchClinicInsurers(query);
+        log('fetchClinicInsurers#items: %O', items);
+        this.items.insurers = items;
       } catch (error) {
         console.error(error);
+      } finally {
+        this.loading.services.list = false;
       }
     },
-    // - When pagination or tab changes, all services and doctors are refetched
-    async refetchListItems ({ tab, page = 1 }) {
-      try {
-        this.loading.list = true;
-        this.page = page;
-        if (tab === 'doctors') {
-          await this.fetchDoctorMembers({ page: this.page });
-          this.listItems = [...this.formattedDoctors];
-          this.itemsTotal = this.doctorsTotal;
-          return;
-        }
-
-        const getServiceType = (type) => {
-          if (['lab', 'imaging'].includes(type)) return 'diagnostic';
-          if (type === 'telehealth') return 'clinical-consultation';
-          return type;
+    search () {
+      if (!this.searchMode) {
+        this.currentServicePropsQuery = {};
+        this.searchMode = true;
+        this.searchTabSelect = 'search-all';
+        VueScrollTo.scrollTo('#search-tabs', 500, { offset: -100, easing: 'ease' });
+        return;
+      }
+      // Invoke searches when already in search mode
+      this.searchAll();
+    },
+    async searchAll () {
+      await Promise.all([
+        this.fetchServices({
+          serviceProps: this.currentServicePropsQuery,
+          ...this.searchText && { searchText: this.searchText },
+        }, 1),
+        this.fetchDoctors({
+          ...this.searchText && { searchText: this.searchText },
+        }, 1),
+      ]);
+    },
+    // utils
+    /** For getting actual service type and subtype value of the current tab
+    * Usually used for mapping query for fetching of services
+    */
+    getServiceQuery (activeServiceType) {
+      if (DIAGNOSTIC_SERVICE_TYPES.includes(activeServiceType)) {
+        return { type: 'diagnostic', subtype: activeServiceType };
+      } else if (activeServiceType === 'telehealth') {
+        return { type: 'clinical-consultation', tags: { $in: ['telehealth'] } };
+      } else if (activeServiceType === 'clinical-consultation') {
+        return { type: 'clinical-consultation', tags: { $nin: ['telehealth'] } };
+      } else {
+        return { type: activeServiceType };
+      }
+    },
+    // - Determine if set of results should be visible
+    showResults (type) {
+      if (type === 'services') {
+        return this.searchTabSelect === 'search-services' || this.searchTabSelect === 'search-all';
+      } else if (type === 'doctors') {
+        return this.searchTabSelect === 'search-doctors' || this.searchTabSelect === 'search-all';
+      }
+      return false;
+    },
+    // Event handlers
+    onPaginate ({
+      type, // services or doctors
+    }, page = 1) {
+      if (!type) return;
+      if (type === 'services') {
+        return this.fetchServices({
+          serviceProps: this.currentServicePropsQuery,
+          ...this.searchText && { searchText: this.searchText },
+        }, page);
+      }
+      // else, return doctors
+      return this.fetchDoctors({
+        ...this.searchText && { searchText: this.searchText },
+      }, page);
+    },
+    onFilterDoctor ({
+      specializations,
+    }, page = 1) {
+      const specializationsMapped = specializations.map((spec) => {
+        let finArray = spec.split(' ');
+        finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
+        const finStr = finArray.join('-');
+        return {
+          code: finStr,
+          name: spec,
         };
-        const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
-        await this.fetchServices({
-          type: getServiceType(tab),
-          ...subtype && { subtype },
-          // Separate face-to-face and telehealth services
-          ...tab === 'clinical-consultation' && { tags: { $nin: ['telehealth'] } },
-          ...tab === 'telehealth' && { tags: { $in: ['telehealth'] } },
-        }, null, this.page);
-        this.listItems = [...this.filteredServices];
-        this.itemsTotal = this.servicesTotal;
-      } catch (e) {
-        console.error(e);
-      } finally {
-        this.loading.list = false;
-      }
+      });
+      return this.fetchDoctors({
+        doctorProps: { specializations: specializationsMapped },
+        ...this.searchText && { searchText: this.searchText },
+      }, page);
     },
-    async onServiceSearch ({ searchText, searchFilters }) {
-      try {
-        this.loading.list = true;
-        if (!this.searchResultsMode) this.searchResultsMode = true;
-
-        this.searchText = searchText;
-        this.searchFilters = searchFilters;
-
-        await this.fetchDoctorMembers(searchText);
-        if (this.isBookingEnabled) {
-          await this.fetchServices(searchFilters, searchText);
-        }
-        // Append doctors only if it is consult/telehealth or no service type filter
-        if ((!this.searchFilters?.type) ||
-          (this.searchFilters?.type &&
-            ['clinical-consultation', 'telehealth'].includes(this.searchFilters?.type))) {
-          this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
-        } else {
-          this.searchResults = [...this.filteredServices];
-        }
-        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
-      } catch (e) {
-        console.error(e);
-      } finally {
-        this.loading.list = false;
-      }
+    onServiceTypeFilter () {
+      const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
     },
-    async onPaginate (payload) {
-      await this.refetchListItems(payload);
+    onServiceTypeFilterEvent (val) {
+      const serviceProps = omit(val, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+      // this.activeServiceType = val.type;
     },
-    async filterByDate (unixDate) {
-      await this.onServiceSearch({ searchText: this.searchText, searchFilters: this.searchFilters });
+    onInsuranceSelect (insurer) {
+      // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
+      this.searchText = null;
+      const serviceProps = {
+        ...this.currentServicePropsQuery,
+        insurer,
+      };
+      return this.fetchServices({ serviceProps }, 1);
+    },
+    clearInsuranceFilter () {
+      const serviceProps = omit(this.currentServicePropsQuery, 'insurer');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    onDateFilter () {
+      return this.fetchServices({
+        serviceProps: this.currentServicePropsQuery,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    filterByDate (unixDate) {
       if (!unixDate) return;
       const date = new Date(unixDate);
       let day = date.getDay();
       if (day === 0) day = 7;
-      if (!this.searchResults?.length) return;
-      this.searchResults = this.searchResults.filter((result) => {
-        const schedules = result.scheduleData || result.schedules;
-        const matchDay = schedules?.find(schedule => schedule.order || schedule.day === day);
-        return !!matchDay;
+      this.items.services = this.items.services.filter((result) => {
+        const schedules = result.schedulesData;
+        const matchDay = schedules?.find(schedule => schedule.day === day);
+        return !isNil(matchDay);
       }) || [];
+    },
+    clearDateFilter () {
+      this.dateFilter = null;
+      this.onDateFilter();
+    },
+    onRedirect (type) {
+      // Make sure it is normal mode first before scrolling
+      if (this.searchMode) {
+        this.searchMode = false;
+        this.onRedirect(type);
+      }
+      this.tabSelect = type;
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+    },
+    onHome () {
+      // If showing search results, simply return to normal view
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
+      VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
     },
     onSelectAppointment (type) {
       this.dialogs.appointment = false;
@@ -651,83 +784,41 @@ export default {
         return;
       }
       if (type === 'telehealth') {
-        this.activeTab = 'doctors';
+        this.tabSelect = 'doctors';
         // - scroll down to doctors list
-        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
+        if (this.searchMode) {
+          this.searchText = null;
+          this.searchMode = false;
+          return;
+        }
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
       }
     },
     onSelectServiceType (serviceType) {
-      this.onMainPageReturn();
-      this.activeTab = serviceType;
-    },
-    // Returning to normal view from search results mode
-    onMainPageReturn () {
-      this.searchResultsMode = false;
-      // Refetch doctors
-      this.fetchDoctorMembers();
-    },
-    formatTime (time) {
-      return format(time, 'hh:mm A');
+      this.dialogs.serviceType = false;
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
+      if (serviceType !== 'close') {
+        this.tabSelect = 'services';
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      }
+      this.activeServiceType = serviceType;
     },
   },
 };
 </script>
 
 <style scoped>
-a {
-  text-decoration: none;
-}
 .main-container {
-  background-color: #fafafa;
-}
-.panel-bg {
-  background-position: center center;
-  background-size: cover;
-}
-
-.bg-png {
-  background-image: url('../../assets/images/clinics-website/clinic-website-bg.png');
-}
-
-/* .bg-webp {
-  background-image: url('../../assets/images/clinics-website/clinic-website-bg.webp');
-} */
-.construct-bg-png {
-  background-image: url('../../assets/images/clinics-website/under-construction.png');
-}
-.construct-bg-webp {
-  background-image: url('../../assets/images/clinics-website/under-construction.webp');
-}
-.custom-clinic-button {
-  height: 70px !important;
-  width: 300px;
-}
-.panel-1-footer {
-  margin-top: -55px;
+  background-color: #f9f9f9;
   width: 100vw;
-  padding: 17px 10px 0px 10px;
-  z-index: 99;
-  position: fixed;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  padding: 0;
 }
-.search-container {
-  height: 400px;
-}
-.btn-banner {
-  width: 25%;
-  margin: auto;
-}
-
-@media screen and (max-width: 500px) {
-  .btn-banner {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 1300px) {
-  .btn-banner {
-    width: 150px;
-  }
+.grey-bg {
+  background-color: #f9f9f9;
 }
 </style>

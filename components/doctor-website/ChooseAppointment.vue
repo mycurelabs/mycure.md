@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="600" height="800" persistent)
-    v-card
+  v-dialog(v-model="dialog" width="600" height="800")
+    v-card.pt-4
       v-toolbar(flat)
         v-spacer
-        h2.font-weight-bold.mc-h2 How can {{ isClinic ? 'we' : 'I' }} help you?
+        h2.font-weight-bold.title--text.mc-h4 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
           v-if="!$isMobile"

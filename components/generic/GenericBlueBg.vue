@@ -10,7 +10,8 @@
         :image-height="dotsHeight"
         :extension-exclusive="true"
         custom-path="commons/"
-      ).left-center
+        :class="largeDots ? 'left-center-large' : 'left-center'"
+      )
       picture-source(
         v-if="!hideDots"
         image-file-extension="png"
@@ -20,7 +21,8 @@
         :image-height="dotsHeight"
         :extension-exclusive="true"
         custom-path="commons/"
-      ).right-center
+        :class="largeDots ? 'right-center-large' : 'right-center'"
+      )
     div.content
       slot(name="default")
 </template>
@@ -41,14 +43,14 @@ export default {
   computed: {
     dotsWidth () {
       if (this.largeDots) {
-        return this.$isMobile ? '155' : this.$isRegularScreen ? '217' : '310';
+        return this.$isMobile ? '139.5' : this.$isRegularScreen ? '195.3' : '279';
       } else {
         return this.$isMobile ? '77.5' : this.$isRegularScreen ? '108.5' : '155';
       }
     },
     dotsHeight () {
       if (this.largeDots) {
-        return this.$isMobile ? '259.4' : this.$isRegularScreen ? '363.16' : '518.8';
+        return this.$isMobile ? '233.46' : this.$isRegularScreen ? '326.844' : '466.92';
       } else {
         return this.$isMobile ? '129.7' : this.$isRegularScreen ? '181.58' : '259.4';
       }
@@ -76,6 +78,18 @@ export default {
 .right-center {
   position: absolute;
   bottom: 10%;
+  right: 0;
+  z-index: 2;
+}
+.left-center-large {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  z-index: 2;
+}
+.right-center-large {
+  position: absolute;
+  bottom: 15%;
   right: 0;
   z-index: 2;
 }

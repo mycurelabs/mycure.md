@@ -6,12 +6,16 @@
     //- div(v-if="!loading")
     div
       nuxt
+    app-footer(v-if="!loading")
 </template>
 
 <script>
 import 'babel-polyfill';
-
+import AppFooter from '~/components/clinic-website/AppFooter';
 export default {
+  components: {
+    AppFooter,
+  },
   data () {
     return {
       loading: true,

@@ -36,7 +36,7 @@
                 alt="MYCURE logo"
               ).mt-1
             v-spacer
-            share-button(color="white" is-small @clip-success="$emit('clipSuccess')")
+            share-button(color="white" is-small @clipSuccess="$emit('clipSuccess')")
             v-menu(offset-y)
               template(v-slot:activator="{ on }")
                 v-btn(
@@ -252,7 +252,6 @@ export default {
       this.$emit('book');
     },
     onRedirect (type) {
-      console.log('success');
       if (this.isPreviewMode) return;
       this.$emit('redirect', type);
     },
