@@ -55,16 +55,20 @@
                   width=" 20"
                   alt="MYCURE icon"
                   @click="onHome"
-                ).mr-2
-                a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-                a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
+                ).mr-1
+                v-btn(@click="onHome" text dense).text-none.px-1
+                  span.mc-b2.primary--text Home
+                span(style="color: #72727D;") &nbsp;/&nbsp;
+                v-btn(@click="onRedirect(tabSelect)" text dense style="color: #72727D").px-2.text-none
+                  span.mc-b2.font-weight-bold {{ tabSelect | format-bread-crumbs }}
               v-tab(
                 v-for="(tab, key) in normalTabsList"
                 :key="key"
                 :href="`#${tab.value}`"
                 :class="{'ml-4': !$isMobile}"
                 dense
-              ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
+              ).text-none
+                span.mc-hyp2.font-weight-semibold {{ tab.text }}
 
               //- NORMAL VIEW TABS
               //- SERVICES

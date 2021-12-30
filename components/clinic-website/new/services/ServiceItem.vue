@@ -11,7 +11,7 @@
           span(v-else).font-italic No price stated
       v-row.my-6
         v-col(cols="12")
-          v-tooltip(top :disabled="!isAvailable")
+          v-tooltip(top :disabled="!isAvailable || $isMobile")
             template(v-slot:activator="{ on, attrs }")
               a(@click="dialog.schedules = true" v-on="on").title--text.mc-b4.font-weight-semibold Schedule
                 v-icon(small color="primary" right style="margin-top: -2px") {{ mdiInformationOutline }}
