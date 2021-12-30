@@ -82,6 +82,19 @@ export default {
   right: 0;
   z-index: 2;
 }
+
+.left-center-large {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  z-index: 2;
+}
+.right-center-large {
+  position: absolute;
+  bottom: 15%;
+  right: 0;
+  z-index: 2;
+}
 .holiday-bg-png {
   background-size: cover;
   background-image: url('../../assets/images/special/Homepage-herobg-std.png');
