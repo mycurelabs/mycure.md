@@ -7,7 +7,7 @@
         v-spacer
       v-card-text
         v-row(justify="center")
-          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="4")
+          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="4" :class="{'px-1': $isMobile}")
             v-hover(
               v-slot="{ hover }"
               open-delay="100"
@@ -24,7 +24,7 @@
                   :image-file-extension="$useWebp? '.webp' : '.png'"
                   custom-path="booking/"
                 )
-                v-card-text.text-center
+                v-card-text.text-center.px-0
                   h3(:class="[hover ? 'white--text' : 'secondary--text', {'font-12': $isMobile}]") {{ type.text }}
       v-card-actions
         v-spacer
