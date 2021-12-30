@@ -127,7 +127,6 @@ export default {
       this.$emit('update:itemsPage', page);
     },
     onServiceTypeFilter () {
-      console.log(this.selectedServiceType);
       this.$emit('update:serviceType', this.selectedServiceType);
     },
   },
