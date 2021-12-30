@@ -121,7 +121,7 @@
     v-container(v-else)#search-tabs.pb-16
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
-          v-col(cols="12")
+          v-col(cols="12" :class="{'px-0': $isMobile}")
             v-btn(v-if="$isMobile" @click="onHome" text).mb-5
               v-icon {{ mdiChevronLeft }}
               | Back
@@ -153,7 +153,7 @@
                 dense
               ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
           //- FILTERS
-          v-col(cols="12" md="4" xl="3")
+          v-col(cols="12" md="4" xl="3" :class="{'px-0': $isMobile}")
             v-card(color="white" flat)
               template(v-if="showResults('services')")
                 v-toolbar(v-if="!$isMobile" flat).pa-1
@@ -207,7 +207,7 @@
                     @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
                   )
           //- RESULTS
-          v-col(cols="12" md="8" xl="9").px-0
+          v-col(cols="12" md="8" xl="9" :class="{'px-0': $isMobile}")
             services-paginated(
               v-if="showResults('services')"
               :loading="loading.services.list"
