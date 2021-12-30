@@ -28,17 +28,19 @@
           //- Contact
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiPhoneInTalk }}
-            span(
-              :class="{ 'font-italic': !phone }"
-              :style="!phone ? 'color: #BFBFBF;' : ''"
-            ).mc-b2 {{ phone || 'No information provided' }}
+            v-col.pa-0
+              span(
+                :class="{ 'font-italic': !phone }"
+                :style="!phone ? 'color: #BFBFBF;' : ''"
+              ).mc-b2 {{ phone || 'No information provided' }}
           //- Email
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiEmail }}
-            span(
-              :class="{ 'font-italic': !email }"
-              :style="!email ? 'color: #BFBFBF;' : ''"
-            ).mc-b2 {{ email || 'No information provided'}}
+            v-col.pa-0
+              span(
+                :class="{ 'font-italic': !email }"
+                :style="!email ? 'color: #BFBFBF;' : ''"
+              ).mc-b2 {{ email || 'No information provided'}}
       v-row(justify="end").px-8
         v-col(cols="12").py-6
           v-divider

@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="600" height="800" persistent)
-    v-card
+  v-dialog(v-model="dialog" width="600" height="800")
+    v-card.pt-4
       v-toolbar(flat)
         v-spacer
-        h2.font-weight-bold.mc-h2 How can {{ isClinic ? 'we' : 'I' }} help you?
+        h2.font-weight-bold.title--text.mc-h4 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
           v-if="!$isMobile"
@@ -50,10 +50,8 @@
 import { mdiClose } from '@mdi/js';
 import intersection from 'lodash/intersection';
 import PictureSource from '~/components/commons/PictureSource';
-
 const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
 const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
-
 export default {
   components: {
     PictureSource,
@@ -140,12 +138,10 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .service-card {
   border: 2px solid #04B1E7;
 }
-
 .card-actions {
   position: absolute;
   bottom: 0;
