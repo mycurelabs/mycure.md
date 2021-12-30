@@ -207,7 +207,7 @@
                     @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
                   )
           //- RESULTS
-          v-col(cols="12" md="8" xl="9")
+          v-col(cols="12" md="8" xl="9").px-0
             services-paginated(
               v-if="showResults('services')"
               :loading="loading.services.list"
