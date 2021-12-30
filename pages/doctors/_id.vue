@@ -133,11 +133,13 @@
                     div(:class="$isMobile ? 'px-4' : 'px-12'").py-8
                       v-col
                         div(v-if="services ? (services.length) : false ")
-                          h3.mc-h3.black--text.mb-8 Services Offered
+                          h3.mc-h4.title--text.mb-8 Services Offered
                           v-row(justify="center").pa-3
                             v-col(cols="12" md="6" v-for="(service, key) in services" :key="key")
                               v-row
-                                v-icon(color="primary").mr-3 {{ mdiCheckCircle }}
+                                v-col(v-if="$isMobile" cols="2").pa-0
+                                  v-icon(color="primary" style="padding-top: 2px").mr-3 {{ mdiCheckCircle }}
+                                v-icon(v-else color="primary").mr-3 {{ mdiCheckCircle }}
                                 span(:class="{'text-left': $isMobile}").mc-b2 {{ service }}
 
                           //- v-list(dense)

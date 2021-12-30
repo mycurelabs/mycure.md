@@ -3,7 +3,7 @@
     v-col
       v-row
         v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
-          h3.mc-h3.mb-4 About Me
+          h3.mc-h4.mb-4.title--text About Me
           p.mc-b3 {{ bio || `This doctor has not shared any info yet, but we're sure they're great!` }}
           br
           br
@@ -16,7 +16,7 @@
         v-spacer
         v-divider(vertical).mx-10
         v-col(cols="12" md="4" :class="{'text-center': $isMobile}")
-          h4.mc-h4.mb-4.black--text Tags
+          h4.mc-h4.mb-4.title--text Tags
           v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
             span.mc-b4 {{ specialty }}
         v-spacer

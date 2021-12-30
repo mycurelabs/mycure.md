@@ -5,11 +5,11 @@
         v-col(cols="12")
           v-card(flat).rounded-md.px-16.py-8
             v-card-title
-              h3.mc-h3.mb-10 Learning Corner
+              h3.mc-h4.mb-10.title--text Learning Corner
             v-card-text
               v-row
                 v-col(cols="12" md="4")
-                  span.font-weight-bold.black--text Browse by Tag:&nbsp;
+                  span.font-weight-bold.title--text Browse by Tag:&nbsp;
                   br
                   br
                   v-autocomplete(
@@ -19,11 +19,12 @@
                     dense
                     outlined
                     clearable
+                    :append-icon="mdiMenuDown"
                     :disabled="isPreviewMode"
                     :items="categories"
                   )
                 v-col(cols="12" md="4")
-                  span.font-weight-bold.black--text Sort by:
+                  span.font-weight-bold.title--text Sort by:
                   br
                   br
                   v-select(
@@ -34,6 +35,7 @@
                     label="Sort"
                     item-text="text"
                     item-value="value"
+                    :append-icon="mdiMenuDown"
                     :items="sortTypes"
                     :disabled="isPreviewMode"
                     @change="sortMaterials(materialSorter)"
@@ -48,7 +50,7 @@
         )
           v-card(height="100%" flat).material-container.rounded-md.py-6.px-10
             v-card-text
-              h3.mc-h3.my-2.black--text {{ material.title }}
+              h3.mc-h3.my-2.title--text {{ material.title }}
               i.font-gray.font-12.font-italic(v-if="material.category") {{ material.category }}
               p.my-2.mc-b4 {{ material.description }}
             v-card-actions.text-center.py-3.px-4
@@ -72,6 +74,7 @@
 
 <script>
 import uniqBy from 'lodash/uniqBy';
+import { mdiMenuDown } from '@mdi/js';
 import { fetchLearningCornerMaterials } from '~/utils/axios';
 
 export default {
@@ -106,6 +109,7 @@ export default {
       selectedCategory: [],
       materialSorter: null,
       loading: true,
+      mdiMenuDown,
     };
   },
   computed: {
