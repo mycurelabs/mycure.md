@@ -20,14 +20,11 @@
                 @keyup.enter="debouncedSearch"
               ).mt-3.search-bar
                 template(v-slot:append)
-                  v-tooltip(top)
-                    template(v-slot:activator="{ on, attrs }")
-                      div(
-                        @click="debouncedSearch"
-                        v-on="on"
-                      ).search-icon.text-center.pt-2
-                        v-icon(color="white") {{ mdiMagnify }}
-                    span Search
+                  div(
+                    @click="debouncedSearch"
+                    v-on="on"
+                  ).search-icon.text-center.pt-2
+                    v-icon(color="white") {{ mdiMagnify }}
     v-container(v-else).search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6

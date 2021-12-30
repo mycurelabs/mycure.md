@@ -1,6 +1,6 @@
 <template lang="pug">
   v-card(flat :class="$isWideScreen ? 'pa-8' : 'pa-3'").rounded-md
-    v-card-text
+    v-card-text(:class="{'px-0': $isMobile}")
       v-row(:justify="$isMobile ? 'center' : 'start'")
         v-col(cols="12" md="3" align="center")
           v-avatar(:size="$isWideScreen ? '200' : '150'")
@@ -31,7 +31,7 @@
               span.mc-b4.pt-2.title--text.font-weight-bold Schedule
             v-spacer
             v-col(:cols="$isMobile ? '12' : null")
-              v-tooltip(top)
+              v-tooltip(top :disabled="$isMobile")
                 template(v-slot:activator="{ on, attrs }")
                   div(v-on="on").mr-n4
                     v-select(
@@ -48,7 +48,7 @@
                       template(v-slot:selection="{ item }")
                         span.mc-b4 {{ item.text }}
                 span Select Consultation Type
-          v-row(dense :justify="$isMobile ? 'center' : 'start'" align="center").pl-1.mt-n1
+          v-row(dense :justify="$isMobile ? 'center' : 'start'" align="center" :class="$isMobile? 'mt-3' : 'mt-n1'").pl-1
             div(
               v-for="(day, key) in daysList"
               :key="key"
@@ -61,7 +61,7 @@
               @click="dialog.schedules = true"
               :class="isAvailable ? 'primary--text' : ['unavailable--text', 'disable-click']"
             ).mc-b4.font-weght-semibold View full schedule
-            v-col(v-else cols="12")
+            v-col(v-else cols="12").text-center.mt-4
               a(
                 @click="dialog.schedules = true"
                 :class="isAvailable ? 'primary--text' : ['unavailable--text', 'disable-click']"

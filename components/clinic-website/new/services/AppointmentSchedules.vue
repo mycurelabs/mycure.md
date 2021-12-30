@@ -19,7 +19,7 @@
               sm="7"
             )
               v-row(dense justify="center")
-                v-col(cols="8" :align="$isMobile ? 'center' : null")
+                v-col(cols="12" md="8" :align="$isMobile ? 'center' : null")
                   h4.font-weight-semibold
                     strong(v-if="!hideLabels" :class="`${getSlotColor(timeslot)}--text`").font-weight-black |&nbsp;
                     span {{ timeslot | format-time-range }}
