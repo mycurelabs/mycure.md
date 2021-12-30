@@ -17,6 +17,7 @@
           br
           h3.mc-h4.title--text.mb-1.font-weight-semibold Facility Schedule
           br
+          span(v-if="!compressedSchedules[0].day").mc-b2 Schedule not available
           v-row(v-for="(sched, key) in compressedSchedules" :key="key")
             v-col(cols="4" :class="{'px-1': $isMobile}").pt-1.pb-0
               p(v-if="typeof (sched.day) === 'string'").mc-b3.title--text.font-weight-semibold.text-capitalize.mb-0 {{ sched.day }}
@@ -29,7 +30,7 @@
       v-col(cols="12" md="5" :class="{'mt-8': $isMobile}")
         h3.mc-h4.title--text Location
         br
-        div(v-if="address.lat && address.lng" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
+        div(v-if="address.lat || address.lng" :style="$isWideScreen ? 'height: 400px' : 'height: 250px'")#map
         div(v-else)
           span.mc-b3 Location not available
 </template>
@@ -87,15 +88,18 @@ export default {
       return { lat: this.address.lat, lng: this.address.lng };
     },
     groupedSchedules () {
-      const groupedSchedules = this.schedule
-        .map((schedule) => {
-          const { order } = this.days.find(day => day.day === schedule.day);
-          return {
-            order,
-            ...schedule,
-          };
-        })
-        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      let groupedSchedules = [];
+      if (this.schedule) {
+        groupedSchedules = this.schedule
+          .map((schedule) => {
+            const { order } = this.days.find(day => day.day === schedule.day);
+            return {
+              order,
+              ...schedule,
+            };
+          })
+          .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      }
       return groupedSchedules;
     },
     compressedSchedules () {
@@ -146,7 +150,6 @@ export default {
         mapTypeId: 'roadmap',
       };
       this.map = new google.maps.Map(document.getElementById('map'), mapOptions); /* eslint-disable-line no-undef */
-
       // Create a marker for passed address
       const position = this.addressGeometry || this.defaultMapPosition;
       this.mapMarker = this.createMapMarker(position);
