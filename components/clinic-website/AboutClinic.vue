@@ -44,7 +44,7 @@ export default {
       default: null,
     },
   },
-  computed: {
+  methods: {
     getInsurerName (insurer) {
       return insurer.insurerName?.substring(0, 1) || insurer.coveragesData?.name || '*';
     },
