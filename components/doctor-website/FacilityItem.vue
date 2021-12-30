@@ -87,7 +87,7 @@
               @click="trackBooking('telehealth')"
             ).text-none.rounded-ml
               //- v-icon(small left) {{ canOnlineBook ? mdiVideoOutline : mdiClose }}
-              span.primary--text.mc-btn1 Online Consult
+              span.mc-btn1 Online Consult
             v-btn(
               color="primary"
               depressed
