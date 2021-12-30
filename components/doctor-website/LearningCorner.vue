@@ -50,15 +50,9 @@
           md="6"
         )
           v-card(height="100%" flat).material-container.rounded-md.py-6.px-10
-<<<<<<< HEAD
             v-card-text
               h3.mc-h3.my-2.title--text {{ material.title }}
               i.font-gray.font-12.font-italic(v-if="material.category") {{ material.category }}
-=======
-            v-card-text(:class="{'text-center': $isMobile}")
-              h3.mc-h3.my-2.black--text {{ material.title }}
-              i.font-gray.font-12.font-italic(v-if="material.category" ) {{ material.category }}
->>>>>>> 57ca58ef7d4e2ae9d2c0809a41dd207514e72d6b
               p.my-2.mc-b4 {{ material.description }}
             v-card-actions.text-center.py-3.px-4
               v-btn(
