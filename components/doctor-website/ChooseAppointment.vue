@@ -50,10 +50,8 @@
 import { mdiClose } from '@mdi/js';
 import intersection from 'lodash/intersection';
 import PictureSource from '~/components/commons/PictureSource';
-
 const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
 const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
-
 export default {
   components: {
     PictureSource,
@@ -140,12 +138,10 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .service-card {
   border: 2px solid #04B1E7;
 }
-
 .card-actions {
   position: absolute;
   bottom: 0;

@@ -85,11 +85,11 @@
                   alt="MYCURE icon"
                   @click="onHome"
                 ).mr-1
-                v-btn(@click="onHome" text dense style="color: #72727D;").text-none.px-1
-                  span.mc-b2 Home
+                v-btn(@click="onHome" text dense).text-none.px-1
+                  span.mc-b2.primary--text Home
                 span(style="color: #72727D;") &nbsp;/&nbsp;
-                v-btn(@click="onRedirect(tabSelect)" text dense).px-2.text-none
-                  span.mc-b2.primary--text.font-weight-bold {{ tabSelect }}
+                v-btn(@click="onRedirect(tabSelect)" text dense style="color: #72727D;").px-2.text-none
+                  span.mc-b2.font-weight-bold {{ tabSelect }}
               v-tab(
                 v-for="(tab, key) in tabsList"
                 :key="key"

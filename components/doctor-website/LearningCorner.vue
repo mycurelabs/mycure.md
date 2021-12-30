@@ -69,7 +69,7 @@
           v-skeleton-loader(type="article, actions")
       v-row(v-else)
         v-col(cols="12")
-          v-card(flat).rounded-md.px-16.py-8
+          v-card(flat :class="!$isMobile ? 'px-16' : 'px-3'").rounded-md.py-8
             p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>
 
