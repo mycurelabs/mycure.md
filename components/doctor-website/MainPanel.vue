@@ -5,30 +5,28 @@
         //- Logo
         v-col(v-if="!$isMobile" cols="10")
           v-row(align="center").px-3.py-5
-            nuxt-link(to="/directory")
-              img(
-                src="~/assets/images/mycure-logo-white.png"
-                width="120"
-                alt="MYCURE logo"
-              ).mb-n2
+            v-tooltip(bottom)
+              template(v-slot:activator="{ on, attrs }")
+                div(v-on="on")
+                  nuxt-link(to="/directory")
+                    img(
+                      src="~/assets/images/mycure-logo-white.png"
+                      :width="$isWideScreen ? '132' : '120'"
+                      alt="MYCURE logo"
+                    ).mb-n2
+              span MYCURE Search Directory
             v-spacer
             v-btn(
+              v-for="(tab, key) in tabs"
+              :key="key"
               text
-              @click="onRedirect('Facilities')"
-            ).text-none.mc-h7.white--text.font-weight-light Facilities
-            v-btn(
-              text
-              @click="onRedirect('Profile')"
-            ).text-none.mc-h7.white--text.font-weight-light Profile
-            v-btn(
-              text
-              @click="onRedirect('Services')"
-            ).text-none.mc-h7.white--text.font-weight-light Services
-            v-btn(
-              text
-              @click="onRedirect('Learning Corner')"
-            ).text-none.mc-h7.white--text.font-weight-light Learning Corner
-            share-button(color="white" @clipSuccess="$emit('clipSuccess')" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
+              @click="onRedirect(tab)"
+            ).text-none.mc-h7.white--text.font-weight-light {{ tab }}
+            v-tooltip(bottom :disabled="shareModel")
+              template(v-slot:activator="{ on, attrs }")
+                div(v-on="on")
+                  share-button(color="white" @clipSuccess="$emit('clipSuccess')" @clicked="shareModel = !shareModel" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
+              span Share Clinic
         v-col(v-else cols="10").pt-8
           v-row(align="center")
             nuxt-link(to="/")
@@ -174,6 +172,7 @@ export default {
     },
   },
   data () {
+    this.tabs = ['Facilities', 'Profile', 'Services', 'Learning Corner'];
     this.metricMappings = [
       {
         icon: mdiEye,
@@ -210,6 +209,7 @@ export default {
       drawer: false,
       mdiMenu,
       mdiClose,
+      shareModel: false,
     };
   },
   computed: {

@@ -13,7 +13,7 @@
             v-clamp(
               autoresize
               :max-lines="2"
-            ).mb-0.mc-h3.black--text {{ clinic.name }}&nbsp;
+            ).mb-0.mc-h3.title--text {{ clinic.name }}&nbsp;
             v-spacer
           //- Address
           v-row(align="top").mt-2.px-3
