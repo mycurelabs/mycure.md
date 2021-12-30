@@ -71,8 +71,8 @@
               hide-slider
               :right="!$isMobile"
               v-model="tabSelect"
-              :next-icon="mdiArrowRightThinCircleOutline"
-              :prev-icon="mdiArrowLeftThinCircleOutline"
+              :next-icon="mdiChevronRight"
+              :prev-icon="mdiChevronLeft"
               background-color="transparent"
               slider-color="primary"
               active-class="black--text"
@@ -191,7 +191,7 @@
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
 import VueScrollTo from 'vue-scrollto';
-import { mdiCheckCircle, mdiArrowRightThinCircleOutline, mdiArrowLeftThinCircleOutline } from '@mdi/js';
+import { mdiCheckCircle, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import { AMPLITUDE_KEYS } from './constants';
 // components
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
@@ -281,8 +281,8 @@ export default {
       shareBtn: false,
       tabSelect: 'Facilities',
       mdiCheckCircle,
-      mdiArrowRightThinCircleOutline,
-      mdiArrowLeftThinCircleOutline,
+      mdiChevronRight,
+      mdiChevronLeft,
     };
   },
   head () {

@@ -3,9 +3,10 @@
     template(v-if="materials.length")
       v-row
         v-col(cols="12")
-          v-card(flat).rounded-md.px-16.py-8
+          v-card(flat :class="!$isMobile ? 'px-16' : 'px-3'").rounded-md.py-8
             v-card-title
-              h3.mc-h3.mb-10 Learning Corner
+              v-col(cols="12" :class="{'text-center': $isMobile}").pa-0
+                h3.mc-h3.mb-10 Learning Corner
             v-card-text
               v-row
                 v-col(cols="12" md="4")
@@ -47,9 +48,9 @@
           md="6"
         )
           v-card(height="100%" flat).material-container.rounded-md.py-6.px-10
-            v-card-text
+            v-card-text(:class="{'text-center': $isMobile}")
               h3.mc-h3.my-2.black--text {{ material.title }}
-              i.font-gray.font-12.font-italic(v-if="material.category") {{ material.category }}
+              i.font-gray.font-12.font-italic(v-if="material.category" ) {{ material.category }}
               p.my-2.mc-b4 {{ material.description }}
             v-card-actions.text-center.py-3.px-4
               v-btn(

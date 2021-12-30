@@ -2,8 +2,8 @@
   v-card(color="white" flat width="100%" :class="$isMobile ? 'px-4' : 'px-12'").py-8.rounded-lg
     v-col
       v-row
-        v-col(cols="12" md="6" :class="{'text-center': $isMobile}")
-          h3.mc-h3.mb-4 About Me
+        v-col(cols="12" md="6" :class="{'text-center': $isMobile}").mb-8
+          h3.mc-h4.mb-4 About Me
           p.mc-b3 {{ bio || `This doctor has not shared any info yet, but we're sure they're great!` }}
           br
           br
