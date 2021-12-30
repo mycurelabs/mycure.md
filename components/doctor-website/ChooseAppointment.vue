@@ -3,7 +3,7 @@
     v-card
       v-toolbar(flat)
         v-spacer
-        h2.font-weight-bold.mc-h2 How can {{ isClinic ? 'we' : 'I' }} help you?
+        h2.font-weight-bold.title--text.mc-h4 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
           v-if="!$isMobile"
