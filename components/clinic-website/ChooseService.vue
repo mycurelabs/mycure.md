@@ -7,7 +7,7 @@
         v-spacer
       v-card-text
         v-row(justify="center")
-          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="4" :class="{'px-1': $isMobile}")
+          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="4")
             v-hover(
               v-slot="{ hover }"
               open-delay="100"
@@ -24,11 +24,11 @@
                   :image-file-extension="$useWebp? '.webp' : '.png'"
                   custom-path="booking/"
                 )
-                v-card-text.text-center.px-0
+                v-card-text.text-center
                   h3(:class="[hover ? 'white--text' : 'secondary--text', {'font-12': $isMobile}]") {{ type.text }}
       v-card-actions
         v-spacer
-        v-btn(color="error" outlined depressed x-large @click="onSelect({value: 'close'})").text-none Cancel
+        v-btn(color="error" outlined depressed x-large @click="dialog = false").text-none Cancel
 </template>
 
 <script>
@@ -113,9 +113,7 @@ export default {
   methods: {
     onSelect (type) {
       this.$emit('select', type.value);
-      if (type.value !== 'close') {
-        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
-      }
+      VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       this.dialog = false;
     },
   },

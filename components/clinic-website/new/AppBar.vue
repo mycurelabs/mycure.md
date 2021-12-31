@@ -8,7 +8,7 @@
     )
       template(v-if="$isMobile")
         img(
-          src="../../assets/images/MYCURE-logo.png"
+          src="../../../assets/images/MYCURE-logo.png"
           width="150"
         )
         v-spacer
@@ -23,7 +23,7 @@
             v-col(cols="10")
               div.d-flex.py-0.align-center
                 img(
-                  src="../../assets/images/MYCURE-logo.png"
+                  src="../../../assets/images/MYCURE-logo.png"
                   width="150"
                 )
                 v-spacer

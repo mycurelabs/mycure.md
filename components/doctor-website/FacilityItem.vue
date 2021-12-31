@@ -2,7 +2,7 @@
   v-card(width="100%" flat).px-1.py-8.rounded-lg
     v-card-text
       v-row(justify="center")
-        v-col(cols="6" md="3" :class="{'text-center': $isMobile}").pb-0
+        v-col(cols="6" md="3" justify="center" align="center").pb-0.text-center
           img(
             :src="clinicPicURL"
             alt="Services"
@@ -13,66 +13,63 @@
             v-clamp(
               autoresize
               :max-lines="2"
-            ).mb-0.mc-h3.title--text {{ clinic.name }}&nbsp;
+            ).mb-0.mc-h3.black--text {{ clinic.name }}&nbsp;
             v-spacer
           //- Address
-          v-row(align="top").mt-2.px-3
+          v-row.mt-2.px-3
             v-icon(color="primary").mr-2 {{ mdiMapMarker }}
-            v-col.pa-0
-              v-clamp(
-                autoresize
-                :max-lines="2"
-                :class="[{ 'font-italic': !clinic.address }, { 'text-left': $isMobile }]"
-                :style="!clinic.address ? 'color: #BFBFBF;' : ''"
-              ).mc-b2 {{ clinic.address | prettify-address }}&nbsp;&nbsp;
+            v-clamp(
+              autoresize
+              :max-lines="2"
+              :class="{ 'font-italic': !clinic.address }"
+            ).mc-b2 {{ clinic.address | prettify-address }}&nbsp;&nbsp;
           //- Contact
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiPhoneInTalk }}
-            v-col.pa-0
-              span(
-                :class="{ 'font-italic': !phone }"
-                :style="!phone ? 'color: #BFBFBF;' : ''"
-              ).mc-b2 {{ phone || 'No information provided' }}
+            v-clamp(
+              autoresize
+              :max-lines="1"
+              :class="{ 'font-italic': !phone }"
+            ).mc-b2 {{ phone || 'No information provided' }}
           //- Email
           v-row.px-3
             v-icon(color="primary").mr-2 {{ mdiEmail }}
-            v-col.pa-0
-              span(
-                :class="{ 'font-italic': !email }"
-                :style="!email ? 'color: #BFBFBF;' : ''"
-              ).mc-b2 {{ email || 'No information provided'}}
+            v-clamp(
+              autoresize
+              :max-lines="1"
+              :class="{ 'font-italic': !email }"
+            ).mc-b2 {{ email || 'No information provided'}}
       v-row(justify="end").px-8
-        v-col(cols="12").py-6
+        v-col(cols="12")
           v-divider
       //- Schedules
-      v-row(justify="center")
-        v-col(cols="12" md="11")
-          v-row(v-if="!$isMobile" justify="center" align="center").my-1
-            div(
-              v-for="(day, index) in daysList"
-              :key="index"
-              :class="[{'text-center': $isMobile}, isClinicOpen(day.value) ? 'white--text' : 'unavailable--text' ]"
-            ).mx-3
-              div(:class="[textFontSize, isClinicOpen(day.value) ? 'primary' : 'disabled']").badge.badge-size
-                | {{ day.text }}
-            v-spacer
-            a(v-if="operatingSchedules.length && !$isMobile" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
-            v-icon(v-if="operatingSchedules.length && !$isMobile" small color="primary").ml-1 {{ mdiInformationOutline }}
-          div(v-else).mb-2
-            v-row.d-flex.justify-space-around.mb-3
-              div(
-                v-for="(day, index) in daysList"
-                :key="index"
-                :class="[{'text-center': $isMobile}, isClinicOpen(day.value) ? 'white--text' : 'unavailable--text' ]"
-              )
-                div(:class="[textFontSize, isClinicOpen(day.value) ? 'primary' : 'disabled']").badge.badge-size
-                  | {{ day.text }}
-            v-row(v-if="$isMobile" justify="center" align="center")
-              a(v-if="operatingSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-semibold.mc-b4 View full schedule
-              v-icon(v-if="operatingSchedules.length" small color="primary").ml-1 {{ mdiInformationOutline }}
+      //- v-row.pt-2
+      //-   v-col(cols="1" v-if="!$isMobile")
+      //-   v-badge(
+      //-     v-for="(day, key) in days"
+      //-     :key="key"
+      //-     :color="isClinicOpen(day.order) ? 'primary' : '#EEEEEE'"
+      //-     :content="day.dayName.charAt(0)"
+      //-     inline
+      //-     large
+      //-   )
+      //-   v-spacer
+      //-   a(v-if="!$isMobile && fullSchedules.length" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
+      //-   v-col(cols="12" v-else-if="$isMobile && fullSchedules.length")
+      //-     a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+      v-row(justify="end" align="center").px-8.my-5
+        div(v-for="(day, index) in daysList" :key="index" :class="$isMobile ? 'mx-1' : 'mx-3' ").white--text
+          div(:class="[textFontSize, badgeSize , isClinicOpen(day.value) ? 'primary' : '#EEEEEE']").badge
+            | {{ day.text }}
+        v-spacer
+        //- v-col(v-if="operatingSchedules.length" cols="12" :align="$isMobile ? 'start' : 'end'").pl-0
+        //-   v-row(align="center").pa-3
+        div(v-if="operatingSchedules.length" :class="{'mt-2': $isMobile}")
+          a(@click="scheduleDialog = true").primary--text.font-weight-semibold View full schedule
+          v-icon(small).ml-3 {{ mdiInformationOutline }}
     v-spacer
     v-card-actions.pa-2.pb-4
-      v-row(justify="center" :class="{'px-8': !$isMobile}").mt-3
+      v-row(justify="center").px-8
         //- v-spacer(v-if="!$isMobile")
         v-col(v-if="canOnlineBook || canVisit" cols="12").text-right
           div(:class="{'d-inline-flex': !$isMobile}")
@@ -80,31 +77,31 @@
               color="primary"
               depressed
               outlined
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
               :block="$isMobile"
               :href="!isPreviewMode && telehealthURL"
               :class="{'mx-1': !$isMobile}"
               :disabled="!canOnlineBook"
               @click="trackBooking('telehealth')"
-            ).text-none.rounded-ml
-              //- v-icon(small left) {{ canOnlineBook ? mdiVideoOutline : mdiClose }}
-              span.mc-btn1 Online Consult
+            ).text-none.font-12.clinic-book-btn
+              v-icon(small left) {{ canOnlineBook ? mdiVideoOutline : mdiClose }}
+              span.primary--text Online Consult
             v-btn(
               color="primary"
               depressed
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
               :block="$isMobile"
               :disabled="!canVisit"
               :href="!isPreviewMode && visitURL"
               :class="$isMobile ? 'mt-2': 'mx-1'"
               @click="trackBooking('physical')"
-            ).text-none.rounded-ml
-              //- v-icon(small left) {{ canVisit ? mdiStethoscope : mdiClose }}
-              span.mc-btn1 Book a Visit
+            ).text-none.font-12.clinic-book-btn
+              v-icon(small left) {{ canVisit ? mdiStethoscope : mdiClose }}
+              span Book a Visit
         v-col(v-else cols="12" sm="10").text-center
-          span(style="color: #BFBFBF").font-italic This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
+          span.font-italic.grey--text This clinic does not accept online bookings for now. Please contact the clinic directly for more info.
       //- v-spacer(v-if="!$isMobile")
 
     //- Schedule Dialog
@@ -297,9 +294,16 @@ export default {
         .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
       , (a, b) => a.day === b.day && a.startTime === b.startTime);
     },
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
+      });
+    },
     textFontSize () {
       return classBinder(this, {
-        mobile: ['font-12'],
+        mobile: ['font-10'],
         regular: ['font-14'],
         wide: ['font-18'],
       });
@@ -351,27 +355,23 @@ export default {
 .clinic-book-btn {
   width: 150px;
 }
+.badge-size {
+  height: 30px;
+  width: 30px;
+}
+.badge-size-mobile {
+  height: 20px;
+  width: 20px;
+}
+.badge-size-wide {
+  height: 40px;
+  width: 40px;
+}
 .badge {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
   background: rgb(163, 163, 163);
-}
-.badge-size {
-  height: 24px;
-  width: 24px;
-}
-@media screen and (min-width: 1015px) {
-  .badge-size {
-    height: 27px;
-    width: 27px;
-  }
-}
-@media screen and (min-width: 1904px) {
-  .badge-size {
-    height: 33px;
-    width: 33px;
-  }
 }
 </style>

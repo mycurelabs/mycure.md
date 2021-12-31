@@ -100,11 +100,6 @@ export default {
       url: null,
     };
   },
-  watch: {
-    shareBtn () {
-      this.$emit('clicked');
-    },
-  },
   methods: {
     getShareLink () {
       navigator.clipboard.writeText(window.location.href);
