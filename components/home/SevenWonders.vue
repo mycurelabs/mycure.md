@@ -2,7 +2,6 @@
   //- TODO: remove hide dots once going back to normal, as well as the background
   generic-blue-bg(
     hide-dots
-    :class="isWebp ? 'holiday-bg-webp' : 'holiday-bg-png'"
   )
     v-container
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
@@ -214,24 +213,5 @@ export default {
 }
 .slick-dots >>> .slick-active {
   color: red;
-}
-
-.holiday-bg-png {
-  background-size: cover;
-  background-image: url('../../assets/images/special/Homepage-herobg-std.png');
-}
-
-.holiday-bg-webp {
-  background-size: cover;
-  background-image: url('../../assets/images/special/Homepage-herobg-std.webp');
-}
-
-@media screen and (min-width: 1920px) {
-  .holiday-bg-png {
-    background-image: url('../../assets/images/special/Homepage-herobg-wid.png');
-  }
-  .holiday-bg-webp {
-    background-image: url('../../assets/images/special/Homepage-herobg-wid.webp');
-  }
 }
 </style>

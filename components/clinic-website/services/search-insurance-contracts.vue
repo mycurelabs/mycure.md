@@ -1,8 +1,8 @@
 <template lang="pug">
   v-autocomplete(
     v-model="model"
-    item-text="name"
-    item-value="id"
+    item-text="insurerName"
+    item-value="insurer"
     no-filter
     return-object
     clearable
@@ -16,14 +16,10 @@
     :search-input.sync="searchText"
     :items="items"
     :loading="loading"
-    :clear-icon="mdiClose"
-    :append-icon="mdiMenuDown"
     :disabled="disabled || loading"
     :class="{ 'bg-white': whiteBg }"
     @click:clear="$emit('clear')"
   )
-    template(slot="prepend-inner")
-      v-icon.mr-2 {{ mdiShieldCheck }}
     template(v-slot:selection="data")
       v-tooltip(v-if="avatar" bottom)
         template(v-slot:activator="{ on, attrs }")
@@ -33,18 +29,16 @@
             v-on="on"
           ).mx-1
             v-img(v-if="data.item.picURL" :src="data.item.picURL")
-            span(v-else).white--text {{ data.item.name.substring(0,1) }}
-          span {{ `${data.item.name.substr(0, 10)} ...` }}
-        span {{ data.item.name }}
+            span(v-else).white--text {{ data.item.insurerName.substring(0,1) }}
+        span {{ data.item.insurerName }}
       v-chip(v-else small color="primary")
-        span(:max-lines="1" autoresize).font-12 {{ `${data.item.name.substr(0, 20)} ...` }}
+        span(:max-lines="1" autoresize).font-12 {{ `${data.item.insurerName.substr(0, 20)} ...` }}
 </template>
 
 <script>
 // import VClamp from 'vue-clamp';
-import { mdiClose, mdiMenuDown, mdiShieldCheck } from '@mdi/js';
 import debounce from 'lodash/debounce';
-import { fetchOrganizations } from '~/services/organizations';
+import { fetchInsuranceContracts } from '~/services/insurance-contracts';
 
 export default {
   components: {
@@ -99,9 +93,6 @@ export default {
       loading: false,
       searchText: null,
       debouncedFetchContracts: debounce(this.fetchContracts, 500),
-      mdiClose,
-      mdiMenuDown,
-      mdiShieldCheck,
     };
   },
   watch: {
@@ -123,9 +114,8 @@ export default {
     async fetchContracts () {
       try {
         this.loading = true;
-        const { items } = await fetchOrganizations(this.$sdk, {
+        const { items } = await fetchInsuranceContracts(this.$sdk, {
           searchText: this.searchText,
-          type: 'insurance',
         });
         if (this.model) {
           this.items = [this.model, ...items];
@@ -140,7 +130,7 @@ export default {
     },
     onSelectContract (contract) {
       if (!contract) return;
-      this.$emit('select', contract.id);
+      this.$emit('select', contract.insurer || contract.id);
     },
   },
 };

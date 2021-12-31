@@ -1,5 +1,5 @@
 <template lang="pug">
-  span(:style="textStyle" :class="textClass") {{symbol}}{{value | money}}
+  span(:style="textStyle") {{symbol}}{{value | money}}
 </template>
 
 <script>
@@ -23,10 +23,6 @@ export default {
     },
     textStyle: {
       type: Object,
-      default: () => ({}),
-    },
-    textClass: {
-      type: [Array, Object, String],
       default: () => ({}),
     },
   },

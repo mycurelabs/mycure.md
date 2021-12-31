@@ -232,7 +232,7 @@ export default {
     },
     // Migrated from DocItemCard , re-check if what are only relevant
     fullSchedules () {
-      return this.doctor?.schedulesData || this.doctor?.schedules || [];
+      return this.doctor?.scheduleData || this.doctor?.schedules || [];
     },
     groupedSchedules () {
       const schedules = [...this.fullSchedules];

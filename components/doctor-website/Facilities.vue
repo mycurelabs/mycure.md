@@ -3,13 +3,13 @@
     v-col(v-if="loading" cols="12")
       v-skeleton-loader(type="article, actions")
     template(v-else)
-      v-col(v-if="!clinics.length" cols="12").px-16
+      v-col(v-if="!clinics.length" cols="12")
         p.mc-b2.mt-10 This doctor has no listed organizations. Please come and check another time!
       v-col(
         v-for="(clinic, key) in clinics"
         :key="key"
         cols="12"
-      ).grey-bg.pt-0.pb-6
+      ).grey-bg
         facility-item(
           :clinic="clinic"
           :doctor-id="doctorId"
