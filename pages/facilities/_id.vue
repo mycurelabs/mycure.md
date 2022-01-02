@@ -327,7 +327,7 @@ export default {
         clinic,
       };
     } catch (error) {
-      console.error(error);
+      console.error('asyncData', error);
     }
   },
   data () {
@@ -510,10 +510,14 @@ export default {
   },
   methods: {
     async init () {
-      this.loading.services.section = true;
-      await this.fetchServiceTypes();
-      await this.fetchClinicInsurers();
-      this.loading.services.section = false;
+      try {
+        this.loading.services.section = true;
+        await this.fetchServiceTypes();
+        await this.fetchClinicInsurers();
+        this.loading.services.section = false;
+      } catch (error) {
+        console.error('init', error);
+      }
     },
     /** Fetches all services of facility
      *
