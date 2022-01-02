@@ -314,7 +314,7 @@ export default {
       return tab ? tab.text : 'Section';
     },
   },
-  layout: 'clinic-website',
+  // layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect, error }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
