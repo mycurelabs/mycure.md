@@ -2,13 +2,13 @@
   div.main-container
     div(v-if="!loading.page")
       //- CHOOSE APPOINTMENT TYPE
-      //- choose-appointment(
-      //-   is-clinic
-      //-   v-model="dialogs.appointment"
-      //-   :has-doctors="isTelehealthEnabled"
-      //-   :has-physical-services="isBookingEnabled"
-      //-   @select="onSelectAppointment($event)"
-      //- )
+      choose-appointment(
+        is-clinic
+        v-model="dialogs.appointment"
+        :has-doctors="isTelehealthEnabled"
+        :has-physical-services="isBookingEnabled"
+        @select="onSelectAppointment($event)"
+      )
       //- CHOOSE SERVICE DIALOG
       choose-service(
         v-model="dialogs.serviceType"
@@ -16,18 +16,18 @@
         @select="onSelectServiceType($event)"
       )
       v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
-      main-panel(
-        :tabs="normalTabsList"
-        :pic-url="picURL"
-        :clinic-name="clinicName"
-        :formatted-address="formattedAddress"
-        :clinic-phone="clinicPhone"
-        :style="{ height: $isMobile ? '110vh' : '110vh' }"
-        :is-bookable="isVerified && isOnline"
-        @book="dialogs.appointment = true"
-        @redirect="onRedirect($event)"
-        @clipSuccess="clipSuccess = true"
-      )#top
+      //- main-panel(
+      //-   :tabs="normalTabsList"
+      //-   :pic-url="picURL"
+      //-   :clinic-name="clinicName"
+      //-   :formatted-address="formattedAddress"
+      //-   :clinic-phone="clinicPhone"
+      //-   :style="{ height: $isMobile ? '110vh' : '110vh' }"
+      //-   :is-bookable="isVerified && isOnline"
+      //-   @book="dialogs.appointment = true"
+      //-   @redirect="onRedirect($event)"
+      //-   @clipSuccess="clipSuccess = true"
+      //- )#top
       //- Search panel
       search-panel(
         v-model="searchText"
