@@ -203,10 +203,10 @@
                     v-spacer
                   v-divider(v-if="!$isMobile").my-3
                   v-card-text
-                    specialization-filter(
-                      v-model="specializationFiltersArray"
-                      @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
-                    )
+                    //- specialization-filter(
+                    //-   v-model="specializationFiltersArray"
+                    //-   @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                    //- )
             //- RESULTS
             v-col(cols="12" md="8" xl="9" :class="{'px-0': $isMobile}")
               services-paginated(
