@@ -5,8 +5,7 @@
     //- do not remove yet
     //- div(v-if="!loading")
     div
-      h1 foo
-      //- nuxt
+      nuxt
     app-footer(v-if="!loading")
 </template>
 
