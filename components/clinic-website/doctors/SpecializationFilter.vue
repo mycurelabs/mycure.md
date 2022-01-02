@@ -31,7 +31,6 @@
               hide-details
             )
             v-btn(
-              v-if=""
               color="secondary"
               text
               @click="clearSpecializations"
