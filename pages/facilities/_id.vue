@@ -1,6 +1,7 @@
 <template lang="pug">
   div.main-container
-    div(v-if="!loading.page")
+    pre {{clinic}}
+    //- div(v-if="!loading.page")
       //- CHOOSE APPOINTMENT TYPE
       choose-appointment(
         is-clinic
