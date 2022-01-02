@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="600" height="800" persistent)
-    v-card
+  v-dialog(v-model="dialog" width="600" height="800")
+    v-card.pt-4
       v-toolbar(flat)
         v-spacer
-        h2 How can {{ isClinic ? 'we' : 'I' }} help you?
+        h2.font-weight-bold.title--text.mc-h4 How can {{ isClinic ? 'we' : 'I' }} help you?
         v-spacer
         v-btn(
           v-if="!$isMobile"
@@ -12,7 +12,7 @@
           @click="dialog = false"
         ).text-none
           v-icon {{ mdiClose }}
-      v-card-text.pa-3
+      v-card-text.px-3
         v-container
           v-row
             v-col(cols="12" md="6" v-for="(service, key) in services" :key="key").text-center
@@ -24,7 +24,7 @@
                   :disabled="!isAppointmentAvailable(service)"
                   hover
                   :color="hover ? service.color : 'white'"
-                  :class="[{'white--text': hover}, {'unavailable': !isAppointmentAvailable(service)}]"
+                  :class="[{'white--text': hover}, {'unavailable': !isAppointmentAvailable(service)}, {'pt-6': $isMobile}]"
                   @click="onServiceSelect(service.type)"
                 ).service-card
                   picture-source(
@@ -35,7 +35,7 @@
                     custom-path="doctor-website/"
                   )
                   v-card-text.text-center
-                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
+                    h3(:class="hover ? 'white--text' : `${service.color}--text`").mc-h5 {{ key === 1 && isClinic ? 'Visit Clinic' : service.text }}
       v-card-actions(v-if="$isMobile")
         v-spacer
         v-btn(
@@ -50,10 +50,8 @@
 import { mdiClose } from '@mdi/js';
 import intersection from 'lodash/intersection';
 import PictureSource from '~/components/commons/PictureSource';
-
 const BOOKING_FACILITY_TYPES = ['doctor-booking', 'clinic-booking'];
 const TELEHEALTH_FACILITY_TYPES = ['doctor-telehealth', 'clinic-telehealth'];
-
 export default {
   components: {
     PictureSource,
@@ -140,12 +138,10 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .service-card {
   border: 2px solid #04B1E7;
 }
-
 .card-actions {
   position: absolute;
   bottom: 0;

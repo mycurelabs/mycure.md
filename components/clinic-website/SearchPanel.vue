@@ -1,79 +1,78 @@
 <template lang="pug">
-  v-col(
-    :style="!hideBanner ? backgroundStyle : null"
-    :class="{ 'mobile-height': $isMobile, 'full-container': !hideBanner }"
-  )
-    v-container(fluid).pa-0
-      v-row(align="center" justify="center" :no-gutters="noGutters" :class="{'content-container': !hideBanner}").mx-1
-        v-col(cols="10" :md="!hideBanner ? '6' : '12'").text-center
-          h1(v-if="!hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
-          v-text-field(
-            v-if="hasSearchables"
-            solo
-            clearable
-            :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
-            v-model="searchText"
-            :disabled="isPreviewMode"
-            @keyup.enter="debouncedSearch"
-          ).mt-3.search-bar
-            template(v-slot:append)
-              v-icon(color="white").search-icon {{ mdiMagnify }}
+  div.full-container
+    v-col(
+      fluid
+      :style="backgroundStyle"
+    ).background-container
+    template(v-if="$isMobile").search-bar-container
+      v-card(height="250" style="margin-top: -100px").rounded-lg.mx-8
+        v-card-text.pt-8
+          h3.mc-h3.title--text Easily book your next visit to {{ name || 'this health facility' }}
+        v-card-text
+          v-row(justify="center")
+            v-col(cols="12" md="10")
+              v-text-field(
+                v-model="searchText"
+                outlined
+                clearable
+                placeholder="Search"
+                :disabled="disabled"
+                @keyup.enter="debouncedSearch"
+              ).mt-3.search-bar
+                template(v-slot:append)
+                  div(
+                    @click="debouncedSearch"
+                  ).search-icon.text-center.pt-2
+                    v-icon(color="white") {{ mdiMagnify }}
+    v-container(v-else).search-bar-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6
+          v-col(cols="12").text-center
+            v-card(:height="$isWideScreen ? '280' : '240'").rounded-lg
+              v-card-text(:class="$isWideScreen ? 'pt-12' : 'pt-10'")
+                h3.mc-h3.title--text Easily book your next visit to {{ name || 'this health facility' }}
+              v-card-text
+                v-row(justify="center")
+                  v-col(cols="12" md="10")
+                    v-text-field(
+                      v-model="searchText"
+                      outlined
+                      clearable
+                      placeholder="Search services and doctors"
+                      :disabled="disabled"
+                      @keyup.enter="debouncedSearch"
+                    ).mt-3.search-bar
+                      template(v-slot:append)
+                        v-tooltip(top)
+                          template(v-slot:activator="{ on, attrs }")
+                            div(
+                              @click="debouncedSearch"
+                              v-on="on"
+                            ).search-icon.text-center.pt-2
+                              v-icon(color="white") {{ mdiMagnify }}
+                          span Search
+                        //- div(@click="debouncedSearch").primary.search-icon.pt-3.text-center
 </template>
 
 <script>
 // utils
 import { mdiMagnify } from '@mdi/js';
 import debounce from 'lodash/debounce';
+import GenericPanel from '~/components/generic/GenericPanel';
 export default {
+  components: {
+    GenericPanel,
+  },
   props: {
     value: {
       type: String,
       default: null,
     },
-    coverURL: {
-      type: String,
-      default: '',
+    clinic: {
+      type: Object,
+      default: () => ({}),
     },
-    name: {
-      type: String,
-      default: 'the health center',
-    },
-    orgId: {
-      type: String,
-      default: null,
-    },
-    searchResultsMode: {
-      type: Boolean,
-      default: false,
-    },
-    isPreviewMode: {
-      type: Boolean,
-      default: false,
-    },
-    hideSearchBars: {
-      type: Boolean,
-      default: false,
-    },
-    hideBanner: {
-      type: Boolean,
-      default: false,
-    },
-    noGutters: {
-      type: Boolean,
-      default: false,
-    },
-    serviceTypes: {
-      type: Array,
-      default: () => ([]),
-    },
-    hasServices: {
-      type: Boolean,
-      default: false,
-    },
-    hasDoctors: {
-      type: Boolean,
-      default: false,
-    },
+    disabled: Boolean,
   },
   data () {
     return {
@@ -94,14 +93,16 @@ export default {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
     },
-    hasSearchables () {
-      return this.hasServices || this.hasDoctors;
+    name () {
+      return this.clinic?.name;
+    },
+    coverURL () {
+      return this.clinic?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
     },
   },
   methods: {
     search () {
-      this.$emit('searchLoading', true);
-      this.$emit('search', { searchText: this.searchText, searchFilters: this.searchFilters });
+      this.$emit('search', this.searchText);
     },
   },
 };
@@ -109,36 +110,63 @@ export default {
 
 <style scoped>
 .full-container {
-  margin-top: 70px;
-  padding: 0;
   width: 100%;
-  height: 425px;
+  height: 400px;
+}
+
+.background-container {
+  width: 100%;
+  height: 225px;
   background-size: cover;
   background-position: center;
 }
 
-.search-mode-container {
-  padding: 0;
-  width: 100%;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-}
-
-.mobile-height {
-  height: 450px !important;
-}
-
-.content-container {
-  height: 425px;
+.search-bar-container {
+  height: 400px;
 }
 .search-bar >>> .v-input__slot {
   border-radius: 5px 5px 5px 5px;
-  border: 4px solid #0099CC;
   padding-right: 0 !important;
 }
+.search-bar >>> .v-input__append-inner {
+  margin-top: 0 !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px !important;
+}
 .search-icon {
+  border-radius: 5px;
   background-color: #0099CC;
-padding: 8px;
+  height: 40px;
+  width: 40px;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1015px) {
+  .search-bar-container {
+    margin-top: -200px;
+  }
+  .full-container {
+    width: 100%;
+    height: 525px;
+  }
+  .background-container {
+    height: 375px;
+  }
+}
+@media screen and (min-width: 1904px) {
+  .search-bar-container {
+    margin-top: -200px;
+  }
+  .full-container {
+    width: 100%;
+    height: 625px;
+  }
+  .background-container {
+    height: 425px;
+  }
 }
 </style>

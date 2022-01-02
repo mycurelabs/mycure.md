@@ -741,7 +741,6 @@ export default {
           if (!localStorage.getItem('mycure:countries')) {
             this.countries = await getCountries();
             this.countriesList = await getCountries();
-            console.log('countries', this.countries);
             localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
           } else {
             this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
