@@ -2,13 +2,13 @@
   div.main-container
     div(v-if="!loading.page")
       //- CHOOSE APPOINTMENT TYPE
-      choose-appointment(
-        is-clinic
-        v-model="dialogs.appointment"
-        :has-doctors="isTelehealthEnabled"
-        :has-physical-services="isBookingEnabled"
-        @select="onSelectAppointment($event)"
-      )
+      //- choose-appointment(
+      //-   is-clinic
+      //-   v-model="dialogs.appointment"
+      //-   :has-doctors="isTelehealthEnabled"
+      //-   :has-physical-services="isBookingEnabled"
+      //-   @select="onSelectAppointment($event)"
+      //- )
       //- CHOOSE SERVICE DIALOG
       choose-service(
         v-model="dialogs.serviceType"
