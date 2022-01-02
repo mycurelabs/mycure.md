@@ -178,7 +178,7 @@ import intersection from 'lodash/intersection';
 // import VueScrollTo from 'vue-scrollto';
 import { mdiCheckCircle } from '@mdi/js';
 // constants
-import { AMPLITUDE_KEYS } from './constants';
+import { AMPLITUDE_KEYS } from '../../constants/amplitude';
 // components
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
