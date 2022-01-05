@@ -240,14 +240,13 @@
 // import VueScrollTo from 'vue-scrollto';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
-// import intersection from 'lodash/intersection';
+import intersection from 'lodash/intersection';
 // import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
 // - TODO: Remove
-import { fetchServices } from '~/services/services';
-// import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
-// import { fetchClinicInsurers } from '~/services/insurance-contracts';
+import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
+import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
@@ -269,14 +268,14 @@ import headMeta from '~/utils/head-meta';
 // import SpecializationFilter from '~/components/clinic-website/doctors/SpecializationFilter';
 // import GenericPanel from '~/components/generic/GenericPanel';
 
-// const ALLOWED_SERVICE_TYPES = [
-//   'clinical-consultation',
-//   'clinical-procedure',
-//   'dental',
-//   'pe',
-//   'lab',
-//   'imaging',
-// ];
+const ALLOWED_SERVICE_TYPES = [
+  'clinical-consultation',
+  'clinical-procedure',
+  'dental',
+  'pe',
+  'lab',
+  'imaging',
+];
 
 // const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
 const TABS_LIST = [
@@ -570,20 +569,20 @@ export default {
     /**
      * Fetches the available service types of the clinic
      */
-    // async fetchServiceTypes () {
-    //   try {
-    //     const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
-    //     if (this.isBookingEnabled) {
-    //       this.serviceTypes = intersection(ALLOWED_SERVICE_TYPES, items) || [];
-    //     }
-    //     if (this.isTelehealthEnabled) {
-    //       this.serviceTypes.push('telehealth');
-    //     }
-    //     if (!isEmpty(this.serviceTypes)) this.activeServiceType = this.serviceTypes[0];
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // },
+    async fetchServiceTypes () {
+      try {
+        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
+        if (this.isBookingEnabled) {
+          this.serviceTypes = intersection(ALLOWED_SERVICE_TYPES, items) || [];
+        }
+        if (this.isTelehealthEnabled) {
+          this.serviceTypes.push('telehealth');
+        }
+        if (!isEmpty(this.serviceTypes)) this.activeServiceType = this.serviceTypes[0];
+      } catch (e) {
+        console.error(e);
+      }
+    },
     /**
      * Fetches all doctors of facility
      *
@@ -618,20 +617,20 @@ export default {
         this.loading.doctors.list = false;
       }
     },
-    // async fetchClinicInsurers () {
-    //   try {
-    //     this.loading.insurers = true;
-    //     const query = {
-    //       insured: this.clinicId,
-    //     };
-    //     const { items } = await fetchClinicInsurers(query);
-    //     this.items.insurers = items;
-    //   } catch (error) {
-    //     console.error(error);
-    //   } finally {
-    //     this.loading.services.list = false;
-    //   }
-    // },
+    async fetchClinicInsurers () {
+      try {
+        this.loading.insurers = true;
+        const query = {
+          insured: this.clinicId,
+        };
+        const { items } = await fetchClinicInsurers(query);
+        this.items.insurers = items;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.services.list = false;
+      }
+    },
     // search () {
     //   if (!this.searchMode) {
     //     this.currentServicePropsQuery = {};
