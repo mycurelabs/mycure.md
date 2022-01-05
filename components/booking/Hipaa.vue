@@ -5,13 +5,11 @@
         content-right
         title="MYCURE is HIPAA Compliant"
         content="MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA."
-        :content-column-bindings="contentColumnBindings"
-        :media-column-bindings="mediaColumnBindings"
         :title-classes="headerClasses"
         :content-classes="descriptionClasses"
       )
         div(slot="super-title")
-          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold DATA PRIVACY
+          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SECURED & SAFE
         template(slot="image")
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wMD }")

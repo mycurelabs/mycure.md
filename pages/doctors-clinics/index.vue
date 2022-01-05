@@ -65,7 +65,7 @@
       features(
         title="Healthcare Providers Trust MYCURE Doctors"
         :title-col-size="11"
-        :content-col-size="10"
+        :content-col-size="9"
         :description="featuresDescription"
         :items="features"
         image-dir="doctors-clinics/"
@@ -238,8 +238,8 @@ export default {
           customPath: 'features/',
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
           imageAlt: 'Woman in a video call using MYCURE telehealth',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
-          height: this.$isMobile ? '183.72px' : (this.$isRegularScreen ? '281.71px' : '454.59px'),
+          width: this.$isMobile ? '289.8px' : (this.$isRegularScreen ? '462px' : '745.5px'),
+          height: this.$isMobile ? '192.906px' : (this.$isRegularScreen ? '295.7955px' : '477.3195px'),
         },
       };
     },
@@ -279,8 +279,8 @@ export default {
             customPath: 'doctors-clinics/',
             image: 'Practice.webp',
             imageAlt: 'Physicians and health workers',
-            width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '301.88px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
           },
         },
       ];
