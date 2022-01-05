@@ -420,58 +420,58 @@ export default {
       ],
     };
   },
-  // computed: {
-  //   clinicId () {
-  //     return this.clinic?.id;
-  //   },
-  //   isBookingEnabled () {
-  //     return this.clinic?.types?.includes('clinic-booking');
-  //   },
-  //   isTelehealthEnabled () {
-  //     return this.clinic?.types.includes('clinic-telehealth');
-  //   },
-  //   isOnline () {
-  //     // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
-  //     return this.isBookingEnabled || this.isTelehealthEnabled;
-  //   },
-  //   isVerified () {
-  //     return !!this.clinic?.websiteId;
-  //   },
-  //   mode () {
-  //     return this.$route.query.mode;
-  //   },
-  //   isPreviewMode () {
-  //     return this.mode === 'preview';
-  //   },
-  //   picURL () {
-  //     return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
-  //   },
-  //   clinicName () {
-  //     return this.clinic?.name || 'MYCURE Clinic';
-  //   },
-  //   formattedAddress () {
-  //     if (!this.clinic?.address) return '';
-  //     return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
-  //   },
-  //   clinicPhone () {
-  //     if (!this.clinic) return '';
-  //     const { phone, phones } = this.clinic;
-  //     if (phones?.length) return phones.join(', ');
-  //     return phone || '';
-  //   },
-  //   description () {
-  //     return this.clinic?.description ||
-  //     `${this.clinicName || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
-  //   },
-  //   // - Tabs shown in normal view of clinic
-  //   normalTabsList () {
-  //     return TABS_LIST.filter(tab => tab.type === 'normal');
-  //   },
-  //   // - Tabs shown in search mode of clinic
-  //   searchTabsList () {
-  //     return TABS_LIST.filter(tab => tab.type === 'search');
-  //   },
-  // },
+  computed: {
+    clinicId () {
+      return this.clinic?.id;
+    },
+    isBookingEnabled () {
+      return this.clinic?.types?.includes('clinic-booking');
+    },
+    isTelehealthEnabled () {
+      return this.clinic?.types.includes('clinic-telehealth');
+    },
+    isOnline () {
+      // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
+      return this.isBookingEnabled || this.isTelehealthEnabled;
+    },
+    isVerified () {
+      return !!this.clinic?.websiteId;
+    },
+    mode () {
+      return this.$route.query.mode;
+    },
+    isPreviewMode () {
+      return this.mode === 'preview';
+    },
+    picURL () {
+      return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
+    },
+    clinicName () {
+      return this.clinic?.name || 'MYCURE Clinic';
+    },
+    formattedAddress () {
+      if (!this.clinic?.address) return '';
+      return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
+    },
+    clinicPhone () {
+      if (!this.clinic) return '';
+      const { phone, phones } = this.clinic;
+      if (phones?.length) return phones.join(', ');
+      return phone || '';
+    },
+    description () {
+      return this.clinic?.description ||
+      `${this.clinicName || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
+    },
+    // - Tabs shown in normal view of clinic
+    normalTabsList () {
+      return TABS_LIST.filter(tab => tab.type === 'normal');
+    },
+    // - Tabs shown in search mode of clinic
+    searchTabsList () {
+      return TABS_LIST.filter(tab => tab.type === 'search');
+    },
+  },
   // watch: {
   //   activeServiceType: {
   //     async handler (val) {
