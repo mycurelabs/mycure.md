@@ -315,7 +315,7 @@ export default {
     },
   },
   layout: 'clinic-website',
-  async asyncData ({ params, $sdk, redirect, error }) {
+  async asyncData ({ params, error }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
       // Show 404 if no clinic found, or if clinic is existing, but has not setup its website yet
@@ -506,11 +506,11 @@ export default {
   //     },
   //   },
   // },
-  mounted () {
-    if (this.isOnline) {
-      this.init();
-    }
-  },
+  // mounted () {
+  //   if (this.isOnline) {
+  //     this.init();
+  //   }
+  // },
   methods: {
     init () {
       try {
