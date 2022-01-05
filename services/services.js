@@ -2,9 +2,6 @@ import isEmpty from 'lodash/isEmpty';
 import sdk from '@mycure/sdk-js';
 import { fetchScheduleSlots } from './schedule-slots';
 import { normalizePopulated } from '~/utils/services';
-import { initLogger } from '~/utils/logger';
-
-const log = initLogger('ServicesAPI');
 
 // FIXME: OLD CLINIC SERVICES FETCH - DO NOT USE THIS ANYMORE (USE THE NEW ONE BELOW)
 /**
@@ -117,9 +114,7 @@ export const fetchServices = async (opts, withSchedules = false) => {
     query.$search = opts.searchText;
   }
 
-  log('fetchServices#query: %O', query);
   const { items: services, total } = await sdk.service('services').find(query);
-  log('fetchServices#services: %O', services);
 
   if (withSchedules) {
     const schedulePromises = services.map(async (service) => {
@@ -148,7 +143,6 @@ export const fetchServices = async (opts, withSchedules = false) => {
       };
     });
     const servicesWithSchedules = await Promise.all(schedulePromises);
-    log('fetchServices#servicesWithSchedules: %O', servicesWithSchedules);
     return { items: normalizePopulated(servicesWithSchedules), total };
   }
   return { items: normalizePopulated(services), total };

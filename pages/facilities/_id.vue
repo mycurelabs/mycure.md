@@ -239,12 +239,13 @@
 <script>
 // import VueScrollTo from 'vue-scrollto';
 import isEmpty from 'lodash/isEmpty';
-// import isNil from 'lodash/isNil';
+import isNil from 'lodash/isNil';
 // import intersection from 'lodash/intersection';
 // import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
 // - TODO: Remove
+import { fetchServices } from '~/services/services';
 // import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 // import { fetchClinicInsurers } from '~/services/insurance-contracts';
 // import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -535,40 +536,40 @@ export default {
      *
      * @param {Number} page - for computing pagination
      */
-    // async fetchServices ({
-    //   serviceProps = {},
-    //   searchText,
-    // } = {}, page = 1) {
-    //   try {
-    //     this.loading.services.list = true;
-    //     // save current service query to use in refetch on pagination
-    //     this.currentServicePropsQuery = serviceProps;
-    //     const { type, subtype, insurer, tags } = serviceProps;
-    //     const skip = this.itemsLimit * (page - 1);
-    //     const query = {
-    //       facility: this.clinicId,
-    //       type,
-    //       subtype,
-    //       insurer,
-    //       searchText,
-    //       limit: this.itemsLimit,
-    //       skip,
-    //       tags,
-    //     };
-    //     const { items, total } = await fetchServices(query, true);
-    //     this.items.services = items;
-    //     this.itemsTotal.services = total;
+    async fetchServices ({
+      serviceProps = {},
+      searchText,
+    } = {}, page = 1) {
+      try {
+        this.loading.services.list = true;
+        if (isEmpty(serviceProps)) return;
+        // save current service query to use in refetch on pagination
+        this.currentServicePropsQuery = serviceProps;
+        const skip = this.itemsLimit * (page - 1);
+        const query = {
+          facility: this.clinicId,
+          type: serviceProps.type,
+          subtype: serviceProps.subtype,
+          insurer: serviceProps.insurer,
+          searchText,
+          limit: this.itemsLimit,
+          skip,
+          tags: serviceProps.tags,
+        };
+        const { items, total } = await fetchServices(query, true);
+        this.items.services = items;
+        this.itemsTotal.services = total;
 
-    //     // - NOTE: This is just front-end filtering, the best solution would be done in backend
-    //     if (this.dateFilter) {
-    //       this.filterByDate(this.dateFilter);
-    //     }
-    //   } catch (error) {
-    //     console.error(error);
-    //   } finally {
-    //     this.loading.services.list = false;
-    //   }
-    // },
+        // - NOTE: This is just front-end filtering, the best solution would be done in backend
+        if (this.dateFilter) {
+          this.filterByDate(this.dateFilter);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.services.list = false;
+      }
+    },
     // /**
     //  * Fetches the available service types of the clinic
     //  */
@@ -749,17 +750,17 @@ export default {
     //     ...this.searchText && { searchText: this.searchText },
     //   }, 1);
     // },
-    // filterByDate (unixDate) {
-    //   if (!unixDate) return;
-    //   const date = new Date(unixDate);
-    //   let day = date.getDay();
-    //   if (day === 0) day = 7;
-    //   this.items.services = this.items.services.filter((result) => {
-    //     const schedules = result.schedulesData;
-    //     const matchDay = schedules?.find(schedule => schedule.day === day);
-    //     return !isNil(matchDay);
-    //   }) || [];
-    // },
+    filterByDate (unixDate) {
+      if (!unixDate) return;
+      const date = new Date(unixDate);
+      let day = date.getDay();
+      if (day === 0) day = 7;
+      this.items.services = this.items.services.filter((result) => {
+        const schedules = result.schedulesData;
+        const matchDay = schedules?.find(schedule => schedule.day === day);
+        return !isNil(matchDay);
+      }) || [];
+    },
     // clearDateFilter () {
     //   this.dateFilter = null;
     //   this.onDateFilter();
