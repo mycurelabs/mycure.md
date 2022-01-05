@@ -249,7 +249,7 @@ import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
-import { initLogger } from '~/utils/logger';
+// import { initLogger } from '~/utils/logger';
 import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 // components
@@ -268,7 +268,7 @@ import headMeta from '~/utils/head-meta';
 // import SpecializationFilter from '~/components/clinic-website/doctors/SpecializationFilter';
 // import GenericPanel from '~/components/generic/GenericPanel';
 
-const log = initLogger('Facilities');
+// const log = initLogger('Facilities');
 
 const ALLOWED_SERVICE_TYPES = [
   'clinical-consultation',
@@ -472,51 +472,51 @@ export default {
       return TABS_LIST.filter(tab => tab.type === 'search');
     },
   },
-  watch: {
-    activeServiceType: {
-      async handler (val) {
-        if (!val) return;
-        await this.fetchServices({
-          serviceProps: this.getServiceQuery(this.activeServiceType),
-        }, 1);
-      },
-    },
-    tabSelect: {
-      async handler (val) {
-        if (val === 'services' && isEmpty(this.items.services)) {
-          return await this.fetchServices({
-            serviceProps: this.getServiceQuery(this.activeServiceType),
-          }, 1);
-        }
-        if (val === 'doctors' && isEmpty(this.items.doctors)) {
-          return await this.fetchDoctors();
-        }
-      },
-    },
-    searchMode: {
-      async handler (val) {
-        if (val) {
-          this.searchAll();
-          return;
-        }
-        await this.fetchServices({
-          serviceProps: this.getServiceQuery(this.activeServiceType),
-          ...this.searchText && { searchText: this.searchText },
-        }, 1);
-      },
-    },
-  },
+  // watch: {
+  //   activeServiceType: {
+  //     async handler (val) {
+  //       if (!val) return;
+  //       await this.fetchServices({
+  //         serviceProps: this.getServiceQuery(this.activeServiceType),
+  //       }, 1);
+  //     },
+  //   },
+  //   tabSelect: {
+  //     async handler (val) {
+  //       if (val === 'services' && isEmpty(this.items.services)) {
+  //         return await this.fetchServices({
+  //           serviceProps: this.getServiceQuery(this.activeServiceType),
+  //         }, 1);
+  //       }
+  //       if (val === 'doctors' && isEmpty(this.items.doctors)) {
+  //         return await this.fetchDoctors();
+  //       }
+  //     },
+  //   },
+  //   searchMode: {
+  //     async handler (val) {
+  //       if (val) {
+  //         this.searchAll();
+  //         return;
+  //       }
+  //       await this.fetchServices({
+  //         serviceProps: this.getServiceQuery(this.activeServiceType),
+  //         ...this.searchText && { searchText: this.searchText },
+  //       }, 1);
+  //     },
+  //   },
+  // },
   mounted () {
     if (this.isOnline) {
       this.init();
     }
   },
   methods: {
-    async init () {
+    init () {
       try {
         this.loading.services.section = true;
-        await this.fetchServiceTypes();
-        await this.fetchClinicInsurers();
+        // await this.fetchServiceTypes();
+        // await this.fetchClinicInsurers();
         this.loading.services.section = false;
       } catch (error) {
         console.error('init', error);
