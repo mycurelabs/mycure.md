@@ -509,7 +509,7 @@ export default {
     }
   },
   methods: {
-    init () {
+    async init () {
       try {
         this.loading.services.section = true;
         await this.fetchServiceTypes();
@@ -695,7 +695,8 @@ export default {
     onFilterDoctor ({
       specializations,
     }, page = 1) {
-      const specializationsMapped = specializations?.map((spec) => {
+      if (isEmpty(specializations)) return;
+      const specializationsMapped = specializations.map((spec) => {
         let finArray = spec.split(' ');
         finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
         const finStr = finArray.join('-');
@@ -824,4 +825,3 @@ export default {
   background-color: #f9f9f9;
 }
 </style>
-
