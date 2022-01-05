@@ -245,7 +245,6 @@ import isEmpty from 'lodash/isEmpty';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
 // - TODO: Remove
-import { fetchServices } from '~/services/services';
 // import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 // import { fetchClinicInsurers } from '~/services/insurance-contracts';
 // import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -536,40 +535,40 @@ export default {
      *
      * @param {Number} page - for computing pagination
      */
-    async fetchServices ({
-      serviceProps = {},
-      searchText,
-    } = {}, page = 1) {
-      try {
-        this.loading.services.list = true;
-        // save current service query to use in refetch on pagination
-        this.currentServicePropsQuery = serviceProps;
-        const { type, subtype, insurer, tags } = serviceProps;
-        const skip = this.itemsLimit * (page - 1);
-        const query = {
-          facility: this.clinicId,
-          type,
-          subtype,
-          insurer,
-          searchText,
-          limit: this.itemsLimit,
-          skip,
-          tags,
-        };
-        const { items, total } = await fetchServices(query, true);
-        this.items.services = items;
-        this.itemsTotal.services = total;
+    // async fetchServices ({
+    //   serviceProps = {},
+    //   searchText,
+    // } = {}, page = 1) {
+    //   try {
+    //     this.loading.services.list = true;
+    //     // save current service query to use in refetch on pagination
+    //     this.currentServicePropsQuery = serviceProps;
+    //     const { type, subtype, insurer, tags } = serviceProps;
+    //     const skip = this.itemsLimit * (page - 1);
+    //     const query = {
+    //       facility: this.clinicId,
+    //       type,
+    //       subtype,
+    //       insurer,
+    //       searchText,
+    //       limit: this.itemsLimit,
+    //       skip,
+    //       tags,
+    //     };
+    //     const { items, total } = await fetchServices(query, true);
+    //     this.items.services = items;
+    //     this.itemsTotal.services = total;
 
-        // - NOTE: This is just front-end filtering, the best solution would be done in backend
-        if (this.dateFilter) {
-          this.filterByDate(this.dateFilter);
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        this.loading.services.list = false;
-      }
-    },
+    //     // - NOTE: This is just front-end filtering, the best solution would be done in backend
+    //     if (this.dateFilter) {
+    //       this.filterByDate(this.dateFilter);
+    //     }
+    //   } catch (error) {
+    //     console.error(error);
+    //   } finally {
+    //     this.loading.services.list = false;
+    //   }
+    // },
     // /**
     //  * Fetches the available service types of the clinic
     //  */
