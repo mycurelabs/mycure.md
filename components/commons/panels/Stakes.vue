@@ -28,10 +28,10 @@
                 div(v-else)
                   v-row(justify="center")
                     v-col(cols="12")
-                      span.mc-h3 {{ content.leftTitle }}
-                      p.mc-list-b3 {{ content.leftDescription }}
-                      span.mc-h3 {{ content.rightTitle }}
-                      p.mc-list-b3.font-gray {{ content.rightDescription }}
+                      span.mc-h4.black--text {{ content.leftTitle }}
+                      p.mc-list-b4 {{ content.leftDescription }}
+                      span.mc-h4.black--text {{ content.rightTitle }}
+                      p.mc-list-b4.font-gray {{ content.rightDescription }}
 
             //- version 2
             div(v-if="version === 2")
@@ -61,7 +61,7 @@
             v-row(v-if="version !== 1" justify="center" :class="{'mt-10': version !== 4}")
               v-col(cols="12" sm="11")
                 p(:class="{'text-center': version === 1}").mc-b2 {{ panelDescription }}
-            v-row(justify="center")
+            v-row(justify="center").pt-5
               //- v-btn(
               //-   color="primary"
               //-   depressed
