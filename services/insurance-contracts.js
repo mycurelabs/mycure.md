@@ -1,9 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import sdk from '@mycure/sdk-js';
 import { normalizePopulated } from '~/utils/services';
-import { initLogger } from '~/utils/logger';
-
-const log = initLogger('ServicesAPI');
 
 export const fetchInsuranceContracts = async (sdk, opts) => {
   const query = {
@@ -37,8 +34,6 @@ export const fetchClinicInsurers = async (opts) => {
     },
     $total: true,
   };
-  log('fetchServices#query: %O', query);
   const { items: providers } = await sdk.service('insurance-contracts').find(query);
-  log('fetchServices#services: %O', providers);
   return { items: normalizePopulated(providers) };
 };
