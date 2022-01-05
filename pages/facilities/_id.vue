@@ -237,11 +237,11 @@
 </template>
 
 <script>
-// import VueScrollTo from 'vue-scrollto';
+import VueScrollTo from 'vue-scrollto';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import intersection from 'lodash/intersection';
-// import omit from 'lodash/omit';
+import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
 // - TODO: Remove
@@ -277,7 +277,7 @@ const ALLOWED_SERVICE_TYPES = [
   'imaging',
 ];
 
-// const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
+const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
 const TABS_LIST = [
   { text: 'Services', value: 'services', type: 'normal' },
   { text: 'Our Doctors', value: 'doctors', type: 'normal' },
@@ -631,122 +631,122 @@ export default {
         this.loading.services.list = false;
       }
     },
-    // search () {
-    //   if (!this.searchMode) {
-    //     this.currentServicePropsQuery = {};
-    //     this.searchMode = true;
-    //     this.searchTabSelect = 'search-all';
-    //     VueScrollTo.scrollTo('#search-tabs', 500, { offset: -100, easing: 'ease' });
-    //     return;
-    //   }
-    //   // Invoke searches when already in search mode
-    //   this.searchAll();
-    // },
-    // async searchAll () {
-    //   await Promise.all([
-    //     this.fetchServices({
-    //       serviceProps: this.currentServicePropsQuery,
-    //       ...this.searchText && { searchText: this.searchText },
-    //     }, 1),
-    //     this.fetchDoctors({
-    //       ...this.searchText && { searchText: this.searchText },
-    //     }, 1),
-    //   ]);
-    // },
+    search () {
+      if (!this.searchMode) {
+        this.currentServicePropsQuery = {};
+        this.searchMode = true;
+        this.searchTabSelect = 'search-all';
+        VueScrollTo.scrollTo('#search-tabs', 500, { offset: -100, easing: 'ease' });
+        return;
+      }
+      // Invoke searches when already in search mode
+      this.searchAll();
+    },
+    async searchAll () {
+      await Promise.all([
+        this.fetchServices({
+          serviceProps: this.currentServicePropsQuery,
+          ...this.searchText && { searchText: this.searchText },
+        }, 1),
+        this.fetchDoctors({
+          ...this.searchText && { searchText: this.searchText },
+        }, 1),
+      ]);
+    },
     // utils
     /** For getting actual service type and subtype value of the current tab
     * Usually used for mapping query for fetching of services
     */
-    // getServiceQuery (activeServiceType) {
-    //   if (DIAGNOSTIC_SERVICE_TYPES.includes(activeServiceType)) {
-    //     return { type: 'diagnostic', subtype: activeServiceType };
-    //   } else if (activeServiceType === 'telehealth') {
-    //     return { type: 'clinical-consultation', tags: { $in: ['telehealth'] } };
-    //   } else if (activeServiceType === 'clinical-consultation') {
-    //     return { type: 'clinical-consultation', tags: { $nin: ['telehealth'] } };
-    //   } else {
-    //     return { type: activeServiceType };
-    //   }
-    // },
+    getServiceQuery (activeServiceType) {
+      if (DIAGNOSTIC_SERVICE_TYPES.includes(activeServiceType)) {
+        return { type: 'diagnostic', subtype: activeServiceType };
+      } else if (activeServiceType === 'telehealth') {
+        return { type: 'clinical-consultation', tags: { $in: ['telehealth'] } };
+      } else if (activeServiceType === 'clinical-consultation') {
+        return { type: 'clinical-consultation', tags: { $nin: ['telehealth'] } };
+      } else {
+        return { type: activeServiceType };
+      }
+    },
     // - Determine if set of results should be visible
-    // showResults (type) {
-    //   if (type === 'services') {
-    //     return this.searchTabSelect === 'search-services' || this.searchTabSelect === 'search-all';
-    //   } else if (type === 'doctors') {
-    //     return this.searchTabSelect === 'search-doctors' || this.searchTabSelect === 'search-all';
-    //   }
-    //   return false;
-    // },
+    showResults (type) {
+      if (type === 'services') {
+        return this.searchTabSelect === 'search-services' || this.searchTabSelect === 'search-all';
+      } else if (type === 'doctors') {
+        return this.searchTabSelect === 'search-doctors' || this.searchTabSelect === 'search-all';
+      }
+      return false;
+    },
     // Event handlers
-    // onPaginate ({
-    //   type, // services or doctors
-    // }, page = 1) {
-    //   if (!type) return;
-    //   if (type === 'services') {
-    //     return this.fetchServices({
-    //       serviceProps: this.currentServicePropsQuery,
-    //       ...this.searchText && { searchText: this.searchText },
-    //     }, page);
-    //   }
-    //   // else, return doctors
-    //   return this.fetchDoctors({
-    //     ...this.searchText && { searchText: this.searchText },
-    //   }, page);
-    // },
-    // onFilterDoctor ({
-    //   specializations,
-    // }, page = 1) {
-    //   const specializationsMapped = specializations.map((spec) => {
-    //     let finArray = spec.split(' ');
-    //     finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
-    //     const finStr = finArray.join('-');
-    //     return {
-    //       code: finStr,
-    //       name: spec,
-    //     };
-    //   });
-    //   return this.fetchDoctors({
-    //     doctorProps: { specializations: specializationsMapped },
-    //     ...this.searchText && { searchText: this.searchText },
-    //   }, page);
-    // },
-    // onServiceTypeFilter () {
-    //   const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
-    //   return this.fetchServices({
-    //     serviceProps,
-    //     ...this.searchText && { searchText: this.searchText },
-    //   }, 1);
-    // },
-    // onServiceTypeFilterEvent (val) {
-    //   const serviceProps = omit(val, 'text');
-    //   return this.fetchServices({
-    //     serviceProps,
-    //     ...this.searchText && { searchText: this.searchText },
-    //   }, 1);
-    //   // this.activeServiceType = val.type;
-    // },
-    // onInsuranceSelect (insurer) {
-    //   // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
-    //   this.searchText = null;
-    //   const serviceProps = {
-    //     ...this.currentServicePropsQuery,
-    //     insurer,
-    //   };
-    //   return this.fetchServices({ serviceProps }, 1);
-    // },
-    // clearInsuranceFilter () {
-    //   const serviceProps = omit(this.currentServicePropsQuery, 'insurer');
-    //   return this.fetchServices({
-    //     serviceProps,
-    //     ...this.searchText && { searchText: this.searchText },
-    //   }, 1);
-    // },
-    // onDateFilter () {
-    //   return this.fetchServices({
-    //     serviceProps: this.currentServicePropsQuery,
-    //     ...this.searchText && { searchText: this.searchText },
-    //   }, 1);
-    // },
+    onPaginate ({
+      type, // services or doctors
+    }, page = 1) {
+      if (!type) return;
+      if (type === 'services') {
+        return this.fetchServices({
+          serviceProps: this.currentServicePropsQuery,
+          ...this.searchText && { searchText: this.searchText },
+        }, page);
+      }
+      // else, return doctors
+      return this.fetchDoctors({
+        ...this.searchText && { searchText: this.searchText },
+      }, page);
+    },
+    onFilterDoctor ({
+      specializations,
+    }, page = 1) {
+      const specializationsMapped = specializations?.map((spec) => {
+        let finArray = spec.split(' ');
+        finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
+        const finStr = finArray.join('-');
+        return {
+          code: finStr,
+          name: spec,
+        };
+      }) || [];
+      return this.fetchDoctors({
+        doctorProps: { specializations: specializationsMapped },
+        ...this.searchText && { searchText: this.searchText },
+      }, page);
+    },
+    onServiceTypeFilter () {
+      const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    onServiceTypeFilterEvent (val) {
+      const serviceProps = omit(val, 'text');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+      // this.activeServiceType = val.type;
+    },
+    onInsuranceSelect (insurer) {
+      // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
+      this.searchText = null;
+      const serviceProps = {
+        ...this.currentServicePropsQuery,
+        insurer,
+      };
+      return this.fetchServices({ serviceProps }, 1);
+    },
+    clearInsuranceFilter () {
+      const serviceProps = omit(this.currentServicePropsQuery, 'insurer');
+      return this.fetchServices({
+        serviceProps,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
+    onDateFilter () {
+      return this.fetchServices({
+        serviceProps: this.currentServicePropsQuery,
+        ...this.searchText && { searchText: this.searchText },
+      }, 1);
+    },
     filterByDate (unixDate) {
       if (!unixDate) return;
       const date = new Date(unixDate);
@@ -758,58 +758,58 @@ export default {
         return !isNil(matchDay);
       }) || [];
     },
-    // clearDateFilter () {
-    //   this.dateFilter = null;
-    //   this.onDateFilter();
-    // },
-    // onRedirect (type) {
-    //   // Make sure it is normal mode first before scrolling
-    //   if (this.searchMode) {
-    //     this.searchMode = false;
-    //     this.onRedirect(type);
-    //   }
-    //   this.tabSelect = type;
-    //   VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
-    // },
-    // onHome () {
-    //   // If showing search results, simply return to normal view
-    //   if (this.searchMode) {
-    //     this.searchText = null;
-    //     this.searchMode = false;
-    //     return;
-    //   }
-    //   VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
-    // },
-    // onSelectAppointment (type) {
-    //   this.dialogs.appointment = false;
-    //   if (type === 'physical') {
-    //     this.dialogs.serviceType = true;
-    //     return;
-    //   }
-    //   if (type === 'telehealth') {
-    //     this.tabSelect = 'doctors';
-    //     // - scroll down to doctors list
-    //     if (this.searchMode) {
-    //       this.searchText = null;
-    //       this.searchMode = false;
-    //       return;
-    //     }
-    //     VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
-    //   }
-    // },
-    // onSelectServiceType (serviceType) {
-    //   this.dialogs.serviceType = false;
-    //   if (this.searchMode) {
-    //     this.searchText = null;
-    //     this.searchMode = false;
-    //     return;
-    //   }
-    //   if (serviceType !== 'close') {
-    //     this.tabSelect = 'services';
-    //     VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
-    //   }
-    //   this.activeServiceType = serviceType;
-    // },
+    clearDateFilter () {
+      this.dateFilter = null;
+      this.onDateFilter();
+    },
+    onRedirect (type) {
+      // Make sure it is normal mode first before scrolling
+      if (this.searchMode) {
+        this.searchMode = false;
+        this.onRedirect(type);
+      }
+      this.tabSelect = type;
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+    },
+    onHome () {
+      // If showing search results, simply return to normal view
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
+      VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
+    },
+    onSelectAppointment (type) {
+      this.dialogs.appointment = false;
+      if (type === 'physical') {
+        this.dialogs.serviceType = true;
+        return;
+      }
+      if (type === 'telehealth') {
+        this.tabSelect = 'doctors';
+        // - scroll down to doctors list
+        if (this.searchMode) {
+          this.searchText = null;
+          this.searchMode = false;
+          return;
+        }
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      }
+    },
+    onSelectServiceType (serviceType) {
+      this.dialogs.serviceType = false;
+      if (this.searchMode) {
+        this.searchText = null;
+        this.searchMode = false;
+        return;
+      }
+      if (serviceType !== 'close') {
+        this.tabSelect = 'services';
+        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+      }
+      this.activeServiceType = serviceType;
+    },
   },
 };
 </script>
