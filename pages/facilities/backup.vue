@@ -248,7 +248,6 @@ import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
-import { initLogger } from '~/utils/logger';
 import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 // components
@@ -266,8 +265,6 @@ import ServicesList from '~/components/clinic-website/services/ServicesList';
 import ServicesPaginated from '~/components/clinic-website/services/ServicesPaginated';
 import SpecializationFilter from '~/components/clinic-website/doctors/SpecializationFilter';
 import GenericPanel from '~/components/generic/GenericPanel';
-
-const log = initLogger('Facilities');
 
 const ALLOWED_SERVICE_TYPES = [
   'clinical-consultation',
@@ -554,7 +551,6 @@ export default {
           tags,
         };
         const { items, total } = await fetchServices(query, true);
-        log('fetchServices#items: %O', items);
         this.items.services = items;
         this.itemsTotal.services = total;
 
@@ -612,7 +608,6 @@ export default {
         });
         this.itemsTotal.doctors = total;
         this.items.doctors = items || [];
-        console.log('fetchDoctors#items: %O', items);
       } catch (e) {
         console.error(e);
       } finally {
@@ -626,7 +621,6 @@ export default {
           insured: this.clinicId,
         };
         const { items } = await fetchClinicInsurers(query);
-        log('fetchClinicInsurers#items: %O', items);
         this.items.insurers = items;
       } catch (error) {
         console.error(error);
