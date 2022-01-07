@@ -42,14 +42,14 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-media-query-mixin.js', mode: 'client' },
-    { src: '~/plugins/vue-lazyload.js', mode: 'client' },
-    { src: '~/plugins/vue-gtag.js', mode: 'client' },
-    { src: '~/plugins/vue-screen.js', mode: 'client' },
-    { src: '~/plugins/main.js', mode: 'client' },
+    '~/plugins/vue-media-query-mixin.js',
+    '~/plugins/vue-lazyload.js',
+    '~/plugins/vue-gtag.js',
+    '~/plugins/vue-screen.js',
+    { src: '~/plugins/main.js' },
     { src: '~/plugins/responsive.js', mode: 'client' },
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
-    { src: '~/plugins/mc-btn', mode: 'client' },
+    { src: '~/plugins/mc-btn' },
     { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~/plugins/crisp.js', mode: 'client' },
