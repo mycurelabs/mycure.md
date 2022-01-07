@@ -41,6 +41,11 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  /*
+     - NOTE: Some plugins here are intentionally declared to run server-side,
+      make sure when changing their mode, there are no breaking changes to the website
+  */
+  
   plugins: [
     '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-lazyload.js',
