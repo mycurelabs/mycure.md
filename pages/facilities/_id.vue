@@ -1,237 +1,238 @@
 <template lang="pug">
-  div(v-if="!loading.page").main-container
-    //- CHOOSE APPOINTMENT TYPE
-    choose-appointment(
-      is-clinic
-      v-model="dialogs.appointment"
-      :has-doctors="isTelehealthEnabled"
-      :has-physical-services="isBookingEnabled"
-      @select="onSelectAppointment($event)"
-    )
-    //- CHOOSE SERVICE DIALOG
-    choose-service(
-      v-model="dialogs.serviceType"
-      :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
-      @select="onSelectServiceType($event)"
-    )
-    v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
-    main-panel(
-      :tabs="normalTabsList"
-      :pic-url="picURL"
-      :clinic-name="clinicName"
-      :formatted-address="formattedAddress"
-      :clinic-phone="clinicPhone"
-      :style="{ height: $isMobile ? '110vh' : '110vh' }"
-      :is-bookable="isVerified && isOnline"
-      @book="dialogs.appointment = true"
-      @redirect="onRedirect($event)"
-      @clipSuccess="clipSuccess = true"
-    )#top
-    //- Search panel
-    search-panel(
-      v-model="searchText"
-      :clinic="clinic"
-      @search="search"
-    )
-    //- NORMAL MODE - Workflow area
-    v-container(v-if="!searchMode")#tabs.pb-16
-      v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
-          v-col(cols="12" :class="{'px-0': $isMobile}")
-            v-tabs(
-              show-arrows
-              hide-slider
-              :right="!$isMobile"
-              :next-icon="mdiChevronRight"
-              :prev-icon="mdiChevronLeft"
-              v-model="tabSelect"
-              background-color="transparent"
-              :active-class="$isMobile ? 'primary--text' : 'black--text'"
-              style="color: #A2A5AE;"
-            ).mb-6
-              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
-                img(
-                  src="~/assets/images/MYCURE-icon.png"
-                  width=" 20"
-                  alt="MYCURE icon"
-                  @click="onHome"
-                ).mr-1
-                v-btn(@click="onHome" text dense).text-none.px-1
-                  span.mc-b2.primary--text Home
-                span(style="color: #72727D;") &nbsp;/&nbsp;
-                v-btn(@click="onRedirect(tabSelect)" text dense style="color: #72727D").px-2.text-none
-                  span.mc-b2.font-weight-bold {{ tabSelect | format-bread-crumbs }}
-              v-tab(
-                v-for="(tab, key) in normalTabsList"
-                :key="key"
-                :href="`#${tab.value}`"
-                :class="{'ml-4': !$isMobile}"
-                dense
-              ).text-none
-                span.mc-hyp2.font-weight-semibold {{ tab.text }}
+  div.main-container
+    div(v-if="!loading.page")
+      //- CHOOSE APPOINTMENT TYPE
+      choose-appointment(
+        is-clinic
+        v-model="dialogs.appointment"
+        :has-doctors="isTelehealthEnabled"
+        :has-physical-services="isBookingEnabled"
+        @select="onSelectAppointment($event)"
+      )
+      //- CHOOSE SERVICE DIALOG
+      choose-service(
+        v-model="dialogs.serviceType"
+        :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
+        @select="onSelectServiceType($event)"
+      )
+      v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
+      main-panel(
+        :tabs="normalTabsList"
+        :pic-url="picURL"
+        :clinic-name="clinicName"
+        :formatted-address="formattedAddress"
+        :clinic-phone="clinicPhone"
+        :style="{ height: $isMobile ? '110vh' : '110vh' }"
+        :is-bookable="isVerified && isOnline"
+        @book="dialogs.appointment = true"
+        @redirect="onRedirect($event)"
+        @clipSuccess="clipSuccess = true"
+      )#top
+      //- Search panel
+      search-panel(
+        v-model="searchText"
+        :clinic="clinic"
+        @search="search"
+      )
+      //- NORMAL MODE - Workflow area
+      v-container(v-if="!searchMode")#tabs.pb-16
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+            v-col(cols="12" :class="{'px-0': $isMobile}")
+              v-tabs(
+                show-arrows
+                hide-slider
+                :right="!$isMobile"
+                :next-icon="mdiChevronRight"
+                :prev-icon="mdiChevronLeft"
+                v-model="tabSelect"
+                background-color="transparent"
+                :active-class="$isMobile ? 'primary--text' : 'black--text'"
+                style="color: #A2A5AE;"
+              ).mb-6
+                v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                  img(
+                    src="~/assets/images/MYCURE-icon.png"
+                    width=" 20"
+                    alt="MYCURE icon"
+                    @click="onHome"
+                  ).mr-1
+                  v-btn(@click="onHome" text dense).text-none.px-1
+                    span.mc-b2.primary--text Home
+                  span(style="color: #72727D;") &nbsp;/&nbsp;
+                  v-btn(@click="onRedirect(tabSelect)" text dense style="color: #72727D").px-2.text-none
+                    span.mc-b2.font-weight-bold {{ tabSelect | format-bread-crumbs }}
+                v-tab(
+                  v-for="(tab, key) in normalTabsList"
+                  :key="key"
+                  :href="`#${tab.value}`"
+                  :class="{'ml-4': !$isMobile}"
+                  dense
+                ).text-none
+                  span.mc-hyp2.font-weight-semibold {{ tab.text }}
 
-              //- NORMAL VIEW TABS
-              //- SERVICES
-              v-tab-item(value="services")
-                div.grey-bg.pt-8
-                  services-list(
-                    v-model="activeServiceType"
-                    :loading="loading.services"
-                    :items="items.services"
-                    :items-total="itemsTotal.services"
-                    :items-limit="itemsLimit"
-                    :service-types="serviceTypes"
-                    :organization="clinicId"
-                    :is-preview-mode="isPreviewMode"
-                    @paginate="onPaginate({ type: 'services' }, $event)"
-                    @filter="onServiceTypeFilterEvent($event)"
-                  )
-              //- DOCTORS
-              v-tab-item(value="doctors")
-                div.grey-bg.pt-8
-                  doctors-list(
-                    :loading="loading.doctors"
-                    :items="items.doctors"
-                    :items-total="itemsTotal.doctors"
-                    :items-limit="itemsLimit"
-                    :organization="clinicId"
-                    :is-preview-mode="isPreviewMode"
-                    @paginate="onPaginate({ type: 'doctors' }, $event)"
-                    @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
-                  )
-              //- ABOUT CLINIC
-              v-tab-item(value="about")
-                div.grey-bg.pt-8
-                  about-clinic(
-                    :pic-url="picURL"
-                    :clinic-name="clinicName"
-                    :description="description"
-                    :items="items.services"
-                    :insurers="items.insurers"
-                  )
-              //- CONTACT US
-              v-tab-item(value="contact")
-                div.grey-bg.pt-8
-                  contact-us(
-                    :address="clinic.address"
-                    :clinic-phone="clinicPhone"
-                    :schedule="clinic.mf_schedule"
-                  )
-    //- SEARCH MODE: Search results
-    v-container(v-else)#search-tabs.pb-16
-      v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
-          v-col(cols="12" :class="{'px-0': $isMobile}")
-            v-btn(v-if="$isMobile" @click="onHome" text).mb-5
-              v-icon {{ mdiChevronLeft }}
-              | Back
-            v-tabs(
-              hide-slider
-              :right="!$isMobile"
-              v-model="searchTabSelect"
-              background-color="transparent"
-              slider-color="primary"
-              active-class="black--text"
-            ).mb-6
-              v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
-                v-btn(@click="onHome" text).text-none.font-16
-                  v-icon {{ mdiChevronLeft }}
-                  | Back
-              //-   img(
-              //-     src="~/assets/images/MYCURE-icon.png"
-              //-     width=" 20"
-              //-     alt="MYCURE icon"
-              //-     @click="onHome"
-              //-   ).mr-2
-              //-   a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
-              //-   a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
-              v-tab(
-                v-for="(tab, key) in searchTabsList"
-                :key="key"
-                :href="`#${tab.value}`"
-                :class="{'ml-4': !$isMobile}"
-                dense
-              ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
-          //- FILTERS
-          v-col(cols="12" md="4" xl="3" :class="{'px-0': $isMobile}")
-            v-card(color="white" flat)
-              template(v-if="showResults('services')")
-                v-toolbar(v-if="!$isMobile" flat).pa-1
-                  v-spacer
-                  h2.mc-h4.black--text Services
-                  v-spacer
-                v-divider(v-if="!$isMobile").my-3
-                v-card-text
-                  v-select(
-                    v-model="serviceSearchTypeFilter"
-                    placeholder="Select Service Type (All)"
-                    item-text="text"
-                    dense
-                    clearable
-                    outlined
-                    :disabled="loading.search"
-                    :append-icon="mdiMenuDown"
-                    :clear-icon="mdiClose"
-                    :items="serviceTypeOptions"
-                    return-object
-                    @change="onServiceTypeFilter"
-                  )
-                    template(slot="prepend-inner")
-                      v-icon.mr-2 {{ mdiAccountWrenchOutline }}
-                  //- We limit this to the Services Tab only to avoid confusion that it may also be applied to Doctors
-                  search-insurers(
-                    v-if="searchTabSelect === 'search-services'"
-                    avatar
-                    outlined
-                    clearable
-                    :disabled="isPreviewMode"
-                    @select="onInsuranceSelect"
-                    @clear="clearInsuranceFilter"
-                  )
-                  date-picker-menu(
-                    v-model="dateFilter"
-                    outlined
-                    :disabled="isPreviewMode || loading"
-                    @clear="clearDateFilter"
-                    @change="onDateFilter($event)"
-                  )
-              template(v-if="showResults('doctors')")
-                v-toolbar(v-if="!$isMobile" flat).pa-1
-                  v-spacer
-                  h2.mc-h4.black--text Doctors
-                  v-spacer
-                v-divider(v-if="!$isMobile").my-3
-                v-card-text
-                  specialization-filter(
-                    v-model="specializationFiltersArray"
-                    @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
-                  )
-          //- RESULTS
-          v-col(cols="12" md="8" xl="9" :class="{'px-0': $isMobile}")
-            services-paginated(
-              v-if="showResults('services')"
-              :loading="loading.services.list"
-              :items="items.services"
-              :items-total="itemsTotal.services"
-              :items-limit="itemsLimit"
-              :itemsPage.sync="itemsPage.services"
-              :organization="clinicId"
-              :is-preview-mode="isPreviewMode"
-              :search-mode="searchMode"
-              @update:itemsPage="onPaginate({ type: 'services' }, $event)"
-            )
-            v-divider(v-if="searchTabSelect === 'search-all'").my-10
-            doctors-paginated(
-              v-if="showResults('doctors')"
-              :loading="loading.doctors.list"
-              :items="items.doctors"
-              :items-total="itemsTotal.doctors"
-              :items-limit="itemsLimit"
-              :itemsPage.sync="itemsPage.doctors"
-              :organization="clinicId"
-              :is-preview-mode="isPreviewMode"
-              @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
-            )
+                //- NORMAL VIEW TABS
+                //- SERVICES
+                v-tab-item(value="services")
+                  div.grey-bg.pt-8
+                    services-list(
+                      v-model="activeServiceType"
+                      :loading="loading.services"
+                      :items="items.services"
+                      :items-total="itemsTotal.services"
+                      :items-limit="itemsLimit"
+                      :service-types="serviceTypes"
+                      :organization="clinicId"
+                      :is-preview-mode="isPreviewMode"
+                      @paginate="onPaginate({ type: 'services' }, $event)"
+                      @filter="onServiceTypeFilterEvent($event)"
+                    )
+                //- DOCTORS
+                v-tab-item(value="doctors")
+                  div.grey-bg.pt-8
+                    doctors-list(
+                      :loading="loading.doctors"
+                      :items="items.doctors"
+                      :items-total="itemsTotal.doctors"
+                      :items-limit="itemsLimit"
+                      :organization="clinicId"
+                      :is-preview-mode="isPreviewMode"
+                      @paginate="onPaginate({ type: 'doctors' }, $event)"
+                      @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                    )
+                //- ABOUT CLINIC
+                v-tab-item(value="about")
+                  div.grey-bg.pt-8
+                    about-clinic(
+                      :pic-url="picURL"
+                      :clinic-name="clinicName"
+                      :description="description"
+                      :items="items.services"
+                      :insurers="items.insurers"
+                    )
+                //- CONTACT US
+                v-tab-item(value="contact")
+                  div.grey-bg.pt-8
+                    contact-us(
+                      :address="clinic.address"
+                      :clinic-phone="clinicPhone"
+                      :schedule="clinic.mf_schedule"
+                    )
+      //- SEARCH MODE: Search results
+      v-container(v-else)#search-tabs.pb-16
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
+            v-col(cols="12" :class="{'px-0': $isMobile}")
+              v-btn(v-if="$isMobile" @click="onHome" text).mb-5
+                v-icon {{ mdiChevronLeft }}
+                | Back
+              v-tabs(
+                hide-slider
+                :right="!$isMobile"
+                v-model="searchTabSelect"
+                background-color="transparent"
+                slider-color="primary"
+                active-class="black--text"
+              ).mb-6
+                v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
+                  v-btn(@click="onHome" text).text-none.font-16
+                    v-icon {{ mdiChevronLeft }}
+                    | Back
+                //-   img(
+                //-     src="~/assets/images/MYCURE-icon.png"
+                //-     width=" 20"
+                //-     alt="MYCURE icon"
+                //-     @click="onHome"
+                //-   ).mr-2
+                //-   a(@click="onHome" style="color: #72727D;").mc-b2 Home /&nbsp;
+                //-   a(@click="onRedirect(tabSelect)").mc-b2 {{ tabSelect | format-bread-crumbs }}
+                v-tab(
+                  v-for="(tab, key) in searchTabsList"
+                  :key="key"
+                  :href="`#${tab.value}`"
+                  :class="{'ml-4': !$isMobile}"
+                  dense
+                ).mc-hyp2.font-weight-semibold.text-none {{ tab.text }}
+            //- FILTERS
+            v-col(cols="12" md="4" xl="3" :class="{'px-0': $isMobile}")
+              v-card(color="white" flat)
+                template(v-if="showResults('services')")
+                  v-toolbar(v-if="!$isMobile" flat).pa-1
+                    v-spacer
+                    h2.mc-h4.black--text Services
+                    v-spacer
+                  v-divider(v-if="!$isMobile").my-3
+                  v-card-text
+                    v-select(
+                      v-model="serviceSearchTypeFilter"
+                      placeholder="Select Service Type (All)"
+                      item-text="text"
+                      dense
+                      clearable
+                      outlined
+                      :disabled="loading.search"
+                      :append-icon="mdiMenuDown"
+                      :clear-icon="mdiClose"
+                      :items="serviceTypeOptions"
+                      return-object
+                      @change="onServiceTypeFilter"
+                    )
+                      template(slot="prepend-inner")
+                        v-icon.mr-2 {{ mdiAccountWrenchOutline }}
+                    //- We limit this to the Services Tab only to avoid confusion that it may also be applied to Doctors
+                    search-insurers(
+                      v-if="searchTabSelect === 'search-services'"
+                      avatar
+                      outlined
+                      clearable
+                      :disabled="isPreviewMode"
+                      @select="onInsuranceSelect"
+                      @clear="clearInsuranceFilter"
+                    )
+                    date-picker-menu(
+                      v-model="dateFilter"
+                      outlined
+                      :disabled="isPreviewMode || loading"
+                      @clear="clearDateFilter"
+                      @change="onDateFilter($event)"
+                    )
+                template(v-if="showResults('doctors')")
+                  v-toolbar(v-if="!$isMobile" flat).pa-1
+                    v-spacer
+                    h2.mc-h4.black--text Doctors
+                    v-spacer
+                  v-divider(v-if="!$isMobile").my-3
+                  v-card-text
+                    specialization-filter(
+                      v-model="specializationFiltersArray"
+                      @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                    )
+            //- RESULTS
+            v-col(cols="12" md="8" xl="9" :class="{'px-0': $isMobile}")
+              services-paginated(
+                v-if="showResults('services')"
+                :loading="loading.services.list"
+                :items="items.services"
+                :items-total="itemsTotal.services"
+                :items-limit="itemsLimit"
+                :itemsPage.sync="itemsPage.services"
+                :organization="clinicId"
+                :is-preview-mode="isPreviewMode"
+                :search-mode="searchMode"
+                @update:itemsPage="onPaginate({ type: 'services' }, $event)"
+              )
+              v-divider(v-if="searchTabSelect === 'search-all'").my-10
+              doctors-paginated(
+                v-if="showResults('doctors')"
+                :loading="loading.doctors.list"
+                :items="items.doctors"
+                :items-total="itemsTotal.doctors"
+                :items-limit="itemsLimit"
+                :itemsPage.sync="itemsPage.doctors"
+                :organization="clinicId"
+                :is-preview-mode="isPreviewMode"
+                @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
+              )
 </template>
 
 <script>
@@ -247,7 +248,6 @@ import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
-import { initLogger } from '~/utils/logger';
 import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 // components
@@ -265,8 +265,6 @@ import ServicesList from '~/components/clinic-website/services/ServicesList';
 import ServicesPaginated from '~/components/clinic-website/services/ServicesPaginated';
 import SpecializationFilter from '~/components/clinic-website/doctors/SpecializationFilter';
 import GenericPanel from '~/components/generic/GenericPanel';
-
-const log = initLogger('Facilities');
 
 const ALLOWED_SERVICE_TYPES = [
   'clinical-consultation',
@@ -313,7 +311,7 @@ export default {
     },
   },
   layout: 'clinic-website',
-  async asyncData ({ params, $sdk, redirect, error }) {
+  async asyncData ({ params, error }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
       // Show 404 if no clinic found, or if clinic is existing, but has not setup its website yet
@@ -323,11 +321,12 @@ export default {
         !clinic?.publicFields?.length) {
         return error({ statusCode: 404, message: 'clinic-not-found' });
       }
+      console.warn('clinic', clinic);
       return {
         clinic,
       };
     } catch (error) {
-      console.error(error);
+      console.error('asyncData', error);
     }
   },
   data () {
@@ -419,7 +418,7 @@ export default {
   },
   computed: {
     clinicId () {
-      return this.clinic.id;
+      return this.clinic?.id;
     },
     isBookingEnabled () {
       return this.clinic?.types?.includes('clinic-booking');
@@ -458,7 +457,7 @@ export default {
     },
     description () {
       return this.clinic?.description ||
-      `${this.name || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
+      `${this.clinicName || 'This facility'} is committed to provide medical consultation via video conference or phone call to our patients. You can also schedule a physical visit with us.`;
     },
     // - Tabs shown in normal view of clinic
     normalTabsList () {
@@ -510,10 +509,14 @@ export default {
   },
   methods: {
     async init () {
-      this.loading.services.section = true;
-      await this.fetchServiceTypes();
-      await this.fetchClinicInsurers();
-      this.loading.services.section = false;
+      try {
+        this.loading.services.section = true;
+        await this.fetchServiceTypes();
+        await this.fetchClinicInsurers();
+        this.loading.services.section = false;
+      } catch (error) {
+        console.error('init', error);
+      }
     },
     /** Fetches all services of facility
      *
@@ -533,22 +536,21 @@ export default {
     } = {}, page = 1) {
       try {
         this.loading.services.list = true;
+        if (isEmpty(serviceProps)) return;
         // save current service query to use in refetch on pagination
         this.currentServicePropsQuery = serviceProps;
-        const { type, subtype, insurer, tags } = serviceProps;
         const skip = this.itemsLimit * (page - 1);
         const query = {
           facility: this.clinicId,
-          type,
-          subtype,
-          insurer,
+          type: serviceProps.type,
+          subtype: serviceProps.subtype,
+          insurer: serviceProps.insurer,
           searchText,
           limit: this.itemsLimit,
           skip,
-          tags,
+          tags: serviceProps.tags,
         };
         const { items, total } = await fetchServices(query, true);
-        log('fetchServices#items: %O', items);
         this.items.services = items;
         this.itemsTotal.services = total;
 
@@ -595,6 +597,7 @@ export default {
     } = {}, page = 1) {
       try {
         this.loading.doctors.list = true;
+        if (isEmpty(doctorProps)) return;
         const skip = this.itemsLimit * (page - 1);
         const { specializations } = doctorProps;
         const { items, total } = await fetchClinicWebsiteDoctors({
@@ -606,7 +609,6 @@ export default {
         });
         this.itemsTotal.doctors = total;
         this.items.doctors = items || [];
-        console.log('fetchDoctors#items: %O', items);
       } catch (e) {
         console.error(e);
       } finally {
@@ -620,7 +622,6 @@ export default {
           insured: this.clinicId,
         };
         const { items } = await fetchClinicInsurers(query);
-        log('fetchClinicInsurers#items: %O', items);
         this.items.insurers = items;
       } catch (error) {
         console.error(error);
@@ -693,6 +694,7 @@ export default {
     onFilterDoctor ({
       specializations,
     }, page = 1) {
+      if (isEmpty(specializations)) return;
       const specializationsMapped = specializations.map((spec) => {
         let finArray = spec.split(' ');
         finArray = finArray.map(x => `${x.charAt(0).toLowerCase()}${x.slice(1)}`);
@@ -701,7 +703,7 @@ export default {
           code: finStr,
           name: spec,
         };
-      });
+      }) || [];
       return this.fetchDoctors({
         doctorProps: { specializations: specializationsMapped },
         ...this.searchText && { searchText: this.searchText },

@@ -136,14 +136,11 @@ export default {
   },
   mounted () {
     this.initialize();
-    console.log('boop2');
   },
   methods: {
     initialize () {
       this.mapGeocoder = new google.maps.Geocoder(); /* eslint-disable-line no-undef */
-      console.log('boop111');
       if (!this.addressGeometry) {
-        console.log('boop1');
         return null;
       }
       const center = this.addressGeometry;

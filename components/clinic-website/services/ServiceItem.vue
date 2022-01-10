@@ -221,7 +221,6 @@ export default {
       return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
     },
     hasCoverages () {
-      console.log('cov data', this.item?.coveragesData);
       return this.item?.$hasCoverages || !isEmpty(this.item?.coveragesData);
     },
     coverages () {
