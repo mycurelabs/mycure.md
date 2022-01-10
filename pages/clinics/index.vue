@@ -149,7 +149,7 @@ export default {
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Features: () => import('~/components/commons/panels/Features'),
     MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
-    Pricing: () => import('~/components/commons/panels/Pricing'),
+    Pricing: () => import('~/components/commons/panels/NewPricing'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
