@@ -13,7 +13,7 @@
             )
             p.mc-h4.ml-2.title--text.mb-0 {{ bundle.title }}
           span.mc-b5 {{ bundle.description }}
-        v-divider(width="100%").mb-4
+        v-divider(width="100%").my-4
         div#price-container
           p(
             :style="opacity"
