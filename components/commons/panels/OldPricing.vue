@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      generic-panel(column="10" :row-bindings="{ justify: 'center'}")
+      generic-panel(column="12" :row-bindings="{ justify: 'center'}")
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12").text-center
@@ -75,7 +75,7 @@
 <script>
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 import GenericPanel from '~/components/generic/GenericPanel';
-import PricingCard from '~/components/commons/NewPricingCard';
+import PricingCard from '~/components/commons/PricingCard';
 import SignupButton from '~/components/commons/SignupButton';
 import canUseWebp from '~/utils/can-use-webp';
 export default {

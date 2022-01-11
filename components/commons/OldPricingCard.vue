@@ -1,21 +1,23 @@
 <template lang="pug">
-   v-card(width="100%").rounded-md.card-outter.pa-3
-      //- v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Popular
-      v-card-title.pt-8.px-0
-        picture-source(
-          custom-path="pricing/"
-          :image-file-extension="$useWebp? '.webp' : '.png'"
-          image-alt="Health facility pricing icon"
-          :image="bundle.image"
-          :image-width="iconSize"
-          :image-height="iconSize"
-        )
-        h2(:class="[normalTextColor, {'font-21': !$isWideScreen, 'font-24': $isWideScreen}]").font-weight-semibold.ml-2 {{ bundle.title }}
+   v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter.pa-3
+      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Popular
+      v-card-title.pt-8
+        v-spacer
+        h2(:class="[normalTextColor, {'font-21': !$isWideScreen, 'font-24': $isWideScreen}]").font-weight-bold {{ bundle.title }}
         v-spacer
       v-card-text.general-info-container.font-open-sans
-        div.description-container
+        div.text-center.pb-3
+          picture-source(
+            custom-path="pricing/"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
+            image-alt="Health facility pricing icon"
+            :image="bundle.image"
+            :image-width="iconSize"
+            :image-height="iconSize"
+          )
+        div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div#price-container
+        div#price-container.text-center
           p(
             :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}"
             :style="opacity"
@@ -49,8 +51,8 @@
                 span.slash /
                 | month
             span(v-else).font-45 FREE
-          p(v-else)
-            strong.black--text.font-30 Contact Us
+          p(v-else).text-center
+            strong.primary--text.font-30 Contact Us
             //- br
             //- span for customized pricing
         //- div.text-center.usage-metric-container
@@ -68,42 +70,42 @@
           template(v-if="bundle.requireContact")
             mc-btn(
               depressed
+              rounded
               block
               event-category="Pricing"
-              :outlined="!isRecommended"
-              :height="!$isWideScreen ? '59px' : '73.68'"
+              width="200px"
+              height="40px"
               :color="btnColor"
               :event-label="`click-pricing-${bundle.title}`"
+              :class="{'primary--text': isRecommended}"
               @click="sendCrispMessage"
-            ).mc-btn1.font-weight-semibold.text-none {{ bundle.btnText }}
+            ).generic-button-text.font-weight-semibold.text-none {{ bundle.btnText }}
           template(v-else)
             signup-button(
               depressed
+              rounded
               block
-              :height="!$isWideScreen ? '59px' : '73.68'"
+              width="200px"
+              height="40px"
               event-category="Pricing"
-              :outlined="!isRecommended"
               :color="btnColor"
+              :class="{'primary--text': isRecommended}"
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
               :query-ops="getQueryOps(bundle)"
-            ).mc-btn1.font-weight-semibold.text-none {{ getBtnText(bundle) }}
+            ).generic-button-text.font-weight-semibold.text-none {{ getBtnText(bundle) }}
         v-row(justify="center").mt-3
           v-col(cols="12" xl="12")
-            div(v-for="(inclusion, inclusionKey) in mainInclusions" :key="inclusionKey").d-flex.mb-1
+            div(v-for="(inclusion, inclusionKey) in mainInclusions" :key="inclusionKey").d-flex
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
               span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
-            div(v-for="(inclusion, inclusionKey) in additionalInclusions" :key="inclusionKey").d-flex.mb-1
-              template(v-if="inclusion.valid || !hideInvalidItems")
-                v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
-                span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
-      //- v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
-      //- v-card-text
+      v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
+      v-card-text
         v-row(justify="center")
           v-col(cols="12")
             div(v-for="(inclusion, inclusionKey) in additionalInclusions" :key="inclusionKey").d-flex
               template(v-if="inclusion.valid || !hideInvalidItems")
-                v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
+                v-icon(:color="getInclusionIconColor(inclusion.valid, true)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
                 span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
         //- v-row(justify="center" v-if="!showList")
         //-   v-col(cols="12" xl="10").text-center
@@ -204,14 +206,17 @@ export default {
     isRecommended () {
       return this.bundle.isRecommended;
     },
+    cardColor () {
+      return this.isRecommended ? 'primary' : 'white';
+    },
     normalTextColor () {
-      return 'black--text';
+      return { 'black--text': !this.isRecommended, 'white--text': this.isRecommended };
     },
     priceColor () {
-      return 'black--text';
+      return { 'primary--text': !this.isRecommended, 'white--text': this.isRecommended };
     },
     btnColor () {
-      return 'primary';
+      return this.isRecommended ? 'white' : 'primary';
     },
     cardHeight () {
       // if (!this.showList) return '500';
@@ -225,7 +230,7 @@ export default {
       });
     },
     recommendedText () {
-      return 'font-weight-medium';
+      return this.isRecommended ? 'font-weight-bold' : 'font-weight-medium';
     },
     opacity () {
       return {
@@ -264,17 +269,20 @@ export default {
       }
     },
     getInclusionIconColor (valid, additional = false) {
+      if (this.isRecommended) return 'white';
       if (!valid) return 'grey';
       if (additional) return 'green';
       return 'primary';
     },
     getInclusionIcon (valid, additional = false) {
-      if (valid && additional) return this.mdiCheckboxMarkedCircle;
+      if (valid && additional) return this.mdiPlusCircle;
       if (valid) return this.mdiCheckboxMarkedCircle;
-      // if (this.isRecommended && !valid) return this.mdiClose;
+      if (this.isRecommended && !valid) return this.mdiClose;
       return this.mdiCloseCircle;
     },
     getInclusionTextColor (valid) {
+      if (this.isRecommended) return 'white--text';
+      if (valid) return 'black--text';
       return 'grey--text';
     },
     sendCrispMessage () {
