@@ -12,17 +12,18 @@
               :image-width="$isMobile ? '226px' : ($isRegularScreen ? '666.66px' : '1200px')"
               :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '380.95px' : '668.08px')"
             )
-        v-col(cols="12" sm="10").text-center
+        v-col(cols="12" sm="10" :class="{'text-center': !$isMobile}")
           h2(:class="titleClasses").mb-5 Straightforward and simple.
           p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 MYCURE Beauty comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can communicate with other doctors at your practice quickly.
-          signup-button(
-            depressed
-            color="primary"
-            class="rounded-md"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-          ).text-none
-            span.mc-btn1 Get Started
+          div.text-center
+            signup-button(
+              depressed
+              color="primary"
+              class="rounded-md"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
+            ).text-none
+              span.mc-btn1 Get Started
 </template>
 
 <script>
