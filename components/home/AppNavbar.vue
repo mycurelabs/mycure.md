@@ -77,7 +77,8 @@
                     ).text-none.font-12.font-weight-medium SIGN UP
                   template(v-else)
                     v-spacer
-                    v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
+                    v-btn(icon @click.stop="drawer = !drawer")
+                      v-icon {{ mdiMenu }}
 
     v-navigation-drawer(
       v-if="$isMobile"
