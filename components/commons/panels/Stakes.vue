@@ -27,11 +27,11 @@
                       p.mc-b3 {{ content.rightDescription }}
                 div(v-else)
                   v-row(justify="center")
-                    v-col(cols="12")
-                      span.mc-h4.title--text {{ content.leftTitle }}
-                      p.mc-b4 {{ content.leftDescription }}
-                      span.mc-h4.title--text {{ content.rightTitle }}
-                      p.mc-4.font-gray {{ content.rightDescription }}
+                    v-col(cols="12").pb-0
+                      p.mc-h4.title--text.mb-2 {{ content.leftTitle }}
+                      p.mc-b4.mb-6 {{ content.leftDescription }}
+                      p.mc-h4.title--text.mb-2 {{ content.rightTitle }}
+                      p.mc-b4.mb-6 {{ content.rightDescription }}
 
             //- version 2
             div(v-if="version === 2")

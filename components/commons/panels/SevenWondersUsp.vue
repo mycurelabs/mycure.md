@@ -213,6 +213,7 @@ export default {
         'lh-title',
         'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseTitle) },
+        { 'text-center': this.$isMobile },
       ];
     },
     superTitleClasses () {
@@ -220,6 +221,15 @@ export default {
         'mc-h6',
         'font-open-sans',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
+        { 'text-center': this.$isMobile },
+      ];
+    },
+    descriptionClasses () {
+      return [
+        'mc-b1',
+        'font-open-sans',
+        'font-gray',
+        { 'text-center': this.$isMobile },
       ];
     },
     panelHeight () {
