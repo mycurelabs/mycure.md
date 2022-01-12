@@ -37,14 +37,16 @@
           :media-content="stakesContent"
           hide-btn
         )
-    v-container.py-16
+    v-container.py-16.px-0
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel
-            v-col(cols="12").text-center
+            v-col(cols="12" :class="{'text-center': !$isMobile}")
               v-row(justify="center")
                 v-col(cols="12" sm="7").py-0
-                  h2.mc-h2.mb-5 Introducing MYCURE Beauty – No Ordinary EMR App
+                  h2.mc-h2.mb-5 Introducing MYCURE Beauty –
+                    br
+                    | No Ordinary EMR App
               v-row(justify="center")
                 v-col(cols="12" sm="9")
                   p.mc-b2 It’s a clinic management system built for the unique ecosystem of healthcare. Connect and securely share files with other providers within the MYCURE One network.
