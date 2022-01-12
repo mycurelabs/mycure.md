@@ -50,13 +50,13 @@
                           span.mc-b3 {{ content }}
             div(v-if="version === 4")
               v-row(justify="center")
-                v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" align="center").pb-0
+                v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" :align="$isMobile? 'start' : 'center'").pb-0
                   picture-source(
                     v-bind="getImageBindings(content.imageBindings)"
                   )
                   p(:class="$isWideScreen ? 'mt-8' : 'mt-4'").mc-h3 {{ content.title }}
-                  div.px-5
-                    p.mc-b2 {{ content.description }}
+                  div(:class="{'px-5': !$isMobile}")
+                    p.mc-b2.mb-10 {{ content.description }}
             footer
             v-row(v-if="version !== 1" justify="center" :class="{'mt-10': version !== 4}")
               v-col(cols="12" sm="11")
