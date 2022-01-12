@@ -33,10 +33,10 @@
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-b3.mb-0.ml-2 {{ item }}
-    div.py-16
+    v-container.py-16.px-0
       v-row(justify="center")
         lazy-hydrate(when-visible)
-          generic-panel(disable-parent-padding)
+          generic-panel
             v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
