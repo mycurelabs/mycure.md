@@ -33,24 +33,25 @@
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-b3.mb-0.ml-2 {{ item }}
-    v-container.py-16
+    div.py-16
       v-row(justify="center")
         lazy-hydrate(when-visible)
-          generic-panel
-            v-col(cols="12").text-center
+          generic-panel(disable-parent-padding)
+            v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
                 v-col(cols="12" sm="10")
-                  p.mc-b2 MYCURE Clinics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Clinics’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s Clinic Management System (CMS).
-                  signup-button(
-                    depressed
-                    color="primary"
-                    event-label="signup"
-                    class="rounded-md"
-                    :width="!$isWideScreen ? '228px' : '300'"
-                    :height="!$isWideScreen ? '59px' : '73.68'"
-                  ).text-none
-                    span.mc-btn1 Start for Free
+                  p.mc-b2.mb-8 MYCURE Clinics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Clinics’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s Clinic Management System (CMS).
+                  div.text-center
+                    signup-button(
+                      depressed
+                      color="primary"
+                      event-label="signup"
+                      class="rounded-md"
+                      :width="!$isWideScreen ? '228px' : '300'"
+                      :height="!$isWideScreen ? '59px' : '73.68'"
+                    ).text-none
+                      span.mc-btn1 Start for Free
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo")
@@ -78,7 +79,7 @@
         :content-classes="descriptionClasses"
         hide-btn
       )
-        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+        div(slot="additional-content").mt-10
           //- signup-button(
           //-   depressed
           //-   color="primary"

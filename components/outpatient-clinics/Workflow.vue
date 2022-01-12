@@ -5,7 +5,7 @@
       generic-panel
         v-col(cols="12")
           v-row(justify="center")
-            v-col(cols="12" md="10").text-center
+            v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
               h2(:class="titleClasses").mb-6 {{ title || 'Why do clinics switch to MYCURE?' }}
               v-row(justify="center")
                 v-col(cols="12" sm="10")
@@ -45,8 +45,7 @@
                         image-width="111px"
                         image-height="92px"
                       )
-                      br
-                      h3.font-xs.font-open-sans.grey--text {{ item.title }}
+                      h3.font-xs.font-open-sans.grey--text.mt-2 {{ item.title }}
 </template>
 
 <script>

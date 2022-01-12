@@ -19,7 +19,7 @@
       template(slot="content")
         p(:class="descriptionClasses") {{ panel.description }}&nbsp;
       template(v-if="panel.route" slot="additional-content")
-        div(:class="{'text-center': $isMobile}")
+        div
           nuxt-link(:to="{ name: panel.route }" :class="{'d-flex': !$isMobile}").button
             span.mc-hyp1.primary--text {{ panel.routeText }}
             v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
