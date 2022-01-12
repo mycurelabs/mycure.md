@@ -4,14 +4,14 @@
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12")
           v-row(justify="center")
-            v-col(cols="12" md="10").text-center.mb-4
+            v-col(cols="12" md="10" :class="{'text-center': !$isMobile}").mb-4
               v-row(justify="center")
-                v-col(cols="10")
+                v-col(cols="12" md="10")
                   h2.mc-h2.mb-6 Join the Next Generation of Healthcare IT Solutions: MYCURE
               p.mc-b2 Integrated healthcare solutions for your practice shouldn’t be expensive or complicated. MYCURE’s mission is to create an affordable yet effective patient records system. Featuring a variety of tools, you can customize your experience to fit the needs of your practice perfectly.
         v-col(cols="12" md="4" v-for="(page, key) in pages" :key="key")
           v-card(style="background-color: #fafafa;" height="100%").rounded-md.pa-5
-            v-row(align="start" :justify="$isMobile ? 'center' : 'start' " :class="{'text-center': $isMobile}")
+            v-row(align="start")
               //- v-skeleton-loader(type="image" width="30%" height="50%").ma-3.
               v-icon(large color="#0099CC").ma-3 {{ page.icon }}
               v-col(:cols="contentColumn")

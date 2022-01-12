@@ -17,7 +17,7 @@
               h2(:class="headerClasses") MYCURE is HIPAA Compliant
               br
               p(:class="descriptionClasses") MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
-              div.text-center
+              div
                 a(
                   href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
                   target="_blank"

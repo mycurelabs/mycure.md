@@ -11,12 +11,12 @@
         :content-classes="descriptionClasses"
       )
         div(slot="super-title")
-          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SIMPLE AND POWERFUL
+          p.mc-h7.font-open-sans.mt-5 SIMPLE AND POWERFUL
         template(slot="image")
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wMD }")
         template(slot="cta-button")
-          div(:class="{'text-center ml-4': $isMobile}")
+          div
             nuxt-link(:to="{ name: 'features' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Explore the Features
               v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}

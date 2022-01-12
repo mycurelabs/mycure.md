@@ -38,7 +38,7 @@
               v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2 {{ item }}
+                  p.mc-b3.mb-0.ml-2 {{ item }}
 
     lazy-hydrate(when-visible)
       storybrand(
@@ -61,7 +61,7 @@
                   v-row(v-for="(item, key) in ofwVideo.itemList" :key="key" align="center")
                     v-icon(color="white" small) {{ mdiCheckCircle }}
                     v-col.pa-0.mb-1
-                      p.mc-list-b3.mb-0.ml-2.white--text {{ item }}
+                      p.mc-b3.mb-0.ml-2.white--text {{ item }}
               template(slot="image")
                 div.vid-container
                   video(width="101%" playsinline autoplay muted loop).syncbase-animate

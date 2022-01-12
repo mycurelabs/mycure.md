@@ -6,8 +6,8 @@
           v-col(cols="12").px-0
             v-row(justify="center" :class="$isWideScreen ? 'mb-16' : 'mb-10'")
               v-col(cols="12" :sm="version === 2 ? 7 : 10")
-                div.text-center
-                  p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4 {{ panelTitle }}
+                div(:class="{'text-center': !$isMobile}")
+                  p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4.title--text {{ panelTitle }}
                   p.mc-b2.mb-0 {{ subTitle }}
             //- version 1
             div(v-if="version === 1").font-open-sans.mt-6
@@ -15,10 +15,10 @@
                 div(v-if="!$isMobile")
                   v-row(justify="center")
                     v-col(cols="4").pb-0
-                      span.mc-h3 {{ content.leftTitle }}
+                      span.mc-h3.title--text {{ content.leftTitle }}
                     v-col(cols="1").pb-0
                     v-col(cols="4").pb-0
-                      span.mc-h3 {{ content.rightTitle }}
+                      span.mc-h3.title--text {{ content.rightTitle }}
                   v-row(justify="center")
                     v-col(cols="4")
                       p.mc-b3 {{ content.leftDescription }}
@@ -28,10 +28,10 @@
                 div(v-else)
                   v-row(justify="center")
                     v-col(cols="12")
-                      span.mc-h3 {{ content.leftTitle }}
-                      p.mc-list-b3 {{ content.leftDescription }}
-                      span.mc-h3 {{ content.rightTitle }}
-                      p.mc-list-b3.font-gray {{ content.rightDescription }}
+                      span.mc-h4.title--text {{ content.leftTitle }}
+                      p.mc-b4 {{ content.leftDescription }}
+                      span.mc-h4.title--text {{ content.rightTitle }}
+                      p.mc-4.font-gray {{ content.rightDescription }}
 
             //- version 2
             div(v-if="version === 2")
@@ -47,7 +47,7 @@
                             :class="{'mt-2': $isWideScreen}"
                           ).white--text {{ index + 1 }}
                         v-col(:class="!$isMobile ? 'pa-0' : ['pr-0', 'pt-0']")
-                          span.mc-list-b3 {{ content }}
+                          span.mc-b3 {{ content }}
             div(v-if="version === 4")
               v-row(justify="center")
                 v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" align="center").pb-0

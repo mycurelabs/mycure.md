@@ -2,11 +2,11 @@
   v-container.my-8
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
-        v-col(cols="12" md="12").text-center
+        v-col(cols="12" md="12" :class="{'text-center': !$isMobile}")
           p.mc-h7.primary--text.font-open-sans.font-weight-semibold FLEXIBLE AND SCALABLE
           h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Customizable Health Information System
           v-row(justify="center")
-            v-col(cols="12" md="9").text-center
+            v-col(cols="12" md="9" :class="{'text-center': !$isMobile}")
               p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
         v-row(:justify="!$isMobile ? 'start' : 'center'")
           v-col(

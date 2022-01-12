@@ -32,7 +32,7 @@
               v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2 {{ item }}
+                  p.mc-b3.mb-0.ml-2 {{ item }}
     v-container.py-16
       v-row(justify="center")
         lazy-hydrate(when-visible)
