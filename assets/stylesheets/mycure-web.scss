@@ -616,6 +616,19 @@ classBinder(this, {
     @include mc-font-sizer($b4-wide, 24px);
   }
 }
+.mc-list-b4 {
+  @extend .font-open-sans;
+  color: $body-color;
+  @media (max-width: $max-sm) {
+    @include mc-font-sizer($b4-mob, 24px);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include mc-font-sizer($b4-std, 20px);
+  }
+  @media (min-width: $min-xl) {
+    @include mc-font-sizer($b4-wide, 24px);
+  }
+}
 .mc-b5 {
   @extend .font-open-sans;
   color: $body-color;
