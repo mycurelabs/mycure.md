@@ -33,7 +33,7 @@
                     v-row(justify="center")
                       v-col(cols="10" :class="{'text-center': $isMobile}")
                         picture-source(v-bind="getImageBindings(item.imageBindings)")
-                        h3(:class="$isWideScreen ?  'mt-n10' : 'mt-n6'").mc-h3.mb-4 {{ item.title }}
+                        h3(:class="$isWideScreen ?  'mt-n12' : 'mt-n6'").mc-h3.mb-4 {{ item.title }}
                         p.mc-b3 {{ item.description }}
                         br
 </template>
@@ -100,7 +100,7 @@ export default {
         imageAlt: imageBindings.imageAlt || imageBindings.alt || this.content.title,
         extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
         imageWidth: this.$isMobile ? '264.33px' : (this.$isRegularScreen ? '258.5px' : '397.65px'),
-        imageHeight: this.$isMobile ? '301.88px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+        imageHeight: this.$isMobile ? '264.33px' : (this.$isRegularScreen ? '258.5px' : '397.65px'),
       };
       return bindings;
     },
