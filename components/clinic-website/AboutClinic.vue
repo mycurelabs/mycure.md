@@ -10,7 +10,7 @@
           v-avatar(size="120").elevation-4
             img(:src="picUrl")
         br
-        h3.mc-h3.title--text.mb-4 {{ clinicName }}
+        h3(:class="{'text-center': $isMobile}").mc-h3.title--text.mb-4 {{ clinicName }}
         div(:class="{'text-center': $isMobile}")
           span.mc-b4 {{ description }}
       v-col(cols="12")

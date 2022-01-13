@@ -9,12 +9,12 @@
         :content-classes="descriptionClasses"
       )
         div(slot="super-title")
-          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SECURED & SAFE
+          p.mc-h7.font-open-sans SECURED & SAFE
         template(slot="image")
           div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wMD }")
         template(slot="cta-button")
-          div(:class="{'text-center ml-4': $isMobile}")
+          div
             a(
               href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
               target="_blank"
