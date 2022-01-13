@@ -57,7 +57,7 @@
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" mmd="6").text-center
+            v-col(cols="12" mmd="6" :class="{'text-center': !$isMobile}")
               h2(:class="headerClasses").font-weight-semibold.mb-5 Advanced Tools for a Growing Mobile Lab
               p(:class="descriptionClasses").mb-10.font-open-sans.font-gray We’re here to make managing your mobile lab so much easier. We offer full functionality for our free clinic management system accounts, and you only need to upgrade as your mobile lab grows. We’re here to help you make the world a healthier place.
             v-col(cols="12").text-center

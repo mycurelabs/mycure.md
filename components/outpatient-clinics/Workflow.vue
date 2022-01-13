@@ -45,7 +45,7 @@
                         image-width="111px"
                         image-height="92px"
                       )
-                      h3.font-xs.font-open-sans.grey--text.mt-2 {{ item.title }}
+                      h3.mc-b3.mt-1 {{ item.title }}
 </template>
 
 <script>
