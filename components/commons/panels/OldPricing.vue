@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      generic-panel(column="10" :row-bindings="{ justify: 'center'}")
+      generic-panel(column="12" :row-bindings="{ justify: 'center'}")
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12").text-center
@@ -59,8 +59,8 @@
                 :per-page="1"
               )
                 slide(
-                  v-for="(pack, index, key) in mobilePricingItems"
-                  :key="key"
+                  v-for="(pack, index) in mobilePricingItems"
+                  :key="index"
                   :data-index="index+1"
                 ).pa-2
                   pricing-card(

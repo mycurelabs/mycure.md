@@ -95,7 +95,7 @@ export default {
         icon: 'ward-management',
       },
       {
-        name: 'Authentication & Authorization',
+        name: 'Authentication',
         icon: 'Authentication',
       },
       {

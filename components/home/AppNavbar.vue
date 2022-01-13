@@ -10,7 +10,7 @@
         v-container
           v-row(justify="center")
             generic-panel(
-              :column="$isMobile ? 12 : 10"
+              :column="$isMobile ? 12 : $vuetify.breakpoint.width < 1250 ? 11 : 10"
               :row-bindings="{ justify: 'center', align: 'center' }"
               disable-parent-padding
             )

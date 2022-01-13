@@ -17,8 +17,8 @@
               v-col(:cols="contentColumn")
                 p.mc-h4 {{ page.text }}
                 p.mc-b4 {{ page.description }}
-                nuxt-link(:to="{ name: page.route }" :class="{'d-flex': !$isMobile}").button
-                  span.mc-hyp1.primary--text Learn more&nbsp;
+                nuxt-link(:to="{ name: page.route }" :class="[{'d-flex': !$isMobile}, {'ml-4': $isMobile}]").button
+                  span.mc-hyp1.primary--text Learn more
                   v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
 </template>
 

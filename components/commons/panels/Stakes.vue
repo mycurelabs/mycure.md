@@ -61,7 +61,7 @@
             v-row(v-if="version !== 1" justify="center" :class="{'mt-10': version !== 4}")
               v-col(cols="12" sm="11")
                 p(:class="{'text-center': version === 1}").mc-b2 {{ panelDescription }}
-            v-row(justify="center")
+            v-row(justify="center").pt-5
               //- v-btn(
               //-   color="primary"
               //-   depressed

@@ -1,40 +1,37 @@
 <template lang="pug">
-  v-container
+  v-container.my-8
     v-row(justify="center")
-      generic-panel
-        v-col(cols="12")
-          v-row(align="center" justify="center")
-            v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
-              div.text-center
-                picture-source(
-                  image="mycure-hipaa-badge"
-                  :image-width="$vuetify.breakpoint.width > 1919 ? '465px' : ($isRegularScreen ? '266.66px' : '226px')"
-                  :image-height="$vuetify.breakpoint.width > 1919 ? '449.41px' : ($isRegularScreen ? '257.7px' : '218.42px')"
-                  :image-file-extension="$useWebp? '.webp' : '.png'"
-                  image-alt="HIPAA Compliance Seal"
-                )
-            v-col(cols="12" md="8")
-              h2(:class="headerClasses") MYCURE is HIPAA Compliant
-              br
-              p(:class="descriptionClasses") MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
-              div
-                a(
-                  href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
-                  target="_blank"
-                  rel="noreferrer noopener nofollow"
-                  :class="{'d-flex': !$isMobile}"
-                ).learn-more
-                  span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
-                  v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
+      generic-sub-page-panel(
+        content-right
+        title="MYCURE is HIPAA Compliant"
+        content="MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA."
+        :title-classes="headerClasses"
+        :content-classes="descriptionClasses"
+      )
+        div(slot="super-title")
+          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold SECURED & SAFE
+        template(slot="image")
+          div(:class="{'text-center': $isMobile}")
+            picture-source(v-bind="imageBindings" :class="{'ml-n10': wMD }")
+        template(slot="cta-button")
+          div(:class="{'text-center ml-4': $isMobile}")
+            a(
+              href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
+              target="_blank"
+              rel="noreferrer noopener nofollow"
+              :class="{'d-flex': !$isMobile}"
+            ).learn-more
+              span.mc-hyp1.primary--text Read more about MYCURE's Privacy Standards
+              v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
 </template>
 
 <script>
 import { mdiChevronRight } from '@mdi/js';
-import GenericPanel from '~/components/generic/GenericPanel';
+import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
-    GenericPanel,
+    GenericSubPagePanel,
     PictureSource,
   },
   props: {
@@ -48,6 +45,17 @@ export default {
     },
   },
   data () { return { mdiChevronRight }; },
+  computed: {
+    imageBindings () {
+      return {
+        image: 'mycure-hipaa-badge',
+        imageFileExtension: this.$useWebp ? '.webp' : '.png',
+        imageAlt: 'HIPAA Compliance Seal',
+        imageWidth: this.$vuetify.breakpoint.width > 1919 ? '465px' : (this.$isRegularScreen ? '266.66px' : '226px'),
+        imageHeight: this.$vuetify.breakpoint.width > 1919 ? '449.41px' : (this.$isRegularScreen ? '257.7px' : '218.42px'),
+      };
+    },
+  },
 };
 </script>
 
