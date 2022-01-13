@@ -6,7 +6,7 @@
         disable-parent-padding
       )
         v-row(justify="center" align="center")
-          v-col(cols="12" sm="5")
+          v-col(cols="12" sm="5" :class="{'text-center': $isMobile}")
             p.mc-h2.white--text Watch how you can improve your patient attendance rate
             div(:class="{ 'text-center': $isMobile }")
               signup-button(

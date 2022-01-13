@@ -20,8 +20,8 @@
       )
 
     //- 2nd panel
-    lazy-hydrate(when-visible)
-      div.grey-bg.py-14.mx-n3
+    div.grey-bg.py-14
+      lazy-hydrate(when-visible)
         generic-media-panel(
           :content="secondPanel"
           :title-classes="['mc-h2']"
@@ -55,7 +55,7 @@
             span.mc-b2.white--text MYCURE Booking is an end-to-end scheduling software solution for healthcare providers designed with the needs of their patients in mind. By staying organized and keeping your practice running smoothly, you’ll see a serious improvement in staff and patient morale. No more missing paperwork, no more long wait times. The MYCURE Booking app is your partner every step of the way.
           template(slot="items")
             div(:class="[{'d-flex': !$isMobile}, {'justify-space-around': !$isMobile}]").mt-16
-              v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
+              v-col(cols="12" md="3" xl="3" v-for="(item, key) in thirdPanelContents" :key="key" :class="{'text-center': !$isMobile}")
                 picture-source(
                   v-if="item.icon"
                   custom-path="booking/"
@@ -73,7 +73,7 @@
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" md="8").text-center
+            v-col(cols="12" md="8" :class="$isMobile ? 'pa-0' : 'text-center'")
               h2(:class="titleClasses").font-weight-semibold.primary--text Activate your Appointment Scheduling Website
               p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
             v-col(cols="12").text-center
@@ -137,7 +137,7 @@
           br
         template(slot="items")
           v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key")
-            div.text-center
+            div(:class="{'text-center': !$isMobile}")
               picture-source(
                 v-if="item.icon"
                 custom-path="booking/"
