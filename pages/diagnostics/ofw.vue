@@ -21,7 +21,7 @@
         background-img-pos="48%"
         background-img-width="44%"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"
@@ -80,7 +80,7 @@
                 custom-path="clinics/ofw/"
                 image="beautiful-reports"
               )
-            v-col(cols="12" sm="11").text-center
+            v-col(cols="12" sm="11" :class="{'text-center': !$isMobile}")
               h2(:class="headerClasses").mb-5 Create Beautiful Reports for Your OFW Clinic Clients
               p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide printed and digital copies of medical exam results without the hassle. MYCURE Clinics designs clear and easy to read reports, which will make the paperwork process that much easier for your patients getting ready to travel.
     lazy-hydrate(when-visible)
@@ -123,7 +123,8 @@
           :content="integrationsPanel"
           hide-btn
           align="center"
-          :super-title-classes="['mc-h7']"
+          :super-title-classes="['mc-h7', {'text-center': $isMobile}]"
+          :title-classes="['mc-h2', {'text-center': $isMobile}]"
         )
           template(slot="content")
             v-row(justify="start")
@@ -293,7 +294,7 @@ export default {
     },
     stakesContent () {
       return {
-        description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
+        title: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
         itemList: [
           'Wasted time and resources',
           'Long wait times',

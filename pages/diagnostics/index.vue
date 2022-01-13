@@ -20,7 +20,7 @@
         background-img-pos="47%"
         background-img-width="48%"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"

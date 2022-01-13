@@ -30,7 +30,7 @@
         //-     :height="!$isWideScreen ? '59px' : '73.68'"
         //-   ).text-none
         //-     span.generic-button-text Book a demo today
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         stakes(
           :version="3"
