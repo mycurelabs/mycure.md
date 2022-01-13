@@ -34,15 +34,15 @@
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
                   p.mc-b3.mb-0.ml-2 {{ item }}
-    v-container.py-16
+    v-container.py-16.px-0
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel
-            v-col(cols="12").text-center
+            v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Seamless Workflows Tailored for You
               v-row(justify="center")
                 v-col(cols="12" sm="10")
-                  p.mc-b2 MYCURE Diagnostics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today, you’re missing out on more than you might think.  MYCURE Diagnostics’ laboratory information management system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE Diagnostics.
+                  p.mc-b2.mb-8 MYCURE Diagnostics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today, you’re missing out on more than you might think.  MYCURE Diagnostics’ laboratory information management system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE Diagnostics.
                   div.text-center
                     signup-button(
                       depressed
@@ -69,7 +69,7 @@
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" md="10").text-center
+            v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
               h2(:class="headerClasses").font-weight-semibold.mb-5 Advanced Tools for a Busy Diagnostic Center
               p(:class="descriptionClasses").mb-10.font-open-sans.font-gray We’re here to make managing your lab so much easier. We offer full functionality for our free accounts, and you only need to upgrade as your center grows. We’re here to help you make the world a healthier place.
             v-col(cols="12").text-center
@@ -119,15 +119,15 @@
           //- Check list
           template(slot="additional-content" v-if="info.list")
             template(v-for="(item, i) in info.list")
-              v-row(dense)
-                v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : ( $isRegularScreen ? 'pt-2' : 'pt-1')").pr-2
-                  img(
-                    src="~/assets/images/mycure-check.png"
-                    alt="Check icon"
-                    :width="$isWideScreen ? '30' : '20'"
-                    :height="$isWideScreen ? '30' : '20'"
-                  )
-                v-col(cols="10" sm="11" md="11")
+              v-row(dense align="center").pl-2
+                //- v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : ( $isRegularScreen ? 'pt-2' : 'pt-1')").pr-2
+                img(
+                  src="~/assets/images/mycure-check.png"
+                  alt="Check icon"
+                  :width="$isWideScreen ? '30' : '20'"
+                  :height="$isWideScreen ? '30' : '20'"
+                ).mr-2
+                v-col
                   span.mc-b2.font-open-sans.font-gray {{ item }}
     lazy-hydrate(when-visible)
       mycure-csi(title="Lab's Records" page="Diagnostics")

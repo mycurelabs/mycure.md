@@ -189,7 +189,6 @@ export default {
     },
   },
   data () {
-    this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
     return {};
   },
