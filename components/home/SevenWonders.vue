@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- TODO: remove hide dots once going back to normal, as well as the background
   generic-blue-bg(large-dots)
     v-container
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
