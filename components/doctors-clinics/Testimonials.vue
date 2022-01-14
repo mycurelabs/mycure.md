@@ -7,7 +7,7 @@
       )
         v-col(cols="12").pa-0
           v-row(justify="center")
-            v-col(cols="12" sm="9" :class="{'text-center': !$isMobile}")
+            v-col(cols="12" md="9" :class="{'text-center': !$isMobile}")
               h4.mc-h7.font-open-sans.mb-3 TESTIMONIALS
               span.font-weight-semibold.mc-h2 {{ title || (isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?') }}
           v-row(justify="center").mt-12

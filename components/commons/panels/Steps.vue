@@ -5,7 +5,7 @@
         generic-panel(:row-bindings="{ justify:'center' }")
           v-col(cols="12")
             v-row(justify="center")
-              v-col(cols="12" sm="6").text-center
+              v-col(cols="12" md="6").text-center
                 h1.mc-h2 {{ title || 'All these in 3 Simple Steps!' }}
                 p.mc-b2.white--text.mb-0 {{ description }}
             v-row

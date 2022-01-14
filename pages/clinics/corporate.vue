@@ -36,7 +36,7 @@
           icon-container-col-size="10"
           title="Meet MYCURE Clinics: The Newest Tool for the Newest Generation of Healthcare"
           description="Everyone in your workplace is online. MYCURE Clinics helps you monitor their health and safety through the cloud. It’s a clinic management system built for the unique ecosystem of healthcare, allowing you to connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network."
-          :icon-column-bindings="{ cols: 6, sm: 3 }"
+          :icon-column-bindings="{ cols: 6, md: 3 }"
           :items="features"
           has-blue-bg
         )

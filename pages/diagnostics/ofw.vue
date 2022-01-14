@@ -106,7 +106,7 @@
         :title-classes="headerClasses"
       )
         template(slot="cta-button")
-          div(:class="{'text-center ml-4': $isMobile}")
+          div
             nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Join Today
               v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
