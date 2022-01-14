@@ -8,7 +8,7 @@
             v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
               h2(:class="titleClasses").mb-6 {{ title || 'Why do clinics switch to MYCURE?' }}
               v-row(justify="center")
-                v-col(cols="12" sm="10")
+                v-col(cols="12" md="10")
                   p(:class="descriptionClasses").mb-10 {{ description || 'MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.' }}
               //- mc-btn(
               //-   event-label="click-cms-video"

@@ -39,7 +39,7 @@
             v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
-                v-col(cols="12" sm="10")
+                v-col(cols="12" md="10")
                   p.mc-b2.mb-8 MYCURE Hospital-OPD is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Hospital-OPDs’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE Hospital-OPD.
                   div.text-center
                     signup-button(

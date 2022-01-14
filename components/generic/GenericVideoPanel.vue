@@ -6,7 +6,7 @@
         disable-parent-padding
       )
         v-row(justify="center" align="center")
-          v-col(cols="12" sm="5" :class="{'order-last': $isMobile}")
+          v-col(cols="12" md="5" :class="{'order-last': $isMobile}")
             h2(v-if="content.title" :class="{'white--text': !notWhite}").mc-h2.mb-5 {{ content.title }}
             slot(name="description")
               p(v-if="content.description" :class="{'white--text': !notWhite}").mc-b2 {{ content.description }}

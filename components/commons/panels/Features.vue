@@ -111,7 +111,7 @@ export default {
       type: Object,
       default: () => ({
         cols: 6,
-        md: 4,
+        sm: 4,
       }),
     },
     // - Height of panel

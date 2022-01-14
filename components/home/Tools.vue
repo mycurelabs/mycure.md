@@ -13,6 +13,7 @@
             v-for="(tool, key) in items"
             :key="key"
             cols="6"
+            sm="4"
             md="2"
             :offset-md="getCustomOffset(key)"
           ).text-center

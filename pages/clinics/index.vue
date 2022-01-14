@@ -40,7 +40,7 @@
             v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
-                v-col(cols="12" sm="10")
+                v-col(cols="12" md="10")
                   p.mc-b2.mb-8 MYCURE Clinics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Clinics’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s Clinic Management System (CMS).
                   div.text-center
                     signup-button(
@@ -99,7 +99,7 @@
           description="MYCURE has built-in workflows across a range of specialties."
           :items="features"
           :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
-          :icon-column-bindings="{ cols: '6', md: '3' }"
+          :icon-column-bindings="{ cols: '6', sm: '4', md: '3' }"
           icon-container-col-size="10"
           image-dir="clinics/"
           panel-height="70vh"
