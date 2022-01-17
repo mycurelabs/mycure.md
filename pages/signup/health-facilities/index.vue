@@ -31,7 +31,8 @@
                     color="error"
                     large
                     @click="goToPrevPage"
-                  ).ma-4
+                    :class="$isMobile? 'mr-1' : 'mx-4'"
+                  ).my-4
                     v-icon(large) {{ mdiArrowULeftTop }}
                 span Back
             p.mb-2 Personal Info

@@ -26,9 +26,8 @@
                   image-width="115px"
                   image-height="94.19px"
                 )
-                br
-                h3.font-xs.font-open-sans.grey--text {{ item.title }}
-      v-col(cols="10").text-center
+                h3.mc-b3.mt-1 {{ item.title }}
+      v-col(cols="10" :class="{'text-center': !$isMobile}")
         span.mc-b2 MYCURE Diagnostics is an end-to-end practice management system solution that eliminates the old challenges of processing paperwork manually and handles location-based registrations with ease. If you’re not using the technologies available today, you’re missing out on more than you might think. MYCURE Diagnostics was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE mobile labs clinic information system.
       v-col(cols="12").text-center
         signup-button(

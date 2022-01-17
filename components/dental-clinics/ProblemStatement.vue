@@ -18,7 +18,7 @@
           v-row(v-else justify="center")
             v-col(cols="10")
               carousel(
-                paginationColor="grey"
+                paginationColor="#f0f0f0"
                 autoplay
                 loop
                 navigationEnabled

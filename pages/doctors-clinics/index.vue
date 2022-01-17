@@ -28,10 +28,10 @@
             generic-panel
               v-col(cols="12")
                 v-row(justify="center")
-                  v-col(cols="12" sm="8").text-center
+                  v-col(cols="12" sm="8" :class="{'text-center': !$isMobile}")
                     h2.mc-h2.mb-5 Being Disorganized Doesn’t Just Cost You Time, It Costs You Money
                     v-row(justify="center")
-                      v-col(cols="10")
+                      v-col(cols="12" md="10")
                         p.mc-b2 As a doctor, you don’t want your ability to provide care for your patients be affected by any behind the scenes inefficiencies. Frustrated providers and patients can leave your staff dealing with any mess left behind. MYCURE Doctors has a solution for that.
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text.mb-16

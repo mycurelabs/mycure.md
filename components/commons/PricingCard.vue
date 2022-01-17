@@ -299,11 +299,6 @@ export default {
   left: 5%;
 } */
 
-.general-info-container {
-  position: relative;
-  min-height: 180px;
-}
-
 .description-container {
   min-height: 80px;
 }
@@ -339,8 +334,33 @@ export default {
   overflow: visible !important;
 }
 
+.general-info-container {
+  position: relative;
+  min-height: 180px;
+}
+
 .v-tabs-items {
   background-color: transparent !important;
+}
+
+@media screen and (max-width: 1264px) {
+  .general-info-container {
+    position: relative;
+    min-height: 150px;
+  }
+}
+
+@media screen and (min-width: 1264px) {
+  .general-info-container {
+    position: relative;
+    min-height: 180px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .general-info-container {
+    position: relative;
+    min-height: 180px;
+  }
 }
 
 @media screen and (width: 1920px) and (height: 1007px) {
