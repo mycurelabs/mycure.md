@@ -18,8 +18,6 @@
         :parse-title-fields="['Practice ', 'Clutter ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
-        background-img-pos="50%"
-        background-img-width="60%"
       ).mb-16
     div.grey-bg
       v-container.py-16
