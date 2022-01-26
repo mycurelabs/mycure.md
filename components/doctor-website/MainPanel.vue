@@ -22,11 +22,6 @@
               text
               @click="onRedirect(tab)"
             ).text-none.mc-h7.white--text.font-weight-light {{ tab }}
-            v-tooltip(bottom :disabled="shareModel")
-              template(v-slot:activator="{ on, attrs }")
-                div(v-on="on")
-                  share-button(color="white" @clipSuccess="$emit('clipSuccess')" @clicked="shareModel = !shareModel" :class="$isWideScreen ? 'ml-12' : 'ml-6'")
-              span Share Clinic
         v-col(v-else cols="10").pt-8
           v-row(align="center")
             nuxt-link(to="/")
@@ -36,7 +31,6 @@
                 alt="MYCURE logo"
               ).mt-1
             v-spacer
-            share-button(color="white" is-small @clipSuccess="$emit('clipSuccess')")
             v-menu(offset-y)
               template(v-slot:activator="{ on }")
                 v-btn(
