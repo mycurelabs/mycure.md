@@ -819,6 +819,8 @@ export default {
   width: 100vw;
   margin: 0;
   padding: 0;
+  min-height: 700px;
+  position: relative;
 }
 .grey-bg {
   background-color: #f9f9f9;
