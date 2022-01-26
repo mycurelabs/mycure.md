@@ -17,6 +17,8 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
+        background-img-width="55%"
+        background-img-pos="42%"
       )
     div.grey-bg
       lazy-hydrate(when-visible)
