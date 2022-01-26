@@ -1,33 +1,35 @@
 <template lang="pug">
-  v-row(style="max-height:700px; overflow-y: auto;")
-    v-col(v-if="loading" cols="12")
-      v-skeleton-loader(type="article, actions")
-    template(v-else)
-      v-col(v-if="!clinics.length" cols="12").px-16
-        p.mc-b2.mt-10 This doctor has no listed organizations. Please come and check another time!
-      v-col(
-        v-for="(clinic, key) in clinics"
-        :key="key"
-        cols="12"
-      ).grey-bg.pt-0.pb-6
-        facility-item(
-          :clinic="clinic"
-          :doctor-id="doctorId"
-          :is-preview-mode="isPreviewMode"
-        ).my-2
-      v-col(cols="12")
-        v-pagination(
-          v-if="length > 1"
-          v-model="page"
-          :length="length"
-          :next-icon="mdiChevronRight"
-          :prev-icon="mdiChevronLeft"
-        )
+  div
+    v-row(style="max-height:700px; overflow-y: auto;")
+      v-col(v-if="loading" cols="12")
+        v-skeleton-loader(type="article, actions")
+      template(v-else)
+        v-col(v-if="!clinics.length" cols="12").px-16
+          p.mc-b2.mt-10 This doctor has no listed organizations. Please come and check another time!
+        v-col(
+          v-for="(clinic, key) in clinics"
+          :key="key"
+          cols="12"
+        ).grey-bg.pt-0.pb-6
+          facility-item(
+            :clinic="clinic"
+            :doctor-id="doctorId"
+            :is-preview-mode="isPreviewMode"
+          ).my-2
+    v-col(v-if="!loading" cols="12").grey-bg
+      v-pagination(
+        v-if="length > 1"
+        circle
+        v-model="page"
+        :length="length"
+        :next-icon="mdiChevronRight"
+        :prev-icon="mdiChevronLeft"
+      )
 </template>
 
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js';
-// import VueScrollTo from 'vue-scrollto';
+import VueScrollTo from 'vue-scrollto';
 import FacilityItem from './FacilityItem';
 export default {
   components: {
@@ -74,7 +76,7 @@ export default {
   },
   watch: {
     page (val) {
-      this.scrollToTop();
+      VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
       this.$emit('onUpdatePage', val);
       return val;
     },
@@ -89,6 +91,9 @@ export default {
   overflow-y: scroll;
 } */
 
+.grey-bg {
+  background-color: #f9f9f9;
+}
 #clinics-list-top::-webkit-scrollbar {
   width: 11px;
 }
