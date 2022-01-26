@@ -181,11 +181,11 @@ export default {
     },
     backgroundImgPos: {
       type: String,
-      default: '52%',
+      default: '50%',
     },
     backgroundImgWidth: {
       type: String,
-      default: '40%',
+      default: '50%',
     },
   },
   data () {

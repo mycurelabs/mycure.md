@@ -4,17 +4,16 @@
     lazy-hydrate(when-idle)
       usp(
         has-custom-background
-        extension-exclusive
-        background-image="FullService"
-        background-image-file-extension=".webp"
+        background-image="hospitals-hero"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
         title="MYCURE Hospital-OPD"
         meta-title="MYCURE HOSPITALS"
         description="Keep your hospital's out-patient department's (OPD) operations running smoothly with the MYCURE Hospital-OPD app. We've designed a platform that benefits OPD Clinics of all sizes, from small to large."
         parse-title
         btn-text="Start Free Today"
-        image="FullService"
+        image="hospitals-hero"
         :image-width="$isMobile ? '100%' : '90%'"
-        custom-image-path="diagnostics/"
+        custom-image-path="clinics/hospital/"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
