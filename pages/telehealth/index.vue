@@ -19,6 +19,8 @@
         :parse-title-fields="['to ', 'Your ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
+        :background-img-width="$isRegularScreen? '44%' : '47%'"
+        :background-img-pos="$isRegularScreen? '52%' : '47%'"
       )
         //- GET RESPONSE
         template(slot="cta-button")

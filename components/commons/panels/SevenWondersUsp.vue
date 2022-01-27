@@ -187,6 +187,10 @@ export default {
       type: String,
       default: '47%',
     },
+    backgroundImgPosTop: {
+      type: String,
+      default: null,
+    },
   },
   data () {
     this.btnClasses = ['mc-btn1'];
@@ -256,7 +260,7 @@ export default {
         height: '100%',
         position: 'absolute',
         left: this.backgroundImgPos,
-        top: this.$isMobile ? '0' : this.$isRegularScreen ? '-5%' : '-3%',
+        top: this.backgroundImgPosTop || this.$isMobile ? '0' : this.$isRegularScreen ? '-5%' : '-3%',
         zIndex: '1',
         objectFit: 'contain',
       };
