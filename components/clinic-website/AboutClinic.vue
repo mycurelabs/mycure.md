@@ -14,7 +14,7 @@
         v-clamp(
           autoresize
           :max-lines="3"
-        ).mc-h3.title--text.mb-6 {{ 'Prime Care Multi-Specialty Health System and Diagnostic Facility' }}
+        ).mc-h3.title--text.mb-6 {{ clinicName }}
         span.mc-b4 {{ description }}
       v-col(cols="12")
         v-divider(width="100%" color="#DEDEDE").mb-7.mt-10
