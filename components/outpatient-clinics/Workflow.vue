@@ -31,8 +31,8 @@
                       image="problem-statement"
                       image-alt="Clinic workflow"
                       image-file-extension=".webp"
-                      :image-width="$isRegularScreen ? '662px' : '1012px'"
-                      :image-height=" $isRegularScreen ? '527.13px' : '805.84px' "
+                      :image-width="$isRegularScreen ? '640.48px' : '722px'"
+                      :image-height=" $isRegularScreen ? '510px' : '574.89px' "
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
