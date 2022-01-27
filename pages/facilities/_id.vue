@@ -114,7 +114,8 @@
                 v-tab-item(value="contact")
                   div.grey-bg.pt-8
                     contact-us(
-                      :address="formattedAddressArray"
+                      :formatted-address="formattedAddressArray"
+                      :address="clinic.address"
                       :clinic-phone="clinicPhone"
                       :schedule="clinic.mf_schedule"
                     )

@@ -11,7 +11,7 @@
             v-col
               span(v-if="!address").font-italic.unavailable--text No address available
               v-row(v-else)
-                span(v-for="(item, key) in address" :key="key").mc-b2 {{ item }} &nbsp;
+                span(v-for="(item, key) in formattedAddress" :key="key").mc-b2 {{ item }} &nbsp;
           v-row(align="center").pl-3.pt-1
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
             span(:class="[{'font-italic': !clinicPhone }, {'unavailable--text': !clinicPhone }]").mc-b2 {{ clinicPhone || 'No contact number available'}}
@@ -59,6 +59,10 @@ export default {
     },
     clinicPhone: {
       type: String,
+      default: null,
+    },
+    formattedAddress: {
+      type: Array,
       default: null,
     },
   },
