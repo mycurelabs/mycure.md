@@ -1,19 +1,14 @@
 <template lang="pug">
   div
     v-row(v-if="itemsTotal" align="center" justify="center").pt-1.px-3
-      v-col(cols="12").pa-0
-        v-row(v-if="!$isMobile").pa-3
+      v-col(cols="12")
+        v-row(v-if="!$isMobile" align="center")
           span(style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
           v-spacer
-          v-pagination(
+          mc-paginate(
             v-if="itemsTotal > 4"
-            justify="center"
-            :value="itemsPage"
-            :length="itemsPaginationLength"
-            total-visible="5"
-            :next-icon="mdiChevronRight"
-            :prev-icon="mdiChevronLeft"
-            circle
+            :items-page="itemsPage"
+            :items-pagination-length="itemsPaginationLength"
             @input="onPaginate($event)"
           )
         v-select(
@@ -45,7 +40,7 @@
       //- )
     div(v-if="loading").pt-3
       v-skeleton-loader(
-        v-for="n in 3"
+        v-for="n in 5"
         :key="n"
         type="card-heading, list-item-three-line, actions" elevation="2"
       )
@@ -61,25 +56,27 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
         )
-      v-pagination(
-        v-if="itemsTotal > 4"
-        justify="center"
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="5"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
+      //- v-pagination(
+      //-   v-if="itemsTotal > 4"
+      //-   justify="center"
+      //-   :value="itemsPage"
+      //-   :length="itemsPaginationLength"
+      //-   total-visible="5"
+      //-   :next-icon="mdiChevronRight"
+      //-   :prev-icon="mdiChevronLeft"
+      //-   circle
+      //-   @input="onPaginate($event)"
+      //- )
 </template>
 
 <script>
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import ServiceItem from './ServiceItem';
+import McPaginate from './McPaginate';
 export default {
   components: {
     ServiceItem,
+    McPaginate,
   },
   props: {
     loading: Boolean,
