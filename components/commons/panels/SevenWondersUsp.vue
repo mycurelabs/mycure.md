@@ -256,7 +256,7 @@ export default {
         height: '100%',
         position: 'absolute',
         left: this.backgroundImgPos,
-        top: '0',
+        top: this.$isMobile ? '0' : this.$isRegularScreen ? '-5%' : '-3%',
         zIndex: '1',
         objectFit: 'contain',
       };

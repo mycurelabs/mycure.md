@@ -7,7 +7,7 @@
         background-image="Diagnostics-Landing-Page"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
         title="Your Diagnostic Center Transformed"
-        meta-title="MYCURE Diagnostic"
+        meta-title="MYCURE DIAGNOSTIC"
         description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
         image="Diagnostics-Mobile-USP"
         image-col-offset="1"
