@@ -16,7 +16,7 @@
             :doctor-id="doctorId"
             :is-preview-mode="isPreviewMode"
           ).my-2
-    v-col(v-if="!loading" cols="12").grey-bg
+    v-col(v-if="!loading" cols="12").grey-bg.my-3
       v-pagination(
         v-if="length > 1"
         circle
