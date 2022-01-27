@@ -10,9 +10,12 @@
           v-avatar(size="120").elevation-4
             img(:src="picUrl")
         br
-        h3(:class="{'text-center': $isMobile}").mc-h3.title--text.mb-6 {{ clinicName }}
-        div(:class="{'text-center': $isMobile}")
-          span.mc-b4 {{ description }}
+        //- h3(:class="{'text-center': $isMobile}") {{ clinicName }}
+        v-clamp(
+          autoresize
+          :max-lines="3"
+        ).mc-h3.title--text.mb-6 {{ 'Prime Care Multi-Specialty Health System and Diagnostic Facility' }}
+        span.mc-b4 {{ description }}
       v-col(cols="12")
         v-divider(width="100%" color="#DEDEDE").mb-7.mt-10
       v-col(cols="12")
@@ -25,7 +28,11 @@
 </template>
 
 <script>
+import VClamp from 'vue-clamp';
 export default {
+  components: {
+    VClamp,
+  },
   props: {
     clinicName: {
       type: String,
