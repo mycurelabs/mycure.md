@@ -8,8 +8,10 @@
         v-col(cols="12")
           v-row(align="start").pl-3
             v-icon(small color="primary" :class="$isWideScreen ? 'mt-3' : 'mt-2'").mr-1 {{ mdiMapMarker }}
-            v-col.pa-0
-              span(:class="[{'font-italic': !formattedAddress }, {'unavailable--text': !formattedAddress }]").mc-b2 {{ formattedAddress || 'No address available' }}
+            v-col
+              span(v-if="!address").font-italic.unavailable--text No address available
+              v-row(v-else)
+                span(v-for="(item, key) in address" :key="key").mc-b2 {{ item }} &nbsp;
           v-row(align="center").pl-3.pt-1
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
             span(:class="[{'font-italic': !clinicPhone }, {'unavailable--text': !clinicPhone }]").mc-b2 {{ clinicPhone || 'No contact number available'}}
@@ -41,7 +43,6 @@ import {
   mdiPhone,
 } from '@mdi/js';
 import { format } from 'date-fns';
-import { formatAddress } from '~/utils/formats';
 import Schedules from '~/components/clinic-website/schedules';
 export default {
   components: {
@@ -128,10 +129,6 @@ export default {
         return 0;
       });
       return finalSched;
-    },
-    formattedAddress () {
-      if (!this.address) return '';
-      return formatAddress(this.address, 'street1, street2, city, province, country');
     },
   },
   mounted () {

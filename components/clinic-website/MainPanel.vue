@@ -58,10 +58,9 @@
             br
             v-row(justify="center")
               v-col(cols="12" md="5")
-                v-row(justify="center")
-                  span.mc-b2.font-weight-light.white--text &nbsp;
-                    v-icon(small color="white").mr-1 {{ mdiMapMarker }}
-                    | {{ formattedAddress }}
+                v-row(justify="center" align="center")
+                  v-icon(small color="white").mr-1 {{ mdiMapMarker }}
+                  span(v-for="(item, key) in formattedAddress" :key="key").mc-b2.font-weight-light.white--text {{ item }} &nbsp;
             v-row(justify="center" align="center")
               v-icon(small color="white").mr-2 {{ mdiPhone }}
               span.mc-b2.font-weight-light.white--text {{ clinicPhone }}
@@ -115,7 +114,7 @@ export default {
       default: null,
     },
     formattedAddress: {
-      type: String,
+      type: Array,
       default: null,
     },
     clinicPhone: {

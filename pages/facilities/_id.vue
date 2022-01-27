@@ -20,7 +20,7 @@
         :tabs="normalTabsList"
         :pic-url="picURL"
         :clinic-name="clinicName"
-        :formatted-address="formattedAddress"
+        :formatted-address="formattedAddressArray"
         :clinic-phone="clinicPhone"
         :style="{ height: $isMobile ? '110vh' : '110vh' }"
         :is-bookable="isVerified && isOnline"
@@ -114,7 +114,7 @@
                 v-tab-item(value="contact")
                   div.grey-bg.pt-8
                     contact-us(
-                      :address="clinic.address"
+                      :address="formattedAddressArray"
                       :clinic-phone="clinicPhone"
                       :schedule="clinic.mf_schedule"
                     )
@@ -450,7 +450,17 @@ export default {
     },
     formattedAddress () {
       if (!this.clinic?.address) return '';
+      console.log(this.clinic.address);
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
+    },
+    formattedAddressArray () {
+      return [
+        this.clinic.address.street1 ? this.clinic.address.street1 + ',' : '',
+        this.clinic.address.street2 ? this.clinic.address.street2 + ',' : '',
+        this.clinic.address.city ? this.clinic.address.city + ',' : '',
+        this.clinic.address.province ? this.clinic.address.province + ',' : '',
+        this.clinic.address.country ? this.clinic.address.country : '',
+      ];
     },
     clinicPhone () {
       if (!this.clinic) return '';
