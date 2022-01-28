@@ -24,7 +24,7 @@
             ).text-none.mc-h7.white--text.font-weight-light {{ tab }}
         v-col(v-else cols="10").pt-8
           v-row(align="center")
-            nuxt-link(to="/")
+            nuxt-link(to="/directory")
               img(
                 src="~/assets/images/mycure-logo-white.png"
                 width="120"
