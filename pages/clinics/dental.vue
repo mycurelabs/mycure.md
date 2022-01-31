@@ -39,8 +39,8 @@
               ).text-none
                 span.mc-btn1.white--text Get Started Free
     //- 2nd panel
-    div.blue-bg.mx-n3
-      lazy-hydrate(when-visible)
+    lazy-hydrate(when-visible)
+      generic-blue-bg
         problem-statement
     //- 3rd panel
     lazy-hydrate(when-visible)
@@ -65,11 +65,33 @@
               span.mc-btn1 Get Started
     lazy-hydrate(when-visible)
       straightforward
+    //- updaet thos
     lazy-hydrate(when-visible)
-      storybrand(
-        title="Still a student?"
-        :content="['Join the next free webinar series for dentistry students.']"
-      )
+      generic-blue-bg
+        v-container
+          v-row(justify="center")
+            generic-sub-page-panel
+              template(slot="content")
+                h2(:class="headerClasses").white--text Still a student?
+                br
+                h2(:class="contentClasses").white--text Join the next free webinar series for dentistry students.
+              template(slot="cta-button")
+                div(:class="{ 'text-center': $isMobile }")
+                  signup-button(
+                    depressed
+                    color="success"
+                    class="rounded-md"
+                    :width="!$isWideScreen ? '228px' : '300'"
+                    :height="!$isWideScreen ? '59px' : '73.68'"
+                  ).text-none
+                    span.mc-btn1 Get started
+              template(slot="image")
+                picture-source(
+                  v-bind="getImageBindings(studentPanel.imageBindings)"
+                )
+                v-row.pa-0
+                  v-avatar(size="100" style="margin-top: -60px; margin-left: -20px;")
+                    img(src="~assets/images/clinics/dental/dental-charts-mobile.png")
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="multiplePanel"
@@ -116,10 +138,13 @@ export default {
   components: {
     LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericSubPagePanel: () => import('~/components/generic/GenericSubPagePanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
+    PictureSource: () => import('~/components/commons/PictureSource'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Straightforward: () => import('~/components/dental-clinics/Straightforward'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
@@ -136,12 +161,6 @@ export default {
     return { metricsData };
   },
   data () {
-    this.studentPanel = {
-      header: 'Still a student?',
-      descriptions: [
-        'Join the next free webinar series for dentistry students',
-      ],
-    };
     this.stepsContent = [
       {
         title: 'Create your Free Account',
@@ -178,6 +197,19 @@ export default {
     thirdPanel () {
       return {
         contentAlign: 'right',
+        imageBindings: {
+          image: 'dental-charts.webp',
+          mobileImage: 'dental-charts-mobile.png',
+          imageAlt: 'Dental charts in a tablet',
+          customPath: 'clinics/dental/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '231.38px' : (this.$isRegularScreen ? '385.52px' : '595.03px'),
+        },
+      };
+    },
+    studentPanel () {
+      return {
         imageBindings: {
           image: 'dental-charts.webp',
           mobileImage: 'dental-charts-mobile.png',
@@ -268,6 +300,23 @@ export default {
   },
   created () {
     this.loading = false;
+  },
+  methods: {
+    getImageBindings (imageBindings) {
+      const [image, extension] = imageBindings.mobileImage && this.$isMobile
+        ? imageBindings.mobileImage.split('.')
+        : imageBindings.image.split('.');
+      const bindings = {
+        ...imageBindings,
+        image,
+        imageFileExtension: `.${extension}`,
+        imageAlt: imageBindings.imageAlt || imageBindings.alt || this.content.title,
+        extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
+        imageWidth: imageBindings.width,
+        imageHeight: imageBindings.height,
+      };
+      return bindings;
+    },
   },
 };
 </script>
