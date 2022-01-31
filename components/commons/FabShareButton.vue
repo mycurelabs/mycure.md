@@ -52,6 +52,26 @@ export default {
     },
   },
   data () {
+    this.socials = [
+      {
+        href: `https://www.facebook.com/sharer/sharer.php?u=${this.url}`,
+        color: '#4267B2',
+        icon: mdiFacebook,
+        tooltip: 'Share to Facebook',
+      },
+      {
+        href: `https://twitter.com/intent/tweet?url=${this.url}`,
+        color: '#00ACEE',
+        icon: mdiTwitter,
+        tooltip: 'Share to Twitter',
+      },
+      {
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${this.url}`,
+        color: '#0E76A8',
+        icon: mdiLinkedin,
+        tooltip: 'Share to LinkedIn',
+      },
+    ];
     return {
       shareBtn: null,
       mdiShareVariant,
@@ -62,30 +82,6 @@ export default {
       mdiLinkVariant,
       url: null,
     };
-  },
-  computed: {
-    socials () {
-      return [
-        {
-          href: `https://www.facebook.com/sharer/sharer.php?u=${this.url}`,
-          color: '#4267B2',
-          icon: this.mdiFacebook,
-          tooltip: 'Share to Facebook',
-        },
-        {
-          href: `https://twitter.com/intent/tweet?url=${this.url}`,
-          color: '#00ACEE',
-          icon: this.mdiTwitter,
-          tooltip: 'Share to Twitter',
-        },
-        {
-          href: `https://www.linkedin.com/sharing/share-offsite/?url=${this.url}`,
-          color: '#0E76A8',
-          icon: this.mdiLinkedin,
-          tooltip: 'Share to LinkedIn',
-        },
-      ];
-    },
   },
   watch: {
     shareBtn () {
