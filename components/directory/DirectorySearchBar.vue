@@ -112,7 +112,8 @@
                     v-col.mc-content-set-5
                       v-row
                         v-col.py-0
-                          span.font-weight-semibold {{ data.item.name }}
+                          span.font-weight-semibold
+                            span(v-html="highlightSearchText(data.item.name, data.item.matched)")
                       v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
@@ -395,6 +396,7 @@ export default {
         limit: 10,
         type: this.selectedMode,
         tags: [],
+        searchMeta: true,
       };
       if (this.selectedMode === 'account') {
         query.tags = this.searchObject.specializations.map(x => this.formatTagForQuery(x));
@@ -402,6 +404,7 @@ export default {
         query.tag = this.formatTagForQuery(this.searchObject.searchString);
       }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
+      console.log('items', items);
       this.suggestionEntries = items || [];
     },
     clearSearchText () {
@@ -448,6 +451,11 @@ export default {
         this.searchObject.location = null;
         this.$emit('clear:location');
       }
+    },
+    highlightSearchText (name, searchText) {
+      const matched = new RegExp(searchText, 'g');
+      const newFormat = name.replace(matched, `<mark>${searchText}</mark>`);
+      return newFormat;
     },
   },
 };
