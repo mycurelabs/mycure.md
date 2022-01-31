@@ -233,6 +233,7 @@
                 :is-preview-mode="isPreviewMode"
                 @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
               )
+    fab-share-button
 </template>
 
 <script>
@@ -259,6 +260,7 @@ import ContactUs from '~/components/clinic-website/ContactUs';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
 import DoctorsList from '~/components/clinic-website/doctors/DoctorsList';
 import DoctorsPaginated from '~/components/clinic-website/doctors/DoctorsPaginated';
+import FabShareButton from '~/components/commons/FabShareButton';
 import SearchInsurers from '~/components/clinic-website/services/SearchInsurers';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
 import ServicesList from '~/components/clinic-website/services/ServicesList';
@@ -298,6 +300,7 @@ export default {
     DatePickerMenu,
     DoctorsList,
     DoctorsPaginated,
+    FabShareButton,
     SearchInsurers,
     SearchPanel,
     ServicesList,
@@ -321,7 +324,6 @@ export default {
         !clinic?.publicFields?.length) {
         return error({ statusCode: 404, message: 'clinic-not-found' });
       }
-      console.warn('clinic', clinic);
       return {
         clinic,
       };
@@ -397,6 +399,7 @@ export default {
       mdiChevronRight,
       mdiChevronLeft,
       mdiAccountWrenchOutline,
+      fab: false,
     };
   },
   head () {
@@ -819,6 +822,8 @@ export default {
   width: 100vw;
   margin: 0;
   padding: 0;
+  min-height: 700px;
+  position: relative;
 }
 .grey-bg {
   background-color: #f9f9f9;

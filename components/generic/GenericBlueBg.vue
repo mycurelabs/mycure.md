@@ -1,6 +1,6 @@
 <template lang="pug">
   //- Remove holiday bg class once going back to normal
-  div.main-container.holiday-bg-png
+  div.main-container
     div
       picture-source(
         v-if="!hideDots"

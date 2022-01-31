@@ -7,7 +7,7 @@
         background-image="Diagnostics-Landing-Page"
         :background-image-file-extension="$useWebp? '.webp' : '.png'"
         title="Your Diagnostic Center Transformed"
-        meta-title="MYCURE Diagnostic"
+        meta-title="MYCURE DIAGNOSTIC"
         description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
         image="Diagnostics-Mobile-USP"
         image-col-offset="1"
@@ -17,8 +17,8 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
-        background-img-pos="47%"
-        background-img-width="48%"
+        background-img-width="55%"
+        background-img-pos="42%"
       )
     div.grey-bg
       lazy-hydrate(when-visible)

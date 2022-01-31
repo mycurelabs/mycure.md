@@ -19,7 +19,16 @@
             specialization-filter(
               v-model="specializationFiltersArray"
               @filter="onFilter($event)"
+              ref="specFilter"
             )
+            v-row(justify="end").px-3.my-2
+              v-spacer
+              v-btn(
+                v-if="arrayExists.length > 0"
+                color="secondary"
+                text
+                @click="$refs.specFilter.clearSpecializations()"
+              ).font-12.px-0 CLEAR FILTERS
             //- v-text-field(
             //-   v-model="specializationFilter"
             //-   placeholder="Filter Specializations"
@@ -101,14 +110,19 @@ export default {
     return {
       itemsPage: 1,
       specializationFiltersArray: [],
+      arrayExists: [],
     };
-  },
-  computed: {
   },
   watch: {
     specializationFilter (val) {
       this.$emit('filter', val);
     },
+  },
+  mounted () {
+    this.$watch(
+      '$refs.specFilter.specializationFiltersArray',
+      value => (this.arrayExists = value),
+    );
   },
   methods: {
     onPaginate (page) {

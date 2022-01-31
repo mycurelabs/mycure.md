@@ -181,11 +181,15 @@ export default {
     },
     backgroundImgPos: {
       type: String,
-      default: '52%',
+      default: '47%',
     },
     backgroundImgWidth: {
       type: String,
-      default: '40%',
+      default: '47%',
+    },
+    backgroundImgPosTop: {
+      type: String,
+      default: null,
     },
   },
   data () {
@@ -256,7 +260,7 @@ export default {
         height: '100%',
         position: 'absolute',
         left: this.backgroundImgPos,
-        top: '0',
+        top: this.backgroundImgPosTop || this.$isMobile ? '0' : this.$isRegularScreen ? '-5%' : '-3%',
         zIndex: '1',
         objectFit: 'contain',
       };

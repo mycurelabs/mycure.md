@@ -5,7 +5,7 @@
       :style="backgroundStyle"
     ).background-container
     template(v-if="$isMobile").search-bar-container
-      v-card(height="250" style="margin-top: -100px").rounded-lg.mx-8
+      v-card(height="250" style="margin-top: -100px" :class="$isMobile ? 'mx-2' :  'mx-8'").rounded-lg
         v-card-text.pt-8
           h3.mc-h3.title--text Easily book your next visit to {{ name || 'this health facility' }}
         v-card-text

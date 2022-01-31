@@ -1,9 +1,5 @@
 <template lang="pug">
-  //- TODO: remove hide dots once going back to normal, as well as the background
-  generic-blue-bg(
-    hide-dots
-    :class="isWebp ? 'holiday-bg-webp' : 'holiday-bg-png'"
-  )
+  generic-blue-bg
     v-container
       v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100%'}").mb-n16
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }")
