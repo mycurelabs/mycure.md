@@ -26,6 +26,13 @@
         )
           template(slot="prepend")
             span.mc-b4.font-weight-bold.title--text Filter:
+        mc-paginate(
+          v-if="itemsTotal > 4 && $isMobile"
+          dense
+          :items-page="itemsPage"
+          :items-pagination-length="itemsPaginationLength"
+          @input="onPaginate($event)"
+        )
       v-spacer(v-if="!$isMobile")
       //- v-pagination(
       //-   v-if="itemsTotal > 4 && !$isMobile"

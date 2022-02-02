@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-row(align="center").pa-3
+    v-row(align="center" :justify="$isMobile ? 'center' : 'start'" :class="dense ? '' : 'pa-3'")
       v-btn(
         v-if="itemsPage !== 1"
         icon
@@ -13,25 +13,28 @@
         :width="$isWideScreen? '35px' : '30px'"
         style="min-width: 0;"
         @click="changePage(1)"
-      ).pa-1.text-none
+        :class="dense ? '' : 'pa-1'"
+      ).text-none
         span(:class="{'primary--text font--bold': itemsPage === 1}").mc-hyp1 {{ 1 }}
-      span(v-if="itemsPage > 3").mc-b1.mx-1 ...
+      span(v-if="itemsPage > 3" :class="dense ? '' : 'mx-1'").mc-b1 ...
       div(v-for="number in itemsPaginationLength")
         v-btn(
           v-if="showNum(number) "
           text
-        :width="$isWideScreen? '35px' : '30px'"
+          :width="$isWideScreen? '35px' : '30px'"
           style="min-width: 0;"
           @click="changePage(number)"
-        ).pa-1.text-none
+          :class="dense ? '' : 'pa-1'"
+        ).text-none
           span(:class="{'primary--text font--bold': number === itemsPage}").mc-hyp1 {{ number }}
-      span(v-if="itemsPage < itemsPaginationLength - 2").mc-b1.mx-1 ...
+      span(v-if="itemsPage < itemsPaginationLength - 2" :class="dense ? '' : 'mx-1'").mc-b1 ...
       v-btn(
         text
         :width="$isWideScreen? '35px' : '30px'"
         style="min-width: 0;"
         @click="changePage(itemsPaginationLength)"
-      ).pa-1.text-none
+        :class="dense ? '' : 'pa-1'"
+      ).text-none
         span(:class="{'primary--text font--bold': itemsPage === itemsPaginationLength}").mc-hyp1 {{ itemsPaginationLength }}
       v-btn(
         v-if="itemsPage !== itemsPaginationLength"
@@ -53,6 +56,10 @@ export default {
     itemsPaginationLength: {
       type: Number,
       default: null,
+    },
+    dense: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

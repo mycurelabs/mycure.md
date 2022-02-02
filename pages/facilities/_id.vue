@@ -88,6 +88,7 @@
                       @filter="onServiceTypeFilterEvent($event)"
                       @hmo-filter="onInsuranceSelect($event)"
                       @clear="clearInsuranceFilter"
+                      ref="hmoFilter"
                     )
                 //- DOCTORS
                 v-tab-item(value="doctors")
@@ -491,6 +492,7 @@ export default {
     activeServiceType: {
       async handler (val) {
         if (!val) return;
+        this.clearModel();
         await this.fetchServices({
           serviceProps: this.getServiceQuery(this.activeServiceType),
         }, 1);
@@ -730,7 +732,7 @@ export default {
       }, page);
     },
     onServiceTypeFilter () {
-      console.log(this.serviceSearchTypeFilter);
+      this.itemsPage = { services: 1, doctors: 1 };
       const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
       return this.fetchServices({
         serviceProps,
@@ -747,6 +749,7 @@ export default {
     },
     onInsuranceSelect (insurer) {
       // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
+      this.itemsPage = { services: 1, doctors: 1 };
       this.searchText = null;
       const serviceProps = {
         ...this.currentServicePropsQuery,
@@ -755,13 +758,18 @@ export default {
       return this.fetchServices({ serviceProps }, 1);
     },
     clearInsuranceFilter () {
+      this.itemsPage = { services: 1, doctors: 1 };
       const serviceProps = omit(this.currentServicePropsQuery, 'insurer');
       return this.fetchServices({
         serviceProps,
         ...this.searchText && { searchText: this.searchText },
       }, 1);
     },
+    clearModel () {
+      this.$refs.hmoFilter.clearModel();
+    },
     onDateFilter () {
+      this.itemsPage = { services: 1, doctors: 1 };
       return this.fetchServices({
         serviceProps: this.currentServicePropsQuery,
         ...this.searchText && { searchText: this.searchText },

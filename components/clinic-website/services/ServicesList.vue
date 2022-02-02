@@ -47,6 +47,7 @@
           :disabled="isPreviewMode"
           @select="onInsuranceSelect"
           @clear="clearInsuranceFilter"
+          ref="hmoFilter"
         ).mt-5
 
       //- SERVICES
@@ -214,6 +215,7 @@ export default {
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },
     onServiceTypeFilter (val) {
+      this.itemsPage = 1;
       this.$emit('filter', val);
     },
     onInsuranceSelect (insurer) {
@@ -221,6 +223,9 @@ export default {
     },
     clearInsuranceFilter () {
       this.$emit('clear');
+    },
+    clearModel () {
+      this.$refs.hmoFilter.clearModel();
     },
   },
 };

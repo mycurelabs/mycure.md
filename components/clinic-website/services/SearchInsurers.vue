@@ -139,6 +139,9 @@ export default {
         this.loading = false;
       }
     },
+    clearModel () {
+      this.model = null;
+    },
     onSelectContract (contract) {
       if (!contract) return;
       this.$emit('select', contract.id);
