@@ -86,6 +86,8 @@
                       :is-preview-mode="isPreviewMode"
                       @paginate="onPaginate({ type: 'services' }, $event)"
                       @filter="onServiceTypeFilterEvent($event)"
+                      @hmo-filter="onInsuranceSelect($event)"
+                      @clear="clearInsuranceFilter"
                     )
                 //- DOCTORS
                 v-tab-item(value="doctors")
@@ -379,7 +381,10 @@ export default {
       searchMode: false, // show search results view
       // filters
       specializationFiltersArray: [],
-      serviceSearchTypeFilter: {}, // dropdown filter for service type
+      serviceSearchTypeFilter: {
+        text: 'Consultations',
+        type: 'clinical-consultation',
+      }, // dropdown filter for service type
       dateFilter: null,
       // tab models
       tabSelect: 'services',
@@ -646,6 +651,7 @@ export default {
     search () {
       if (!this.searchMode) {
         this.currentServicePropsQuery = {};
+        this.onServiceTypeFilter();
         this.searchMode = true;
         this.searchTabSelect = 'search-all';
         VueScrollTo.scrollTo('#search-tabs', 500, { offset: -100, easing: 'ease' });
@@ -724,6 +730,7 @@ export default {
       }, page);
     },
     onServiceTypeFilter () {
+      console.log(this.serviceSearchTypeFilter);
       const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
       return this.fetchServices({
         serviceProps,
