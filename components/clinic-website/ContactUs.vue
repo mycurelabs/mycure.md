@@ -50,8 +50,8 @@ export default {
   },
   props: {
     address: {
-      type: Boolean,
-      default: true,
+      type: Object,
+      default: () => {},
     },
     schedule: {
       type: Array,
@@ -59,10 +59,6 @@ export default {
     },
     clinicPhone: {
       type: String,
-      default: null,
-    },
-    formattedAddress: {
-      type: Array,
       default: null,
     },
   },
@@ -161,6 +157,15 @@ export default {
         return 0;
       });
       return finalSched;
+    },
+    formattedAddress () {
+      return [
+        this.address.street1 ? this.clinic.address.street1 + ',' : '',
+        this.address.street2 ? this.clinic.address.street2 + ',' : '',
+        this.address.city ? this.clinic.address.city + ',' : '',
+        this.address.province ? this.clinic.address.province + ',' : '',
+        this.address.country ? this.clinic.address.country : '',
+      ];
     },
   },
   mounted () {
