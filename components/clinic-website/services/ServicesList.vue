@@ -40,6 +40,15 @@
                     v-icon {{ typeMappings[type].icon }}
                   v-list-item-content
                     v-list-item-title.mc-hyp2.font-weight-regular {{ typeMappings[type].text }}
+        search-insurers(
+          avatar
+          outlined
+          clearable
+          :disabled="isPreviewMode"
+          @select="onInsuranceSelect"
+          @clear="clearInsuranceFilter"
+          ref="hmoFilter"
+        ).mt-5
 
       //- SERVICES
       v-col(
@@ -73,6 +82,7 @@ import {
   mdiToothOutline,
 } from '@mdi/js';
 import ServicesPaginated from './ServicesPaginated';
+import SearchInsurers from '~/components/clinic-website/services/SearchInsurers';
 import GenericPanel from '~/components/generic/GenericPanel';
 
 const CONSULT_TYPES = [
@@ -92,6 +102,7 @@ export default {
   components: {
     GenericPanel,
     ServicesPaginated,
+    SearchInsurers,
   },
   props: {
     value: {
@@ -204,7 +215,17 @@ export default {
       VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
     },
     onServiceTypeFilter (val) {
+      this.itemsPage = 1;
       this.$emit('filter', val);
+    },
+    onInsuranceSelect (insurer) {
+      this.$emit('hmo-filter', insurer);
+    },
+    clearInsuranceFilter () {
+      this.$emit('clear');
+    },
+    clearModel () {
+      this.$refs.hmoFilter.clearModel();
     },
   },
 };
