@@ -156,7 +156,6 @@ export default {
     // updated schedule parsing, apply to other parts of directory
     clinicSchedule () {
       const sched = this.groupedSchedules;
-      console.table(sched);
       const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}`, order: x.order }));
       const finalSched = [{ day: '', time: '' }];
       formatSched.map((x) => {
@@ -181,7 +180,6 @@ export default {
         }
         return 0;
       });
-      console.table(finalSched);
       return finalSched;
     },
     tagsToDisplay () {

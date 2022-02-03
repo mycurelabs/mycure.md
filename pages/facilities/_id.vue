@@ -497,10 +497,10 @@ export default {
     activeServiceType: {
       async handler (val) {
         if (!val) return;
-        this.clearModel();
         await this.fetchServices({
           serviceProps: this.getServiceQuery(this.activeServiceType),
         }, 1);
+        this.clearModel();
       },
     },
     tabSelect: {
