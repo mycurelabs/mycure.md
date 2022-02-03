@@ -160,11 +160,11 @@ export default {
     },
     formattedAddress () {
       return [
-        this.address.street1 ? this.clinic.address.street1 + ',' : '',
-        this.address.street2 ? this.clinic.address.street2 + ',' : '',
-        this.address.city ? this.clinic.address.city + ',' : '',
-        this.address.province ? this.clinic.address.province + ',' : '',
-        this.address.country ? this.clinic.address.country : '',
+        this.address.street1 ? this.address.street1 + ',' : '',
+        this.address.street2 ? this.address.street2 + ',' : '',
+        this.address.city ? this.address.city + ',' : '',
+        this.address.province ? this.address.province + ',' : '',
+        this.address.country ? this.address.country : '',
       ];
     },
   },
