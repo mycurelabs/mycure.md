@@ -68,30 +68,23 @@
     //- updaet thos
     lazy-hydrate(when-visible)
       generic-blue-bg
-        v-container
-          v-row(justify="center")
-            generic-sub-page-panel
-              template(slot="content")
-                h2(:class="headerClasses").white--text Still a student?
-                br
-                h2(:class="contentClasses").white--text Join the next free webinar series for dentistry students.
-              template(slot="cta-button")
-                div(:class="{ 'text-center': $isMobile }")
-                  signup-button(
-                    depressed
-                    color="success"
-                    class="rounded-md"
-                    :width="!$isWideScreen ? '228px' : '300'"
-                    :height="!$isWideScreen ? '59px' : '73.68'"
-                  ).text-none
-                    span.mc-btn1 Get started
-              template(slot="image")
-                picture-source(
-                  v-bind="getImageBindings(studentPanel.imageBindings)"
-                )
-                v-row.pa-0
-                  v-avatar(size="100" style="margin-top: -60px; margin-left: -20px;")
-                    img(src="~assets/images/clinics/dental/dental-charts-mobile.png")
+        generic-media-panel(
+          :content="studentPanel"
+        )
+          template(slot="content")
+            h2(:class="headerClasses").white--text Still a student?
+            br
+            h2(:class="contentClasses").white--text Join the next free webinar series for dentistry students.
+          template(slot="cta-button")
+            div(:class="{ 'text-center': $isMobile }")
+              signup-button(
+                depressed
+                color="success"
+                class="rounded-md"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none
+                span.mc-btn1 Get started
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="multiplePanel"
@@ -210,14 +203,15 @@ export default {
     },
     studentPanel () {
       return {
+        contentAlign: 'left',
         imageBindings: {
-          image: 'dental-charts.webp',
-          mobileImage: 'dental-charts-mobile.png',
-          imageAlt: 'Dental charts in a tablet',
+          image: 'Student.webp',
+          mobileImage: 'Student.png',
+          imageAlt: 'Dental student in virtual practice',
           customPath: 'clinics/dental/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '231.38px' : (this.$isRegularScreen ? '385.52px' : '595.03px'),
+          height: this.$isMobile ? '178.06px' : (this.$isRegularScreen ? '296.76px' : '458.04px'),
         },
       };
     },
@@ -300,23 +294,6 @@ export default {
   },
   created () {
     this.loading = false;
-  },
-  methods: {
-    getImageBindings (imageBindings) {
-      const [image, extension] = imageBindings.mobileImage && this.$isMobile
-        ? imageBindings.mobileImage.split('.')
-        : imageBindings.image.split('.');
-      const bindings = {
-        ...imageBindings,
-        image,
-        imageFileExtension: `.${extension}`,
-        imageAlt: imageBindings.imageAlt || imageBindings.alt || this.content.title,
-        extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
-        imageWidth: imageBindings.width,
-        imageHeight: imageBindings.height,
-      };
-      return bindings;
-    },
   },
 };
 </script>
