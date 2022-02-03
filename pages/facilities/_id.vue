@@ -255,6 +255,7 @@ import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
+import { getCountries } from '~/utils/axios';
 // components
 import MainPanel from '~/components/clinic-website/MainPanel';
 import AboutClinic from '~/components/clinic-website/AboutClinic';
@@ -407,6 +408,7 @@ export default {
       mdiChevronLeft,
       mdiAccountWrenchOutline,
       fab: false,
+      countries: [],
     };
   },
   head () {
@@ -473,7 +475,8 @@ export default {
       if (!this.clinic) return '';
       const { phone, phones } = this.clinic;
       if (phones?.length) return phones.join(', ');
-      return phone || '';
+      if (phone) return `+${this.countryData}${phone}`;
+      return '';
     },
     description () {
       return this.clinic?.description ||
@@ -486,6 +489,10 @@ export default {
     // - Tabs shown in search mode of clinic
     searchTabsList () {
       return TABS_LIST.filter(tab => tab.type === 'search');
+    },
+    countryData () {
+      const item = this.countries.find(x => x.name === this.clinic.address.country);
+      return item?.callingCodes[0] || '';
     },
   },
   watch: {
@@ -531,6 +538,7 @@ export default {
   methods: {
     async init () {
       try {
+        await this.getCountries();
         this.loading.services.section = true;
         await this.fetchServiceTypes();
         await this.fetchClinicInsurers();
@@ -672,6 +680,20 @@ export default {
           ...this.searchText && { searchText: this.searchText },
         }, 1),
       ]);
+    },
+    async getCountries () {
+      try {
+        if (process.browser) {
+          if (!localStorage.getItem('mycure:countries')) {
+            this.countries = await getCountries();
+            localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
+          } else {
+            this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
     },
     // utils
     /** For getting actual service type and subtype value of the current tab
