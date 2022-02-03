@@ -2,7 +2,7 @@
   div
     v-row(v-if="itemsTotal" align="center" justify="center").pt-1.px-3
       v-col(cols="12").pa-0
-        v-row(v-if="!$isMobile" align="center")
+        v-row(v-if="!$isMobile" align="center").px-3
           span(style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
           v-spacer
           mc-paginate(
@@ -34,7 +34,7 @@
           @input="onPaginate($event)"
         )
       v-spacer(v-if="!$isMobile")
-    div(v-if="loading").pt-3
+    div(v-if="loading").pt-8
       v-skeleton-loader(
         v-for="n in 5"
         :key="n"
