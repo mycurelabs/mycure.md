@@ -4,59 +4,22 @@
       v-btn(v-model="shareBtn" fab :x-large="!$isMobile" color="primary")
         v-icon(:small="isSmall" v-if="shareBtn" color="white") {{ mdiClose }}
         v-icon(:small="isSmall" v-else :color="color") {{ mdiShareVariant }}
-    v-tooltip(right)
-      template( v-slot:activator="{ on, attrs }")
-        v-btn(
-          fab
-          :small="$isMobile"
-          rel="noopener noreferrer"
-          :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
-          target="_blank"
-          color="#4267B2"
-          v-bind="attrs"
-          v-on="on"
-          @click="getLink"
-        )
-          v-icon(color="white" :large="!$isMobile") {{ mdiFacebook }}
-          //- https://www.facebook.com/sharer/sharer.php?u=
-      span Share to Facebook
-    v-tooltip(right)
-      template( v-slot:activator="{ on, attrs }")
-        v-btn(
-          fab
-          :small="$isMobile"
-          rel="noopener noreferrer"
-          :href="`https://twitter.com/intent/tweet?url=${url}`"
-          target="_blank"
-          color="#00ACEE"
-          v-bind="attrs"
-          v-on="on"
-          @click="getLink"
-        )
-          v-icon(color="white" :large="!$isMobile") {{ mdiTwitter }}
-          //- https://twitter.com/intent/tweet?url=
-      span Share to Twitter
-    //- v-tooltip(right)
-    //-   template( v-slot:activator="{ on, attrs }")
-    //-     v-btn(fab small v-bind="attrs" v-on="on").instag
-    //-       v-icon(color="white") mdi-instagram
-    //-   span Share to Instagram
-    v-tooltip(right)
-      template( v-slot:activator="{ on, attrs }")
-        v-btn(
-          fab
-          :small="$isMobile"
-          rel="noopener noreferrer"
-          :href="`https://www.linkedin.com/sharing/share-offsite/?url=${url}`"
-          target="_blank"
-          color="#0E76A8"
-          v-bind="attrs"
-          v-on="on"
-          @click="getLink"
-        )
-          v-icon(color="white" :large="!$isMobile") {{ mdiLinkedin }}
-          //- https://www.linkedin.com/sharing/share-offsite/?url=
-      span Share to LinkedIn
+    div(v-for="(item, key) in socials" :key="key")
+      v-tooltip(right)
+        template( v-slot:activator="{ on, attrs }")
+          v-btn(
+            fab
+            :small="$isMobile"
+            rel="noopener noreferrer"
+            :href="item.href"
+            target="_blank"
+            :color="item.color"
+            v-bind="attrs"
+            v-on="on"
+            @click="getLink"
+          )
+            v-icon(color="white" :large="!$isMobile") {{ item.icon }}
+        span {{ item.tooltip }}
     v-tooltip(right)
       template( v-slot:activator="{ on, attrs }")
         v-btn(fab :small="$isMobile" color="success" v-bind="attrs" v-on="on" @click="getShareLink")
@@ -89,6 +52,26 @@ export default {
     },
   },
   data () {
+    this.socials = [
+      {
+        href: `https://www.facebook.com/sharer/sharer.php?u=${this.url}`,
+        color: '#4267B2',
+        icon: mdiFacebook,
+        tooltip: 'Share to Facebook',
+      },
+      {
+        href: `https://twitter.com/intent/tweet?url=${this.url}`,
+        color: '#00ACEE',
+        icon: mdiTwitter,
+        tooltip: 'Share to Twitter',
+      },
+      {
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${this.url}`,
+        color: '#0E76A8',
+        icon: mdiLinkedin,
+        tooltip: 'Share to LinkedIn',
+      },
+    ];
     return {
       shareBtn: null,
       mdiShareVariant,
