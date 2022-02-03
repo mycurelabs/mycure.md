@@ -115,7 +115,7 @@ export default {
     },
     formattedAddress: {
       type: Array,
-      default: null,
+      default: () => ([]),
     },
     clinicPhone: {
       type: String,
