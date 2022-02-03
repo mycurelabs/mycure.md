@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     v-row(v-if="itemsTotal" align="center" justify="center").pt-1.px-3
-      v-col(cols="12")
+      v-col(cols="12").pa-0
         v-row(v-if="!$isMobile" align="center")
           span(style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
           v-spacer
@@ -34,17 +34,6 @@
           @input="onPaginate($event)"
         )
       v-spacer(v-if="!$isMobile")
-      //- v-pagination(
-      //-   v-if="itemsTotal > 4 && !$isMobile"
-      //-   justify="center"
-      //-   :value="itemsPage"
-      //-   :length="itemsPaginationLength"
-      //-   total-visible="5"
-      //-   :next-icon="mdiChevronRight"
-      //-   :prev-icon="mdiChevronLeft"
-      //-   circle
-      //-   @input="onPaginate($event)"
-      //- )
     div(v-if="loading").pt-3
       v-skeleton-loader(
         v-for="n in 5"
@@ -63,17 +52,6 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
         )
-      //- v-pagination(
-      //-   v-if="itemsTotal > 4"
-      //-   justify="center"
-      //-   :value="itemsPage"
-      //-   :length="itemsPaginationLength"
-      //-   total-visible="5"
-      //-   :next-icon="mdiChevronRight"
-      //-   :prev-icon="mdiChevronLeft"
-      //-   circle
-      //-   @input="onPaginate($event)"
-      //- )
 </template>
 
 <script>

@@ -35,7 +35,7 @@
             ).mx-1
               v-img(v-if="data.item.picURL" :src="data.item.picURL")
               span(v-else).white--text {{ data.item.name.substring(0,1) }}
-            span {{ `${data.item.name.substr(0, 10)} ...` }}
+            span {{ `${data.item.name.substr(0, 9)} ...` }}
         span {{ data.item.name }}
       v-chip(v-else small color="primary")
         span(:max-lines="1" autoresize).font-12 {{ `${data.item.name.substr(0, 20)} ...` }}
