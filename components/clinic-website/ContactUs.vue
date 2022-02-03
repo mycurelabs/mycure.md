@@ -8,8 +8,10 @@
         v-col(cols="12")
           v-row(align="start").pl-3
             v-icon(small color="primary" :class="$isWideScreen ? 'mt-3' : 'mt-2'").mr-1 {{ mdiMapMarker }}
-            v-col.pa-0
-              span(:class="[{'font-italic': !formattedAddress }, {'unavailable--text': !formattedAddress }]").mc-b2 {{ formattedAddress || 'No address available' }}
+            v-col
+              span(v-if="!address").font-italic.unavailable--text No address available
+              v-row(v-else)
+                span(v-for="(item, key) in formattedAddress" :key="key").mc-b2 {{ item }} &nbsp;
           v-row(align="center").pl-3.pt-1
             v-icon(small color="primary").mr-2 {{ mdiPhone }}
             span(:class="[{'font-italic': !clinicPhone }, {'unavailable--text': !clinicPhone }]").mc-b2 {{ clinicPhone || 'No contact number available'}}
@@ -41,7 +43,6 @@ import {
   mdiPhone,
 } from '@mdi/js';
 import { format } from 'date-fns';
-import { formatAddress } from '~/utils/formats';
 import Schedules from '~/components/clinic-website/schedules';
 export default {
   components: {
@@ -50,7 +51,7 @@ export default {
   props: {
     address: {
       type: Object,
-      default: null,
+      default: () => {},
     },
     schedule: {
       type: Array,
@@ -62,6 +63,32 @@ export default {
     },
   },
   data () {
+    this.testschedule = [
+      {
+        day: 'mon',
+        opening: 1578891603548,
+        closing: 1578898803548,
+        id: '610a3c35a0af28549c6d839c',
+      },
+      {
+        day: 'tue',
+        opening: 1578891603548,
+        closing: 1578898803548,
+        id: '610a3c35a0af28549c6d839d',
+      },
+      {
+        day: 'wed',
+        opening: 1578891603548,
+        closing: 1578898803548,
+        id: '610a3c35a0af28549c6d839d',
+      },
+      {
+        day: 'fri',
+        opening: 1578891603548,
+        closing: 1578898803548,
+        id: '610a3c35a0af28549c6d839e',
+      },
+    ];
     this.days = [{ order: 1, day: 'mon' }, { order: 2, day: 'tue' }, { order: 3, day: 'wed' }, { order: 4, day: 'thu' }, { order: 5, day: 'fri' }, { order: 6, day: 'sat' }, { order: 7, day: 'sun' }];
     // this.defaultMapPosition = { lat: 14.5813167, lng: 120.9761788 };
     return {
@@ -102,18 +129,20 @@ export default {
       }
       return groupedSchedules;
     },
+    // updated schedule parsing, apply to other parts of directory
     compressedSchedules () {
       const sched = this.groupedSchedules;
-      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
+      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}`, order: x.order }));
       const finalSched = [{ day: '', time: '' }];
       formatSched.map((x) => {
-        if (finalSched.find(sched => sched.time === x.time)) {
+        if (finalSched.find(sched => sched.time === x.time && sched.order === x.order - 1)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
           if (typeof finalSched[index].day === 'string') {
             finalSched[index].day = [finalSched[index].day, x.day];
           } else {
             finalSched[index].day = [...finalSched[index].day, x.day];
           }
+          finalSched[index].order = finalSched[index].order + 1;
         } else if (finalSched.find(sched => sched.day === x.day)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
           if (typeof finalSched[index].time === 'string') {
@@ -130,8 +159,13 @@ export default {
       return finalSched;
     },
     formattedAddress () {
-      if (!this.address) return '';
-      return formatAddress(this.address, 'street1, street2, city, province, country');
+      return [
+        this.address.street1 ? this.address.street1 + ',' : '',
+        this.address.street2 ? this.address.street2 + ',' : '',
+        this.address.city ? this.address.city + ',' : '',
+        this.address.province ? this.address.province + ',' : '',
+        this.address.country ? this.address.country : '',
+      ];
     },
   },
   mounted () {

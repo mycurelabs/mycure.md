@@ -27,14 +27,15 @@
     template(v-slot:selection="data")
       v-tooltip(v-if="avatar" bottom)
         template(v-slot:activator="{ on, attrs }")
-          v-avatar(
-            size="20"
-            color="secondary"
-            v-on="on"
-          ).mx-1
-            v-img(v-if="data.item.picURL" :src="data.item.picURL")
-            span(v-else).white--text {{ data.item.name.substring(0,1) }}
-          span {{ `${data.item.name.substr(0, 10)} ...` }}
+          span
+            v-avatar(
+              size="20"
+              color="secondary"
+              v-on="on"
+            ).mx-1
+              v-img(v-if="data.item.picURL" :src="data.item.picURL")
+              span(v-else).white--text {{ data.item.name.substring(0,1) }}
+            span {{ `${data.item.name.substr(0, 9)} ...` }}
         span {{ data.item.name }}
       v-chip(v-else small color="primary")
         span(:max-lines="1" autoresize).font-12 {{ `${data.item.name.substr(0, 20)} ...` }}
@@ -137,6 +138,9 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    clearModel () {
+      this.model = null;
     },
     onSelectContract (contract) {
       if (!contract) return;

@@ -1,22 +1,19 @@
 <template lang="pug">
   div
     v-row(v-if="itemsTotal && !$isMobile" align="center" justify="center").pt-1.px-3
-      v-col(cols="12" md="5").pa-0
-        span(style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} doctor{{ itemsTotal > 1 ? 's' : '' }}
-      v-spacer
-      //- v-pagination(
-      //-   v-if="itemsTotal > 4 && !$isMobile"
-      //-   :value="itemsPage"
-      //-   :length="itemsPaginationLength"
-      //-   total-visible="5"
-      //-   :next-icon="mdiChevronRight"
-      //-   :prev-icon="mdiChevronLeft"
-      //-   circle
-      //-   @input="onPaginate($event)"
-      //- )
+      v-col(cols="12")
+        v-row(v-if="!$isMobile" align="center")
+          span(style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} doctor{{ itemsTotal > 1 ? 's' : '' }}
+          v-spacer
+          mc-paginate(
+            v-if="itemsTotal > 4"
+            :items-page="itemsPage"
+            :items-pagination-length="itemsPaginationLength"
+            @input="onPaginate($event)"
+          )
     div(v-if="loading").pt-3
       v-skeleton-loader(
-        v-for="n in 3"
+        v-for="n in 5"
         :key="n"
         type="card-heading, list-item-three-line, actions" elevation="2"
       )
@@ -32,16 +29,6 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
         )
-      v-pagination(
-        v-if="itemsTotal > 4"
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="5"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
 </template>
 
 <script>

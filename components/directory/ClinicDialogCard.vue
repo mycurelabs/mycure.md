@@ -112,6 +112,7 @@ export default {
       'sto:pe': 'Physical Exam',
       'sto:clinical-procedure/ambulatory-bp-monitoring': 'BP Monitoring',
     };
+    this.days = [{ order: 1, day: 'mon' }, { order: 2, day: 'tue' }, { order: 3, day: 'wed' }, { order: 4, day: 'thu' }, { order: 5, day: 'fri' }, { order: 6, day: 'sat' }, { order: 7, day: 'sun' }];
     return {
       imageExists: true,
       // icons
@@ -137,21 +138,42 @@ export default {
       const { address } = this.organization;
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
+    groupedSchedules () {
+      let groupedSchedules = [];
+      if (this.organization?.mf_schedule) {
+        groupedSchedules = this.organization.mf_schedule
+          .map((schedule) => {
+            const { order } = this.days.find(day => day.day === schedule.day);
+            return {
+              order,
+              ...schedule,
+            };
+          })
+          .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      }
+      return groupedSchedules;
+    },
+    // updated schedule parsing, apply to other parts of directory
     clinicSchedule () {
-      const sched = this.organization?.mf_schedule || [];
-      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
+      const sched = this.groupedSchedules;
+      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}`, order: x.order }));
       const finalSched = [{ day: '', time: '' }];
       formatSched.map((x) => {
-        if (finalSched.find(sched => sched.time === x.time)) {
+        if (finalSched.find(sched => sched.time === x.time && sched.order === x.order - 1)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
           if (typeof finalSched[index].day === 'string') {
             finalSched[index].day = [finalSched[index].day, x.day];
           } else {
             finalSched[index].day = [...finalSched[index].day, x.day];
           }
+          finalSched[index].order = finalSched[index].order + 1;
         } else if (finalSched.find(sched => sched.day === x.day)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
-          finalSched[index].time = [finalSched[index].time, x.time];
+          if (typeof finalSched[index].time === 'string') {
+            finalSched[index].time = [finalSched[index].time, x.time];
+          } else {
+            finalSched[index].time = [...finalSched[index].time, x.time];
+          }
         } else {
           finalSched.push(x);
           if (finalSched.find(sched => sched.day === '')) finalSched.shift();
