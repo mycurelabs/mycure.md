@@ -50,8 +50,8 @@ export default {
   },
   props: {
     address: {
-      type: Object,
-      default: null,
+      type: Boolean,
+      default: true,
     },
     schedule: {
       type: Array,

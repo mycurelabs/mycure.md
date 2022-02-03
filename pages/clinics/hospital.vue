@@ -234,7 +234,7 @@ export default {
     return headMeta({
       title: 'Robust CMS and EMR for Modern Hospital OPD',
       description: 'MYCURE Clinic is a software that helps hospitals, diagnostic centers to run their day-to-day operations. It manages patient records, appointments, & more',
-      socialBanner: require('~/assets/images/banners/clinics-og-banner.png'),
+      socialBanner: require('~/assets/images/banners/hospital-banner.png'),
     });
   },
   computed: {

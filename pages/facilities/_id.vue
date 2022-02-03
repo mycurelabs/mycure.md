@@ -459,7 +459,6 @@ export default {
     },
     formattedAddress () {
       if (!this.clinic?.address) return '';
-      console.log(this.clinic.address);
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
     },
     formattedAddressArray () {
