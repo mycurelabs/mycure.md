@@ -121,7 +121,7 @@ export default {
       ],
     };
   },
-  created () {
+  mounted () {
     this.loading.page = false;
     // Record page view
     this.$gtag.pageview('/directory');
