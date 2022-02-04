@@ -44,7 +44,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
      * The $searchMeta is added because we needed to identify what parts of the text are matching with the searchText
      * which is found in the `searchResult` property.
      *
-     * If this is true, we will be using axios instead.
+     * If this is true, we will be using axios instead because SDK does not support $searchMeta yet.
     */
     $searchMeta: opts.searchMeta,
   };
@@ -97,8 +97,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     return {
       items: data.map(item => ({
         ...item,
-        matched: hits.find(hit => hit.document.id === item.id).highlights
-          .find(h => h.field === 'name')?.matched_tokens[0],
+        highlight: hits.find(hit => hit.document.id === item.id).highlights[0],
       })),
       total,
     };
