@@ -32,21 +32,12 @@ import axios from 'axios';
 export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   const query = {
-    $search: opts.text || '*',
+    $search: opts.text,
     type: opts.type,
     $limit: opts.limit || 10,
     $skip: opts.skip || 0,
     // Adds a 'total' property to the return value
     $total: true,
-    /**
-     * Shows the search matching info
-     *
-     * The $searchMeta is added because we needed to identify what parts of the text are matching with the searchText
-     * which is found in the `searchResult` property.
-     *
-     * If this is true, we will be using axios instead because SDK does not support $searchMeta yet.
-    */
-    $searchMeta: opts.searchMeta,
   };
   // put tags
   if (opts.tags?.length) {
@@ -58,6 +49,17 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     const { lat, lng } = opts.location;
     const locationKM = opts.locationKM || 5;
     query.location = `${lat},${lng},${locationKM}`; // - 5 stands for radius in km
+  }
+  /**
+     * Shows the search matching info
+     *
+     * The $searchMeta is added because we needed to identify what parts of the text are matching with the searchText
+     * which is found in the `searchResult` property.
+     *
+     * If this is true, we will be using axios instead because SDK does not support $searchMeta yet.
+    */
+  if (query.$search && opts.searchMeta) {
+    query.$searchMeta = opts.searchMeta;
   }
   // if (query.type === 'organization') {
   //   query = {

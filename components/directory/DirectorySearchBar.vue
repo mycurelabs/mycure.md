@@ -125,7 +125,7 @@
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
                             span(v-if="data.item.tags") &nbsp;{{ data.item.tags.length > 1 ? `+${data.item.tags.length - 1} other${data.item.tags.length > 2 ? 's' : ''}` : ''}}
                         v-spacer
-                      v-row(v-if="!isNameHighlight(data.item)")
+                      v-row(v-if="data.item.highlight && !isNameHighlight(data.item)")
                         v-col
                           span.grey--text Found in:&nbsp;
                           mark
@@ -467,7 +467,6 @@ export default {
     },
     isNameHighlight (searchItem) {
       const { highlight } = searchItem;
-      if (!highlight) return false;
       return highlight.field === 'name';
     },
     highlightName (name, highlight) {
