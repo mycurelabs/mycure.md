@@ -38,6 +38,13 @@
                     :organization="item"
                     :read-only="readOnly"
                   )
+                  div(v-if="item.highlight").pt-3
+                    p.grey--text Found in:&nbsp;
+                      mark
+                        | {{ item.highlight.matched_tokens[0] }}
+                      span &nbsp;({{ item.highlight.field | morph-capitalize }})
+              br
+              br
               br
               v-pagination(
                 circle

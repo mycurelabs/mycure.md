@@ -112,7 +112,12 @@
                     v-col.mc-content-set-5
                       v-row
                         v-col.py-0
-                          span.font-weight-semibold {{ data.item.name }}
+                          span.font-weight-semibold
+                            span(
+                              v-if="isNameHighlight(data.item)"
+                              v-html="highlightName(data.item.name, data.item.highlight)"
+                            )
+                            span(v-else) {{ data.item.name }}
                       v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
@@ -120,6 +125,12 @@
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
                             span(v-if="data.item.tags") &nbsp;{{ data.item.tags.length > 1 ? `+${data.item.tags.length - 1} other${data.item.tags.length > 2 ? 's' : ''}` : ''}}
                         v-spacer
+                      v-row(v-if="data.item.highlight && !isNameHighlight(data.item)")
+                        v-col
+                          span.grey--text Found in:&nbsp;
+                          mark
+                            | {{ data.item.highlight.matched_tokens[0] }}
+                          span &nbsp;({{ data.item.highlight.field | morph-capitalize }})
                     v-icon(color="secondary" large) {{ mdiArrowRight }}
     //- DIALOGS
     v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onSearch(false)")
@@ -371,7 +382,10 @@ export default {
      * `showSuggestions` and `requireAction` props.
      */
     handleDebouncedSearch (searchText) {
-      if (this.loading.initial && !searchText) return;
+      if (this.loading.initial && !searchText) {
+        this.suggestionEntries = [];
+        return;
+      }
       this.searchObject.searchString = searchText;
       if (!searchText) this.suggestionEntries = [];
       // For A
@@ -395,6 +409,7 @@ export default {
         limit: 10,
         type: this.selectedMode,
         tags: [],
+        searchMeta: true,
       };
       if (this.selectedMode === 'account') {
         query.tags = this.searchObject.specializations.map(x => this.formatTagForQuery(x));
@@ -402,6 +417,7 @@ export default {
         query.tag = this.formatTagForQuery(this.searchObject.searchString);
       }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
+      console.log('items', items);
       this.suggestionEntries = items || [];
     },
     clearSearchText () {
@@ -448,6 +464,16 @@ export default {
         this.searchObject.location = null;
         this.$emit('clear:location');
       }
+    },
+    isNameHighlight (searchItem) {
+      const { highlight } = searchItem;
+      return highlight.field === 'name';
+    },
+    highlightName (name, highlight) {
+      const searchText = highlight.matched_tokens[0];
+      const matched = new RegExp(searchText, 'g');
+      const newFormat = name.replace(matched, `<mark>${searchText}</mark>`);
+      return newFormat;
     },
   },
 };

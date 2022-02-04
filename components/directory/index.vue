@@ -176,6 +176,8 @@ export default {
             location: this.location,
             locationKM: this.locationKM,
           },
+          // Apply searchmeta
+          searchMeta: true,
         };
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
@@ -194,7 +196,10 @@ export default {
         if (this.searchMode === 'account' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
             const personalDetails = await this.$sdk.service('personal-details').get(entry.ref.id);
-            return personalDetails;
+            return {
+              ...personalDetails,
+              highlight: entry.highlight,
+            };
           });
 
           const doctors = await Promise.all(entryPromises);
@@ -206,7 +211,11 @@ export default {
         if (this.searchMode === 'organization' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
             const orgDetails = await this.$sdk.service('organizations').get(entry.ref.id);
-            return { ...orgDetails, tags: entry.tags };
+            return {
+              ...orgDetails,
+              tags: entry.tags,
+              highlight: entry.highlight,
+            };
           });
           this.entries = await Promise.all(entryPromises);
           return;

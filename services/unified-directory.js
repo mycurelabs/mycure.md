@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /**
  * UnifiedDirectorySearch
  * @param {Object} sdk
@@ -29,11 +31,12 @@
  */
 export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
-  let query = {
-    $search: opts.text || '*',
+  const query = {
+    $search: opts.text,
     type: opts.type,
     $limit: opts.limit || 10,
-    $skip: opts.skip,
+    $skip: opts.skip || 0,
+    // Adds a 'total' property to the return value
     $total: true,
   };
   // put tags
@@ -47,23 +50,62 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     const locationKM = opts.locationKM || 5;
     query.location = `${lat},${lng},${locationKM}`; // - 5 stands for radius in km
   }
-  if (query.type === 'organization') {
-    query = {
-      ...query,
-      ...opts.ref && {
-        ref: {
-          type: opts.ref.type,
-          types: opts.ref.types,
-        },
-      },
-    };
-  } else if (query.type === 'service' && opts.ref) {
-    query.ref = {
-      type: opts.ref.type,
-      subtype: opts.ref.subtype,
-    };
+  /**
+     * Shows the search matching info
+     *
+     * The $searchMeta is added because we needed to identify what parts of the text are matching with the searchText
+     * which is found in the `searchResult` property.
+     *
+     * If this is true, we will be using axios instead because SDK does not support $searchMeta yet.
+    */
+  if (query.$search && opts.searchMeta) {
+    query.$searchMeta = opts.searchMeta;
   }
+  // if (query.type === 'organization') {
+  //   query = {
+  //     ...query,
+  //     ...opts.ref && {
+  //       ref: {
+  //         type: opts.ref.type,
+  //         types: opts.ref.types,
+  //       },
+  //     },
+  //   };
+  // } else if (query.type === 'service' && opts.ref) {
+  //   query.ref = {
+  //     type: opts.ref.type,
+  //     subtype: opts.ref.subtype,
+  //   };
+  // }
 
-  const data = await sdk.service('bff/unified-directory').find(query);
-  return { items: data.items, total: data.total };
+  // Limit this feature to when there is an existing search text only
+  if (opts.searchMeta && opts.text) {
+    // Use axios
+    const queryKeys = Object.keys(query);
+    const axiosQueries = [];
+    queryKeys.map((key) => {
+      axiosQueries.push(`${key}=${query[key]}`);
+      return key;
+    });
+    const formattedFirstKey = `?${axiosQueries[0]}`;
+    const omittedFirstKeyQueries = [...axiosQueries].filter((item, key) => key > 0).join('&');
+    const formattedURLQuery = `${formattedFirstKey}${omittedFirstKeyQueries ? '&' : ''}${omittedFirstKeyQueries}`;
+    const searchData = await axios({
+      method: 'GET',
+      url: `${process.env.API_URL}/bff/unified-directory/${formattedURLQuery}`,
+    });
+    const { data, total, searchResult } = searchData.data;
+    const { hits } = searchResult;
+    return {
+      items: data.map(item => ({
+        ...item,
+        ...hits?.length && { highlight: hits.find(hit => hit.document.id === item.id).highlights[0] },
+      })),
+      total,
+    };
+  } else {
+    // SDK
+    const data = await sdk.service('bff/unified-directory').find(query);
+    return { items: data.items, total: data.total };
+  }
 };
