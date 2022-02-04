@@ -99,7 +99,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     return {
       items: data.map(item => ({
         ...item,
-        highlight: hits.find(hit => hit.document.id === item.id).highlights[0],
+        ...hits?.length && { highlight: hits.find(hit => hit.document.id === item.id).highlights[0] },
       })),
       total,
     };
