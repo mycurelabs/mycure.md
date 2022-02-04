@@ -114,7 +114,7 @@
                         v-col.py-0
                           span.font-weight-semibold
                             span(
-                              v-if="isNameHighlight(data.item)"
+                              v-if="data.item.highlight && isNameHighlight(data.item)"
                               v-html="highlightName(data.item.name, data.item.highlight)"
                             )
                             span(v-else) {{ data.item.name }}
@@ -467,7 +467,7 @@ export default {
     },
     isNameHighlight (searchItem) {
       const { highlight } = searchItem;
-      return highlight.field === 'name';
+      return highlight?.field === 'name';
     },
     highlightName (name, highlight) {
       const searchText = highlight.matched_tokens[0];
