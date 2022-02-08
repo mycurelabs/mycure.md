@@ -83,8 +83,9 @@
               outlined
               solo
               hide-details
+              :loading="loadingSearch"
               :height="$isMobile ? '40px' : '60px'"
-              :items="suggestionEntries"
+              :items="loadingSearch ? (showSuggestions ? ['1'] : []) : suggestionEntries"
               :menu-props="{ bottom: true, offsetY: true }"
               :return-object="false"
               :search-input.sync="searchDummy"
@@ -107,7 +108,7 @@
                       v-icon {{ mdiCrosshairsGps }}
                   span Use your location
               template(v-slot:item="data")
-                v-col(cols="12")
+                v-col(v-if="!loadingSearch" cols="12")
                   v-row(@click="searchObject.searchString = data.item.name; onSearch(true)").py-3
                     v-col.mc-content-set-5
                       v-row
@@ -132,6 +133,13 @@
                             | {{ data.item.highlight.matched_tokens[0] }}
                           span &nbsp;({{ data.item.highlight.field | morph-capitalize }})
                     v-icon(color="secondary" large) {{ mdiArrowRight }}
+                v-col(v-else)
+                  v-row(justify="center").px-3.py-6
+                    v-progress-circular(
+                      color="primary"
+                      indeterminate
+                      :size="$isWideScreen ? 80 : 50"
+                    )
     //- DIALOGS
     v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
@@ -258,6 +266,7 @@ export default {
       loading: {
         initial: true,
       },
+      loadingSearch: false,
       deleteTag: {
         removeIndex: undefined,
       },
@@ -382,6 +391,7 @@ export default {
      * `showSuggestions` and `requireAction` props.
      */
     handleDebouncedSearch (searchText) {
+      this.loadingSearch = true;
       if (this.loading.initial && !searchText) {
         this.suggestionEntries = [];
         return;
@@ -401,6 +411,7 @@ export default {
         }
         this.debouncedResultsSearch(searchText);
       }
+      this.loadingSearch = false;
     },
     async searchSuggestions (searchText) {
       // - If location is selected, only places within that location will be suggested
@@ -419,6 +430,7 @@ export default {
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
       console.log('items', items);
       this.suggestionEntries = items || [];
+      this.loadingSearch = false;
     },
     clearSearchText () {
       this.searchObject.searchString = null;
