@@ -7,6 +7,7 @@
     return-object
     clearable
     chips
+    auto-select-first
     :allow-overflow="false"
     :label="!noLabel ? 'Search HMO' : null"
     :placeholder="placeholder"
@@ -14,7 +15,7 @@
     :outlined="outlined"
     :rounded="rounded"
     :search-input.sync="searchText"
-    :items="loading ? ['Loading...'] : items"
+    :items="loading ? [items[0]] : items"
     :loading="loading"
     :clear-icon="mdiClose"
     :append-icon="mdiMenuDown"
