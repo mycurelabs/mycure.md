@@ -1,54 +1,54 @@
 <template lang="pug">
-    v-autocomplete(
-      v-model="model"
-      item-text="name"
-      item-value="id"
-      no-filter
-      return-object
-      clearable
-      chips
-      :auto-select-first="false"
-      :allow-overflow="false"
-      :label="!noLabel ? 'Search HMO' : null"
-      :placeholder="placeholder"
-      :solo="solo"
-      :outlined="outlined"
-      :rounded="rounded"
-      :search-input.sync="searchText"
-      :items="loading ? ['Loading...'] : items"
-      :loading="loading"
-      :clear-icon="mdiClose"
-      :append-icon="mdiMenuDown"
-      :disabled="disabled"
-      :class="{ 'bg-white': whiteBg }"
-      @click:clear="$emit('clear')"
-    ).basic
-      template(slot="prepend-inner")
-        v-icon.mr-2 {{ mdiShieldCheck }}
-      template(v-slot:selection="data")
-        v-tooltip(v-if="avatar" bottom)
-          template(v-slot:activator="{ on, attrs }")
-            div(width="180px").basic
-              span
-                v-avatar(
-                  size="20"
-                  color="secondary"
-                  v-on="on"
-                ).mx-1
-                  v-img(v-if="data.item.picURL" :src="data.item.picURL")
-                  span(v-else).white--text {{ data.item.name.substring(0,1) }}
-                span(style="overflow: hidden; white-space: no-wrap;") {{ data.item.name }}
-          span {{ data.item.name }}
-        v-chip(v-else small color="primary")
-          span(:max-lines="1" autoresize).font-12 {{ `${data.item.name.substr(0, 20)} ...` }}
-      template(slot="item" v-if="loading")
-        v-col
-          v-row(justify="center").px-3.py-6
-            v-progress-circular(
-              color="primary"
-              indeterminate
-              :size="$isWideScreen ? 80 : 50"
-            )
+  v-autocomplete(
+    v-model="model"
+    item-text="name"
+    item-value="id"
+    no-filter
+    return-object
+    clearable
+    chips
+    :auto-select-first="false"
+    :allow-overflow="false"
+    :label="!noLabel ? 'Search HMO' : null"
+    :placeholder="placeholder"
+    :solo="solo"
+    :outlined="outlined"
+    :rounded="rounded"
+    :search-input.sync="searchText"
+    :items="loading ? ['Loading...'] : items"
+    :loading="loading"
+    :clear-icon="mdiClose"
+    :append-icon="mdiMenuDown"
+    :disabled="disabled"
+    :class="{ 'bg-white': whiteBg }"
+    @click:clear="$emit('clear')"
+  ).basic
+    template(slot="prepend-inner")
+      v-icon.mr-2 {{ mdiShieldCheck }}
+    template(v-slot:selection="data")
+      v-tooltip(v-if="avatar" bottom)
+        template(v-slot:activator="{ on, attrs }")
+          div(width="180px").basic
+            span
+              v-avatar(
+                size="20"
+                color="secondary"
+                v-on="on"
+              ).mx-1
+                v-img(v-if="data.item.picURL" :src="data.item.picURL")
+                span(v-else).white--text {{ data.item.name.substring(0,1) }}
+              span(style="overflow: hidden; white-space: no-wrap;") {{ data.item.name }}
+        span {{ data.item.name }}
+      v-chip(v-else small color="primary")
+        span(:max-lines="1" autoresize).font-12 {{ `${data.item.name.substr(0, 20)} ...` }}
+    template(slot="item" v-if="loading")
+      v-col
+        v-row(justify="center").px-3.py-6
+          v-progress-circular(
+            color="primary"
+            indeterminate
+            :size="$isWideScreen ? 80 : 50"
+          )
 </template>
 
 <script>
