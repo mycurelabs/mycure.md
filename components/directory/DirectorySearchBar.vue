@@ -83,7 +83,7 @@
               outlined
               solo
               hide-details
-              :loading="loadingSearch"
+              :loading="showSuggestions ? loadingSearch : false"
               :height="$isMobile ? '40px' : '60px'"
               :items="loadingSearch ? (showSuggestions ? ['1'] : []) : suggestionEntries"
               :menu-props="{ bottom: true, offsetY: true }"
