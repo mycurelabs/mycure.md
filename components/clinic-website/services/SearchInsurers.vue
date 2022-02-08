@@ -7,7 +7,6 @@
     return-object
     clearable
     chips
-    :auto-select-first="false"
     :allow-overflow="false"
     :label="!noLabel ? 'Search HMO' : null"
     :placeholder="placeholder"
@@ -22,7 +21,7 @@
     :disabled="disabled"
     :class="{ 'bg-white': whiteBg }"
     @click:clear="$emit('clear')"
-  ).basic
+  )
     template(slot="prepend-inner")
       v-icon.mr-2 {{ mdiShieldCheck }}
     template(v-slot:selection="data")
