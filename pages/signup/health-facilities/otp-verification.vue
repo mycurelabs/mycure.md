@@ -1,20 +1,18 @@
 <template lang="pug">
   v-container(fluid fill-height).pa-0.ma-0
-    v-row(style="height: 100vh")
-      v-col(cols="6" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
+    v-row(style="height: 100vh" )
+      v-col(cols="5" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
         v-row(style="height: 100vh" align="center" justify="center")
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
-      v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
-        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'pt-10']").rounded-tl-xl.rounded-bl-xl
-          v-col(cols="12")
-            h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
+      v-col(:cols="$isMobile? '12' : '7'" :class="$isMobile ? 'pa-4' : 'pa-0'")
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['px-15', 'pt-10']").rounded-tl-xl.rounded-bl-xl
+          v-col(cols="12").text-center
+            h1.mc-h2 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
           br
-          br
-          br
-          v-col(cols="12")
-            p.mb-0 Please enter the OTP sent to
-            p.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-          v-col(cols="12").my-4
+          v-col(cols="12").text-center.mc-b2
+            p.mb-0 Please enter the OTP sent to&nbsp;
+              span.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
+          div.d-flex.justify-center.my-4.text-center
             v-otp-input(
               ref="otpInput"
               separator=""
@@ -24,12 +22,12 @@
               :is-input-num="true"
               @on-change="otp = $event"
               :class="{'mobile-otp': $isMobile}"
-            ).d-flex
+            )
           //- Verify button
-          v-col(cols="12")
+          v-col(cols="12").text-center.mt-10
             v-btn(
-              block
               color="secondary"
+              style="width: 400px;"
               large
               :disabled="otp.length < 6"
               @click="submit()"
@@ -40,8 +38,8 @@
               type="error"
               dismissible
             ) Incorrect verification code
-          v-col(cols="12").text-center
-            span Didn't receive the OTP?&nbsp;
+          v-col(cols="12").text-center.font-open-sans
+            span Didn't receive the OTP?
             v-btn(
               :disabled="otpCountdown > 0 || loading"
               @click="resendVerificationCode"
@@ -55,9 +53,12 @@
           br
           br
           br
-          v-col(cols="12")
+          v-col(cols="12").text-center.font-open-sans
             p.mb-0 Having trouble with your verification?
             a(@click.stop="toggleChat()").secondary--text Send us a chat for support.
+          v-col(cols="12").text-center.font-open-sans
+            p.mb-0 Entered a wrong contact number?
+            a(@click.stop="toggleChat()").secondary--text Let us know so we can assist you.
     //- v-row(align="center" justify="center" :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]").main-container
     //-   v-col(cols="11" md="8")
     //-     v-row(justify="center" align="center")
@@ -191,42 +192,8 @@ export default {
       return this.$nuxt.$route.name;
     },
   },
-  watch: {
-    // firstDigit (val) {
-    //   if (val?.length === 1) {
-    //     document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
-    //   }
-    // },
-    // secondDigit (val) {
-    //   if (val?.length === 1) {
-    //     document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
-    //   }
-    // },
-    // thirdDigit (val) {
-    //   if (val?.length === 1) {
-    //     document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
-    //   }
-    // },
-    // fourthDigit (val) {
-    //   if (val?.length === 1) {
-    //     document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
-    //   }
-    // },
-    // fifthDigit (val) {
-    //   if (val?.length === 1) {
-    //     document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
-    //   }
-    // },
-    // sixthDigit (val) {
-    //   if (val?.length === 1) {
-    //     const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
-    //     this.otp = code;
-    //     this.submit();
-    //   }
-    // },
-  },
   async created () {
-    await this.init();
+    // await this.init();
   },
   methods: {
     init () {
@@ -257,11 +224,6 @@ export default {
         this.$gtag.pageview('/signup/health-facilities/otp-verification');
       }
     },
-    // - Test
-    // onOTPComplete (otp) {
-    //   this.otp = `${otp}`;
-    //   this.submit();
-    // },
     // Verify mobile no and signup
     async submit () {
       try {
