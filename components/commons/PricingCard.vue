@@ -1,5 +1,5 @@
 <template lang="pug">
-   v-card(width="100%").rounded-md.pa-3
+   v-card(width="100%").rounded-lg.pa-3
       v-card-text.font-open-sans.px-0
         div.general-info-container
           v-row(align="center").pa-3
@@ -39,7 +39,7 @@
                 | clinic
                 span.slash.mc-b4 /
                 | month
-            span(v-else).mc-h4 FREE
+            span(v-else).mc-h2 FREE
           p(v-else)
             strong.title--text.mc-h4 Contact Us
       v-card-text.card-actions.px-0

@@ -1,27 +1,40 @@
 <template lang="pug">
-  v-container
+  div
     v-overlay(v-if="loading.page" :value="loading.page")
       v-progress-circular(
         indeterminate
         size="64"
       )
     template(v-else)
-      v-row(justify="center" align="center")
+      generic-blue-bg(v-if="!$isMobile")
+        v-container(fluid).billing-type-container
+          v-row(justify="center" align="center")
+            v-col(cols="12").text-center.billing-type
+              h1.white--text.mc-h2 Choose a&nbsp;
+                span pricing plan&nbsp;
+                span(v-if="isTrial") before beginning your trial
+              div.d-flex.align-center.justify-center.text-center
+                strong(:class="descriptionClasses").font-open-sans.white--text.mr-3 Monthly
+                v-switch(
+                  v-model="paymentIntervalSwitch"
+                  inset
+                  color="white"
+                )
+                strong(:class="descriptionClasses").font-open-sans.white--text Annually
+      v-row(v-else justify="center" align="center").mt-5
         v-col(cols="12").text-center
-          h1.font-m Choose a&nbsp;
-            span.primary--text pricing plan&nbsp;
+          h1.mc-h2 Choose a&nbsp;
+            span pricing plan&nbsp;
             span(v-if="isTrial") before beginning your trial
-      v-row(justify="center" align="start")
-        v-col(cols="12" md="12")
-          div.d-flex.align-center.justify-center
-            strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+          div.d-flex.align-center.justify-center.text-center
+            strong(:class="descriptionClasses").font-open-sans.mr-3 Monthly
             v-switch(
               v-model="paymentIntervalSwitch"
               inset
               color="primary"
             )
-            strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-      v-row(justify="center" align="center")
+            strong(:class="descriptionClasses").font-open-sans Annually
+      v-row(justify="center" align="center" :class="{'packages-negative-margins': !$isMobile}")
         v-col(cols="12" md="10")
           v-row(justify="center")
             template(v-for="bundle in packages")
@@ -33,6 +46,7 @@
               )
                 pricing-card(
                   :bundle="bundle"
+                  :key="bundle.value"
                   :payment-interval="paymentInterval"
                   :height="facilityType === 'doctor' ? '750' : '850'"
                 ).elevation-3
@@ -77,6 +91,7 @@
           v-spacer
           v-btn(color="success" depressed @click="errorDialog = false").text-none Back
           v-spacer
+    //- Confirm
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
         v-card-text.pa-5
@@ -102,6 +117,7 @@ import omit from 'lodash/omit';
 import { mdiClose } from '@mdi/js';
 import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
 import PictureSource from '~/components/commons/PictureSource';
 import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
@@ -118,6 +134,7 @@ const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
     EmailVerificationDialog,
+    GenericBlueBg,
     PictureSource,
     PricingCard,
   },
@@ -458,3 +475,24 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.billing-type-container {
+  height: 400px;
+}
+.billing-type {
+  position: absolute;
+  top: 20%;
+}
+.packages-negative-margins {
+  margin-top: -150px;
+}
+@media screen and (min-width: 1920px) {
+  .billing-type-container {
+    height: 600px;
+  }
+  .packages-negative-margins {
+    margin-top: -200px;
+  }
+}
+</style>
