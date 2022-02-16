@@ -23,7 +23,7 @@
             strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
       v-row(justify="center" align="center")
         v-col(cols="12" md="10")
-          v-row(justify="center" align="center")
+          v-row(justify="center")
             template(v-for="bundle in packages")
               v-col(
                 v-if="!bundle.requireContact"
@@ -34,19 +34,20 @@
                 pricing-card(
                   :bundle="bundle"
                   :payment-interval="paymentInterval"
-                  height="850"
+                  :height="facilityType === 'doctor' ? '750' : '850'"
                 ).elevation-3
                   template(slot="card-btn")
                     v-btn(
-                      rounded
                       block
                       depressed
-                      :color="bundle.isRecommended ? 'white' : 'primary'"
+                      color="primary"
+                      :height="!$isWideScreen ? '58px' : '73.68'"
+                      :outlined="!bundle.isRecommended"
                       :loading="loading.button"
                       :disabled="loading.button"
-                      :class="{'primary--text': bundle.isRecommended}"
                       @click="selectBundle(bundle)"
-                    ).text-none {{ getBundleTitle(bundle) }}
+                    )
+                      span.mc-btn1.text-none {{ getBundleTitle(bundle) }}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"

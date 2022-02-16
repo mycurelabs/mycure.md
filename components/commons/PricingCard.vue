@@ -19,7 +19,7 @@
             :style="opacity"
           ).text-center.title--text
             v-icon(color="success" small left) {{ isRecommended ? mdiTag : mdiTagOutline }}
-            strong(:class="{ 'white--text': isRecommended, 'grey--text': !isRecommended}").savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+            strong.grey--text.savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
             v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
           p(
             v-if="!bundle.requireContact"
@@ -27,14 +27,14 @@
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
                 span.currency.font-open-sans.mc-h4 {{ bundle.currency }}&nbsp;
-                span.mc-h4 {{ kFormatter(bundle.annualMonthlyPrice) }}
+                span.mc-h2 {{ kFormatter(bundle.annualMonthlyPrice) }}
                 span.slash.mc-b4 &nbsp;/
                 | clinic
                 span.slash.mc-b4 /
                 | year
               v-tab-item(value="month" transition="slide-y-transition").title--text
                 span.currency.font-open-sans.mc-h4 {{ bundle.currency }}&nbsp;
-                span.mc-h4 {{  kFormatter(bundle.monthlyPrice) }}
+                span.mc-h2 {{  kFormatter(bundle.monthlyPrice) }}
                 span.slash.mc-b4 &nbsp;/
                 | clinic
                 span.slash.mc-b4 /
@@ -71,11 +71,11 @@
           v-col(cols="12" xl="12")
             div(v-for="(inclusion, key) in mainInclusions" :key="key").d-flex.mb-1
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
-              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
+              span(:class="[textFontSize, {'font-weight-medium': isRecommended}]").font-open-sans.list-item {{ inclusion.text }}
             div(v-for="(inclusion, key) in additionalInclusions" :key="key").d-flex.mb-1
               template(v-if="inclusion.valid")
                 v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
-                span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
+                span(:class="[textFontSize]").font-open-sans.list-item {{ inclusion.text }}
 </template>
 
 <script>
@@ -337,6 +337,10 @@ export default {
 .general-info-container {
   position: relative;
   min-height: 180px;
+}
+
+.list-item {
+  color: #72727D;
 }
 
 .v-tabs-items {
