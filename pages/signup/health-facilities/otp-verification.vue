@@ -193,7 +193,7 @@ export default {
     },
   },
   async created () {
-    // await this.init();
+    await this.init();
   },
   methods: {
     init () {
