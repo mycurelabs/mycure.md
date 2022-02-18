@@ -15,12 +15,12 @@
               @click="$router.push({ name: 'index' })"
             ).link-to-home
       v-col(:cols="$isMobile? '12' : '7'" :class="$isMobile ? 'pa-4' : 'pa-0'")
-        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['px-15', 'py-8']").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : 'pa-15'").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
           v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
             v-row
               v-col(cols="10")
                 h1.font-24 Register
-                p.custom-grey-text.font-open-sans Level up your healthcare services and get more patients safely
+                p.custom-grey-text.font-open-sans.pt-5 Level up your healthcare services and get more patients safely
               v-spacer
               v-tooltip(top)
                 template(v-slot:activator="{ on, attrs }")
@@ -35,7 +35,7 @@
                   ).my-4
                     v-icon(large) {{ mdiArrowULeftTop }}
                 span Back
-            p.mb-2 Personal Info
+            p.pb-3.pt-7 Personal Info
             v-row(:no-gutters="$isMobile").px-2
               v-col(
                 cols="12"
@@ -70,6 +70,7 @@
                 ).ma-0.no-details-margin
                   template(v-slot:append v-if="lastName")
                     v-icon(color="accent") {{ mdiCheck }}
+            v-row(:no-gutters="$isMobile").px-2
               v-col(
                 cols="12"
                 md="6"
@@ -223,8 +224,7 @@
             //- div(v-else).font-italic.font-gray.mt-4
             //-   span Referral code has been applied.&nbsp;
             //-   a(@click="codeDialog = true") Change
-            br
-            div.d-flex
+            div.d-flex.mb-4.pt-5
               v-checkbox(
                 v-model="hasReferralCode"
                 hide-details
@@ -232,7 +232,7 @@
                 :on-icon="mdiCheckboxMarkedOutline"
                 :off-icon="mdiCheckboxBlankOutline"
                 :disabled="loading.form"
-              ).my-0
+              )
                 template(slot="label")
                   span.custom-grey-text.font-open-sans Apply a referral code (Optional)&nbsp;&nbsp;
               div(width="200px" v-if="hasReferralCode")
@@ -246,7 +246,7 @@
                   :disabled="loading.form"
                   :class="{'pt-1': $isMobile}"
                 ).no-details-margin
-            div.d-flex
+            div.d-flex.mb-4
               v-checkbox(
                 v-model="hasPromoCode"
                 hide-details
@@ -274,13 +274,13 @@
               :disabled="loading.form"
               :on-icon="mdiCheckboxMarkedOutline"
               :off-icon="mdiCheckboxBlankOutline"
-            ).ma-0.no-details-margin
+            ).mx-0.mb-4
               template(slot="label")
                 span.custom-grey-text.font-open-sans I agree to MYCURE's&nbsp;
                   a(target="_blank" rel="noopener noreferrer" href="../terms" @click.stop style="text-decoration: none") Terms of Use&nbsp;
                   | and&nbsp;
                   a(target="_blank" rel="noopener noreferrer" href="../privacy-policy" @click.stop style="text-decoration: none") Privacy Policy
-            v-row.mt-1.mb-2
+            v-row.mt-15.mb-5
               v-col(cols="12")
                 v-btn(
                   type="submit"
@@ -573,6 +573,9 @@ export default {
     },
     hasPromoCode (val) {
       if (!val) this.stripeCoupon = null;
+    },
+    hasReferralCode (val) {
+      if (!val) this.invitation = null;
     },
   },
   mounted () {
