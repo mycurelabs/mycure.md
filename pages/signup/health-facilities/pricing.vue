@@ -13,27 +13,27 @@
               h1.white--text.mc-h2 Choose a&nbsp;
                 span pricing plan&nbsp;
                 span(v-if="isTrial") before beginning your trial
-              div.d-flex.align-center.justify-center.text-center
-                strong(:class="descriptionClasses").font-open-sans.white--text.mr-3 Monthly
+              div.d-flex.align-center.justify-center.text-center.my-10
+                strong.mc-h3.font-open-sans.white--text.mr-5 Monthly
                 v-switch(
                   v-model="paymentIntervalSwitch"
                   inset
                   color="white"
                 )
-                strong(:class="descriptionClasses").font-open-sans.white--text Annually
+                strong.mc-h3.font-open-sans.white--text.ml-3 Annually
       v-row(v-else justify="center" align="center").mt-5
         v-col(cols="12").text-center
           h1.mc-h2 Choose a&nbsp;
             span pricing plan&nbsp;
             span(v-if="isTrial") before beginning your trial
           div.d-flex.align-center.justify-center.text-center
-            strong(:class="descriptionClasses").font-open-sans.mr-3 Monthly
+            strong.mc-h3.font-open-sans.mr-5 Monthly
             v-switch(
               v-model="paymentIntervalSwitch"
               inset
               color="primary"
             )
-            strong(:class="descriptionClasses").font-open-sans Annually
+            strong.mc-h3.font-open-sans.ml-5 Annually
       v-row(justify="center" align="center" :class="{'packages-negative-margins': !$isMobile}")
         v-col(cols="12" md="10")
           v-row(justify="center")
@@ -55,7 +55,7 @@
                       block
                       depressed
                       color="primary"
-                      :height="!$isWideScreen ? '58px' : '73.68'"
+                      :height="!$isWideScreen ? '48px' : '58px'"
                       :outlined="!bundle.isRecommended"
                       :loading="loading.button"
                       :disabled="loading.button"
@@ -115,7 +115,6 @@
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import { mdiClose } from '@mdi/js';
-import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import GenericBlueBg from '~/components/generic/GenericBlueBg';
 import PictureSource from '~/components/commons/PictureSource';
@@ -218,13 +217,6 @@ export default {
     },
     paymentState () {
       return process.client && (new URLSearchParams(window.location.search).get('payment') || '');
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
     },
     paymentInterval () {
       return this.paymentIntervalSwitch ? 'year' : 'month';
@@ -478,21 +470,18 @@ export default {
 
 <style scoped>
 .billing-type-container {
-  height: 400px;
+  height: 500px;
 }
 .billing-type {
   position: absolute;
-  top: 20%;
+  top: 15%;
 }
 .packages-negative-margins {
-  margin-top: -150px;
+  margin-top: -200px;
 }
 @media screen and (min-width: 1920px) {
   .billing-type-container {
     height: 600px;
-  }
-  .packages-negative-margins {
-    margin-top: -200px;
   }
 }
 </style>

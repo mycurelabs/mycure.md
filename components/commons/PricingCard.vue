@@ -1,5 +1,5 @@
 <template lang="pug">
-   v-card(width="100%").rounded-lg.pa-3
+   v-card(width="100%").rounded-lg.pa-5
       v-card-text.font-open-sans.px-0
         div.general-info-container
           v-row(align="center").pa-3
@@ -17,7 +17,7 @@
         div#price-container
           p(
             :style="opacity"
-          ).text-center.title--text
+          ).title--text
             v-icon(color="success" small left) {{ isRecommended ? mdiTag : mdiTagOutline }}
             strong.grey--text.savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
             v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
@@ -69,10 +69,10 @@
             ).mc-btn1.font-weight-semibold.text-non.rounded-lg.text-none {{ getBtnText(bundle) }}
         v-row(justify="center").mt-3
           v-col(cols="12" xl="12")
-            div(v-for="(inclusion, key) in mainInclusions" :key="key").d-flex.mb-1
+            div(v-for="(inclusion, key) in mainInclusions" :key="key").d-flex.mb-3
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
               span(:class="[textFontSize, {'font-weight-medium': isRecommended}]").font-open-sans.list-item {{ inclusion.text }}
-            div(v-for="(inclusion, key) in additionalInclusions" :key="key").d-flex.mb-1
+            div(v-for="(inclusion, key) in additionalInclusions" :key="key").d-flex.mb-3
               template(v-if="inclusion.valid")
                 v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
                 span(:class="[textFontSize]").font-open-sans.list-item {{ inclusion.text }}
@@ -336,7 +336,7 @@ export default {
 
 .general-info-container {
   position: relative;
-  min-height: 180px;
+  min-height: 150px;
 }
 
 .list-item {
@@ -347,26 +347,6 @@ export default {
   background-color: transparent !important;
 }
 
-@media screen and (max-width: 1264px) {
-  .general-info-container {
-    position: relative;
-    min-height: 150px;
-  }
-}
-
-@media screen and (min-width: 1264px) {
-  .general-info-container {
-    position: relative;
-    min-height: 180px;
-  }
-}
-@media screen and (min-width: 1800px) {
-  .general-info-container {
-    position: relative;
-    min-height: 180px;
-  }
-}
-
 @media screen and (width: 1920px) and (height: 1007px) {
   .top-spacing-btn {
     margin-top: 5px;
@@ -374,7 +354,7 @@ export default {
 }
 @media screen and (min-width: 1921px) {
   .general-info-container {
-    min-height: 235px;
+    min-height: 180px;
   }
   .top-spacing-btn {
     margin-top: 15px;
