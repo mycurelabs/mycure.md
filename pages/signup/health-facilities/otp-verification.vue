@@ -48,14 +48,14 @@
               right
               bottom
               depressed
-            ).text-none
+            ).text-none.mt-n1
               | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
           br
           br
           br
-          v-col(cols="12").text-center.font-open-sans
-            p.mb-0 Having trouble with your verification?
-            a(@click.stop="toggleChat()").secondary--text Send us a chat for support.
+          //- v-col(cols="12").text-center.font-open-sans
+          //-   p.mb-0 Having trouble with your verification?
+          //-   a(@click.stop="toggleChat()").secondary--text Send us a chat for support.
           v-col(cols="12").text-center.font-open-sans
             p.mb-0 Entered a wrong contact number?
             a(@click.stop="toggleChat()").secondary--text Let us know so we can assist you.
@@ -119,7 +119,7 @@
     v-dialog(v-model="successDialog" width="400" height="auto" persistent)
       v-card
         v-card-text.text-center
-          h1.pt-5.font-30 Welcome to MYCURE!
+          h1.pt-10.font-30 Welcome to MYCURE!
           br
           img(width="100%" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
           div
