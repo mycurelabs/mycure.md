@@ -63,6 +63,7 @@ export default {
     { src: '~/plugins/mycure.js', mode: 'client' },
     { src: '~/plugins/vue-stripe.js', mode: 'client' },
     { src: '~/plugins/vue-browser-geolocation.js', mode: 'client' },
+    { src: '~/plugins/vue-cookie-law.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
