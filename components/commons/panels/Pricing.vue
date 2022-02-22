@@ -49,6 +49,7 @@
                   :bundle="pack"
                   :payment-interval="paymentInterval"
                   :height="type === 'doctor' ? '750' : '850'"
+                  :minimize-price-font="['clinic', 'diagnostic'].includes(type) && !$isWideScreen"
                 ).elevation-3
             v-col(v-else cols="10" sm="8" md="6")
               carousel(

@@ -26,22 +26,22 @@
           ).font-weight-black.title--text
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
-                span.currency.font-open-sans.mc-h4 {{ bundle.currency }}&nbsp;
-                span.mc-h2 {{ kFormatter(bundle.annualMonthlyPrice) }}
-                span.slash.mc-b4 &nbsp;/
-                | clinic
-                span.slash.mc-b4 /
-                | year
+                span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="priceClass") {{ kFormatter(bundle.annualMonthlyPrice) }}
+                span.slash &nbsp;/
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
+                span.slash /
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") year
               v-tab-item(value="month" transition="slide-y-transition").title--text
-                span.currency.font-open-sans.mc-h4 {{ bundle.currency }}&nbsp;
-                span.mc-h2 {{  kFormatter(bundle.monthlyPrice) }}
-                span.slash.mc-b4 &nbsp;/
-                | clinic
-                span.slash.mc-b4 /
-                | month
-            span(v-else).mc-h2 FREE
-          p(v-else)
-            strong.title--text.mc-h4 Contact Us
+                span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="priceClass") {{  kFormatter(bundle.monthlyPrice) }}
+                span.slash &nbsp;/
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
+                span.slash /
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") month
+            span(v-else :class="priceClass") FREE
+          p(v-else :class="{'my-7': !$isWideScreen}")
+            strong(:class="priceClass").title--text Contact Us
       v-card-text.card-actions.px-0
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -133,6 +133,8 @@ export default {
       type: Boolean,
       default: false,
     },
+    // Make price text sizes smaller, usually used for pricing with 4 packages on STD screen
+    minimizePriceFont: Boolean,
   },
   data () {
     return {
@@ -182,6 +184,18 @@ export default {
     cardHeight () {
       // if (!this.showList) return '500';
       return this.height || '800';
+    },
+    priceClass () {
+      if (this.minimizePriceFont) {
+        return { 'font-28': !this.$isWideScreen, 'font-48': this.$isWideScreen };
+      }
+      return 'mc-h2';
+    },
+    currencyClass () {
+      if (this.minimizePriceFont) {
+        return { 'font-14': !this.$isWideScreen, 'font-24': this.$isWideScreen };
+      }
+      return 'mc-h4';
     },
     textFontSize () {
       return classBinder(this, {
