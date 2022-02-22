@@ -105,7 +105,7 @@
                   @keypress="checkNumberInput($event)"
                 ).mb-0.no-details-margin
                   template(slot="prepend-inner")
-                    div(style="margin-top: -9.5px" @click="countryDialog = true").country-container
+                    div(@click="countryDialog = true").country-container
                       v-tooltip(bottom)
                         template(v-slot:activator="{ on }")
                           img(
@@ -232,7 +232,7 @@
                 :on-icon="mdiCheckboxMarkedOutline"
                 :off-icon="mdiCheckboxBlankOutline"
                 :disabled="loading.form"
-              )
+              ).my-0
                 template(slot="label")
                   span.custom-grey-text.font-open-sans Apply a referral code (Optional)&nbsp;&nbsp;
               div(width="200px" v-if="hasReferralCode")
@@ -863,6 +863,10 @@ export default {
   cursor: pointer;
 }
 
+.country-container {
+  margin-top: -9.5px;
+}
+
 ::v-deep input::-webkit-outer-spin-button,
 ::v-deep input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -892,5 +896,11 @@ export default {
 }
 .custom-grey-text {
   color: #768995;
+}
+
+@media screen and (min-width: 1920px) {
+  .country-container {
+    margin-top: -11px;
+  }
 }
 </style>

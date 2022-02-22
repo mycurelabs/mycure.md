@@ -12,8 +12,8 @@
               :image-height="iconSize"
             )
             p.mc-h4.ml-2.title--text.mb-0 {{ bundle.title }}
-          span.mc-b5 {{ bundle.description }}
-        v-divider(width="100%").my-4
+          span.description-line-height.mc-b5 {{ bundle.description }}
+        v-divider(width="100%").mb-4.mt-3
         div#price-container
           p(
             :style="opacity"
@@ -67,7 +67,7 @@
               :pricing-bundle="bundle.id"
               :query-ops="getQueryOps(bundle)"
             ).mc-btn1.font-weight-semibold.text-non.rounded-lg.text-none {{ getBtnText(bundle) }}
-        v-row(justify="center").mt-3
+        v-row(justify="center").mt-5
           v-col(cols="12" xl="12")
             div(v-for="(inclusion, key) in mainInclusions" :key="key").d-flex.mb-3
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
@@ -299,8 +299,8 @@ export default {
   left: 5%;
 } */
 
-.description-container {
-  min-height: 80px;
+.description-line-height {
+  line-height: 10px;
 }
 
 .chip {

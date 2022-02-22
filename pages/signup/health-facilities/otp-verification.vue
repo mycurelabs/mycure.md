@@ -1,120 +1,60 @@
 <template lang="pug">
   v-container(fluid fill-height).pa-0.ma-0
-    v-row(style="height: 100vh" )
+    v-row(style="height: 100vh")
       v-col(cols="5" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
         v-row(style="height: 100vh" align="center" justify="center")
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
       v-col(:cols="$isMobile? '12' : '7'" :class="$isMobile ? 'pa-4' : 'pa-0'")
-        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['px-15', 'pt-10']").rounded-tl-xl.rounded-bl-xl
-          v-col(cols="12").text-center
-            h1.mc-h2 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
-          br
-          v-col(cols="12").text-center.mc-b2
-            p.mb-0 Please enter the OTP sent to&nbsp;
-              span.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-          div.d-flex.justify-center.my-4.text-center
-            v-otp-input(
-              ref="otpInput"
-              separator=""
-              input-classes="otp-input"
-              :num-inputs="6"
-              :should-auto-focus="true"
-              :is-input-num="true"
-              @on-change="otp = $event"
-              :class="{'mobile-otp': $isMobile}"
-            )
-          //- Verify button
-          v-col(cols="12").text-center.mt-10
-            v-btn(
-              color="secondary"
-              style="width: 400px;"
-              large
-              :disabled="otp.length < 6"
-              @click="submit()"
-            ).white--text Verify
-          v-col(cols="12")
-            v-alert(
-              :value="verificationError"
-              type="error"
-              dismissible
-            ) Incorrect verification code
-          v-col(cols="12").text-center.font-open-sans
-            span Didn't receive the OTP?
-            v-btn(
-              :disabled="otpCountdown > 0 || loading"
-              @click="resendVerificationCode"
-              color="secondary"
-              text
-              right
-              bottom
-              depressed
-            ).text-none.mt-n1
-              | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
-          br
-          br
-          br
-          //- v-col(cols="12").text-center.font-open-sans
-          //-   p.mb-0 Having trouble with your verification?
-          //-   a(@click.stop="toggleChat()").secondary--text Send us a chat for support.
-          v-col(cols="12").text-center.font-open-sans
-            p.mb-0 Entered a wrong contact number?
-            a(@click.stop="toggleChat()").secondary--text Let us know so we can assist you.
-    //- v-row(align="center" justify="center" :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]").main-container
-    //-   v-col(cols="11" md="8")
-    //-     v-row(justify="center" align="center")
-    //-       v-col(cols="12" md="6").pa-1.mb-3
-    //-         img(
-    //-           v-if="dayOrNight === 'night'"
-    //-           src="~/assets/images/mycure-footer-logo.png"
-    //-           @click="$nuxt.$router.push({ name: 'index' })"
-    //-           alt="MYCURE logo"
-    //-         ).link-to-home.mb-3
-    //-         img(
-    //-           v-else
-    //-           src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-    //-           @click="$nuxt.$router.push({ name: 'index' })"
-    //-           alt="MYCURE logo"
-    //-           width="175"
-    //-         ).link-to-home.mb-3
-    //-         br
-    //-         h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
-    //-         p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-    //-         v-row.my-5
-    //-           div.d-flex
-    //-             v-otp-input(
-    //-               ref="otpInput"
-    //-               separator=""
-    //-               input-classes="otp-input"
-    //-               :num-inputs="6"
-    //-               :should-auto-focus="true"
-    //-               :is-input-num="true"
-    //-               @on-complete="onOTPComplete($event)"
-    //-             )
-    //-         p Didn't get the code?
-    //-         v-btn(
-    //-           style="width: 150px;"
-    //-           :disabled="otpCountdown > 0 || loading"
-    //-           @click="resendVerificationCode"
-    //-           color="primary"
-    //-           right
-    //-           bottom
-    //-           depressed
-    //-         ).text-none.font-weight-bold
-    //-           | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
-    //-         v-row.mt-2
-    //-           v-col
-    //-             v-alert(
-    //-               :value="verificationError"
-    //-               type="error"
-    //-               dismissible
-    //-             ) Incorrect verification code
-    //-         br
-    //-         span Having trouble with your verification?
-    //-         br
-    //-         a(@click.stop="toggleChat()")
-    //-           strong.primary--text Send us a chat for support.
-    //-       v-col(cols="12" md="6").pa-1.text-center
-    //-         img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
+        v-container(
+          style="height: 100vh;"
+          :class="$isMobile ? 'pa-3' : ['px-15']"
+        ).rounded-tl-xl.rounded-bl-xl
+          v-row(align="center" style="height: 100vh;")
+            v-col(cols="12").text-center
+              h1.mc-h2 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
+              br
+              p.mb-0.mc-b2 Please enter the OTP sent to&nbsp;
+                span.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
+              div.d-flex.text-center.justify-center.my-15
+                v-otp-input(
+                  ref="otpInput"
+                  separator=""
+                  input-classes="otp-input"
+                  :num-inputs="6"
+                  :should-auto-focus="true"
+                  :is-input-num="true"
+                  @on-change="otp = $event"
+                  :class="{'mobile-otp': $isMobile}"
+                )
+              //- Verify button
+              v-btn(
+                color="secondary"
+                :style="{ width: $isMobile ? '100%' : '400px' }"
+                large
+                :disabled="otp.length < 6"
+                @click="submit()"
+              ).white--text Verify
+              v-alert(
+                :value="verificationError"
+                type="error"
+                dismissible
+              ) Incorrect verification code
+              div.text-center.font-open-sans.mt-5
+                span Didn't receive the OTP?
+                v-btn(
+                  :disabled="otpCountdown > 0 || loading"
+                  @click="resendVerificationCode"
+                  color="secondary"
+                  text
+                  right
+                  bottom
+                  depressed
+                ).text-none.mt-n1
+                  | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
+            v-row(align="end")
+              v-col(cols="12" align-self="end").text-center.font-open-sans
+                p.mb-0 Entered a wrong contact number?
+                a(@click.stop="toggleChat()").secondary--text Let us know so we can assist you.
 
     v-dialog(v-model="successDialog" width="400" height="auto" persistent)
       v-card
@@ -193,7 +133,7 @@ export default {
     },
   },
   async created () {
-    await this.init();
+    // await this.init();
   },
   methods: {
     init () {
