@@ -5,9 +5,9 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").px-0
             v-row(justify="center" :class="$isWideScreen ? 'mb-16' : 'mb-10'")
-              v-col(cols="12" :sm="version === 2 ? 7 : 10")
-                div.text-center
-                  p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4 {{ panelTitle }}
+              v-col(cols="12" :md="version === 2 ? 7 : 10")
+                div(:class="{'text-center': !$isMobile}")
+                  p(:class="{'primary--text': version === 2}").mc-h2.mb-0.mb-4.title--text {{ panelTitle }}
                   p.mc-b2.mb-0 {{ subTitle }}
             //- version 1
             div(v-if="version === 1").font-open-sans.mt-6
@@ -15,10 +15,10 @@
                 div(v-if="!$isMobile")
                   v-row(justify="center")
                     v-col(cols="4").pb-0
-                      span.mc-h3 {{ content.leftTitle }}
+                      span.mc-h3.title--text {{ content.leftTitle }}
                     v-col(cols="1").pb-0
                     v-col(cols="4").pb-0
-                      span.mc-h3 {{ content.rightTitle }}
+                      span.mc-h3.title--text {{ content.rightTitle }}
                   v-row(justify="center")
                     v-col(cols="4")
                       p.mc-b3 {{ content.leftDescription }}
@@ -27,11 +27,11 @@
                       p.mc-b3 {{ content.rightDescription }}
                 div(v-else)
                   v-row(justify="center")
-                    v-col(cols="12")
-                      span.mc-h3 {{ content.leftTitle }}
-                      p.mc-list-b3 {{ content.leftDescription }}
-                      span.mc-h3 {{ content.rightTitle }}
-                      p.mc-list-b3.font-gray {{ content.rightDescription }}
+                    v-col(cols="12").pb-0
+                      p.mc-h4.title--text.mb-2 {{ content.leftTitle }}
+                      p.mc-b4.mb-6 {{ content.leftDescription }}
+                      p.mc-h4.title--text.mb-2 {{ content.rightTitle }}
+                      p.mc-b4.mb-6 {{ content.rightDescription }}
 
             //- version 2
             div(v-if="version === 2")
@@ -47,21 +47,21 @@
                             :class="{'mt-2': $isWideScreen}"
                           ).white--text {{ index + 1 }}
                         v-col(:class="!$isMobile ? 'pa-0' : ['pr-0', 'pt-0']")
-                          span.mc-list-b3 {{ content }}
+                          span.mc-b3 {{ content }}
             div(v-if="version === 4")
               v-row(justify="center")
-                v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" align="center").pb-0
+                v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" :align="$isMobile? 'start' : 'center'").pb-0
                   picture-source(
                     v-bind="getImageBindings(content.imageBindings)"
                   )
                   p(:class="$isWideScreen ? 'mt-8' : 'mt-4'").mc-h3 {{ content.title }}
-                  div.px-5
-                    p.mc-b2 {{ content.description }}
+                  div(:class="{'px-5': !$isMobile}")
+                    p.mc-b2.mb-10 {{ content.description }}
             footer
             v-row(v-if="version !== 1" justify="center" :class="{'mt-10': version !== 4}")
               v-col(cols="12" sm="11")
                 p(:class="{'text-center': version === 1}").mc-b2 {{ panelDescription }}
-            v-row(justify="center")
+            v-row(justify="center").pt-5
               //- v-btn(
               //-   color="primary"
               //-   depressed

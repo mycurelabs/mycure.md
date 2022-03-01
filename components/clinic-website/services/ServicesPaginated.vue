@@ -1,8 +1,16 @@
 <template lang="pug">
   div
     v-row(v-if="itemsTotal" align="center" justify="center").pt-1.px-3
-      v-col(cols="12" md="5").pa-0
-        span(v-if="!$isMobile" style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
+      v-col(cols="12").pa-0
+        v-row(v-if="!$isMobile" align="center").px-3
+          span(style="color: #AFAFBA").mc-btn1 Showing {{ itemsTotal }} service{{ itemsTotal > 1 ? 's' : '' }}
+          v-spacer
+          mc-paginate(
+            v-if="itemsTotal > 4"
+            :items-page="itemsPage"
+            :items-pagination-length="itemsPaginationLength"
+            @input="onPaginate($event)"
+          )
         v-select(
           v-else-if="!searchMode"
           v-model="selectedServiceType"
@@ -18,21 +26,17 @@
         )
           template(slot="prepend")
             span.mc-b4.font-weight-bold.title--text Filter:
+        mc-paginate(
+          v-if="itemsTotal > 4 && $isMobile"
+          dense
+          :items-page="itemsPage"
+          :items-pagination-length="itemsPaginationLength"
+          @input="onPaginate($event)"
+        )
       v-spacer(v-if="!$isMobile")
-      //- v-pagination(
-      //-   v-if="itemsTotal > 4 && !$isMobile"
-      //-   justify="center"
-      //-   :value="itemsPage"
-      //-   :length="itemsPaginationLength"
-      //-   total-visible="5"
-      //-   :next-icon="mdiChevronRight"
-      //-   :prev-icon="mdiChevronLeft"
-      //-   circle
-      //-   @input="onPaginate($event)"
-      //- )
-    div(v-if="loading").pt-3
+    div(v-if="loading").pt-8
       v-skeleton-loader(
-        v-for="n in 3"
+        v-for="n in 5"
         :key="n"
         type="card-heading, list-item-three-line, actions" elevation="2"
       )
@@ -48,25 +52,16 @@
           :organization="organization"
           :is-preview-mode="isPreviewMode"
         )
-      v-pagination(
-        v-if="itemsTotal > 4"
-        justify="center"
-        :value="itemsPage"
-        :length="itemsPaginationLength"
-        total-visible="5"
-        :next-icon="mdiChevronRight"
-        :prev-icon="mdiChevronLeft"
-        circle
-        @input="onPaginate($event)"
-      )
 </template>
 
 <script>
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft } from '@mdi/js';
 import ServiceItem from './ServiceItem';
+import McPaginate from './McPaginate';
 export default {
   components: {
     ServiceItem,
+    McPaginate,
   },
   props: {
     loading: Boolean,

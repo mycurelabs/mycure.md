@@ -20,7 +20,7 @@
         :tabs="normalTabsList"
         :pic-url="picURL"
         :clinic-name="clinicName"
-        :formatted-address="formattedAddress"
+        :formatted-address="formattedAddressArray"
         :clinic-phone="clinicPhone"
         :style="{ height: $isMobile ? '110vh' : '110vh' }"
         :is-bookable="isVerified && isOnline"
@@ -86,6 +86,9 @@
                       :is-preview-mode="isPreviewMode"
                       @paginate="onPaginate({ type: 'services' }, $event)"
                       @filter="onServiceTypeFilterEvent($event)"
+                      @hmo-filter="onInsuranceSelect($event)"
+                      @clear="clearInsuranceFilter"
+                      ref="hmoFilter"
                     )
                 //- DOCTORS
                 v-tab-item(value="doctors")
@@ -233,6 +236,7 @@
                 :is-preview-mode="isPreviewMode"
                 @update:itemsPage="onPaginate({ type: 'doctors' }, $event)"
               )
+    fab-share-button
 </template>
 
 <script>
@@ -250,6 +254,7 @@ import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
+import { getCountries } from '~/utils/axios';
 // components
 import MainPanel from '~/components/clinic-website/MainPanel';
 import AboutClinic from '~/components/clinic-website/AboutClinic';
@@ -259,6 +264,7 @@ import ContactUs from '~/components/clinic-website/ContactUs';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
 import DoctorsList from '~/components/clinic-website/doctors/DoctorsList';
 import DoctorsPaginated from '~/components/clinic-website/doctors/DoctorsPaginated';
+import FabShareButton from '~/components/commons/FabShareButton';
 import SearchInsurers from '~/components/clinic-website/services/SearchInsurers';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
 import ServicesList from '~/components/clinic-website/services/ServicesList';
@@ -298,6 +304,7 @@ export default {
     DatePickerMenu,
     DoctorsList,
     DoctorsPaginated,
+    FabShareButton,
     SearchInsurers,
     SearchPanel,
     ServicesList,
@@ -321,7 +328,6 @@ export default {
         !clinic?.publicFields?.length) {
         return error({ statusCode: 404, message: 'clinic-not-found' });
       }
-      console.warn('clinic', clinic);
       return {
         clinic,
       };
@@ -376,7 +382,10 @@ export default {
       searchMode: false, // show search results view
       // filters
       specializationFiltersArray: [],
-      serviceSearchTypeFilter: {}, // dropdown filter for service type
+      serviceSearchTypeFilter: {
+        text: 'Consultations',
+        type: 'clinical-consultation',
+      }, // dropdown filter for service type
       dateFilter: null,
       // tab models
       tabSelect: 'services',
@@ -397,6 +406,8 @@ export default {
       mdiChevronRight,
       mdiChevronLeft,
       mdiAccountWrenchOutline,
+      fab: false,
+      countries: [],
     };
   },
   head () {
@@ -449,11 +460,21 @@ export default {
       if (!this.clinic?.address) return '';
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
     },
+    formattedAddressArray () {
+      return [
+        this.clinic.address.street1 ? this.clinic.address.street1 + ',' : '',
+        this.clinic.address.street2 ? this.clinic.address.street2 + ',' : '',
+        this.clinic.address.city ? this.clinic.address.city + ',' : '',
+        this.clinic.address.province ? this.clinic.address.province + ',' : '',
+        this.clinic.address.country ? this.clinic.address.country : '',
+      ];
+    },
     clinicPhone () {
       if (!this.clinic) return '';
       const { phone, phones } = this.clinic;
       if (phones?.length) return phones.join(', ');
-      return phone || '';
+      if (phone) return `+${this.countryData}${phone}`;
+      return '';
     },
     description () {
       return this.clinic?.description ||
@@ -467,6 +488,10 @@ export default {
     searchTabsList () {
       return TABS_LIST.filter(tab => tab.type === 'search');
     },
+    countryData () {
+      const item = this.countries.find(x => x.name === this.clinic.address.country);
+      return item?.callingCodes[0] || '';
+    },
   },
   watch: {
     activeServiceType: {
@@ -475,6 +500,7 @@ export default {
         await this.fetchServices({
           serviceProps: this.getServiceQuery(this.activeServiceType),
         }, 1);
+        this.clearModel();
       },
     },
     tabSelect: {
@@ -510,6 +536,7 @@ export default {
   methods: {
     async init () {
       try {
+        await this.getCountries();
         this.loading.services.section = true;
         await this.fetchServiceTypes();
         await this.fetchClinicInsurers();
@@ -632,6 +659,7 @@ export default {
     search () {
       if (!this.searchMode) {
         this.currentServicePropsQuery = {};
+        this.onServiceTypeFilter();
         this.searchMode = true;
         this.searchTabSelect = 'search-all';
         VueScrollTo.scrollTo('#search-tabs', 500, { offset: -100, easing: 'ease' });
@@ -650,6 +678,20 @@ export default {
           ...this.searchText && { searchText: this.searchText },
         }, 1),
       ]);
+    },
+    async getCountries () {
+      try {
+        if (process.browser) {
+          if (!localStorage.getItem('mycure:countries')) {
+            this.countries = await getCountries();
+            localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
+          } else {
+            this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
     },
     // utils
     /** For getting actual service type and subtype value of the current tab
@@ -710,6 +752,7 @@ export default {
       }, page);
     },
     onServiceTypeFilter () {
+      this.itemsPage = { services: 1, doctors: 1 };
       const serviceProps = omit(this.serviceSearchTypeFilter, 'text');
       return this.fetchServices({
         serviceProps,
@@ -726,6 +769,7 @@ export default {
     },
     onInsuranceSelect (insurer) {
       // - NOTE: According to Nad, you can't filter by insurers and have search text, thus we set the searchtext to null
+      this.itemsPage = { services: 1, doctors: 1 };
       this.searchText = null;
       const serviceProps = {
         ...this.currentServicePropsQuery,
@@ -734,13 +778,18 @@ export default {
       return this.fetchServices({ serviceProps }, 1);
     },
     clearInsuranceFilter () {
+      this.itemsPage = { services: 1, doctors: 1 };
       const serviceProps = omit(this.currentServicePropsQuery, 'insurer');
       return this.fetchServices({
         serviceProps,
         ...this.searchText && { searchText: this.searchText },
       }, 1);
     },
+    clearModel () {
+      this.$refs.hmoFilter.clearModel();
+    },
     onDateFilter () {
+      this.itemsPage = { services: 1, doctors: 1 };
       return this.fetchServices({
         serviceProps: this.currentServicePropsQuery,
         ...this.searchText && { searchText: this.searchText },
@@ -819,6 +868,8 @@ export default {
   width: 100vw;
   margin: 0;
   padding: 0;
+  min-height: 700px;
+  position: relative;
 }
 .grey-bg {
   background-color: #f9f9f9;

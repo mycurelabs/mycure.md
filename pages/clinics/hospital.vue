@@ -4,21 +4,20 @@
     lazy-hydrate(when-idle)
       usp(
         has-custom-background
-        extension-exclusive
-        background-image="FullService"
-        background-image-file-extension=".webp"
+        background-image="hospitals-hero"
+        :background-image-file-extension="$useWebp? '.webp' : '.png'"
         title="MYCURE Hospital-OPD"
         meta-title="MYCURE HOSPITALS"
         description="Keep your hospital's out-patient department's (OPD) operations running smoothly with the MYCURE Hospital-OPD app. We've designed a platform that benefits OPD Clinics of all sizes, from small to large."
         parse-title
         btn-text="Start Free Today"
-        image="FullService"
+        image="hospitals-hero"
         :image-width="$isMobile ? '100%' : '90%'"
-        custom-image-path="diagnostics/"
+        custom-image-path="clinics/hospital/"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"
@@ -31,25 +30,26 @@
               v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2 {{ item }}
-    v-container.py-16
+                  p.mc-b3.mb-0.ml-2 {{ item }}
+    v-container.py-16.px-0
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel
-            v-col(cols="12").text-center
+            v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
-                v-col(cols="12" sm="10")
-                  p.mc-b2 MYCURE Hospital-OPD is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Hospital-OPDs’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE Hospital-OPD.
-                  signup-button(
-                    depressed
-                    color="primary"
-                    event-label="signup"
-                    class="rounded-md"
-                    :width="!$isWideScreen ? '228px' : '300'"
-                    :height="!$isWideScreen ? '59px' : '73.68'"
-                  ).text-none
-                    span.mc-btn1 Start for Free
+                v-col(cols="12" md="10")
+                  p.mc-b2.mb-8 MYCURE Hospital-OPD is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Hospital-OPDs’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE Hospital-OPD.
+                  div.text-center
+                    signup-button(
+                      depressed
+                      color="primary"
+                      event-label="signup"
+                      class="rounded-md"
+                      :width="!$isWideScreen ? '228px' : '300'"
+                      :height="!$isWideScreen ? '59px' : '73.68'"
+                    ).text-none
+                      span.mc-btn1 Start for Free
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo" btn-text="Watch How it Works")
@@ -233,8 +233,8 @@ export default {
   head () {
     return headMeta({
       title: 'Robust CMS and EMR for Modern Hospital OPD',
-      description: 'MYCURE Clinic is a software that helps hospitals, diagnostic centers to run their day-to-day operations. It manages patient records, appointments, & more',
-      socialBanner: require('~/assets/images/banners/clinics-og-banner.png'),
+      description: 'Run your hospital outpatient department (OPD) smoothly and with ease by using the MYCURE Outpatient Clinic Management System.',
+      socialBanner: require('~/assets/images/banners/hospital-banner.png'),
     });
   },
   computed: {
@@ -328,8 +328,6 @@ export default {
             image: 'carousel-1',
             imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -340,8 +338,6 @@ export default {
             image: 'carousel-2',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor looking at booking appointments',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
         {
@@ -352,8 +348,6 @@ export default {
             image: 'carousel-3',
             imageFileExtension: '.webp',
             imageAlt: 'Patient looking at network',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
       ];

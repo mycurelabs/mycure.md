@@ -19,8 +19,8 @@
         :parse-title-fields="['to ', 'Your ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
-        background-img-pos="54%"
-        background-img-width="38%"
+        :background-img-width="$isRegularScreen? '44%' : '47%'"
+        :background-img-pos="$isRegularScreen? '52%' : '47%'"
       )
         //- GET RESPONSE
         template(slot="cta-button")
@@ -33,18 +33,15 @@
             @click="getResponseDialog = true"
           ).text-none
             span.mc-btn1 Get Started Free
-    div.grey-bg.mx-n3
-      v-container.py-16
-        v-row(justify="center")
-          lazy-hydrate(when-visible)
-            generic-panel
-              v-col(cols="12")
-                v-row(justify="center")
-                  v-col(cols="12" sm="8").text-center
-                    h2.mc-h2.mb-5 Disorganization Doesn’t Just Cost You Time, It Costs Money
-                    v-row(justify="center")
-                      v-col(cols="12")
-                        p.mc-b2 As a healthcare provider, your ability to keep your virtual practice organized affects the level of care you can provide your patients. Inefficiency with telemedicine and online appointment booking behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with afterwards. But instead of continuing to suffer, there’s hope.
+    v-container.py-16.px-0.grey-bg
+      v-row(justify="center")
+        lazy-hydrate(when-visible)
+          generic-panel
+            v-col(cols="12" :class="{'text-center': !$isMobile}")
+              h2.mc-h2.mb-5 Disorganization Doesn’t Just Cost You Time, It Costs Money
+              v-row(justify="center")
+                v-col(cols="12")
+                  p.mc-b2 As a healthcare provider, your ability to keep your virtual practice organized affects the level of care you can provide your patients. Inefficiency with telemedicine and online appointment booking behind the scenes can result in frustrated providers, frustrated patients, and a mess to deal with afterwards. But instead of continuing to suffer, there’s hope.
     lazy-hydrate(when-visible)
       virtual-clinic
     lazy-hydrate(when-visible)

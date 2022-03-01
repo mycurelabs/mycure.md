@@ -11,7 +11,7 @@
         :hide-btn="hideBtn"
       )
         div(v-if="version === 1" slot="super-title")
-          p(:class="{ 'text-center' : $isMobile }").mc-h7.font-open-sans.font-weight-semibold MYCURE ONLINE & OFFLINE
+          p.mc-h7.font-open-sans MYCURE ONLINE & OFFLINE
         div(slot="content")
           template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
@@ -28,7 +28,7 @@
           //-   :to="{ name: 'syncbase' }"
           //-   :class="{'font-s': !$isMobile}"
           //- ).text-none.button
-          div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
+          div(v-if="version !== 3")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}

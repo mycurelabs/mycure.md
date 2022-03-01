@@ -2,10 +2,10 @@
   v-container
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
-        v-col(cols="12" md="10").text-center
+        v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
           h2(:class="headerClasses").mb-10 Patients will love you more
           v-row(justify="center")
-            v-col(cols="12" md="10" xl="6").text-center
+            v-col(cols="12" md="10" xl="6" :class="{'text-center': !$isMobile}")
               p(:class="descriptionClasses").mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
         v-col(
           v-for="(feature, key) in features"

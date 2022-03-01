@@ -59,6 +59,7 @@ export default {
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~/plugins/crisp.js', mode: 'client' },
     { src: '~/plugins/amplitude.js', mode: 'client' },
+    { src: '~/plugins/vue-cookie-law.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
     { src: '~/plugins/vue-stripe.js', mode: 'client' },

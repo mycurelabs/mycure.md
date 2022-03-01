@@ -3,22 +3,17 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding)
         v-col(cols="12")
-          v-card(elevation="0").rounded-lg.py-10.px-12
+          v-card(elevation="0" :class="!$isMobile ? 'py-10 px-12' : 'py-6 px-3'").rounded-lg
             v-row(:justify="$isMobile? 'center' : 'start'").pa-3
               v-avatar(size="100")
                 img(:src="picUrl" :class="{'mr-4': !$isMobile}")
-              v-col(cols="12" md="9").py-0
+              v-col(cols="12" md="9" :class="{'mt-3': $isMobile}").py-0
                 h3.mc-h3.mb-1.title--text {{ fullName }}
                 p(v-if="!$isMobile").mc-b3.mb-2 {{ specialties.slice(0, 3).join(' | ')}}
                 div(v-else)
                   p(v-for="specialty in specialties.slice(0, 4)").mb-2.mc-b2.font-weight-light {{ specialty }}
                 p(v-if="practicingYear").mc-b4.mb-0 {{ `Practicing since ${practicingYear}` }}
               v-spacer
-              v-tooltip(top :disabled="shareModel")
-                template(v-slot:activator="{ on, attrs }")
-                  div(v-on="on" :class="{'mt-5': $isMobile}")
-                    share-button(:direction="$isMobile ? 'bottom' : 'top'" color="primary" @clicked="shareModel = !shareModel" @clip-success="$emit('clipSuccess')")
-                span Share Clinic
 </template>
 
 <script>

@@ -1,29 +1,42 @@
 <template lang="pug">
-  v-container
+  div
     v-overlay(v-if="loading.page" :value="loading.page")
       v-progress-circular(
         indeterminate
         size="64"
       )
     template(v-else)
-      v-row(justify="center" align="center")
+      generic-blue-bg(v-if="!$isMobile")
+        v-container(fluid).billing-type-container
+          v-row(justify="center" align="center")
+            v-col(cols="12").text-center.billing-type
+              h1.white--text.mc-h2 Choose a&nbsp;
+                span pricing plan&nbsp;
+                span(v-if="isTrial") before beginning your trial
+              div.d-flex.align-center.justify-center.text-center.my-10
+                strong.mc-h3.font-open-sans.white--text.mr-5 Monthly
+                v-switch(
+                  v-model="paymentIntervalSwitch"
+                  inset
+                  color="white"
+                )
+                strong.mc-h3.font-open-sans.white--text.ml-3 Annually
+      v-row(v-else justify="center" align="center").mt-5
         v-col(cols="12").text-center
-          h1.font-m Choose a&nbsp;
-            span.primary--text pricing plan&nbsp;
+          h1.mc-h2 Choose a&nbsp;
+            span pricing plan&nbsp;
             span(v-if="isTrial") before beginning your trial
-      v-row(justify="center" align="start")
-        v-col(cols="12" md="12")
-          div.d-flex.align-center.justify-center
-            strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+          div.d-flex.align-center.justify-center.text-center
+            strong.mc-h3.font-open-sans.mr-5 Monthly
             v-switch(
               v-model="paymentIntervalSwitch"
               inset
               color="primary"
             )
-            strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-      v-row(justify="center" align="center")
+            strong.mc-h3.font-open-sans.ml-5 Annually
+      v-row(justify="center" align="center" :class="{'packages-negative-margins': !$isMobile}")
         v-col(cols="12" md="10")
-          v-row(justify="center" align="center")
+          v-row(justify="center")
             template(v-for="bundle in packages")
               v-col(
                 v-if="!bundle.requireContact"
@@ -33,20 +46,22 @@
               )
                 pricing-card(
                   :bundle="bundle"
+                  :key="bundle.value"
                   :payment-interval="paymentInterval"
-                  height="850"
+                  :height="facilityType === 'doctor' ? '750' : '850'"
                 ).elevation-3
                   template(slot="card-btn")
                     v-btn(
-                      rounded
                       block
                       depressed
-                      :color="bundle.isRecommended ? 'white' : 'primary'"
+                      color="primary"
+                      :height="!$isWideScreen ? '48px' : '58px'"
+                      :outlined="!bundle.isRecommended"
                       :loading="loading.button"
                       :disabled="loading.button"
-                      :class="{'primary--text': bundle.isRecommended}"
                       @click="selectBundle(bundle)"
-                    ).text-none {{ getBundleTitle(bundle) }}
+                    )
+                      span.mc-btn1.text-none {{ getBundleTitle(bundle) }}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"
@@ -76,6 +91,7 @@
           v-spacer
           v-btn(color="success" depressed @click="errorDialog = false").text-none Back
           v-spacer
+    //- Confirm
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
         v-card-text.pa-5
@@ -99,8 +115,8 @@
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import { mdiClose } from '@mdi/js';
-import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
 import PictureSource from '~/components/commons/PictureSource';
 import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
@@ -117,6 +133,7 @@ const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
     EmailVerificationDialog,
+    GenericBlueBg,
     PictureSource,
     PricingCard,
   },
@@ -200,13 +217,6 @@ export default {
     },
     paymentState () {
       return process.client && (new URLSearchParams(window.location.search).get('payment') || '');
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
     },
     paymentInterval () {
       return this.paymentIntervalSwitch ? 'year' : 'month';
@@ -457,3 +467,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.billing-type-container {
+  height: 500px;
+}
+.billing-type {
+  position: absolute;
+  top: 15%;
+}
+.packages-negative-margins {
+  margin-top: -200px;
+}
+@media screen and (min-width: 1920px) {
+  .billing-type-container {
+    height: 600px;
+  }
+}
+</style>

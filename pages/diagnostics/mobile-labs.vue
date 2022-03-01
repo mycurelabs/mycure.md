@@ -17,8 +17,10 @@
         :parse-title-fields="['Clinic ', 'System ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
+        :background-img-width="$isRegularScreen? '44%' : '47%'"
+        :background-img-pos="$isRegularScreen? '50%' : '47%'"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"
@@ -31,7 +33,7 @@
               v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2 {{ item }}
+                  p.mc-b3.mb-0.ml-2 {{ item }}
     lazy-hydrate(when-visible)
       workflow
     lazy-hydrate(when-visible)
@@ -57,7 +59,7 @@
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" mmd="6").text-center
+            v-col(cols="12" mmd="6" :class="$isMobile ? 'pa-0' : 'text-center'")
               h2(:class="headerClasses").font-weight-semibold.mb-5 Advanced Tools for a Growing Mobile Lab
               p(:class="descriptionClasses").mb-10.font-open-sans.font-gray We’re here to make managing your mobile lab so much easier. We offer full functionality for our free clinic management system accounts, and you only need to upgrade as your mobile lab grows. We’re here to help you make the world a healthier place.
             v-col(cols="12").text-center
@@ -114,7 +116,7 @@
         :title-classes="headerClasses"
       )
         template(slot="cta-button")
-          div(:class="{'text-center ml-4': $isMobile}")
+          div
             nuxt-link(to="/directory" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Visit the Directory
               v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}

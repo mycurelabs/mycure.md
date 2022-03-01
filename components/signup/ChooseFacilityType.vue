@@ -7,7 +7,7 @@
             v-col(cols="12" align="end" :class="{'mb-n10': !$isMobile}").pa-0
               v-btn(@click="dialog=false" icon)
                 v-icon {{ mdiClose }}
-            v-col(cols="12").text-center
+            v-col(cols="12").text-center.py-10
               h1 Choose Health Facility Type
             v-col(cols="12" md="4" v-for="(type, key) in facilityTypes" :key="key")
               v-card(

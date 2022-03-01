@@ -18,7 +18,7 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         stakes(
           :version="4"
@@ -36,7 +36,7 @@
           icon-container-col-size="10"
           title="Meet MYCURE Clinics: The Newest Tool for the Newest Generation of Healthcare"
           description="Everyone in your workplace is online. MYCURE Clinics helps you monitor their health and safety through the cloud. It’s a clinic management system built for the unique ecosystem of healthcare, allowing you to connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network."
-          :icon-column-bindings="{ cols: 6, sm: 3 }"
+          :icon-column-bindings="{ cols: 6, md: 3 }"
           :items="features"
           has-blue-bg
         )
@@ -286,8 +286,6 @@ export default {
             image: 'carousel-3',
             imageFileExtension: '.webp',
             imageAlt: 'Patient looking at network',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
         {
@@ -298,8 +296,6 @@ export default {
             image: 'carousel-1',
             imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -310,8 +306,6 @@ export default {
             image: 'carousel-2',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor looking at booking appointments',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
         {
@@ -322,8 +316,6 @@ export default {
             image: 'carousel-5',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
           },
         },
       ];

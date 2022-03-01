@@ -18,8 +18,6 @@
         :parse-title-fields="['Practice ', 'Clutter ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
-        background-img-pos="48%"
-        background-img-width="52%"
       ).mb-16
     div.grey-bg
       v-container.py-16
@@ -28,10 +26,10 @@
             generic-panel
               v-col(cols="12")
                 v-row(justify="center")
-                  v-col(cols="12" sm="8").text-center
+                  v-col(cols="12" sm="8" :class="{'text-center': !$isMobile}")
                     h2.mc-h2.mb-5 Being Disorganized Doesn’t Just Cost You Time, It Costs You Money
                     v-row(justify="center")
-                      v-col(cols="10")
+                      v-col(cols="12" md="10")
                         p.mc-b2 As a doctor, you don’t want your ability to provide care for your patients be affected by any behind the scenes inefficiencies. Frustrated providers and patients can leave your staff dealing with any mess left behind. MYCURE Doctors has a solution for that.
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text.mb-16
@@ -65,7 +63,7 @@
       features(
         title="Healthcare Providers Trust MYCURE Doctors"
         :title-col-size="11"
-        :content-col-size="10"
+        :content-col-size="9"
         :description="featuresDescription"
         :items="features"
         image-dir="doctors-clinics/"
@@ -238,8 +236,8 @@ export default {
           customPath: 'features/',
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
           imageAlt: 'Woman in a video call using MYCURE telehealth',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
-          height: this.$isMobile ? '183.72px' : (this.$isRegularScreen ? '281.71px' : '454.59px'),
+          width: this.$isMobile ? '289.8px' : (this.$isRegularScreen ? '462px' : '745.5px'),
+          height: this.$isMobile ? '192.906px' : (this.$isRegularScreen ? '295.7955px' : '477.3195px'),
         },
       };
     },
@@ -279,8 +277,8 @@ export default {
             customPath: 'doctors-clinics/',
             image: 'Practice.webp',
             imageAlt: 'Physicians and health workers',
-            width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '301.88px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
           },
         },
       ];
@@ -325,8 +323,6 @@ export default {
             image: 'carousel-1',
             imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -337,8 +333,6 @@ export default {
             image: 'carousel-2',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor looking at booking appointments',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
         {
@@ -349,8 +343,6 @@ export default {
             image: 'carousel-3',
             imageFileExtension: '.webp',
             imageAlt: 'Patient looking at network',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
         {
@@ -361,8 +353,6 @@ export default {
             image: 'carousel-4',
             imageFileExtension: '.webp',
             imageAlt: 'seal of compliance',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '233.01px' : this.$isRegularScreen ? '152.3px' : '139.24px',
           },
         },
         {
@@ -373,8 +363,6 @@ export default {
             image: 'carousel-5',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
           },
         },
       ];

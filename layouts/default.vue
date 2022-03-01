@@ -4,22 +4,30 @@
     div(style="padding-top: 35px")
       nuxt
     mc-footer
+    mc-cookie-prompt(v-if="!isCookieAccepted")
 </template>
 
 <script>
 // - components
 import McNavbar from '~/components/home/AppNavbar';
 import McFooter from '~/components/commons/mc-footer';
+import McCookiePrompt from '~/components/commons/McCookiePrompt';
 
 export default {
   components: {
     McNavbar,
     McFooter,
+    McCookiePrompt,
   },
   data () {
     return {
       loading: true,
     };
+  },
+  computed: {
+    isCookieAccepted () {
+      return process.browser ? localStorage.getItem('accept-cookie') : false;
+    },
   },
   created () {
     this.$vuetify.theme.dark = false;

@@ -2,11 +2,11 @@
   v-container
     v-row(justify="center" align="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
-        v-col(cols="12" :md="titleColSize" :xl="titleColSizeXl").text-center
+        v-col(cols="12" :md="titleColSize" :xl="titleColSizeXl" :class="{'text-center': !$isMobile}")
           span(v-if="metaTitle" :class="{'white--text': hasBlueBg}").mc-h7 {{ metaTitle }}
           slot(name="title")
             h2(:class="{'white--text': hasBlueBg}").mc-h2 {{ title }}
-        v-col(cols="12" :md="contentColSize" :xl="contentColSizeXl").text-center.py-3
+        v-col(cols="12" :md="contentColSize" :xl="contentColSizeXl" :class="{'text-center': !$isMobile}").py-3
           div
             slot(name="description")
               p(:class="{'white--text': hasBlueBg}").mc-b2 {{ description }}
@@ -111,7 +111,7 @@ export default {
       type: Object,
       default: () => ({
         cols: 6,
-        md: 4,
+        sm: 4,
       }),
     },
     // - Height of panel

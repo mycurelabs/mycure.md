@@ -1,117 +1,81 @@
 <template lang="pug">
-   v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter.pa-3
-      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Popular
-      v-card-title.pt-8
-        v-spacer
-        h2(:class="[normalTextColor, {'font-21': !$isWideScreen, 'font-24': $isWideScreen}]").font-weight-bold {{ bundle.title }}
-        v-spacer
-      v-card-text.general-info-container.font-open-sans
-        div.text-center.pb-3
-          picture-source(
-            custom-path="pricing/"
-            :image-file-extension="$useWebp? '.webp' : '.png'"
-            image-alt="Health facility pricing icon"
-            :image="bundle.image"
-            :image-width="iconSize"
-            :image-height="iconSize"
-          )
-        div.text-center.description-container
-          p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div#price-container.text-center
+   v-card(width="100%").rounded-lg.pa-5
+      v-card-text.font-open-sans.px-0
+        div.general-info-container
+          v-row(align="center").pa-3
+            picture-source(
+              custom-path="pricing/"
+              :image-file-extension="$useWebp? '.webp' : '.png'"
+              image-alt="Health facility pricing icon"
+              :image="bundle.image"
+              :image-width="iconSize"
+              :image-height="iconSize"
+            )
+            p.mc-h4.ml-2.title--text.mb-0 {{ bundle.title }}
+          span.description-line-height.mc-b5 {{ bundle.description }}
+        v-divider(width="100%").mb-4.mt-3
+        div#price-container
           p(
-            :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}"
             :style="opacity"
-          ).text-center
+          ).title--text
             v-icon(color="success" small left) {{ isRecommended ? mdiTag : mdiTagOutline }}
-            strong(:class="{ 'white--text': isRecommended, 'grey--text': !isRecommended}").savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+            strong.grey--text.savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
             v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
           p(
             v-if="!bundle.requireContact"
-            :class="[priceColor]"
-          ).font-weight-black
+          ).font-weight-black.title--text
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
-                span(:class="{'font-16': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{ kFormatter(bundle.annualMonthlyPrice) }}
-                //- template(v-if="bundle.users")
-                //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
-                //-   span {{ bundle.users === 1 ? ' ' : '' }}user
+                span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="priceClass") {{ kFormatter(bundle.annualMonthlyPrice) }}
                 span.slash &nbsp;/
-                | clinic
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
                 span.slash /
-                | year
-              v-tab-item(value="month" transition="slide-y-transition")
-                span(:class="{'font-16': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{  kFormatter(bundle.monthlyPrice) }}
-                //- template(v-if="bundle.users")
-                //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
-                //-   span {{ bundle.users === 1 ? ' ' : '' }}user
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") year
+              v-tab-item(value="month" transition="slide-y-transition").title--text
+                span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="priceClass") {{  kFormatter(bundle.monthlyPrice) }}
                 span.slash &nbsp;/
-                | clinic
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
                 span.slash /
-                | month
-            span(v-else).font-45 FREE
-          p(v-else).text-center
-            strong.primary--text.font-30 Contact Us
-            //- br
-            //- span for customized pricing
-        //- div.text-center.usage-metric-container
-        //-   p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize, recommendedText]").black--text
-        //-     span(v-if="bundle.users") {{ bundle.users }} user
-        //-     br(v-if="bundle.users")
-        //-     | per clinic monthly
-        //-     template(v-if="!bundle.users")
-        //-       br
-        //-       br
-        //-   div(v-else).top-spacing-btn
-        //-     | &nbsp;
-      v-card-text.card-actions
+                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") month
+            span(v-else :class="priceClass") FREE
+          p(v-else :class="{'my-7': !$isWideScreen}")
+            strong(:class="priceClass").title--text Contact Us
+      v-card-text.card-actions.px-0
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
             mc-btn(
               depressed
-              rounded
               block
               event-category="Pricing"
-              width="200px"
-              height="40px"
+              :outlined="!isRecommended"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               :color="btnColor"
               :event-label="`click-pricing-${bundle.title}`"
-              :class="{'primary--text': isRecommended}"
               @click="sendCrispMessage"
-            ).generic-button-text.font-weight-semibold.text-none {{ bundle.btnText }}
+            ).mc-btn1.font-weight-semibold.text-none.rounded-lg {{ bundle.btnText }}
           template(v-else)
             signup-button(
               depressed
-              rounded
               block
-              width="200px"
-              height="40px"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               event-category="Pricing"
+              :outlined="!isRecommended"
               :color="btnColor"
-              :class="{'primary--text': isRecommended}"
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
               :query-ops="getQueryOps(bundle)"
-            ).generic-button-text.font-weight-semibold.text-none {{ getBtnText(bundle) }}
-        v-row(justify="center").mt-3
+            ).mc-btn1.font-weight-semibold.text-non.rounded-lg.text-none {{ getBtnText(bundle) }}
+        v-row(justify="center").mt-5
           v-col(cols="12" xl="12")
-            div(v-for="(inclusion, inclusionKey) in mainInclusions" :key="inclusionKey").d-flex
+            div(v-for="(inclusion, key) in mainInclusions" :key="key").d-flex.mb-3
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
-              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
-      v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
-      v-card-text
-        v-row(justify="center")
-          v-col(cols="12")
-            div(v-for="(inclusion, inclusionKey) in additionalInclusions" :key="inclusionKey").d-flex
-              template(v-if="inclusion.valid || !hideInvalidItems")
-                v-icon(:color="getInclusionIconColor(inclusion.valid, true)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
-                span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
-        //- v-row(justify="center" v-if="!showList")
-        //-   v-col(cols="12" xl="10").text-center
-        //-     v-btn(:color="isRecommended ? 'white' : 'primary'" text @click="showList = !showList").text-none
-        //-       | {{ showList ? 'Collapse' : 'View Details'}}
-        //-       v-icon(v-if="!showList" right) mdi-chevron-down
+              span(:class="[textFontSize, {'font-weight-medium': isRecommended}]").font-open-sans.list-item {{ inclusion.text }}
+            div(v-for="(inclusion, key) in additionalInclusions" :key="key").d-flex.mb-3
+              template(v-if="inclusion.valid")
+                v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
+                span(:class="[textFontSize]").font-open-sans.list-item {{ inclusion.text }}
 </template>
 
 <script>
@@ -169,6 +133,8 @@ export default {
       type: Boolean,
       default: false,
     },
+    // Make price text sizes smaller, usually used for pricing with 4 packages on STD screen
+    minimizePriceFont: Boolean,
   },
   data () {
     return {
@@ -206,21 +172,30 @@ export default {
     isRecommended () {
       return this.bundle.isRecommended;
     },
-    cardColor () {
-      return this.isRecommended ? 'primary' : 'white';
-    },
     normalTextColor () {
-      return { 'black--text': !this.isRecommended, 'white--text': this.isRecommended };
+      return 'black--text';
     },
     priceColor () {
-      return { 'primary--text': !this.isRecommended, 'white--text': this.isRecommended };
+      return 'black--text';
     },
     btnColor () {
-      return this.isRecommended ? 'white' : 'primary';
+      return 'primary';
     },
     cardHeight () {
       // if (!this.showList) return '500';
       return this.height || '800';
+    },
+    priceClass () {
+      if (this.minimizePriceFont) {
+        return { 'font-28': !this.$isWideScreen, 'font-48': this.$isWideScreen };
+      }
+      return 'mc-h2';
+    },
+    currencyClass () {
+      if (this.minimizePriceFont) {
+        return { 'font-14': !this.$isWideScreen, 'font-24': this.$isWideScreen };
+      }
+      return 'mc-h4';
     },
     textFontSize () {
       return classBinder(this, {
@@ -230,7 +205,7 @@ export default {
       });
     },
     recommendedText () {
-      return this.isRecommended ? 'font-weight-bold' : 'font-weight-medium';
+      return 'font-weight-medium';
     },
     opacity () {
       return {
@@ -269,20 +244,17 @@ export default {
       }
     },
     getInclusionIconColor (valid, additional = false) {
-      if (this.isRecommended) return 'white';
       if (!valid) return 'grey';
       if (additional) return 'green';
       return 'primary';
     },
     getInclusionIcon (valid, additional = false) {
-      if (valid && additional) return this.mdiPlusCircle;
+      if (valid && additional) return this.mdiCheckboxMarkedCircle;
       if (valid) return this.mdiCheckboxMarkedCircle;
-      if (this.isRecommended && !valid) return this.mdiClose;
+      // if (this.isRecommended && !valid) return this.mdiClose;
       return this.mdiCloseCircle;
     },
     getInclusionTextColor (valid) {
-      if (this.isRecommended) return 'white--text';
-      if (valid) return 'black--text';
       return 'grey--text';
     },
     sendCrispMessage () {
@@ -341,13 +313,8 @@ export default {
   left: 5%;
 } */
 
-.general-info-container {
-  position: relative;
-  min-height: 240px;
-}
-
-.description-container {
-  min-height: 80px;
+.description-line-height {
+  line-height: 10px;
 }
 
 .chip {
@@ -381,6 +348,15 @@ export default {
   overflow: visible !important;
 }
 
+.general-info-container {
+  position: relative;
+  min-height: 150px;
+}
+
+.list-item {
+  color: #72727D;
+}
+
 .v-tabs-items {
   background-color: transparent !important;
 }
@@ -392,7 +368,7 @@ export default {
 }
 @media screen and (min-width: 1921px) {
   .general-info-container {
-    min-height: 235px;
+    min-height: 180px;
   }
   .top-spacing-btn {
     margin-top: 15px;

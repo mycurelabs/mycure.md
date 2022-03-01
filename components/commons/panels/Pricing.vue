@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      generic-panel(column="12" :row-bindings="{ justify: 'center'}")
+      generic-panel(column="10" :row-bindings="{ justify: 'center'}")
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12").text-center
@@ -49,6 +49,7 @@
                   :bundle="pack"
                   :payment-interval="paymentInterval"
                   :height="type === 'doctor' ? '750' : '850'"
+                  :minimize-price-font="['clinic', 'diagnostic'].includes(type) && !$isWideScreen"
                 ).elevation-3
             v-col(v-else cols="10" sm="8" md="6")
               carousel(
@@ -59,8 +60,8 @@
                 :per-page="1"
               )
                 slide(
-                  v-for="(pack, index) in mobilePricingItems"
-                  :key="index"
+                  v-for="(pack, index, key) in mobilePricingItems"
+                  :key="key"
                   :data-index="index+1"
                 ).pa-2
                   pricing-card(

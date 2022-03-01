@@ -53,13 +53,13 @@ export default {
       if (this.$isWideScreen) return '365';
       if (this.wLG) return '335';
       if (this.wSM) return '320';
-      return '330';
+      return '355';
     },
     cardPadding () {
       if (this.$isWideScreen) return 'pt-6';
       if (this.wLG) return 'pt-6';
       if (this.wSM) return 'pt-6';
-      return 'pt-3';
+      return 'pt-2';
     },
   },
 };

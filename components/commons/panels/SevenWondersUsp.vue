@@ -181,15 +181,18 @@ export default {
     },
     backgroundImgPos: {
       type: String,
-      default: '52%',
+      default: '47%',
     },
     backgroundImgWidth: {
       type: String,
-      default: '40%',
+      default: '47%',
+    },
+    backgroundImgPosTop: {
+      type: String,
+      default: null,
     },
   },
   data () {
-    this.descriptionClasses = ['mc-b1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-btn1'];
     return {};
   },
@@ -213,6 +216,7 @@ export default {
         'lh-title',
         'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseTitle) },
+        { 'text-center': this.$isMobile },
       ];
     },
     superTitleClasses () {
@@ -220,6 +224,15 @@ export default {
         'mc-h6',
         'font-open-sans',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
+        { 'text-center': this.$isMobile },
+      ];
+    },
+    descriptionClasses () {
+      return [
+        'mc-b1',
+        'font-open-sans',
+        'font-gray',
+        { 'text-center': this.$isMobile },
       ];
     },
     panelHeight () {
@@ -247,7 +260,7 @@ export default {
         height: '100%',
         position: 'absolute',
         left: this.backgroundImgPos,
-        top: '0',
+        top: this.backgroundImgPosTop || this.$isMobile ? '0' : this.$isRegularScreen ? '-5%' : '-3%',
         zIndex: '1',
         objectFit: 'contain',
       };

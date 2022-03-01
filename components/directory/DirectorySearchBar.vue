@@ -83,8 +83,9 @@
               outlined
               solo
               hide-details
+              :loading="showSuggestions ? loadingSearch : false"
               :height="$isMobile ? '40px' : '60px'"
-              :items="suggestionEntries"
+              :items="loadingSearch ? (showSuggestions ? ['1'] : []) : suggestionEntries"
               :menu-props="{ bottom: true, offsetY: true }"
               :return-object="false"
               :search-input.sync="searchDummy"
@@ -107,12 +108,17 @@
                       v-icon {{ mdiCrosshairsGps }}
                   span Use your location
               template(v-slot:item="data")
-                v-col(cols="12")
+                v-col(v-if="!loadingSearch" cols="12")
                   v-row(@click="searchObject.searchString = data.item.name; onSearch(true)").py-3
                     v-col.mc-content-set-5
                       v-row
                         v-col.py-0
-                          span.font-weight-semibold {{ data.item.name }}
+                          span.font-weight-semibold
+                            span(
+                              v-if="data.item.highlight && isNameHighlight(data.item)"
+                              v-html="highlightName(data.item.name, data.item.highlight)"
+                            )
+                            span(v-else) {{ data.item.name }}
                       v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
@@ -120,7 +126,20 @@
                             span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
                             span(v-if="data.item.tags") &nbsp;{{ data.item.tags.length > 1 ? `+${data.item.tags.length - 1} other${data.item.tags.length > 2 ? 's' : ''}` : ''}}
                         v-spacer
+                      v-row(v-if="data.item.highlight && !isNameHighlight(data.item)")
+                        v-col
+                          span.grey--text Found in:&nbsp;
+                          mark
+                            | {{ data.item.highlight.matched_tokens[0] }}
+                          span &nbsp;({{ data.item.highlight.field | morph-capitalize }})
                     v-icon(color="secondary" large) {{ mdiArrowRight }}
+                v-col(v-else)
+                  v-row(justify="center").px-3.py-6
+                    v-progress-circular(
+                      color="primary"
+                      indeterminate
+                      :size="$isWideScreen ? 80 : 50"
+                    )
     //- DIALOGS
     v-dialog(v-model="dialog" width="600" height="100%" @click:outside="onSearch(false)")
       v-card.pa-5
@@ -247,6 +266,7 @@ export default {
       loading: {
         initial: true,
       },
+      loadingSearch: false,
       deleteTag: {
         removeIndex: undefined,
       },
@@ -371,7 +391,11 @@ export default {
      * `showSuggestions` and `requireAction` props.
      */
     handleDebouncedSearch (searchText) {
-      if (this.loading.initial && !searchText) return;
+      this.loadingSearch = true;
+      if (this.loading.initial && !searchText) {
+        this.suggestionEntries = [];
+        return;
+      }
       this.searchObject.searchString = searchText;
       if (!searchText) this.suggestionEntries = [];
       // For A
@@ -387,6 +411,7 @@ export default {
         }
         this.debouncedResultsSearch(searchText);
       }
+      this.loadingSearch = false;
     },
     async searchSuggestions (searchText) {
       // - If location is selected, only places within that location will be suggested
@@ -395,6 +420,7 @@ export default {
         limit: 10,
         type: this.selectedMode,
         tags: [],
+        searchMeta: true,
       };
       if (this.selectedMode === 'account') {
         query.tags = this.searchObject.specializations.map(x => this.formatTagForQuery(x));
@@ -402,7 +428,9 @@ export default {
         query.tag = this.formatTagForQuery(this.searchObject.searchString);
       }
       const { items } = await unifiedDirectorySearch(this.$sdk, query);
+      console.log('items', items);
       this.suggestionEntries = items || [];
+      this.loadingSearch = false;
     },
     clearSearchText () {
       this.searchObject.searchString = null;
@@ -448,6 +476,16 @@ export default {
         this.searchObject.location = null;
         this.$emit('clear:location');
       }
+    },
+    isNameHighlight (searchItem) {
+      const { highlight } = searchItem;
+      return highlight?.field === 'name';
+    },
+    highlightName (name, highlight) {
+      const searchText = highlight.matched_tokens[0];
+      const matched = new RegExp(searchText, 'g');
+      const newFormat = name.replace(matched, `<mark>${searchText}</mark>`);
+      return newFormat;
     },
   },
 };

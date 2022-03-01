@@ -4,9 +4,9 @@
       h1.font-24 Register
       p Level up your healthcare services and get more patients safely
     v-row(v-else style="height: 100vh")
-      v-col(cols="6" v-if="!$isMobile").pa-0.bg-panel
-        v-row(style="height: 100vh" align="start" justify="center")
-          v-col.text-center.pt-16.pr-14
+      v-col(cols="5" v-if="!$isMobile").pa-0.bg-panel
+        v-row(style="height: 100vh" align="center" justify="center")
+          v-col.text-center.pr-14
             img(
               src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
               alt="White MYCURE Logo"
@@ -14,13 +14,13 @@
               height="83.76px"
               @click="$router.push({ name: 'index' })"
             ).link-to-home
-      v-col(:cols="$isMobile? '12' : '6'" :class="$isMobile ? 'pa-4' : 'pa-0'")
-        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : ['ml-n16', 'px-16', 'py-8']").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
+      v-col(:cols="$isMobile? '12' : '7'" :class="$isMobile ? 'pa-4' : 'pa-0'")
+        v-container(style="background: white; height: 100vh;" :class="$isMobile ? 'pa-3' : 'pa-15'").rounded-tl-xl.rounded-bl-xl.scroll.no-scroll.no-scroll-2
           v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
             v-row
               v-col(cols="10")
                 h1.font-24 Register
-                p Level up your healthcare services and get more patients safely
+                p.custom-grey-text.font-open-sans.pt-5 Level up your healthcare services and get more patients safely
               v-spacer
               v-tooltip(top)
                 template(v-slot:activator="{ on, attrs }")
@@ -31,10 +31,11 @@
                     color="error"
                     large
                     @click="goToPrevPage"
-                  ).ma-4
+                    :class="$isMobile? 'mr-1' : 'mx-4'"
+                  ).my-4
                     v-icon(large) {{ mdiArrowULeftTop }}
                 span Back
-            p.mb-2 Personal Info
+            p.pb-3.pt-7 Personal Info
             v-row(:no-gutters="$isMobile").px-2
               v-col(
                 cols="12"
@@ -69,6 +70,7 @@
                 ).ma-0.no-details-margin
                   template(v-slot:append v-if="lastName")
                     v-icon(color="accent") {{ mdiCheck }}
+            v-row(:no-gutters="$isMobile").px-2
               v-col(
                 cols="12"
                 md="6"
@@ -98,27 +100,36 @@
                   type="number"
                   outlined
                   :dense="!$isWideScreen"
-                  :prefix="`+${countryCallingCode}`"
                   :disabled="loading.form"
                   :rules="[...isRequired, mobileNumberRule]"
                   @keypress="checkNumberInput($event)"
                 ).mb-0.no-details-margin
-                  template(slot="append")
-                    div(style="margin-top: -8px")
-                      v-icon(v-if="mobileNoError && mobileUnique" color="accent").ml-n10 {{ mdiCheck }}
+                  template(slot="prepend-inner")
+                    div(@click="countryDialog = true").country-container
                       v-tooltip(bottom)
                         template(v-slot:activator="{ on }")
-                          v-btn(icon @click="countryDialog = true" v-on="on")
-                            img(width="25" height="18.75" :src="countryFlag" :alt="countryFlag").flag-img.mt-2
+                          img(
+                            width="25"
+                            height="19"
+                            :src="countryFlag"
+                            :alt="countryFlag"
+                            v-on="on"
+                          ).flag-img.mt-2
                         | Change Country
+                      span &nbsp;+{{ countryCallingCode }}
+                  template(slot="append")
+                    v-icon(v-if="mobileNoError && mobileUnique" color="accent") {{ mdiCheck }}
+            p.mt-3.mb-2 Password
+            v-row(:no-gutters="$isMobile").px-2
               v-col(
                 cols="12"
+                md="6"
                 :class="{ 'pa-1': !$isMobile }"
               ).order-md-5.order-sm-4
                 //- Password
                 v-text-field(
                   v-model="password"
-                  placeholder="Password"
+                  placeholder="Enter Password"
                   outlined
                   :dense="!$isWideScreen"
                   :type="showPass ? 'text' : 'password'"
@@ -129,6 +140,7 @@
                 ).no-details-margin
               v-col(
                 cols="12"
+                md="6"
                 :class="{ 'pa-1': !$isMobile }"
               ).order-md-6.order-sm-5
                 //- Confirm Password
@@ -143,11 +155,11 @@
                 ).no-details-margin
                   template(v-slot: append v-if="confirmPassword && confirmPassword === password")
                     v-icon(color="accent") {{ mdiCheck }}
-            p.mt-5.mb-2 Facility Info
+            p.mt-3.mb-2 Facility Info
             v-row(:no-gutters="$isMobile").px-2
               v-col(
                 cols="12"
-                md="8"
+                md="6"
                 :class="{ 'pa-1': !$isMobile }"
               ).order-md-7.order-sm-7
                 div(@click="chooseFacilityTypeDialog = true")
@@ -174,7 +186,7 @@
                         v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
               v-col(
                 cols="12"
-                md="4"
+                md="6"
                 :class="{ 'pa-1': !$isMobile }"
               ).order-md-8.order-sm-8
                 v-select(
@@ -192,6 +204,7 @@
                 ).no-details-margin
               v-col(
                 cols="12"
+                md="6"
                 :class="{ 'pa-1': !$isMobile }"
               ).order-md-8.order-sm-8
                 v-text-field(
@@ -205,50 +218,69 @@
                   :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'Value not allowed' : 'Please enter your PRC License No for verification')] "
                 ).no-details-margin
                   //- hint="Please enter your PRC License No for verification"
-            div(v-if="!invitation").font-italic.font-gray.mt-4
-              span Have a referral code?&nbsp;
-              a(@click="codeDialog = true") Click here
-            div(v-else).font-italic.font-gray.mt-4
-              span Referral code has been applied.&nbsp;
-              a(@click="codeDialog = true") Change
-            br
-            v-checkbox(
-              v-model="hasPromoCode"
-              hide-details
-              color="primary"
-              height="57.97px"
-              :on-icon="mdiCheckboxMarkedOutline"
-              :off-icon="mdiCheckboxBlankOutline"
-              :disabled="loading.form"
-            ).mt-0
-              template(slot="label")
-                span Apply a promo code (Optional)&nbsp;&nbsp;
-                div(width="200px")
-                  v-text-field(
-                    v-if="hasPromoCode"
-                    v-model="stripeCoupon"
-                    :rules="[v => !!v && hasPromoCode && (stripeCoupon > 0) || (stripeCoupon < 0 ? 'Value not allowed' : 'Please input your promo code')]"
-                    placeholder="Promo Code"
-                    outlined
-                    dense
-                    clearable
-                    :disabled="loading.form"
-                    :class="{'pt-1': $isMobile}"
-                    @click.stop
-                  ).no-details-margin
+            //- div(v-if="!invitation").font-italic.font-gray.mt-4
+            //-   span Have a referral code?&nbsp;
+            //-   a(@click="codeDialog = true") Click here
+            //- div(v-else).font-italic.font-gray.mt-4
+            //-   span Referral code has been applied.&nbsp;
+            //-   a(@click="codeDialog = true") Change
+            div.d-flex.mb-4.pt-5
+              v-checkbox(
+                v-model="hasReferralCode"
+                hide-details
+                color="primary"
+                :on-icon="mdiCheckboxMarkedOutline"
+                :off-icon="mdiCheckboxBlankOutline"
+                :disabled="loading.form"
+              ).my-0
+                template(slot="label")
+                  span.custom-grey-text.font-open-sans Apply a referral code (Optional)&nbsp;&nbsp;
+              div(width="200px" v-if="hasReferralCode")
+                v-text-field(
+                  v-model="invitation"
+                  :rules="[v => !!v && hasReferralCode || 'Please input your referral code']"
+                  placeholder="Referral Code"
+                  outlined
+                  dense
+                  clearable
+                  :disabled="loading.form"
+                  :class="{'pt-1': $isMobile}"
+                ).no-details-margin
+            div.d-flex.mb-4
+              v-checkbox(
+                v-model="hasPromoCode"
+                hide-details
+                color="primary"
+                :on-icon="mdiCheckboxMarkedOutline"
+                :off-icon="mdiCheckboxBlankOutline"
+                :disabled="loading.form"
+              ).my-0
+                template(slot="label")
+                  span.custom-grey-text.font-open-sans Apply a promo code (Optional)&nbsp;&nbsp;
+              div(width="200px" v-if="hasPromoCode")
+                v-text-field(
+                  v-model="stripeCoupon"
+                  :rules="[v => !!v && hasPromoCode && (stripeCoupon > 0) || (stripeCoupon < 0 ? 'Value not allowed' : 'Please input your promo code')]"
+                  placeholder="Promo Code"
+                  outlined
+                  dense
+                  clearable
+                  :disabled="loading.form"
+                  :class="{'pt-1': $isMobile}"
+                ).no-details-margin
             v-checkbox(
               v-model="agree"
               color="primary"
               :disabled="loading.form"
               :on-icon="mdiCheckboxMarkedOutline"
               :off-icon="mdiCheckboxBlankOutline"
-            ).ma-0.no-details-margin
+            ).mx-0.mb-4
               template(slot="label")
-                span I agree to MYCURE's&nbsp;
+                span.custom-grey-text.font-open-sans I agree to MYCURE's&nbsp;
                   a(target="_blank" rel="noopener noreferrer" href="../terms" @click.stop style="text-decoration: none") Terms of Use&nbsp;
                   | and&nbsp;
                   a(target="_blank" rel="noopener noreferrer" href="../privacy-policy" @click.stop style="text-decoration: none") Privacy Policy
-            v-row.mt-1.mb-2
+            v-row.mt-15.mb-5
               v-col(cols="12")
                 v-btn(
                   type="submit"
@@ -263,8 +295,8 @@
                   :pk="stripePK"
                   :sessionId="stripeCheckoutSessionId"
                 )
-            span Already have an account?&nbsp;
-            a(href="../signin" style="text-decoration: none") Log in
+            p.text-center.font-open-sans Already have an account?&nbsp;
+              a(href="../signin" style="text-decoration: none") Log in
     v-snackbar(:value="error" type="error" color="red" timeout="2000").mt-5 {{ errorMessage }}
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
@@ -442,6 +474,7 @@ export default {
       roles: [],
       agree: '',
       hasPromoCode: null,
+      hasReferralCode: null,
       // - Stripe
       stripeCheckoutSessionId: null,
       // Country Dialog
@@ -541,6 +574,9 @@ export default {
     hasPromoCode (val) {
       if (!val) this.stripeCoupon = null;
     },
+    hasReferralCode (val) {
+      if (!val) this.invitation = null;
+    },
   },
   mounted () {
     this.init();
@@ -582,7 +618,10 @@ export default {
         }
 
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
-        if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
+        if (this.$route.query.referralCode) {
+          this.invitation = this.$route.query.referralCode;
+          this.hasReferralCode = true;
+        }
         if (this.stripeCoupon) this.hasPromoCode = true;
       } catch (e) {
         console.error(e);
@@ -820,8 +859,12 @@ export default {
 </script>
 
 <style scoped>
-.link-to-home:hover {
+.link-to-home:hover, .country-container:hover {
   cursor: pointer;
+}
+
+.country-container {
+  margin-top: -9.5px;
 }
 
 ::v-deep input::-webkit-outer-spin-button,
@@ -850,5 +893,14 @@ export default {
 }
 .rounded-ref-dialog {
   border-radius: 50px;
+}
+.custom-grey-text {
+  color: #768995;
+}
+
+@media screen and (min-width: 1920px) {
+  .country-container {
+    margin-top: -11px;
+  }
 }
 </style>

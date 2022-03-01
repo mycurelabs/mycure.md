@@ -18,8 +18,10 @@
         :parse-title-fields="['Workflows, ', 'Results, ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
+        background-img-width="42%"
+        background-img-pos="50%"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"
@@ -32,25 +34,26 @@
               v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2 {{ item }}
-    v-container.py-16
+                  p.mc-b3.mb-0.ml-2 {{ item }}
+    v-container.py-16.px-0
       v-row(justify="center")
         lazy-hydrate(when-visible)
           generic-panel
-            v-col(cols="12").text-center
+            v-col(cols="12" :class="{'text-center': !$isMobile}")
               h2.mc-h2.mb-5 Stay in Control
               v-row(justify="center")
-                v-col(cols="12" sm="10")
-                  p.mc-b2 MYCURE Clinics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Clinics’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s Clinic Management System (CMS).
-                  signup-button(
-                    depressed
-                    color="primary"
-                    event-label="signup"
-                    class="rounded-md"
-                    :width="!$isWideScreen ? '228px' : '300'"
-                    :height="!$isWideScreen ? '59px' : '73.68'"
-                  ).text-none
-                    span.mc-btn1 Start for Free
+                v-col(cols="12" md="10")
+                  p.mc-b2.mb-8 MYCURE Clinics is an end-to-end solution that eliminates the old challenges of processing paperwork manually. If you’re not using the technologies available today for electronic health records, you’re missing out on more than you might think. MYCURE Clinics’ information system was designed with the patient journey in mind, meaning you can book appointments, upload medical records, and accept payment all on one app. Reduce the time spent on manual recordkeeping and filing paperwork all thanks to MYCURE’s Clinic Management System (CMS).
+                  div.text-center
+                    signup-button(
+                      depressed
+                      color="primary"
+                      event-label="signup"
+                      class="rounded-md"
+                      :width="!$isWideScreen ? '228px' : '300'"
+                      :height="!$isWideScreen ? '59px' : '73.68'"
+                    ).text-none
+                      span.mc-btn1 Start for Free
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo")
@@ -78,7 +81,7 @@
         :content-classes="descriptionClasses"
         hide-btn
       )
-        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+        div(slot="additional-content").mt-10
           //- signup-button(
           //-   depressed
           //-   color="primary"
@@ -98,7 +101,7 @@
           description="MYCURE has built-in workflows across a range of specialties."
           :items="features"
           :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
-          :icon-column-bindings="{ cols: '6', md: '3' }"
+          :icon-column-bindings="{ cols: '6', sm: '4', md: '3' }"
           icon-container-col-size="10"
           image-dir="clinics/"
           panel-height="70vh"
@@ -329,8 +332,6 @@ export default {
             image: 'carousel-1',
             imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -341,8 +342,6 @@ export default {
             image: 'carousel-2',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor looking at booking appointments',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
         {
@@ -353,8 +352,6 @@ export default {
             image: 'carousel-3',
             imageFileExtension: '.webp',
             imageAlt: 'Patient looking at network',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
         {
@@ -365,8 +362,6 @@ export default {
             image: 'carousel-4',
             imageFileExtension: '.webp',
             imageAlt: 'seal of compliance',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '233.01px' : this.$isRegularScreen ? '152.3px' : '139.24px',
           },
         },
         {
@@ -377,8 +372,6 @@ export default {
             image: 'carousel-5',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
           },
         },
       ];

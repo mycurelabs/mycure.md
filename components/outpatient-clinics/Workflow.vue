@@ -5,11 +5,11 @@
       generic-panel
         v-col(cols="12")
           v-row(justify="center")
-            v-col(cols="12" md="10").text-center
+            v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
               h2(:class="titleClasses").mb-6 {{ title || 'Why do clinics switch to MYCURE?' }}
               v-row(justify="center")
-                v-col(cols="12" sm="10")
-                  p(:class="descriptionClasses").mb-10 {{ description || 'MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.' }}
+                v-col(cols="12" md="10")
+                  p(:class="descriptionClasses").mb-6 {{ description || 'MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.' }}
               //- mc-btn(
               //-   event-label="click-cms-video"
               //-   event-category="Video"
@@ -31,8 +31,8 @@
                       image="problem-statement"
                       image-alt="Clinic workflow"
                       image-file-extension=".webp"
-                      :image-width=" $isRegularScreen ? '850px' : '1300px' "
-                      :image-height=" $isRegularScreen ? '677.73px' : '1036.52px' "
+                      :image-width="$isRegularScreen ? '640.48px' : '722px'"
+                      :image-height=" $isRegularScreen ? '510px' : '574.89px' "
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
@@ -45,8 +45,7 @@
                         image-width="111px"
                         image-height="92px"
                       )
-                      br
-                      h3.font-xs.font-open-sans.grey--text {{ item.title }}
+                      h3.mc-b3.mt-1 {{ item.title }}
 </template>
 
 <script>

@@ -10,7 +10,7 @@
         v-container
           v-row(justify="center")
             generic-panel(
-              :column="$isMobile ? 12 : 10"
+              :column="$isMobile ? 12 : $vuetify.breakpoint.width < 1250 ? 11 : 10"
               :row-bindings="{ justify: 'center', align: 'center' }"
               disable-parent-padding
             )
@@ -77,7 +77,8 @@
                     ).text-none.font-12.font-weight-medium SIGN UP
                   template(v-else)
                     v-spacer
-                    v-icon(@click.stop="drawer = !drawer") {{ mdiMenu }}
+                    v-btn(icon @click.stop="drawer = !drawer")
+                      v-icon {{ mdiMenu }}
 
     v-navigation-drawer(
       v-if="$isMobile"

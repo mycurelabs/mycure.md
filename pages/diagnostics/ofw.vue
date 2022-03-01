@@ -18,10 +18,8 @@
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
         @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
-        background-img-pos="48%"
-        background-img-width="44%"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"
@@ -38,7 +36,7 @@
               v-row(v-for="(item, key) in stakesContent.itemList" :key="key" align="center")
                 v-icon(color="red" small) {{ mdiClose }}
                 v-col.pa-0.mb-1
-                  p.mc-list-b3.mb-0.ml-2 {{ item }}
+                  p.mc-b3.mb-0.ml-2 {{ item }}
 
     lazy-hydrate(when-visible)
       storybrand(
@@ -61,7 +59,7 @@
                   v-row(v-for="(item, key) in ofwVideo.itemList" :key="key" align="center")
                     v-icon(color="white" small) {{ mdiCheckCircle }}
                     v-col.pa-0.mb-1
-                      p.mc-list-b3.mb-0.ml-2.white--text {{ item }}
+                      p.mc-b3.mb-0.ml-2.white--text {{ item }}
               template(slot="image")
                 div.vid-container
                   video(width="101%" playsinline autoplay muted loop).syncbase-animate
@@ -80,7 +78,7 @@
                 custom-path="clinics/ofw/"
                 image="beautiful-reports"
               )
-            v-col(cols="12" sm="11").text-center
+            v-col(cols="12" sm="11" :class="{'text-center': !$isMobile}")
               h2(:class="headerClasses").mb-5 Create Beautiful Reports for Your OFW Clinic Clients
               p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide printed and digital copies of medical exam results without the hassle. MYCURE Clinics designs clear and easy to read reports, which will make the paperwork process that much easier for your patients getting ready to travel.
     lazy-hydrate(when-visible)
@@ -106,7 +104,7 @@
         :title-classes="headerClasses"
       )
         template(slot="cta-button")
-          div(:class="{'text-center ml-4': $isMobile}")
+          div
             nuxt-link(to="/signup/health-facilities?type=diagnostic" :class="{'d-flex': !$isMobile}").button
               span.mc-hyp1.primary--text Join Today
               v-icon(left color="primary" :small="!$isWideScreen" :style="`margin-top: ${$isWideScreen ? '5' : $isRegularScreen ? '3' : '-1'}px;`") {{ mdiChevronRight }}
@@ -123,7 +121,8 @@
           :content="integrationsPanel"
           hide-btn
           align="center"
-          :super-title-classes="['mc-h7']"
+          :super-title-classes="['mc-h7', {'text-center': $isMobile}]"
+          :title-classes="['mc-h2', {'text-center': $isMobile}]"
         )
           template(slot="content")
             v-row(justify="start")
@@ -293,7 +292,7 @@ export default {
     },
     stakesContent () {
       return {
-        description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
+        title: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
         itemList: [
           'Wasted time and resources',
           'Long wait times',
@@ -352,8 +351,6 @@ export default {
             image: 'carousel-1',
             imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -364,8 +361,6 @@ export default {
             image: 'carousel-5',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
       ];

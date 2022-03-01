@@ -17,8 +17,10 @@
         :parse-title-fields="['Clinic ', 'System ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
         :content-column-bindings="{ cols: 12, md: 5 }"
+        :background-img-width="$isRegularScreen? '44%' : '47%'"
+        :background-img-pos="$isRegularScreen? '50%' : '47%'"
       )
-    div.grey-bg.mx-n3
+    div.grey-bg
       lazy-hydrate(when-visible)
         generic-media-panel(
           :content="stakesContent"
@@ -37,8 +39,8 @@
               ).text-none
                 span.mc-btn1.white--text Get Started Free
     //- 2nd panel
-    div.blue-bg.mx-n3
-      lazy-hydrate(when-visible)
+    lazy-hydrate(when-visible)
+      generic-blue-bg
         problem-statement
     //- 3rd panel
     lazy-hydrate(when-visible)
@@ -63,11 +65,26 @@
               span.mc-btn1 Get Started
     lazy-hydrate(when-visible)
       straightforward
+    //- updaet thos
     lazy-hydrate(when-visible)
-      storybrand(
-        title="Still a student?"
-        :content="['Join the next free webinar series for dentistry students.']"
-      )
+      generic-blue-bg
+        generic-media-panel(
+          :content="studentPanel"
+        )
+          template(slot="content")
+            h2(:class="headerClasses").white--text Still a student?
+            br
+            h2(:class="contentClasses").white--text Join the next free webinar series for dentistry students.
+          template(slot="cta-button")
+            div(:class="{ 'text-center': $isMobile }")
+              signup-button(
+                depressed
+                color="success"
+                class="rounded-md"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none
+                span.mc-btn1 Get started
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="multiplePanel"
@@ -114,10 +131,13 @@ export default {
   components: {
     LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericBlueBg: () => import('~/components/generic/GenericBlueBg'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericSubPagePanel: () => import('~/components/generic/GenericSubPagePanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
+    PictureSource: () => import('~/components/commons/PictureSource'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Straightforward: () => import('~/components/dental-clinics/Straightforward'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
@@ -134,12 +154,6 @@ export default {
     return { metricsData };
   },
   data () {
-    this.studentPanel = {
-      header: 'Still a student?',
-      descriptions: [
-        'Join the next free webinar series for dentistry students',
-      ],
-    };
     this.stepsContent = [
       {
         title: 'Create your Free Account',
@@ -187,6 +201,20 @@ export default {
         },
       };
     },
+    studentPanel () {
+      return {
+        contentAlign: 'left',
+        imageBindings: {
+          image: 'Student.webp',
+          mobileImage: 'Student.png',
+          imageAlt: 'Dental student in virtual practice',
+          customPath: 'clinics/dental/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '178.06px' : (this.$isRegularScreen ? '296.76px' : '458.04px'),
+        },
+      };
+    },
     multiplePanel () {
       return {
         title: 'One view for multiple locations',
@@ -229,8 +257,6 @@ export default {
             image: 'carousel-1',
             imageFileExtension: '.webp',
             imageAlt: 'Man searching through records',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '305.02px' : this.$isRegularScreen ? '199.37px' : '182.9px',
           },
         },
         {
@@ -241,8 +267,6 @@ export default {
             image: 'carousel-2',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor looking at booking appointments',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '291.02px' : this.$isRegularScreen ? '190.22px' : '173.91px',
           },
         },
         {
@@ -253,8 +277,6 @@ export default {
             image: 'carousel-3',
             imageFileExtension: '.webp',
             imageAlt: 'Patient looking at network',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '294.77' : this.$isRegularScreen ? '192.65px' : '176.14px',
           },
         },
         {
@@ -265,8 +287,6 @@ export default {
             image: 'carousel-5',
             imageFileExtension: '.webp',
             imageAlt: 'Doctor Gaining Insight',
-            width: this.$isWideScreen ? '401.64px' : this.$isRegularScreen ? '262.5px' : '240px',
-            height: this.$isWideScreen ? '268.41px' : this.$isRegularScreen ? '175.43px' : '160.4px',
           },
         },
       ];
