@@ -24,7 +24,7 @@
         :clinic-phone="clinicPhone"
         :style="{ height: $isMobile ? '110vh' : '110vh' }"
         :is-bookable="isVerified && isOnline"
-        @book="dialogs.appointment = true"
+        @book="onMainPanelBook"
         @redirect="onRedirect($event)"
         @clipSuccess="clipSuccess = true"
       )#top
@@ -255,6 +255,9 @@ import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import { getCountries } from '~/utils/axios';
+import { amplitudeTracker } from '~/utils/amplitude-analytics';
+// constants
+import { CLINIC_WEBSITE_AMPLITUDE_KEYS } from '~/constants/amplitude';
 // components
 import MainPanel from '~/components/clinic-website/MainPanel';
 import AboutClinic from '~/components/clinic-website/AboutClinic';
@@ -492,6 +495,9 @@ export default {
       const item = this.countries.find(x => x.name === this.clinic.address.country);
       return item?.callingCodes[0] || '';
     },
+    currentPath () {
+      return this.$route.fullPath || this.$route.name;
+    },
   },
   watch: {
     activeServiceType: {
@@ -718,6 +724,11 @@ export default {
       return false;
     },
     // Event handlers
+    onMainPanelBook () {
+      amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onBookAppointmentBtn, this.currentPath);
+      this.dialogs.appointment = true;
+      amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onBookingTypeDialogOpen, this.currentPath);
+    },
     onPaginate ({
       type, // services or doctors
     }, page = 1) {
@@ -831,7 +842,9 @@ export default {
     onSelectAppointment (type) {
       this.dialogs.appointment = false;
       if (type === 'physical') {
+        amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onVisitClinicSelect, this.currentPath);
         this.dialogs.serviceType = true;
+        amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onServiceTypeDialogOpen, this.currentPath);
         return;
       }
       if (type === 'telehealth') {
@@ -846,6 +859,7 @@ export default {
       }
     },
     onSelectServiceType (serviceType) {
+      amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onServiceTypeSelect, this.currentPath);
       this.dialogs.serviceType = false;
       if (this.searchMode) {
         this.searchText = null;
@@ -855,6 +869,7 @@ export default {
       if (serviceType !== 'close') {
         this.tabSelect = 'services';
         VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
+        amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onServicesListScroll, this.currentPath);
       }
       this.activeServiceType = serviceType;
     },
