@@ -147,6 +147,8 @@ import isEmpty from 'lodash/isEmpty';
 import Schedules from './AppointmentSchedules';
 import Money from '~/components/commons/Money';
 import { formatName } from '~/utils/formats';
+import { amplitudeTracker } from '~/utils/amplitude-analytics';
+import { CLINIC_WEBSITE_AMPLITUDE_KEYS } from '~/constants/amplitude';
 import DefaultAvatar from '~/assets/images/commons/mycure-default-avatar.png';
 
 export default {
@@ -254,6 +256,9 @@ export default {
       const id = this.item.id;
       return `${PX_PORTAL_URL}/create-appointment/step-1?service=${id}&clinic=${this.organization}&type=${this.appointmentType}`;
     },
+    currentPath () {
+      return this.$route.fullPath || this.$route.name;
+    },
   },
   methods: {
     isServiceAvailable (dayValue) {
@@ -279,12 +284,13 @@ export default {
       this.dialog.providers = false;
       this.previewProviders = [];
     },
-    // Google analytics
+    // Google analytics & amplitude
     trackBooking (appointmentType) {
       this.$gtag.event('book', {
         event_category: 'clinic-website',
         event_label: `book-${appointmentType}-clinic-${this.organization}-service-${this.item.id}`,
       });
+      amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onBookService, this.currentPath);
     },
   },
 };
