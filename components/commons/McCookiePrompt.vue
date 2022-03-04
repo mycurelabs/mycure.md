@@ -10,7 +10,7 @@
           v-container.py-0
             v-row(v-if="!$isMobile")
               v-col(cols="2" align-self="center")
-                img(src="~/assets/images/mycure-cookie-disclaimer.png" width="100%")
+                img(src="~/assets/images/mycure-cookie-disclaimer.png" width="100%" alt="Cookie icon")
               v-col(cols="9" align-self="center").text-justify
                 | MYCURE respects your privacy so we have set up technical security measures to protect personal and sensitive information provided to us. All information collected will be used to uniquely identify you to enhance your experience within our web and mobile applications. We encourage you to read our &nbsp;
                 nuxt-link(:to="{ name: 'privacy-policy' }").policy-links Privacy Policy
