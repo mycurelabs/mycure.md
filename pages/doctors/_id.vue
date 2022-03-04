@@ -311,8 +311,9 @@ export default {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
     practicingYear () {
-      const from = this.practicingSince || 0;
-      return new Date(from).getFullYear(); // eslint-disable-line
+      // Some other apps save practicing since as the actual year
+      if (this.practicingSince && `${this.practicingSince}`.length === 4) return this.practicingSince;
+      return this.practicingSince ? new Date(this.practicingSince).getFullYear() : 0; // eslint-disable-line
     },
     practicingYears () {
       let from = this.practicingSince || 0;
