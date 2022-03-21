@@ -9,7 +9,16 @@
           br
           template(v-if="education.length")
             h4.mc-h4.mb-4.black--text Education
-            div(v-for="(educ, key) in education" :key="key").mt-3
+            v-list
+              template(v-for="(educ, key) in education")
+                v-list-item
+                  v-list-item-avatar
+                    img(v-if="educ.picURL" width="50" :src="educ.picURL")
+                  v-list-item-content
+                    v-list-item-title.mc-b4 {{ educ | format-school }}
+                    v-list-item-subtitle.mc-b4 {{ educ.from }} - {{ educ.to }}
+
+            //- div(v-for="(educ, key) in education" :key="key").mt-3
               span.mc-b4 {{ educ | format-school }}
               br
               span.mc-b4 {{ educ.from }} - {{ educ.to }}
