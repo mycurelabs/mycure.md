@@ -37,6 +37,23 @@ export const getDoctorWebsite = async (opts) => {
       url: `${process.env.API_URL}/personal-details?$or[0][id]=${opts.username}&$or[1][doc_website]=${opts.username}`,
     });
 
+    const doctor = data.data[0];
+
+    if (doctor?.educations?.length) {
+      const { data: schoolsData } = await axios({
+        method: 'get',
+        url: `${process.env.API_URL}/organizations?type=school`,
+      });
+      doctor.educations = doctor.educations.map((doctorSchool) => {
+        const data = {
+          ...doctorSchool,
+        };
+        const match = schoolsData.data?.find(enumSchool => enumSchool.name === doctorSchool.school);
+        data.picURL = match?.picURL;
+        return data;
+      });
+    }
+
     return data.data[0];
 
     // console.log('data', data);
