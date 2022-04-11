@@ -105,7 +105,7 @@
             h2 Copyright Policy
             br
             p We respect the intellectual property rights of others. It is our policy to respond to any claim that Content posted on the Service infringes the copyright or other intellectual property infringement ("Infringement") of any person.
-            p If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement that is taking place through the Service, you must submit your notice in writing to the attention of "Copyright Infringement" of mark@mycure.md and include in your notice a detailed description of the alleged Infringement.
+            p If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement that is taking place through the Service, you must submit your notice in writing to the attention of "Copyright Infringement" of hello@mycure.md and include in your notice a detailed description of the alleged Infringement.
             p You may be held accountable for damages (including costs and attorneys' fees) for misrepresenting that any Content is infringing your copyright.
           v-col(cols="12").mb-3
             h2 Accounts
