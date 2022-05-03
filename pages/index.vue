@@ -1,11 +1,5 @@
 <template lang="pug">
   v-container(fluid).white.page-container
-    script(
-      v-if="showGetResponseFormDialog"
-      type='text/javascript'
-      src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zEGHd'
-      data-webform-id='zEGHd'
-    )
     //- 1st panel
     //- SKIPPING lazy hydrate due to it being the very first panel
     seven-wonders(:loading="loading").mb-16
@@ -64,6 +58,16 @@
     //-       :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
     //-       :image-styles="{ marginBottom: '-7px' }"
     //-     )
+    v-dialog(
+      v-model="showGetResponseFormDialog"
+      width="510"
+    )
+      v-card(style="height: 350px")
+        script(
+          type='text/javascript'
+          src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zEGHd'
+          data-webform-id='zEGHd'
+        )
 </template>
 
 <script>
@@ -77,7 +81,6 @@ import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
 import PageRouter from '~/components/home/PageRouter';
 import { fetchWebsiteMetrics } from '~/utils/axios';
-// const GET_RESPONSE_FORM_URL = 'https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zEGHd';
 export default {
   components: {
     LazyHydrate,
@@ -156,11 +159,11 @@ export default {
   // },
   mounted () {
     this.loading = false;
-    setTimeout(() => this.showGetResponseForm(), 10000);
+    setTimeout(this.showGetResponseForm, 10000);
   },
   methods: {
     showGetResponseForm () {
-      console.warn('setTimeout(() => this.showGetResponseForm(), 1000);');
+      console.warn('Show dialog');
       // const se = document.createElement('script');
       // se.src = GET_RESPONSE_FORM_URL;
       // se.setAttribute('type', 'text/javascript');
