@@ -1,5 +1,11 @@
 <template lang="pug">
   v-container(fluid).white.page-container
+    script(
+      v-if="showGetResponseFormDialog"
+      type='text/javascript'
+      src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zEGHd'
+      data-webform-id='zEGHd'
+    )
     //- 1st panel
     //- SKIPPING lazy hydrate due to it being the very first panel
     seven-wonders(:loading="loading").mb-16
@@ -71,7 +77,7 @@ import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
 import PageRouter from '~/components/home/PageRouter';
 import { fetchWebsiteMetrics } from '~/utils/axios';
-
+// const GET_RESPONSE_FORM_URL = 'https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zEGHd';
 export default {
   components: {
     LazyHydrate,
@@ -91,7 +97,8 @@ export default {
     Tools: () => import('~/components/home/Tools'),
   },
   async asyncData (context) {
-    const metricsData = await fetchWebsiteMetrics();
+    let metricsData = await fetchWebsiteMetrics();
+    if (!metricsData) metricsData = {};
     return { metricsData };
   },
   data () {
@@ -132,6 +139,7 @@ export default {
     this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      showGetResponseFormDialog: false,
     };
   },
   head () {
@@ -148,6 +156,18 @@ export default {
   // },
   mounted () {
     this.loading = false;
+    setTimeout(() => this.showGetResponseForm(), 10000);
+  },
+  methods: {
+    showGetResponseForm () {
+      console.warn('setTimeout(() => this.showGetResponseForm(), 1000);');
+      // const se = document.createElement('script');
+      // se.src = GET_RESPONSE_FORM_URL;
+      // se.setAttribute('type', 'text/javascript');
+      // se.setAttribute('data-webform-id', 'zEGHd');
+      // document.getElementsByTagName('head').item(0).appendChild(se);
+      this.showGetResponseFormDialog = true;
+    },
   },
 };
 </script>
