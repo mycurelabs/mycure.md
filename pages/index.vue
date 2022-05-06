@@ -152,23 +152,19 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  // computed: {
-  //   uspMargin () {
-  //     return this.$isWideScreen ? 'margin-wide' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1400 ? 'margin-tab' : 'margin-reg';
-  //   },
-  // },
+  computed: {
+    getResponseBookADemoSucceed () {
+      const state = process.client && (new URLSearchParams(window.location.search).get('getresponse-free-demo') || '');
+      return state === 'success';
+    },
+  },
   mounted () {
     this.loading = false;
     setTimeout(this.showGetResponseForm, 10000);
   },
   methods: {
     showGetResponseForm () {
-      console.warn('Show dialog');
-      // const se = document.createElement('script');
-      // se.src = GET_RESPONSE_FORM_URL;
-      // se.setAttribute('type', 'text/javascript');
-      // se.setAttribute('data-webform-id', 'zEGHd');
-      // document.getElementsByTagName('head').item(0).appendChild(se);
+      if (this.getResponseBookADemoSucceed) return;
       this.showGetResponseFormDialog = true;
     },
   },
