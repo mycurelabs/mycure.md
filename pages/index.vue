@@ -9,26 +9,23 @@
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="10" xl="10")
-                v-card
-                  v-card-text.pt-10
-                    h1 Trusted by innovative health facilities and organizations
-                  v-card-text
-                    v-row(justify="center" align="center")
-                      v-col
-                        img(
-                          width="250"
-                          :src="require('~/assets/images/customers/medicard-logo.jpg')"
-                        ).customer-logo
-                      v-col
-                        img(
-                          width="300"
-                          :src="require('~/assets/images/customers/skin-101-logo.png')"
-                        ).customer-logo
-                      v-col
-                        img(
-                          width="250"
-                          :src="require('~/assets/images/customers/vitacare-logo.png')"
-                        ).customer-logo
+                h1 Trusted by innovative health #[br] facilities and organizations
+                v-row(justify="center" align="center")
+                  v-col.col-xs-12.col-md-4
+                    img(
+                      width="250"
+                      :src="require('~/assets/images/customers/medicard-logo.jpg')"
+                    ).customer-logo
+                  v-col.col-xs-12.col-md-4
+                    img(
+                      width="300"
+                      :src="require('~/assets/images/customers/skin-101-logo.png')"
+                    ).customer-logo
+                  v-col.col-xs-12.col-md-4
+                    img(
+                      width="250"
+                      :src="require('~/assets/images/customers/vitacare-logo.png')"
+                    ).customer-logo
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -211,6 +208,6 @@ export default {
   margin-bottom: 250px;
 }
 .customer-logo {
-  filter: grayscale(90%);
+  filter: grayscale(0%);
 }
 </style>
