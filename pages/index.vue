@@ -9,21 +9,21 @@
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="10" xl="10")
-                h1 Trusted by innovative health #[br] facilities and organizations
+                h2.mb-5 Trusted by innovative health facilities and organizations
                 v-row(justify="center" align="center")
                   v-col.col-xs-12.col-md-4
                     img(
-                      width="250"
+                      width="200"
                       :src="require('~/assets/images/customers/medicard-logo.jpg')"
                     ).customer-logo
                   v-col.col-xs-12.col-md-4
                     img(
-                      width="300"
+                      width="250"
                       :src="require('~/assets/images/customers/skin-101-logo.png')"
                     ).customer-logo
                   v-col.col-xs-12.col-md-4
                     img(
-                      width="250"
+                      width="200"
                       :src="require('~/assets/images/customers/vitacare-logo.png')"
                     ).customer-logo
     //- 2nd panel
