@@ -39,7 +39,7 @@
       page-router
     //- 3rd panel
     lazy-hydrate(when-idle)
-      care(:metrics-data="metricsData").mb-16
+      care(:metrics-data="metricsData || {}").mb-16
     //- 4th panel
     lazy-hydrate(when-visible)
       hipaa(
@@ -63,8 +63,9 @@
         :content="storybrandContent"
       )
     //- 9th panel
-    lazy-hydrate(when-visible)
-      tools(:version="2")
+    div#customizable-health-information-system
+      lazy-hydrate(when-visible)
+        tools(:version="2")
     //- 10th panel
     lazy-hydrate(when-visible)
       steps(:steps="stepsContent" not-free).mb-n3
@@ -95,6 +96,7 @@
 
 <script>
 // - utils
+import VueScrollTo from 'vue-scrollto';
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
@@ -166,6 +168,8 @@ export default {
     return {
       loading: true,
       showGetResponseFormDialog: false,
+      hasScrolled: false,
+      hasShownGetResponseForm: false,
     };
   },
   head () {
@@ -183,11 +187,22 @@ export default {
   },
   mounted () {
     this.loading = false;
-    setTimeout(this.showGetResponseForm, 10000);
+    if (!this.hasShownGetResponseForm) {
+      setTimeout(this.showGetResponseForm, 10000);
+    }
+    if (!this.hasScrolled) {
+      setTimeout(() => {
+        // scrollTo=customizable-health-information-system
+        this.hasScrolled = true;
+        const el = process.browser && document.getElementById(this.$route.query.scrollTo);
+        VueScrollTo.scrollTo(el, 500, { offset: -60, easing: 'ease' });
+      }, 3000);
+    }
   },
   methods: {
     showGetResponseForm () {
       if (this.getResponseBookADemoSucceed) return;
+      this.hasShownGetResponseForm = true;
       this.showGetResponseFormDialog = true;
     },
   },
