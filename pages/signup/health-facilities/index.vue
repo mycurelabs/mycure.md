@@ -260,13 +260,13 @@
               div(width="200px" v-if="hasPromoCode")
                 v-text-field(
                   v-model="stripeCoupon"
-                  :rules="[v => !!v && hasPromoCode && (stripeCoupon > 0) || (stripeCoupon < 0 ? 'Value not allowed' : 'Please input your promo code')]"
                   placeholder="Promo Code"
                   outlined
                   dense
                   clearable
                   :disabled="loading.form"
                   :class="{'pt-1': $isMobile}"
+                  :rules="[v => !!v || 'Please input your promo code']"
                 ).no-details-margin
             v-checkbox(
               v-model="agree"

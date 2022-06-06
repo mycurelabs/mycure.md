@@ -12,7 +12,9 @@
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore . --fix",
     "lint": "yarn lint:js",
     "test": "jest",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "deploy:heroku:staging": "git push heroku-staging environment/staging:master",
+    "deploy:heroku:production": "git push heroku-production environment/staging:master"
   },
   "dependencies": {
     "@bachdgvn/vue-otp-input": "^1.0.8",

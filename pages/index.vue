@@ -3,6 +3,29 @@
     //- 1st panel
     //- SKIPPING lazy hydrate due to it being the very first panel
     seven-wonders(:loading="loading").mb-16
+    v-container
+      v-row(justify="center" align="center")
+        generic-panel
+          v-col(cols="12").text-center.text-container
+            v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
+              v-col(cols="12" md="10" xl="10")
+                h2.mb-5 Trusted by innovative health facilities and organizations
+                v-row(justify="center" align="center")
+                  v-col.col-xs-12.col-md-4
+                    img(
+                      width="200"
+                      :src="require('~/assets/images/customers/medicard-logo.jpg')"
+                    ).customer-logo
+                  v-col.col-xs-12.col-md-4
+                    img(
+                      width="250"
+                      :src="require('~/assets/images/customers/skin-101-logo.png')"
+                    ).customer-logo
+                  v-col.col-xs-12.col-md-4
+                    img(
+                      width="200"
+                      :src="require('~/assets/images/customers/vitacare-logo.png')"
+                    ).customer-logo
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -16,7 +39,7 @@
       page-router
     //- 3rd panel
     lazy-hydrate(when-idle)
-      care(:metrics-data="metricsData").mb-16
+      care(:metrics-data="metricsData || {}").mb-16
     //- 4th panel
     lazy-hydrate(when-visible)
       hipaa(
@@ -40,8 +63,9 @@
         :content="storybrandContent"
       )
     //- 9th panel
-    lazy-hydrate(when-visible)
-      tools(:version="2")
+    div#customizable-health-information-system
+      lazy-hydrate(when-visible)
+        tools(:version="2")
     //- 10th panel
     lazy-hydrate(when-visible)
       steps(:steps="stepsContent" not-free).mb-n3
@@ -58,10 +82,21 @@
     //-       :image-height="$isMobile ? '157.89px' : ($isRegularScreen ? '197.34px' : '328.94px')"
     //-       :image-styles="{ marginBottom: '-7px' }"
     //-     )
+    v-dialog(
+      v-model="showGetResponseFormDialog"
+      width="510"
+    )
+      v-card(style="height: 350px")
+        script(
+          type='text/javascript'
+          src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zEGHd'
+          data-webform-id='zEGHd'
+        )
 </template>
 
 <script>
 // - utils
+import VueScrollTo from 'vue-scrollto';
 import LazyHydrate from 'vue-lazy-hydration';
 import headMeta from '~/utils/head-meta';
 // - components
@@ -71,7 +106,6 @@ import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
 import PageRouter from '~/components/home/PageRouter';
 import { fetchWebsiteMetrics } from '~/utils/axios';
-
 export default {
   components: {
     LazyHydrate,
@@ -91,7 +125,8 @@ export default {
     Tools: () => import('~/components/home/Tools'),
   },
   async asyncData (context) {
-    const metricsData = await fetchWebsiteMetrics();
+    let metricsData = await fetchWebsiteMetrics();
+    if (!metricsData) metricsData = {};
     return { metricsData };
   },
   data () {
@@ -132,6 +167,9 @@ export default {
     this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      showGetResponseFormDialog: false,
+      hasScrolled: false,
+      hasShownGetResponseForm: false,
     };
   },
   head () {
@@ -141,13 +179,32 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  // computed: {
-  //   uspMargin () {
-  //     return this.$isWideScreen ? 'margin-wide' : this.$isMobile ? 'mb-16' : this.$vuetify.breakpoint.width < 1400 ? 'margin-tab' : 'margin-reg';
-  //   },
-  // },
+  computed: {
+    getResponseBookADemoSucceed () {
+      const state = process.client && (new URLSearchParams(window.location.search).get('getresponse-free-demo') || '');
+      return state === 'success';
+    },
+  },
   mounted () {
     this.loading = false;
+    if (!this.hasShownGetResponseForm) {
+      setTimeout(this.showGetResponseForm, 10000);
+    }
+    if (!this.hasScrolled) {
+      setTimeout(() => {
+        // scrollTo=customizable-health-information-system
+        this.hasScrolled = true;
+        const el = process.browser && document.getElementById(this.$route.query.scrollTo);
+        VueScrollTo.scrollTo(el, 500, { offset: -60, easing: 'ease' });
+      }, 3000);
+    }
+  },
+  methods: {
+    showGetResponseForm () {
+      if (this.getResponseBookADemoSucceed) return;
+      this.hasShownGetResponseForm = true;
+      this.showGetResponseFormDialog = true;
+    },
   },
 };
 </script>
@@ -164,5 +221,8 @@ export default {
 }
 .margin-tab {
   margin-bottom: 250px;
+}
+.customer-logo {
+  filter: grayscale(0%);
 }
 </style>

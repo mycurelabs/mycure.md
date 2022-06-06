@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12" :class="{'text-center': !$isMobile}")
-          p.mc-h7.primary--text.font-open-sans.font-weight-semibold FLEXIBLE AND SCALABLE
+          p#customizable-health-information-system.mc-h7.primary--text.font-open-sans.font-weight-semibold FLEXIBLE AND SCALABLE
           h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Customizable Health Information System
           v-row(justify="center")
             v-col(cols="12" md="9" :class="{'text-center': !$isMobile}")
@@ -31,8 +31,10 @@
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
+
 export default {
   components: {
     GenericPanel,
@@ -134,6 +136,12 @@ export default {
       }
       return '50%%';
     },
+  },
+  mounted () {
+    setTimeout(() => {
+      const el = process.browser && document.getElementById(this.$route.query.scrollTo);
+      VueScrollTo.scrollTo(el, 500, { offset: -60, easing: 'ease' });
+    }, 1000);
   },
   methods: {
     // - For making 5 columns
