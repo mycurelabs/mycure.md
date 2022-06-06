@@ -14,7 +14,7 @@
             )
         v-col(cols="12" sm="10" :class="{'text-center': !$isMobile}")
           h2(:class="titleClasses").mb-5 Straightforward and simple.
-          p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 MYCURE Beauty comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can communicate with other doctors at your practice quickly.
+          p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 MYCURE Dental comes with its own chat feature, allowing everyone in your clinic to stay in touch on busy days. Office staff can ask questions about billing without having to interrupt while you’re with a patient, and you can communicate with other doctors at your practice quickly.
           div.text-center
             signup-button(
               depressed
