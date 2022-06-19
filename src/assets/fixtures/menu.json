@@ -1,0 +1,67 @@
+[
+  {
+    "position": "left",
+    "title": "What is Hippocrades",
+    "classes": ["offset-md-6"],
+    "panelId": "what-is-hippocrades"
+  },
+  {
+    "position": "left",
+    "title": "Hippocrades Infrastructure",
+    "classes": ["offset-md-4"],
+    "panelId": "hippocrades-infrastructure"
+  },
+  {
+    "position": "left",
+    "title": "Hippr",
+    "subtitle": "(Hippocrades Protocol)",
+    "classes": ["offset-md-2"],
+    "panelId": "hipp-protocol"
+  },
+  {
+    "position": "left",
+    "title": "Roadmap",
+    "classes": ["offset-md-4"],
+    "panelId": "roadmap"
+  },
+  {
+    "position": "left",
+    "title": "Governance",
+    "classes": ["offset-md-6"],
+    "panelId": "governance"
+  },
+
+  {
+    "position": "right",
+    "title": "Healthcare Apps",
+    "subtitle": "(Demo)",
+    "classes": [],
+    "link": "https://demo.hippocrades.org/signin?target=%2Fcms"
+  },
+  {
+    "position": "right",
+    "title": "Healthcare APIs",
+    "classes": ["offset-md-2"],
+    "link": "https://docs.fleming.hippocrades.org"
+  },
+  {
+    "position": "right",
+    "title": "Developers",
+    "classes": ["offset-md-4"],
+    "panelId": "developers"
+  },
+  {
+    "position": "right",
+    "title": "Healthcare Infrastructure",
+    "subtitle": "(Whitepaper)",
+    "classes": ["offset-md-2"],
+    "link": "/hippocrades-whitepaper-v3.pdf"
+  },
+  {
+    "position": "right",
+    "title": "Hippocrades Protocol",
+    "subtitle": "(Whitepaper)",
+    "classes": [],
+    "link": "/hip-protocol.pdf"
+  }
+]
