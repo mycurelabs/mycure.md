@@ -1,10 +1,14 @@
 export const formatName = (name, format) => {
   const { firstName, middleName, lastName, generationalSuffix } = name;
-  return format.replace(/firstName/gi, firstName)
-    .replace(/middleName/gi, middleName || '')
-    .replace(/middleInitial/gi, middleName ? `${middleName.substr(0, 1).toUpperCase()}.` : '')
-    .replace(/lastName/gi, lastName)
-    .replace(/generationalSuffix/gi, generationalSuffix || '')
+  const firstNameTrimmed = firstName?.trim() || '';
+  const middleNameTrimmed = middleName?.trim() || '';
+  const lastNameTrimmed = lastName?.trim() || '';
+  const generationalSuffixTrimmed = generationalSuffix?.trim() || '';
+  return format.replace(/firstName/gi, firstNameTrimmed)
+    .replace(/middleName/gi, middleNameTrimmed || '')
+    .replace(/middleInitial/gi, middleNameTrimmed ? `${middleNameTrimmed.substr(0, 1).toUpperCase()}.` : '')
+    .replace(/lastName/gi, lastNameTrimmed)
+    .replace(/generationalSuffix/gi, generationalSuffixTrimmed || '')
     .trim();
 };
 

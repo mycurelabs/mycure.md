@@ -211,11 +211,11 @@
                   v-if="isDoctor"
                   v-model="doc_PRCLicenseNo"
                   type="number"
-                  placeholder="PRC License No"
+                  placeholder="Professional License No"
                   outlined
                   :dense="!$isWideScreen"
                   :disabled="loading.form"
-                  :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'Value not allowed' : 'Please enter your PRC License No for verification')] "
+                  :rules="[v => !!v && (numPRC > 0) || (numPRC < 0 ? 'Value not allowed' : 'Please enter your Professional License No for verification')] "
                 ).no-details-margin
                   //- hint="Please enter your PRC License No for verification"
             //- div(v-if="!invitation").font-italic.font-gray.mt-4

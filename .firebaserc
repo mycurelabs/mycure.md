@@ -13,13 +13,6 @@
           "staging-web-main"
         ]
       }
-    },
-    "mc-v4-stg": {
-      "hosting": {
-        "staging-doctor-website": [
-          "staging-web-docwebsite"
-        ]
-      }
     }
   }
 }

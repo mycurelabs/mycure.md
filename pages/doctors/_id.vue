@@ -16,6 +16,7 @@
     v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
     //- First panel
     main-panel(
+      ref="top"
       :metrics="doctorMetrics"
       :pic-url="picURL"
       :full-name="fullName"
@@ -29,9 +30,8 @@
       :is-bookable="isBookable"
       :is-preview-mode="isPreviewMode"
       @book="onBook"
-      @redirect="onRedirect($event)"
-      ref="top"
       @clipSuccess="clipSuccess = true"
+      @redirect="onRedirect($event)"
     )
     profile-card(
       :pic-url="picURL"
