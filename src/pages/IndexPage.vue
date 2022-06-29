@@ -5,13 +5,13 @@ generic-panel(:panel-classes="['items-center']")#what-is-hippocrades
     div.col-xs-12
       q-card(flat bordered)
         q-card-section
-          h2.text-h3.text-primary.text-center Healthcare access to All
+          h2.text-h3.text-primary.text-center Integrated Healthcare Solutions for Every Provider
           div.row.justify-center
             div.col-xs-12.col-md-10
               div.row.items-center.justify-center
                 div.col-xs-12.text-center.q-pa-sm
                   //- h2.text-h4 Healthcare #[span.text-primary Access to All]
-                  p.text-subtitle1 Hippocrades provides a comprehensive decentralized healthcare infrastructure and protocol that unlock interoperability and security challenges among different health systems. This allows users - patients, health providers, and health facilities to manage and audit their medical records while making them shareable in a decentralized, private, and permissionless health exchange.
+                  p.text-subtitle1 MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
 </template>
 
 <script>
