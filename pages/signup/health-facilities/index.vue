@@ -581,6 +581,7 @@ export default {
   mounted () {
     this.init();
     this.loading.page = false;
+    // if (process.browser) window.onbeforeunload = this.beforeTabExit();
   },
   methods: {
     async init () {
@@ -766,6 +767,10 @@ export default {
         this.loading.form = false;
       }
     },
+    // beforeTabExit (e) {
+    //   // show getreponse
+    //   console.warn('Show getresponse');
+    // },
     saveModel (val) {
       if (!val) {
         process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
