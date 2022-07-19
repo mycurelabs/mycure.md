@@ -581,7 +581,7 @@ export default {
   mounted () {
     this.init();
     this.loading.page = false;
-    // if (process.browser) window.onbeforeunload = this.beforeTabExit();
+    if (process.browser) window.onbeforeunload = this.beforeTabExit;
   },
   methods: {
     async init () {
@@ -767,10 +767,12 @@ export default {
         this.loading.form = false;
       }
     },
-    // beforeTabExit (e) {
-    //   // show getreponse
-    //   console.warn('Show getresponse');
-    // },
+    beforeTabExit (e) {
+      e = e || window.event;
+      console.warn(e);
+      if (e) e.returnValue = 'Close the tab?'; // For IE and Firefox prior to version 4
+      return 'Close the tab?'; // For Safari
+    },
     saveModel (val) {
       if (!val) {
         process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
