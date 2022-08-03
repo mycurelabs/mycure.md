@@ -91,7 +91,7 @@ const mapPackageInclusions = (plan, organizationType) => {
   }
 
   // Non-doctor items
-  
+
   // Works Offline
   inclusions.push({
     text: 'Works Offline',
