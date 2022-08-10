@@ -113,6 +113,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import kebabCase from 'lodash/kebabCase';
 import omit from 'lodash/omit';
 import { mdiClose } from '@mdi/js';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
@@ -304,11 +305,22 @@ export default {
           'from',
           'stripeCoupon',
         ];
+
         const payload = {
           // This was added since we want the otp to be sent once stripe checkout is complete
+          source: {
+            platform: 'web',
+            app: 'web-main',
+          },
           skipMobileNoVerification: true,
           ...omit(this.step1LocalStorageData, omitKeys),
         };
+
+        const utmData = this.$cookies.get('utm-data');
+
+        if (!isEmpty(utmData)) {
+          payload.source.campaign = `${utmData.utm_source}::${kebabCase(utmData.utm_campaign)}`;
+        }
 
         // Check if there is pending subscription Id
         if (this.subscriptionId) {
