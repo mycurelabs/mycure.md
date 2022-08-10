@@ -318,7 +318,7 @@ export default {
 
         const utmData = this.$cookies.get('utm-data');
 
-        if (!isEmpty(utmData)) {
+        if (utmData?.utm_source && utmData?.utm_campaign) {
           payload.source.campaign = `${utmData.utm_source}::${kebabCase(utmData.utm_campaign)}`;
         }
 
@@ -401,6 +401,7 @@ export default {
           this.emailVerificationMessageDialog = true;
         } else {
           await this.sendOtp();
+          this.$cookies.removeAll();
           this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
         }
       } catch (e) {
