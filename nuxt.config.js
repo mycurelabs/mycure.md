@@ -45,7 +45,7 @@ export default {
      - NOTE: Some plugins here are intentionally declared to run server-side,
       make sure when changing their mode, there are no breaking changes to the website
   */
-  
+
   plugins: [
     '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-lazyload.js',
@@ -203,7 +203,7 @@ export default {
       '/hospitals',
       '/pharmacy',
       // Old page that keeps getting crawled for some reason
-      '/electronic-medical-records'
+      '/electronic-medical-records',
     ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
