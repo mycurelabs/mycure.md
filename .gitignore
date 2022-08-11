@@ -94,3 +94,4 @@ sw.*
 
 # env
 .env.local.*
+.env.*
