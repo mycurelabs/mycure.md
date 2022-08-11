@@ -375,6 +375,16 @@
                       @click="codeDialog = false"
                     )
                       v-icon {{ mdiArrowRight }}
+    v-dialog(
+      v-model="showGetResponseFormDialog"
+      width="720"
+    )
+      v-card(style="height: 567px;").text-xs-center
+        script(
+          type='text/javascript'
+          src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=zQood'
+          data-webform-id='zQood'
+        )
 </template>
 
 <script>
@@ -518,6 +528,7 @@ export default {
       mdiCheckboxMarkedOutline,
       mdiCheckboxBlankOutline,
       mdiArrowULeftTop,
+      showGetResponseFormDialog: false,
     };
   },
   head () {
@@ -771,20 +782,17 @@ export default {
       }
     },
     async beforePageLeave (type, e) {
-      console.warn('🚀 ~ file: index.vue ~ line 774 ~ beforePageLeave ~ e', e);
       if (type === 'router') {
         const { to, next } = e;
         if (await this.$refs.formRef.validate() && to.name === 'signup-health-facilities-pricing') {
           next();
         } else {
-          // eslint-disable-next-line no-lonely-if
-          if (process.browser) window.alert('Don\'t leave yet!');
+          this.showGetResponseFormDialog = true;
         }
       }
       if (type === 'window') {
-        // console.warn('🚀 ~ file: index.vue ~ line 772 ~ beforePageLeave ~ e', e);
-        // e.preventDefault();
-        // return true;
+        e.preventDefault();
+        this.showGetResponseFormDialog = true;
       }
     },
     saveModel (val) {
