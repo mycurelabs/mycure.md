@@ -413,6 +413,9 @@ export default {
     ChooseFacilityType,
     EmailVerificationDialog,
   },
+  beforeRouteLeave (to, from, next) {
+    this.beforePageLeave('router', { to, from, next });
+  },
   layout: 'empty',
   data () {
     // TEXT FIELD RULES
@@ -581,7 +584,7 @@ export default {
   mounted () {
     this.init();
     this.loading.page = false;
-    if (process.browser) window.onbeforeunload = this.beforeTabExit;
+    if (process.browser) window.onbeforeunload = e => this.beforePageLeave('window', e);
   },
   methods: {
     async init () {
@@ -767,11 +770,22 @@ export default {
         this.loading.form = false;
       }
     },
-    beforeTabExit (e) {
-      e = e || window.event;
-      console.warn(e);
-      if (e) e.returnValue = 'Close the tab?'; // For IE and Firefox prior to version 4
-      return 'Close the tab?'; // For Safari
+    async beforePageLeave (type, e) {
+      console.warn('🚀 ~ file: index.vue ~ line 774 ~ beforePageLeave ~ e', e);
+      if (type === 'router') {
+        const { to, next } = e;
+        if (await this.$refs.formRef.validate() && to.name === 'signup-health-facilities-pricing') {
+          next();
+        } else {
+          // eslint-disable-next-line no-lonely-if
+          if (process.browser) window.alert('Don\'t leave yet!');
+        }
+      }
+      if (type === 'window') {
+        // console.warn('🚀 ~ file: index.vue ~ line 772 ~ beforePageLeave ~ e', e);
+        // e.preventDefault();
+        // return true;
+      }
     },
     saveModel (val) {
       if (!val) {
