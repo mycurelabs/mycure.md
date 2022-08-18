@@ -29,6 +29,7 @@
     "amplitude-js": "^8.1.0",
     "animejs": "^3.2.1",
     "babel-polyfill": "^6.26.0",
+    "cookie-universal-nuxt": "^2.2.2",
     "core-js": "^3.9.1",
     "libphonenumber-js": "^1.9.15",
     "nuxt": "^2.15.6",
