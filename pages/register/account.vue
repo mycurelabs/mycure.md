@@ -1,7 +1,7 @@
 <template lang="pug">
 v-row(justify="center")
   v-col(cols="11" md="8")
-    div(style="margin-bottom: 80px;")
+    div(style="margin-bottom: 60px;")
       pre MYCURE LOGO
     h1 Register
     p Level up your healthcare services and get more patients safely
@@ -14,6 +14,7 @@ v-row(justify="center")
             v-model="firstName"
             label="First Name"
             outlined
+            dense
             :rules="[v => !!v || 'This is required']"
           )
         v-col(cols="12" md="6").pa-1
@@ -21,6 +22,7 @@ v-row(justify="center")
             v-model="lastName"
             label="Last Name"
             outlined
+            dense
             :rules="[v => !!v || 'This is required']"
           )
         v-col(cols="12").pa-1
@@ -28,6 +30,7 @@ v-row(justify="center")
             v-model="mobileNo"
             label="Mobile Number"
             outlined
+            dense
             :rules="[v => !!v || 'This is required']"
           )
       h4.mb-4 Account
@@ -38,6 +41,7 @@ v-row(justify="center")
             label="Email Address"
             type="email"
             outlined
+            dense
             :rules="[v => !!v || 'This is required']"
           )
         v-col(cols="12" md="6").pa-1
@@ -45,6 +49,7 @@ v-row(justify="center")
             v-model="password"
             label="Password"
             outlined
+            dense
             :type="showPassword ? 'text' : 'password'"
             :append-icon="showPassword ? mdiEyeOff : mdiEye"
             :rules="[v => !!v || 'This is required']"
@@ -52,20 +57,42 @@ v-row(justify="center")
           )
         v-col(cols="12").pa-1.mb-5
           v-checkbox(
-            v-model="referralCode"
+            v-model="hasReferralCode"
             label="Apply a referral code (Optional)"
             color="primary"
             hide-details
+            dense
             :on-icon="mdiCheckboxMarkedOutline"
             :off-icon="mdiCheckboxBlankOutline"
+          ).mb-3
+          v-text-field(
+            v-if="hasReferralCode"
+            v-model="referralCode"
+            label="Referral Code"
+            outlined
+            dense
+            hide-details
+            autofocus
+            :rules="[v => !!v || 'This is required']"
           )
           v-checkbox(
-            v-model="promoCode"
+            v-model="hasPromoCode"
             label="Apply a promo code (Optional)"
             color="primary"
             hide-details
+            dense
             :on-icon="mdiCheckboxMarkedOutline"
             :off-icon="mdiCheckboxBlankOutline"
+          ).mb-3
+          v-text-field(
+            v-if="hasPromoCode"
+            v-model="promoCode"
+            label="Promo Code"
+            outlined
+            dense
+            hide-details
+            autofocus
+            :rules="[v => !!v || 'This is required']"
           )
           v-checkbox(
             v-model="agree"
@@ -110,8 +137,10 @@ export default {
       email: '',
       password: '',
       showPassword: false,
-      referralCode: false,
-      promoCode: false,
+      referralCode: '',
+      hasReferralCode: false,
+      promoCode: '',
+      hasPromoCode: false,
       agree: false,
       // icons
       mdiArrowRight,
