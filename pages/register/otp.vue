@@ -1,6 +1,9 @@
 <template lang="pug">
-v-row(justify="center").red
-  v-col(cols="11" md="6").text-center
+v-row(justify="center")
+  v-col(cols="11" md="2").mr-5.primary
+  v-col(cols="11" md="5")
+    h1 Verify it's you
+    p Please enter the OTP sent to +xxxxxxxxxxx
     div.d-flex.text-center.justify-center.my-15
       v-otp-input(
         ref="otpInput"
@@ -11,7 +14,16 @@ v-row(justify="center").red
         :num-inputs="6"
         :should-auto-focus="true"
         @on-change="otp = $event"
-      ).green
+      )
+    v-btn(
+      color="primary"
+      type="submit"
+      large
+      block
+      depressed
+    ) Verify
+    br
+    p Didn't receive OTP? #[a Resend]
 </template>
 
 <script>
