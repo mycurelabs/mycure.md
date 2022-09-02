@@ -505,7 +505,7 @@ classBinder(this, {
     @include mc-font-sizer($h5-std, 30px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($h5-wide, 48px); 
+    @include mc-font-sizer($h5-wide, 48px);
   }
 }
 .mc-h6 {
@@ -576,7 +576,7 @@ classBinder(this, {
     @include mc-font-sizer($b3-std, 24px);
   }
   @media (min-width: $min-xl) {
-    @include mc-font-sizer($b3-wide, 36px); 
+    @include mc-font-sizer($b3-wide, 36px);
   }
 }
 .mc-b4 {
@@ -633,7 +633,7 @@ classBinder(this, {
   }
 }
 .mc-hyp2 {
-  font-weight: 600 !important; 
+  font-weight: 600 !important;
   @media (max-width: $max-sm) {
     @include mc-font-sizer($hyp1-mob, 25px);
     text-align: center;
