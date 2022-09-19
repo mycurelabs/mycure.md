@@ -3,12 +3,12 @@
     v-card(
       color="#fafafa"
       rounded="xl"
-      :height="cardHeight"
+      height="100%"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 5"
       :class="cardPadding"
     ).ma-1
-      v-card-text.text-center
+      v-card-text(style="height: 180px").text-center
         v-skeleton-loader(
           v-if="loading"
           type="image"
@@ -17,8 +17,7 @@
         picture-source(
           v-else
           :image="wonder.image"
-          :image-width="( $isMobile ? '107px' : '115px')"
-          :image-height="( $isMobile ? '145px' : '165px')"
+          :image-width="( $isMobile ? '100%' : wonder.imageWidth || '115px')"
           :image-alt="wonder.title"
           custom-path="home/"
           extension-exclusive
@@ -26,8 +25,7 @@
         )
         //-   :image-file-extension="$useWebp? '.webp' : '.png'"
         //- )
-        br
-        br
+      v-card-text(style="height: 170px").text-center
         h2.mc-h4.black--text {{ wonder.title }}
         p.mc-b4.mt-2 {{ wonder.description }}
 </template>
