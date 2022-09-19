@@ -187,9 +187,9 @@ export default {
   },
   mounted () {
     this.loading = false;
-    if (!this.hasShownGetResponseForm) {
-      setTimeout(this.showGetResponseForm, 10000);
-    }
+    // if (!this.hasShownGetResponseForm) {
+    //   setTimeout(this.showGetResponseForm, 10000);
+    // }
     if (!this.hasScrolled) {
       setTimeout(() => {
         // scrollTo=customizable-health-information-system
