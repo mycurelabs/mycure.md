@@ -51,7 +51,8 @@
     "vue-screen": "^1.5.6",
     "vue-scrollto": "^2.20.0",
     "vue-slick-carousel": "^1.0.6",
-    "vue-social-sharing": "^3.0.7"
+    "vue-social-sharing": "^3.0.7",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.3",
