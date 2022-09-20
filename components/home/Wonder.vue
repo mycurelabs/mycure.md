@@ -3,7 +3,6 @@
     v-card(
       color="#fafafa"
       rounded="xl"
-      height="100%"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 5"
       :class="cardPadding"
@@ -17,16 +16,15 @@
         picture-source(
           v-else
           :image="wonder.image"
-          :image-width="( $isMobile ? '100%' : wonder.imageWidth || '115px')"
+          :image-height="( $isMobile ? '170px' : 'auto')"
+          :image-width="( $isMobile ? 'auto' : wonder.imageWidth || '115px')"
           :image-alt="wonder.title"
           custom-path="home/"
           extension-exclusive
           image-file-extension=".png"
         )
-        //-   :image-file-extension="$useWebp? '.webp' : '.png'"
-        //- )
-      v-card-text(style="height: 170px").text-center
-        h2.mc-h4.black--text {{ wonder.title }}
+      v-card-text(:style="{ height: $isMobile ? '120px' : '170px' }").text-center
+        h2.mc-h5.black--text {{ wonder.title }}
         p.mc-b4.mt-2 {{ wonder.description }}
 </template>
 

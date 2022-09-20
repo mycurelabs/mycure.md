@@ -40,7 +40,7 @@
                     v-icon(color="white" small).mt-5 {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder" :loading="loading").mx-2
-              v-col(v-else cols="10" sm="8" md="10")
+              v-col(v-else cols="12" sm="8" md="10")
                 carousel(
                   paginationColor="#f0f0f0"
                   autoplay
@@ -113,7 +113,7 @@ export default {
         infoLink: 'clinics/skin',
         comingSoon: true,
         image: 'skin',
-        imageWidth: '150px',
+        imageWidth: '170px',
       },
       {
         title: 'Dental Clinics',
@@ -121,7 +121,7 @@ export default {
         infoLink: 'clinics/dental',
         comingSoon: true,
         image: 'dental',
-        imageWidth: '190px',
+        imageWidth: '150px',
       },
       {
         title: 'Corporate Clinics',
@@ -129,7 +129,7 @@ export default {
         infoLink: 'clinics/corporate',
         comingSoon: true,
         image: 'corporate',
-        imageWidth: '190px',
+        imageWidth: '140px',
       },
       {
         title: 'Diagnostics',
@@ -151,7 +151,7 @@ export default {
         infoLink: 'diagnostics/mobile-labs',
         comingSoon: true,
         image: 'mobile-labs',
-        imageWidth: '190px',
+        imageWidth: '200px',
       },
       {
         title: 'Booking',
@@ -159,6 +159,7 @@ export default {
         infoLink: 'booking',
         image: 'Booking',
       },
+      // TODO: bring back
       // {
       //   title: 'Telehealth',
       //   description: 'Everything you need to build your virtual practice',
