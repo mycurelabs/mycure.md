@@ -6,12 +6,12 @@
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="9" xl="8")
-                h1(:class="headerClasses").mb-2 Integrated Healthcare
+                h1(:class="headerClasses").mb-2 Enterprise-Grade
                   br
-                  | Solutions for Every Provider
+                  | Clinic Management Solutions
                 v-row(justify="center").mt-5
                   v-col(cols="12" xl="11")
-                    p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system tailor-made for doctors, clinics, diagnostic centers, and hospitals—all at a fraction of the cost.
+                    p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system specifically custom-built for multi-specialty clinics, diagnostic and health centers. Enjoy enterprise-grade features that even works online and offline - all at a fraction of the cost.
                 signup-button(
                   depressed
                   class="rounded-md"
@@ -40,7 +40,7 @@
                     v-icon(color="white" small).mt-5 {{ (page === currentSlide) ? mdiCircle : mdiCircleOutline }}
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder" :loading="loading").mx-2
-              v-col(v-else cols="10" sm="8" md="10")
+              v-col(v-else cols="12" sm="8" md="10")
                 carousel(
                   paginationColor="#f0f0f0"
                   autoplay
@@ -89,12 +89,6 @@ export default {
   data () {
     this.wonders = [
       {
-        title: 'Booking',
-        description: 'Book and schedule appointments efficiently',
-        infoLink: 'booking',
-        image: 'Booking',
-      },
-      {
         title: 'Physicians',
         description: 'Easily create digital medical records',
         infoLink: 'doctors-clinics',
@@ -107,30 +101,78 @@ export default {
         image: 'Outpatient',
       },
       {
+        title: 'Hospital OPD',
+        description: 'Take control of a more streamlined inpatient care',
+        infoLink: 'clinics/hospital',
+        comingSoon: true,
+        image: 'hospitals',
+      },
+      {
+        title: 'Skin Clinics',
+        description: 'Skin and Aesthetic Clinic Management System for a Flawless Experience',
+        infoLink: 'clinics/skin',
+        comingSoon: true,
+        image: 'skin',
+        imageWidth: '170px',
+      },
+      {
+        title: 'Dental Clinics',
+        description: 'An Advanced Clinic Management System for Dentists',
+        infoLink: 'clinics/dental',
+        comingSoon: true,
+        image: 'dental',
+        imageWidth: '150px',
+      },
+      {
+        title: 'Corporate Clinics',
+        description: 'Save Your Corporate Clinic from Chaos',
+        infoLink: 'clinics/corporate',
+        comingSoon: true,
+        image: 'corporate',
+        imageWidth: '140px',
+      },
+      {
         title: 'Diagnostics',
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
         image: 'Diagnostics',
       },
       {
-        title: 'Telehealth',
-        description: 'Everything you need to build your virtual practice',
-        infoLink: 'telehealth',
-        image: 'Telehealth',
+        title: 'OFW Clinics',
+        description: 'The first and only medical software for OFW clinics',
+        infoLink: 'diagnostics/ofw',
+        comingSoon: true,
+        image: 'ofw',
+        imageWidth: '190px',
       },
+      {
+        title: 'Mobile Labs',
+        description: 'The Simplest Clinic Management System for Mobile Labs',
+        infoLink: 'diagnostics/mobile-labs',
+        comingSoon: true,
+        image: 'mobile-labs',
+        imageWidth: '200px',
+      },
+      {
+        title: 'Booking',
+        description: 'Book and schedule appointments efficiently',
+        infoLink: 'booking',
+        image: 'Booking',
+      },
+      // TODO: bring back
+      // {
+      //   title: 'Telehealth',
+      //   description: 'Everything you need to build your virtual practice',
+      //   infoLink: 'telehealth',
+      //   image: 'Telehealth',
+      // },
       // {
       //   title: 'Pharmacy',
       //   description: 'Make medicines available anytime, anywhere',
       //   comingSoon: true,
       //   image: 'Pharmacy',
       // },
-      // {
-      //   title: 'Hospitals',
-      //   description: 'Take control of a more streamlined inpatient care',
-      //   infoLink: 'hospitals',
-      //   comingSoon: true,
-      //   image: 'hospitals',
-      // },
+
       // {
       //   title: 'Patient Relationship',
       //   description: 'Build continuity of care for your patients',

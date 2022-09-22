@@ -10,22 +10,13 @@
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="10" xl="10")
                 h2.mb-5 Trusted by innovative health facilities and organizations
-                v-row(justify="center" align="center")
-                  v-col.col-xs-12.col-md-4
-                    img(
-                      width="200"
-                      :src="require('~/assets/images/customers/medicard-logo.jpg')"
-                    ).customer-logo
-                  v-col.col-xs-12.col-md-4
-                    img(
-                      width="250"
-                      :src="require('~/assets/images/customers/skin-101-logo.png')"
-                    ).customer-logo
-                  v-col.col-xs-12.col-md-4
-                    img(
-                      width="200"
-                      :src="require('~/assets/images/customers/vitacare-logo.png')"
-                    ).customer-logo
+                v-row(align="center")
+                  template(v-for="customer in customers")
+                    v-col.col-xs-12.col-md-3
+                      img(
+                        :width="customer.width"
+                        :src="customer.logo"
+                      ).customer-logo
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -165,6 +156,64 @@ export default {
       'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
     ];
     this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
+    this.customers = [
+      {
+        logo: require('~/assets/images/customers/medicard-logo.jpg'),
+        width: '200px',
+      },
+      {
+        logo: require('~/assets/images/customers/skin-101-logo.png'),
+        width: '200px',
+      },
+      {
+        logo: require('~/assets/images/customers/vitacare-logo.png'),
+        width: '200px',
+      },
+      {
+        logo: require('~/assets/images/customers/st-lukes-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/better-familites-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/healthquest-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/unihealth-logo.png'),
+        width: '170px',
+      },
+      {
+        logo: require('~/assets/images/customers/klinika-ng-kabataan-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/mdr-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/nueve-de-febrero-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/tolosa-logo.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/unnamed2.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/unnamed3.png'),
+        width: '150px',
+      },
+      {
+        logo: require('~/assets/images/customers/unnamed4.png'),
+        width: '150px',
+      },
+    ];
     return {
       loading: true,
       showGetResponseFormDialog: false,
@@ -187,9 +236,9 @@ export default {
   },
   mounted () {
     this.loading = false;
-    if (!this.hasShownGetResponseForm) {
-      setTimeout(this.showGetResponseForm, 10000);
-    }
+    // if (!this.hasShownGetResponseForm) {
+    //   setTimeout(this.showGetResponseForm, 10000);
+    // }
     if (!this.hasScrolled) {
       setTimeout(() => {
         // scrollTo=customizable-health-information-system

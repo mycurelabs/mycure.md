@@ -79,7 +79,7 @@ export default {
      */
     imageHeight: {
       type: [String, Number],
-      default: 'auto',
+      default: null,
     },
     /**
      * Alt value of image
