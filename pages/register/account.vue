@@ -1,12 +1,36 @@
 <template lang="pug">
 v-row(justify="center")
   v-col(cols="11" md="8")
-    div(style="margin-bottom: 60px;")
-      pre MYCURE LOGO
+    img(width="150" src="../../assets/images/MYCURE-Logo-black.png").mb-5
     h1 Register
     p Level up your healthcare services and get more patients safely
   v-col(cols="11" md="8")
-    v-form(ref="formRef" @submit.prevent="submit")
+    v-form(ref="formRef" v-model="formValid" @submit.prevent="submit")
+      h4.mb-4 Account {{formValid}}
+      v-row
+        v-col(cols="12" md="6").pa-1
+          v-text-field(
+            v-model="email"
+            label="Email Address"
+            type="email"
+            outlined
+            dense
+            :rules="[v => !!v || 'This is required']"
+            :disabled="loading"
+          )
+        v-col(cols="12" md="6").pa-1
+          v-text-field(
+            v-model="password"
+            label="Password"
+            outlined
+            dense
+            :type="showPassword ? 'text' : 'password'"
+            :append-icon="showPassword ? mdiEyeOff : mdiEye"
+            :rules="[v => !!v || 'This is required', v => v.length >= 6 || 'Password must be at least 6 characters']"
+            :disabled="loading"
+            @click:append="v => showPassword = !showPassword"
+          )
+
       h4.mb-4 Personal Info
       v-row
         v-col(cols="12" md="6").pa-1
@@ -16,6 +40,7 @@ v-row(justify="center")
             outlined
             dense
             :rules="[v => !!v || 'This is required']"
+            :disabled="loading"
           )
         v-col(cols="12" md="6").pa-1
           v-text-field(
@@ -24,6 +49,7 @@ v-row(justify="center")
             outlined
             dense
             :rules="[v => !!v || 'This is required']"
+            :disabled="loading"
           )
         v-col(cols="12").pa-1
           v-text-field(
@@ -33,6 +59,7 @@ v-row(justify="center")
             outlined
             dense
             :rules="[v => !!v || 'This is required', mobileNumberRule]"
+            :disabled="loading"
             @keypress="checkNumberInput($event)"
           ).mb-4.no-details-margin
             template(slot="prepend-inner")
@@ -50,67 +77,49 @@ v-row(justify="center")
               span(style="margin-top: 4px;") &nbsp;+{{ countryCallingCode }}
             template(slot="append")
               v-icon(v-if="mobileNoError && mobileUnique" color="accent") {{ mdiCheck }}
-      h4.mb-4 Account
-      v-row
-        v-col(cols="12" md="6").pa-1
-          v-text-field(
-            v-model="email"
-            label="Email Address"
-            type="email"
-            outlined
-            dense
-            :rules="[v => !!v || 'This is required']"
-          )
-        v-col(cols="12" md="6").pa-1
-          v-text-field(
-            v-model="password"
-            label="Password"
-            outlined
-            dense
-            :type="showPassword ? 'text' : 'password'"
-            :append-icon="showPassword ? mdiEyeOff : mdiEye"
-            :rules="[v => !!v || 'This is required']"
-            @click:append="v => showPassword = !showPassword"
-          )
-        v-col(cols="12").pa-1.mb-5
+        v-col(cols="12" style="margin-top: -20px;").pa-1.mb-5
           v-checkbox(
-            v-model="hasReferralCode"
+            v-model="hasInvitation"
             label="Apply a referral code (Optional)"
             color="primary"
             hide-details
             dense
             :on-icon="mdiCheckboxMarkedOutline"
             :off-icon="mdiCheckboxBlankOutline"
+            :disabled="loading"
           ).mb-3
           v-text-field(
-            v-if="hasReferralCode"
-            v-model="referralCode"
+            v-if="hasInvitation"
+            v-model="invitation"
             label="Referral Code"
             outlined
             dense
             hide-details
             autofocus
             :rules="[v => !!v || 'This is required']"
+            :disabled="loading"
           )
-          v-checkbox(
-            v-model="hasPromoCode"
-            label="Apply a promo code (Optional)"
-            color="primary"
-            hide-details
-            dense
-            :on-icon="mdiCheckboxMarkedOutline"
-            :off-icon="mdiCheckboxBlankOutline"
-          ).mb-3
-          v-text-field(
-            v-if="hasPromoCode"
-            v-model="promoCode"
-            label="Promo Code"
-            outlined
-            dense
-            hide-details
-            autofocus
-            :rules="[v => !!v || 'This is required']"
-          )
+          //- v-checkbox(
+          //-   v-model="hasPromoCode"
+          //-   label="Apply a promo code (Optional)"
+          //-   color="primary"
+          //-   hide-details
+          //-   dense
+          //-   :on-icon="mdiCheckboxMarkedOutline"
+          //-   :off-icon="mdiCheckboxBlankOutline"
+          //-   :disabled="loading"
+          //- ).mb-3
+          //- v-text-field(
+          //-   v-if="hasPromoCode"
+          //-   v-model="promoCode"
+          //-   label="Promo Code"
+          //-   outlined
+          //-   dense
+          //-   hide-details
+          //-   autofocus
+          //-   :rules="[v => !!v || 'This is required']"
+          //-   :disabled="loading"
+          //- )
           v-checkbox(
             v-model="agree"
             color="primary"
@@ -118,8 +127,9 @@ v-row(justify="center")
             :on-icon="mdiCheckboxMarkedOutline"
             :off-icon="mdiCheckboxBlankOutline"
             :rules="[v => !!v || 'This is required']"
+            :disabled="loading"
           )
-            template(slot="label") I agree to MYCURE's&nbsp;#[a Terms of Use]&nbsp;and&nbsp;#[a Privacy Policy] {{typeof promoCode}}
+            template(slot="label") I agree to MYCURE's&nbsp;#[a Terms of Use]&nbsp;and&nbsp;#[a Privacy Policy]
       v-row
         v-col(cols="12")
           v-btn(
@@ -128,6 +138,8 @@ v-row(justify="center")
             large
             block
             depressed
+            :disabled="!formValid || loading"
+            :loading="loading"
           ) Sign Up
         v-col(cols="12").text-center
           p Already have an account? #[a Log in]
@@ -158,6 +170,7 @@ v-row(justify="center")
 </template>
 
 <script>
+import kebabCase from 'lodash/kebabCase';
 import {
   mdiArrowRight,
   mdiMagnify,
@@ -184,10 +197,10 @@ export default {
       email: '',
       password: '',
       showPassword: false,
-      referralCode: '',
-      hasReferralCode: false,
-      promoCode: '',
-      hasPromoCode: false,
+      invitation: '',
+      hasInvitation: false,
+      // promoCode: '',
+      // hasPromoCode: false,
       agree: false,
       // icons
       mdiArrowRight,
@@ -208,6 +221,9 @@ export default {
       countriesList: [],
       countryCallingCode: '',
       countryFlag: '',
+      //
+      loading: false,
+      formValid: false,
     };
   },
   watch: {
@@ -225,7 +241,6 @@ export default {
   methods: {
     async init () {
       try {
-        // - Fetch countries
         await this.getCountries();
         const country = await getCountry();
         const { location } = country;
@@ -238,9 +253,41 @@ export default {
     async submit () {
       try {
         if (!await this.$refs.formRef.validate()) return;
-        // const payload =
+        this.loading = true;
+        const payload = {
+          source: {
+            platform: 'web',
+            app: 'web-main',
+          },
+          email: this.email,
+          password: this.password,
+          mobileNo: `+${this.countryCallingCode}${this.mobileNo}`,
+          personalDetails: {
+            mobileNo: `+${this.countryCallingCode}${this.mobileNo}`,
+            name: {
+              firstName: this.firstName,
+              lastName: this.lastName,
+            },
+          },
+          referralCode: this.referralCode,
+          // referral
+          invitation: this.invitation,
+        };
+
+        const utmData = this.$cookies.get('utm-data');
+
+        if (utmData?.utm_source && utmData?.utm_campaign) {
+          payload.source.campaign = `${utmData.utm_source}::${kebabCase(utmData.utm_campaign)}`;
+        }
+
+        window.localStorage.setItem('mycure:new-account-payload', JSON.stringify(payload));
+
+        await this.$sdk.service('accounts').create(payload);
+        this.$router.push({ name: 'register-otp' });
       } catch (e) {
         console.error(e);
+      } finally {
+        this.loading = false;
       }
     },
     validatePhoneNo (mobileNo) {
