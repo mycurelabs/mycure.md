@@ -29,16 +29,10 @@
               :width="imageWidth"
             ).mb-4
           template(slot="cta-button")
-            div(:class="{'text-center': $isMobile}")
-              slot(name="cta-button")
-                signup-button(
-                  depressed
-                  class="rounded-md"
-                  :width="!$isWideScreen ? '228px' : '300'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                  :color="btnColor"
-                ).text-none
-                  span.mc-btn1 {{ btnText }}
+            v-row(justify="left")
+              v-col(cols="12" md="8")
+                get-email-button
+
 </template>
 
 <script>
@@ -46,11 +40,13 @@ import { parseTextWithNewLine } from '~/utils/newline';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
+import GetEmailButton from '~/components/commons/get-email-button';
 export default {
   components: {
     GenericSubPagePanel,
     PictureSource,
     SignupButton,
+    GetEmailButton,
   },
   props: {
     title: {
