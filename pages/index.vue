@@ -166,53 +166,53 @@ export default {
         width: '200px',
       },
       {
-        logo: require('~/assets/images/customers/vitacare-logo.png'),
-        width: '200px',
-      },
-      {
         logo: require('~/assets/images/customers/st-lukes-logo.png'),
         width: '150px',
       },
-      {
-        logo: require('~/assets/images/customers/better-familites-logo.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/healthquest-logo.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/unihealth-logo.png'),
-        width: '170px',
-      },
-      {
-        logo: require('~/assets/images/customers/klinika-ng-kabataan-logo.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/mdr-logo.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/nueve-de-febrero-logo.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/tolosa-logo.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/unnamed2.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/unnamed3.png'),
-        width: '150px',
-      },
-      {
-        logo: require('~/assets/images/customers/unnamed4.png'),
-        width: '150px',
-      },
+      // {
+      //   logo: require('~/assets/images/customers/vitacare-logo.png'),
+      //   width: '200px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/better-familites-logo.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/healthquest-logo.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/unihealth-logo.png'),
+      //   width: '170px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/klinika-ng-kabataan-logo.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/mdr-logo.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/nueve-de-febrero-logo.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/tolosa-logo.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/unnamed2.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/unnamed3.png'),
+      //   width: '150px',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/unnamed4.png'),
+      //   width: '150px',
+      // },
     ];
     return {
       loading: true,
