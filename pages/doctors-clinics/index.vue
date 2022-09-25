@@ -76,14 +76,7 @@
         )
           template(slot="additional-content")
             div(:class="{'text-center': $isMobile}")
-              signup-button(
-                depressed
-                class="rounded-md"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="primary"
-              ).text-none
-                span.mc-btn1.white--text Start For Free
+              get-email-button
     lazy-hydrate(when-visible)
       scroller(title="Benefits of Using MYCURE in Your Practice" :items="carouselItems")
     lazy-hydrate(when-visible)
@@ -115,6 +108,7 @@ import headMeta from '~/utils/head-meta';
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
+import GetEmailButton from '~/components/commons/get-email-button';
 
 export default {
   components: {
@@ -127,6 +121,7 @@ export default {
     Pricing: () => import('~/components/commons/panels/Pricing'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    GetEmailButton,
     GenericBlueBg: () => import('~/components/generic/GenericBlueBg.vue'),
     GenericVideoPanel: () => import('~/components/generic/GenericVideoPanel.vue'),
     SignupButton: () => import('~/components/commons/SignupButton'),
