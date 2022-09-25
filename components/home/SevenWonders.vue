@@ -12,14 +12,11 @@
                 v-row(justify="center").mt-5
                   v-col(cols="12" xl="11")
                     p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system specifically custom-built for multi-specialty clinics, diagnostic and health centers. Enjoy enterprise-grade features that even works online and offline - all at a fraction of the cost.
-                signup-button(
-                  depressed
-                  class="rounded-md"
-                  :width="!$isWideScreen ? '228px' : '300'"
-                  :height="!$isWideScreen ? '59px' : '73.68'"
-                  color="success"
-                ).text-none
-                  span.mc-btn1.white--text Get Started
+                v-row(justify="center")
+                  v-col(cols="12" md="5")
+                    get-email-button(
+                      button-color="success"
+                    )
             v-row(justify="center" v-if="!loading")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(
@@ -64,15 +61,17 @@ import { mdiChevronRightCircle, mdiChevronLeftCircle, mdiCircle, mdiCircleOutlin
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
+import GenericBlueBg from '~/components/generic/GenericBlueBg';
 import GenericPanel from '~/components/generic/GenericPanel';
+import GetEmailButton from '~/components/commons/get-email-button';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import GenericBlueBg from '~/components/generic/GenericBlueBg';
 // import canUseWebp from '~/utils/can-use-webp';
 
 export default {
   components: {
     GenericPanel,
+    GetEmailButton,
     PictureSource,
     SignupButton,
     Wonder,
