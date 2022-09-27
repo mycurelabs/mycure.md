@@ -10,7 +10,7 @@
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
               v-col(cols="12" md="10" xl="10")
                 h2.mb-5 Trusted by innovative health facilities and organizations
-                v-row(align="center")
+                v-row(align="center" justify="center")
                   template(v-for="customer in customers")
                     v-col.col-xs-12.col-md-3
                       img(
