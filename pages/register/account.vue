@@ -241,6 +241,7 @@ export default {
   methods: {
     async init () {
       try {
+        if (this.$route.query.email) this.email = this.$route.query.email;
         await this.getCountries();
         const country = await getCountry();
         const { location } = country;
