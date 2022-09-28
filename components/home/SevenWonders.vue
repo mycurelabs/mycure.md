@@ -13,7 +13,7 @@
                   v-col(cols="12" xl="11")
                     p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system specifically custom-built for multi-specialty clinics, diagnostic and health centers. Enjoy enterprise-grade features that even works online and offline - all at a fraction of the cost.
                 v-row(justify="center")
-                  v-col(cols="12" md="5")
+                  v-col(cols="12" md="6")
                     get-email-button(
                       button-color="success"
                     )
