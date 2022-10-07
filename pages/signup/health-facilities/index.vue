@@ -150,8 +150,11 @@
                   type="password"
                   outlined
                   :dense="!$isWideScreen"
+                  :type="showCPass ? 'text' : 'password'"
                   :rules="[...isRequired, matchPasswordRule]"
                   :disabled="loading.form"
+                  :append-icon="showCPass ? mdiEyeOff : mdiEye"
+                  @click:append="showCPass = !showCPass"
                 ).no-details-margin
                   template(v-slot: append v-if="confirmPassword && confirmPassword === password")
                     v-icon(color="accent") {{ mdiCheck }}
@@ -486,6 +489,7 @@ export default {
       countryFlag: '',
       // UI States
       showPass: false,
+      showCPass: false,
       loading: {
         page: true,
         form: false,
