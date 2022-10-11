@@ -518,9 +518,21 @@ export default {
     };
   },
   head () {
+    const type = this.$route.query.type;
+    let title = 'Health Facilities - Diagnostics, Doctor\'s Clinic & More | MYCURE';
+    let description = 'MYCURE is a health matching platform that helps you find a doctor\'s clinic, outpatient clinic, diagnostics, and a facility type that best fits your needs. Know more.';
+    if (type === 'diagnostic') {
+      title = 'Signup & Register - Healthcare Services | MYCURE';
+      description = 'MYCURE is a simple, modern software that makes it easy to manage your practice. Register & setup your clinic\'s appointments, manage your staff and patients.';
+    }
+    if (type === 'clinic') {
+      title = 'Outpatient Clinic Health Facilities | MYCURE';
+      description = 'MYCURE is a platform that provides a seamless way to register patients and manage your outpatient clinics. Register patients with just a few taps safely. Know more.';
+    }
+    // if (type === 'doctor') {}
     return headMeta({
-      title: 'Sign up to MYCURE | Health Facilities page',
-      description: 'Welcome to MYCURE Complete Clinic Management System. Sign up today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
+      title,
+      description,
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
