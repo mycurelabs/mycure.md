@@ -12,7 +12,7 @@
                 h2.mb-5 Trusted by innovative health facilities and organizations
                 v-row(align="center" justify="center")
                   template(v-for="customer in customers")
-                    v-col.col-xs-12.col-md-3
+                    v-col.col-xs-12.col-md-4
                       img(
                         :width="customer.width"
                         :src="customer.logo"
