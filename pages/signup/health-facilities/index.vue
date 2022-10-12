@@ -529,7 +529,10 @@ export default {
       title = 'Outpatient Clinic Health Facilities | MYCURE';
       description = 'MYCURE is a platform that provides a seamless way to register patients and manage your outpatient clinics. Register patients with just a few taps safely. Know more.';
     }
-    // if (type === 'doctor') {}
+    if (type === 'doctor') {
+      title = 'Doctor Signup - Clinic Management System';
+      description = 'MYCURE Clinic Management System is a complete EMR for doctors. Patients can book in your own website.';
+    }
     return headMeta({
       title,
       description,
