@@ -69,10 +69,10 @@
             ).mc-btn1.font-weight-semibold.text-non.rounded-lg.text-none {{ getBtnText(bundle) }}
         v-row(justify="center").mt-5
           v-col(cols="12" xl="12")
-            div(v-for="(inclusion, key) in mainInclusions" :key="key").mb-3
+            div(v-for="(inclusion, key) in mainInclusions" :key="`inclusions-${key}`").mb-3
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
               span(:class="[textFontSize, {'font-weight-medium': isRecommended}]").font-open-sans.list-item {{ inclusion.text }}
-            div(v-for="(inclusion, key) in additionalInclusions" :key="key").mb-2
+            div(v-for="(inclusion, key) in additionalInclusions" :key="`addition-inclusions-${key}`").mb-2
               template(v-if="inclusion.valid")
                 v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
                 span(:class="[textFontSize]").font-open-sans.list-item {{ inclusion.text }}
