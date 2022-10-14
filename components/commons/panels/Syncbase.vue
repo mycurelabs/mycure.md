@@ -2,7 +2,7 @@
   v-container
     v-row(justify="center")
       generic-sub-page-panel(
-        :content-right="version !== 1"
+        :content-right="version === 1"
         :title="title ? title : panelTitle"
         :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
