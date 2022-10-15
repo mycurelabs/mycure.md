@@ -103,21 +103,21 @@ import { fetchWebsiteMetrics } from '~/utils/axios';
 
 export default {
   components: {
-    LazyHydrate,
     Care,
     GenericMediaPanel,
     Hipaa: () => import('~/components/booking/Hipaa'),
     JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
-    Patients: () => import('~/components/home/Patients'),
-    PictureSource,
+    LazyHydrate,
     PageRouter,
+    Patients: () => import('~/components/home/Patients'),
+    PhilHealth: () => import('~/components/commons/panels/PhilHealth'),
+    PictureSource,
     SevenWonders,
     Simple: () => import('~/components/home/Simple'),
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Steps: () => import('~/components/commons/panels/Steps'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
-    PhilHealth: () => import('~/components/commons/panels/PhilHealth'),
     Tools: () => import('~/components/home/Tools'),
   },
   async asyncData (context) {
