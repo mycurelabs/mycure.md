@@ -56,8 +56,8 @@ export default {
         imageSources: ['png'],
         imageFileExtension: 'png',
         imageAlt: 'Philhealth Logo',
-        imageWidth: this.$vuetify.breakpoint.width > 1919 ? '465px' : (this.$isRegularScreen ? '266.66px' : '226px'),
-        imageHeight: this.$vuetify.breakpoint.width > 1919 ? '449.41px' : (this.$isRegularScreen ? '257.7px' : '218.42px'),
+        imageWidth: this.$vuetify.breakpoint.width > 1919 ? '400px' : (this.$isRegularScreen ? '266.66px' : '226px'),
+        // imageHeight: this.$vuetify.breakpoint.width > 1919 ? '449.41px' : (this.$isRegularScreen ? '257.7px' : '218.42px'),
       };
     },
     contentColumnBindings () {
