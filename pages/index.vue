@@ -37,27 +37,30 @@
         :header-classes="headerClasses"
         :description-classes="descriptionClasses"
       )
-    //- 5th panel
+    //- 5th panel to be philhealth
     lazy-hydrate(when-visible)
-      syncbase
+      phil-health
     //- 6th panel
     lazy-hydrate(when-visible)
-      simple
+      syncbase
     //- 7th panel
+    lazy-hydrate(when-visible)
+      simple
+    //- 8th panel
     div.grey-bg.mx-n3
       lazy-hydrate(when-visible)
         patients
-    //- 8th panel
+    //- 9th panel
     lazy-hydrate(when-visible)
       storybrand(
         title="Using Modern Tools to Boost Your Practice"
         :content="storybrandContent"
       )
-    //- 9th panel
+    //- 10th panel
     div#customizable-health-information-system
       lazy-hydrate(when-visible)
         tools(:version="2")
-    //- 10th panel
+    //- 11th panel
     lazy-hydrate(when-visible)
       steps(:steps="stepsContent" not-free).mb-n3
     //- CTA
@@ -97,16 +100,18 @@ import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
 import PageRouter from '~/components/home/PageRouter';
 import { fetchWebsiteMetrics } from '~/utils/axios';
+
 export default {
   components: {
-    LazyHydrate,
     Care,
     GenericMediaPanel,
     Hipaa: () => import('~/components/booking/Hipaa'),
     JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
-    Patients: () => import('~/components/home/Patients'),
-    PictureSource,
+    LazyHydrate,
     PageRouter,
+    Patients: () => import('~/components/home/Patients'),
+    PhilHealth: () => import('~/components/commons/panels/PhilHealth'),
+    PictureSource,
     SevenWonders,
     Simple: () => import('~/components/home/Simple'),
     Stakes: () => import('~/components/commons/panels/Stakes'),

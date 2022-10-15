@@ -2,7 +2,7 @@
   v-container.my-8
     v-row(justify="center")
       generic-sub-page-panel(
-        content-right
+        content-left
         title="Say goodbye to a mess of paperwork and hello to an easy, compact database of electronic medical records."
         content="MYCURE features an advanced user experience that stands out from the competition. With smooth transitions that help you streamline your workflow you won’t miss pen and paper forms."
         :content-column-bindings="contentColumnBindings"
