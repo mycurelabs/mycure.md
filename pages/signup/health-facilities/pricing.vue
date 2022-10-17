@@ -34,6 +34,7 @@
               color="primary"
             )
             strong.mc-h3.font-open-sans.ml-5 Annually
+          pre {{selectedBundle}}
       v-row(justify="center" align="center" :class="{'packages-negative-margins': !$isMobile}")
         v-col(cols="12" md="10")
           v-row(justify="center")
@@ -46,7 +47,7 @@
               )
                 pricing-card(
                   :bundle="bundle"
-                  :key="bundle.value"
+                  :key="`card-${bundle.value}`"
                   :payment-interval="paymentInterval"
                   :height="facilityType === 'doctor' ? '750' : '850'"
                 ).elevation-3
@@ -73,8 +74,8 @@
       v-card
         v-card-text.pa-10.text-center
           v-icon(style="font-size: 40px;").error--text {{ mdiClose }}
-          h2 Error!
-          p Checkout failed to proceed!
+          h2 Oops, something went wrong
+          p Your checkout process has failed.
           v-btn(
             depressed
             color="success"
@@ -85,7 +86,7 @@
       v-card
         v-card-text.pa-10.text-center
           v-icon(style="font-size: 40px;").error--text {{ mdiClose }}
-          h2 Error!
+          h2 Oops, something went wrong
           p {{ errorMessage }}
         v-card-actions
           v-spacer
@@ -293,6 +294,8 @@ export default {
         this.loading.button = true;
         this.confirmPaymentDialog = false;
         const bundle = this.preBundle || this.selectedBundle;
+        const { annualMonthlyPrice, monthlyPrice } = bundle || {};
+        const currentBundleIsPaid = annualMonthlyPrice > 0 || monthlyPrice > 0;
         if (bundle.requireContact) {
           this.sendCrispMessage();
           return;
@@ -322,8 +325,10 @@ export default {
           payload.source.campaign = `${utmData.utm_source}::${kebabCase(utmData.utm_campaign)}`;
         }
 
+        const emailNotYeInUse = await this.$sdk.service('auth').checkUniqueIdentity('email', this.email);
+
         // Check if there is pending subscription Id
-        if (this.subscriptionId) {
+        if (!emailNotYeInUse && currentBundleIsPaid) {
           // Get auth token
           const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
           let packageId;
@@ -339,6 +344,7 @@ export default {
           this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
+
         // Subscription URLS
         const subscription = {
           stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
@@ -359,34 +365,33 @@ export default {
               ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
             },
           };
-        } else {
-          const paid = bundle.monthlyPrice > 0 || bundle.annualMonthlyPrice > 0;
-          if (paid) {
-            let packageId;
-            if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
-            if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
-            // Build organization payload
-            payload.organization = {
-              ...this.step1LocalStorageData?.organization,
-              subscription: {
-                ...subscription,
-                package: packageId,
-                customer: {
-                  stripeEmail: this.email,
-                },
-                ...this.isTrial && { trial: true },
-                ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
+        } else if (currentBundleIsPaid) {
+          let packageId;
+          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
+          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+          // Build organization payload
+          payload.organization = {
+            ...this.step1LocalStorageData?.organization,
+            subscription: {
+              ...subscription,
+              package: packageId,
+              customer: {
+                stripeEmail: this.email,
               },
-            };
-            // If telehealth signup, and the package was not assigned a trial flag.
-            if (this.isTelehealthTrialAvailable(bundle) && !payload.organization.trial) {
-              payload.organization.subscription.trial = true;
-            }
+              ...this.isTrial && { trial: true },
+              ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
+            },
+          };
+          // If telehealth signup, and the package was not assigned a trial flag.
+          if (this.isTelehealthTrialAvailable(bundle) && !payload.organization.trial) {
+            payload.organization.subscription.trial = true;
           }
         }
 
         const user = await signupFacility(payload);
-        if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
+        window.localStorage.setItem('signup:current-signin-up-user', user.email);
+
+        if (currentBundleIsPaid && !isEmpty(user?.organization?.subscription?.updatesPending)) {
           this.subscriptionId = user.organization?.subscription?.id;
           this.sessionId = user.organization.subscription.updatesPending.stripeSession;
           if (process.browser) {
@@ -405,15 +410,28 @@ export default {
           this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
         }
       } catch (e) {
-        console.error(e);
+        const bundle = this.preBundle || this.selectedBundle;
+        const { annualMonthlyPrice, monthlyPrice } = bundle || {};
+        const currentBundleIsPaid = annualMonthlyPrice > 0 || monthlyPrice > 0;
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
-          this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
-          // - Continue pending checkout session
-          if (this.sessionId) {
-            this.$refs.checkoutRef.redirectToCheckout();
+          if (currentBundleIsPaid) {
+            this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+            // - Continue pending checkout session
+            if (this.sessionId) {
+              this.$refs.checkoutRef.redirectToCheckout();
+              return;
+            }
+          }
+
+          if (this.email === localStorage.getItem('signup:current-signin-up-user')) {
+            await this.sendOtp();
+            this.$cookies.removeAll();
+            this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
             return;
           }
+
+          console.error(e);
           this.errorMessage = 'The email or mobile number is already taken!';
         };
         if (e.message === 'Invitation not found') this.errorMessage = 'Invitation code is not valid!';
@@ -460,6 +478,13 @@ export default {
       this.loading.page = true;
       const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
       await resendVerificationCode({ token: accessToken });
+      this.clearLocalStorage();
+    },
+    clearLocalStorage () {
+      window.localStorage.removeItem('signup:subscription-id');
+      window.localStorage.removeItem('signup:stripe:session-id');
+      window.localStorage.removeItem(FACILITY_STEP_1_DATA);
+      window.localStorage.removeItem('signup:current-signin-up-user');
     },
     isTelehealthTrialAvailable (bundle) {
       if (!this.$route.query.from === 'telehealth') return false;
