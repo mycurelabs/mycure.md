@@ -15,7 +15,7 @@
                     v-col.mx-auto.col-xs-3.col-md-2
                       v-tooltip(
                         color="primary"
-                        top
+                        bottom
                       )
                         template(
                           v-slot:activator="{ on, attrs }"
