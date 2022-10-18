@@ -14,11 +14,21 @@
                 v-row(align="center" justify="center")
                   template(v-for="customer in customers")
                     v-col.mx-auto.col-xs-3.col-md-2
-                      img(
-                        :width="customer.width"
-                        :src="customer.logo"
-                        :alt="customer.alt"
-                      ).customer-logo
+                      v-tooltip(
+                        color="primary"
+                        top
+                      )
+                        template(
+                          v-slot:activator="{ on, attrs }"
+                        )
+                          img(
+                            :width="customer.width"
+                            :src="customer.logo"
+                            :alt="customer.alt"
+                            v-bind="attrs"
+                            v-on="on"
+                          ).customer-logo
+                        span {{customer.description}}
     //- 2nd panel
     lazy-hydrate(when-visible)
       stakes(
@@ -168,46 +178,55 @@ export default {
         logo: require('~/assets/images/customers/accutrust-logo.png'),
         width: '75px',
         alt: 'accutrust logo',
+        description: 'Accutrust',
       },
       {
         logo: require('~/assets/images/customers/better-families-logo.png'),
         width: '75px',
         alt: 'better families logo',
+        description: 'Better Families',
       },
       {
         logo: require('~/assets/images/customers/duya-med-logo.png'),
         width: '75px',
         alt: 'duya medical logo',
+        description: 'Duya Med Diagnostic Clinic',
       },
       {
         logo: require('~/assets/images/customers/healthquest-logo.png'),
         width: '75px',
         alt: 'healthquest logo',
+        description: 'HealthQuest',
       },
       {
         logo: require('~/assets/images/customers/klinika-ng-kabataan-logo.png'),
         width: '75px',
         alt: 'klinika ng kabataan logo',
+        description: 'Klinika ng Kabataan',
       },
       {
         logo: require('~/assets/images/customers/mdr-logo.png'),
         width: '100px',
         alt: 'mdr logo',
+        description: 'MDR OB-GYN Clinic',
       },
       {
         logo: require('~/assets/images/customers/medicard-logo.png'),
         width: '100px',
         alt: 'medicard logo',
+        description: 'MediCard',
       },
       {
         logo: require('~/assets/images/customers/neohealth-logo.png'),
         width: '75px',
         alt: 'neohealth logo',
+        description: 'neoHEALTH',
       },
       {
         logo: require('~/assets/images/customers/nueve-de-febrero-logo.png'),
         width: '100px',
         alt: 'nueve de febrero logo',
+        description: 'Nueve de Febrero',
       },
       // {
       //   logo: require('~/assets/images/customers/premiere-logo.png'),
@@ -223,16 +242,19 @@ export default {
         logo: require('~/assets/images/customers/skin-101-logo.png'),
         width: '125px',
         alt: 'skin 101 logo',
+        description: 'Skin 101',
       },
       {
         logo: require('~/assets/images/customers/tolosa-logo.png'),
         width: '75px',
         alt: 'tolosa logo',
+        description: 'Municipality of Tolosa',
       },
       {
         logo: require('~/assets/images/customers/unihealth-logo.png'),
         width: '75px',
         alt: 'unihealth logo',
+        description: 'Unihealth',
       },
     ];
     return {
