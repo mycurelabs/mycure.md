@@ -8,14 +8,16 @@
         generic-panel
           v-col(cols="12").text-center.text-container
             v-row(justify="center" :class="{'wide-margin-top': $isWideScreen}").mb-5
-              v-col(cols="12" md="10" xl="10")
-                h2.mb-5 Trusted by innovative health facilities and organizations
+              v-col(cols="12" md="12" xl="10")
+                v-row(align="center" justify="center")
+                  h2.mb-5 Trusted by innovative health facilities and organizations
                 v-row(align="center" justify="center")
                   template(v-for="customer in customers")
-                    v-col.col-xs-12.col-md-4
+                    v-col.mx-auto.col-xs-3.col-md-2
                       img(
                         :width="customer.width"
                         :src="customer.logo"
+                        :alt="customer.alt"
                       ).customer-logo
     //- 2nd panel
     lazy-hydrate(when-visible)
@@ -163,61 +165,75 @@ export default {
     this.descriptionClasses = ['mc-b2', 'font-open-sans', 'font-gray'];
     this.customers = [
       {
-        logo: require('~/assets/images/customers/medicard-logo.jpg'),
-        width: '200px',
+        logo: require('~/assets/images/customers/accutrust-logo.png'),
+        width: '75px',
+        alt: 'accutrust logo',
       },
       {
+        logo: require('~/assets/images/customers/better-families-logo.png'),
+        width: '75px',
+        alt: 'better families logo',
+      },
+      {
+        logo: require('~/assets/images/customers/duya-med-logo.png'),
+        width: '75px',
+        alt: 'duya medical logo',
+      },
+      {
+        logo: require('~/assets/images/customers/healthquest-logo.png'),
+        width: '75px',
+        alt: 'healthquest logo',
+      },
+      {
+        logo: require('~/assets/images/customers/klinika-ng-kabataan-logo.png'),
+        width: '75px',
+        alt: 'klinika ng kabataan logo',
+      },
+      {
+        logo: require('~/assets/images/customers/mdr-logo.png'),
+        width: '100px',
+        alt: 'mdr logo',
+      },
+      {
+        logo: require('~/assets/images/customers/medicard-logo.png'),
+        width: '100px',
+        alt: 'medicard logo',
+      },
+      {
+        logo: require('~/assets/images/customers/neohealth-logo.png'),
+        width: '75px',
+        alt: 'neohealth logo',
+      },
+      {
+        logo: require('~/assets/images/customers/nueve-de-febrero-logo.png'),
+        width: '100px',
+        alt: 'nueve de febrero logo',
+      },
+      // {
+      //   logo: require('~/assets/images/customers/premiere-logo.png'),
+      //   width: '75px',
+      //   alt: 'premiere logo',
+      // },
+      // {
+      //   logo: require('~/assets/images/customers/primecare-logo.png'),
+      //   width: '100px',
+      //   alt: 'primecare logo',
+      // },
+      {
         logo: require('~/assets/images/customers/skin-101-logo.png'),
-        width: '200px',
+        width: '125px',
+        alt: 'skin 101 logo',
+      },
+      {
+        logo: require('~/assets/images/customers/tolosa-logo.png'),
+        width: '75px',
+        alt: 'tolosa logo',
       },
       {
         logo: require('~/assets/images/customers/unihealth-logo.png'),
-        width: '170px',
+        width: '75px',
+        alt: 'unihealth logo',
       },
-      // {
-      //   logo: require('~/assets/images/customers/st-lukes-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/vitacare-logo.png'),
-      //   width: '200px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/better-familites-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/healthquest-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/klinika-ng-kabataan-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/mdr-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/nueve-de-febrero-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/tolosa-logo.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/unnamed2.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/unnamed3.png'),
-      //   width: '150px',
-      // },
-      // {
-      //   logo: require('~/assets/images/customers/unnamed4.png'),
-      //   width: '150px',
-      // },
     ];
     return {
       loading: true,
@@ -277,6 +293,9 @@ export default {
   margin-bottom: 250px;
 }
 .customer-logo {
+  filter: grayscale(100%);
+}
+.customer-logo:hover {
   filter: grayscale(0%);
 }
 </style>
