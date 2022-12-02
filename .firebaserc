@@ -3,8 +3,7 @@
     "mc-v4-stg": {
       "hosting": {
         "staging": [
-          "staging-web-main",
-          "mc-v4-stg"
+          "staging-web-main"
         ]
       }
     }
