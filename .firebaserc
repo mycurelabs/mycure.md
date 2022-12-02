@@ -14,5 +14,8 @@
         ]
       }
     }
+  },
+  "projects": {
+    "default": "mc-v4-stg"
   }
 }
