@@ -1,16 +1,10 @@
 {
   "targets": {
-    "mycure-ab311": {
-      "hosting": {
-        "prod": [
-          "mycure-ab311"
-        ]
-      }
-    },
     "mc-v4-stg": {
       "hosting": {
         "staging": [
-          "staging-web-main"
+          "staging-web-main",
+          "mc-v4-stg"
         ]
       }
     }
