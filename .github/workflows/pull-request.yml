@@ -64,10 +64,12 @@ jobs:
       - name: Build assets
         run: yarn build
       - name: Deploy to firebase hosting as preview
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_V4_STG }}"
+          # repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          # firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_V4_STG }}"
           projectId: staging-main-web
           expires: 30d
           channelId: wbmnstg
