@@ -1,0 +1,73 @@
+name: Build and Deploy/Release
+
+on:
+  # NOTE: needed in order to run workflow even on conflicts
+  push:
+  pull_request:
+    branches:
+      - master
+      - environment/*
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - '.github/workflows/pull-request.yaml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: contains(toJson(github.event.commits), '[skip ci]') == false
+    name: Build Assets
+    runs-on: ubuntu-latest
+    env:
+      # App environment. Either "development" or "production"
+      ENV: development
+      # API URL
+      API_URL: https://api.staging.mycure.md
+      # Web main URL
+      WEB_MAIN_URL: https://staging-main-web.web.app
+      # Accounts URL
+      SIGNIN_URL: https://staging-web-accounts.web.app
+      # CMS URL BASE
+      CMS_URL_BASE: https://staging-web-cms.web.app
+      # CMS URL (Note: add /cms in the end)
+      CMS_URL: https://staging-web-cms.web.app/cms
+      # IP Stack
+      IPSTACK_API: https://api.ipstack.com
+      IPSTACK_API_KEYL: defb4871448fb82868ca1fb85fd8d4fa
+      # Stripe publishable key
+      STRIPE_PK: pk_test_4KxfXagwbeSSqgMX94nptHcJ
+      STRIPE_CHECKOUT_SUCCESS_URL: https://staging-main-web.web.app/payment/success/
+      STRIPE_CHECKOUT_CANCEL_URL: https://staging-main-web.web.app/payment/error/
+      # Google analytics id
+      GA_ID: UA-78838129-8
+      # Px Portal URL no '/' at the end
+      PX_PORTAL_URL: https://staging-pxp.web.app
+      AMPLITUDE_API_KEY: 7308dc05a1c6880056d3e2ebcb7bdb71
+      # Crisp
+      CRISP_WEBSITE_ID: 8ec0faa8-cc7d-4aed-8ffa-e4816dff000b
+      # GOOGLE MAPS
+      GMAPS_GEOCODING_API_KEY: AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Setup Nodejs and Yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: yarn install --prefer-offline --frozen-lockfile
+      - name: Build assets
+        run: yarn build
+      - name: Deploy to firebase hosting as preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_V4_STG }}"
+          projectId: staging-main-web
+          expires: 30d
+          channelId: wbmnstg
