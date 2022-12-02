@@ -1,0 +1,64 @@
+name: Deploy:Staging
+
+on:
+  push:
+    branches:
+      - environment/staging
+
+jobs:
+  deploy:
+    name: Deploy to staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - name: Install Yarn
+        run: npm install yarn@latest -g
+      - name: Install Firebase Tools
+        run: npm install firebase-tools -g
+      - name: Install dependencies
+        run: yarn
+      - name: Run build
+        env:
+          # App environment. Either "development" or "production"
+          ENV: development
+          # API URL
+          API_URL: https://api.staging.mycure.md
+          # Web main URL
+          WEB_MAIN_URL: https://staging-main-web.web.app
+          # Accounts URL
+          SIGNIN_URL: https://staging-web-accounts.web.app
+          # CMS URL BASE
+          CMS_URL_BASE: https://staging-web-cms.web.app
+          # CMS URL (Note: add /cms in the end)
+          CMS_URL: https://staging-web-cms.web.app/cms
+          # IP Stack
+          IPSTACK_API: https://api.ipstack.com
+          IPSTACK_API_KEYL: defb4871448fb82868ca1fb85fd8d4fa
+          # Stripe publishable key
+          STRIPE_PK: pk_test_4KxfXagwbeSSqgMX94nptHcJ
+          STRIPE_CHECKOUT_SUCCESS_URL: https://staging-main-web.web.app/payment/success/
+          STRIPE_CHECKOUT_CANCEL_URL: https://staging-main-web.web.app/payment/error/
+          # Google analytics id
+          GA_ID: UA-78838129-8
+          # Px Portal URL no '/' at the end
+          PX_PORTAL_URL: https://staging-pxp.web.app
+          AMPLITUDE_API_KEY: 7308dc05a1c6880056d3e2ebcb7bdb71
+          # Crisp
+          CRISP_WEBSITE_ID: 8ec0faa8-cc7d-4aed-8ffa-e4816dff000b
+          # GOOGLE MAPS
+          GMAPS_GEOCODING_API_KEY: AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g
+        run: yarn generate
+      - name: Run deploy
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          firebase use mc-v4-stg
+          firebase target:clear hosting staging
+          firebase target:apply hosting staging staging-main-web
+          firebase deploy --only hosting:staging -P mc-v4-stg
