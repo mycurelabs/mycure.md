@@ -52,9 +52,6 @@ jobs:
           GMAPS_GEOCODING_API_KEY: AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g
         run: yarn generate
       - name: Run deploy
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
