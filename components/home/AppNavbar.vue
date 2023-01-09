@@ -141,7 +141,7 @@
 import { mdiChevronDown, mdiClose, mdiMenu } from '@mdi/js';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
-import inPh from '~/utils/in-ph';
+// import inPh from '~/utils/in-ph';
 export default {
   components: {
     GenericPanel,
@@ -202,11 +202,11 @@ export default {
       mdiMenu,
     };
   },
-  async created () {
-    // fetch packages
-    this.inPh = await inPh();
-    this.loading = false;
-  },
+  // async mounted () {
+  //   // fetch packages
+  //   this.inPh = await inPh();
+  //   this.loading = false;
+  // },
   methods: {
     onNavClick (nav) {
       if (!nav.route) return;

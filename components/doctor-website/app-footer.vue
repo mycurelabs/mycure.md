@@ -164,7 +164,7 @@ export default {
   },
   methods: {
     toggleChat () {
-      window.$crisp.push(['do', 'chat:toggle']);
+      window.Intercom('show');
     },
   },
 };

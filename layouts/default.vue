@@ -32,9 +32,9 @@ export default {
   created () {
     this.$vuetify.theme.dark = false;
   },
-  mounted () {
-    window.$crisp.push(['do', 'chat:show']);
-  },
+  // mounted () {
+  //   window.Intercom('show');
+  // },
 };
 </script>
 
