@@ -263,8 +263,8 @@ export default {
     },
     toggleChat () {
       const message = 'Hi, I am having an issue with my OTP number.';
-      window.$crisp.push(['do', 'chat:toggle']);
-      window.$crisp.push(['do', 'message:send', ['text', message]]);
+      window.Intercom('show');
+      window.Intercom('sendMessage', message);
     },
     onDelete (digit) {
       if (process.browser) {

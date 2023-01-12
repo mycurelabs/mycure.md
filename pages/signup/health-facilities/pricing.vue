@@ -467,8 +467,8 @@ export default {
     },
     sendCrispMessage () {
       const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
-      window.$crisp.push(['do', 'chat:toggle']);
-      window.$crisp.push(['do', 'message:send', ['text', message]]);
+      window.Intercom('show');
+      window.Intercom('sendMessage', message);
     },
     confirmEmailVerification () {
       process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
