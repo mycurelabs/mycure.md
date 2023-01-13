@@ -12,12 +12,24 @@
                 v-row(justify="center").mt-5
                   v-col(cols="12" xl="11")
                     p.mc-b1.mb-8.font-open-sans.white--text MYCURE is a modern practice management system specifically custom-built for multi-specialty clinics, diagnostic and health centers. Enjoy enterprise-grade features that even works online and offline - all at a fraction of the cost.
-                signup-button(
-                  depressed
+                v-btn(
+                  href="http://bit.ly/3GqLRrh"
                   class="rounded-md"
+                  color="white"
+                  target="_blank"
+                  depressed
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
+                  :class="{ 'mr-1': !$isMobile, 'mb-2': $isMobile }"
+                  @click="$intercomTrackEvent('contact-sales')"
+                ).text-none Contact Sales
+                signup-button(
+                  class="rounded-md"
                   color="success"
+                  depressed
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  :class="{ 'ml-1': !$isMobile }"
                 ).text-none
                   span.mc-btn1.white--text Get Started
             v-row(justify="center" v-if="!loading")

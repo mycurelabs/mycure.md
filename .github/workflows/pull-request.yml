@@ -2,10 +2,10 @@ name: Run ESLint
 
 on: 
   pull_request:
-    branches: [master, environment/staging]
+    branches: [main, master, environment/staging]
 
 jobs:
-  deploy_to_live:
+  deploy_to_staging:
     name: Deploy staging hosting
     runs-on: ubuntu-latest
     strategy:
