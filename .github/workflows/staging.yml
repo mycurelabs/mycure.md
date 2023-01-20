@@ -52,7 +52,7 @@ jobs:
           CRISP_WEBSITE_ID: 8ec0faa8-cc7d-4aed-8ffa-e4816dff000b
           # GOOGLE MAPS
           GMAPS_GEOCODING_API_KEY: AIzaSyCpEuK4K_sSRKLy_wLqymgQPT8aJpsns0g
-          SIGNUP_URL: https://staging-main-web.web.app
+          SIGNUP_URL: https://unified-account-staging.web.app
         run: yarn generate
       - name: Run deploy
         env:
