@@ -51,7 +51,7 @@
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-row(justify="center")
-              v-col(cols="12" md="10" :class="{'text-center': !$isMobile}").mb-4
+              v-col(cols="12" md="12" :class="{'text-center': !$isMobile}").mb-4
                 h2.mc-h2.mb-6 Data privacy and security is our #1 priority.
                 p.mc-b2 MYCURE is built with data security at its core. We strive to ensure that the medical records created through our clinic management system pass international data privacy and security standards for you and your patients’ protection.
                 features(
