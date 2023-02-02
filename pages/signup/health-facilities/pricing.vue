@@ -34,7 +34,6 @@
               color="primary"
             )
             strong.mc-h3.font-open-sans.ml-5 Annually
-          pre {{selectedBundle}}
       v-row(justify="center" align="center" :class="{'packages-negative-margins': !$isMobile}")
         v-col(cols="12" md="10")
           v-row(justify="center")
