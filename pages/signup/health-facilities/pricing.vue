@@ -295,10 +295,12 @@ export default {
         const bundle = this.preBundle || this.selectedBundle;
         const { annualMonthlyPrice, monthlyPrice } = bundle || {};
         const currentBundleIsPaid = annualMonthlyPrice > 0 || monthlyPrice > 0;
+
         if (bundle.requireContact) {
           this.sendCrispMessage();
           return;
         }
+
         // Build payload, omit non-allowed values. These are mostly route query values that were stored
         const omitKeys = [
           'trial',
@@ -406,9 +408,10 @@ export default {
         } else {
           await this.sendOtp();
           this.$cookies.removeAll();
-          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+          this.$router.push({ name: 'signup-health-facilities-otp-verification' });
         }
       } catch (e) {
+        console.error(e);
         const bundle = this.preBundle || this.selectedBundle;
         const { annualMonthlyPrice, monthlyPrice } = bundle || {};
         const currentBundleIsPaid = annualMonthlyPrice > 0 || monthlyPrice > 0;
@@ -477,7 +480,6 @@ export default {
       this.loading.page = true;
       const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
       await resendVerificationCode({ token: accessToken });
-      this.clearLocalStorage();
     },
     clearLocalStorage () {
       window.localStorage.removeItem('signup:subscription-id');

@@ -38,7 +38,7 @@
                 :value="verificationError"
                 type="error"
                 dismissible
-              ) Incorrect verification code
+              ).mt-5 Incorrect verification code
               div.text-center.font-open-sans.mt-5
                 span Didn't receive the OTP?
                 v-btn(
@@ -231,6 +231,7 @@ export default {
           event_label: 'signup-step-3-otp-success',
         });
         window.location = `${process.env.CMS_URL}?token=${accessToken}`;
+        this.clearLocalStorage();
       } catch (error) {
         console.error(error);
         this.snackBarModel = {
@@ -306,6 +307,12 @@ export default {
       if (process.browser) {
         document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
       }
+    },
+    clearLocalStorage () {
+      window.localStorage.removeItem('signup:subscription-id');
+      window.localStorage.removeItem('signup:stripe:session-id');
+      window.localStorage.removeItem('facility:step1:model');
+      window.localStorage.removeItem('signup:current-signin-up-user');
     },
   },
 };
