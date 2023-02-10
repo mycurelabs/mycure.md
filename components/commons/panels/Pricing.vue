@@ -18,6 +18,7 @@
                   color="info"
                 )
                 strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+                v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save 8%
           //- v-row(justify="center" v-if="hasTrialOption")
           //-   v-col(cols="12").text-center.mb-10.mt-n5
           //-     strong(:class="descriptionClasses").font-open-sans.mb-5 or
