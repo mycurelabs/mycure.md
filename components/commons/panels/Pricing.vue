@@ -11,7 +11,6 @@
           v-row(justify="center")
             v-col(cols="12" md="6" xl="5").text-center.mb-10
               div.d-flex.align-center.justify-center
-                //- strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
                 v-switch(
                   v-model="switchModel"
                   inset
@@ -19,18 +18,7 @@
                 )
                 strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
                 v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save up to {{ savingsPercentage }}% off
-          //- v-row(justify="center" v-if="hasTrialOption")
-          //-   v-col(cols="12").text-center.mb-10.mt-n5
-          //-     strong(:class="descriptionClasses").font-open-sans.mb-5 or
-          //-     br
-          //-     signup-button(
-          //-       depressed
-          //-       rounded
-          //-       event-category="Pricing"
-          //-       color="primary"
-          //-       :event-label="`click-pricing-${type}-trial`"
-          //-       :queryOps="{ trial: true }"
-          //-     ).mc-button-set-1.font-weight-semibold.text-none Start a Trial
+
           v-row(v-if="loading" justify="center" dense).text-center
             v-col(cols="12")
               v-progress-circular(
@@ -173,8 +161,6 @@ export default {
     },
   },
   async created () {
-    // fetch packages
-    // await this.fetchPackages(this.type);
     this.canUseWebp = await canUseWebp();
   },
   methods: {
