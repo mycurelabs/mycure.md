@@ -11,14 +11,14 @@
           v-row(justify="center")
             v-col(cols="12" md="6" xl="5").text-center.mb-10
               div.d-flex.align-center.justify-center
-                strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+                //- strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
                 v-switch(
                   v-model="switchModel"
                   inset
                   color="info"
                 )
                 strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-                v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save 8%
+                v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save up to {{ savingsPercentage }}% off
           //- v-row(justify="center" v-if="hasTrialOption")
           //-   v-col(cols="12").text-center.mb-10.mt-n5
           //-     strong(:class="descriptionClasses").font-open-sans.mb-5 or
@@ -75,11 +75,14 @@
 </template>
 
 <script>
+
+import _ from 'lodash';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PricingCard from '~/components/commons/PricingCard';
 import SignupButton from '~/components/commons/SignupButton';
 import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   components: {
     GenericPanel,
@@ -138,6 +141,17 @@ export default {
     this.pricingPackages = await getSubscriptionPackagesPricing(this.type) || [];
   },
   computed: {
+    savingsPercentage () {
+      const yearly = _.mean(this.pricingPackages.map((m) => {
+        return (m?.monthlyPrice * 12) || 0;
+      }));
+      const monthly = _.mean(this.pricingPackages.map((m) => {
+        return m?.annualMonthlyPrice || 0;
+      }));
+      const saveAmount = yearly - monthly;
+      const percentage = (saveAmount / yearly) * 100;
+      return Math.round(percentage);
+    },
     mobilePricingItems () {
       if (!this.pricingPackages?.length) return [];
       const packs = [...this.pricingPackages];
