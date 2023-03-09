@@ -209,9 +209,9 @@ export default {
   computed: {
     metricData () {
       return {
-        websiteVisits: this.metrics.websiteVisits || 0,
-        patients: this.metrics.patients || 0,
-        records: this.metrics.records || 0,
+        websiteVisits: this.metrics.websiteVisits > 500 ? this.metrics.websiteVisits : 0,
+        patients: this.metrics.patients > 500 ? this.metrics.patients : 0,
+        records: this.metrics.records > 500 ? this.metrics.records : 0,
         // - hearts: this.metrics.hearts || 0,
       };
     },
