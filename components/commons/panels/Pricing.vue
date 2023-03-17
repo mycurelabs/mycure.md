@@ -127,6 +127,7 @@ export default {
   },
   async fetch () {
     this.pricingPackages = await getSubscriptionPackagesPricing(this.type) || [];
+    console.warn('pricingPackages1', this.pricingPackages);
   },
   computed: {
     savingsPercentage () {

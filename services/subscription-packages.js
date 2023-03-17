@@ -151,7 +151,6 @@ const mapPackageInclusions = (plan, organizationType) => {
       valid: packageValue === 'platinum',
     });
   }
-
   return inclusions;
 };
 
@@ -160,10 +159,23 @@ const getMonthlyPrice = (pack, organizationType) => {
   return pack.plan?.amount || 0;
 };
 
+const getMonthlyPriceSlashed = (pack, organizationType) => {
+  if (!pack) return 0;
+  return pack.plan?.amountSlashed || 0;
+};
+
 const getAnnualMonthlyPrice = (pack, organizationType) => {
+  console.warn('slashed2', pack);
   if (!pack) return 0;
   // return Math.ceil((pack.plan?.amount || 0) / 12);
   return pack.plan?.amount || 0;
+};
+
+const getAnnualMonthlyPriceSlashed = (pack, organizationType) => {
+  console.warn('slashed', pack);
+  if (!pack) return 0;
+  // return Math.ceil((pack.plan?.amount || 0) / 12);
+  return pack.plan?.amountSlashed || 0;
 };
 
 const isRecommended = (type, packageValue) => {
@@ -237,6 +249,7 @@ export const getSubscriptionPackages = async ({ types }) => {
     ...country.country_code === 'US' && { tags: { $in: ['us'] } },
     ...country.country_code !== 'US' && { tags: { $nin: ['us'] } },
   });
+  console.error(items);
   return items;
 };
 
@@ -252,6 +265,7 @@ export const getSubscriptionPackages = async ({ types }) => {
 export const getSubscriptionPackagesPricing = async (type, { isBooking = false } = {}) => {
   // This is all the packages: both month and year
   const packages = await getSubscriptionPackages({ types: [type] });
+  console.log('packages', packages);
   // This is just the monthly packages
   const plans = packages.filter(pack => pack.planInterval === 'month') || [];
 
@@ -274,7 +288,9 @@ export const getSubscriptionPackagesPricing = async (type, { isBooking = false }
       isRecommended: isRecommended(type, packageValue),
       currency,
       monthlyPrice: getMonthlyPrice(pack, type),
+      monthlyPriceSlashed: getMonthlyPriceSlashed(pack, type),
       annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
+      annualMonthlyPriceSlashed: getAnnualMonthlyPriceSlashed(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
       btnText: 'Get Started',
       // Trial days

@@ -20,21 +20,41 @@
           ).font-weight-black.title--text
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
-                span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                span(:class="priceClass") {{ kFormatter(bundle.annualMonthlyPrice) }}
-                br
-                span.slash &nbsp;/
-                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
-                span.slash /
-                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") year
+                div(
+                  style = "display: flex; flex-direction: column;"
+                )
+                  div(
+                    style = "display: flex; justify-content: center ;"
+                  )
+                    span(:class="{'mc-b4': !minimizePriceFont, 'font-14': minimizePriceFont}").savings.font-open-sans {{ bundle.currency }} {{  kFormatter(bundle.annualMonthlyPriceSlashed) }}
+                  div(
+                    style = "display: flex; justify-content: center ;"
+                  )
+                    span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                    span(:class="priceClass") {{ kFormatter(bundle.annualMonthlyPrice) }}
+                  div(
+                    style = "display: flex; justify-content: center ;"
+                  )
+                    span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") /clinic/year
+
               v-tab-item(value="month" transition="slide-y-transition").title--text
-                span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                span(:class="priceClass") {{  kFormatter(bundle.monthlyPrice) }}
-                br
-                span.slash &nbsp;/
-                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
-                span.slash /
-                span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") month
+                div(
+                  style = "display: flex; flex-direction: column;"
+                )
+                  div(
+                    style = "display: flex; justify-content: center ;"
+                  )
+                    span(:class="{'mc-b4': !minimizePriceFont, 'font-14': minimizePriceFont}").savings.font-open-sans {{ bundle.currency }} {{  kFormatter(bundle.monthlyPriceSlashed) }}
+                  div(
+                    style = "display: flex; justify-content: center ;"
+                  )
+                    span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                    span(:class="priceClass") {{  kFormatter(bundle.monthlyPrice) }}
+                  div(
+                    style = "display: flex; justify-content: center ;"
+                  )
+                    span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") /clinic/month
+
             span(v-else :class="priceClassText") FREE
           p(v-else :class="{'my-7': !$isWideScreen}")
             strong(:class="priceClassText").title--text Contact Us
@@ -167,6 +187,7 @@ export default {
       return Math.round(percentage);
     },
     mainInclusions () {
+      console.log(this.bundle?.title, this.bundle?.facilityType, this.bundle);
       return this.bundle?.inclusions?.slice(0, 3) || [];
     },
     additionalInclusions () {
@@ -299,11 +320,6 @@ export default {
 
 .font-60 {
   font-size: 60px;
-}
-
-.slash {
-  font-size: 20px !important;
-  margin-top: 10px;
 }
 
 .savings {
