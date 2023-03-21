@@ -7,9 +7,11 @@
             v-col(v-if="!loading" cols="12" :class="{'text-center': $isMobile}")
               v-row(align="center")
                 v-col(align="start")
-                  p(v-if="itemsTotal") Showing&nbsp;
-                    strong.secondary--text {{ itemsTotal }}&nbsp;
-                    | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}&nbsp;
+                  p(v-if="totalResultsLength") Showing&nbsp;
+                    strong.secondary--text {{ totalResultsLength }} &nbsp;
+                    | of &nbsp;
+                    strong.secondary--text {{ itemsTotal }} &nbsp;
+                    | {{ resultsName }}{{ totalResultsLength > 1 ? 's' : '' }}&nbsp;
                     span(v-if="location && locationKM") within&nbsp;
                       strong.success--text {{ locationKM }} KM
                   p(v-else) {{ location ? 'There are no results near you.' : 'There are no results available.' }}
@@ -27,6 +29,7 @@
                   :key="key"
                   cols="12"
                   md="4"
+                  style="margin-bottom: 30px"
                 )
                   doc-search-card(
                     v-if="type === 'account'"
@@ -38,7 +41,10 @@
                     :organization="item"
                     :read-only="readOnly"
                   )
-                  div(v-if="item.highlight").pt-3
+                  //- TODO: reimplement once
+                  //- the search algo and highlighting
+                  //- has been fixed
+                  //- div(v-if="item.highlight").pt-3
                     p.grey--text Found in:&nbsp;
                       mark
                         | {{ item.highlight.matched_tokens[0] }}
@@ -138,6 +144,9 @@ export default {
     },
     itemsTotal () {
       return this.pagination.itemsTotal || 0;
+    },
+    totalResultsLength () {
+      return this.items?.length || 0;
     },
   },
 };
