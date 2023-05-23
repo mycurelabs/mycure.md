@@ -1,106 +1,83 @@
 <template>
-  <!-- <generic-panel>
-</generic-panel> -->
-  <header>
-    <nav class="bg-white">
-      <div
-        class="max-w-7xl px-5 flex flex-wrap items-center justify-between mx-auto p-4"
-      >
-        <div class="flex justify-between md:order-2 w-[100%] md:w-auto">
-          <nuxt-link
-            type="button"
-            class="hidden md:inline text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            href="https://calendly.com/parmazipapp/demo?month=2023-05"
-            target="_blank"
-          >
-            Book a Demo
-          </nuxt-link>
-          <img
-            src="../../assets/images/parmazip-logo.png"
-            class="h-8 mr-3 md:hidden"
-            alt="Parmazip Logo"
-          />
-          <button
-            data-collapse-toggle="navbar-cta"
-            type="button"
-            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-cta"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Open main menu</span>
-            <svg
-              class="w-6 h-6"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-        </div>
-
-        <div
-          class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-          id="navbar-cta"
-        >
-          <a href="/" class="hidden md:flex items-center mr-4">
-            <img
-              src="../../assets/images/parmazip-logo.png"
-              class="h-8 mr-3"
-              alt="Parmazip Logo"
-            />
-          </a>
-
-          <ul
-            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
-          >
-            <li>
-              <nuxt-link
-                href="/#how-it-works"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0"
-                >How it Works</nuxt-link
-              >
-            </li>
-            <li>
-              <nuxt-link
-                href="/#bir"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0"
-                >BIR Accreditation</nuxt-link
-              >
-            </li>
-            <li class="md:hidden mt-4">
-              <nuxt-link
-                type="button"
-                class="block md:inline text-center text-white bg-primary focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-20 py-2.5 mr-2 mb-2 focus:outline-none"
-                href="https://calendly.com/parmazipapp/demo?month=2023-05"
-                target="_blank"
-              >
-                Book a Demo
-              </nuxt-link>
-            </li>
-          </ul>
-        </div>
+<header class="border-b border-gray-100">
+  <div class="navbar">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </label>
+        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-50 rounded-box w-52">
+          <li><a>Home</a></li>
+          <li><a>Doctors</a></li>
+          <li tabindex="0">
+            <a class="justify-between">
+              Clinics
+              <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+            </a>
+            <ul class="p-2 shadow bg-slate-50 rounded-box">
+              <li><a>Outpatient Clinics</a></li>
+              <li><a>Hospital OPD</a></li>
+              <li><a>Skin Clinics</a></li>
+              <li><a>Dental Clinics</a></li>
+              <li><a>Corporate Clinics</a></li>
+            </ul>
+          </li>
+          <li tabindex="0">
+            <a class="justify-between">
+              Diagnostics
+              <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+            </a>
+            <ul class="p-2 shadow bg-slate-50 rounded-box">
+              <li><a>Diagnostic Centers</a></li>
+              <li><a>Mobile Labs</a></li>
+            </ul>
+          </li>
+          <li><a>Booking</a></li>
+        </ul>
       </div>
-    </nav>
-  </header>
-</template>
+      <img width="160" src="../../assets/images/mycure-logo.png" alt="">
+    </div>
 
-<script>
-// import GenericPanel from './GenericPanel';
-import { useRuntimeConfig } from '#imports';
-export default {
-  components: {
-    // GenericPanel,
-  },
-  setup () {
-    const config = useRuntimeConfig();
-    const signupURL = config.public.signupURL;
-    return { signupURL };
-  },
-};
-</script>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a>Home</a></li>
+        <li><a>Doctors</a></li>
+        <li tabindex="0">
+          <a>
+            Clinics
+            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+          </a>
+          <ul class="p-2 shadow bg-slate-50 rounded-box">
+            <li><a>Outpatient Clinics</a></li>
+            <li><a>Hospital OPD</a></li>
+            <li><a>Skin Clinics</a></li>
+            <li><a>Dental Clinics</a></li>
+            <li><a>Corporate Clinics</a></li>
+          </ul>
+        </li>
+        <li tabindex="0">
+          <a>
+            Diagnostics
+            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+          </a>
+          <ul class="p-2 shadow bg-slate-50 rounded-box">
+            <li><a>Diagnostic Centers</a></li>
+            <li><a>Mobile Labs</a></li>
+          </ul>
+        </li>
+        <li><a>Booking</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-end">
+      <a class="btn btn-outline btn-primary mr-3">
+        Log In
+      </a>
+      <a class="btn btn-primary">
+        Try for Free
+        <i class="las la-arrow-right text-2xl"></i>
+      </a>
+    </div>
+  </div>
+</header>
+</template>
