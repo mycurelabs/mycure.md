@@ -1,54 +1,31 @@
 /* Custom fonts here */
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Merriweather:ital@0;1&family=Montserrat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   background-color: white;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+  font-family: 'Inter', sans-serif;
   @apply text-gray-900;
 }
 
-.title {
-  @apply text-heading text-4xl font-primary font-bold;
-}
-
-/* .supertitle {
-  @apply text-gray-600 text-3xl font-primary;
-}
-
-.title {
-  @apply text-3xl md:text-6xl font-medium;
-}
-
-.subtitle {
-  @apply text-lg md:text-2xl font-secondary text-gray-500;
-}
-
-.hippocrades-logo {
-  font-family: 'Andromeda';
-}
-
 .btn {
-  @apply text-white rounded-md h-14 py-4 px-16 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition ease-in-out hover:scale-105;
+  @apply normal-case;
 }
 
-.btn-narrow {
-  @apply px-8;
+.title-hero {
+  @apply text-7xl text-gray-900;
 }
 
-.btn-sm {
-  @apply h-10;
+.subtitle-hero {
+  @apply text-3xl text-gray-500;
 }
 
-.no-auto-margin {
-  @apply mx-0 sm:mx-auto;
-} */
+.title-panel {
+  @apply text-6xl text-gray-900;
+}
+
+.subtitle-panel {
+  @apply text-3xl text-gray-500;
+}
