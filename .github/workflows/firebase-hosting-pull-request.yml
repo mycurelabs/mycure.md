@@ -9,17 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Yarn
-        run: npm install yarn@latest -g
-      - name: Install Dependencies
-        run: yarn
-      - name: Run Generate
-        run: yarn generate
-        env:
-          API_URL: https://api.staging.mycure.md
-          SIGNUP_LINK: https://myaccount.parmazip.com
+      - run: yarn generate
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PARMAZIP_PH }}'
-          projectId: parmazip-ph
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_V4_PROD }}'
+          channelId: staging
+          projectId: mc-v4-prod
+          expires: 30d
