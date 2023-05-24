@@ -7,19 +7,24 @@
 // eslint-disable-next-line no-undef
 export default defineNuxtConfig({
   preset: 'node-server',
+
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
     '@nuxt/image-edge',
     'nuxt-gtag',
   ],
+
   nitro: {
     preset: 'firebase',
   },
+
   gtag: {
     id: 'G-V013DVEVDF',
   },
+
   srcDir: './src',
+
   runtimeConfig: {
     public: {
       apiURL: process.env.API_URL,
@@ -28,6 +33,7 @@ export default defineNuxtConfig({
       ipStackAPIURL: process.env.IPSTACK_API_URL,
     },
   },
+
   plugins: [
     {
       src: '@/plugins/aos',
@@ -40,6 +46,7 @@ export default defineNuxtConfig({
     //   // mode: 'client',
     // },
   ],
+
   app: {
     head: {
       link: [
@@ -87,6 +94,7 @@ export default defineNuxtConfig({
       // ],
     },
   },
+
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config',
@@ -96,14 +104,17 @@ export default defineNuxtConfig({
     injectPosition: 'first',
     viewer: true,
   },
+
   headlessui: {
     prefix: 'Headless',
   },
+
   build: {
     extend (config, ctx) {
       config.resolve.symlinks = false;
     },
   },
+
   image: {
     dir: 'assets/images',
     screens: {
@@ -116,5 +127,9 @@ export default defineNuxtConfig({
       '2xl': 1536,
       '3xl': 1920,
     },
+  },
+
+  devtools: {
+    enabled: true,
   },
 });
