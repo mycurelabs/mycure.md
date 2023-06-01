@@ -1,5 +1,5 @@
 <template>
-  <generic-panel class="text-center mt-32 mb-20">
+  <generic-panel class="text-center">
     <div class="flex flex-col text-center max-w-3xl mx-auto">
       <h1 data-aos="fade-down" class="title-hero mb-6">Helping Your Clinic Succeed Faster</h1>
       <h2 data-aos="fade-down" data-aos-delay="200" class="subtitle-hero mb-6">Affordable enterprise-grade health solutions for hospitals, clinics, pharmacies, and HMOs.</h2>
@@ -9,7 +9,7 @@
     <img data-aos="fade-up" src="../assets/images/screenshot-emr.png" alt="MYCURE EMR Screenshot">
   </generic-panel>
 
-  <generic-panel class="mb-32 py-12">
+  <generic-panel>
     <div class="grid grid-cols-6">
       <h1 data-aos="fade-down" data-aos-delay="100">Medicard</h1>
       <h1 data-aos="fade-down" data-aos-delay="200">Skin 101</h1>
@@ -20,12 +20,12 @@
     </div>
   </generic-panel>
 
-  <generic-panel class="mb-24">
+  <generic-panel>
     <h1 data-aos="fade-down" class="title-panel mb-6 font-medium">Streamline Efficiency. <br> Eliminate Clinic Problems.</h1>
-    <h2 data-aos="fade-down" data-aos-delay="200" class="subtitle-panel mb-6">As a healthcare provider, your entire day is committed to helping people. But so much of your time is lost to disorganization and inefficiency when you’re using the wrong electronic health records software.</h2>
+    <h2 data-aos="fade-down" data-aos-delay="200" class="subtitle-panel">As a healthcare provider, your entire day is committed to helping people. But so much of your time is lost to disorganization and inefficiency when you’re using the wrong electronic health records software.</h2>
   </generic-panel>
 
-  <generic-panel class="mb-32">
+  <generic-panel>
     <div class="grid grid-cols-2 gap-16 mb-16">
       <template v-for="(feature, index) in featuresData" :key="index">
         <div :data-aos="index % 2 === 0 ? 'fade-right' : 'fade-left'" class="flex flex-col">
@@ -36,8 +36,8 @@
     </div>
   </generic-panel>
 
-  <div class="py-32 mb-32 panel-blue-gradient">
-    <generic-panel class="mb-24">
+  <div class="panel-highlight-gradient pb-24">
+    <generic-panel>
       <h1 data-aos="fade-down" class="text-6xl font-medium text-white mb-5">Join the Next Generation of Healthcare IT Solutions: MYCURE</h1>
       <p data-aos="fade-down" class="text-3xl text-white mb-8">MYCURE's mission is to create an affordable yet effective patient records system. Featuring a variety of tools, you can customize your experience to fit the needs of your practice perfectly.</p>
       <button class="btn btn-primary">Start for Free <i class="las la-arrow-right text-2xl"></i></button>
@@ -61,7 +61,7 @@
     </div>
   </div>
 
-  <generic-panel class="mb-32">
+  <generic-panel>
     <div class="grid grid-cols-2 items-center">
       <div>
         <h1 data-aos="fade-down" class="title-panel font-medium mb-5">Internet connection won't be a problem</h1>
@@ -76,8 +76,8 @@
     </div>
   </generic-panel>
 
-  <div class="relative h-[700px] mb-32">
-    <generic-panel class="mb-32">
+  <div class="relative h-[700px]">
+    <generic-panel>
       <div class="grid grid-cols-2 items-center">
         <div>
           <img
@@ -96,7 +96,7 @@
     </generic-panel>
   </div>
 
-  <div class="bg-[#FAFDFE] py-32 mb-32">
+  <div class="bg-[#FAFDFE]">
     <generic-panel>
       <h1 class="title-panel font-medium mb-5">Comprehensive Security in your Clinic</h1>
       <p class="subtitle-panel mb-8">At MYCURE, we understand that safeguarding your patients' electronic health records is paramount. Our commitment to your patients' privacy is unwavering. Our CSI guarantee ensures that your patient information is always secure.</p>
@@ -115,7 +115,7 @@
     </generic-panel>
   </div>
 
-  <generic-panel class="mb-32">
+  <generic-panel>
     <h1 data-aos="fade-down" class="title-panel font-medium mb-5">Trusted, Accredited, and Compliant: Discover MYCURE's Commitment to Excellence</h1>
     <p data-aos="fade-down" class="subtitle-panel mb-24">MYCURE is accredited and compliant with industry standards, ensuring that your patient data is kept secure and private at all times.</p>
     <div class="grid grid-cols-2 gap-16">
@@ -134,8 +134,8 @@
     </div>
   </generic-panel>
 
-  <div class="bg-[#FAFDFE] py-32">
-    <generic-panel class="mb-24">
+  <div class="bg-[#FAFDFE] py-24">
+    <generic-panel padding-y="none">
       <h1 data-aos="fade-down" class="title-panel font-medium mb-5">Hear from Our Satisfied Customers</h1>
       <p data-aos="fade-down" class="subtitle-panel mb-8">We are grateful to receive feedback from our clients regarding the quality of our services. Their testimonials help us improve and provide better healthcare solutions.</p>
       <a href="" class="text-primary text-3xl">We value your opinion! Share your thoughts with us <i class="las la-angle-right"></i></a>
@@ -204,10 +204,6 @@ export default {
 </script>
 
 <style scoped>
-.panel-blue-gradient {
-  background: linear-gradient(135.54deg, #03486A 4.52%, #002B4A 65.48%, #00104A 120.82%);
-}
-
 .search-card {
   background: linear-gradient(167.97deg, #004770 8.78%, rgba(0, 35, 88, 0.45) 108.57%);
 }

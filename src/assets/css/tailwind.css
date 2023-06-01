@@ -29,3 +29,7 @@ body {
 .subtitle-panel {
   @apply text-3xl text-gray-500;
 }
+
+.panel-highlight-gradient {
+  background: linear-gradient(135.54deg, #03486A 4.52%, #002B4A 65.48%, #00104A 120.82%) !important;
+}

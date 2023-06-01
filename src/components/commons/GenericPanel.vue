@@ -1,18 +1,16 @@
 <template>
-<div class="mx-auto md:max-w-7xl px-5">
+<div :class="`mx-auto md:max-w-7xl px-5 ${paddingY}`">
   <slot/>
 </div>
 </template>
 
 <script>
-import { toRef } from '#imports';
 export default {
-  setup (props) {
-    const isFullHeight = toRef(props, 'fullHeight');
-
-    return {
-      isFullHeight,
-    };
+  props: {
+    paddingY: {
+      type: String,
+      default: 'py-24',
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
 <header class="border-b border-gray-100">
-  <generic-panel>
+  <generic-panel padding-y="none">
     <div class="navbar">
       <div class="navbar-start">
         <div class="dropdown">
