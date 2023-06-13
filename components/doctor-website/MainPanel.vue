@@ -61,10 +61,7 @@
             v-col(cols="12").pt-8
               p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
           //- Analytics
-          v-col(
-            cols="12"
-            md="6"
-          )
+          v-col(cols="12" md="6")
             v-row(justify="center")
               v-col(
                 v-if="metricData[metric.value] > 500"
