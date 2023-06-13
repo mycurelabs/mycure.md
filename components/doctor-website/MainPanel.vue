@@ -61,9 +61,18 @@
             v-col(cols="12").pt-8
               p(v-if="practicingYear").mc-h7.white--text.mb-0.font-weight-light {{ `PRACTICING SINCE ${practicingYear}` }}
           //- Analytics
-          v-col(cols="12" md="6")
+          v-col(
+            cols="12"
+            md="6"
+          )
             v-row(justify="center")
-              v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
+              v-col(
+                v-if="metricData[metric.value] > 500"
+                v-for="(metric, key) in metricMappings"
+                cols="4"
+                :key="key"
+                :sm="$isWideScreen ? '2' : '3'"
+              ).text-center
                 picture-source(
                   image-file-extension=".webp"
                   :image="metric.imgIcon"
@@ -208,11 +217,12 @@ export default {
   },
   computed: {
     metricData () {
+      const metricsDisplay = {};
+      metricsDisplay.websiteVisits = this.metrics?.websiteVisits;
+      metricsDisplay.patients = this.metrics?.patients;
+      metricsDisplay.records = this.metrics?.records;
       return {
-        websiteVisits: this.metrics?.websiteVisits >= 500 ? this.metrics.websiteVisits : 0,
-        patients: this.metrics?.patients >= 500 ? this.metrics.patients : 0,
-        records: this.metrics?.records >= 500 ? this.metrics.records : 0,
-        // - hearts: this.metrics.hearts || 0,
+        ...metricsDisplay,
       };
     },
     specialtiesMapped () {
