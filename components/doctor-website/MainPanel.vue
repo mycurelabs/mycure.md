@@ -64,7 +64,7 @@
           v-col(cols="12" md="6")
             v-row(justify="center")
               v-col(
-                v-if="metricData[metric.value] > 500"
+                v-if="metricData[metric.value] >= 500"
                 v-for="(metric, key) in metricMappings"
                 cols="4"
                 :key="key"
@@ -215,9 +215,9 @@ export default {
   computed: {
     metricData () {
       const metricsDisplay = {};
-      metricsDisplay.websiteVisits = this.metrics?.websiteVisits;
-      metricsDisplay.patients = this.metrics?.patients;
-      metricsDisplay.records = this.metrics?.records;
+      metricsDisplay.websiteVisits = this.metrics?.websiteVisits || 0;
+      metricsDisplay.patients = this.metrics?.patients || 0;
+      metricsDisplay.records = this.metrics?.records || 0;
       return {
         ...metricsDisplay,
       };
