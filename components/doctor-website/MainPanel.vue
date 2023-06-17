@@ -87,7 +87,10 @@
                   br
                   span.font-12 {{ metric.title }}
           //- Consult btn
-          v-col(cols="10").text-center.justify-center
+          v-col(
+            v-if="isBookable"
+            cols="10"
+            ).text-center.justify-center
             v-btn(
               color="success"
               hover
@@ -97,7 +100,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               :disabled="!isBookable"
               @click="onBook"
-            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
+            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 Book Now
 </template>
 
 <script>
