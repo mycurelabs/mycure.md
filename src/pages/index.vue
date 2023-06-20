@@ -6,11 +6,11 @@
     </div>
     <button data-aos="fade-down" data-aos-delay="400" class="btn btn-primary mb-4">Start for Free <i class="las la-arrow-right text-2xl"></i></button>
     <p data-aos="fade-in" class="text-gray-400 mb-16">It works online and offline too!</p>
-    <img data-aos="fade-up" src="../assets/images/screenshot-emr.png" alt="MYCURE EMR Screenshot">
+    <img data-aos="fade-up" src="@/assets/images/screenshot-emr.png" alt="MYCURE EMR Screenshot">
   </generic-panel>
 
   <generic-panel>
-    <div class="grid grid-cols-6">
+    <div class="grid grid-cols-1 md:grid-cols-6">
       <h1 data-aos="fade-down" data-aos-delay="100">Medicard</h1>
       <h1 data-aos="fade-down" data-aos-delay="200">Skin 101</h1>
       <h1 data-aos="fade-down" data-aos-delay="300">Unihealth</h1>
@@ -42,23 +42,26 @@
       <p data-aos="fade-down" class="text-3xl text-white mb-8">MYCURE's mission is to create an affordable yet effective patient records system. Featuring a variety of tools, you can customize your experience to fit the needs of your practice perfectly.</p>
       <button class="btn btn-primary">Start for Free <i class="las la-arrow-right text-2xl"></i></button>
     </generic-panel>
-    <div class="carousel carousel-center px-10 space-x-5">
-      <template v-for="x in 10" :key="x">
-        <div
-          data-aos="fade-down"
-          class="carousel-item w-[250px] pb-3 pl-5"
-          :data-aos-delay="100 * x"
-        >
-          <div class="card text-white drop-shadow-sm search-card">
-            <div class="card-body">
-              <img class="w-[160px]" src="../assets/images/magnifier.png" alt="">
-              <h1 class="text-4xl">Hospital OPD</h1>
-              <p class="text-xl">Get simplified workflows, real-time reports</p>
+    <div class="overflow-x-hidden">
+      <div class="carousel carousel-center px-10 space-x-5">
+        <template v-for="x in 10" :key="x">
+          <div
+            data-aos="fade-down"
+            class="carousel-item w-[250px] pb-3 pl-5"
+            :data-aos-delay="100 * x"
+          >
+            <div class="card text-white drop-shadow-sm search-card">
+              <div class="card-body">
+                <img class="w-[160px]" src="@/assets/images/magnifier.png" alt="">
+                <h1 class="text-4xl">Hospital OPD</h1>
+                <p class="text-xl">Get simplified workflows, real-time reports</p>
+              </div>
             </div>
           </div>
-        </div>
-      </template>
+        </template>
+      </div>
     </div>
+
   </div>
 
   <generic-panel>
@@ -70,7 +73,7 @@
       </div>
       <div data-aos="fade-left">
         <video playsinline autoplay muted loop>
-          <source src="../assets/images/syncbase-workflow.mp4" type="video/mp4">
+          <source src="@/assets/images/syncbase-workflow.mp4" type="video/mp4">
         </video>
       </div>
     </div>
@@ -78,10 +81,10 @@
 
   <div class="relative h-[700px]">
     <generic-panel>
-      <div class="grid grid-cols-2 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 items-center">
         <div>
           <img
-            src="../assets/images/telehealth-screenshot.png"
+            src="@/assets/images/telehealth-screenshot.png"
             data-aos="fade-right"
             alt="MYCURE Telehealth"
             class="w-[800px] absolute left-0 top-0"
@@ -103,13 +106,13 @@
       <a href="" class="text-primary text-3xl">Read more about MYCURE CSI <i class="las la-angle-right"></i></a>
       <div class="grid grid-cols-2 gap-16 mt-24">
         <div data-aos="fade-right">
-          <img class="w-full" src="../assets/images/compliance.png" alt="">
+          <img class="w-full" src="@/assets/images/compliance.png" alt="">
         </div>
         <div data-aos="fade-left">
-          <img class="w-full" src="../assets/images/security.png" alt="">
+          <img class="w-full" src="@/assets/images/security.png" alt="">
         </div>
         <div data-aos="fade-down" class="col-span-2">
-          <img class="w-full" src="../assets/images/interoperability.png" alt="">
+          <img class="w-full" src="@/assets/images/interoperability.png" alt="">
         </div>
       </div>
     </generic-panel>
@@ -120,13 +123,13 @@
     <p data-aos="fade-down" class="subtitle-panel mb-24">MYCURE is accredited and compliant with industry standards, ensuring that your patient data is kept secure and private at all times.</p>
     <div class="grid grid-cols-2 gap-16">
       <div>
-        <img data-aos="fade-right" class="w-full mb-10" src="../assets/images/hipaa.png" alt="">
+        <img data-aos="fade-right" class="w-full mb-10" src="@/assets/images/hipaa.png" alt="">
         <h2 data-aos="fade-right" data-aos-delay="200" class="text-4xl font-medium mb-5">Achieving HIPAA Compliance for Secure Electronic Health Records</h2>
         <p data-aos="fade-right" data-aos-delay="400" class="text-3xl text-gray-500 mb-8">MYCURE has gone the extra mile by maintaining HIPAA compliance, so you and your patients can have peace of mind knowing that their electronic health records are secure and private.</p>
         <a href="" class="text-primary text-3xl">Read more <i class="las la-angle-right"></i></a>
       </div>
       <div>
-        <img data-aos="fade-left" class="w-full mb-10" src="../assets/images/philhealth.png" alt="">
+        <img data-aos="fade-left" class="w-full mb-10" src="@/assets/images/philhealth.png" alt="">
         <h2 data-aos="fade-left" data-aos-delay="200" class="text-4xl font-medium mb-5">MYCURE is PhilHealth-Accredited</h2>
         <p data-aos="fade-left" data-aos-delay="400" class="text-3xl text-gray-500 mb-8">MYCURE partnered with the Philippine Health Insurance Corporation (PhilHealth) to help simplify the claims processing of the PhilHealth eClaims and eKonsulta packages in health facilites nationwide.</p>
         <a href="" class="text-primary text-3xl">Read more <i class="las la-angle-right"></i></a>
