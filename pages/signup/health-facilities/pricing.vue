@@ -255,6 +255,7 @@ export default {
     if (isEmpty(this.step1LocalStorageData)) {
       this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     }
+
     if (this.paymentState === 'success') {
       await this.sendOtp();
       // Record track
@@ -269,6 +270,7 @@ export default {
         name: 'signup-health-facilities-otp-verification',
       });
     }
+
     if (this.paymentState === 'cancel') {
       this.handlePaymentCancel();
       // Record track
@@ -384,7 +386,14 @@ export default {
             { accessToken },
           );
           this.sessionId = subscription.updatesPending.stripeSession;
-          this.$refs.checkoutRef.redirectToCheckout();
+          // TODO: use chekcoutSesssion Url to redirect to stripe
+          const checkoutUrl = window.localStorage.getItem(
+            'signup:stripe:checkout-url',
+          );
+          // this.$refs.checkoutRef.redirectToCheckout();
+          if (process.browser && checkoutUrl) {
+            window.location.href = checkoutUrl;
+          }
           return;
         }
 
@@ -457,8 +466,9 @@ export default {
           !isEmpty(user?.organization?.subscription?.updatesPending)
         ) {
           this.subscriptionId = user.organization?.subscription?.id;
-          this.sessionId =
-            user.organization.subscription.updatesPending.stripeSession;
+          this.sessionId = user.organization?.subscription?.checkoutSession.id;
+          const checkoutURL =
+            user.organization?.subscription?.checkoutSession.url;
           if (process.browser) {
             window.localStorage.setItem(
               'signup:subscription-id',
@@ -468,8 +478,15 @@ export default {
               'signup:stripe:session-id',
               this.sessionId,
             );
+            window.localStorage.setItem(
+              'signup:stripe:checkout-url',
+              checkoutURL,
+            );
           }
-          this.$refs.checkoutRef.redirectToCheckout();
+          if (process.browser && checkoutURL) {
+            window.location.href = checkoutURL;
+          }
+          // this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
 
@@ -492,10 +509,15 @@ export default {
           if (currentBundleIsPaid) {
             this.sessionId =
               process.browser &&
-              localStorage.getItem('signup:stripe:session-id');
+              window.localStorage.getItem('signup:stripe:session-id');
+
+            const checkoutUrl = window.localStorage.getItem(
+              'signup:stripe:checkout-url',
+            );
+
             // - Continue pending checkout session
-            if (this.sessionId) {
-              this.$refs.checkoutRef.redirectToCheckout();
+            if (process.browser && checkoutUrl) {
+              window.location.href = checkoutUrl;
               return;
             }
           }
