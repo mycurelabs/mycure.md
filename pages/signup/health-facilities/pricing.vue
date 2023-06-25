@@ -440,7 +440,6 @@ export default {
               customer: {
                 stripeEmail: this.email,
               },
-              ...(this.isTrial && { trial: true }),
               ...(this.step1LocalStorageData.stripeCoupon && {
                 stripeCoupon: this.step1LocalStorageData.stripeCoupon,
               }),

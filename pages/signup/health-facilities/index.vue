@@ -750,7 +750,6 @@ export default {
           stripeCoupon: this.stripeCoupon,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
           // - To be omitted in actual submit in step 2
-          ...(trial && { trial: true }),
           ...(plan && { plan }),
           ...(from && { from }),
           organizationType: this.facilityType,
