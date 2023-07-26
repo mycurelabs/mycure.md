@@ -257,7 +257,6 @@ export default {
     }
 
     if (this.paymentState === 'success') {
-      await this.sendOtp();
       // Record track
       this.$gtag.event('pay', {
         event_category: 'signup',
@@ -280,13 +279,11 @@ export default {
       });
     }
 
-    // - Note: URL query parameters are strings
-    this.isTrial =
-      this.$route.query.trial === 'true' ||
-      this.$route.query.trial === true ||
-      this.step1LocalStorageData.trial === true;
-
-    console.warn('this.isTrial', this.isTrial);
+    // // - Note: URL query parameters are strings
+    // this.isTrial =
+    //   this.$route.query.trial === 'true' ||
+    //   this.$route.query.trial === true ||
+    //   this.step1LocalStorageData.trial === true;
 
     // This allows room for changing packages
     this.subscriptionId =
@@ -341,7 +338,6 @@ export default {
             platform: 'web',
             app: 'web-main',
           },
-          skipMobileNoVerification: true,
           ...omit(this.step1LocalStorageData, omitKeys),
         };
 
@@ -417,7 +413,6 @@ export default {
               customer: {
                 stripeEmail: this.email,
               },
-              ...(this.isTrial && { trial: true }),
               ...(this.step1LocalStorageData.stripeCoupon && {
                 stripeCoupon: this.step1LocalStorageData.stripeCoupon,
               }),
@@ -445,13 +440,13 @@ export default {
               }),
             },
           };
-          // If telehealth signup, and the package was not assigned a trial flag.
-          if (
-            this.isTelehealthTrialAvailable(bundle) &&
-            !payload.organization.trial
-          ) {
-            payload.organization.subscription.trial = true;
-          }
+          // // If telehealth signup, and the package was not assigned a trial flag.
+          // if (
+          //   this.isTelehealthTrialAvailable(bundle) &&
+          //   !payload.organization.trial
+          // ) {
+          //   payload.organization.subscription.trial = true;
+          // }
         }
 
         const user = await signupFacility(payload);

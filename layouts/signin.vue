@@ -33,7 +33,10 @@ export default {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'white'];
     },
     footerClasses () {
-      return [this.dayOrNight === 'night' ? 'night-sky' : 'white', this.dayOrNight === 'night' ? 'night-bg' : 'day-bg'];
+      return [
+        this.dayOrNight === 'night' ? 'night-sky' : 'white',
+        this.dayOrNight === 'night' ? 'night-bg' : 'day-bg',
+      ];
     },
     footerPaddingClasses () {
       return [this.$isMobile ? 'pb-6' : ''];
@@ -43,9 +46,12 @@ export default {
     },
     redirectSignUpLink () {
       switch (this.routeContext) {
-        case 'pxp': return process.env.PX_PORTAL_URL;
+        case 'pxp':
+          return process.env.PX_PORTAL_URL;
         default:
-          return this.$nuxt.$router.resolve({ name: 'signup-health-facilities' }).href;
+          return this.$nuxt.$router.resolve({
+            name: 'signup-health-facilities',
+          }).href;
       }
     },
   },
@@ -84,10 +90,22 @@ export default {
   background-size: auto 18%;
 }
 .night-sky {
-  background-color: rgb(28,28,28);
-  background-color: -moz-linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
-  background-color: -webkit-linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
-  background-color: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
+  background-color: rgb(28, 28, 28);
+  background-color: -moz-linear-gradient(
+    180deg,
+    rgba(28, 28, 28, 1) 0%,
+    rgba(60, 60, 60, 1) 50%
+  );
+  background-color: -webkit-linear-gradient(
+    180deg,
+    rgba(28, 28, 28, 1) 0%,
+    rgba(60, 60, 60, 1) 50%
+  );
+  background-color: linear-gradient(
+    180deg,
+    rgba(28, 28, 28, 1) 0%,
+    rgba(60, 60, 60, 1) 50%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1c191c",endColorstr="#3c3c3c",GradientType=1);
 }
 .footer {
@@ -96,7 +114,7 @@ export default {
 .router-link {
   text-decoration: none;
 }
-.edge-divider{
+.edge-divider {
   margin-right: 11% !important;
   margin-left: 11% !important;
 }
