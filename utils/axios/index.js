@@ -48,7 +48,9 @@ export const getDoctorWebsite = async (opts) => {
         const data = {
           ...doctorSchool,
         };
-        const match = schoolsData.data?.find(enumSchool => enumSchool.name === doctorSchool.school);
+        const match = schoolsData.data?.find(
+          enumSchool => enumSchool.name === doctorSchool.school,
+        );
         data.picURL = match?.picURL;
         return data;
       });
@@ -99,12 +101,13 @@ export const getMemberOrganizations = async (opts) => {
     method: 'GET',
     url: `${process.env.API_URL}/organizations`,
     params: {
-      id: memberships.length === 1
-        ? memberships[0].organization
-        : { $in: memberships.map(m => m.organization) },
+      id:
+        memberships.length === 1
+          ? memberships[0].organization
+          : { $in: memberships.map(m => m.organization) },
       $limit: typeof opts.limit === 'number' ? opts.limit : 5,
-      ...typeof opts.type === 'string' && { type: opts.type },
-      ...opts.select?.length && { $select: opts.select },
+      ...(typeof opts.type === 'string' && { type: opts.type }),
+      ...(opts.select?.length && { $select: opts.select }),
     },
   });
   return organizationData.data;
@@ -116,7 +119,9 @@ export const signin = async (opts) => {
       email: opts.email,
       password: opts.password,
     };
-    if (opts.otp) { payload.totpToken = opts.otp; }
+    if (opts.otp) {
+      payload.totpToken = opts.otp;
+    }
     const { data } = await axios({
       method: 'post',
       url: `${process.env.API_URL}/authentication`,
@@ -174,7 +179,9 @@ export const getCountry = async () => {
     ];
     const { data } = await axios({
       method: 'get',
-      url: `${process.env.IPSTACK_API}/check?access_key=${process.env.IPSTACK_API_KEY}&fields=${fields.join(',')}`,
+      url: `${process.env.IPSTACK_API}/check?access_key=${
+        process.env.IPSTACK_API_KEY
+      }&fields=${fields.join(',')}`,
     });
     return data;
   } catch (e) {
@@ -185,11 +192,7 @@ export const getCountry = async () => {
 
 export const getCountries = async () => {
   try {
-    const fields = [
-      'name',
-      'flag',
-      'callingCodes',
-    ];
+    const fields = ['name', 'flag', 'callingCodes'];
     const { data } = await axios({
       method: 'get',
       url: `https://restcountries.com/v2/all?fields=${fields.join(',')}`,
@@ -229,7 +232,9 @@ export const signupFacility = async (opts) => {
           firstName: opts.firstName,
           lastName: opts.lastName,
         },
-        ...opts.doc_PRCLicenseNo && { doc_PRCLicenseNo: opts.doc_PRCLicenseNo },
+        ...(opts.doc_PRCLicenseNo && {
+          doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
+        }),
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
@@ -241,8 +246,12 @@ export const signupFacility = async (opts) => {
       },
     };
     if (opts.source) payload.source = opts.source;
-    if (opts.otp) { payload.totpToken = opts.otp; }
-    if (opts.invitation) { payload.invitation = opts.invitation; };
+    if (opts.otp) {
+      payload.totpToken = opts.otp;
+    }
+    if (opts.invitation) {
+      payload.invitation = opts.invitation;
+    }
     if (opts.organization.types.includes('doctor')) {
       payload.apps = ['doctor'];
     }

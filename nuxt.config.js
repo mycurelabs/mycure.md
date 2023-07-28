@@ -224,7 +224,22 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.module.rules.push({
+        test: /\.js$/,
+        // exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-nullish-coalescing-operator'],
+          },
+        },
+      });
     },
+    // plugins: [
+    //   ['@babel/plugin-proposal-nullish-coalescing-operator'],
+    //   // ['@babel/plugin-proposal-optional-chaining']
+    // ],
   },
   serverMiddleware: [
     redirectSSL.create({

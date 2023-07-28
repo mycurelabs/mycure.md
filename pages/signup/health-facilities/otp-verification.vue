@@ -16,16 +16,23 @@
               p.mb-0.mc-b2 Please enter the OTP sent to&nbsp;
                 span.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
               div.d-flex.text-center.justify-center.my-15
-                v-otp-input(
-                  ref="otpInput"
-                  separator=""
-                  input-classes="otp-input"
-                  :num-inputs="6"
-                  :should-auto-focus="true"
-                  :is-input-num="true"
-                  @on-change="otp = $event"
-                  :class="{'mobile-otp': $isMobile}"
+                v-text-field(
+                  v-model="otp"
+                  type="text"
+                  label="Enter your OTP"
+                  outlined
+                  autofocus
                 )
+                //- v-otp-input(
+                //-   ref="otpInput"
+                //-   separator=""
+                //-   input-classes="otp-input"
+                //-   :num-inputs="6"
+                //-   :should-auto-focus="true"
+                //-   :is-input-num="true"
+                //-   :class="{'mobile-otp': $isMobile}"
+                //-   @on-change="otp = $event"
+                //- )
               //- Verify button
               v-btn(
                 color="secondary"
@@ -38,7 +45,7 @@
                 :value="verificationError"
                 type="error"
                 dismissible
-              ) Incorrect verification code
+              ).mt-5 Incorrect verification code
               div.text-center.font-open-sans.mt-5
                 span Didn't receive the OTP?
                 v-btn(
@@ -123,7 +130,8 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE | OTP Verification of your Account',
-      description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
+      description:
+        'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
@@ -143,7 +151,9 @@ export default {
         // });
 
         this.$vuetify.theme.dark = false;
-        const step1Data = JSON.parse(localStorage.getItem('facility:step1:model'));
+        const step1Data = JSON.parse(
+          localStorage.getItem('facility:step1:model'),
+        );
         if (!step1Data?.email) {
           this.$nuxt.$router.push({ name: 'signup-health-facilities' });
         } else {
@@ -152,11 +162,15 @@ export default {
 
         this.isPaymentSuccessful = this.$route.query.payment === 'success';
 
-        const ongoingCountDown = JSON.parse(localStorage.getItem('otp:resend:countdown'));
+        const ongoingCountDown = JSON.parse(
+          localStorage.getItem('otp:resend:countdown'),
+        );
         if (!ongoingCountDown) {
           this.resetCountDown();
         } else {
-          this.otpCountdown = Number(JSON.parse(localStorage.getItem('otp:resend:countdown')));
+          this.otpCountdown = Number(
+            JSON.parse(localStorage.getItem('otp:resend:countdown')),
+          );
           this.startCountDown();
         }
 
@@ -231,6 +245,7 @@ export default {
           event_label: 'signup-step-3-otp-success',
         });
         window.location = `${process.env.CMS_URL}?token=${accessToken}`;
+        this.clearLocalStorage();
       } catch (error) {
         console.error(error);
         this.snackBarModel = {
@@ -270,19 +285,24 @@ export default {
       if (process.browser) {
         switch (digit) {
           case 2:
-            document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+            document.getElementById('firstDigit') &&
+              document.getElementById('firstDigit').focus();
             break;
           case 3:
-            document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
+            document.getElementById('secondDigit') &&
+              document.getElementById('secondDigit').focus();
             break;
           case 4:
-            document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+            document.getElementById('thirdDigit') &&
+              document.getElementById('thirdDigit').focus();
             break;
           case 5:
-            document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+            document.getElementById('fourthDigit') &&
+              document.getElementById('fourthDigit').focus();
             break;
           case 6:
-            document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+            document.getElementById('fifthDigit') &&
+              document.getElementById('fifthDigit').focus();
             break;
           default: {
             break;
@@ -293,7 +313,7 @@ export default {
     checkNumberInput (event, value) {
       if (!/\d/.test(event.key) || value?.length === 1) {
         return event.preventDefault();
-      };
+      }
       return event;
     },
     clearInputs () {
@@ -304,8 +324,15 @@ export default {
       this.fifthDigit = null;
       this.sixthDigit = null;
       if (process.browser) {
-        document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+        document.getElementById('firstDigit') &&
+          document.getElementById('firstDigit').focus();
       }
+    },
+    clearLocalStorage () {
+      window.localStorage.removeItem('signup:subscription-id');
+      window.localStorage.removeItem('signup:stripe:session-id');
+      window.localStorage.removeItem('facility:step1:model');
+      window.localStorage.removeItem('signup:current-signin-up-user');
     },
   },
 };
@@ -327,7 +354,11 @@ export default {
   width: 50px;
   height: 50px;
   font-size: 20px;
-  background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+  background-image: linear-gradient(
+    to left,
+    black 70%,
+    rgba(255, 255, 255, 0) 0%
+  );
   background-position: bottom;
   background-size: 90px 2px;
   border: 0;
@@ -339,12 +370,16 @@ export default {
 }
 
 .night-field {
-  background-image: linear-gradient(to left, white 70%, rgba(255, 255, 255, 0) 0%) !important;
+  background-image: linear-gradient(
+    to left,
+    white 70%,
+    rgba(255, 255, 255, 0) 0%
+  ) !important;
   color: white;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

@@ -63,7 +63,13 @@
           //- Analytics
           v-col(cols="12" md="6")
             v-row(justify="center")
-              v-col(v-if="metricData[metric.value] > 100 || metric.title !== 'lives saved'" v-for="(metric, key) in metricMappings" :key="key" cols="4" :sm="$isWideScreen ? '2' : '3'").text-center
+              v-col(
+                v-if="metricData[metric.value] >= 500"
+                v-for="(metric, key) in metricMappings"
+                cols="4"
+                :key="key"
+                :sm="$isWideScreen ? '2' : '3'"
+              ).text-center
                 picture-source(
                   image-file-extension=".webp"
                   :image="metric.imgIcon"
@@ -81,7 +87,10 @@
                   br
                   span.font-12 {{ metric.title }}
           //- Consult btn
-          v-col(cols="10").text-center.justify-center
+          v-col(
+            v-if="isBookable"
+            cols="10"
+            ).text-center.justify-center
             v-btn(
               color="success"
               hover
@@ -91,7 +100,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               :disabled="!isBookable"
               @click="onBook"
-            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 {{ !isBookable && !isPreviewMode ? 'The doctor is out' : 'Book Now' }}
+            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 Book Now
 </template>
 
 <script>
@@ -208,11 +217,12 @@ export default {
   },
   computed: {
     metricData () {
+      const metricsDisplay = {};
+      metricsDisplay.websiteVisits = this.metrics?.websiteVisits || 0;
+      metricsDisplay.patients = this.metrics?.patients || 0;
+      metricsDisplay.records = this.metrics?.records || 0;
       return {
-        websiteVisits: this.metrics.websiteVisits || 0,
-        patients: this.metrics.patients || 0,
-        records: this.metrics.records || 0,
-        // - hearts: this.metrics.hearts || 0,
+        ...metricsDisplay,
       };
     },
     specialtiesMapped () {

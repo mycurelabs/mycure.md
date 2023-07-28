@@ -1,4 +1,6 @@
-export default () => {
+import Vue from 'vue';
+
+export default (context, inject) => {
   // Set your APP_ID
   const APP_ID = 'f652ulf5';
 
@@ -40,4 +42,14 @@ export default () => {
       }
     }
   })();
+
+  const mixin = {
+    methods: {
+      $intercomTrackEvent (event) {
+        window.Intercom('trackEvent', event);
+      },
+    },
+  };
+
+  Vue.mixin(mixin);
 };

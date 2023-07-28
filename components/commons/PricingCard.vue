@@ -16,18 +16,13 @@
         v-divider(width="100%").mb-4.mt-3
         div#price-container
           p(
-            :style="opacity"
-          ).title--text
-            v-icon(color="success" small left) {{ isRecommended ? mdiTag : mdiTagOutline }}
-            strong.grey--text.savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
-            v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
-          p(
             v-if="!bundle.requireContact"
           ).font-weight-black.title--text
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
                 span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
                 span(:class="priceClass") {{ kFormatter(bundle.annualMonthlyPrice) }}
+                br
                 span.slash &nbsp;/
                 span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
                 span.slash /
@@ -35,14 +30,37 @@
               v-tab-item(value="month" transition="slide-y-transition").title--text
                 span(:class="currencyClass").currency.font-open-sans {{ bundle.currency }}&nbsp;
                 span(:class="priceClass") {{  kFormatter(bundle.monthlyPrice) }}
+                br
                 span.slash &nbsp;/
                 span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") clinic
                 span.slash /
                 span(:class="{'mc-b4': !minimizePriceFont, 'font-12': minimizePriceFont}") month
-            span(v-else :class="priceClass") FREE
+            span(v-else :class="priceClassText") FREE
           p(v-else :class="{'my-7': !$isWideScreen}")
-            strong(:class="priceClass").title--text Contact Us
-      v-card-text.card-actions.px-0
+            strong(:class="priceClassText").title--text Contact Us
+          p(
+            :style="opacity"
+            v-if="paymentInterval === 'year'"
+          ).title--text
+            v-icon(color="success" small left) {{ isRecommended ? mdiTag : mdiTagOutline }}
+            strong.grey--text.savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+            v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
+      v-card-text.card-actions.px-0.py-0
+        v-row(justify="center")
+          v-col(cols="12" xl="12").mb-5
+            div(
+              v-for="(inclusion, key) in mainInclusions"
+              :key="`inclusions-${key}`"
+            ).mb-3
+              v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
+              span(:class="[textFontSize, {'font-weight-medium': isRecommended}]").font-open-sans.list-item {{ inclusion.text }}
+            div(
+              v-for="(inclusion, key) in additionalInclusions"
+              :key="`addition-inclusions-${key}`"
+            ).mb-2
+              template(v-if="inclusion.valid")
+                v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
+                span(:class="[textFontSize]").font-open-sans.list-item {{ inclusion.text }}
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
             mc-btn(
@@ -67,20 +85,11 @@
               :pricing-bundle="bundle.id"
               :query-ops="getQueryOps(bundle)"
             ).mc-btn1.font-weight-semibold.text-non.rounded-lg.text-none {{ getBtnText(bundle) }}
-        v-row(justify="center").mt-5
-          v-col(cols="12" xl="12")
-            div(v-for="(inclusion, key) in mainInclusions" :key="`inclusions-${key}`").mb-3
-              v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
-              span(:class="[textFontSize, {'font-weight-medium': isRecommended}]").font-open-sans.list-item {{ inclusion.text }}
-            div(v-for="(inclusion, key) in additionalInclusions" :key="`addition-inclusions-${key}`").mb-2
-              template(v-if="inclusion.valid")
-                v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
-                span(:class="[textFontSize]").font-open-sans.list-item {{ inclusion.text }}
 </template>
 
 <script>
 import {
-  mdiCheckboxMarkedCircle,
+  mdiCheck,
   mdiClose,
   mdiCloseCircle,
   mdiPlusCircle,
@@ -98,7 +107,9 @@ export default {
   filters: {
     getYearly (amount) {
       if (!amount) return 0;
-      return (amount * 12).toLocaleString();
+      const num = amount * 12;
+      if (num < 100000) return num.toLocaleString();
+      return Math.abs(num) > 99999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
     },
   },
   props: {
@@ -140,7 +151,7 @@ export default {
     return {
       showList: false,
       // icons
-      mdiCheckboxMarkedCircle,
+      mdiCheck,
       mdiClose,
       mdiCloseCircle,
       mdiPlusCircle,
@@ -185,15 +196,21 @@ export default {
       // if (!this.showList) return '500';
       return this.height || '800';
     },
-    priceClass () {
+    priceClassText () {
       if (this.minimizePriceFont) {
         return { 'font-28': !this.$isWideScreen, 'font-48': this.$isWideScreen };
       }
       return 'mc-h2';
     },
+    priceClass () {
+      if (this.minimizePriceFont) {
+        return { 'font-40': !this.$isWideScreen, 'font-52': this.$isWideScreen };
+      }
+      return 'mc-h2';
+    },
     currencyClass () {
       if (this.minimizePriceFont) {
-        return { 'font-14': !this.$isWideScreen, 'font-24': this.$isWideScreen };
+        return { 'font-20': !this.$isWideScreen, 'font-30': this.$isWideScreen };
       }
       return 'mc-h4';
     },
@@ -249,8 +266,8 @@ export default {
       return 'primary';
     },
     getInclusionIcon (valid, additional = false) {
-      if (valid && additional) return this.mdiCheckboxMarkedCircle;
-      if (valid) return this.mdiCheckboxMarkedCircle;
+      if (valid && additional) return this.mdiCheck;
+      if (valid) return this.mdiCheck;
       // if (this.isRecommended && !valid) return this.mdiClose;
       return this.mdiCloseCircle;
     },
@@ -268,7 +285,8 @@ export default {
       Modified for 2-digit thousand
     */
     kFormatter (num) {
-      return Math.abs(num) > 9999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
+      if (num < 100000) return num.toLocaleString();
+      return Math.abs(num) > 99999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
     },
   },
 };

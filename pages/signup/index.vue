@@ -1,11 +1,12 @@
 <template lang="pug">
-
+span
 </template>
 
 <script>
 export default {
   mounted () {
     const queryParams = this.$route.query || {};
+    console.warn('process.env.SIGNUP_URL', process.env.SIGNUP_URL);
     const url = new URL(process.env.SIGNUP_URL || 'https://myaccount.mycure.md');
     const params = new URLSearchParams(url.search);
     for (const key in queryParams) {

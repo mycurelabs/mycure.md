@@ -34,7 +34,6 @@
               color="primary"
             )
             strong.mc-h3.font-open-sans.ml-5 Annually
-          pre {{selectedBundle}}
       v-row(justify="center" align="center" :class="{'packages-negative-margins': !$isMobile}")
         v-col(cols="12" md="10")
           v-row(justify="center")
@@ -123,11 +122,7 @@ import PictureSource from '~/components/commons/PictureSource';
 import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
-import {
-  resendVerificationCode,
-  signupFacility,
-  signin,
-} from '~/utils/axios';
+import { resendVerificationCode, signupFacility, signin } from '~/utils/axios';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
@@ -172,15 +167,26 @@ export default {
   },
   computed: {
     step1LocalStorageData () {
-      return process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+      return (
+        process.browser &&
+        JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA))
+      );
     },
     initialRoute () {
-      if (!this.step1LocalStorageData) return { name: 'signup-health-facilities' };
+      if (!this.step1LocalStorageData) {
+        return { name: 'signup-health-facilities' };
+      }
       const query = {
-        ...this.preBundle && { plan: this.preBundle },
-        ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
-        ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
-        ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
+        ...(this.preBundle && { plan: this.preBundle }),
+        ...(this.step1LocalStorageData.trial && {
+          trial: this.step1LocalStorageData.trial,
+        }),
+        ...(this.step1LocalStorageData.from && {
+          from: this.step1LocalStorageData.from,
+        }),
+        ...(this.step1LocalStorageData.invitation && {
+          referralCode: this.step1LocalStorageData.invitation,
+        }),
         type: this.organizationTypes0,
       };
       return {
@@ -215,16 +221,24 @@ export default {
       return ALL_PRICING;
     },
     filteredPricing () {
-      return ALL_PRICING.filter(({ facilityType }) => facilityType === this.facilityType);
+      return ALL_PRICING.filter(
+        ({ facilityType }) => facilityType === this.facilityType,
+      );
     },
     paymentState () {
-      return process.client && (new URLSearchParams(window.location.search).get('payment') || '');
+      return (
+        process.client &&
+        (new URLSearchParams(window.location.search).get('payment') || '')
+      );
     },
     paymentInterval () {
       return this.paymentIntervalSwitch ? 'year' : 'month';
     },
     isPaid () {
-      return this.selectedBundle?.monthlyPrice > 0 || this.selectedBundle?.annualMonthlyPrice > 0;
+      return (
+        this.selectedBundle?.monthlyPrice > 0 ||
+        this.selectedBundle?.annualMonthlyPrice > 0
+      );
     },
   },
   watch: {
@@ -238,7 +252,10 @@ export default {
   async mounted () {
     this.loading.page = true;
     // Check if step 1 accomplished
-    if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
+    if (isEmpty(this.step1LocalStorageData)) {
+      this.$nuxt.$router.push({ name: 'signup-health-facilities' });
+    }
+
     if (this.paymentState === 'success') {
       await this.sendOtp();
       // Record track
@@ -249,8 +266,11 @@ export default {
       // Remove stripe localStorage items
       localStorage.removeItem('signup:subscription-id');
       localStorage.removeItem('signup:stripe:session-id');
-      this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+      this.$nuxt.$router.push({
+        name: 'signup-health-facilities-otp-verification',
+      });
     }
+
     if (this.paymentState === 'cancel') {
       this.handlePaymentCancel();
       // Record track
@@ -261,12 +281,16 @@ export default {
     }
 
     // - Note: URL query parameters are strings
-    this.isTrial = this.$route.query.trial === 'true' ||
+    this.isTrial =
+      this.$route.query.trial === 'true' ||
       this.$route.query.trial === true ||
       this.step1LocalStorageData.trial === true;
 
+    console.warn('this.isTrial', this.isTrial);
+
     // This allows room for changing packages
-    this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
+    this.subscriptionId =
+      process.browser && localStorage.getItem('signup:subscription-id');
 
     if (this.preBundle) {
       await this.submit();
@@ -296,10 +320,12 @@ export default {
         const bundle = this.preBundle || this.selectedBundle;
         const { annualMonthlyPrice, monthlyPrice } = bundle || {};
         const currentBundleIsPaid = annualMonthlyPrice > 0 || monthlyPrice > 0;
+
         if (bundle.requireContact) {
           this.sendCrispMessage();
           return;
         }
+
         // Build payload, omit non-allowed values. These are mostly route query values that were stored
         const omitKeys = [
           'trial',
@@ -322,33 +348,63 @@ export default {
         const utmData = this.$cookies.get('utm-data');
 
         if (utmData?.utm_source && utmData?.utm_campaign) {
-          payload.source.campaign = `${utmData.utm_source}::${kebabCase(utmData.utm_campaign)}`;
+          payload.source.campaign = `${utmData.utm_source}::${kebabCase(
+            utmData.utm_campaign,
+          )}`;
         }
 
-        const emailNotYeInUse = await this.$sdk.service('auth').checkUniqueIdentity('email', this.email);
+        const emailNotYeInUse = await this.$sdk
+          .service('auth')
+          .checkUniqueIdentity('email', this.email);
 
         // Check if there is pending subscription Id
         if (!emailNotYeInUse && currentBundleIsPaid) {
           // Get auth token
-          const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
+          const { accessToken } = await signin({
+            email: this.email,
+            password: this.step1LocalStorageData.password,
+          });
           let packageId;
-          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
-          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+          if (this.paymentInterval === 'month') {
+            packageId = bundle.monthlyPackageId;
+          }
+          if (this.paymentInterval === 'year') {
+            packageId = bundle.annualPackageId;
+          }
           // Update the new selected subscription
-          const subscription = await this.$sdk.service('subscriptions').update(this.subscriptionId, {
-            package: packageId,
-            stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
-            stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
-          }, { accessToken });
+          const subscription = await this.$sdk.service('subscriptions').update(
+            this.subscriptionId,
+            {
+              package: packageId,
+              stripeCheckoutSuccessURL:
+                process.client &&
+                `${window.location.origin}${window.location.pathname}?payment=success`,
+              stripeCheckoutCancelURL:
+                process.client &&
+                `${window.location.origin}${window.location.pathname}?payment=cancel`,
+            },
+            { accessToken },
+          );
           this.sessionId = subscription.updatesPending.stripeSession;
-          this.$refs.checkoutRef.redirectToCheckout();
+          // TODO: use chekcoutSesssion Url to redirect to stripe
+          const checkoutUrl = window.localStorage.getItem(
+            'signup:stripe:checkout-url',
+          );
+          // this.$refs.checkoutRef.redirectToCheckout();
+          if (process.browser && checkoutUrl) {
+            window.location.href = checkoutUrl;
+          }
           return;
         }
 
         // Subscription URLS
         const subscription = {
-          stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
-          stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+          stripeCheckoutSuccessURL:
+            process.client &&
+            `${window.location.origin}${window.location.pathname}?payment=success`,
+          stripeCheckoutCancelURL:
+            process.client &&
+            `${window.location.origin}${window.location.pathname}?payment=cancel`,
         };
 
         // If a package was already selected from a pricing panel
@@ -361,14 +417,20 @@ export default {
               customer: {
                 stripeEmail: this.email,
               },
-              ...this.isTrial && { trial: true },
-              ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
+              ...(this.isTrial && { trial: true }),
+              ...(this.step1LocalStorageData.stripeCoupon && {
+                stripeCoupon: this.step1LocalStorageData.stripeCoupon,
+              }),
             },
           };
         } else if (currentBundleIsPaid) {
           let packageId;
-          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
-          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+          if (this.paymentInterval === 'month') {
+            packageId = bundle.monthlyPackageId;
+          }
+          if (this.paymentInterval === 'year') {
+            packageId = bundle.annualPackageId;
+          }
           // Build organization payload
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
@@ -378,27 +440,52 @@ export default {
               customer: {
                 stripeEmail: this.email,
               },
-              ...this.isTrial && { trial: true },
-              ...this.step1LocalStorageData.stripeCoupon && { stripeCoupon: this.step1LocalStorageData.stripeCoupon },
+              ...(this.step1LocalStorageData.stripeCoupon && {
+                stripeCoupon: this.step1LocalStorageData.stripeCoupon,
+              }),
             },
           };
           // If telehealth signup, and the package was not assigned a trial flag.
-          if (this.isTelehealthTrialAvailable(bundle) && !payload.organization.trial) {
+          if (
+            this.isTelehealthTrialAvailable(bundle) &&
+            !payload.organization.trial
+          ) {
             payload.organization.subscription.trial = true;
           }
         }
 
         const user = await signupFacility(payload);
-        window.localStorage.setItem('signup:current-signin-up-user', user.email);
+        window.localStorage.setItem(
+          'signup:current-signin-up-user',
+          user.email,
+        );
 
-        if (currentBundleIsPaid && !isEmpty(user?.organization?.subscription?.updatesPending)) {
+        if (
+          currentBundleIsPaid &&
+          !isEmpty(user?.organization?.subscription?.updatesPending)
+        ) {
           this.subscriptionId = user.organization?.subscription?.id;
-          this.sessionId = user.organization.subscription.updatesPending.stripeSession;
+          this.sessionId = user.organization?.subscription?.checkoutSession.id;
+          const checkoutURL =
+            user.organization?.subscription?.checkoutSession.url;
           if (process.browser) {
-            window.localStorage.setItem('signup:subscription-id', this.subscriptionId);
-            window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
+            window.localStorage.setItem(
+              'signup:subscription-id',
+              this.subscriptionId,
+            );
+            window.localStorage.setItem(
+              'signup:stripe:session-id',
+              this.sessionId,
+            );
+            window.localStorage.setItem(
+              'signup:stripe:checkout-url',
+              checkoutURL,
+            );
           }
-          this.$refs.checkoutRef.redirectToCheckout();
+          if (process.browser && checkoutURL) {
+            window.location.href = checkoutURL;
+          }
+          // this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
 
@@ -407,34 +494,50 @@ export default {
         } else {
           await this.sendOtp();
           this.$cookies.removeAll();
-          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+          this.$router.push({
+            name: 'signup-health-facilities-otp-verification',
+          });
         }
       } catch (e) {
+        console.error(e);
         const bundle = this.preBundle || this.selectedBundle;
         const { annualMonthlyPrice, monthlyPrice } = bundle || {};
         const currentBundleIsPaid = annualMonthlyPrice > 0 || monthlyPrice > 0;
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
           if (currentBundleIsPaid) {
-            this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
+            this.sessionId =
+              process.browser &&
+              window.localStorage.getItem('signup:stripe:session-id');
+
+            const checkoutUrl = window.localStorage.getItem(
+              'signup:stripe:checkout-url',
+            );
+
             // - Continue pending checkout session
-            if (this.sessionId) {
-              this.$refs.checkoutRef.redirectToCheckout();
+            if (process.browser && checkoutUrl) {
+              window.location.href = checkoutUrl;
               return;
             }
           }
 
-          if (this.email === localStorage.getItem('signup:current-signin-up-user')) {
+          if (
+            this.email === localStorage.getItem('signup:current-signin-up-user')
+          ) {
             await this.sendOtp();
             this.$cookies.removeAll();
-            this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+            this.$nuxt.$router.push({
+              name: 'signup-health-facilities-otp-verification',
+            });
             return;
           }
 
           console.error(e);
           this.errorMessage = 'The email or mobile number is already taken!';
-        };
-        if (e.message === 'Invitation not found') this.errorMessage = 'Invitation code is not valid!';
+        }
+        if (e.message === 'Invitation not found') {
+          this.errorMessage = 'Invitation code is not valid!';
+        }
         this.errorDialog = true;
       } finally {
         this.loading.button = false;
@@ -446,9 +549,15 @@ export default {
       // - Reload route quries thru local storage
       this.$router.replace({
         query: {
-          ...this.step1LocalStorageData.trial && { trial: this.step1LocalStorageData.trial },
-          ...this.step1LocalStorageData.from && { from: this.step1LocalStorageData.from },
-          ...this.step1LocalStorageData.invitation && { referralCode: this.step1LocalStorageData.invitation },
+          ...(this.step1LocalStorageData.trial && {
+            trial: this.step1LocalStorageData.trial,
+          }),
+          ...(this.step1LocalStorageData.from && {
+            from: this.step1LocalStorageData.from,
+          }),
+          ...(this.step1LocalStorageData.invitation && {
+            referralCode: this.step1LocalStorageData.invitation,
+          }),
           type: this.organizationTypes0,
         },
       });
@@ -457,8 +566,10 @@ export default {
       // const { email, password } = this.step1LocalStorageData;
       // const loginData = await signin({ email, password });
       // this.sessionId = await refetchStripeToken(loginData);
-      this.sessionId = process.browser && localStorage.getItem('signup:stripe:session-id');
-      this.subscriptionId = process.browser && localStorage.getItem('signup:subscription-id');
+      this.sessionId =
+        process.browser && localStorage.getItem('signup:stripe:session-id');
+      this.subscriptionId =
+        process.browser && localStorage.getItem('signup:subscription-id');
     },
     // MISC
     getInclusionColor (valid) {
@@ -466,7 +577,8 @@ export default {
       return 'info';
     },
     sendCrispMessage () {
-      const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
+      const message =
+        'Hello, I would like to inquire about the ENTERPRISE plan.';
       window.Intercom('show');
       window.Intercom('sendMessage', message);
     },
@@ -476,9 +588,11 @@ export default {
     },
     async sendOtp () {
       this.loading.page = true;
-      const { accessToken } = await signin({ email: this.email, password: this.step1LocalStorageData.password });
+      const { accessToken } = await signin({
+        email: this.email,
+        password: this.step1LocalStorageData.password,
+      });
       await resendVerificationCode({ token: accessToken });
-      this.clearLocalStorage();
     },
     clearLocalStorage () {
       window.localStorage.removeItem('signup:subscription-id');

@@ -79,6 +79,7 @@
                 //- Email
                 v-text-field(
                   v-model="email"
+                  type="email"
                   placeholder="Email"
                   outlined
                   :dense="!$isWideScreen"
@@ -396,10 +397,7 @@ import {
 } from '@mdi/js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import headMeta from '~/utils/head-meta';
-import {
-  getCountries,
-  getCountry,
-} from '~/utils/axios';
+import { getCountries, getCountry } from '~/utils/axios';
 import {
   requiredRule,
   emailRules,
@@ -422,13 +420,15 @@ export default {
     this.isRequired = requiredRule;
     this.emailRules = emailRules;
     this.passwordRules = passwordRules;
-    this.matchPasswordRule = v => v === this.password || 'Passwords do not match';
-    this.mobileNumberRule = v => this.validatePhoneNo(v) || 'Invalid phone number';
+    this.matchPasswordRule = v =>
+      v === this.password || 'Passwords do not match';
+    this.mobileNumberRule = v =>
+      this.validatePhoneNo(v) || 'Invalid phone number';
     // -- ENUM --
     // Clinic Types
     this.facilityTypes = [
       {
-        text: 'Doctor\'s Clinic',
+        text: "Doctor's Clinic",
         orgProps: {
           type: 'facility',
           types: ['doctor'],
@@ -523,19 +523,24 @@ export default {
   },
   head () {
     const type = this.$route.query.type;
-    let title = 'Health Facilities - Diagnostics, Doctor\'s Clinic & More | MYCURE';
-    let description = 'MYCURE is a health matching platform that helps you find a doctor\'s clinic, outpatient clinic, diagnostics, and a facility type that best fits your needs. Know more.';
+    let title =
+      "Health Facilities - Diagnostics, Doctor's Clinic & More | MYCURE";
+    let description =
+      "MYCURE is a health matching platform that helps you find a doctor's clinic, outpatient clinic, diagnostics, and a facility type that best fits your needs. Know more.";
     if (type === 'diagnostic') {
       title = 'Signup & Register - Healthcare Services | MYCURE';
-      description = 'MYCURE is a simple, modern software that makes it easy to manage your practice. Register & setup your clinic\'s appointments, manage your staff and patients.';
+      description =
+        "MYCURE is a simple, modern software that makes it easy to manage your practice. Register & setup your clinic's appointments, manage your staff and patients.";
     }
     if (type === 'clinic') {
       title = 'Outpatient Clinic Health Facilities | MYCURE';
-      description = 'MYCURE is a platform that provides a seamless way to register patients and manage your outpatient clinics. Register patients with just a few taps safely. Know more.';
+      description =
+        'MYCURE is a platform that provides a seamless way to register patients and manage your outpatient clinics. Register patients with just a few taps safely. Know more.';
     }
     if (type === 'doctor') {
       title = 'Doctor Signup - Clinic Management System';
-      description = 'MYCURE Clinic Management System is a complete EMR for doctors. Patients can book in your own website.';
+      description =
+        'MYCURE Clinic Management System is a complete EMR for doctors. Patients can book in your own website.';
     }
     return headMeta({
       title,
@@ -564,7 +569,12 @@ export default {
       return this.facilityType && this.roles.length;
     },
     isProceedDisabled () {
-      return this.loading.form || !this.valid || !this.agree || !this.areSelectionsValid;
+      return (
+        this.loading.form ||
+        !this.valid ||
+        !this.agree ||
+        !this.areSelectionsValid
+      );
     },
     numPRC () {
       return this.doc_PRCLicenseNo ? parseInt(this.doc_PRCLicenseNo) : 0;
@@ -576,7 +586,9 @@ export default {
         return;
       }
       const needle = val.toLowerCase();
-      this.countriesList = this.countries.filter(v => v?.name?.toLowerCase().includes(needle)); // eslint-disable-line
+      this.countriesList = this.countries.filter(v =>
+        v?.name?.toLowerCase().includes(needle),
+      ); // eslint-disable-line
     },
     facilityType (val) {
       if (!isEmpty(val)) {
@@ -612,10 +624,14 @@ export default {
         const country = await getCountry();
         const { location } = country;
         this.countryCallingCode = location ? location.calling_code : '63';
-        this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+        this.countryFlag = location
+          ? location.country_flag
+          : 'https://assets.ipstack.com/flags/ph.svg';
 
         // - Check if there is pending session
-        const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+        const localStorageData =
+          process.browser &&
+          JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
         if (localStorageData) {
           this.firstName = localStorageData.firstName;
           this.lastName = localStorageData.lastName;
@@ -632,12 +648,16 @@ export default {
         if (this.$route.query.email) this.email = this.$route.query.email;
 
         if (this.$route.query.type) {
-          this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+          this.facilityType = this.facilityTypes.find(
+            ({ value }) => value === this.$route.query.type,
+          );
         } else {
           this.chooseFacilityTypeDialog = true;
         }
 
-        if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
+        if (this.$route.query.subscription) {
+          this.subscription = this.$route.query.subscription;
+        }
         if (this.$route.query.referralCode) {
           this.invitation = this.$route.query.referralCode;
           this.hasReferralCode = true;
@@ -658,23 +678,29 @@ export default {
         if (isEmpty(this.facilityType)) {
           this.error = true;
           this.errorFacilityType = true;
-          this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
+          this.errorMessage =
+            'The form is incomplete. Please provide the required inforamtion';
           this.errorMessagesFacilityType = 'This is required';
           return;
-        };
+        }
         if (isEmpty(this.roles)) {
           this.error = true;
           this.errorRoles = true;
-          this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
+          this.errorMessage =
+            'The form is incomplete. Please provide the required inforamtion';
           this.errorMessagesRoles = 'This is required';
           return;
-        };
+        }
         if (!this.$refs.formRef.validate()) {
           return;
         }
         // Map org types and subscription
-        const filledFacilityType = isObject(this.facilityType) ? this.facilityType.value : this.facilityType;
-        const { orgProps } = this.facilityTypes.find(type => type.value === filledFacilityType);
+        const filledFacilityType = isObject(this.facilityType)
+          ? this.facilityType.value
+          : this.facilityType;
+        const { orgProps } = this.facilityTypes.find(
+          type => type.value === filledFacilityType,
+        );
         const organizationPayload = {
           ...orgProps,
         };
@@ -688,24 +714,25 @@ export default {
         // signup page.
         // `from` has value of either 'telehealth' or 'booking'
         if (from && ['telehealth', 'booking'].includes(from)) {
-          if (this.$route.query.type === 'doctor' || this.facilityType === 'doctor') {
-            organizationPayload.types = [
-              'doctor',
-              `doctor-${from}`,
-            ];
+          if (
+            this.$route.query.type === 'doctor' ||
+            this.facilityType === 'doctor'
+          ) {
+            organizationPayload.types = ['doctor', `doctor-${from}`];
           }
-          if (this.$route.query.type === 'clinic' || this.facilityType === 'clinic') {
-            organizationPayload.types = [
-              'clinic',
-              `clinic-${from}`,
-            ];
+          if (
+            this.$route.query.type === 'clinic' ||
+            this.facilityType === 'clinic'
+          ) {
+            organizationPayload.types = ['clinic', `clinic-${from}`];
           }
           // Diagnostic telehealth not yet available business-wise
-          if (from === 'booking' && (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic')) {
-            organizationPayload.types = [
-              'diagnostic',
-              `diagnostic-${from}`,
-            ];
+          if (
+            from === 'booking' &&
+            (this.$route.query.type === 'diagnostic' ||
+              this.facilityType === 'diagnostic')
+          ) {
+            organizationPayload.types = ['diagnostic', `diagnostic-${from}`];
           }
         }
 
@@ -723,28 +750,32 @@ export default {
           stripeCoupon: this.stripeCoupon,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
           // - To be omitted in actual submit in step 2
-          ...trial && { trial: true },
-          ...plan && { plan },
-          ...from && { from },
+          ...(plan && { plan }),
+          ...(from && { from }),
           organizationType: this.facilityType,
         };
         // Only include PRC when user is a doctor
-        if (this.doc_PRCLicenseNo && this.isDoctor) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        if (this.doc_PRCLicenseNo && this.isDoctor) {
+          payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        }
 
-        const [
-          emailResultUnique,
-          mobileResultUnique,
-        ] = await Promise.all([
+        const [emailResultUnique, mobileResultUnique] = await Promise.all([
           this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
-          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', `+${this.countryCallingCode}${this.mobileNo}`),
+          this.$sdk
+            .service('auth')
+            .checkUniqueIdentity(
+              'mobileNo',
+              `+${this.countryCallingCode}${this.mobileNo}`,
+            ),
         ]);
         this.emailUnique = emailResultUnique;
         this.mobileUnique = mobileResultUnique;
         if (!emailResultUnique || !mobileResultUnique) {
           this.error = true;
-          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          this.errorMessage =
+            'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
-        };
+        }
         this.saveModel(payload);
         // Record track
         this.$gtag.event('submit', {
@@ -778,7 +809,8 @@ export default {
         this.error = true;
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
-          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          this.errorMessage =
+            'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
         }
         this.errorMessage = 'There was an error please try again later';
@@ -796,7 +828,8 @@ export default {
         return;
       }
       const saveVal = { ...val };
-      process.browser && localStorage.setItem(FACILITY_STEP_1_DATA, JSON.stringify(saveVal));
+      process.browser &&
+        localStorage.setItem(FACILITY_STEP_1_DATA, JSON.stringify(saveVal));
     },
     async getCountries () {
       try {
@@ -804,10 +837,17 @@ export default {
           if (!localStorage.getItem('mycure:countries')) {
             this.countries = await getCountries();
             this.countriesList = await getCountries();
-            localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
+            localStorage.setItem(
+              'mycure:countries',
+              JSON.stringify(this.countries),
+            );
           } else {
-            this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
-            this.countriesList = JSON.parse(localStorage.getItem('mycure:countries'));
+            this.countries = JSON.parse(
+              localStorage.getItem('mycure:countries'),
+            );
+            this.countriesList = JSON.parse(
+              localStorage.getItem('mycure:countries'),
+            );
           }
         }
       } catch (e) {
@@ -823,8 +863,14 @@ export default {
     validatePhoneNo (mobileNo) {
       this.mobileNoError = false;
       const countryCode = this.countryCallingCode;
-      const phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
-      if (!phoneNumber || !phoneNumber.isValid() || mobileNo.charAt(0) === '0') {
+      const phoneNumber = parsePhoneNumberFromString(
+        `+${countryCode}${mobileNo}`,
+      );
+      if (
+        !phoneNumber ||
+        !phoneNumber.isValid() ||
+        mobileNo.charAt(0) === '0'
+      ) {
         return false;
       } else {
         this.mobileNoError = true;
@@ -834,7 +880,7 @@ export default {
     checkNumberInput (event) {
       if (!/\d/.test(event.key)) {
         return event.preventDefault();
-      };
+      }
       return event;
     },
     goToTerms () {
@@ -869,7 +915,8 @@ export default {
       this.$router.replace({
         query: {
           ...omit(this.$route.query, ['plan', 'trial']),
-          ...(!DOCTOR_TYPES.includes(type) && this.$route.query.trial) && { trial: true },
+          ...(!DOCTOR_TYPES.includes(type) &&
+            this.$route.query.trial && { trial: true }),
           type,
         },
       });
@@ -883,7 +930,8 @@ export default {
 </script>
 
 <style scoped>
-.link-to-home:hover, .country-container:hover {
+.link-to-home:hover,
+.country-container:hover {
   cursor: pointer;
 }
 
