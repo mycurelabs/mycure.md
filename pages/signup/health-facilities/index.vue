@@ -119,7 +119,7 @@
                         | Change Country
                       span &nbsp;+{{ countryCallingCode }}
                   template(slot="append")
-                    v-icon(v-if="mobileNoError && mobileUnique" color="accent") {{ mdiCheck }}
+                    v-icon(v-if="mobileNoError" color="accent") {{ mdiCheck }}
             p.mt-3.mb-2 Password
             v-row(:no-gutters="$isMobile").px-2
               v-col(
@@ -509,7 +509,6 @@ export default {
       errorMessagesRoles: '',
       codeDialog: false,
       emailUnique: true,
-      mobileUnique: true,
       // icons
       mdiArrowRight,
       mdiMagnify,
@@ -706,7 +705,7 @@ export default {
         };
 
         // Route queries
-        const { trial, plan, from } = this.$route.query;
+        const { plan, from } = this.$route.query;
 
         // NOTE: See SignupButton component
         // for the logic of query params being
@@ -748,8 +747,6 @@ export default {
           roles: this.roles,
           invitation: this.invitation,
           stripeCoupon: this.stripeCoupon,
-          // skipMobileNoVerification: this.facilityType.value !== 'doctor',
-          // - To be omitted in actual submit in step 2
           ...(plan && { plan }),
           ...(from && { from }),
           organizationType: this.facilityType,
@@ -759,18 +756,11 @@ export default {
           payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
         }
 
-        const [emailResultUnique, mobileResultUnique] = await Promise.all([
-          this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
-          this.$sdk
-            .service('auth')
-            .checkUniqueIdentity(
-              'mobileNo',
-              `+${this.countryCallingCode}${this.mobileNo}`,
-            ),
-        ]);
+        const emailResultUnique = await this.$sdk
+          .service('auth')
+          .checkUniqueIdentity('email', this.email);
         this.emailUnique = emailResultUnique;
-        this.mobileUnique = mobileResultUnique;
-        if (!emailResultUnique || !mobileResultUnique) {
+        if (!emailResultUnique) {
           this.error = true;
           this.errorMessage =
             'The email or mobile number you have entered is invalid or taken. Please try again.';
@@ -789,21 +779,6 @@ export default {
             type: this.facilityType?.value || this.$route.query.type,
           },
         });
-        // const data = await signupFacility(payload);
-        // console.log('data', data);
-
-        // if (this.requiresCheckout) {
-        //   const checkoutSession = get(data, 'organization.subscription.updatesPending');
-        //   console.log('checkout session', checkoutSession);
-        //   this.stripeCheckoutSessionId = checkoutSession.stripeSession;
-        //   this.$refs.checkoutRef.redirectToCheckout();
-        //   return;
-        // }
-        // if (this.countryCallingCode !== '63') {
-        //   this.emailVerificationMessageDialog = true;
-        // } else {
-        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        // }
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -861,6 +836,7 @@ export default {
       this.searchString = '';
     },
     validatePhoneNo (mobileNo) {
+      console.warn('mobileNo', mobileNo);
       this.mobileNoError = false;
       const countryCode = this.countryCallingCode;
       const phoneNumber = parsePhoneNumberFromString(
