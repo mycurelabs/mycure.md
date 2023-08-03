@@ -487,7 +487,6 @@ export default {
         if (this.countryCallingCode !== '63') {
           this.emailVerificationMessageDialog = true;
         } else {
-          await this.sendOtp();
           this.$cookies.removeAll();
           this.$router.push({
             name: 'signup-health-facilities-otp-verification',
@@ -519,7 +518,6 @@ export default {
           if (
             this.email === localStorage.getItem('signup:current-signin-up-user')
           ) {
-            await this.sendOtp();
             this.$cookies.removeAll();
             this.$nuxt.$router.push({
               name: 'signup-health-facilities-otp-verification',
