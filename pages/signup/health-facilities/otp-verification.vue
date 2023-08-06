@@ -1,130 +1,15 @@
 <template lang="pug">
-  v-container(fluid fill-height).pa-0.ma-0
-    v-row(style="height: 100vh")
-      v-col(cols="5" v-if="!$isMobile" style="background: #E2FAF4;").pa-0.text-center
-        v-row(style="height: 100vh" align="center" justify="center")
-          img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
-      v-col(:cols="$isMobile? '12' : '7'" :class="$isMobile ? 'pa-4' : 'pa-0'")
-        v-container(
-          style="height: 100vh;"
-          :class="$isMobile ? 'pa-3' : ['px-15']"
-        ).rounded-tl-xl.rounded-bl-xl
-          v-row(align="center" style="height: 100vh;")
-            v-col(cols="12").text-center
-              h1.mc-h2 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
-              br
-              p.mb-0.mc-b2 Please enter the OTP sent to&nbsp;
-                span.secondary--text +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-              div.d-flex.text-center.justify-center.my-15
-                v-text-field(
-                  v-model="otp"
-                  type="text"
-                  label="Enter your OTP"
-                  outlined
-                  autofocus
-                )
-                //- v-otp-input(
-                //-   ref="otpInput"
-                //-   separator=""
-                //-   input-classes="otp-input"
-                //-   :num-inputs="6"
-                //-   :should-auto-focus="true"
-                //-   :is-input-num="true"
-                //-   :class="{'mobile-otp': $isMobile}"
-                //-   @on-change="otp = $event"
-                //- )
-              //- Verify button
-              v-btn(
-                color="secondary"
-                :style="{ width: $isMobile ? '100%' : '400px' }"
-                large
-                :disabled="otp.length < 6"
-                @click="submit()"
-              ).white--text Verify
-              v-alert(
-                :value="verificationError"
-                type="error"
-                dismissible
-              ).mt-5 Incorrect verification code
-              div.text-center.font-open-sans.mt-5
-                span Didn't receive the OTP?
-                v-btn(
-                  :disabled="otpCountdown > 0 || loading"
-                  @click="resendVerificationCode"
-                  color="secondary"
-                  text
-                  right
-                  bottom
-                  depressed
-                ).text-none.mt-n1
-                  | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
-            v-row(align="end")
-              v-col(cols="12" align-self="end").text-center.font-open-sans
-                p.mb-0 Entered a wrong contact number?
-                a(@click.stop="toggleChat()").secondary--text Let us know so we can assist you.
-
-    v-dialog(v-model="successDialog" width="400" height="auto" persistent)
-      v-card
-        v-card-text.text-center
-          h1.pt-10.font-30 Welcome to MYCURE!
-          br
-          img(width="100%" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
-          div
-            p.subheading
-              | Awesome, your account is verified!
-              br
-              | Opening your digital health facility...
-          br
-          div.text-center
-            v-progress-circular(color="primary" indeterminate)
-          //- v-btn(
-          //-   color="accent"
-          //-   @click="onAcknowledgment"
-          //-   large
-          //-   :disabled="loading"
-          //-   :loading="loading"
-          //- ).text-none.font-weight-bold Get Started
-    v-snackbar(
-      v-model="showSnack"
-      :color="snackBarModel.color"
-      :timeout="1000"
-    ) {{ snackBarModel.text }}
-
+div
 </template>
 
 <script>
-import dayOrNight from '~/utils/day-or-night';
-import { verifyMobileNo, signin, resendVerificationCode } from '~/utils/axios';
+import { signin } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
-const COUNTDOWN_MILLIS = 60000;
 export default {
   layout: 'empty',
   data () {
-    this.dayOrNight = dayOrNight();
     return {
-      // UI States
-      valid: false,
-      loading: false,
-      verificationError: false,
-      successDialog: false,
-      // Data Models
-      otp: '',
       step1Data: {},
-      otpCountdown: null,
-      showSnack: false,
-      snackBarModel: {
-        text: 'Success!',
-        color: 'accent',
-      },
-      firstDigit: null,
-      secondDigit: null,
-      thirdDigit: null,
-      fourthDigit: null,
-      fifthDigit: null,
-      sixthDigit: null,
-      isPaymentSuccessful: false,
-      verifyButton: null,
-      otpVal: null,
     };
   },
   head () {
@@ -135,198 +20,35 @@ export default {
       socialBanner: require('~/assets/images/banners/homepage-og-banner.png'),
     });
   },
-  computed: {
-    pageType () {
-      return this.$nuxt.$route.name;
-    },
-  },
-  async created () {
+  async mounted () {
+    // NOTE: The otp page is now just a passthrough page
+    // to success signup. This is because we don't need
+    // to verify the mobile number anymore.
+    // We can remove this page in the future. We are only
+    // taking advantage of the current signup flow and the
+    // already written post-signup steps code.
     await this.init();
   },
   methods: {
-    init () {
-      if (process.browser) {
-        // this.$nextTick(() => {
-        //   document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
-        // });
+    async init () {
+      this.step1Data = JSON.parse(localStorage.getItem('facility:step1:model'));
 
-        this.$vuetify.theme.dark = false;
-        const step1Data = JSON.parse(
-          localStorage.getItem('facility:step1:model'),
-        );
-        if (!step1Data?.email) {
-          this.$nuxt.$router.push({ name: 'signup-health-facilities' });
-        } else {
-          this.step1Data = step1Data;
-        }
+      const { accessToken } = await signin({
+        email: this.step1Data.email,
+        password: this.step1Data.password,
+      });
 
-        this.isPaymentSuccessful = this.$route.query.payment === 'success';
+      localStorage.clear();
 
-        const ongoingCountDown = JSON.parse(
-          localStorage.getItem('otp:resend:countdown'),
-        );
-        if (!ongoingCountDown) {
-          this.resetCountDown();
-        } else {
-          this.otpCountdown = Number(
-            JSON.parse(localStorage.getItem('otp:resend:countdown')),
-          );
-          this.startCountDown();
-        }
+      // Record track
+      this.$gtag.event('click', {
+        event_category: 'signup',
+        event_label: 'signup-step-3-otp-success',
+      });
 
-        // Record track
-        this.$gtag.pageview('/signup/health-facilities/otp-verification');
-      }
-    },
-    // Verify mobile no and signup
-    async submit () {
-      try {
-        this.loading = true;
-        this.verificationError = false;
-        const payload = {
-          code: this.otp,
-        };
-        await verifyMobileNo(payload);
-        this.$router.replace({ query: { success: 1 } });
-        this.otpCountdown = null;
-        this.successDialog = true;
-        // Remove saved data
-        // - Mock loading then run acknowledgment
-        await setTimeout(() => {
-          this.onAcknowledgment();
-        }, 300);
-      } catch (e) {
-        this.verificationError = true;
-        this.clearInputs();
-        console.error(e);
-      } finally {
-        this.loading = false;
-        this.otp = '';
-      }
-    },
-    async resendVerificationCode () {
-      try {
-        this.resetCountDown();
-        const { accessToken } = await signin({
-          email: this.step1Data.email,
-          password: this.step1Data.password,
-        });
-        await resendVerificationCode({ token: accessToken });
-        // Record track
-        this.$gtag.event('click', {
-          event_category: 'signup',
-          event_label: 'signup-step-3-otp-resend',
-        });
-        this.snackBarModel = {
-          text: 'OTP was resent successfully!',
-          color: 'accent',
-        };
-        this.showSnack = true;
-      } catch (e) {
-        console.error(e);
-        this.snackBarModel = {
-          text: 'There was an error in sending. Please try again!',
-          color: 'error',
-        };
-        this.showSnack = true;
-      }
-    },
-    async onAcknowledgment () {
-      try {
-        this.loading = true;
-        const { accessToken } = await signin({
-          email: this.step1Data.email,
-          password: this.step1Data.password,
-        });
-        localStorage.clear();
-        // Record track
-        this.$gtag.event('click', {
-          event_category: 'signup',
-          event_label: 'signup-step-3-otp-success',
-        });
-        window.location = `${process.env.CMS_URL}?token=${accessToken}`;
-        this.clearLocalStorage();
-      } catch (error) {
-        console.error(error);
-        this.snackBarModel = {
-          text: 'There was an error in sending. Please try again!',
-          color: 'error',
-        };
-        this.showSnack = true;
-      } finally {
-        this.loading = false;
-      }
-    },
-    startCountDown () {
-      const interval = setInterval(() => {
-        this.otpCountdown -= 1000;
-        if (process.browser) {
-          localStorage.setItem('otp:resend:countdown', this.otpCountdown);
-          if (this.otpCountdown < 0) {
-            clearInterval(interval);
-            localStorage.removeItem('otp:resend:countdown');
-          }
-        }
-      }, 1000);
-    },
-    resetCountDown () {
-      if (process.browser) {
-        localStorage.setItem('otp:resend:countdown', COUNTDOWN_MILLIS);
-      }
-      this.otpCountdown = COUNTDOWN_MILLIS;
-      this.startCountDown();
-    },
-    toggleChat () {
-      const message = 'Hi, I am having an issue with my OTP number.';
-      window.Intercom('show');
-      window.Intercom('sendMessage', message);
-    },
-    onDelete (digit) {
-      if (process.browser) {
-        switch (digit) {
-          case 2:
-            document.getElementById('firstDigit') &&
-              document.getElementById('firstDigit').focus();
-            break;
-          case 3:
-            document.getElementById('secondDigit') &&
-              document.getElementById('secondDigit').focus();
-            break;
-          case 4:
-            document.getElementById('thirdDigit') &&
-              document.getElementById('thirdDigit').focus();
-            break;
-          case 5:
-            document.getElementById('fourthDigit') &&
-              document.getElementById('fourthDigit').focus();
-            break;
-          case 6:
-            document.getElementById('fifthDigit') &&
-              document.getElementById('fifthDigit').focus();
-            break;
-          default: {
-            break;
-          }
-        }
-      }
-    },
-    checkNumberInput (event, value) {
-      if (!/\d/.test(event.key) || value?.length === 1) {
-        return event.preventDefault();
-      }
-      return event;
-    },
-    clearInputs () {
-      this.firstDigit = null;
-      this.secondDigit = null;
-      this.thirdDigit = null;
-      this.fourthDigit = null;
-      this.fifthDigit = null;
-      this.sixthDigit = null;
-      if (process.browser) {
-        document.getElementById('firstDigit') &&
-          document.getElementById('firstDigit').focus();
-      }
+      window.location = `${process.env.CMS_URL}?token=${accessToken}`;
+
+      this.clearLocalStorage();
     },
     clearLocalStorage () {
       window.localStorage.removeItem('signup:subscription-id');
