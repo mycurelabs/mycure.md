@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 // Fall-backs
-const MEDICAL_RECORDS_FALLBACK = 1180000;
-const PATIENTS_FALLBACK = 1460000;
-const PROVIDERS_FALLBACK = 790;
+const MEDICAL_RECORDS_FALLBACK = 2700000;
+const PATIENTS_FALLBACK = 1500000;
+const PROVIDERS_FALLBACK = 1500;
 
 export const fetchWebsiteMetrics = async () => {
   try {
+    console.time('fetchWebsiteMetrics');
     const { data: medicalRecordsData } = await axios({
       method: 'GET',
       url: `${process.env.API_URL}/metrics/metrics?name=new_medical_records_total&$aggregate[sum]=1`,
@@ -26,6 +27,7 @@ export const fetchWebsiteMetrics = async () => {
       method: 'GET',
       url: `${process.env.API_URL}/metrics/metrics?name=new_users_total&labels.is_doctor=true&$aggregate[sum]=1`,
     });
+    console.timeEnd('fetchWebsiteMetrics');
 
     // const medicalRecordsData = await sdk.service('metrics/metrics').find({
     //   name: 'new_medical_records_total',
