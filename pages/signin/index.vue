@@ -258,17 +258,17 @@ export default {
     this.pageLoading = false;
   },
   mounted () {
-    window.$amplitude.logEvent('RET001 Page > Sign in');
+    window?.$amplitude?.logEvent('RET001 Page > Sign in');
   },
   methods: {
     init () {
       this.target = this.$nuxt.$route.query.target || process.env.CMS_URL;
     },
     onFocusEmail (e) {
-      window.$amplitude.logEvent('RET002 Enter creds');
+      window?.$amplitude?.logEvent('RET002 Enter creds');
     },
     onFocusPassword (e) {
-      window.$amplitude.logEvent('RET002 Enter creds');
+      window?.$amplitude?.logEvent('RET002 Enter creds');
     },
     async submit () {
       try {
@@ -288,7 +288,7 @@ export default {
           this.otpDialog = true;
         } else if (accessToken) {
           this.signInDisabled = true;
-          window.$amplitude.logEvent('RET003 Btn > Sign in');
+          window?.$amplitude?.logEvent('RET003 Btn > Sign in');
           window.location = this.composeTarget(accessToken);
         } else {
           throw new Error('There was an error. Please try again later.');
@@ -307,7 +307,7 @@ export default {
         }
         // Get error code
         const errorCode = e.data.code;
-        window.$amplitude.logEvent('RET004 Err');
+        window?.$amplitude?.logEvent('RET004 Err');
         if (errorCode === 'auth/user-not-found') {
           this.errorMsg = 'This user does not exist';
           return;

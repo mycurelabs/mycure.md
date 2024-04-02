@@ -9,12 +9,12 @@ export const amplitudeTracker = (code, path) => {
    *  console.log(code, '<--->', path);
    */
   // include path for future analysis of roles movement
-  window.$amplitude.logEvent(code, { path });
+  window?.$amplitude?.logEvent(code, { path });
 };
 
 export const logEvent = (event, properties) => {
   try {
-    window.$amplitude.logEvent(event, properties);
+    window?.$amplitude?.logEvent(event, properties);
   } catch (error) {
     console.error(error);
   }

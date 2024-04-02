@@ -29,7 +29,7 @@ export default {
   methods: {
     trackEvent () {
       // Amplitude
-      window.$amplitude.logEvent(this.eventLabel);
+      window?.$amplitude?.logEvent(this.eventLabel);
       // Google Analytics
       this.$gtag.event(this.eventAction, {
         event_category: this.eventCategory,
