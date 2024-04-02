@@ -93,7 +93,7 @@ export default {
     },
     btnText: {
       type: String,
-      default: 'Get Started',
+      default: 'Contact Us',
     },
     btnColor: {
       type: String,

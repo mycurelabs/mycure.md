@@ -276,7 +276,7 @@ export const getSubscriptionPackagesPricing = async (type, { isBooking = false }
       monthlyPrice: getMonthlyPrice(pack, type),
       annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
-      btnText: 'Get Started',
+      btnText: 'Contact Us',
       // Trial days
       ...monthlyPackage?.trialDays && { monthlyTrial: monthlyPackage.trialDays },
       ...annualPackage?.trialDays && { annualTrial: annualPackage.trialDays },

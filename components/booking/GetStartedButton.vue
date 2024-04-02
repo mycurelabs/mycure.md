@@ -8,7 +8,7 @@
     :small="small"
     :block="block"
     @click="getStarted"
-  ).text-none.letter-spacing-normal Get Started
+  ).text-none.letter-spacing-normal Contact Us
 </template>
 
 <script>
@@ -26,15 +26,16 @@ export default {
   },
   methods: {
     getStarted () {
-      const opts = {
-        name: 'signup-health-facilities',
-      };
-      if (this.email) {
-        opts.query = {
-          email: this.email,
-        };
-      }
-      this.$router.push(opts);
+      globalThis.open('https://calendly.com/mycure/demo', '_blank');
+      // const opts = {
+      //   name: 'signup-health-facilities',
+      // };
+      // if (this.email) {
+      //   opts.query = {
+      //     email: this.email,
+      //   };
+      // }
+      // this.$router.push(opts);
     },
   },
 };

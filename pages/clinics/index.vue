@@ -11,7 +11,7 @@
         meta-title="MYCURE CLINICS"
         description="Keep your outpatient clinic running smoothly all day long with the MYCURE Clinics app. We’ve designed a platform that benefits large and small operations."
         parse-title
-        btn-text="Start Free Today"
+        btn-text="Contact Us"
         image="clinics-usp"
         :image-width="$isMobile ? '100%' : '90%'"
         custom-image-path="clinics/"
@@ -53,7 +53,7 @@
                       :width="!$isWideScreen ? '228px' : '300'"
                       :height="!$isWideScreen ? '59px' : '73.68'"
                     ).text-none
-                      span.mc-btn1 Start for Free
+                      span.mc-btn1 Contact Us
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo")
@@ -115,7 +115,7 @@
       scroller(title="The MYCURE Clinic Advantage" :items="carouselItems")
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           has-trial-option

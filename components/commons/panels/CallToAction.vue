@@ -36,7 +36,7 @@
                   :width="$isWideScreen ? '300px' : $isMobile ? '228px' : undefined"
                   :height="!$isWideScreen ? '59px' : '73.68px'"
                 ).text-none
-                  span.mc-btn1 {{notFree ? 'Get Started' : 'Get Started Free'}}
+                  span.mc-btn1 Contact us
                 //-   :outlined="![2, 4].includes(version)"
 </template>
 

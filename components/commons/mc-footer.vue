@@ -196,7 +196,7 @@ export default {
   },
   methods: {
     toggleChat () {
-      window.Intercom('show');
+      window.Desku('show');
     },
   },
 };

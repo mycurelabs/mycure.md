@@ -33,7 +33,7 @@ export default {
     this.$vuetify.theme.dark = false;
   },
   // mounted () {
-  //   window.Intercom('show');
+  //   window.Desku('show');
   // },
 };
 </script>

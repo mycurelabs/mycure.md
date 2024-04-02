@@ -33,7 +33,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none.mt-10
-                span.generic-button-text Get Started Free
+                span.generic-button-text Contact Us
                 v-icon(small right) {{ mdiArrowRight }}
 </template>
 

@@ -74,7 +74,7 @@
                       height="50"
                       elevation="0"
                       tile
-                    ).text-none.font-12.font-weight-medium SIGN UP
+                    ).text-none.font-12.font-weight-medium CONTACT US
                   template(v-else)
                     v-spacer
                     v-btn(icon @click.stop="drawer = !drawer")
@@ -129,12 +129,14 @@
         large
         :to="{ name: 'signin' }"
       ).text-none.mr-2 #[span.font-weight-medium LOG IN]
-      v-btn(
+      nuxt-link(
         color="success"
         large
         shaped
-        :to="{name: 'signup-health-facilities'}"
-      ).text-none #[span.font-weight-medium SIGN UP]
+        href="https://calendly.com/mycure/demo"
+        target="_blank"
+        rel="noopener noreferrer"
+      ).text-none #[span.font-weight-medium CONTACT US]
 </template>
 
 <script>
@@ -149,10 +151,10 @@ export default {
   },
   data () {
     this.navs = [
-      {
-        name: 'Doctors',
-        route: 'doctors-clinics',
-      },
+      // {
+      //   name: 'Doctors',
+      //   route: 'doctors-clinics',
+      // },
       {
         name: 'Clinics',
         isMenu: true,

@@ -77,7 +77,7 @@ export default {
     },
     btnText: {
       type: String,
-      default: 'Get Started Free',
+      default: 'Contact Us',
     },
   },
   data () {

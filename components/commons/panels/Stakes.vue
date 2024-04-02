@@ -77,7 +77,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none.my-3
-                span.mc-btn1 {{ notFree ? 'Get Started' : 'Get Started Free' }}
+                span.mc-btn1 Contact Us
     generic-media-panel(
       v-else
       :content="mediaContent"
@@ -98,7 +98,7 @@
             width="228px"
             height="59px"
           ).text-none
-            span.mc-btn1 {{ notFree ? 'Get Started' : 'Get Started Free' }}
+            span.mc-btn1 Contact Us
 </template>
 
 <script>

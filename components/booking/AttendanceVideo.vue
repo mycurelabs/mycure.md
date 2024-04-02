@@ -16,7 +16,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
-                span.mc-btn1.white--text Get Started Free
+                span.mc-btn1.white--text Contact Us
           v-spacer(v-if="!$isMobile")
           v-col(cols="12" sm="6" :class="{'text-center': $isMobile}")
             img(

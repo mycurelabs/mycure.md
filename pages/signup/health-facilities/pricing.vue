@@ -572,10 +572,7 @@ export default {
       return 'info';
     },
     sendCrispMessage () {
-      const message =
-        'Hello, I would like to inquire about the ENTERPRISE plan.';
-      window.Intercom('show');
-      window.Intercom('sendMessage', message);
+      window.Desku('show');
     },
     confirmEmailVerification () {
       process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);

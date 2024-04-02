@@ -10,7 +10,7 @@
         title="Easy Booking App to Grow Your Practice"
         meta-title="MYCURE BOOKING"
         description="Let your patients book and schedule appointments efficiently"
-        btn-text="Get Started Free"
+        btn-text="Contact Us"
         parse-title
         :parse-title-fields="['to ']"
         :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
@@ -35,7 +35,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
-                span.mc-btn1 Get Started Free
+                span.mc-btn1 Contact Us
 
     //-3rd panel
     lazy-hydrate(when-visible)
@@ -183,7 +183,7 @@
                     :width="!$isRegularScreen ? (!$isWideScreen ? '228px' : '300') : ''"
                     :height="!$isWideScreen ? '59px' : '73.68'"
                   ).text-none
-                    span.mc-btn1 Get Started Free
+                    span.mc-btn1 Contact Us
     //- storybrand(
     //-   title="Using Modern Tools to Boost Your Practice"
     //-   :content="storybrandContent"
@@ -206,9 +206,9 @@
                   class="rounded-md"
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
-                  :to="{ name: 'signup-health-facilities' }"
+                  @click="gotoCalendly"
                 ).text-none
-                  span.mc-btn1 Start Free Today
+                  span.mc-btn1 Contact Us
           div.cta-image.text-center
             picture-source(
               image="CTA"
@@ -386,6 +386,9 @@ export default {
         customImagePath: path,
       };
       this.imageViewerDialog = true;
+    },
+    gotoCalendly () {
+      globalThis.open('https://calendly.com/mycure/demo', '_blank');
     },
   },
 };

@@ -18,7 +18,7 @@
                   :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                 ).text-none
-                  span.mc-btn1 Get Started Now
+                  span.mc-btn1 Contact Us
 
             //- v-col(cols="12" :class="{'px-0': $isMobile}" align="center")
             //-   signup-button(
@@ -29,7 +29,7 @@
             //-     :width="!$isWideScreen ? '228px' : '300'"
             //-     :height="!$isWideScreen ? '59px' : '73.68'"
             //-   ).text-none
-            //-     span.mc-btn1 Get Started Now
+            //-     span.mc-btn1 Contact Us
 </template>
 
 <script>

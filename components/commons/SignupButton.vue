@@ -8,16 +8,16 @@
 </template>
 
 <script>
-const healthFacilityTypeMap = {
-  'doctors-clinics': 'doctor',
-  clinics: 'clinic',
-  diagnostics: 'diagnostic',
-  'clinics-skin': 'clinic',
-  'clinics-dental': 'clinic',
-  'clinics-corporate': 'clinic',
-  'diagnostics-ofw': 'diagnostic',
-  'diagnostics-mobile-labs': 'diagnostic',
-};
+// const healthFacilityTypeMap = {
+//   'doctors-clinics': 'doctor',
+//   clinics: 'clinic',
+//   diagnostics: 'diagnostic',
+//   'clinics-skin': 'clinic',
+//   'clinics-dental': 'clinic',
+//   'clinics-corporate': 'clinic',
+//   'diagnostics-ofw': 'diagnostic',
+//   'diagnostics-mobile-labs': 'diagnostic',
+// };
 export default {
   props: {
     pricingBundle: {
@@ -39,34 +39,37 @@ export default {
   },
   methods: {
     click () {
-      const routeName = this.$route.name;
-      const route = {
-        name: 'signup-health-facilities',
-        query: {},
-      };
-      if (healthFacilityTypeMap[routeName]) {
-        route.query.type = healthFacilityTypeMap[routeName];
-      }
-      if (this.facilityType) route.query.type = this.facilityType;
-      if (this.pricingBundle) {
-        route.query.subscription = this.pricingBundle;
-      }
-      // TODO: Uncomment once other TH apps are deployed
-      // if (routeName === 'telehealth') {
-      //   route.query.from = 'telehealth';
-      // }
-      if (routeName === 'booking') {
-        route.query.from = 'booking';
-        // - This was done since booking is a special case in health facility types
-        if (this.queryOps?.type) route.query.type = this.queryOps.type;
-      }
-      // Pricing pre-seletion
-      if (this.queryOps?.plan) route.query.plan = this.queryOps.plan;
-
-      // - Flag for trial
-      if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
-      this.$router.push(route);
+      globalThis.open('https://calendly.com/mycure/demo', '_blank');
     },
+    // click () {
+    //   const routeName = this.$route.name;
+    //   const route = {
+    //     name: 'signup-health-facilities',
+    //     query: {},
+    //   };
+    //   if (healthFacilityTypeMap[routeName]) {
+    //     route.query.type = healthFacilityTypeMap[routeName];
+    //   }
+    //   if (this.facilityType) route.query.type = this.facilityType;
+    //   if (this.pricingBundle) {
+    //     route.query.subscription = this.pricingBundle;
+    //   }
+    //   // TODO: Uncomment once other TH apps are deployed
+    //   // if (routeName === 'telehealth') {
+    //   //   route.query.from = 'telehealth';
+    //   // }
+    //   if (routeName === 'booking') {
+    //     route.query.from = 'booking';
+    //     // - This was done since booking is a special case in health facility types
+    //     if (this.queryOps?.type) route.query.type = this.queryOps.type;
+    //   }
+    //   // Pricing pre-seletion
+    //   if (this.queryOps?.plan) route.query.plan = this.queryOps.plan;
+
+    //   // - Flag for trial
+    //   if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
+    //   this.$router.push(route);
+    // },
   },
 };
 </script>

@@ -9,7 +9,7 @@
         title="The first and only medical software for OFW clinics"
         meta-title="MYCURE OFW CLINICS"
         description="MYCURE Clinics is an easy to use, secure, cloud-based clinic management system where you can create, finalize, and release medical exam results online and off."
-        btn-text="Start Free Today"
+        btn-text="Contact Us"
         image="ofw-clinics-mobile"
         custom-image-path="clinics/ofw/"
         parse-title
@@ -145,7 +145,7 @@
                 h3.b4.font-open-sans.font-gray {{ item.title }}
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           title="It’s Time to Take the First Step"

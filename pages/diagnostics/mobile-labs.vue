@@ -9,7 +9,7 @@
         title="The Simplest Clinic Management System for Mobile Labs"
         meta-title="MYCURE MOBILE LABS"
         description="MYCURE Diagnostics is an easy to use, secure, cloud based clinic information system that you can set up no matter where your mobile labs clinic is based."
-        btn-text="Start Free Today"
+        btn-text="Contact Us"
         image="Mobile-Clinics-Mobile-Version"
         custom-image-path="diagnostics/mobile-labs/"
         parse-title
@@ -127,7 +127,7 @@
         title="Invaluable Practice Management System at an Affordable Price"
         :content="['MYCURE Diagnostics offers a variety of tools that you can mix and match to maximize efficiency for your mobile lab clinic, without the costly overhead other clinic information systems might require. Daily reports, digital records, and appointments can all be accessed in one app – instead of needing to keep track of multiple platforms on your office’s devices.']"
       )
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           title="Take the first step"

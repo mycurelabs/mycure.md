@@ -9,7 +9,7 @@
         title="Everything You Need to Build Your Telemedicine Practice"
         meta-title="MYCURE TELEHEALTH"
         description="Give your patients the quality telehealth care they deserve, without having to visit in-person."
-        btn-text="Get Started Free"
+        btn-text="Contact Us"
         image="Telehealth-Mobile-USP"
         image-width="90%"
         image-align="right"
@@ -32,7 +32,7 @@
             color="primary"
             @click="getResponseDialog = true"
           ).text-none
-            span.mc-btn1 Get Started Free
+            span.mc-btn1 Contact Us
     v-container.py-16.px-0.grey-bg
       v-row(justify="center")
         lazy-hydrate(when-visible)
@@ -69,7 +69,7 @@
               span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     lazy-hydrate(when-visible)
       generic-video-panel(:content="telehealthVideo" not-white)
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           title="Enjoy Our Pay as You Grow Pricing"

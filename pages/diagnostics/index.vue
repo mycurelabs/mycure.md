@@ -184,7 +184,7 @@
     //-   scroller(title="Benefits of Using MYCURE in Your Diagnostic Clinic" :items="carouselItems")
     lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           title="It's Time to Take the First Step"

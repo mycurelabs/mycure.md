@@ -10,7 +10,7 @@
         meta-title="MYCURE HOSPITALS"
         description="Keep your hospital's out-patient department's (OPD) operations running smoothly with the MYCURE Hospital-OPD app. We've designed a platform that benefits OPD Clinics of all sizes, from small to large."
         parse-title
-        btn-text="Start Free Today"
+        btn-text="Contact Us"
         image="hospitals-hero"
         :image-width="$isMobile ? '100%' : '90%'"
         custom-image-path="clinics/hospital/"
@@ -49,7 +49,7 @@
                       :width="!$isWideScreen ? '228px' : '300'"
                       :height="!$isWideScreen ? '59px' : '73.68'"
                     ).text-none
-                      span.mc-btn1 Start for Free
+                      span.mc-btn1 Contact Us
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo" btn-text="Watch How it Works")
@@ -111,7 +111,7 @@
       scroller(title="The MYCURE OPD Clinic Advantage" :items="carouselItems" center-title)
     //- lazy-hydrate(when-idle)
       care(:metrics-data="metricsData")
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           has-trial-option

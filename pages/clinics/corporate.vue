@@ -9,7 +9,7 @@
         title="Save Your Corporate Clinic from Chaos"
         meta-title="MYCURE CORPORATE CLINICS"
         description="MYCURE Clinics is designed to help you keep your corporate clinic operating smoothly every single day."
-        btn-text="Get Started"
+        btn-text="Contact Us"
         image="corporate-clinics-mobile"
         custom-image-path="clinics/corporate/"
         parse-title
@@ -48,7 +48,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none.mt-4
-              span.mc-btn1 Sign Up
+              span.mc-btn1 Contact Us
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"
@@ -65,7 +65,7 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
               color="primary"
             ).text-none
-              span.mc-btn1.white--text Get Started
+              span.mc-btn1.white--text Contact Us
     lazy-hydrate(when-visible)
       generic-media-panel(
         align="center"
@@ -93,7 +93,7 @@
         title="Modern Tools to Boost Your Practice"
         :content="['At MYCURE, we know your patients’ experience is of the utmost importance to you. Top quality care is non-negotiable, and you need clinic management system solution that has those same principles. But in your search for the right IT solution for you, you’ve probably seen too many that are focused on the product, not the experience you and your patients have with it. MYCURE Clinics is here to change the game.']"
       )
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           type="clinic"

@@ -287,8 +287,8 @@ export default {
     },
     sendCrispMessage () {
       const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
-      window.Intercom('show');
-      window.Intercom('sendMessage', message);
+      window.Desku('show');
+      window.Desku('sendMessage', message);
     },
     /*
       Derived from https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900

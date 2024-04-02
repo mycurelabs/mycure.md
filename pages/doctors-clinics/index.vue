@@ -48,7 +48,7 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
-                span.mc-btn1.white--text Get Started Free
+                span.mc-btn1.white--text Contact Us
     template(v-for="content in contents")
       lazy-hydrate(when-visible)
         generic-media-panel(
@@ -89,7 +89,7 @@
     lazy-hydrate(when-visible)
       generic-blue-bg.white--text
         generic-video-panel(:content="doctorVideo" hide-btn)
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           center-items
@@ -117,6 +117,7 @@ import { DOCTORS_PRICING } from '~/constants/pricing';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
+  middleware: ['disable-route'],
   components: {
     LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),

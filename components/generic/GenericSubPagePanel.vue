@@ -79,7 +79,7 @@ export default {
      */
     ctaButtonText: {
       type: String,
-      default: 'Get Started',
+      default: 'Contact Us',
     },
     /**
      * If content should be in the right and media should be in the left

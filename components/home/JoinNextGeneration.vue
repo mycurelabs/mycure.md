@@ -11,7 +11,17 @@
           class="rounded-pill"
           :width="!$isWideScreen ? '228px' : '300'"
           :height="!$isWideScreen ? '59px' : '73.68'"
-          :to="{ name: 'signup-health-facilities' }"
+          @click="handleClick"
         ).text-none
-          span.generic-button-text Get Started
+          span.generic-button-text Contact Us
 </template>
+
+<script>
+export default {
+  methods: {
+    handleClick () {
+      globalThis.open('https://calendly.com/mycure/demo', '_blank');
+    },
+  },
+};
+</script>

@@ -9,7 +9,7 @@
         title="Skin and Aesthetic Clinic Management System for a Flawless Experience"
         meta-title="MYCURE for Skin Clinics"
         description="Easy appointment, inventory management and secure client records and relationship management with analytics and reporting."
-        btn-text="Get Started"
+        btn-text="Contact Us"
         image="skin-clinics-usp-mobile"
         custom-image-path="clinics/skin/"
         parse-title
@@ -91,7 +91,7 @@
         title="Invaluable Clinic Management at an Affordable Price"
         :content="storybrandTwoContent"
       )
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           type="clinic"

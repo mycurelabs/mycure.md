@@ -9,7 +9,7 @@
         title="An Advanced Clinic Management System for Dentists"
         meta-title="MYCURE DENTAL CLINICS"
         description="Everything your dental clinic needs from appointments, billing, inventory, to charting."
-        btn-text="Get Started Free"
+        btn-text="Contact Us"
         image="dental-clinics-usp-mobile-version"
         custom-image-path="clinics/dental/"
         parse-title
@@ -37,7 +37,7 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="primary"
               ).text-none
-                span.mc-btn1.white--text Get Started Free
+                span.mc-btn1.white--text Contact Us
     //- 2nd panel
     lazy-hydrate(when-visible)
       generic-blue-bg
@@ -62,7 +62,7 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.mc-btn1 Get Started
+              span.mc-btn1 Contact Us
     lazy-hydrate(when-visible)
       straightforward
     //- updaet thos
@@ -84,7 +84,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
-                span.mc-btn1 Get started
+                span.mc-btn1 Contact Us
     lazy-hydrate(when-visible)
       generic-media-panel(
         :content="multiplePanel"
@@ -107,7 +107,7 @@
         title="Use Modern Clinic Information System Tools to Boost Your Dental Clinic"
         :content="storybrandContent"
       )
-    client-only
+    //- client-only
       lazy-hydrate(when-idle)
         pricing(
           title="It’s time to take the first step"

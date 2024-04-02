@@ -103,7 +103,7 @@ export default {
             : this.ctaContent.subtext;
     },
     ctaBtnText () {
-      return !this.ctaContent ? 'Get Started' : this.ctaContent.btnText;
+      return !this.ctaContent ? 'Contact Us' : this.ctaContent.btnText;
     },
     ctaImage () {
       return !this.ctaContent || !this.ctaContent.image ? 'mycure-web-footer' : this.ctaContent.image;
