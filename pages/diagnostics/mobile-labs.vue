@@ -54,7 +54,7 @@
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none
-                span.mc-btn1 Start for Free
+                span.mc-btn1 Contact Us
     v-container
       v-row(justify="center")
         lazy-hydrate(when-visible)

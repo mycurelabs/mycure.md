@@ -52,12 +52,12 @@
                       :width="!$isWideScreen ? '228px' : '300'"
                       :height="!$isWideScreen ? '59px' : '73.68'"
                     ).text-none
-                      span.mc-btn1 Start for Free
+                      span.mc-btn1 Contact Us
     lazy-hydrate(when-visible)
       generic-blue-bg
         features(
           title="MYCURE Diagnostics is No Ordinary LIS App"
-          description="It’s a platform built for the unique needs of laboratory and radiology information systems. Connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network."
+          description="It's a platform built for the unique needs of laboratory and radiology information systems. Connect and securely share files with other healthcare providers, labs, hospitals, and pharmacies within the MYCURE One network."
           :items="features"
           :title-col-size="10"
           :content-col-size="10"
