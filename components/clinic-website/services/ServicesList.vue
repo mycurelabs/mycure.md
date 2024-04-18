@@ -20,7 +20,7 @@
               v-subheader.mc-hyp2.black--text Consultation
               v-list-item-group(v-model="activeServiceType")
                 v-list-item(
-                  v-for="(type, key) in ['clinical-consultation', 'telehealth']"
+                  v-for="(type, key) in consultTypes"
                   :key="key"
                   :value="type"
                 )
@@ -87,7 +87,7 @@ import GenericPanel from '~/components/generic/GenericPanel';
 
 const CONSULT_TYPES = [
   'clinical-consultation',
-  'telehealth',
+  // 'telehealth',
 ];
 
 const ANCILLARY_TYPES = [
@@ -202,6 +202,9 @@ export default {
     },
     hasAncillary () {
       return !isEmpty(this.ancillaryServiceTypes);
+    },
+    consultTypes () {
+      return CONSULT_TYPES;
     },
   },
   watch: {
