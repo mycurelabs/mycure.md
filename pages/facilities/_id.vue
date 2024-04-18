@@ -34,21 +34,21 @@
         :clinic="clinic"
         @search="search"
       )
-      //- NORMAL MODE - Workflow area
+
       v-container(v-if="!searchMode")#tabs.pb-16
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
             v-col(cols="12" :class="{'px-0': $isMobile}")
               v-tabs(
+                v-model="tabSelect"
+                background-color="transparent"
+                style="color: #A2A5AE;"
                 show-arrows
                 hide-slider
                 :right="!$isMobile"
                 :next-icon="mdiChevronRight"
                 :prev-icon="mdiChevronLeft"
-                v-model="tabSelect"
-                background-color="transparent"
                 :active-class="$isMobile ? 'primary--text' : 'black--text'"
-                style="color: #A2A5AE;"
               ).mb-6
                 v-row(v-if="!$isMobile" align="center" :style="$isMobile ? 'margin-bottom: 10px' : ''").pa-3
                   img(
@@ -71,37 +71,11 @@
                 ).text-none
                   span.mc-hyp2.font-weight-semibold {{ tab.text }}
 
-                //- NORMAL VIEW TABS
-                //- SERVICES
-                v-tab-item(value="services")
+                //- BOOKING
+                v-tab-item(value="booking")
                   div.grey-bg.pt-8
-                    services-list(
-                      v-model="activeServiceType"
-                      :loading="loading.services"
-                      :items="items.services"
-                      :items-total="itemsTotal.services"
-                      :items-limit="itemsLimit"
-                      :service-types="serviceTypes"
-                      :organization="clinicId"
-                      :is-preview-mode="isPreviewMode"
-                      @paginate="onPaginate({ type: 'services' }, $event)"
-                      @filter="onServiceTypeFilterEvent($event)"
-                      @hmo-filter="onInsuranceSelect($event)"
-                      @clear="clearInsuranceFilter"
-                      ref="hmoFilter"
-                    )
-                //- DOCTORS
-                v-tab-item(value="doctors")
-                  div.grey-bg.pt-8
-                    doctors-list(
-                      :loading="loading.doctors"
-                      :items="items.doctors"
-                      :items-total="itemsTotal.doctors"
-                      :items-limit="itemsLimit"
-                      :organization="clinicId"
-                      :is-preview-mode="isPreviewMode"
-                      @paginate="onPaginate({ type: 'doctors' }, $event)"
-                      @filter="(specs) => onFilterDoctor({ specializations: specs }, 1)"
+                    booking-tab(
+                      :clinic="clinic"
                     )
                 //- ABOUT CLINIC
                 v-tab-item(value="about")
@@ -121,6 +95,7 @@
                       :clinic-phone="clinicPhone"
                       :schedule="clinic.mf_schedule"
                     )
+
       //- SEARCH MODE: Search results
       v-container(v-else)#search-tabs.pb-16
         v-row(justify="center")
@@ -260,6 +235,7 @@ import { amplitudeTracker } from '~/utils/amplitude-analytics';
 import { CLINIC_WEBSITE_AMPLITUDE_KEYS } from '~/constants/amplitude';
 // components
 import MainPanel from '~/components/clinic-website/MainPanel';
+import BookingTab from '~/components/clinic-website/BookingTab';
 import AboutClinic from '~/components/clinic-website/AboutClinic';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseService from '~/components/clinic-website/ChooseService';
@@ -286,8 +262,9 @@ const ALLOWED_SERVICE_TYPES = [
 
 const DIAGNOSTIC_SERVICE_TYPES = ['lab', 'imaging'];
 const TABS_LIST = [
-  { text: 'Services', value: 'services', type: 'normal' },
-  { text: 'Our Doctors', value: 'doctors', type: 'normal' },
+  // { text: 'Services', value: 'services', type: 'normal' },
+  // { text: 'Our Doctors', value: 'doctors', type: 'normal' },
+  { text: 'Booking', value: 'booking', type: 'normal' },
   { text: 'About Clinic', value: 'about', type: 'normal' },
   { text: 'Contact Us', value: 'contact', type: 'normal' },
   // - Search Tabs
@@ -298,16 +275,17 @@ const TABS_LIST = [
 
 export default {
   components: {
-    MainPanel,
-    GenericPanel,
     AboutClinic,
-    ContactUs,
+    BookingTab,
     ChooseAppointment,
     ChooseService,
+    ContactUs,
     DatePickerMenu,
     DoctorsList,
     DoctorsPaginated,
     FabShareButton,
+    GenericPanel,
+    MainPanel,
     SearchInsurers,
     SearchPanel,
     ServicesList,
@@ -391,7 +369,7 @@ export default {
       }, // dropdown filter for service type
       dateFilter: null,
       // tab models
-      tabSelect: 'services',
+      tabSelect: 'booking',
       searchTabSelect: 'search-all',
       activeServiceType: null,
       clipSuccess: false,
@@ -797,7 +775,7 @@ export default {
       }, 1);
     },
     clearModel () {
-      this.$refs.hmoFilter.clearModel();
+      this.$refs.hmoFilter?.clearModel();
     },
     onDateFilter () {
       this.itemsPage = { services: 1, doctors: 1 };
