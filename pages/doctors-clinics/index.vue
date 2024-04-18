@@ -117,7 +117,6 @@ import { DOCTORS_PRICING } from '~/constants/pricing';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
-  middleware: ['disable-route'],
   components: {
     LazyHydrate,
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
@@ -136,6 +135,7 @@ export default {
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
     Scroller: () => import('~/components/commons/panels/Scroller'),
   },
+  middleware: ['disable-route'],
   data () {
     // Panel content
     this.uspDescription = 'A modern health information system for modern doctors, MYCURE Doctors is designed to help you keep your practice operating smoothly.';
