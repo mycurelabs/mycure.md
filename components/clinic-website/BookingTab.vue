@@ -77,7 +77,6 @@ export default {
   },
   watch: {
     selectedAppointmentType (newValue) {
-      console.warn('selectedAppointmentType', newValue);
       this.calLink = `${this.calendar?.id}/${newValue?.id}`;
       this.mountCalcom();
     },
@@ -91,6 +90,7 @@ export default {
     async init () {
       this.calendar = await getCalendar({ organizationId: this.clinicId });
       this.calendarEvents = await listCalendarEvents({ calendarId: this.calendar.id });
+      this.$emit('loaded', this.calendarEvents);
     },
     openEvent (event) {
       console.warn('openEvent', event);
