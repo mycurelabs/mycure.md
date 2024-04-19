@@ -72,11 +72,17 @@
                   span.mc-hyp2.font-weight-semibold {{ tab.text }}
 
                 //- BOOKING
-                v-tab-item(value="booking")
-                  div.grey-bg.pt-8
+                v-tab-item(value="booking").transparent
+                  div(v-if="hasCalendarEvents").grey-bg.pt-8
                     booking-tab(
                       :clinic="clinic"
                     )
+                  div(v-else).grey-bg.pt-8
+                    v-card(flat)
+                      v-card-text
+                        v-col.text-center
+                          h2 Booking is not available yet
+                          p Please check back later
                 //- ABOUT CLINIC
                 v-tab-item(value="about")
                   div.grey-bg.pt-8
@@ -225,6 +231,7 @@ import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenc
 import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+import { listCalendarEvents } from '~/services/booking';
 // utils
 import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
@@ -389,6 +396,7 @@ export default {
       mdiAccountWrenchOutline,
       fab: false,
       countries: [],
+      calendarEvents: [],
     };
   },
   head () {
@@ -476,6 +484,9 @@ export default {
     currentPath () {
       return this.$route.fullPath || this.$route.name;
     },
+    hasCalendarEvents () {
+      return this.calendarEvents?.length;
+    },
   },
   watch: {
     activeServiceType: {
@@ -524,6 +535,7 @@ export default {
         this.loading.services.section = true;
         await this.fetchServiceTypes();
         await this.fetchClinicInsurers();
+        this.calendarEvents = await listCalendarEvents({ organizationId: this.clinicId });
         this.loading.services.section = false;
       } catch (error) {
         console.error('init', error);
