@@ -48,21 +48,31 @@
               @click="submit"
               large
             ) Sign in
+          v-dialog(v-model="showPasswordChangeDialog" width="600" persistent)
+            v-card
+              v-toolbar(flat)
+                h2 Enhance Your Security
+              v-card-text
+                p We noticed that your current password may be easy to guess. For your security, we recommend updating your password to something stronger.
+              v-card-actions
+                v-spacer
+                v-btn(
+                  color="primary"
+                  @click="updatePassword"
+                  large
+                ).font-weight-bold Update Password Now
+                v-btn(
+                  color="primary"
+                  @click="continueWithoutUpdate"
+                  large
+                  outlined
+                ).font-weight-bold Skip for Now
       v-dialog(v-model="otpDialog" width="400" persistent)
         v-card
           v-toolbar(flat)
             h2 Enter 2FA Code
           v-card-text
             p {{label}}
-            //- input(
-            //-   v-model="otp"
-            //-   placeholder="Enter One-Time Pin (OTP)"
-            //-   type="text"
-            //-   maxlength="6"
-            //-   autofocus
-            //-   :rules="[v => !!v || 'OTP is required']"
-            //-   :disabled="loading"
-            //- )#otpField.otp-field.mb-5
             v-row(justify="center")
               v-flex(xs12 md10)
                 input(
@@ -118,11 +128,6 @@
                   v-on:keyup.delete="onDeleteDigit(6)"
                   @keypress="checkNumberInput($event, sixthDigit)"
                 )#sixthDigit.single-field
-            //- v-btn(
-            //-   large
-            //-   color="primary"
-            //-   type="submit"
-            //- ) Submit
       v-dialog(v-model="bestUseDialog" width="300" persistent)
         v-card.text-center
           v-card-text.pa-8
@@ -147,6 +152,7 @@ import { mdiArrowLeft } from '@mdi/js';
 import dayOrNight from '~/utils/day-or-night';
 import { signin } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
+
 export default {
   layout: 'signin',
   data () {
@@ -158,7 +164,6 @@ export default {
       signInDisabled: false,
       email: '',
       password: '',
-      //
       emailRules: [
         v => !!v || 'Email address is required',
         v => /.+@.+/.test(v) || 'Email address must be valid',
@@ -166,7 +171,6 @@ export default {
       passwordRules: [
         v => !!v || 'Password is required',
       ],
-      //
       target: '',
       error: false,
       errorMsg: '',
@@ -175,7 +179,6 @@ export default {
       bestUseDialog: false,
       otp: null,
       errors: [],
-      // OTP Digits
       firstDigit: null,
       secondDigit: null,
       thirdDigit: null,
@@ -183,6 +186,8 @@ export default {
       fifthDigit: null,
       sixthDigit: null,
       mdiArrowLeft,
+      showPasswordChangeDialog: false,
+      accessToken: '',
     };
   },
   head () {
@@ -204,7 +209,6 @@ export default {
     checkDevice () {
       return this.$vuetify.breakpoint.smAndDown;
     },
-    // No redirect means there is no target query
     noRedirect () {
       return isEmpty(this.$route.query);
     },
@@ -274,7 +278,9 @@ export default {
       try {
         this.loading = true;
         const payload = { email: this.email, password: this.password };
-        if (this.otp) { payload.otp = this.otp; }
+        if (this.otp) {
+          payload.otp = this.otp;
+        }
 
         const {
           accessToken,
@@ -287,9 +293,15 @@ export default {
           this.isMFAMobileNoEnabled = !!isMFAMobileNoEnabled;
           this.otpDialog = true;
         } else if (accessToken) {
+          this.accessToken = accessToken;
           this.signInDisabled = true;
           window?.$amplitude?.logEvent('RET003 Btn > Sign in');
-          window.location = this.composeTarget(accessToken);
+          // Check if password needs updating
+          if (!this.checkPasswordStrength(this.password)) {
+            this.showPasswordChangeDialog = true;
+          } else {
+            window.location = this.composeTarget(accessToken);
+          }
         } else {
           throw new Error('There was an error. Please try again later.');
         }
@@ -302,10 +314,9 @@ export default {
         this.error = true;
         this.signInDisabled = false;
         if (/network error/gi.test(e.message)) {
-          this.errorMsg = 'Can\'t connect to the server.';
+          this.errorMsg = "Can't connect to the server.";
           return;
         }
-        // Get error code
         const errorCode = e.data.code;
         window?.$amplitude?.logEvent('RET004 Err');
         if (errorCode === 'auth/user-not-found') {
@@ -325,14 +336,14 @@ export default {
     composeTarget (accessToken) {
       const queries = Object.keys(this.$route.query)
         .filter(item => item !== 'target')
-        .map((item) => { return `${item}=${this.$route.query[item]}`; });
+        .map(item => `${item}=${this.$route.query[item]}`);
       queries.unshift(`token=${accessToken}`);
       return `${this.target}?${queries.join('&')}`;
     },
     checkNumberInput (event, value) {
       if (!/\d/.test(event.key) || value?.length === 1) {
         return event.preventDefault();
-      };
+      }
       return event;
     },
     onDeleteDigit (digit) {
@@ -353,11 +364,29 @@ export default {
           case 6:
             document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
             break;
-          default: {
+          default:
             break;
-          }
         }
       }
+    },
+    checkPasswordStrength (password) {
+      const minLength = 8;
+      const hasUpperCase = /[A-Z]/.test(password);
+      const hasLowerCase = /[a-z]/.test(password);
+      const hasNumbers = /\d/.test(password);
+
+      return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers;
+    },
+    updatePassword () {
+      this.showPasswordChangeDialog = false;
+      this.signInDisabled = false;
+      const signInURL = process.env.SIGNIN_URL;
+      const href = `${signInURL}/?token=${this.accessToken}`;
+      window.open(href, '_blank');
+    },
+    continueWithoutUpdate () {
+      this.showPasswordChangeDialog = false;
+      window.location = this.composeTarget(this.accessToken);
     },
   },
 };
