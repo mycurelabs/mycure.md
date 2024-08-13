@@ -415,6 +415,7 @@ export default {
     EmailVerificationDialog,
   },
   layout: 'empty',
+  middleware: ['disable-route'],
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;

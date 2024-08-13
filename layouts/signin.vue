@@ -1,16 +1,10 @@
 <template lang="pug">
   v-app#app
-    v-row(align="end" justify="center" :class="[contentClasses]").footer-bg
-      v-col(:class="[contentClasses, footerClasses]").footer-bg.pb-16
+    v-row(align="start" justify="center" :class="[contentClasses]").footer-bg
+      v-col(:class="[contentClasses, footerClasses]" style="min-height: 100vh;").footer-bg
         nuxt
     v-footer.pa-0
       v-col
-        v-row(align="center" justify="center" height="70px").footer
-          v-col(cols="12").mt-2.text-center
-            span.white--text Don't have MYCURE yet?
-            nuxt-link(v-if="!routeContext" :to="{ name: 'signup-health-facilities'}").router-link.primary--text &nbsp;&nbsp;Get your account here.
-            a(v-else :href="redirectSignUpLink").router-link.primary--text &nbsp;&nbsp;Get your account here.
-            v-divider(dark).mt-5.edge-divider
         v-row(align="center" justify="center" height="70px" ).text-center.footer
           v-col(cols="12" md="6").pl-12.pr-12
             span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.

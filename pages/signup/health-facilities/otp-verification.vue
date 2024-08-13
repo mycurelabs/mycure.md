@@ -7,6 +7,7 @@ import { signin } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'empty',
+  middleware: ['disable-route'],
   data () {
     return {
       step1Data: {},
