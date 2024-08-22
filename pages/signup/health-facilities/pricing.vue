@@ -135,6 +135,7 @@ export default {
     PricingCard,
   },
   layout: 'empty',
+  middleware: ['disable-route'],
   data () {
     this.subscriptionMappings = SUBSCRIPTION_MAPPINGS;
     this.publishableKey = process.env.STRIPE_PK;

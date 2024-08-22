@@ -1,6 +1,6 @@
 {
   "name": "web-main",
-  "version": "6.9.3",
+  "version": "6.9.4",
   "description": "MYCURE Main Website",
   "author": "Jofferson R. Tiquez & Marc Almond Valleza",
   "private": true,
@@ -78,7 +78,6 @@
   },
   "engines": {
     "node": "16",
-    "npm": "6.13.4",
-    "yarn": "1.22.19"
+    "npm": "6.13.4"
   }
 }
