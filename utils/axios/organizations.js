@@ -5,18 +5,26 @@ export const getOrganization = async (opts, website = false) => {
   try {
     const orgId = opts.id;
 
+    console.warn('orgId', orgId);
+    console.warn('website', website);
+
+    if (website) {
+      const { data: websiteData } = await axios({
+        method: 'GET',
+        url: `${process.env.API_URL}/organizations?websiteId=${orgId}`,
+      });
+
+      const data = websiteData?.data?.[0];
+
+      return data;
+    }
+
     const { data } = await axios({
       method: 'GET',
       url: `${process.env.API_URL}/organizations/${orgId}`,
     });
 
-    if (data || !website) return data;
-
-    const { data: websiteData } = await axios({
-      method: 'GET',
-      url: `${process.env.API_URL}/organizations?websiteId=${orgId}`,
-    });
-    return websiteData.data[0];
+    return data;
   } catch (e) {
     console.error(e);
     handleError(e);

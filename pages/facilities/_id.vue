@@ -309,11 +309,11 @@ export default {
   async asyncData ({ params, error }) {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
+
+      console.warn('clinic', clinic.publicFields);
       // Show 404 if no clinic found, or if clinic is existing, but has not setup its website yet
       // Will not redirect if it's a 'diagnostic-center' since these are the orgs we have up for claiming
-      if (isEmpty(clinic) ||
-        (!clinic?.websiteId && clinic?.type !== 'diagnostic-center') ||
-        !clinic?.publicFields?.length) {
+      if (isEmpty(clinic) || (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) {
         return error({ statusCode: 404, message: 'clinic-not-found' });
       }
       return {
