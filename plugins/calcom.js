@@ -28,7 +28,7 @@ export default (context, inject) => {
         }
         p(cal, ar);
       };
-  })(window, 'https://cal.parmazip.com/embed/embed.js', 'init');
+  })(window, 'https://cal.com/embed.js', 'init');
 
   inject('calcom', window.Cal);
   context.$calcom = window.Cal;
