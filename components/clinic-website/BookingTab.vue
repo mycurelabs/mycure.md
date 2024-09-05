@@ -13,10 +13,10 @@
       div(
         style="width: 100%; height: auto; overflow: scroll; padding-right: 10px;"
       )#calcom-mounting-point
-      //- pre {{ bookingEmbedUrl }}
-      //- pre {{ calLink }}
-      //- pre {{ JSON.stringify(calendar, null, 2) }}
-      //- pre {{ JSON.stringify(selectedAppointmentType, null, 2) }}
+      //- pre bookingEmbedUrl -  {{ bookingEmbedUrl }}
+      //- pre calLink - {{ calLink }}
+      //- pre calendar object - {{ JSON.stringify(calendar, null, 2) }}
+      //- pre appoint type object - {{ JSON.stringify(selectedAppointmentType, null, 2) }}
 </template>
 
 <script>
@@ -62,6 +62,10 @@ export default {
     bookingEmbedUrl () {
       return this.calendar?.integration?.calcom?.embedUrl || '';
     },
+    calcomOrigin () {
+      const url = new URL(this.bookingEmbedUrl);
+      return `${url.protocol}//${url.hostname}`;
+    },
     calendarEventsByType () {
       return groupBy(this.calendarEvents, 'metadata.appointmentType');
     },
@@ -84,7 +88,7 @@ export default {
   async mounted () {
     await this.init();
     this.selectedAppointmentType = this.calendarEvents?.[0];
-    this.$calcom('init', { origin: 'https://cal.parmazip.com' });
+    this.$calcom('init', { origin: this.calcomOrigin });
   },
   methods: {
     async init () {
