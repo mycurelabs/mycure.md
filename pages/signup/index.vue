@@ -4,6 +4,7 @@ span
 
 <script>
 export default {
+  middleware: ['disable-route'],
   mounted () {
     const queryParams = this.$route.query || {};
     console.warn('process.env.SIGNUP_URL', process.env.SIGNUP_URL);
