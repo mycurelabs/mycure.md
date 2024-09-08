@@ -1,41 +1,27 @@
 <template lang="pug">
   div.main-container
     div(v-if="!loading.page")
-      //- CHOOSE APPOINTMENT TYPE
-      choose-appointment(
-        is-clinic
-        v-model="dialogs.appointment"
-        :has-doctors="isTelehealthEnabled"
-        :has-physical-services="isBookingEnabled"
-        @select="onSelectAppointment($event)"
-      )
       //- CHOOSE SERVICE DIALOG
       choose-service(
         v-model="dialogs.serviceType"
         :service-types="[...serviceTypes].filter(type => type !== 'telehealth')"
         @select="onSelectServiceType($event)"
       )
+
       v-snackbar(v-model="clipSuccess" timeout="2000" color="success") Copied link to clipboard
+
       main-panel(
         :tabs="normalTabsList"
         :pic-url="picURL"
         :clinic-name="clinicName"
         :formatted-address="formattedAddressArray"
         :clinic-phone="clinicPhone"
-        :style="{ height: $isMobile ? '110vh' : '110vh' }"
-        :is-bookable="isVerified && isOnline"
         @book="onMainPanelBook"
         @redirect="onRedirect($event)"
         @clipSuccess="clipSuccess = true"
       )#top
-      //- Search panel
-      search-panel(
-        v-model="searchText"
-        :clinic="clinic"
-        @search="search"
-      )
 
-      v-container(v-if="!searchMode")#tabs.pb-16
+      v-container(v-if="!searchMode" fluid)#tabs.pb-16
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }" disable-parent-padding).mt-6
             v-col(cols="12" :class="{'px-0': $isMobile}")
@@ -228,23 +214,23 @@ import intersection from 'lodash/intersection';
 import omit from 'lodash/omit';
 import { mdiMenuDown, mdiClose, mdiChevronRight, mdiChevronLeft, mdiAccountWrenchOutline } from '@mdi/js';
 // services
-import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 import { fetchClinicInsurers } from '~/services/insurance-contracts';
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+import { fetchServices, fetchClinicServiceTypes } from '~/services/services';
 import { listCalendarEvents } from '~/services/booking';
+import { signinWithToken, getCurrentUser } from '~/services/auth';
 // utils
-import { getOrganization } from '~/utils/axios/organizations';
-import { formatAddress } from '~/utils/formats';
-import headMeta from '~/utils/head-meta';
-import { getCountries } from '~/utils/axios';
 import { amplitudeTracker } from '~/utils/amplitude-analytics';
+import { formatAddress } from '~/utils/formats';
+import { getCountries } from '~/utils/axios';
+import { getEntry } from '~/utils/axios/publishing-entries';
+import headMeta from '~/utils/head-meta';
 // constants
 import { CLINIC_WEBSITE_AMPLITUDE_KEYS } from '~/constants/amplitude';
 // components
 import MainPanel from '~/components/clinic-website/MainPanel';
 import BookingTab from '~/components/clinic-website/BookingTab';
 import AboutClinic from '~/components/clinic-website/AboutClinic';
-import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseService from '~/components/clinic-website/ChooseService';
 import ContactUs from '~/components/clinic-website/ContactUs';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
@@ -252,7 +238,6 @@ import DoctorsList from '~/components/clinic-website/doctors/DoctorsList';
 import DoctorsPaginated from '~/components/clinic-website/doctors/DoctorsPaginated';
 import FabShareButton from '~/components/commons/FabShareButton';
 import SearchInsurers from '~/components/clinic-website/services/SearchInsurers';
-import SearchPanel from '~/components/clinic-website/SearchPanel';
 import ServicesList from '~/components/clinic-website/services/ServicesList';
 import ServicesPaginated from '~/components/clinic-website/services/ServicesPaginated';
 import SpecializationFilter from '~/components/clinic-website/doctors/SpecializationFilter';
@@ -284,7 +269,6 @@ export default {
   components: {
     AboutClinic,
     BookingTab,
-    ChooseAppointment,
     ChooseService,
     ContactUs,
     DatePickerMenu,
@@ -294,7 +278,6 @@ export default {
     GenericPanel,
     MainPanel,
     SearchInsurers,
-    SearchPanel,
     ServicesList,
     ServicesPaginated,
     SpecializationFilter,
@@ -308,14 +291,15 @@ export default {
   layout: 'clinic-website',
   async asyncData ({ params, error }) {
     try {
-      const clinic = await getOrganization({ id: params.id }, true) || {};
+      const clinic = await getEntry({ id: params.id }) || {};
 
-      console.warn('clinic', clinic.publicFields);
+      // console.warn('clinic', clinic);
       // Show 404 if no clinic found, or if clinic is existing, but has not setup its website yet
       // Will not redirect if it's a 'diagnostic-center' since these are the orgs we have up for claiming
       if (isEmpty(clinic) || (!clinic?.websiteId && clinic?.type !== 'diagnostic-center')) {
         return error({ statusCode: 404, message: 'clinic-not-found' });
       }
+
       return {
         clinic,
       };
@@ -397,6 +381,7 @@ export default {
       fab: false,
       countries: [],
       calendarEvents: [],
+      currentUser: null,
     };
   },
   head () {
@@ -419,16 +404,6 @@ export default {
   computed: {
     clinicId () {
       return this.clinic?.id;
-    },
-    isBookingEnabled () {
-      return this.clinic?.types?.includes('clinic-booking');
-    },
-    isTelehealthEnabled () {
-      return this.clinic?.types.includes('clinic-telehealth');
-    },
-    isOnline () {
-      // return this.hasItemsToBook && (this.isBookingEnabled || this.isTelehealthEnabled);
-      return this.isBookingEnabled || this.isTelehealthEnabled;
     },
     isVerified () {
       return !!this.clinic?.websiteId;
@@ -524,13 +499,20 @@ export default {
     },
   },
   mounted () {
-    if (this.isOnline) {
-      this.init();
+    if (this.$route.query.token) {
+      this.authenticate();
     }
+    this.init();
   },
   methods: {
+    async authenticate () {
+      const token = this.$route.query.token;
+      await signinWithToken({ token });
+      this.$router.replace({ query: {} });
+    },
     async init () {
       try {
+        this.currentUser = await getCurrentUser();
         await this.getCountries();
         this.loading.services.section = true;
         await this.fetchServiceTypes();
@@ -538,7 +520,7 @@ export default {
         this.calendarEvents = await listCalendarEvents({ organizationId: this.clinicId });
         this.loading.services.section = false;
       } catch (error) {
-        console.error('init', error);
+        console.error(error);
       }
     },
     /** Fetches all services of facility
@@ -593,12 +575,7 @@ export default {
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.clinicId });
-        if (this.isBookingEnabled) {
-          this.serviceTypes = intersection(ALLOWED_SERVICE_TYPES, items) || [];
-        }
-        if (this.isTelehealthEnabled) {
-          this.serviceTypes.push('telehealth');
-        }
+        this.serviceTypes = intersection(ALLOWED_SERVICE_TYPES, items) || [];
         if (!isEmpty(this.serviceTypes)) this.activeServiceType = this.serviceTypes[0];
       } catch (e) {
         console.error(e);
@@ -715,9 +692,7 @@ export default {
     },
     // Event handlers
     onMainPanelBook () {
-      amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onBookAppointmentBtn, this.currentPath);
-      this.dialogs.appointment = true;
-      amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onBookingTypeDialogOpen, this.currentPath);
+      VueScrollTo.scrollTo('#tabs', 500, { easing: 'ease' });
     },
     onPaginate ({
       type, // services or doctors
@@ -828,25 +803,6 @@ export default {
         return;
       }
       VueScrollTo.scrollTo('#top', 500, { offset: -100, easing: 'ease' });
-    },
-    onSelectAppointment (type) {
-      this.dialogs.appointment = false;
-      if (type === 'physical') {
-        amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onVisitClinicSelect, this.currentPath);
-        this.dialogs.serviceType = true;
-        amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onServiceTypeDialogOpen, this.currentPath);
-        return;
-      }
-      if (type === 'telehealth') {
-        this.tabSelect = 'doctors';
-        // - scroll down to doctors list
-        if (this.searchMode) {
-          this.searchText = null;
-          this.searchMode = false;
-          return;
-        }
-        VueScrollTo.scrollTo('#tabs', 500, { offset: -100, easing: 'ease' });
-      }
     },
     onSelectServiceType (serviceType) {
       amplitudeTracker(CLINIC_WEBSITE_AMPLITUDE_KEYS.onServiceTypeSelect, this.currentPath);
