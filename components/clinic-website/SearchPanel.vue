@@ -24,7 +24,7 @@
                     @click="debouncedSearch"
                   ).search-icon.text-center.pt-2
                     v-icon(color="white") {{ mdiMagnify }}
-    v-container(v-else).search-bar-container
+    v-container(v-else fluid).search-bar-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center', align: 'center' }" disable-parent-padding).mt-6
           v-col(cols="12").text-center
