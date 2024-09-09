@@ -38,7 +38,7 @@
               v-btn(color="primary" depressed @click="onSignout") Log out
 
         div(style="border: 1px solid lightgrey; border-radius: 4px;")
-          v-list(flat style="border-radius: 4px;")
+          v-list(v-if="hasCalendarEvents" flat style="border-radius: 4px;")
             template(v-for="(calendarEvents, labelName) in calendarEventsByType")
               v-subheader.primary--text.font-weight-bold {{ labelName | start-case }}
               template(v-for="(calendarEvent, index) in calendarEvents")
@@ -46,12 +46,21 @@
                   v-list-item-content
                     v-list-item-title {{ calendarEvent.title }}
                     v-list-item-subtitle {{ calendarEvent.description }}
+          div(v-else)
+            v-row(justify="center" align="center" style="height: 200px")
+              v-col.text-center
+                p.black--text No available booking
       v-col(cols="12" md="8" style="overflow: auto;").white
-        template(v-if="currentUser")
+        template(v-if="currentUser && hasCalendarEvents")
           div(
             style="width: 100%; height: auto; overflow: scroll; padding-right: 10px;"
           )#calcom-mounting-point
-        template(v-else)
+        template(v-else-if="!hasCalendarEvents")
+          v-row(justify="center" align="center" style="height: 100%")
+            v-col.text-center
+              p.black--text No available booking
+              //- p.black--text Login or create an account #[a(:href="pxpRedirectURL") here].
+        template(v-else-if="!currentUser")
           v-row(justify="center" align="center" style="height: 100%")
             v-col.text-center
               p.black--text You need an account to book an appointment.
@@ -154,6 +163,9 @@ export default {
       const url = new URL(this.bookingEmbedUrl);
       return `${url.protocol}//${url.hostname}`;
     },
+    hasCalendarEvents () {
+      return this.calendarEvents.length > 0;
+    },
     calendarEventsByType () {
       return groupBy(this.calendarEvents, 'metadata.appointmentType');
     },
@@ -196,17 +208,18 @@ export default {
     async mountCalcom () {
       try {
         if (!this.currentUser) return;
-        console.warn('mountCalcom', this.calLink);
+        if (!this.hasCalendarEvents) return;
         globalThis.document.getElementById('calcom-mounting-point').innerHTML = '';
         await this.$calcom('inline', {
           elementOrSelector: '#calcom-mounting-point',
           // calLink: 'rick/get-rick-rolled',
           calLink: this.calLink,
           config: {
-            'subject-identifier': this.currentUser.id,
-            subjectId: this.currentUser.id,
-            firstName: this.currentUser.name.firstName,
-            lastName: this.currentUser.name.lastName,
+            subjectId: this.currentUser.uid,
+            name: [
+              this.currentUser.name.firstName,
+              this.currentUser.name.lastName,
+            ].join(' '),
             email: this.currentUser.email,
             sex: this.currentUser.sex,
           },
