@@ -179,7 +179,7 @@ export default {
       });
     },
     pxpRedirectURL () {
-      const pxpUrl = process.env.PXP_URL;
+      const pxpUrl = `${process.env.PXP_URL}/signin-email`;
       return `${pxpUrl}?redirect=${window.location.href}`;
     },
   },
