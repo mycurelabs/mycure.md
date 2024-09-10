@@ -209,7 +209,9 @@ export default {
       try {
         if (!this.currentUser) return;
         if (!this.hasCalendarEvents) return;
-        globalThis.document.getElementById('calcom-mounting-point').innerHTML = '';
+        const mountPointElement = globalThis.document.getElementById('calcom-mounting-point');
+        if (!mountPointElement) return;
+        mountPointElement.innerHTML = '';
         await this.$calcom('inline', {
           elementOrSelector: '#calcom-mounting-point',
           // calLink: 'rick/get-rick-rolled',
@@ -233,7 +235,9 @@ export default {
       }
     },
     unmountCalcom () {
-      globalThis.document.getElementById('calcom-mounting-point').innerHTML = '';
+      const el = globalThis.document.getElementById('calcom-mounting-point');
+      if (!el) return;
+      el.innerHTML = '';
     },
     closeDialog () {
       this.successDialog = false;
