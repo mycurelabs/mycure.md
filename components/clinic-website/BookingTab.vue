@@ -42,6 +42,7 @@
             template(v-for="(calendarEvents, labelName) in calendarEventsByType")
               v-subheader.primary--text.font-weight-bold {{ labelName | start-case }}
               template(v-for="(calendarEvent, index) in calendarEvents")
+                //- pre {{JSON.stringify(calendarEvent, null, 2)}}
                 v-list-item(:key="calendarEvent.id" v-ripple @click="openEvent(calendarEvent)" color="primary")
                   v-list-item-content
                     v-list-item-title {{ calendarEvent.title }}
@@ -243,7 +244,11 @@ export default {
       this.successDialog = false;
     },
     onBookingSuccessful (event) {
+      console.warn('onBookingSuccessful', event);
       this.successfulBookingData = event?.detail?.data || {};
+
+      // TODO: implement payment
+
       this.successDialog = true;
       this.mountCalcom();
     },
