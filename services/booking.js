@@ -5,6 +5,24 @@ export const BOOKING_CALENDAR_EVENTS_SERVICE_NAME = 'booking/event-types';
 export const BOOKING_CALENDARS_SERVICE_NAME = 'booking/calendars';
 export const BOOKING_SCHEDULES_SERVICE_NAME = 'booking/schedules';
 
+function formatMoney (number) {
+  if (typeof number !== 'number') return number;
+  return new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 2 }).format(number);
+};
+
+function mapCalendarEvents (items) {
+  return items.map((item) => {
+    const isPaid = item.requiresPayment;
+    const price = isPaid ? `${formatMoney(item.invoiceTemplate?.items?.[0]?.unitAmount)}` : 'Free';
+    const priceColor = isPaid ? 'info' : 'success';
+    return {
+      ...item,
+      formattedPrice: price,
+      formattedPriceColor: priceColor,
+    };
+  });
+};
+
 export async function getCalendar (opts) {
   const organizationId = opts.organizationId;
   const query = {
@@ -29,6 +47,5 @@ export async function listCalendarEvents (opts) {
     },
   };
   const { items } = await sdk.service(BOOKING_CALENDAR_EVENTS_SERVICE_NAME).find(query);
-  console.warn('listCalendarEvents', items);
-  return items;
+  return mapCalendarEvents(items);
 };
