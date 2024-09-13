@@ -180,7 +180,8 @@ export default {
       });
     },
     pxpRedirectURL () {
-      const pxpUrl = `${process.env.PXP_URL}/signin-email`;
+      // const pxpUrl = `${process.env.PXP_URL}/signin-email`;
+      const pxpUrl = 'https://staging-pxp.web.app/signin-email';
       return `${pxpUrl}?redirect=${window.location.href}`;
     },
   },
