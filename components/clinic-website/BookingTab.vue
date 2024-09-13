@@ -11,8 +11,21 @@
           br
           v-btn(
             color="primary"
-            @click="closeDialog"
+            @click="onLetsGo"
           ) Let's go!
+    v-dialog(v-model="cancelDialog" persistent max-width="500")
+      v-card
+        v-card-text(style="padding: 40px;").text-center
+          h1(style="font-size: 50px") ❌
+          br
+          h2 Payment unsuccessful!
+          br
+          p.subheading Your booking payment was unsuccessful. You can view your booking details in your account.
+          br
+          v-btn(
+            color="primary"
+            @click="onGotoPxp"
+          ) Go to my account
 
     v-row.transparent
       v-col(cols="12" md="4").pt-0
@@ -42,11 +55,12 @@
             template(v-for="(calendarEvents, labelName) in calendarEventsByType")
               v-subheader.primary--text.font-weight-bold {{ labelName | start-case }}
               template(v-for="(calendarEvent, index) in calendarEvents")
-                //- pre {{JSON.stringify(calendarEvent, null, 2)}}
                 v-list-item(:key="calendarEvent.id" v-ripple @click="openEvent(calendarEvent)" color="primary")
                   v-list-item-content
                     v-list-item-title {{ calendarEvent.title }}
                     v-list-item-subtitle {{ calendarEvent.description }}
+                  v-list-item-action
+                    v-chip(:color="calendarEvent.formattedPriceColor") {{ calendarEvent.formattedPrice }}
           div(v-else)
             v-row(justify="center" align="center" style="height: 200px")
               v-col.text-center
@@ -116,6 +130,7 @@ export default {
       selectedAppointmentType: null,
       calLink: '',
       successDialog: false,
+      cancelDialog: false,
       successfulBookingData: {},
       currentUser: null,
     };
@@ -179,9 +194,16 @@ export default {
         };
       });
     },
+    pxpBaseUrl () {
+      return process.env.PXP_URL;
+    },
     pxpRedirectURL () {
-      const pxpUrl = `${process.env.PXP_URL}/signin-email`;
+      const pxpUrl = `${this.pxpBaseUrl}/signin-email`;
       return `${pxpUrl}?redirect=${window.location.href}`;
+    },
+    paymentStatus () {
+      const url = new URL(window.location.href);
+      return url.searchParams.get('payment');
     },
   },
   watch: {
@@ -191,6 +213,17 @@ export default {
     },
   },
   async mounted () {
+    console.warn('mounted', this.paymentStatus);
+
+    if (this.paymentStatus === 'success') {
+      this.successfulBookingData = JSON.parse(globalThis.localStorage.getItem('successfulBookingData'));
+      this.successDialog = true;
+    }
+
+    if (this.paymentStatus === 'cancelled') {
+      this.cancelDialog = true;
+    }
+
     await this.init();
     this.selectedAppointmentType = this.calendarEvents?.[0];
     this.$calcom('init', { origin: this.calcomOrigin });
@@ -246,8 +279,8 @@ export default {
     async onBookingSuccessful (event) {
       console.warn('onBookingSuccessful', event);
       this.successfulBookingData = event?.detail?.data || {};
+      globalThis.localStorage.setItem('successfulBookingData', JSON.stringify(this.successfulBookingData));
 
-      // TODO: implement payment
       try {
         const calbooking = event.detail.data.booking;
         const booking = await this.$sdk.service('booking/bookings:sync').create({
@@ -257,10 +290,10 @@ export default {
         if (!booking) throw new Error('Failed to sync booking');
         // redirect to checkout if payment required
         if (booking.requiresPayment && booking.invoice) {
-          const cancelUrl = new URL(globalThis.location.origin);
-          // cancelUrl.pathname = '/dashboard/appointments';
-          const successUrl = new URL(globalThis.location.origin);
-          // successUrl.pathname = '/dashboard/appointments';
+          const cancelUrl = new URL(globalThis.location.href);
+          cancelUrl.searchParams.set('payment', 'cancelled');
+          const successUrl = new URL(globalThis.location.href);
+          successUrl.searchParams.set('payment', 'success');
           const checkout = await this.$sdk.service(`billing/invoices/${booking.invoice}:checkout`).create({
             cancelUrl: cancelUrl.href,
             successUrl: successUrl.href,
@@ -274,6 +307,14 @@ export default {
       }
 
       this.successDialog = true;
+      this.mountCalcom();
+    },
+    onGotoPxp () {
+      globalThis.open(this.pxpBaseUrl);
+    },
+    onLetsGo () {
+      this.successDialog = false;
+      this.$router.replace({ query: {} });
       this.mountCalcom();
     },
     onSignout () {
