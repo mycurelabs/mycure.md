@@ -180,8 +180,7 @@ export default {
       });
     },
     pxpRedirectURL () {
-      // const pxpUrl = `${process.env.PXP_URL}/signin-email`;
-      const pxpUrl = 'https://staging-pxp.web.app/signin-email';
+      const pxpUrl = `${process.env.PXP_URL}/signin-email`;
       return `${pxpUrl}?redirect=${window.location.href}`;
     },
   },
@@ -244,11 +243,35 @@ export default {
     closeDialog () {
       this.successDialog = false;
     },
-    onBookingSuccessful (event) {
+    async onBookingSuccessful (event) {
       console.warn('onBookingSuccessful', event);
       this.successfulBookingData = event?.detail?.data || {};
 
       // TODO: implement payment
+      try {
+        const calbooking = event.detail.data.booking;
+        const booking = await this.$sdk.service('booking/bookings:sync').create({
+          provider: 'calcom',
+          providerId: calbooking.id,
+        });
+        if (!booking) throw new Error('Failed to sync booking');
+        // redirect to checkout if payment required
+        if (booking.requiresPayment && booking.invoice) {
+          const cancelUrl = new URL(globalThis.location.origin);
+          // cancelUrl.pathname = '/dashboard/appointments';
+          const successUrl = new URL(globalThis.location.origin);
+          // successUrl.pathname = '/dashboard/appointments';
+          const checkout = await this.$sdk.service(`billing/invoices/${booking.invoice}:checkout`).create({
+            cancelUrl: cancelUrl.href,
+            successUrl: successUrl.href,
+          });
+          if (!checkout) throw new Error('Failed to create checkout');
+          globalThis.window.location.href = checkout.url;
+          return;
+        }
+      } catch (error) {
+        console.error('error', error);
+      }
 
       this.successDialog = true;
       this.mountCalcom();
