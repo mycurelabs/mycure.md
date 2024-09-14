@@ -195,7 +195,7 @@ export default {
       });
     },
     pxpBaseUrl () {
-      return process.env.PXP_URL;
+      return process.env.PXP_URL || process.env.PX_PORTAL_URL;
     },
     pxpRedirectURL () {
       const pxpUrl = `${this.pxpBaseUrl}/signin-email`;
