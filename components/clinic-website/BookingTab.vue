@@ -11,8 +11,14 @@
           br
           v-btn(
             color="primary"
+            flat
             @click="onLetsGo"
-          ) Let's go!
+          ).mr-2 Close
+          v-btn(
+            color="primary"
+            flat
+            @click="onGotoPxp"
+          ).ml-2 Go to my account
     v-dialog(v-model="cancelDialog" persistent max-width="500")
       v-card
         v-card-text(style="padding: 40px;").text-center
@@ -114,14 +120,14 @@ export default {
   components: {
     mdiAccount,
   },
+  filters: {
+    startCase,
+  },
   props: {
     clinic: {
       type: Object,
       default: () => ({}),
     },
-  },
-  filters: {
-    startCase,
   },
   data () {
     return {
@@ -310,7 +316,10 @@ export default {
       this.mountCalcom();
     },
     onGotoPxp () {
+      this.cancelDialog = false;
       globalThis.open(this.pxpBaseUrl);
+      this.$router.replace({ query: {} });
+      this.mountCalcom();
     },
     onLetsGo () {
       this.successDialog = false;
