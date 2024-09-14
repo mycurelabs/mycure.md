@@ -10,7 +10,7 @@ export default {
     Directory: () => import('~/components/directory'),
   },
   layout: 'results',
-  // middleware: ['disable-route'],
+  middleware: ['disable-route'],
   data () {
     return {
       loading: true,
