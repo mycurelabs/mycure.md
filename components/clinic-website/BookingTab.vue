@@ -11,12 +11,12 @@
           br
           v-btn(
             color="primary"
-            flat
+            text
             @click="onLetsGo"
           ).mr-2 Close
           v-btn(
             color="primary"
-            flat
+            depressed
             @click="onGotoPxp"
           ).ml-2 Go to my account
     v-dialog(v-model="cancelDialog" persistent max-width="500")
@@ -219,8 +219,6 @@ export default {
     },
   },
   async mounted () {
-    console.warn('mounted', this.paymentStatus);
-
     if (this.paymentStatus === 'success') {
       this.successfulBookingData = JSON.parse(globalThis.localStorage.getItem('successfulBookingData'));
       this.successDialog = true;
@@ -242,7 +240,6 @@ export default {
       this.$emit('loaded', this.calendarEvents);
     },
     openEvent (event) {
-      console.warn('openEvent', event);
       this.selectedAppointmentType = event;
     },
     async mountCalcom () {
@@ -254,10 +251,9 @@ export default {
         mountPointElement.innerHTML = '';
         await this.$calcom('inline', {
           elementOrSelector: '#calcom-mounting-point',
-          // calLink: 'rick/get-rick-rolled',
           calLink: this.calLink,
           config: {
-            subjectId: this.currentUser.uid,
+            subject: this.currentUser.uid,
             name: [
               this.currentUser.name.firstName,
               this.currentUser.name.lastName,
@@ -283,7 +279,6 @@ export default {
       this.successDialog = false;
     },
     async onBookingSuccessful (event) {
-      console.warn('onBookingSuccessful', event);
       this.successfulBookingData = event?.detail?.data || {};
       globalThis.localStorage.setItem('successfulBookingData', JSON.stringify(this.successfulBookingData));
 
