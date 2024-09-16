@@ -74,9 +74,8 @@
               :height="!$isWideScreen ? '59px' : '73.68px'"
               color="success"
               :class="{ 'font-11' : $isMobile }"
-              :disabled="!isBookable"
               @click="onBook"
-            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 {{ !isBookable && !isPreviewMode ? 'This Clinic is Closed' : 'Book an Appointment' }}
+            ).text-none.custom-book-btn.white--text.rounded-lg.mc-btn1 Book an Appointment
 </template>
 
 <script>

@@ -82,6 +82,7 @@ export default {
     DirectorySearchBar: () => import('~/components/directory/DirectorySearchBar'),
   },
   layout: 'directory',
+  middleware: ['disable-route'],
   data () {
     this.titleClasses = ['mc-title-set-1', 'font-weight-bold'];
     this.subheaderClasses = ['mc-title-set-2', 'font-weight-light', 'primary--text'];

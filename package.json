@@ -1,6 +1,6 @@
 {
   "name": "web-main",
-  "version": "6.9.4",
+  "version": "8.0.0",
   "description": "MYCURE Main Website",
   "author": "Jofferson R. Tiquez & Marc Almond Valleza",
   "private": true,
@@ -20,7 +20,7 @@
     "@bachdgvn/vue-otp-input": "^1.0.8",
     "@mdi/js": "^6.5.95",
     "@mycure/sdk-js": "^5.32.8",
-    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/axios": "5.13.1",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/robots": "^2.5.0",
