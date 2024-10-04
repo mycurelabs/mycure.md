@@ -13,10 +13,11 @@ function formatMoney (number) {
 function mapCalendarEvents (items) {
   return items.map((item) => {
     const isPaid = item.requiresPayment;
-    const price = isPaid ? `${formatMoney(item.invoiceTemplate?.items?.[0]?.unitAmount)}` : 'Free';
+    const price = isPaid ? `${formatMoney(item.invoiceTemplate?.items?.[0]?.unitAmount)}` : '';
     const priceColor = isPaid ? 'info' : 'success';
     return {
       ...item,
+      isPaid,
       formattedPrice: price,
       formattedPriceColor: priceColor,
     };

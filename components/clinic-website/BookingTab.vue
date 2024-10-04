@@ -66,7 +66,7 @@
                     v-list-item-title {{ calendarEvent.title }}
                     v-list-item-subtitle {{ calendarEvent.description }}
                   v-list-item-action
-                    v-chip(:color="calendarEvent.formattedPriceColor") {{ calendarEvent.formattedPrice }}
+                    v-chip(v-if="calendarEvent.isPaid" :color="calendarEvent.formattedPriceColor") {{ calendarEvent.formattedPrice }}
           div(v-else)
             v-row(justify="center" align="center" style="height: 200px")
               v-col.text-center
