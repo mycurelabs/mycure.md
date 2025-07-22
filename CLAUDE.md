@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 14 application built with TypeScript, using the App Router architecture. The project uses shadcn/ui components, Tailwind CSS for styling, and Framer Motion for animations.
+MYCURE is a healthcare management SaaS application built with Next.js 14, TypeScript, and the App Router architecture. The project is a modern clinic management system landing page with download options for multiple platforms.
 
 ## Development Commands
 
@@ -25,56 +25,77 @@ pnpm start
 pnpm lint
 ```
 
-## Architecture & Structure
+## Important Configuration
 
-### Core Technologies
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with CSS variables
-- **UI Components**: shadcn/ui (Radix UI primitives)
-- **Animations**: Framer Motion
-- **Theme**: next-themes for dark/light mode support
+### Build Settings
+The project has the following build configurations in `next.config.mjs`:
+- **ESLint errors are ignored during builds** (`ignoreDuringBuilds: true`)
+- **TypeScript errors are ignored during builds** (`ignoreBuildErrors: true`)
+- **Images are unoptimized** (`unoptimized: true`)
 
-### Directory Structure
-- `/app` - Next.js App Router pages and layouts
-  - `layout.tsx` - Root layout with theme provider
-  - `page.tsx` - Main landing page (client component)
-  - `/download` - Download page route
-- `/components` - React components
-  - `/ui` - shadcn/ui components (auto-generated)
-  - `theme-provider.tsx` - Theme context provider
-- `/lib` - Utility functions
-  - `utils.ts` - Contains `cn()` helper for className merging
-- `/styles` - Global styles
-  - `globals.css` - Tailwind imports and CSS variables
-- `/public` - Static assets
-- `/hooks` - Custom React hooks
+These settings suggest the project prioritizes rapid development over strict type safety during builds.
 
-### Key Patterns
+### shadcn/ui Components
+This project uses shadcn/ui components configured via `components.json`:
+- Style: default
+- RSC: true (React Server Components enabled)
+- TypeScript: true
+- Tailwind config points to `tailwind.config.ts` (though actual file is `.js`)
+- CSS file: `app/globals.css`
+- Base color: neutral
+- CSS variables: enabled
 
-1. **Component Structure**: The project uses shadcn/ui components which are copied into the `/components/ui` directory. These are built on Radix UI primitives and styled with Tailwind CSS.
-
-2. **Styling Approach**: Uses Tailwind CSS with the `cn()` utility function from `/lib/utils.ts` for conditional class merging. CSS variables are used for theming.
-
-3. **Client Components**: The main page (`app/page.tsx`) is marked as a client component (`"use client"`) to support interactive features and animations.
-
-4. **Theme Support**: Dark/light mode is implemented using next-themes with system preference detection.
-
-### Import Aliases
-The project uses the following path aliases:
-- `@/components` → `/components`
-- `@/lib` → `/lib`
-- `@/hooks` → `/hooks`
-- `@/styles` → `/styles`
-
-### Component Library
-This project uses shadcn/ui components configured via `components.json`. To add new components:
+To add new shadcn/ui components:
 ```bash
 npx shadcn-ui@latest add <component-name>
 ```
 
-### Notes
-- No test framework is currently configured
-- Uses pnpm as the package manager (based on pnpm-lock.yaml)
-- The project appears to be a SaaS landing page template with features for clinics/healthcare
-- Git branch is `version-10` with main branch as `main`
+## Architecture Patterns
+
+### Page Structure
+- **Landing Page** (`app/page.tsx`): Client component with extensive animations using Framer Motion
+- **Download Page** (`app/download/page.tsx`): Platform-specific download options (Desktop, Mobile, Tablet, Web)
+
+### Styling System
+- **Primary Color**: `#0099CC` (defined in `tailwind.config.js`)
+- **CSS Variables**: Used for theming with HSL color values
+- **Dark Mode**: Implemented using `next-themes` with system preference detection
+- **Utility Function**: `cn()` in `/lib/utils.ts` for conditional class merging
+
+### Component Organization
+- All shadcn/ui components are in `/components/ui/`
+- Custom hooks are duplicated in both `/hooks/` and `/components/ui/` (e.g., `use-toast.ts`, `use-mobile.tsx`)
+- Theme provider wraps the entire application in the root layout
+
+## Key Features
+
+### Platform Support
+The application promotes availability across:
+- Desktop (Windows, macOS, Linux)
+- Mobile (iOS, Android)
+- Tablet (iPad, Android tablets)
+- Web (Browser-based access)
+
+### Healthcare-Specific Elements
+- HIPAA compliance messaging
+- Patient management features
+- Clinic operation streamlining
+- Healthcare provider testimonials
+- Multi-stage onboarding workflow
+
+## Development Notes
+
+### Current State
+- Git branch: `version-10` (main branch: `main`)
+- No test framework configured
+- No ESLint configuration file present (using Next.js defaults)
+- Package manager: pnpm
+
+### Path Aliases
+Configured in `tsconfig.json`:
+- `@/*` maps to the project root
+
+### Static Assets
+- Logo: `/mycure-logo.svg`
+- Service worker: `/static/sw.js`
+- Various placeholder images in `/public/`
