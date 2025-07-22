@@ -1,0 +1,6 @@
+runConfig:
+  cpu: 1.0              # Reduced from 2.0
+  memoryMiB: 512        # Reduced from 2048 (75% savings!)
+  maxInstances: 3       # Reduced from 5
+  minInstances: 0       # Allow scaling to zero for maximum savings
+  concurrency: 80       # Reduced from 200

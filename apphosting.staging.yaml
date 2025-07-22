@@ -1,0 +1,7 @@
+runConfig:
+  cpu: 1                # Minimum allowed value
+  memoryMiB: 512        # Minimum allowed value  
+  maxInstances: 2       # Keep low for testing
+  minInstances: 0       # KEY: Allow scaling to zero!
+  concurrency: 10       # Reduced for testing
+
