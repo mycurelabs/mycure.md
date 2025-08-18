@@ -8,21 +8,23 @@ MYCURE is a healthcare management SaaS application built with Next.js 14, TypeSc
 
 ## Development Commands
 
+**Important**: This project is not using pnpm. Use npm for all package management:
+
 ```bash
-# Install dependencies (using pnpm)
-pnpm install
+# Install dependencies
+npm install
 
 # Run development server
-pnpm dev
+npm run dev
 
 # Build for production
-pnpm build
+npm run build
 
 # Start production server
-pnpm start
+npm run start
 
 # Run linting
-pnpm lint
+npm run lint
 ```
 
 ## Important Configuration
@@ -40,10 +42,13 @@ This project uses shadcn/ui components configured via `components.json`:
 - Style: default
 - RSC: true (React Server Components enabled)
 - TypeScript: true
-- Tailwind config points to `tailwind.config.ts` (though actual file is `.js`)
+- Tailwind config: `tailwind.config.js` (not .ts as referenced in components.json)
 - CSS file: `app/globals.css`
 - Base color: neutral
 - CSS variables: enabled
+- Icon library: Lucide React
+
+**Component Architecture**: The project has a comprehensive set of 47+ shadcn/ui components already installed, including advanced components like charts, carousels, and data tables.
 
 To add new shadcn/ui components:
 ```bash
@@ -63,9 +68,10 @@ npx shadcn-ui@latest add <component-name>
 - **Utility Function**: `cn()` in `/lib/utils.ts` for conditional class merging
 
 ### Component Organization
-- All shadcn/ui components are in `/components/ui/`
+- All shadcn/ui components are in `/components/ui/` (47+ components)
 - Custom hooks are duplicated in both `/hooks/` and `/components/ui/` (e.g., `use-toast.ts`, `use-mobile.tsx`)
 - Theme provider wraps the entire application in the root layout
+- Global CSS imports in layout: `@/styles/globals.css` (note: actual path is `app/globals.css`)
 
 ## Key Features
 
@@ -89,7 +95,8 @@ The application promotes availability across:
 - Git branch: `version-10` (main branch: `main`)
 - No test framework configured
 - No ESLint configuration file present (using Next.js defaults)
-- Package manager: pnpm
+- Package manager: **npm** (not pnpm)
+- Project name: "my-v0-project" (likely generated from v0.dev)
 
 ### Path Aliases
 Configured in `tsconfig.json`:
@@ -99,3 +106,21 @@ Configured in `tsconfig.json`:
 - Logo: `/mycure-logo.svg`
 - Service worker: `/static/sw.js`
 - Various placeholder images in `/public/`
+
+### Key Dependencies
+- **UI Framework**: React 18 with Next.js 14 App Router
+- **Styling**: Tailwind CSS with shadcn/ui component library
+- **Icons**: Lucide React (extensive icon set)
+- **Animation**: Framer Motion for complex animations
+- **Forms**: React Hook Form with Zod validation
+- **Charts**: Recharts for data visualization
+- **Theme**: next-themes for dark/light mode switching
+- **Toast Notifications**: Sonner for user notifications
+
+### Component System Architecture
+The project follows a layered component architecture:
+1. **Base UI Components** (`/components/ui/`): shadcn/ui primitives
+2. **Custom Components** (`/components/`): Application-specific components
+3. **Page Components** (`/app/`): Route-level components with App Router
+4. **Shared Utilities** (`/lib/`): Common utilities and helpers
+5. **Custom Hooks** (`/hooks/`): Reusable React hooks

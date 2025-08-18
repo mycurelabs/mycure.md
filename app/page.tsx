@@ -326,14 +326,13 @@ export default function LandingPage() {
                 className="mb-6 rounded-full px-4 py-1.5 text-sm font-medium bg-white/10 text-white border-white/20"
                 variant="outline"
               >
-                Launching Soon
+                🎉 Now Available
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
-                Transform Healthcare Management with MYCURE
+                Finally, A Healthcare System That Actually Saves You Time
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-8 max-w-3xl mx-auto">
-                Join thousands of healthcare providers using our comprehensive clinic management system to streamline
-                operations, improve patient care, and boost efficiency.
+                Stop drowning in paperwork and start focusing on what matters most - your patients. Healthcare providers everywhere are discovering how intuitive practice management can transform their daily workflow and reduce administrative stress.
               </p>
 
               {/* Email Capture Section */}
