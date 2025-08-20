@@ -7,9 +7,19 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "MYCURE - Enterprise-Grade Healthcare Management Solutions",
+  title: "MYCURE - Enterprise Healthcare Practice Management Solutions",
   description: "Transform your healthcare practice with MYCURE's comprehensive clinic management system. Streamline operations, enhance patient care, and grow your practice with our all-in-one healthcare platform.",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ]
+  }
 }
 
 export default function RootLayout({
