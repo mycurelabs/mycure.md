@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(kill:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run build:*)",
+      "Bash(cp:*)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(timeout 15 npm run dev)",
+      "mcp__server-sequential-thinking__sequentialthinking",
+      "Bash(curl:*)",
+      "mcp__shadcn-ui-mcp-server__list_shadcn_components",
+      "mcp__context7-mcp__resolve-library-id",
+      "mcp__shadcn-ui-mcp-server__get_component_details",
+      "mcp__shadcn-ui-mcp-server__get_component_examples",
+      "mcp__playwright-mcp__browser_navigate",
+      "Bash(grep:*)",
+      "mcp__context7-mcp__get-library-docs",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
