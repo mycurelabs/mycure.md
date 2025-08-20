@@ -1,6 +1,6 @@
-# MYCURE Landing Page - Current Section Order Reference
+# MYCURE Landing Page - Updated Section Order Reference
 
-## Current Section Arrangement (As of 2025-08-20)
+## New Section Arrangement (As of 2025-08-20)
 
 ### 1. Hero Section (Line 387)
 - Main value proposition with video
@@ -29,55 +29,51 @@
 - Seamless Team Collaboration
 - Muted background
 
-### 6. All-in-One Integration Section (Line 824)
-- "All together, not all-in-one" messaging
-- Floating integration icons animation
-- Visual integration showcase
-
-### 7. Download Section (Line 1005)
-- "Take MYCURE with you everywhere" 
-- Platform availability (Desktop, Mobile, Tablet, Web)
-- Download CTAs and app store links
-
-### 8. Company Visibility Features Section (Line 1131)
+### 6. Company Visibility Features Section (Line 1131)
 - "Visibility for your entire clinic"
 - 4 sub-features: Patient feed, Digest reports, Departments, Living archive
 - Visual mockups for each feature
 
-### 9. How It Works Timeline Section (Line 1328)
-- Interactive 7-day implementation timeline
-- Tabbed interface (Today, Day 3, Day 7)
-- "What you can achieve with MYCURE in just 7 days"
-
-### 10. Sticky Scroll Features Section (Line 1442)
+### 7. Sticky Scroll Features Section (Line 1442)
 - Scrollytelling implementation
 - Progressive features: Smart Scheduling, Digital Records, Security First, Smart Analytics
 - Height: 400vh for scroll effect
 
-### 11. Testimonials Section (Line 1640)
-- Customer testimonials grid
-- ID: #testimonials
-- "Loved by Teams Worldwide"
+### 8. Image + Content Features Section (Line 661)
+- 3 detailed features with accompanying images
+- Real-time Analytics & Insights
+- Intelligent Automation  
+- Seamless Team Collaboration
+- Muted background
 
-### 12. Pricing Section (Line 1743)
-- Three-tier pricing plans (Starter, Professional, Enterprise)
-- Feature comparison tables
-- ID: #pricing
-- Detailed pricing grid with feature breakdowns
+### 9. All-in-One Integration Section (Line 824)
+- "All together, not all-in-one" messaging
+- Floating integration icons animation
+- Visual integration showcase
 
-### 13. FAQ Section (Line 2430)
+### 10. How It Works Timeline Section (Line 1328)
+- Interactive 7-day implementation timeline
+- Tabbed interface (Today, Day 3, Day 7)
+- "What you can achieve with MYCURE in just 7 days"
+
+### 11. FAQ Section (Line 2430)
 - Accordion-style frequently asked questions
 - ID: #faq
 - Primary background with gradient
 
-### 14. Final CTA Section (Line 2498)
+### 12. Final CTA Section (Line 2498)
 - Additional call-to-action section
 - Gradient background
 
-### 15. Footer Section (Line 2564)
+### 13. Footer Section (Line 2564)
 - Company information
 - Navigation links
 - Legal and contact information
+
+## Hidden Sections (Temporarily Disabled)
+- **Download Section** - "Take MYCURE with you everywhere"
+- **Testimonials Section** - Customer testimonials grid  
+- **Pricing Section** - Three-tier pricing plans
 
 ## Notes:
 - Backup created: page-backup-2025-08-20-092734.tsx
