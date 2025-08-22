@@ -820,6 +820,313 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        {/* All-in-One Integration Section */}
+        <section className="w-full py-20 md:py-32 bg-muted/20 relative overflow-hidden">
+          <div className="container px-4 md:px-6 relative">
+            <div className="max-w-4xl mx-auto text-center relative">
+              {/* Floating Integration Icons */}
+              <div className="absolute inset-0 pointer-events-none">
+                {/* Top Row Icons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="absolute top-0 left-1/4 transform -translate-x-1/2 -translate-y-8"
+                >
+                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
+                    <div className="w-8 h-8 bg-red-500 rounded-sm flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="absolute top-8 right-1/4 transform translate-x-1/2 -translate-y-4"
+                >
+                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
+                    <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                        <path
+                          d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-
+8zm10 0h8v8h-8v-8z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Middle Row Icons */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="absolute top-1/2 left-8 transform -translate-y-1/2"
+                >
+                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
+                    <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="absolute top-1/2 right-8 transform -translate-y-1/2"
+                >
+                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
+                    <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Bottom Row Icons */}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="absolute bottom-8 left-1/3 transform -translate-x-1/2 translate-y-4"
+                >
+                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
+                    <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="absolute bottom-0 right-1/3 transform translate-x-1/2 translate-y-8"
+                >
+                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
+                    <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Additional smaller icons for mobile spacing */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="absolute top-1/4 left-12 transform -translate-x-1/2 hidden lg:block"
+                >
+                  <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                    <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-white fill-current">
+                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="absolute top-1/4 right-12 transform translate-x-1/2 hidden lg:block"
+                >
+                  <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                    <div className="w-6 h-6 bg-indigo-500 rounded flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-white fill-current">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Main Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative z-10 py-16 md:py-24"
+              >
+                <div className="space-y-8">
+                  <div className="space-y-6">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                      All together, <br className="hidden sm:block" />
+                      <span className="text-muted-foreground">not all-in-one.</span>
+                    </h2>
+                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                      Integrate with your existing healthcare tools to create a seamless workflow. There's no need to
+                      replace what's already working for your practice.
+                    </p>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      Get started
+                      <ArrowRight className="ml-2 size-5" />
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+        {/* Download Section */}
+        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-muted/30 to-background relative overflow-hidden">
+          <div className="container px-4 md:px-6 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-4xl mx-auto"
+            >
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                    Take MYCURE with you, <br className="hidden sm:block" />
+                    <span className="text-muted-foreground">everywhere you go.</span>
+                  </h2>
+                  <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    Access your clinic management tools on any device. Desktop, mobile, tablet, or web - MYCURE works
+                    seamlessly across all platforms.
+                  </p>
+                </div>
+
+                {/* Device Icons */}
+                <div className="flex items-center justify-center gap-8 py-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Desktop</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Mobile</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Tablet</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Web</span>
+                  </motion.div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Link href="/download">
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Download MYCURE
+                    </Button>
+                  </Link>
+                </motion.div>
+
+                <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Available on all platforms</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Sync across devices</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Offline capable</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
         {/* Company Visibility Features Section */}
         <section className="w-full py-20 md:py-32">
           <div className="container px-4 md:px-6">
@@ -1013,6 +1320,115 @@ export default function LandingPage() {
                     </span>
                   </h3>
                 </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+        {/* How It Works Section - Interactive Timeline */}
+        <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+
+          <div className="container px-4 md:px-6 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+            >
+              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+                How It Works
+              </Badge>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+                What you can achieve with MYCURE{" "}
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg">in just 7 days</span>
+              </h2>
+              <p className="max-w-[800px] text-muted-foreground md:text-lg">
+                Transform your healthcare practice step by step with our guided onboarding process.
+              </p>
+            </motion.div>
+
+            {/* Interactive Timeline */}
+            <div className="max-w-4xl mx-auto">
+              {/* Timeline Navigation */}
+              <div className="flex justify-center mb-12">
+                <div className="flex gap-4 p-2 bg-background rounded-full border border-border/40 shadow-sm">
+                  {[
+                    { day: "today", label: "Today" },
+                    { day: "day3", label: "Day 3" },
+                    { day: "day7", label: "Day 7" },
+                  ].map((timepoint) => (
+                    <button
+                      key={timepoint.day}
+                      onClick={() => setActiveDay(timepoint.day)}
+                      className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                        activeDay === timepoint.day
+                          ? "bg-foreground text-background shadow-sm"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                    >
+                      {timepoint.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Timeline Content */}
+              <motion.div
+                key={activeDay}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid md:grid-cols-3 gap-8 mb-12"
+              >
+                {timelineContent[activeDay].map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="bg-background rounded-2xl p-6 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          {step.icon}
+                        </div>
+                        <h3 className="text-lg font-semibold">{step.title}</h3>
+                      </div>
+                      <ul className="space-y-3">
+                        {step.items.map((item, itemIndex) => (
+                          <li key={itemIndex} className="flex items-start gap-3">
+                            <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
+                            </div>
+                            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Call to Action */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-center"
+              >
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  Start Free Trial
+                  <ArrowRight className="ml-2 size-5" />
+                </Button>
+                <p className="text-sm text-muted-foreground mt-4">
+                  No credit card required • 14-day free trial • Setup in minutes
+                </p>
               </motion.div>
             </div>
           </div>
@@ -1220,587 +1636,7 @@ export default function LandingPage() {
               </div>
             </div>
           </section>
-        </Scrollytelling.Root>
-        {/* Image + Content Features Section (Duplicate) */}
-        <section className="w-full py-20 md:py-32 bg-muted/30">
-          <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-            >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                Why Choose MYCURE
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Built for Modern Teams</h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Discover how our platform transforms the way teams work together, with powerful features designed for
-                today's challenges.
-              </p>
-            </motion.div>
-
-            <div className="space-y-20">
-              {/* Feature 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Analytics+Dashboard"
-                    width={600}
-                    height={400}
-                    alt="Analytics Dashboard"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
-                </div>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <BarChart className="size-6" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Real-time Analytics & Insights</h3>
-                    <p className="text-muted-foreground text-lg">
-                      Get instant visibility into your team's performance with comprehensive dashboards and customizable
-                      reports. Track key metrics, identify trends, and make data-driven decisions that drive growth.
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Interactive charts and visualizations</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Custom KPI tracking</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Automated reporting</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-
-              {/* Feature 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className="space-y-6 lg:order-2">
-                  <div className="space-y-4">
-                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <Zap className="size-6" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Intelligent Automation</h3>
-                    <p className="text-muted-foreground text-lg">
-                      Eliminate repetitive tasks and streamline your workflow with smart automation. Set up custom
-                      triggers, automate approvals, and let AI handle the routine work so your team can focus on what
-                      matters.
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Workflow automation builder</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Smart notifications and alerts</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>AI-powered task suggestions</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="relative lg:order-1">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Automation+Workflow"
-                    width={600}
-                    height={400}
-                    alt="Automation Workflow"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
-                </div>
-              </motion.div>
-
-              {/* Feature 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Team+Collaboration"
-                    width={600}
-                    height={400}
-                    alt="Team Collaboration"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
-                </div>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <Users className="size-6" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Seamless Team Collaboration</h3>
-                    <p className="text-muted-foreground text-lg">
-                      Bring your team together with integrated communication tools, shared workspaces, and real-time
-                      collaboration features. Work together effortlessly, whether you're in the same office or across
-                      the globe.
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Real-time document editing</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Integrated chat and video calls</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Shared project workspaces</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-        {/* All-in-One Integration Section */}
-        <section className="w-full py-20 md:py-32 bg-muted/20 relative overflow-hidden">
-          <div className="container px-4 md:px-6 relative">
-            <div className="max-w-4xl mx-auto text-center relative">
-              {/* Floating Integration Icons */}
-              <div className="absolute inset-0 pointer-events-none">
-                {/* Top Row Icons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="absolute top-0 left-1/4 transform -translate-x-1/2 -translate-y-8"
-                >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-red-500 rounded-sm flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="absolute top-8 right-1/4 transform translate-x-1/2 -translate-y-4"
-                >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path
-                          d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-
-8zm10 0h8v8h-8v-8z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Middle Row Icons */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="absolute top-1/2 left-8 transform -translate-y-1/2"
-                >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="absolute top-1/2 right-8 transform -translate-y-1/2"
-                >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Bottom Row Icons */}
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="absolute bottom-8 left-1/3 transform -translate-x-1/2 translate-y-4"
-                >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="absolute bottom-0 right-1/3 transform translate-x-1/2 translate-y-8"
-                >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Additional smaller icons for mobile spacing */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="absolute top-1/4 left-12 transform -translate-x-1/2 hidden lg:block"
-                >
-                  <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
-                    <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-white fill-current">
-                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  className="absolute top-1/4 right-12 transform translate-x-1/2 hidden lg:block"
-                >
-                  <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
-                    <div className="w-6 h-6 bg-indigo-500 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-white fill-current">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Main Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="relative z-10 py-16 md:py-24"
-              >
-                <div className="space-y-8">
-                  <div className="space-y-6">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                      All together, <br className="hidden sm:block" />
-                      <span className="text-muted-foreground">not all-in-one.</span>
-                    </h2>
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                      Integrate with your existing healthcare tools to create a seamless workflow. There's no need to
-                      replace what's already working for your practice.
-                    </p>
-                  </div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                  >
-                    <Button
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      Get started
-                      <ArrowRight className="ml-2 size-5" />
-                    </Button>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-        {/* How It Works Section - Interactive Timeline */}
-        <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
-
-          <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-            >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                How It Works
-              </Badge>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-                What you can achieve with MYCURE{" "}
-                <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg">in just 7 days</span>
-              </h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Transform your healthcare practice step by step with our guided onboarding process.
-              </p>
-            </motion.div>
-
-            {/* Interactive Timeline */}
-            <div className="max-w-4xl mx-auto">
-              {/* Timeline Navigation */}
-              <div className="flex justify-center mb-12">
-                <div className="flex gap-4 p-2 bg-background rounded-full border border-border/40 shadow-sm">
-                  {[
-                    { day: "today", label: "Today" },
-                    { day: "day3", label: "Day 3" },
-                    { day: "day7", label: "Day 7" },
-                  ].map((timepoint) => (
-                    <button
-                      key={timepoint.day}
-                      onClick={() => setActiveDay(timepoint.day)}
-                      className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                        activeDay === timepoint.day
-                          ? "bg-foreground text-background shadow-sm"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                      }`}
-                    >
-                      {timepoint.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Timeline Content */}
-              <motion.div
-                key={activeDay}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="grid md:grid-cols-3 gap-8 mb-12"
-              >
-                {timelineContent[activeDay].map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-background rounded-2xl p-6 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                          {step.icon}
-                        </div>
-                        <h3 className="text-lg font-semibold">{step.title}</h3>
-                      </div>
-                      <ul className="space-y-3">
-                        {step.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start gap-3">
-                            <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
-                              <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
-                            </div>
-                            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              {/* Call to Action */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-center"
-              >
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Start Free Trial
-                  <ArrowRight className="ml-2 size-5" />
-                </Button>
-                <p className="text-sm text-muted-foreground mt-4">
-                  No credit card required • 14-day free trial • Setup in minutes
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-        {/* Download Section */}
-        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-muted/30 to-background relative overflow-hidden">
-          <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                    Take MYCURE with you, <br className="hidden sm:block" />
-                    <span className="text-muted-foreground">everywhere you go.</span>
-                  </h2>
-                  <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                    Access your clinic management tools on any device. Desktop, mobile, tablet, or web - MYCURE works
-                    seamlessly across all platforms.
-                  </p>
-                </div>
-
-                {/* Device Icons */}
-                <div className="flex items-center justify-center gap-8 py-8">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="flex flex-col items-center gap-3"
-                  >
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z" />
-                      </svg>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground">Desktop</span>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="flex flex-col items-center gap-3"
-                  >
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
-                      </svg>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground">Mobile</span>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="flex flex-col items-center gap-3"
-                  >
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z" />
-                      </svg>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground">Tablet</span>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="flex flex-col items-center gap-3"
-                  >
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                      </svg>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground">Web</span>
-                  </motion.div>
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <Link href="/download">
-                    <Button
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                          fillRule="evenodd"
-                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Download MYCURE
-                    </Button>
-                  </Link>
-                </motion.div>
-
-                <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Check className="size-4 text-primary" />
-                    <span>Available on all platforms</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="size-4 text-primary" />
-                    <span>Sync across devices</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="size-4 text-primary" />
-                    <span>Offline capable</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-        {/* Testimonials Section */}
+        </Scrollytelling.Root>        {/* Testimonials Section */}
         <section id="testimonials" className="w-full py-20 md:py-32">
           <div className="container px-4 md:px-6">
             <motion.div

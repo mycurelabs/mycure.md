@@ -21,7 +21,9 @@
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
       "Bash(sed:*)",
-      "mcp__desktop-commander__get_file_info"
+      "mcp__desktop-commander__get_file_info",
+      "mcp__playwright-mcp__browser_console_messages",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []
