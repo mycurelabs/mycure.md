@@ -638,7 +638,7 @@ export default function LandingPage() {
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">1,506,040</div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Lives Saved
+                    Patients Served
                   </div>
                 </motion.div>
                 <motion.div
@@ -672,13 +672,12 @@ export default function LandingPage() {
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Built for Modern Teams</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Discover how our platform transforms the way teams work together, with powerful features designed for
-                today's challenges.
+                Enterprise-grade capabilities with healthcare-specific design, ensuring compliance, reliability, and seamless operations.
               </p>
             </motion.div>
 
             <div className="space-y-20">
-              {/* Feature 1 */}
+              {/* Feature 1 - HIPAA Security & Compliance */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -689,42 +688,45 @@ export default function LandingPage() {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=Analytics+Dashboard"
+                    src="/placeholder.svg?height=400&width=600&text=HIPAA+Security"
                     width={600}
                     height={400}
-                    alt="Analytics Dashboard"
+                    alt="HIPAA Security & Compliance"
                     className="relative rounded-xl shadow-2xl border border-border/40"
                   />
                 </div>
                 <div className="space-y-6">
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <BarChart className="size-6" />
+                      <Shield className="size-6" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Real-time Analytics & Insights</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold">HIPAA Security & Compliance</h3>
                     <p className="text-muted-foreground text-lg">
-                      Get instant visibility into your team's performance with comprehensive dashboards and customizable
-                      reports. Track key metrics, identify trends, and make data-driven decisions that drive growth.
+                      MYCURE demonstrates industry-leading commitment to protecting patient data with comprehensive HIPAA compliance, end-to-end encryption, and rigorous security protocols that exceed healthcare standards.
                     </p>
                   </div>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Interactive charts and visualizations</span>
+                      <span>End-to-end data encryption for all patient communications and records</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Custom KPI tracking</span>
+                      <span>Automated compliance monitoring with real-time alerts and audit trails</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Automated reporting</span>
+                      <span>Role-based access controls ensuring staff see only authorized patient information</span>
                     </li>
                   </ul>
+                  <Button variant="outline" className="mt-4">
+                    Learn About MYCURE's Privacy Standards
+                    <ChevronRight className="ml-2 size-4" />
+                  </Button>
                 </div>
               </motion.div>
 
-              {/* Feature 2 */}
+              {/* Feature 2 - Seamless Offline Operations */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -735,43 +737,45 @@ export default function LandingPage() {
                 <div className="space-y-6 lg:order-2">
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <Zap className="size-6" />
+                      <WifiOff className="size-6" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Intelligent Automation</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold">Seamless Offline Operations</h3>
                     <p className="text-muted-foreground text-lg">
-                      Eliminate repetitive tasks and streamline your workflow with smart automation. Set up custom
-                      triggers, automate approvals, and let AI handle the routine work so your team can focus on what
-                      matters.
+                      Work confidently regardless of internet connectivity. MYCURE's advanced offline capabilities ensure your practice continues operating smoothly, with automatic synchronization when connectivity returns.
                     </p>
                   </div>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Workflow automation builder</span>
+                      <span>Full offline patient record access for electronic medical record management</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Smart notifications and alerts</span>
+                      <span>Smart data synchronization that resolves conflicts and updates automatically</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>AI-powered task suggestions</span>
+                      <span>Local backup systems ensuring zero data loss during connectivity issues</span>
                     </li>
                   </ul>
+                  <Button variant="outline" className="mt-4">
+                    Learn About Syncbase
+                    <ChevronRight className="ml-2 size-4" />
+                  </Button>
                 </div>
                 <div className="relative lg:order-1">
                   <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=Automation+Workflow"
+                    src="/placeholder.svg?height=400&width=600&text=Offline+Operations"
                     width={600}
                     height={400}
-                    alt="Automation Workflow"
+                    alt="Seamless Offline Operations"
                     className="relative rounded-xl shadow-2xl border border-border/40"
                   />
                 </div>
               </motion.div>
 
-              {/* Feature 3 */}
+              {/* Feature 3 - Simplified PhilHealth Claims Management */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -782,39 +786,90 @@ export default function LandingPage() {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=Team+Collaboration"
+                    src="/placeholder.svg?height=400&width=600&text=PhilHealth+Claims"
                     width={600}
                     height={400}
-                    alt="Team Collaboration"
+                    alt="PhilHealth Claims Management"
                     className="relative rounded-xl shadow-2xl border border-border/40"
                   />
                 </div>
                 <div className="space-y-6">
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <Users className="size-6" />
+                      <FileText className="size-6" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Seamless Team Collaboration</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold">Simplified PhilHealth Claims Management</h3>
                     <p className="text-muted-foreground text-lg">
-                      Bring your team together with integrated communication tools, shared workspaces, and real-time
-                      collaboration features. Work together effortlessly, whether you're in the same office or across
-                      the globe.
+                      Streamline your revenue cycle with direct PhilHealth integration. Automate claims processing, track submissions, and ensure accurate reimbursements while maintaining full compliance with Philippine healthcare regulations.
                     </p>
                   </div>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Real-time document editing</span>
+                      <span>Automated PhilHealth form generation with pre-populated patient data</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Integrated chat and video calls</span>
+                      <span>Real-time claims status tracking from submission to reimbursement</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Shared project workspaces</span>
+                      <span>Built-in compliance validation preventing common rejection reasons</span>
                     </li>
                   </ul>
+                  <Button variant="outline" className="mt-4">
+                    Learn More about MYCURE's Accreditation
+                    <ChevronRight className="ml-2 size-4" />
+                  </Button>
+                </div>
+              </motion.div>
+
+              {/* Feature 4 - Effortless Clinical Workflows */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="grid lg:grid-cols-2 gap-12 items-center"
+              >
+                <div className="space-y-6 lg:order-2">
+                  <div className="space-y-4">
+                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
+                      <Stethoscope className="size-6" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold">Effortless Clinical Workflows</h3>
+                    <p className="text-muted-foreground text-lg">
+                      Experience healthcare software designed by medical professionals for medical professionals. Intuitive interfaces reduce training time while powerful features enhance clinical documentation and patient care efficiency.
+                    </p>
+                  </div>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3">
+                      <Check className="size-5 text-primary" />
+                      <span>Intuitive patient charting with medical-professional-designed interfaces</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <Check className="size-5 text-primary" />
+                      <span>Streamlined documentation workflows that reduce administrative burden</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <Check className="size-5 text-primary" />
+                      <span>Smart clinical templates that adapt to different specialties and procedures</span>
+                    </li>
+                  </ul>
+                  <Button variant="outline" className="mt-4">
+                    Learn More about MYCURE's Features
+                    <ChevronRight className="ml-2 size-4" />
+                  </Button>
+                </div>
+                <div className="relative lg:order-1">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl opacity-30"></div>
+                  <Image
+                    src="/placeholder.svg?height=400&width=600&text=Clinical+Workflows"
+                    width={600}
+                    height={400}
+                    alt="Clinical Workflows"
+                    className="relative rounded-xl shadow-2xl border border-border/40"
+                  />
                 </div>
               </motion.div>
             </div>
@@ -877,9 +932,9 @@ export default function LandingPage() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
-                    The patient feed.{" "}
+                    <span className="font-bold">Eliminate</span>{" "}
                     <span className="font-normal text-muted-foreground">
-                      Your clinic's real-time updates roll up into a beautiful, streamlined feed.
+                      unnecessary tool costs with one comprehensive platform.
                     </span>
                   </h3>
                 </div>
@@ -915,9 +970,9 @@ export default function LandingPage() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
-                    Digest reports.{" "}
+                    <span className="font-bold">Reduce</span>{" "}
                     <span className="font-normal text-muted-foreground">
-                      Never miss a beat with daily and weekly digest reports.
+                      administrative burden through intelligent automation.
                     </span>
                   </h3>
                 </div>
@@ -959,9 +1014,9 @@ export default function LandingPage() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
-                    Departments.{" "}
+                    <span className="font-bold">Improve</span>{" "}
                     <span className="font-normal text-muted-foreground">
-                      Keep things organized. Assign staff and create specialized workflows for each department.
+                      patient satisfaction with seamless scheduling, clear communication, and reduced wait times through optimized workflows.
                     </span>
                   </h3>
                 </div>
@@ -1007,9 +1062,9 @@ export default function LandingPage() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
-                    A living archive.{" "}
+                    <span className="font-bold">Protect</span>{" "}
                     <span className="font-normal text-muted-foreground">
-                      New staff can easily see how cases progressed and what everyone is working on.
+                      your revenue with automatic compliance monitoring, HIPAA security, and regulatory reporting that prevents costly fines.
                     </span>
                   </h3>
                 </div>
@@ -1023,7 +1078,7 @@ export default function LandingPage() {
           end="bottom top"
           scrub={true}
         >
-          <section className="w-full py-20 md:py-32 relative" style={{ height: '400vh' }}>
+          <section className="w-full py-5 md:py-8 relative" style={{ height: '220vh' }}>
             <div className="container px-4 md:px-6">
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 {/* Sticky Left Content */}
@@ -1038,11 +1093,11 @@ export default function LandingPage() {
                       Healthcare Excellence
                     </Badge>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
-                      Progressive features
-                      <br />that matter.
+                      Built for healthcare
+                      <br />excellence
                     </h2>
                     <p className="text-lg md:text-xl text-muted-foreground mt-6 max-w-lg">
-                      Every feature is crafted with precision to enhance your healthcare practice. Discover how MYCURE transforms clinical operations.
+                      Healthcare providers deserve technology that matches their professional standards. MYCURE combines enterprise-grade capabilities with healthcare-specific design, ensuring that every feature supports clinical excellence while maintaining operational efficiency and regulatory compliance.
                     </p>
                   </motion.div>
                 </div>
@@ -1053,7 +1108,7 @@ export default function LandingPage() {
                   <Scrollytelling.Animation
                     tween={{
                       start: 0,
-                      end: 25,
+                      end: 30,
                       from: { opacity: 0, y: 60, scale: 0.9 }
                     }}
                   >
@@ -1063,12 +1118,12 @@ export default function LandingPage() {
                           <Calendar className="w-6 h-6 text-primary" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-primary">Smart Scheduling</h3>
-                          <p className="text-muted-foreground">Intelligent appointment management</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-primary">Your Clinical Command Center</h3>
+                          <p className="text-muted-foreground">Powerful dashboard control</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Automate appointment scheduling with AI-powered conflict detection, patient preference learning, and real-time availability updates across all departments.
+                        Take control of every patient interaction from one powerful dashboard. Watch as complex medical workflows transform into streamlined processes—from initial consultation to final treatment documentation, everything flows seamlessly.
                       </p>
                       <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border border-primary/20">
                         <div className="space-y-3">
@@ -1094,7 +1149,7 @@ export default function LandingPage() {
                   {/* Feature 2 - Medical Records */}
                   <Scrollytelling.Animation
                     tween={{
-                      start: 25,
+                      start: 20,
                       end: 50,
                       from: { opacity: 0, y: 60, scale: 0.9 }
                     }}
@@ -1102,22 +1157,22 @@ export default function LandingPage() {
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
-                          <FileText className="w-6 h-6 text-green-600" />
+                          <Zap className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">Digital Records</h3>
-                          <p className="text-muted-foreground">Comprehensive patient history</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">Operations That Actually Work</h3>
+                          <p className="text-muted-foreground">Intelligent automation</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Maintain complete digital patient records with advanced search, automated backups, and seamless integration with diagnostic equipment and lab systems.
+                        See your entire practice come alive with intelligent automation. Real-time insights reveal optimization opportunities while smart scheduling eliminates bottlenecks—turning operational chaos into competitive advantage.
                       </p>
                       <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
                         <div className="space-y-3">
                           <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                <FileText className="w-4 h-4 text-white" />
+                                <Zap className="w-4 h-4 text-white" />
                               </div>
                               <div>
                                 <div className="font-semibold text-sm">Patient Records</div>
@@ -1136,30 +1191,30 @@ export default function LandingPage() {
                   {/* Feature 3 - Security & Compliance */}
                   <Scrollytelling.Animation
                     tween={{
-                      start: 50,
-                      end: 75,
+                      start: 35,
+                      end: 65,
                       from: { opacity: 0, y: 60, scale: 0.9 }
                     }}
                   >
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center">
-                          <Lock className="w-6 h-6 text-orange-600" />
+                          <Video className="w-6 h-6 text-orange-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-orange-600">Security First</h3>
-                          <p className="text-muted-foreground">Enterprise-grade protection</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-orange-600">Virtual Care That Feels Personal</h3>
+                          <p className="text-muted-foreground">Enterprise-grade telehealth</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Bank-level encryption, multi-factor authentication, and automated compliance monitoring ensure your patient data remains secure and regulatory compliant.
+                        Bridge the distance between you and your patients with enterprise-grade telehealth. Experience the future of patient care where technology enhances connection rather than replacing it—secure, seamless, and surprisingly human.
                       </p>
                       <div className="bg-gradient-to-br from-orange-500/5 to-orange-500/10 rounded-2xl p-6 border border-orange-500/20">
                         <div className="space-y-3">
                           <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                                <Lock className="w-4 h-4 text-white" />
+                                <Video className="w-4 h-4 text-white" />
                               </div>
                               <div>
                                 <div className="font-semibold text-sm">Security Status</div>
@@ -1178,7 +1233,7 @@ export default function LandingPage() {
                   {/* Feature 4 - Analytics & Insights */}
                   <Scrollytelling.Animation
                     tween={{
-                      start: 75,
+                      start: 45,
                       end: 100,
                       from: { opacity: 0, y: 60, scale: 0.9 }
                     }}
@@ -1186,22 +1241,22 @@ export default function LandingPage() {
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
-                          <Activity className="w-6 h-6 text-purple-600" />
+                          <WifiOff className="w-6 h-6 text-purple-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Smart Analytics</h3>
-                          <p className="text-muted-foreground">Data-driven insights</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Your Practice, Always On</h3>
+                          <p className="text-muted-foreground">Offline-first design</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Advanced analytics provide actionable insights into practice performance, patient outcomes, and operational efficiency with customizable dashboards and reports.
+                        Discover true peace of mind with offline-first design. Whether internet fails or power fluctuates, your practice continues uninterrupted. When connectivity returns, everything syncs perfectly—like the disruption never happened.
                       </p>
                       <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
                         <div className="space-y-3">
                           <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                                <Activity className="w-4 h-4 text-white" />
+                                <WifiOff className="w-4 h-4 text-white" />
                               </div>
                               <div>
                                 <div className="font-semibold text-sm">Practice Analytics</div>
@@ -1221,169 +1276,6 @@ export default function LandingPage() {
             </div>
           </section>
         </Scrollytelling.Root>
-        {/* Image + Content Features Section (Duplicate) */}
-        <section className="w-full py-20 md:py-32 bg-muted/30">
-          <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-            >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                Why Choose MYCURE
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Built for Modern Teams</h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Discover how our platform transforms the way teams work together, with powerful features designed for
-                today's challenges.
-              </p>
-            </motion.div>
-
-            <div className="space-y-20">
-              {/* Feature 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Analytics+Dashboard"
-                    width={600}
-                    height={400}
-                    alt="Analytics Dashboard"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
-                </div>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <BarChart className="size-6" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Real-time Analytics & Insights</h3>
-                    <p className="text-muted-foreground text-lg">
-                      Get instant visibility into your team's performance with comprehensive dashboards and customizable
-                      reports. Track key metrics, identify trends, and make data-driven decisions that drive growth.
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Interactive charts and visualizations</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Custom KPI tracking</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Automated reporting</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-
-              {/* Feature 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className="space-y-6 lg:order-2">
-                  <div className="space-y-4">
-                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <Zap className="size-6" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Intelligent Automation</h3>
-                    <p className="text-muted-foreground text-lg">
-                      Eliminate repetitive tasks and streamline your workflow with smart automation. Set up custom
-                      triggers, automate approvals, and let AI handle the routine work so your team can focus on what
-                      matters.
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Workflow automation builder</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Smart notifications and alerts</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>AI-powered task suggestions</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="relative lg:order-1">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Automation+Workflow"
-                    width={600}
-                    height={400}
-                    alt="Automation Workflow"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
-                </div>
-              </motion.div>
-
-              {/* Feature 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
-              >
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Team+Collaboration"
-                    width={600}
-                    height={400}
-                    alt="Team Collaboration"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
-                </div>
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
-                      <Users className="size-6" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">Seamless Team Collaboration</h3>
-                    <p className="text-muted-foreground text-lg">
-                      Bring your team together with integrated communication tools, shared workspaces, and real-time
-                      collaboration features. Work together effortlessly, whether you're in the same office or across
-                      the globe.
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Real-time document editing</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Integrated chat and video calls</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="size-5 text-primary" />
-                      <span>Shared project workspaces</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
         {/* All-in-One Integration Section */}
         <section className="w-full py-20 md:py-32 bg-muted/20 relative overflow-hidden">
           <div className="container px-4 md:px-6 relative">
@@ -1398,12 +1290,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="absolute top-0 left-1/4 transform -translate-x-1/2 -translate-y-8"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-red-500 rounded-sm flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
+                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Laboratory.73d89a4.webp"
+                      width={52}
+                      height={52}
+                      alt="Laboratory Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1414,15 +1308,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="absolute top-8 right-1/4 transform translate-x-1/2 -translate-y-4"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path
-                          d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-
-8zm10 0h8v8h-8v-8z"
-                        />
-                      </svg>
-                    </div>
+                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Imaging.6ce014b.webp"
+                      width={52}
+                      height={52}
+                      alt="Medical Imaging Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1434,12 +1327,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="absolute top-1/2 left-8 transform -translate-y-1/2"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                    </div>
+                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Authentication.44e8ba4.webp"
+                      width={52}
+                      height={52}
+                      alt="Authentication Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1450,12 +1345,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="absolute top-1/2 right-8 transform -translate-y-1/2"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
+                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Billing.e26d6fb.webp"
+                      width={52}
+                      height={52}
+                      alt="Billing Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1467,12 +1364,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="absolute bottom-8 left-1/3 transform -translate-x-1/2 translate-y-4"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                      </svg>
-                    </div>
+                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Pharmacy.0b3ed83.webp"
+                      width={52}
+                      height={52}
+                      alt="Pharmacy Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1483,12 +1382,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.6 }}
                   className="absolute bottom-0 right-1/3 transform translate-x-1/2 translate-y-8"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border border-border/20">
-                    <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                      </svg>
-                    </div>
+                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Chat.5394f0b.webp"
+                      width={52}
+                      height={52}
+                      alt="Chat Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1500,12 +1401,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.7 }}
                   className="absolute top-1/4 left-12 transform -translate-x-1/2 hidden lg:block"
                 >
-                  <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
-                    <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-white fill-current">
-                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
+                  <div className="w-11 h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Inventory.c0eabf9.webp"
+                      width={36}
+                      height={36}
+                      alt="Inventory Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
 
@@ -1516,12 +1419,14 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.8 }}
                   className="absolute top-1/4 right-12 transform translate-x-1/2 hidden lg:block"
                 >
-                  <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
-                    <div className="w-6 h-6 bg-indigo-500 rounded flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-white fill-current">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                      </svg>
-                    </div>
+                  <div className="w-11 h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60">
+                    <Image
+                      src="/Icons/Queuing.2f5c8c8.webp"
+                      width={36}
+                      height={36}
+                      alt="Queuing Integration"
+                      className="rounded"
+                    />
                   </div>
                 </motion.div>
               </div>
@@ -1537,12 +1442,11 @@ export default function LandingPage() {
                 <div className="space-y-8">
                   <div className="space-y-6">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                      All together, <br className="hidden sm:block" />
-                      <span className="text-muted-foreground">not all-in-one.</span>
+                      Healthcare that <br className="hidden sm:block" />
+                      <span style={{color: '#0099CC'}}>works together</span>
                     </h2>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                      Integrate with your existing healthcare tools to create a seamless workflow. There's no need to
-                      replace what's already working for your practice.
+                      MYCURE integrates seamlessly with your existing healthcare workflows rather than replacing them. Our platform enhances what already works while filling critical gaps in patient records, specialist coordination, and compliance—adapting to your practice, not the other way around.
                     </p>
                   </div>
 

@@ -18,54 +18,55 @@
 - Covers: Physicians, Outpatient Clinics, Diagnostics, Scheduling, Telehealth, Offline work
 
 ### 4. Medical Data Tracker Section (Line 591)
-- Statistics showcase: 2.7M medical records, 1.5M lives saved, 1.5K partners
+- Statistics showcase: 2.7M medical records, 1.5M patients served, 1.5K partners
 - Primary background with gradient
 - "Trusted by Healthcare Providers Worldwide"
 
 ### 5. Image + Content Features Section (Line 661)
-- 3 detailed features with accompanying images
-- Real-time Analytics & Insights
-- Intelligent Automation  
-- Seamless Team Collaboration
+- 4 detailed healthcare-focused features with accompanying images
+- HIPAA Security & Compliance
+- Seamless Offline Operations
+- Simplified PhilHealth Claims Management
+- Effortless Clinical Workflows
+- Each feature includes CTA buttons
 - Muted background
 
-### 6. Company Visibility Features Section (Line 1131)
+### 6. Company Visibility Features Section (Line 878)
 - "Visibility for your entire clinic"
-- 4 sub-features: Patient feed, Digest reports, Departments, Living archive
+- 4 sub-features with updated descriptions:
+  - Eliminate unnecessary tool costs with one comprehensive platform
+  - Reduce administrative burden through intelligent automation
+  - Improve patient satisfaction with seamless scheduling and optimized workflows
+  - Protect revenue with automatic compliance monitoring and HIPAA security
 - Visual mockups for each feature
 
-### 7. Sticky Scroll Features Section (Line 1442)
-- Scrollytelling implementation
-- Progressive features: Smart Scheduling, Digital Records, Security First, Smart Analytics
+### 7. Sticky Scroll Features Section (Line 1075)
+- Scrollytelling implementation with healthcare excellence messaging
+- Progressive features: Your Clinical Command Center, Operations That Actually Work, Virtual Care That Feels Personal, Your Practice Always On
+- Updated icons: Calendar, Zap, Video, WifiOff for healthcare context
 - Height: 400vh for scroll effect
 
-### 8. Image + Content Features Section (Line 661)
-- 3 detailed features with accompanying images
-- Real-time Analytics & Insights
-- Intelligent Automation  
-- Seamless Team Collaboration
-- Muted background
+### 8. All-in-One Integration Section (Line 1279)
+- "Healthcare that works together" messaging
+- Healthcare-focused integration with existing workflows
+- Floating healthcare integration icons: Laboratory, Imaging, Authentication, Billing, Pharmacy, Chat, Inventory, Queuing
+- Visual integration showcase with healthcare-specific imagery
 
-### 9. All-in-One Integration Section (Line 824)
-- "All together, not all-in-one" messaging
-- Floating integration icons animation
-- Visual integration showcase
-
-### 10. How It Works Timeline Section (Line 1328)
+### 9. How It Works Timeline Section (Line 1520)
 - Interactive 7-day implementation timeline
 - Tabbed interface (Today, Day 3, Day 7)
 - "What you can achieve with MYCURE in just 7 days"
 
-### 11. FAQ Section (Line 2430)
+### 10. FAQ Section (Line 2267)
 - Accordion-style frequently asked questions
 - ID: #faq
 - Primary background with gradient
 
-### 12. Final CTA Section (Line 2498)
+### 11. Final CTA Section (Line 2335)
 - Additional call-to-action section
 - Gradient background
 
-### 13. Footer Section (Line 2564)
+### 12. Footer Section (Line 2401)
 - Company information
 - Navigation links
 - Legal and contact information
