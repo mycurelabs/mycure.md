@@ -277,6 +277,12 @@ export default function LandingPage() {
             </div>
             
             <Link
+              href="#pricing"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Pricing
+            </Link>
+            <Link
               href="#our-story"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
@@ -356,6 +362,9 @@ export default function LandingPage() {
                 </div>
               </div>
               
+              <Link href="#pricing" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+                Pricing
+              </Link>
               <Link href="#our-story" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
                 Our Story
               </Link>
@@ -1569,6 +1578,922 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        {/* Download Section */}
+        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-muted/30 to-background relative overflow-hidden">
+          <div className="container px-4 md:px-6 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-4xl mx-auto"
+            >
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                    Take MYCURE with you, <br className="hidden sm:block" />
+                    <span className="text-muted-foreground">everywhere you go.</span>
+                  </h2>
+                  <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    Access your clinic management tools on any device. Desktop, mobile, tablet, or web - MYCURE works
+                    seamlessly across all platforms.
+                  </p>
+                </div>
+
+                {/* Device Icons */}
+                <div className="flex items-center justify-center gap-8 py-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Desktop</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Mobile</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Tablet</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">Web</span>
+                  </motion.div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Link href="/download">
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Download MYCURE
+                    </Button>
+                  </Link>
+                </motion.div>
+
+                <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Available on all platforms</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Sync across devices</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Offline capable</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+        {/* Testimonials Section */}
+        <section id="testimonials" className="w-full py-20 md:py-32">
+          <div className="container px-4 md:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+            >
+              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+                Testimonials
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Loved by Teams Worldwide</h2>
+              <p className="max-w-[800px] text-muted-foreground md:text-lg">
+                Don't just take our word for it. See what our customers have to say about their experience.
+              </p>
+            </motion.div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  quote:
+                    "SaaSify has transformed how we manage our projects. The automation features have saved us countless hours of manual work.",
+                  author: "Sarah Johnson",
+                  role: "Project Manager, TechCorp",
+                  rating: 5,
+                },
+                {
+                  quote:
+                    "The analytics dashboard provides insights we never had access to before. It's helped us make data-driven decisions that have improved our ROI.",
+                  author: "Michael Chen",
+                  role: "Marketing Director, GrowthLabs",
+                  rating: 5,
+                },
+                {
+                  quote:
+                    "Customer support is exceptional. Any time we've had an issue, the team has been quick to respond and resolve it. Couldn't ask for better service.",
+                  author: "Emily Rodriguez",
+                  role: "Operations Lead, StartupX",
+                  rating: 5,
+                },
+                {
+                  quote:
+                    "We've tried several similar solutions, but none compare to the ease of use and comprehensive features of SaaSify. It's been a game-changer.",
+                  author: "David Kim",
+                  rating: 5,
+                },
+                {
+                  quote:
+                    "We've tried several similar solutions, but none compare to the ease of use and comprehensive features of SaaSify. It's been a game-changer.",
+                  author: "David Kim",
+                  role: "CEO, InnovateNow",
+                  rating: 5,
+                },
+                {
+                  quote:
+                    "The collaboration tools have made remote work so much easier for our team. We're more productive than ever despite being spread across different time zones.",
+                  author: "Lisa Patel",
+                  role: "HR Director, RemoteFirst",
+                  rating: 5,
+                },
+                {
+                  quote:
+                    "Implementation was seamless, and the ROI was almost immediate. We've reduced our operational costs by 30% since switching to SaaSify.",
+                  author: "James Wilson",
+                  role: "COO, ScaleUp Inc",
+                  rating: 5,
+                },
+              ].map((testimonial, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                >
+                  <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <div className="flex mb-4">
+                        {Array(testimonial.rating)
+                          .fill(0)
+                          .map((_, j) => (
+                            <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
+                          ))}
+                      </div>
+                      <p className="text-lg mb-6 flex-grow">{testimonial.quote}</p>
+                      <div className="flex items-center gap-4 mt-auto pt-4 border-t border-border/40">
+                        <div className="size-10 rounded-full bg-muted flex items-center justify-center text-foreground font-medium">
+                          {testimonial.author.charAt(0)}
+                        </div>
+                        <div>
+                          <p className="font-medium">{testimonial.author}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* Pricing Section */}
+        <section id="pricing" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+
+          <div className="container px-4 md:px-6 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+            >
+              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+                Pricing Plans
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Choose Your Healthcare Solution</h2>
+              <p className="max-w-[800px] text-muted-foreground md:text-lg">
+                Try our Starter plan risk-free for 30 days. Switch plans or cancel anytime with no long-term
+                commitments.
+              </p>
+            </motion.div>
+
+            <div className="mx-auto max-w-7xl">
+              <Tabs defaultValue="monthly" className="w-full">
+                <div className="flex justify-center mb-8">
+                  <TabsList className="rounded-full p-1 bg-background border border-border/40">
+                    <TabsTrigger
+                      value="monthly"
+                      className="rounded-full px-6 data-[state=active]:bg-foreground data-[state=active]:text-background"
+                    >
+                      Monthly pricing
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="annually"
+                      className="rounded-full px-6 data-[state=active]:bg-foreground data-[state=active]:text-background"
+                    >
+                      Annual pricing
+                      <Badge className="ml-2 bg-green-100 text-green-700 text-xs">Save 20%</Badge>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+
+                <TabsContent value="monthly">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {/* Plan Headers */}
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                      {/* Features Column Header */}
+                      <div className="hidden lg:block">
+                        <div className="h-32 flex items-end pb-6">
+                          <h3 className="text-lg font-semibold">Features</h3>
+                        </div>
+                      </div>
+
+                      {/* Plan Headers */}
+                      {[
+                        {
+                          name: "Starter",
+                          price: "$49",
+                          description: "Perfect for small clinics and solo practitioners",
+                          popular: false,
+                          cta: "Start Free Trial",
+                          icon: <Users className="w-5 h-5" />,
+                        },
+                        {
+                          name: "Professional",
+                          price: "$149",
+                          description: "Ideal for growing practices and multi-specialty clinics",
+                          popular: true,
+                          cta: "Start Free Trial",
+                          icon: <BarChart className="w-5 h-5" />,
+                        },
+                        {
+                          name: "Enterprise",
+                          price: "$349",
+                          description: "For large hospitals and healthcare networks",
+                          popular: false,
+                          cta: "Contact Sales",
+                          icon: <Shield className="w-5 h-5" />,
+                        },
+                      ].map((plan, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: i * 0.1 }}
+                          className={`relative rounded-2xl p-6 border-2 transition-all duration-300 hover:shadow-lg ${
+                            plan.popular
+                              ? "border-primary bg-primary/5 shadow-lg"
+                              : "border-border/40 bg-background hover:border-primary/50"
+                          }`}
+                        >
+                          {plan.popular && (
+                            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                              <Badge className="bg-primary text-primary-foreground px-4 py-1 text-xs font-medium">
+                                Most Popular
+                              </Badge>
+                            </div>
+                          )}
+
+                          <div className="text-center space-y-4">
+                            <div className="flex items-center justify-center gap-2">
+                              <div className={`p-2 rounded-lg ${plan.popular ? "bg-primary/10" : "bg-muted"}`}>
+                                {plan.icon}
+                              </div>
+                              <h3 className="text-xl font-bold">{plan.name}</h3>
+                            </div>
+
+                            <div>
+                              <div className="flex items-baseline justify-center">
+                                <span className="text-4xl font-bold">{plan.price}</span>
+                                <span className="text-muted-foreground ml-1">/month</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                            </div>
+
+                            <Button
+                              className={`w-full rounded-full ${
+                                plan.popular
+                                  ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                                  : "bg-muted hover:bg-muted/80 text-foreground"
+                              }`}
+                              variant={plan.popular ? "default" : "outline"}
+                            >
+                              {plan.cta}
+                            </Button>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Feature Comparison Table */}
+                    <div className="bg-background rounded-2xl border border-border/40 overflow-hidden shadow-sm">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-muted/30 border-b border-border/40">
+                            <tr>
+                              <th className="text-left p-4 font-semibold">Features</th>
+                              <th className="text-center p-4 font-semibold">Starter</th>
+                              <th className="text-center p-4 font-semibold bg-primary/5">Professional</th>
+                              <th className="text-center p-4 font-semibold">Enterprise</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {[
+                              {
+                                category: "Core Features",
+                                features: [
+                                  {
+                                    name: "Patient Management",
+                                    tooltip: "Comprehensive patient records and history tracking",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Appointment Scheduling",
+                                    tooltip: "Advanced scheduling with automated reminders",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Basic Billing",
+                                    tooltip: "Invoice generation and payment tracking",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Staff Users",
+                                    tooltip: "Number of staff members who can access the system",
+                                    starter: "Up to 5",
+                                    professional: "Up to 25",
+                                    enterprise: "Unlimited",
+                                  },
+                                  {
+                                    name: "Patient Records",
+                                    tooltip: "Maximum number of patient records you can store",
+                                    starter: "Up to 500",
+                                    professional: "Up to 5,000",
+                                    enterprise: "Unlimited",
+                                  },
+                                ],
+                              },
+                              {
+                                category: "Advanced Features",
+                                features: [
+                                  {
+                                    name: "Advanced Analytics",
+                                    tooltip: "Detailed reports and practice insights",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Insurance Integration",
+                                    tooltip: "Automated insurance verification and claims",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Telemedicine",
+                                    tooltip: "Built-in video consultation platform",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "API Access",
+                                    tooltip: "Integration with third-party healthcare systems",
+                                    starter: false,
+                                    professional: "Limited",
+                                    enterprise: "Full Access",
+                                  },
+                                  {
+                                    name: "Custom Workflows",
+                                    tooltip: "Create custom processes for your practice",
+                                    starter: false,
+                                    professional: "Basic",
+                                    enterprise: "Advanced",
+                                  },
+                                ],
+                              },
+                              {
+                                category: "Support & Security",
+                                features: [
+                                  {
+                                    name: "Email Support",
+                                    tooltip: "Get help via email during business hours",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Priority Support",
+                                    tooltip: "Faster response times and dedicated support",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Phone Support",
+                                    tooltip: "Direct phone line to our support team",
+                                    starter: false,
+                                    professional: false,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "HIPAA Compliance",
+                                    tooltip: "Full HIPAA compliance and security features",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Data Backup",
+                                    tooltip: "Automated daily backups of all your data",
+                                    starter: "Weekly",
+                                    professional: "Daily",
+                                    enterprise: "Real-time",
+                                  },
+                                ],
+                              },
+                            ].map((section, sectionIndex) => (
+                              <React.Fragment key={sectionIndex}>
+                                <tr className="bg-muted/10">
+                                  <td
+                                    colSpan={4}
+                                    className="p-4 font-semibold text-sm uppercase tracking-wider text-muted-foreground"
+                                  >
+                                    {section.category}
+                                  </td>
+                                </tr>
+                                {section.features.map((feature, featureIndex) => (
+                                  <tr
+                                    key={featureIndex}
+                                    className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+                                  >
+                                    <td className="p-4">
+                                      <div className="flex items-center gap-2">
+                                        <span className="font-medium">{feature.name}</span>
+                                        <div className="group relative">
+                                          <svg
+                                            className="w-4 h-4 text-muted-foreground cursor-help"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                          </svg>
+                                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                                            {feature.tooltip}
+                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td className="p-4 text-center">
+                                      {typeof feature.starter === "boolean" ? (
+                                        feature.starter ? (
+                                          <Check className="w-5 h-5 text-green-600 mx-auto" />
+                                        ) : (
+                                          <X className="w-5 h-5 text-gray-400 mx-auto" />
+                                        )
+                                      ) : (
+                                        <span className="text-sm font-medium">{feature.starter}</span>
+                                      )}
+                                    </td>
+                                    <td className="p-4 text-center bg-primary/5">
+                                      {typeof feature.professional === "boolean" ? (
+                                        feature.professional ? (
+                                          <Check className="w-5 h-5 text-green-600 mx-auto" />
+                                        ) : (
+                                          <X className="w-5 h-5 text-gray-400 mx-auto" />
+                                        )
+                                      ) : (
+                                        <span className="text-sm font-medium">{feature.professional}</span>
+                                      )}
+                                    </td>
+                                    <td className="p-4 text-center">
+                                      {typeof feature.enterprise === "boolean" ? (
+                                        feature.enterprise ? (
+                                          <Check className="w-5 h-5 text-green-600 mx-auto" />
+                                        ) : (
+                                          <X className="w-5 h-5 text-gray-400 mx-auto" />
+                                        )
+                                      ) : (
+                                        <span className="text-sm font-medium">{feature.enterprise}</span>
+                                      )}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </React.Fragment>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    {/* Bottom CTA */}
+                    <div className="text-center mt-8 p-6 bg-muted/20 rounded-2xl border border-border/40">
+                      <h3 className="text-xl font-semibold mb-2">Need a custom solution?</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Contact our sales team to discuss enterprise features, custom integrations, and volume pricing.
+                      </p>
+                      <Button variant="outline" className="rounded-full">
+                        Contact Sales Team
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </div>
+                  </motion.div>
+                </TabsContent>
+
+                <TabsContent value="annually">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {/* Annual Plan Headers */}
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                      {/* Features Column Header */}
+                      <div className="hidden lg:block">
+                        <div className="h-32 flex items-end pb-6">
+                          <h3 className="text-lg font-semibold">Features</h3>
+                        </div>
+                      </div>
+
+                      {/* Annual Plan Headers */}
+                      {[
+                        {
+                          name: "Starter",
+                          price: "$39",
+                          originalPrice: "$49",
+                          description: "Perfect for small clinics and solo practitioners",
+                          popular: false,
+                          cta: "Start Free Trial",
+                          icon: <Users className="w-5 h-5" />,
+                        },
+                        {
+                          name: "Professional",
+                          price: "$119",
+                          originalPrice: "$149",
+                          description: "Ideal for growing practices and multi-specialty clinics",
+                          popular: true,
+                          cta: "Start Free Trial",
+                          icon: <BarChart className="w-5 h-5" />,
+                        },
+                        {
+                          name: "Enterprise",
+                          price: "$279",
+                          originalPrice: "$349",
+                          description: "For large hospitals and healthcare networks",
+                          popular: false,
+                          cta: "Contact Sales",
+                          icon: <Shield className="w-5 h-5" />,
+                        },
+                      ].map((plan, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: i * 0.1 }}
+                          className={`relative rounded-2xl p-6 border-2 transition-all duration-300 hover:shadow-lg ${
+                            plan.popular
+                              ? "border-primary bg-primary/5 shadow-lg"
+                              : "border-border/40 bg-background hover:border-primary/50"
+                          }`}
+                        >
+                          {plan.popular && (
+                            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                              <Badge className="bg-primary text-primary-foreground px-4 py-1 text-xs font-medium">
+                                Most Popular
+                              </Badge>
+                            </div>
+                          )}
+
+                          <div className="text-center space-y-4">
+                            <div className="flex items-center justify-center gap-2">
+                              <div className={`p-2 rounded-lg ${plan.popular ? "bg-primary/10" : "bg-muted"}`}>
+                                {plan.icon}
+                              </div>
+                              <h3 className="text-xl font-bold">{plan.name}</h3>
+                            </div>
+
+                            <div>
+                              <div className="flex items-baseline justify-center gap-2">
+                                <span className="text-4xl font-bold">{plan.price}</span>
+                                <span className="text-muted-foreground ml-1">/month</span>
+                              </div>
+                              <div className="flex items-center justify-center gap-2 mt-1">
+                                <span className="text-sm text-muted-foreground line-through">{plan.originalPrice}</span>
+                                <Badge className="bg-green-100 text-green-700 text-xs">Save 20%</Badge>
+                              </div>
+                              <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                            </div>
+
+                            <Button
+                              className={`w-full rounded-full ${
+                                plan.popular
+                                  ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                                  : "bg-muted hover:bg-muted/80 text-foreground"
+                              }`}
+                              variant={plan.popular ? "default" : "outline"}
+                            >
+                              {plan.cta}
+                            </Button>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Same feature table as monthly */}
+                    <div className="bg-background rounded-2xl border border-border/40 overflow-hidden shadow-sm">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-muted/30 border-b border-border/40">
+                            <tr>
+                              <th className="text-left p-4 font-semibold">Features</th>
+                              <th className="text-center p-4 font-semibold">Starter</th>
+                              <th className="text-center p-4 font-semibold bg-primary/5">Professional</th>
+                              <th className="text-center p-4 font-semibold">Enterprise</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {[
+                              {
+                                category: "Core Features",
+                                features: [
+                                  {
+                                    name: "Patient Management",
+                                    tooltip: "Comprehensive patient records and history tracking",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Appointment Scheduling",
+                                    tooltip: "Advanced scheduling with automated reminders",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Basic Billing",
+                                    tooltip: "Invoice generation and payment tracking",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Staff Users",
+                                    tooltip: "Number of staff members who can access the system",
+                                    starter: "Up to 5",
+                                    professional: "Up to 25",
+                                    enterprise: "Unlimited",
+                                  },
+                                  {
+                                    name: "Patient Records",
+                                    tooltip: "Maximum number of patient records you can store",
+                                    starter: "Up to 500",
+                                    professional: "Up to 5,000",
+                                    enterprise: "Unlimited",
+                                  },
+                                ],
+                              },
+                              {
+                                category: "Advanced Features",
+                                features: [
+                                  {
+                                    name: "Advanced Analytics",
+                                    tooltip: "Detailed reports and practice insights",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Insurance Integration",
+                                    tooltip: "Automated insurance verification and claims",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Telemedicine",
+                                    tooltip: "Built-in video consultation platform",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "API Access",
+                                    tooltip: "Integration with third-party healthcare systems",
+                                    starter: false,
+                                    professional: "Limited",
+                                    enterprise: "Full Access",
+                                  },
+                                  {
+                                    name: "Custom Workflows",
+                                    tooltip: "Create custom processes for your practice",
+                                    starter: false,
+                                    professional: "Basic",
+                                    enterprise: "Advanced",
+                                  },
+                                ],
+                              },
+                              {
+                                category: "Support & Security",
+                                features: [
+                                  {
+                                    name: "Email Support",
+                                    tooltip: "Get help via email during business hours",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Priority Support",
+                                    tooltip: "Faster response times and dedicated support",
+                                    starter: false,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Phone Support",
+                                    tooltip: "Direct phone line to our support team",
+                                    starter: false,
+                                    professional: false,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "HIPAA Compliance",
+                                    tooltip: "Full HIPAA compliance and security features",
+                                    starter: true,
+                                    professional: true,
+                                    enterprise: true,
+                                  },
+                                  {
+                                    name: "Data Backup",
+                                    tooltip: "Automated daily backups of all your data",
+                                    starter: "Weekly",
+                                    professional: "Daily",
+                                    enterprise: "Real-time",
+                                  },
+                                ],
+                              },
+                            ].map((section, sectionIndex) => (
+                              <React.Fragment key={sectionIndex}>
+                                <tr className="bg-muted/10">
+                                  <td
+                                    colSpan={4}
+                                    className="p-4 font-semibold text-sm uppercase tracking-wider text-muted-foreground"
+                                  >
+                                    {section.category}
+                                  </td>
+                                </tr>
+                                {section.features.map((feature, featureIndex) => (
+                                  <tr
+                                    key={featureIndex}
+                                    className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+                                  >
+                                    <td className="p-4">
+                                      <div className="flex items-center gap-2">
+                                        <span className="font-medium">{feature.name}</span>
+                                        <div className="group relative">
+                                          <svg
+                                            className="w-4 h-4 text-muted-foreground cursor-help"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                          </svg>
+                                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                                            {feature.tooltip}
+                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td className="p-4 text-center">
+                                      {typeof feature.starter === "boolean" ? (
+                                        feature.starter ? (
+                                          <Check className="w-5 h-5 text-green-600 mx-auto" />
+                                        ) : (
+                                          <X className="w-5 h-5 text-gray-400 mx-auto" />
+                                        )
+                                      ) : (
+                                        <span className="text-sm font-medium">{feature.starter}</span>
+                                      )}
+                                    </td>
+                                    <td className="p-4 text-center bg-primary/5">
+                                      {typeof feature.professional === "boolean" ? (
+                                        feature.professional ? (
+                                          <Check className="w-5 h-5 text-green-600 mx-auto" />
+                                        ) : (
+                                          <X className="w-5 h-5 text-gray-400 mx-auto" />
+                                        )
+                                      ) : (
+                                        <span className="text-sm font-medium">{feature.professional}</span>
+                                      )}
+                                    </td>
+                                    <td className="p-4 text-center">
+                                      {typeof feature.enterprise === "boolean" ? (
+                                        feature.enterprise ? (
+                                          <Check className="w-5 h-5 text-green-600 mx-auto" />
+                                        ) : (
+                                          <X className="w-5 h-5 text-gray-400 mx-auto" />
+                                        )
+                                      ) : (
+                                        <span className="text-sm font-medium">{feature.enterprise}</span>
+                                      )}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </React.Fragment>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    {/* Bottom CTA */}
+                    <div className="text-center mt-8 p-6 bg-muted/20 rounded-2xl border border-border/40">
+                      <h3 className="text-xl font-semibold mb-2">Need a custom solution?</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Contact our sales team to discuss enterprise features, custom integrations, and volume pricing.
+                      </p>
+                      <Button variant="outline" className="rounded-full">
+                        Contact Sales Team
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </div>
+                  </motion.div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </div>
+        </section>
         {/* FAQ Section */}
         <section
           id="faq"
@@ -1601,7 +2526,7 @@ export default function LandingPage() {
                 {
                   question: "How much does MYCURE cost?",
                   answer:
-                    "MYCURE offers flexible pricing plans to suit different needs and budgets. Contact us for detailed pricing information and to find the plan that best fits your practice.",
+                    "MYCURE offers flexible pricing plans to suit different needs and budgets. Check out our pricing page for details.",
                 },
                 {
                   question: "Is MYCURE HIPAA compliant?",
@@ -1745,6 +2670,11 @@ export default function LandingPage() {
                 <li>
                   <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
                     Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Pricing
                   </Link>
                 </li>
                 <li>

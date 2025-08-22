@@ -23,7 +23,8 @@
       "Bash(sed:*)",
       "mcp__desktop-commander__get_file_info",
       "mcp__playwright-mcp__browser_console_messages",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []
