@@ -1596,30 +1596,30 @@ export default function LandingPage() {
                 {
                   question: "What is MYCURE?",
                   answer:
-                    "MYCURE is a comprehensive clinic management system designed to streamline operations, improve patient care, and boost efficiency for healthcare providers of all sizes.",
+                    "MYCURE is a comprehensive healthcare management platform designed specifically for clinics, hospitals, and healthcare facilities. From patient registration to PhilHealth claims, we streamline every aspect of your practice while ensuring HIPAA compliance and operational efficiency.",
                 },
                 {
                   question: "How much does MYCURE cost?",
                   answer:
-                    "MYCURE offers flexible pricing plans to suit different needs and budgets. Contact us for detailed pricing information and to find the plan that best fits your practice.",
+                    "MYCURE offers flexible pricing plans designed for healthcare facilities of all sizes, from small clinics to large hospitals. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
                 },
                 {
-                  question: "Is MYCURE HIPAA compliant?",
+                  question: "Is MYCURE compliant with healthcare regulations?",
                   answer:
-                    "Yes, MYCURE is fully HIPAA compliant and employs advanced security measures to protect patient data.",
+                    "MYCURE is a comprehensive healthcare management platform designed specifically for clinics, hospitals, and healthcare facilities. From patient registration to PhilHealth claims, we streamline every aspect of your practice while ensuring HIPAA compliance and operational efficiency.",
                 },
                 {
                   question: "What platforms does MYCURE support?",
-                  answer: "MYCURE is accessible on desktop, mobile, tablet, and web browsers.",
+                  answer: "MYCURE works on desktop computers through web browsers (Chrome, Firefox, Safari) and as downloadable applications for Windows and Mac. Our platform also includes mobile-responsive patient portals and offline capabilities for uninterrupted practice operations.",
                 },
                 {
-                  question: "What kind of support do you offer?",
+                  question: "What kind of support do you offer healthcare providers?",
                   answer:
-                    "We offer email support for all plans, with priority support and phone support available on our Professional and Enterprise plans.",
+                    "We provide specialized healthcare support through our two-tier team of Helpdesk and Technical specialists who understand clinic workflows and regulatory requirements. Our support includes Monday-Friday 9am-6pm coverage with up to 2-hour response times, on-call assistance for critical patient care issues, healthcare-focused training for medical staff, and ongoing CMS optimization guidance tailored to your practice needs.",
                 },
                 {
-                  question: "Can I try MYCURE before I buy?",
-                  answer: "Yes, you can start a free 14-day trial of MYCURE. No credit card is required to begin.",
+                  question: "Can I try MYCURE before committing?",
+                  answer: "Yes! Start with our 15-day free trial that includes full platform access, dedicated onboarding support, and no credit card requirement. Most practices are fully operational within their first week of implementation.",
                 },
               ].map((faq, i) => (
                 <AccordionItem
@@ -1650,7 +1650,7 @@ export default function LandingPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                    Ready to transform your healthcare practice?
+                    Ready to transform your healthcare practice
                   </h2>
                   <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                     Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
@@ -1663,39 +1663,34 @@ export default function LandingPage() {
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    Start Free Trial
+                    Get Started Today
                     <ArrowRight className="ml-2 size-5" />
                   </Button>
-                  <Link href="/download">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="px-8 py-4 text-lg font-semibold rounded-full border-2 hover:bg-muted/50 transition-all duration-300"
-                    >
-                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                          fillRule="evenodd"
-                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Download Apps
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="px-8 py-4 text-lg font-semibold rounded-full border-2 hover:bg-muted/50 transition-all duration-300"
+                  >
+                    Schedule a Demo
+                  </Button>
                 </div>
 
                 <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>No credit card required</span>
+                    <span>No setup fees</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>14-day free trial</span>
+                    <span>15-day Free Trial</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>Setup in minutes</span>
+                    <span>Complete training included</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="size-4 text-primary" />
+                    <span>Cancel anytime</span>
                   </div>
                 </div>
               </div>
@@ -1707,7 +1702,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="w-full bg-muted/30 border-t border-border/40">
         <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 py-12">
             {/* Company Info */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold">
@@ -1720,17 +1715,17 @@ export default function LandingPage() {
                 Transforming healthcare management with innovative clinic solutions for providers worldwide.
               </p>
               <div className="flex space-x-4">
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="https://www.facebook.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </Link>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="https://www.instagram.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-.6 2.14-2.23z" />
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 </Link>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="https://www.linkedin.com/company/mycure" className="text-muted-foreground hover:text-foreground transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
@@ -1748,18 +1743,70 @@ export default function LandingPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/download" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Download
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Pricing
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Integrations
+                    Telehealth
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    API
+                    Directory
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Patient Portal
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Solutions */}
+            <div className="space-y-4">
+              <h3 className="font-semibold">Solutions</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Outpatient Clinics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Hospitals
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Diagnostics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Laboratories
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Pharmacy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Dental Clinics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Skin Clinics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    OFW Clinics
                   </Link>
                 </li>
               </ul>
@@ -1784,16 +1831,6 @@ export default function LandingPage() {
                     Careers
                   </Link>
                 </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Press
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Partners
-                  </Link>
-                </li>
               </ul>
             </div>
 
@@ -1813,17 +1850,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Status
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Security
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">
-                    FAQ
+                    Security (CSI)
                   </Link>
                 </li>
               </ul>
