@@ -489,14 +489,14 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Logos Section */}
-        <section className="w-full py-12 border-y bg-muted/30">
+        <section className="w-full py-16 md:py-20 border-y bg-muted/30">
           <div className="container px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center"
+              className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center"
             >
               <p className="text-sm font-medium text-muted-foreground">Trusted by leading healthcare providers</p>
               <motion.div
@@ -504,7 +504,7 @@ export default function LandingPage() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="grid grid-cols-6 gap-8 md:gap-12 max-w-5xl mx-auto"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center"
               >
                 {[
                   { name: "Medicard", src: "/Client Logos/Medicard.png" },
@@ -520,15 +520,15 @@ export default function LandingPage() {
                   <motion.div
                     key={logo.name}
                     variants={item}
-                    className="flex items-center justify-center"
-                    whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                    className="flex items-center justify-center p-2 w-full h-full"
+                    whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
                   >
                     <Image
                       src={logo.src}
                       alt={`${logo.name} logo`}
                       width={120}
                       height={60}
-                      className="w-20 h-12 object-contain opacity-60 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                      className="w-16 h-10 sm:w-18 sm:h-11 md:w-20 md:h-12 lg:w-24 lg:h-14 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
                     />
                   </motion.div>
                 ))}
@@ -649,7 +649,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Image + Content Features Section */}
-        <section className="w-full py-20 md:py-32 bg-muted/30">
+        <section className="w-full py-20 md:py-32 bg-white">
           <div className="container px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -677,13 +677,12 @@ export default function LandingPage() {
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
                 <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=HIPAA+Security"
-                    width={600}
-                    height={400}
+                    src="/Features Photos/Built for Modern Teams/Hipaa-compliance-mycure.webp"
+                    width={480}
+                    height={320}
                     alt="HIPAA Security & Compliance"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
+                    className="relative rounded-xl"
                   />
                 </div>
                 <div className="space-y-6">
@@ -710,9 +709,11 @@ export default function LandingPage() {
                       <span>Role-based access controls ensuring staff see only authorized patient information</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4">
-                    Learn About MYCURE's Privacy Standards
-                    <ChevronRight className="ml-2 size-4" />
+                  <Button variant="outline" className="mt-4" asChild>
+                    <Link href="https://blog.mycure.md/mycure-is-hipaa-compliant/" target="_blank">
+                      Learn About MYCURE's Privacy Standards
+                      <ChevronRight className="ml-2 size-4" />
+                    </Link>
                   </Button>
                 </div>
               </motion.div>
@@ -749,20 +750,30 @@ export default function LandingPage() {
                       <span>Local backup systems ensuring zero data loss during connectivity issues</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4">
-                    Learn About Syncbase
-                    <ChevronRight className="ml-2 size-4" />
+                  <Button variant="outline" className="mt-4" asChild>
+                    <Link href="https://www.mycure.md/syncbase" target="_blank">
+                      Learn About Syncbase
+                      <ChevronRight className="ml-2 size-4" />
+                    </Link>
                   </Button>
                 </div>
                 <div className="relative lg:order-1">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl opacity-30"></div>
-                  <Image
-                    src="/placeholder.svg?height=400&width=600&text=Offline+Operations"
-                    width={600}
-                    height={400}
-                    alt="Seamless Offline Operations"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
-                  />
+                  <div className="w-[480px] overflow-hidden rounded-xl mx-auto lg:mx-0">
+                    <video
+                      src="/Features Photos/Built for Modern Teams/mycure-syncbase-demo.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-auto object-cover"
+                      style={{ 
+                        transform: 'scale(1.02)', 
+                        transformOrigin: 'center',
+                        clipPath: 'inset(0 2px 0 2px)'
+                      }}
+                      aria-label="Seamless Offline Operations Demo"
+                    />
+                  </div>
                 </div>
               </motion.div>
 
@@ -775,13 +786,12 @@ export default function LandingPage() {
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
                 <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=PhilHealth+Claims"
-                    width={600}
-                    height={400}
+                    src="/Features Photos/Built for Modern Teams/philhealth-accreditation-v2.png"
+                    width={480}
+                    height={320}
                     alt="PhilHealth Claims Management"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
+                    className="relative rounded-xl"
                   />
                 </div>
                 <div className="space-y-6">
@@ -808,9 +818,11 @@ export default function LandingPage() {
                       <span>Built-in compliance validation preventing common rejection reasons</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4">
-                    Learn More about MYCURE's Accreditation
-                    <ChevronRight className="ml-2 size-4" />
+                  <Button variant="outline" className="mt-4" asChild>
+                    <Link href="https://blog.mycure.md/mycure-is-philhealth-e-claims-certified/" target="_blank">
+                      Learn More about MYCURE's Accreditation
+                      <ChevronRight className="ml-2 size-4" />
+                    </Link>
                   </Button>
                 </div>
               </motion.div>
@@ -847,19 +859,20 @@ export default function LandingPage() {
                       <span>Smart clinical templates that adapt to different specialties and procedures</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4">
-                    Learn More about MYCURE's Features
-                    <ChevronRight className="ml-2 size-4" />
+                  <Button variant="outline" className="mt-4" asChild>
+                    <Link href="https://www.mycure.md/features" target="_blank">
+                      Learn More about MYCURE's Features
+                      <ChevronRight className="ml-2 size-4" />
+                    </Link>
                   </Button>
                 </div>
                 <div className="relative lg:order-1">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=Clinical+Workflows"
-                    width={600}
-                    height={400}
+                    src="/Features Photos/Built for Modern Teams/effortless-clinical-workflows-v3.png"
+                    width={480}
+                    height={320}
                     alt="Clinical Workflows"
-                    className="relative rounded-xl shadow-2xl border border-border/40"
+                    className="relative rounded-xl"
                   />
                 </div>
               </motion.div>
@@ -867,8 +880,8 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Company Visibility Features Section */}
-        <section className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-20 md:py-32 bg-muted/30">
+          <div className="container px-4 md:px-6 mx-auto max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -894,32 +907,11 @@ export default function LandingPage() {
                 className="space-y-6"
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-400 via-pink-400 to-pink-500 p-1">
-                  <div className="bg-white dark:bg-gray-900 rounded-xl p-6 h-64 flex items-center justify-center">
-                    <div className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 space-y-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
-                          Dr
-                        </div>
-                        <div>
-                          <div className="font-semibold text-sm">Dr. Sarah Chen</div>
-                          <div className="text-xs text-muted-foreground">Cardiology • 2h ago</div>
-                        </div>
-                      </div>
-                      <div className="text-sm">
-                        Patient John D. showing excellent recovery progress post-surgery. Vitals stable, ready for
-                        discharge planning.
-                      </div>
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Users className="w-3 h-3" />3 staff
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3" />
-                          Priority
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <img
+                    src="/Features Photos/Visibility for your entire clinic/eliminate-unnecessary-tool-costs.png"
+                    alt="MYCURE platform showing elimination of unnecessary tool costs with comprehensive features"
+                    className="w-full h-64 object-cover object-top rounded-xl"
+                  />
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
@@ -940,24 +932,11 @@ export default function LandingPage() {
                 className="space-y-6"
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-400 via-yellow-400 to-orange-500 p-1">
-                  <div className="bg-white dark:bg-gray-900 rounded-xl p-6 h-64 flex items-center justify-center">
-                    <div className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="font-semibold">Daily Clinic Report</div>
-                        <div className="text-xs text-muted-foreground">Today</div>
-                      </div>
-                      <div className="bg-primary text-primary-foreground rounded-lg p-3 text-sm">
-                        <div className="font-semibold">MYCURE</div>
-                        <div className="text-xs opacity-90">Daily clinic digest</div>
-                        <div className="text-xs opacity-75 mt-1">Here's what your team accomplished today.</div>
-                      </div>
-                      <div className="space-y-2 text-xs text-muted-foreground">
-                        <div className="h-2 bg-muted rounded"></div>
-                        <div className="h-2 bg-muted rounded w-3/4"></div>
-                        <div className="h-2 bg-muted rounded w-1/2"></div>
-                      </div>
-                    </div>
-                  </div>
+                  <img
+                    src="/Features Photos/Visibility for your entire clinic/reduce-administrative-burden.png"
+                    alt="MYCURE dashboard reducing administrative burden through intelligent automation"
+                    className="w-full h-64 object-cover object-top rounded-xl"
+                  />
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
@@ -978,30 +957,11 @@ export default function LandingPage() {
                 className="space-y-6"
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-400 via-blue-400 to-blue-500 p-1">
-                  <div className="bg-white dark:bg-gray-900 rounded-xl p-6 h-64 flex items-center justify-center">
-                    <div className="w-full max-w-sm space-y-3">
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
-                          <div className="text-xs font-semibold mb-2">Emergency Dept</div>
-                          <div className="text-xs text-muted-foreground">Managing critical cases</div>
-                          <div className="flex -space-x-1 mt-2">
-                            {[1, 2, 3, 4].map((i) => (
-                              <div key={i} className="w-4 h-4 bg-red-400 rounded-full border border-white"></div>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
-                          <div className="text-xs font-semibold mb-2">Cardiology</div>
-                          <div className="text-xs text-muted-foreground">Heart health specialists</div>
-                          <div className="flex -space-x-1 mt-2">
-                            {[1, 2, 3].map((i) => (
-                              <div key={i} className="w-4 h-4 bg-blue-400 rounded-full border border-white"></div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <img
+                    src="/Features Photos/Visibility for your entire clinic/improve-patient-satisfaction.png"
+                    alt="MYCURE clinic management dashboard showing patient management features"
+                    className="w-full h-64 object-cover object-top rounded-xl"
+                  />
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
@@ -1022,34 +982,11 @@ export default function LandingPage() {
                 className="space-y-6"
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-400 via-gray-300 to-gray-400 p-1">
-                  <div className="bg-white dark:bg-gray-900 rounded-xl p-6 h-64 flex items-center justify-center">
-                    <div className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 space-y-3">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs">
-                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          </div>
-                          <div>
-                            <div className="font-semibold">Dr. Martinez</div>
-                            <div className="text-muted-foreground">Oct 3 • Pediatrics</div>
-                          </div>
-                        </div>
-                        <div className="text-xs">Completed vaccination schedule for patient Emma K.</div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs">
-                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                            <Shield className="w-4 h-4 text-blue-600" />
-                          </div>
-                          <div>
-                            <div className="font-semibold">Nurse Johnson</div>
-                            <div className="text-muted-foreground">Oct 2 • ICU</div>
-                          </div>
-                        </div>
-                        <div className="text-xs">Patient monitoring protocols updated.</div>
-                      </div>
-                    </div>
-                  </div>
+                  <img
+                    src="/Features Photos/Visibility for your entire clinic/protect-your-revenue.png"
+                    alt="MYCURE revenue protection dashboard showing compliance monitoring and HIPAA security features"
+                    className="w-full h-64 object-cover object-top rounded-xl"
+                  />
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-bold">
@@ -1147,22 +1084,22 @@ export default function LandingPage() {
                   >
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
-                          <Zap className="w-6 h-6 text-green-600" />
+                        <div className="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
+                          <Zap className="w-6 h-6 text-purple-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">Operations That Actually Work</h3>
+                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Operations That Actually Work</h3>
                           <p className="text-muted-foreground">Intelligent automation</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
                         See your entire practice come alive with intelligent automation. Real-time insights reveal optimization opportunities while smart scheduling eliminates bottlenecks—turning operational chaos into competitive advantage.
                       </p>
-                      <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
+                      <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
                         <div className="space-y-3">
                           <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
                                 <Zap className="w-4 h-4 text-white" />
                               </div>
                               <div>
@@ -1170,7 +1107,7 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">2,847 active files</div>
                               </div>
                             </div>
-                            <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">HIPAA Compliant</Badge>
+                            <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">HIPAA Compliant</Badge>
                           </div>
                         </div>
                       </div>
@@ -1231,22 +1168,22 @@ export default function LandingPage() {
                   >
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
-                          <WifiOff className="w-6 h-6 text-purple-600" />
+                        <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
+                          <WifiOff className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Your Practice, Always On</h3>
+                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">Your Practice, Always On</h3>
                           <p className="text-muted-foreground">Offline-first design</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
                         Discover true peace of mind with offline-first design. Whether internet fails or power fluctuates, your practice continues uninterrupted. When connectivity returns, everything syncs perfectly—like the disruption never happened.
                       </p>
-                      <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
+                      <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
                         <div className="space-y-3">
                           <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                                 <WifiOff className="w-4 h-4 text-white" />
                               </div>
                               <div>
@@ -1254,7 +1191,7 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Real-time insights</div>
                               </div>
                             </div>
-                            <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">+15.2%</Badge>
+                            <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">SYNCED</Badge>
                           </div>
                         </div>
                       </div>
@@ -1563,7 +1500,7 @@ export default function LandingPage() {
                   <ArrowRight className="ml-2 size-5" />
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
-                  No credit card required • 14-day free trial • Setup in minutes
+                  No credit card required • 15-day free trial • Setup in minutes
                 </p>
               </motion.div>
             </div>
