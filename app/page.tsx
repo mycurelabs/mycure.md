@@ -375,7 +375,12 @@ export default function LandingPage() {
       </header>
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden bg-gradient-to-br from-primary to-primary/90 text-primary-foreground relative">
+        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden text-primary-foreground relative" style={{
+          "--_gradient-blend-mode": "normal",
+          "--_gradient-blur": "0px",
+          background: "radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff",
+          mixBlendMode: "var(--_gradient-blend-mode)"
+        } as React.CSSProperties}>
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -418,24 +423,6 @@ export default function LandingPage() {
                 </Button>
               </div>
 
-              {/* Download CTA */}
-              <div className="mb-8">
-                <Link
-                  href="/download"
-                  className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm font-medium group"
-                >
-                  <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fillRule="evenodd"
-                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  Download apps
-                </Link>
-              </div>
 
               <div className="flex items-center justify-center gap-6 text-sm text-white/70">
                 <div className="flex items-center gap-2">
@@ -504,34 +491,65 @@ export default function LandingPage() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center"
+                className="space-y-8 md:space-y-12 max-w-6xl mx-auto"
               >
-                {[
-                  { name: "Medicard", src: "/Client Logos/Medicard.png" },
-                  { name: "Skin 101", src: "/Client Logos/Skin 101.png" },
-                  { name: "Premier Medical Center", src: "/Client Logos/Premier Medical Center.png" },
-                  { name: "Duya Med Diagnostic Clinic", src: "/Client Logos/Duya Med Diagnostic Clinic.png" },
-                  { name: "Ferrer OB-GYN and Medical Clinic", src: "/Client Logos/Ferrer OB-GYN and Medical Clinic.png" },
-                  { name: "Vicente L. Danguilan Memorial Clinic", src: "/Client Logos/Vicente L. Danguilan Memorial Clinic .jpeg" },
-                  { name: "Lablife Medical & Diagnostic Center", src: "/Client Logos/Lablife Medical & Diagnostic Center-Murphy Cubao.png" },
-                  { name: "Newport EW Villa Medica", src: "/Client Logos/Newport EW Villa Medica.png" },
-                  { name: "Nueve de Febrero Family Clinic", src: "/Client Logos/Nueve de Febrero Family Clinic.png" }
-                ].slice(0, 12).map((logo, index) => (
-                  <motion.div
-                    key={logo.name}
-                    variants={item}
-                    className="flex items-center justify-center p-2 w-full h-full"
-                    whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
-                  >
-                    <Image
-                      src={logo.src}
-                      alt={`${logo.name} logo`}
-                      width={120}
-                      height={60}
-                      className="w-16 h-10 sm:w-18 sm:h-11 md:w-20 md:h-12 lg:w-24 lg:h-14 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
-                    />
-                  </motion.div>
-                ))}
+                {/* Top Row - 5 Logos */}
+                <div className="flex items-center justify-center gap-6 md:gap-8 lg:gap-12 flex-wrap">
+                  {[
+                    { name: "Medicard", src: "/Client Logos/Medicard.png" },
+                    { name: "Skin 101", src: "/Client Logos/Skin 101.png" },
+                    { name: "Premier Medical Center", src: "/Client Logos/Premier Medical Center.png" },
+                    { name: "Duya Med Diagnostic Clinic", src: "/Client Logos/Duya Med Diagnostic Clinic.png" },
+                    { name: "Ferrer OB-GYN and Medical Clinic", src: "/Client Logos/Ferrer OB-GYN and Medical Clinic.png" }
+                  ].map((logo, index) => (
+                    <motion.div
+                      key={logo.name}
+                      variants={item}
+                      className="relative group flex items-center justify-center p-2"
+                      whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
+                    >
+                      <Image
+                        src={logo.src}
+                        alt={`${logo.name} logo`}
+                        width={120}
+                        height={60}
+                        className="w-16 h-10 sm:w-18 sm:h-11 md:w-20 md:h-12 lg:w-24 lg:h-14 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
+                      />
+                      <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-sm font-medium rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-50 whitespace-nowrap">
+                        {logo.name}
+                        <span className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"></span>
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Bottom Row - 3 Logos */}
+                <div className="flex items-center justify-center gap-6 md:gap-8 lg:gap-12 flex-wrap">
+                  {[
+                    { name: "Vicente L. Danguilan Memorial Clinic", src: "/Client Logos/Vicente L. Danguilan Memorial Clinic .jpeg" },
+                    { name: "Lablife Medical & Diagnostic Center", src: "/Client Logos/Lablife Medical & Diagnostic Center-Murphy Cubao.png" },
+                    { name: "Newport EW Villa Medica", src: "/Client Logos/Newport EW Villa Medica.png" }
+                  ].map((logo, index) => (
+                    <motion.div
+                      key={logo.name}
+                      variants={item}
+                      className="relative group flex items-center justify-center p-2"
+                      whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
+                    >
+                      <Image
+                        src={logo.src}
+                        alt={`${logo.name} logo`}
+                        width={120}
+                        height={60}
+                        className="w-16 h-10 sm:w-18 sm:h-11 md:w-20 md:h-12 lg:w-24 lg:h-14 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
+                      />
+                      <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-sm font-medium rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-50 whitespace-nowrap">
+                        {logo.name}
+                        <span className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"></span>
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             </motion.div>
           </div>
@@ -579,7 +597,12 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Medical Data Tracker Section */}
-        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
+        <section className="w-full py-20 md:py-32 text-primary-foreground relative overflow-hidden" style={{
+          "--_gradient-blend-mode": "normal",
+          "--_gradient-blur": "0px",
+          background: "radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff",
+          mixBlendMode: "var(--_gradient-blend-mode)"
+        } as React.CSSProperties}>
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -1509,7 +1532,13 @@ export default function LandingPage() {
         {/* FAQ Section */}
         <section
           id="faq"
-          className="w-full py-20 md:py-32 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden"
+          className="w-full py-20 md:py-32 text-primary-foreground relative overflow-hidden"
+          style={{
+            "--_gradient-blend-mode": "normal",
+            "--_gradient-blur": "0px",
+            background: "radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff",
+            mixBlendMode: "var(--_gradient-blend-mode)"
+          } as React.CSSProperties}
         >
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
