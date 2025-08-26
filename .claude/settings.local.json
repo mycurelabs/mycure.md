@@ -25,7 +25,11 @@
       "mcp__playwright-mcp__browser_console_messages",
       "Bash(pkill:*)",
       "Bash(node:*)",
-      "Read(//Users/vijescutin/Documents/Website/mycure.md/app/**)"
+      "Read(//Users/vijescutin/Documents/Website/mycure.md/app/**)",
+      "WebFetch(domain:magicui.design)",
+      "mcp__desktop-commander__create_directory",
+      "mcp__desktop-commander__write_file",
+      "mcp__desktop-commander__edit_block"
     ],
     "deny": [],
     "ask": []
