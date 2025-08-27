@@ -585,8 +585,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
             >
-              <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
-                <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={100}>
+              <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-block h-8 flex items-center justify-center">
+                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={150}>
                   Features
                 </AnimatedShinyText>
               </div>
@@ -710,8 +710,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
-                <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={120}>
+              <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-block h-8 flex items-center justify-center">
+                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={150}>
                   Why Choose MYCURE
                 </AnimatedShinyText>
               </div>
@@ -1071,8 +1071,8 @@ export default function LandingPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                   >
-                    <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
-                      <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={130}>
+                    <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-flex items-center justify-center h-8 w-fit">
+                      <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent !leading-none" shimmerWidth={140}>
                         Healthcare Excellence
                       </AnimatedShinyText>
                     </div>
@@ -1121,8 +1121,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Today 2:30 PM</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-secondary rounded px-2 py-1 inline-block h-12 flex items-center">
-                              <AnimatedShinyText className="!text-secondary-foreground" shimmerWidth={70}>Confirmed</AnimatedShinyText>
+                            <div className="text-xs bg-primary/10 border border-primary/20 rounded px-2 py-0.5 inline-block h-8 flex items-center justify-center">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={120}>Confirmed</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1165,8 +1165,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">2,847 active files</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-purple-100 text-purple-700 rounded px-2 py-1 inline-block h-12 flex items-center">
-                              <AnimatedShinyText className="!text-purple-700" shimmerWidth={100}>HIPAA Compliant</AnimatedShinyText>
+                            <div className="text-xs bg-primary/10 border border-primary/20 rounded px-2 py-0.5 inline-block h-8 flex items-center justify-center">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={160}>HIPAA Compliant</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1209,8 +1209,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">256-bit AES encryption</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-orange-100 text-orange-700 rounded px-2 py-1 inline-block h-12 flex items-center">
-                              <AnimatedShinyText className="!text-orange-700" shimmerWidth={60}>Active</AnimatedShinyText>
+                            <div className="text-xs bg-primary/10 border border-primary/20 rounded px-2 py-0.5 inline-block h-8 flex items-center justify-center">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={100}>Active</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1253,8 +1253,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Real-time insights</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-green-100 text-green-700 rounded px-2 py-1 inline-block h-12 flex items-center">
-                              <AnimatedShinyText className="!text-green-700" shimmerWidth={60}>SYNCED</AnimatedShinyText>
+                            <div className="text-xs bg-primary/10 border border-primary/20 rounded px-2 py-0.5 inline-block h-8 flex items-center justify-center">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={110}>SYNCED</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1475,8 +1475,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
-                <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={100}>
+              <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-block h-8 flex items-center justify-center">
+                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={150}>
                   How It Works
                 </AnimatedShinyText>
               </div>
