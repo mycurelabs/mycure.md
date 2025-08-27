@@ -544,12 +544,14 @@ export default function LandingPage() {
                   ))}
                 </div>
                 
-                {/* Bottom Row - 3 Logos */}
+                {/* Bottom Row - 5 Logos */}
                 <div className="flex items-center justify-center gap-6 md:gap-8 lg:gap-12 flex-wrap">
                   {[
                     { name: "Vicente L. Danguilan Memorial Clinic", src: "/Client Logos/Vicente L. Danguilan Memorial Clinic .jpeg" },
                     { name: "Lablife Medical & Diagnostic Center", src: "/Client Logos/Lablife Medical & Diagnostic Center-Murphy Cubao.png" },
-                    { name: "Newport EW Villa Medica", src: "/Client Logos/Newport EW Villa Medica.png" }
+                    { name: "Newport EW Villa Medica", src: "/Client Logos/Newport EW Villa Medica.png" },
+                    { name: "PhilCare", src: "/Client Logos/PhilCare.png" },
+                    { name: "Unihealth Parañaque Hospital ENT Center", src: "/Client Logos/Unihealth Parañaque Hospital ENT Center.png" }
                   ].map((logo, index) => (
                     <motion.div
                       key={logo.name}
@@ -730,7 +732,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.6 }}
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
-                <div className="relative">
+                <div className="relative order-2 lg:order-1">
                   <Image
                     src="/Features Photos/Built for Modern Teams/Hipaa-compliance-mycure.webp"
                     width={480}
@@ -739,7 +741,7 @@ export default function LandingPage() {
                     className="relative rounded-xl"
                   />
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-6 order-1 lg:order-2">
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       <Shield className="size-6" />
@@ -839,7 +841,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.6 }}
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
-                <div className="relative">
+                <div className="relative order-2 lg:order-1">
                   <Image
                     src="/Features Photos/Built for Modern Teams/philhealth-accreditation-v2.png"
                     width={480}
@@ -848,7 +850,7 @@ export default function LandingPage() {
                     className="relative rounded-xl"
                   />
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-6 order-1 lg:order-2">
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       <FileText className="size-6" />
@@ -1280,15 +1282,15 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="absolute top-0 left-1/4 transform -translate-x-1/2 -translate-y-8"
+                  className="absolute top-0 left-4 sm:left-8 md:left-1/4 transform -translate-x-1/2 -translate-y-8"
                 >
-                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Laboratory.73d89a4.webp"
-                      width={52}
-                      height={52}
+                      width={40}
+                      height={40}
                       alt="Laboratory Integration"
-                      className="rounded"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1298,15 +1300,15 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="absolute top-8 right-1/4 transform translate-x-1/2 -translate-y-4"
+                  className="absolute top-8 right-4 sm:right-12 md:right-1/4 transform translate-x-1/2 -translate-y-12 sm:-translate-y-16 md:-translate-y-4"
                 >
-                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Imaging.6ce014b.webp"
-                      width={52}
-                      height={52}
+                      width={40}
+                      height={40}
                       alt="Medical Imaging Integration"
-                      className="rounded"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1317,15 +1319,15 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="absolute top-1/2 left-8 transform -translate-y-1/2"
+                  className="absolute top-1/2 left-1 sm:left-8 md:left-8 transform -translate-y-1/2 hidden md:block"
                 >
-                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Authentication.44e8ba4.webp"
-                      width={52}
-                      height={52}
+                      width={40}
+                      height={40}
                       alt="Authentication Integration"
-                      className="rounded"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1335,15 +1337,15 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="absolute top-1/2 right-8 transform -translate-y-1/2"
+                  className="absolute top-1/2 right-1 sm:right-8 md:right-8 transform -translate-y-1/2 hidden md:block"
                 >
-                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Billing.e26d6fb.webp"
-                      width={52}
-                      height={52}
+                      width={40}
+                      height={40}
                       alt="Billing Integration"
-                      className="rounded"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1354,15 +1356,15 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="absolute bottom-8 left-1/3 transform -translate-x-1/2 translate-y-4"
+                  className="absolute bottom-8 left-8 sm:left-16 md:left-1/3 transform -translate-x-1/2 translate-y-8 sm:translate-y-12 md:translate-y-4"
                 >
-                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Pharmacy.0b3ed83.webp"
-                      width={52}
-                      height={52}
+                      width={40}
+                      height={40}
                       alt="Pharmacy Integration"
-                      className="rounded"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1372,15 +1374,15 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="absolute bottom-0 right-1/3 transform translate-x-1/2 translate-y-8"
+                  className="absolute bottom-0 right-8 sm:right-16 md:right-1/3 transform translate-x-1/2 translate-y-12 sm:translate-y-16 md:translate-y-8"
                 >
-                  <div className="w-15 h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Chat.5394f0b.webp"
-                      width={52}
-                      height={52}
+                      width={40}
+                      height={40}
                       alt="Chat Integration"
-                      className="rounded"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1393,13 +1395,13 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.7 }}
                   className="absolute top-1/4 left-12 transform -translate-x-1/2 hidden lg:block"
                 >
-                  <div className="w-11 h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Inventory.c0eabf9.webp"
-                      width={36}
-                      height={36}
+                      width={28}
+                      height={28}
                       alt="Inventory Integration"
-                      className="rounded"
+                      className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1411,13 +1413,13 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.8 }}
                   className="absolute top-1/4 right-12 transform translate-x-1/2 hidden lg:block"
                 >
-                  <div className="w-11 h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60">
                     <Image
                       src="/Icons/Queuing.2f5c8c8.webp"
-                      width={36}
-                      height={36}
+                      width={28}
+                      height={28}
                       alt="Queuing Integration"
-                      className="rounded"
+                      className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded"
                     />
                   </div>
                 </motion.div>
@@ -1504,9 +1506,10 @@ export default function LandingPage() {
                       onClick={() => setActiveDay(timepoint.day)}
                       className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                         activeDay === timepoint.day
-                          ? "bg-foreground text-background shadow-sm"
+                          ? "text-white shadow-sm"
                           : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                       }`}
+                      style={activeDay === timepoint.day ? { backgroundColor: '#0099CC' } : undefined}
                     >
                       {timepoint.label}
                     </button>
