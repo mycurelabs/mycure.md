@@ -29,7 +29,12 @@
       "WebFetch(domain:magicui.design)",
       "mcp__desktop-commander__create_directory",
       "mcp__desktop-commander__write_file",
-      "mcp__desktop-commander__edit_block"
+      "mcp__desktop-commander__edit_block",
+      "Bash(npx shadcn@latest add \"https://magicui.design/r/shimmer-button\")",
+      "Bash(npx shadcn@latest add \"https://magicui.design/r/rainbow-button\")",
+      "Bash(npx shadcn@latest add \"https://magicui.design/r/animated-shiny-text\")",
+      "Bash(npx shadcn@latest add \"https://magicui.design/r/animated-gradient-text\")",
+      "Bash(npx shadcn:*)"
     ],
     "deny": [],
     "ask": []

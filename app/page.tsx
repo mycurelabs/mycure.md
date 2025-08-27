@@ -32,7 +32,11 @@ import {
   WifiOff,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { RainbowButton } from "@/components/magicui/rainbow-button"
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
+import NumberTicker from "@/components/magicui/number-ticker"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTheme } from "next-themes"
@@ -294,10 +298,15 @@ export default function LandingPage() {
             >
               Log in
             </Link>
-            <Button className="rounded-full">
+            <ShimmerButton 
+              className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
+              background="#0099CC"
+              shimmerColor="#ffffff"
+              shimmerDuration="2s"
+            >
               Get Started
               <ChevronRight className="ml-1 size-4" />
-            </Button>
+            </ShimmerButton>
           </div>
           <div className="flex items-center gap-4 md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
@@ -364,10 +373,15 @@ export default function LandingPage() {
                 <Link href="#" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
                   Login
                 </Link>
-                <Button className="rounded-full">
+                <ShimmerButton 
+                  className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
+                  background="#0099CC"
+                  shimmerColor="#ffffff"
+                  shimmerDuration="2s"
+                >
                   Get Started
                   <ChevronRight className="ml-1 size-4" />
-                </Button>
+                </ShimmerButton>
               </div>
             </div>
           </motion.div>
@@ -392,12 +406,18 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-4xl mx-auto mb-12"
             >
-              <Badge
-                className="mb-6 rounded-full px-4 py-1.5 text-sm font-medium bg-white/10 text-white border-white/20"
-                variant="outline"
-              >
-                🚀 INTRODUCING: MYCURE X
-              </Badge>
+              <div className="mb-6">
+                <div className="rounded-full px-4 py-1.5 bg-white/90 border border-white/30 backdrop-blur-sm shadow-lg inline-block">
+                  <AnimatedGradientText
+                    className="text-sm font-medium"
+                    colorFrom="#0099CC"
+                    colorTo="#FF6B35"
+                    speed={1.5}
+                  >
+                    🚀 INTRODUCING: MYCURE X
+                  </AnimatedGradientText>
+                </div>
+              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
                 The Complete Healthcare Management Platform
               </h1>
@@ -414,13 +434,14 @@ export default function LandingPage() {
                     className="w-full h-12 px-4 pr-4 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 transition-all"
                   />
                 </div>
-                <Button
+                <RainbowButton
+                  variant="outline"
                   size="lg"
-                  className="h-12 px-8 bg-white text-primary hover:bg-white/90 font-semibold rounded-lg whitespace-nowrap"
+                  className="!h-12 !px-8 !font-semibold !rounded-lg whitespace-nowrap"
                 >
                   Get Started
                   <ArrowRight className="ml-2 size-4" />
-                </Button>
+                </RainbowButton>
               </div>
 
 
@@ -564,9 +585,11 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
             >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                Features
-              </Badge>
+              <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
+                <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={100}>
+                  Features
+                </AnimatedShinyText>
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Powerful Tools to Transform Your Healthcare Practice</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">
                 MYCURE provides an integrated set of solutions tailored to physicians, clinics, and diagnostics. From patient records to telehealth, our platform empowers your team to deliver care more efficiently, securely, and seamlessly.
@@ -638,7 +661,9 @@ export default function LandingPage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="text-center space-y-2"
                 >
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">2,793,041</div>
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
+                    <NumberTicker value={3239859} delay={0.3} className="font-bold text-primary" />
+                  </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                     Medical Records
                   </div>
@@ -650,7 +675,9 @@ export default function LandingPage() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="text-center space-y-2"
                 >
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">1,506,040</div>
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
+                    <NumberTicker value={446953} delay={0.4} className="font-bold text-primary" />
+                  </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                     Patients Served
                   </div>
@@ -662,9 +689,11 @@ export default function LandingPage() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   className="text-center space-y-2"
                 >
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">1,513</div>
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
+                    <NumberTicker value={1242974} delay={0.5} className="font-bold text-primary" />
+                  </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Partner Providers
+                    Transactions Completed
                   </div>
                 </motion.div>
               </div>
@@ -681,9 +710,11 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                Why Choose MYCURE
-              </Badge>
+              <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
+                <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={120}>
+                  Why Choose MYCURE
+                </AnimatedShinyText>
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Built for Modern Teams</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">
                 Enterprise-grade capabilities with healthcare-specific design, ensuring compliance, reliability, and seamless operations.
@@ -1040,9 +1071,11 @@ export default function LandingPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                   >
-                    <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                      Healthcare Excellence
-                    </Badge>
+                    <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
+                      <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={130}>
+                        Healthcare Excellence
+                      </AnimatedShinyText>
+                    </div>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
                       Built for healthcare
                       <br />excellence
@@ -1088,7 +1121,9 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Today 2:30 PM</div>
                               </div>
                             </div>
-                            <Badge variant="secondary" className="text-xs">Confirmed</Badge>
+                            <div className="text-xs bg-secondary rounded px-2 py-1 inline-block">
+                              <AnimatedShinyText className="!text-secondary-foreground" shimmerWidth={70}>Confirmed</AnimatedShinyText>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1130,7 +1165,9 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">2,847 active files</div>
                               </div>
                             </div>
-                            <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">HIPAA Compliant</Badge>
+                            <div className="text-xs bg-purple-100 text-purple-700 rounded px-2 py-1 inline-block">
+                              <AnimatedShinyText className="!text-purple-700" shimmerWidth={100}>HIPAA Compliant</AnimatedShinyText>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1172,7 +1209,9 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">256-bit AES encryption</div>
                               </div>
                             </div>
-                            <Badge variant="secondary" className="text-xs bg-orange-100 text-orange-700">Active</Badge>
+                            <div className="text-xs bg-orange-100 text-orange-700 rounded px-2 py-1 inline-block">
+                              <AnimatedShinyText className="!text-orange-700" shimmerWidth={60}>Active</AnimatedShinyText>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1214,7 +1253,9 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Real-time insights</div>
                               </div>
                             </div>
-                            <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">SYNCED</Badge>
+                            <div className="text-xs bg-green-100 text-green-700 rounded px-2 py-1 inline-block">
+                              <AnimatedShinyText className="!text-green-700" shimmerWidth={60}>SYNCED</AnimatedShinyText>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1432,9 +1473,11 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                How It Works
-              </Badge>
+              <div className="rounded-full px-4 py-1.5 bg-secondary inline-block">
+                <AnimatedShinyText className="text-sm font-medium !text-foreground" shimmerWidth={100}>
+                  How It Works
+                </AnimatedShinyText>
+              </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
                 What you can achieve with MYCURE{" "}
                 <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg">in just 7 days</span>
