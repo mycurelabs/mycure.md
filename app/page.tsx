@@ -437,7 +437,7 @@ export default function LandingPage() {
                 <RainbowButton
                   variant="outline"
                   size="lg"
-                  className="!h-12 !px-8 !font-semibold !rounded-lg whitespace-nowrap"
+                  className="!h-12 !px-8 !font-semibold !rounded-full whitespace-nowrap"
                 >
                   Get Started
                   <ArrowRight className="ml-2 size-4" />
@@ -763,7 +763,7 @@ export default function LandingPage() {
                       <span>Role-based access controls ensuring staff see only authorized patient information</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4" asChild>
+                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
                     <Link href="https://blog.mycure.md/mycure-is-hipaa-compliant/" target="_blank">
                       Learn About MYCURE's Privacy Standards
                       <ChevronRight className="ml-2 size-4" />
@@ -804,7 +804,7 @@ export default function LandingPage() {
                       <span>Local backup systems ensuring zero data loss during connectivity issues</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4" asChild>
+                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
                     <Link href="https://www.mycure.md/syncbase" target="_blank">
                       Learn About Syncbase
                       <ChevronRight className="ml-2 size-4" />
@@ -872,7 +872,7 @@ export default function LandingPage() {
                       <span>Built-in compliance validation preventing common rejection reasons</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4" asChild>
+                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
                     <Link href="https://blog.mycure.md/mycure-is-philhealth-e-claims-certified/" target="_blank">
                       Learn More about MYCURE's Accreditation
                       <ChevronRight className="ml-2 size-4" />
@@ -913,7 +913,7 @@ export default function LandingPage() {
                       <span>Smart clinical templates that adapt to different specialties and procedures</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4" asChild>
+                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
                     <Link href="https://www.mycure.md/features" target="_blank">
                       Learn More about MYCURE's Features
                       <ChevronRight className="ml-2 size-4" />
@@ -1121,7 +1121,7 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Today 2:30 PM</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-secondary rounded px-2 py-1 inline-block">
+                            <div className="text-xs bg-secondary rounded px-2 py-1 inline-block h-12 flex items-center">
                               <AnimatedShinyText className="!text-secondary-foreground" shimmerWidth={70}>Confirmed</AnimatedShinyText>
                             </div>
                           </div>
@@ -1165,7 +1165,7 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">2,847 active files</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-purple-100 text-purple-700 rounded px-2 py-1 inline-block">
+                            <div className="text-xs bg-purple-100 text-purple-700 rounded px-2 py-1 inline-block h-12 flex items-center">
                               <AnimatedShinyText className="!text-purple-700" shimmerWidth={100}>HIPAA Compliant</AnimatedShinyText>
                             </div>
                           </div>
@@ -1209,7 +1209,7 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">256-bit AES encryption</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-orange-100 text-orange-700 rounded px-2 py-1 inline-block">
+                            <div className="text-xs bg-orange-100 text-orange-700 rounded px-2 py-1 inline-block h-12 flex items-center">
                               <AnimatedShinyText className="!text-orange-700" shimmerWidth={60}>Active</AnimatedShinyText>
                             </div>
                           </div>
@@ -1253,7 +1253,7 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Real-time insights</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-green-100 text-green-700 rounded px-2 py-1 inline-block">
+                            <div className="text-xs bg-green-100 text-green-700 rounded px-2 py-1 inline-block h-12 flex items-center">
                               <AnimatedShinyText className="!text-green-700" shimmerWidth={60}>SYNCED</AnimatedShinyText>
                             </div>
                           </div>
@@ -1448,13 +1448,15 @@ export default function LandingPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                   >
-                    <Button
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                    <ShimmerButton
+                      className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl mx-auto flex items-center justify-center gap-2"
+                      background="#0099CC"
+                      shimmerColor="#ffffff"
+                      shimmerDuration="3s"
                     >
                       Get started
-                      <ArrowRight className="ml-2 size-5" />
-                    </Button>
+                      <ArrowRight className="size-4" />
+                    </ShimmerButton>
                   </motion.div>
                 </div>
               </motion.div>
@@ -1558,13 +1560,15 @@ export default function LandingPage() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="text-center"
               >
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                <ShimmerButton
+                  className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl mx-auto flex items-center justify-center gap-2"
+                  background="#0099CC"
+                  shimmerColor="#ffffff"
+                  shimmerDuration="3s"
                 >
                   Start Free Trial
-                  <ArrowRight className="ml-2 size-5" />
-                </Button>
+                  <ArrowRight className="size-4" />
+                </ShimmerButton>
                 <p className="text-sm text-muted-foreground mt-4">
                   No credit card required • 15-day free trial • Setup in minutes
                 </p>
@@ -1668,17 +1672,18 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                  <ShimmerButton
+                    className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    background="#0099CC"
+                    shimmerColor="#ffffff"
+                    shimmerDuration="3s"
                   >
                     Get Started Today
-                    <ArrowRight className="ml-2 size-5" />
-                  </Button>
+                    <ArrowRight className="size-4" />
+                  </ShimmerButton>
                   <Button
                     variant="outline"
-                    size="lg"
-                    className="px-8 py-4 text-lg font-semibold rounded-full border-2 hover:bg-muted/50 transition-all duration-300"
+                    className="h-12 px-6 py-3 text-base font-semibold rounded-full border-2 hover:bg-muted/50 transition-all duration-300 flex items-center justify-center"
                   >
                     Schedule a Demo
                   </Button>
