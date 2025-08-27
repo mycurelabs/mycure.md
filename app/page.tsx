@@ -226,7 +226,7 @@ export default function LandingPage() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity"
           >
-            <div className="size-8 rounded-lg bg-white flex items-center justify-center">
+            <div className="size-8 rounded-full bg-white flex items-center justify-center">
               <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
             </div>
             <span>MYCURE</span>
@@ -1643,10 +1643,10 @@ export default function LandingPage() {
                   value={`item-${i}`}
                   className="border-white/20 bg-white/10 backdrop-blur-sm rounded-lg mb-4 px-6"
                 >
-                  <AccordionTrigger className="text-white hover:text-white/80 text-left">
+                  <AccordionTrigger className="text-white hover:text-white/80 text-left text-lg font-medium">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-white/80">{faq.answer}</AccordionContent>
+                  <AccordionContent className="text-white/80 text-xl leading-relaxed">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -1666,7 +1666,7 @@ export default function LandingPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                    Ready to transform your healthcare practice
+                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
                   </h2>
                   <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                     Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
@@ -1723,7 +1723,7 @@ export default function LandingPage() {
             {/* Company Info */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold">
-                <div className="size-8 rounded-lg bg-white flex items-center justify-center">
+                <div className="size-8 rounded-full bg-white flex items-center justify-center">
                   <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
                 </div>
                 <span>MYCURE</span>

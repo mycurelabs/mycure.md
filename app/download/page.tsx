@@ -101,7 +101,7 @@ export default function DownloadPage() {
             </Link>
           </div>
           <div className="flex items-center gap-2 font-bold">
-            <div className="size-8 rounded-lg bg-white flex items-center justify-center">
+            <div className="size-8 rounded-full bg-white flex items-center justify-center">
               <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
             </div>
             <span>MYCURE</span>
@@ -522,7 +522,7 @@ export default function DownloadPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 font-bold text-white">
-              <div className="size-8 rounded-lg bg-white flex items-center justify-center">
+              <div className="size-8 rounded-full bg-white flex items-center justify-center">
                 <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={24} height={24} />
               </div>
               <span>MYCURE</span>
