@@ -1738,6 +1738,11 @@ export default function LandingPage() {
                         Careers
                       </Link>
                     </li>
+                    <li>
+                      <Link href="/syncbase-technology" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Syncbase
+                      </Link>
+                    </li>
                   </ul>
                 </div>
 
@@ -1827,6 +1832,11 @@ export default function LandingPage() {
                 <li>
                   <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/syncbase-technology" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Syncbase
                   </Link>
                 </li>
               </ul>

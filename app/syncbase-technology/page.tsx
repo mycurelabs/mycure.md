@@ -12,12 +12,19 @@ import {
   ChevronRight,
   Menu,
   X,
+  Shield,
+  Lock,
+  Cloud,
+  Users,
+  Key,
+  CheckCircle,
+  ExternalLink,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ShimmerButton } from "@/components/magicui/shimmer-button"
 import { useTheme } from "next-themes"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-export default function PrivacyPolicyPage() {
+export default function SyncbaseTechnologyPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
@@ -26,19 +33,11 @@ export default function PrivacyPolicyPage() {
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
-    { id: "introduction", title: "1. Introduction" },
-    { id: "information-we-collect", title: "2. Information We Collect" },
-    { id: "lawful-basis", title: "3. Lawful Basis for Processing" },
-    { id: "how-we-use", title: "4. How We Use Information" },
-    { id: "sharing-disclosure", title: "5. Sharing and Disclosure" },
-    { id: "data-retention", title: "6. Data Retention" },
-    { id: "data-security", title: "7. Data Security" },
-    { id: "user-rights", title: "8. User Rights" },
-    { id: "childrens-privacy", title: "9. Children's Privacy" },
-    { id: "international-transfers", title: "10. International Data Transfers" },
-    { id: "breach-notification", title: "11. Data Breach Notification" },
-    { id: "policy-changes", title: "12. Changes to This Policy" },
-    { id: "contact", title: "13. Contact Information" },
+    { id: "why-syncbase", title: "Why Syncbase?" },
+    { id: "key-features", title: "Key Features" },
+    { id: "security-privacy", title: "Security & Privacy" },
+    { id: "benefits", title: "Benefits" },
+    { id: "demo", title: "Demo" },
   ]
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export default function PrivacyPolicyPage() {
       
       // Check if we're at the bottom of the page
       if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("contact")
+        setActiveSection("demo")
       } else {
         // Find the section that's most visible in the viewport
         let currentSection = ""
@@ -149,13 +148,13 @@ export default function PrivacyPolicyPage() {
                 Back to Home
               </Link>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                Privacy Policy
+                MYCURE Syncbase
               </h1>
-              <p className="text-lg text-muted-foreground mb-4">
-                Your privacy is important to us. This policy outlines how we collect, use, and protect your information.
+              <p className="text-xl text-muted-foreground mb-4">
+                The holy grail of online-offline technology
               </p>
-              <p className="text-sm text-muted-foreground">
-                Effective Date: August 29, 2025
+              <p className="text-lg text-muted-foreground">
+                MYCURE Syncbase is the cost-effective setup for your clinic management system. It enables clinics and hospitals to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
               </p>
             </div>
           </div>
@@ -169,278 +168,171 @@ export default function PrivacyPolicyPage() {
               <div className="flex-1 max-w-4xl">
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
-                  {/* Section 1: Introduction */}
-                  <section id="introduction" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+                  {/* Section 1: Why Syncbase? */}
+                  <section id="why-syncbase" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">Why Syncbase?</h2>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      Setting up a health information system is a major investment for healthcare facilities. Traditional desktop-based applications often require expensive hardware and on-premise servers to run onsite.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      While newer web-based systems offer lower upfront costs, they suffer from a key limitation: when internet access is weak or unavailable, the system becomes inaccessible.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      <strong>MYCURE Syncbase solves this problem.</strong>
+                    </p>
+                    
+                    {/* Embedded YouTube Video */}
+                    <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden shadow-lg">
+                      <iframe
+                        className="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/siFBgZMt26k"
+                        title="MYCURE Syncbase Demo"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    
                     <p className="text-muted-foreground leading-relaxed">
-                      This Privacy Policy explains how MYCURE ("we," "our," "us") collects, uses, discloses, and safeguards personal data. We are committed to protecting your privacy in compliance with the Philippine Data Privacy Act of 2012 (DPA) and aligned with global standards such as the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA).
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      By accessing or using our services, you consent to the practices described in this Privacy Policy.
+                      It lets you work offline without disruption and syncs your data to the cloud once you're back online.
                     </p>
                   </section>
 
-                  {/* Section 2: Information We Collect */}
-                  <section id="information-we-collect" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We may collect the following categories of personal information:
+                  {/* Section 2: Key Features */}
+                  <section id="key-features" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-6">Key Features</h2>
+                    
+                    <div className="mb-8">
+                      <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                        <Cloud className="size-5 text-primary" />
+                        Work Online or Offline
+                      </h3>
+                      <ul className="space-y-3 text-muted-foreground">
+                        <li className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Continue creating electronic health records even without internet.</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Automatic synchronization once online.</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Combines the reliability of on-premise servers with the affordability of the cloud.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                        <Users className="size-5 text-primary" />
+                        Built to Scale
+                      </h3>
+                      <ul className="space-y-3 text-muted-foreground">
+                        <li className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Deployable in single or multiple branches.</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Branches can work independently offline.</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>Data consolidation occurs seamlessly once internet connectivity is restored.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </section>
+
+                  {/* Section 3: Security & Privacy */}
+                  <section id="security-privacy" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">Security & Privacy</h2>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      MYCURE is designed with healthcare-grade data protection in mind. It complies with international standards for patient data privacy and security.
                     </p>
                     <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Personal Identification Data</strong> – name, address, email, phone number, date of birth.</span>
+                      <li className="flex gap-3">
+                        <Shield className="size-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Grade A+ SSL</strong> – enterprise-grade encryption in transit.</span>
                       </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Medical and Health Data</strong> – health records, medical history, prescriptions, treatment details (when required for service delivery).</span>
+                      <li className="flex gap-3">
+                        <Lock className="size-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Data Encryption</strong> – secure storage and transmission of records.</span>
                       </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Account Information</strong> – login credentials, user preferences.</span>
+                      <li className="flex gap-3">
+                        <Key className="size-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>User Designated Access</strong> – role-based permissions for staff.</span>
                       </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Financial Information</strong> – billing details, payment method, and transaction records.</span>
+                      <li className="flex gap-3">
+                        <Cloud className="size-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Secure Cloud Hosting</strong> – reliable and scalable infrastructure.</span>
                       </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Usage Information</strong> – IP address, device identifiers, browsing activity within our platforms.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Other Information</strong> – any additional data you voluntarily provide.</span>
+                      <li className="flex gap-3">
+                        <CheckCircle className="size-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span><strong>Compliance with Data Privacy Standards</strong> – built around international healthcare privacy requirements.</span>
                       </li>
                     </ul>
                   </section>
 
-                  {/* Section 3: Lawful Basis for Processing */}
-                  <section id="lawful-basis" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">3. Lawful Basis for Processing</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We process personal data based on the following grounds:
-                    </p>
+                  {/* Section 4: Benefits */}
+                  <section id="benefits" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">Benefits</h2>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Performance of a contract (e.g., delivering services requested).</span>
+                        <span>Cost-effective alternative to heavy on-premise setups.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Compliance with legal obligations (e.g., healthcare reporting).</span>
+                        <span>Eliminates downtime due to poor internet.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Legitimate interests (e.g., service improvement, fraud prevention).</span>
+                        <span>Scalable for clinics, hospitals, or multi-branch health facilities.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Consent (when explicitly required, such as marketing or sensitive data use).</span>
+                        <span>Protects sensitive patient information at every step.</span>
                       </li>
                     </ul>
                   </section>
 
-                  {/* Section 4: How We Use Information */}
-                  <section id="how-we-use" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">4. How We Use Information</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We use personal information for:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
+                  {/* Section 5: Demo */}
+                  <section id="demo" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">Demo</h2>
+                    <ul className="space-y-3 text-muted-foreground mb-6">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Delivering healthcare-related services and managing accounts.</span>
+                        <span>See MYCURE Syncbase in action.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Processing payments and transactions.</span>
+                        <span>Watch how fast staff can encode medical records.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Improving user experience and platform performance.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Sending updates, notices, or promotional materials (with consent).</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Fulfilling regulatory and compliance requirements.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Preventing fraud, misuse, or unlawful activity.</span>
+                        <span>Learn how Syncbase can be tailored to your clinic's workflow.</span>
                       </li>
                     </ul>
-                  </section>
-
-                  {/* Section 5: Sharing and Disclosure */}
-                  <section id="sharing-disclosure" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">5. Sharing and Disclosure</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We do not sell personal information. Data may be shared only with:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Healthcare Providers</strong> – doctors, nurses, and clinics as part of patient care.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Service Providers</strong> – billing partners, IT support, cloud services under strict confidentiality agreements.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Regulatory Authorities</strong> – when legally required.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Business Transfers</strong> – mergers, acquisitions, or restructuring, ensuring data protection continuity.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 6: Data Retention */}
-                  <section id="data-retention" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">6. Data Retention</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We retain personal data only as long as necessary for:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Service provision.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Legal and regulatory compliance.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Archival and auditing purposes.</span>
-                      </li>
-                    </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      When no longer needed, data will be securely deleted or anonymized.
-                    </p>
-                  </section>
-
-                  {/* Section 7: Data Security */}
-                  <section id="data-security" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">7. Data Security</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We implement administrative, technical, and physical safeguards including:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Encryption of sensitive data.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Access controls and authentication.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Regular audits and monitoring.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Secure storage and transmission protocols.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 8: User Rights */}
-                  <section id="user-rights" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">8. User Rights</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      Subject to applicable laws, you have the right to:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Access your personal data.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Request correction of inaccurate information.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Request deletion ("right to be forgotten").</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Restrict or object to processing.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Withdraw consent at any time (without affecting prior lawful processing).</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Data portability (when applicable).</span>
-                      </li>
-                    </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Requests can be submitted via the contact information provided below.
-                    </p>
-                  </section>
-
-                  {/* Section 9: Children's Privacy */}
-                  <section id="childrens-privacy" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">9. Children's Privacy</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We do not knowingly collect personal data from children under 13 years old (or the age required by local law). If collected in a healthcare context, parental/guardian consent will always be required.
-                    </p>
-                  </section>
-
-                  {/* Section 10: International Data Transfers */}
-                  <section id="international-transfers" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">10. International Data Transfers</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      If personal data is transferred outside the Philippines, we ensure adequate safeguards (e.g., contractual clauses, equivalent protection laws) to protect your data.
-                    </p>
-                  </section>
-
-                  {/* Section 11: Data Breach Notification */}
-                  <section id="breach-notification" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">11. Data Breach Notification</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      In the event of a data breach, we will:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Notify affected individuals and authorities within legally required timeframes.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Provide details on scope, risks, and mitigation steps.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 12: Changes to This Policy */}
-                  <section id="policy-changes" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">12. Changes to This Policy</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We may update this Privacy Policy from time to time. Changes will be notified via email or platform announcements. Continued use of our services after updates constitutes acceptance.
-                    </p>
-                  </section>
-
-                  {/* Section 13: Contact Information */}
-                  <section id="contact" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">13. Contact Information</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      For questions, concerns, or to exercise your rights, please contact us at:
-                    </p>
-                    <p className="mt-4">
-                      <a href="mailto:helpdesk@mycure.md" className="text-primary hover:underline">
-                        helpdesk@mycure.md
-                      </a>
-                    </p>
+                    
+                    <div className="flex justify-start mt-2">
+                      <Link 
+                        href="https://calendly.com/mycure/demo" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <ShimmerButton
+                          className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                          background="#0099CC"
+                          shimmerColor="#ffffff"
+                          shimmerDuration="3s"
+                        >
+                          👉 Book a Demo Today
+                          <ExternalLink className="size-4" />
+                        </ShimmerButton>
+                      </Link>
+                    </div>
                   </section>
                 </div>
               </div>
