@@ -293,12 +293,12 @@ export default function LandingPage() {
               <span className="sr-only">Toggle theme</span>
             </Button>
             <Link
-              href="https://www.mycure.md/signin"
+              href="https://next.cms.mycure.md/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Log in
+              Log In
             </Link>
             <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
               <ShimmerButton 
@@ -374,8 +374,8 @@ export default function LandingPage() {
               </Link>
               
               <div className="flex flex-col gap-2 pt-2 border-t">
-                <Link href="https://www.mycure.md/signin" target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
-                  Login
+                <Link href="https://next.cms.mycure.md/" target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+                  Log In
                 </Link>
                 <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
                   <ShimmerButton 
@@ -655,7 +655,7 @@ export default function LandingPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={3239859} delay={0.3} className="font-bold text-primary" />
+                    <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                     Medical Records
@@ -669,7 +669,7 @@ export default function LandingPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={446953} delay={0.4} className="font-bold text-primary" />
+                    <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                     Patients Served
@@ -683,7 +683,7 @@ export default function LandingPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={1242974} delay={0.5} className="font-bold text-primary" />
+                    <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                     Transactions Completed
@@ -1734,11 +1734,6 @@ export default function LandingPage() {
                       </Link>
                     </li>
                     <li>
-                      <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                        Careers
-                      </Link>
-                    </li>
-                    <li>
                       <Link href="/syncbase-technology" className="text-muted-foreground hover:text-foreground transition-colors">
                         Syncbase
                       </Link>
@@ -1827,11 +1822,6 @@ export default function LandingPage() {
                 <li>
                   <Link href="https://blog.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Careers
                   </Link>
                 </li>
                 <li>
