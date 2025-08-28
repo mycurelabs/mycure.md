@@ -168,6 +168,24 @@ export default function LandingPage() {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const targetId = href.replace('#', '')
+    const element = document.getElementById(targetId)
+    if (element) {
+      const offset = 80 // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+    // Close mobile menu if open
+    setMobileMenuOpen(false)
+  }
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -232,56 +250,38 @@ export default function LandingPage() {
             <span>MYCURE</span>
           </button>
           <nav className="hidden md:flex gap-8">
-            {/* Solutions Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-                Solutions
-                <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-56 bg-background border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="p-2">
-                  <Link href="#outpatient-clinics" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Outpatient Clinics
-                  </Link>
-                  <Link href="#hospital-opd" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Hospital OPD
-                  </Link>
-                  <Link href="#skin-clinics" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Skin Clinics
-                  </Link>
-                  <Link href="#dental-clinics" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Dental Clinics
-                  </Link>
-                  <Link href="#corporate-clinics" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Corporate Clinics
-                  </Link>
-                  <Link href="#diagnostics" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Diagnostics
-                  </Link>
-                </div>
-              </div>
-            </div>
-            
-            {/* Features Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-                Features
-                <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-background border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="p-2">
-                  <Link href="#booking" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Booking
-                  </Link>
-                  <Link href="#telehealth" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-colors">
-                    Telehealth
-                  </Link>
-                </div>
-              </div>
-            </div>
-            
             <Link
-              href="#our-story"
+              href="#features"
+              onClick={(e) => scrollToSection(e, '#features')}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Features
+            </Link>
+            <Link
+              href="#solutions"
+              onClick={(e) => scrollToSection(e, '#solutions')}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Solutions
+            </Link>
+            <Link
+              href="#how-it-works"
+              onClick={(e) => scrollToSection(e, '#how-it-works')}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              How it Works
+            </Link>
+            <Link
+              href="#faq"
+              onClick={(e) => scrollToSection(e, '#faq')}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              FAQs
+            </Link>
+            <Link
+              href="https://www.mycure.md/our-story"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Our Story
@@ -293,20 +293,24 @@ export default function LandingPage() {
               <span className="sr-only">Toggle theme</span>
             </Button>
             <Link
-              href="#"
+              href="https://www.mycure.md/signin"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Log in
             </Link>
-            <ShimmerButton 
-              className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
-              background="#0099CC"
-              shimmerColor="#ffffff"
-              shimmerDuration="2s"
-            >
-              Get Started
-              <ChevronRight className="ml-1 size-4" />
-            </ShimmerButton>
+            <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
+              <ShimmerButton 
+                className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
+                background="#0099CC"
+                shimmerColor="#ffffff"
+                shimmerDuration="2s"
+              >
+                Get Started
+                <ChevronRight className="ml-1 size-4" />
+              </ShimmerButton>
+            </Link>
           </div>
           <div className="flex items-center gap-4 md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
@@ -327,61 +331,63 @@ export default function LandingPage() {
             className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
           >
             <div className="container py-4 flex flex-col gap-4">
-              {/* Solutions */}
-              <div className="py-2">
-                <div className="text-sm font-medium mb-2">Solutions</div>
-                <div className="ml-4 flex flex-col gap-1">
-                  <Link href="#outpatient-clinics" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Outpatient Clinics
-                  </Link>
-                  <Link href="#hospital-opd" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Hospital OPD
-                  </Link>
-                  <Link href="#skin-clinics" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Skin Clinics
-                  </Link>
-                  <Link href="#dental-clinics" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Dental Clinics
-                  </Link>
-                  <Link href="#corporate-clinics" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Corporate Clinics
-                  </Link>
-                  <Link href="#diagnostics" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Diagnostics
-                  </Link>
-                </div>
-              </div>
+              <Link 
+                href="#features" 
+                className="py-2 text-sm font-medium" 
+                onClick={(e) => scrollToSection(e, '#features')}
+              >
+                Features
+              </Link>
               
-              {/* Features */}
-              <div className="py-2">
-                <div className="text-sm font-medium mb-2">Features</div>
-                <div className="ml-4 flex flex-col gap-1">
-                  <Link href="#booking" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Booking
-                  </Link>
-                  <Link href="#telehealth" className="py-1 text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-                    Telehealth
-                  </Link>
-                </div>
-              </div>
+              <Link 
+                href="#solutions" 
+                className="py-2 text-sm font-medium" 
+                onClick={(e) => scrollToSection(e, '#solutions')}
+              >
+                Solutions
+              </Link>
               
-              <Link href="#our-story" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+              <Link 
+                href="#how-it-works" 
+                className="py-2 text-sm font-medium" 
+                onClick={(e) => scrollToSection(e, '#how-it-works')}
+              >
+                How it Works
+              </Link>
+              
+              <Link 
+                href="#faq" 
+                className="py-2 text-sm font-medium" 
+                onClick={(e) => scrollToSection(e, '#faq')}
+              >
+                FAQs
+              </Link>
+              
+              <Link 
+                href="https://www.mycure.md/our-story" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 text-sm font-medium" 
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 Our Story
               </Link>
               
               <div className="flex flex-col gap-2 pt-2 border-t">
-                <Link href="#" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+                <Link href="https://www.mycure.md/signin" target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
                   Login
                 </Link>
-                <ShimmerButton 
-                  className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
-                  background="#0099CC"
-                  shimmerColor="#ffffff"
-                  shimmerDuration="2s"
-                >
-                  Get Started
-                  <ChevronRight className="ml-1 size-4" />
-                </ShimmerButton>
+                <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
+                  <ShimmerButton 
+                    className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
+                    background="#0099CC"
+                    shimmerColor="#ffffff"
+                    shimmerDuration="2s"
+                  >
+                    Get Started
+                    <ChevronRight className="ml-1 size-4" />
+                  </ShimmerButton>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -420,23 +426,18 @@ export default function LandingPage() {
                 MYCURE empowers healthcare providers with comprehensive clinic management solutions. Serving small practices to large multi-specialty clinics, we help you streamline patient care, ensure compliance, and optimize operations.
               </p>
 
-              {/* Email Capture Section */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-lg mx-auto mb-8">
-                <div className="relative flex-1 w-full sm:w-auto">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="w-full h-12 px-4 pr-4 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 transition-all"
-                  />
-                </div>
-                <RainbowButton
-                  variant="outline"
-                  size="lg"
-                  className="!h-12 !px-8 !font-semibold !rounded-full whitespace-nowrap"
-                >
-                  Get Started
-                  <ArrowRight className="ml-2 size-4" />
-                </RainbowButton>
+              {/* CTA Section */}
+              <div className="flex justify-center items-center mb-8">
+                <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
+                  <RainbowButton
+                    variant="outline"
+                    size="lg"
+                    className="!h-12 !px-8 !font-semibold !rounded-full whitespace-nowrap"
+                  >
+                    Get Started Today
+                    <ArrowRight className="ml-2 size-4" />
+                  </RainbowButton>
+                </Link>
               </div>
 
 
@@ -693,7 +694,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Image + Content Features Section */}
-        <section className="w-full py-20 md:py-32 bg-white dark:bg-[#1a1a1a]">
+        <section id="features" className="w-full py-20 md:py-32 bg-white dark:bg-[#1a1a1a]">
           <div className="container px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -755,12 +756,6 @@ export default function LandingPage() {
                       <span>Role-based access controls ensuring staff see only authorized patient information</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
-                    <Link href="https://blog.mycure.md/mycure-is-hipaa-compliant/" target="_blank">
-                      Learn About MYCURE's Privacy Standards
-                      <ChevronRight className="ml-2 size-4" />
-                    </Link>
-                  </Button>
                 </div>
               </motion.div>
 
@@ -796,12 +791,6 @@ export default function LandingPage() {
                       <span>Local backup systems ensuring zero data loss during connectivity issues</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
-                    <Link href="https://www.mycure.md/syncbase" target="_blank">
-                      Learn About Syncbase
-                      <ChevronRight className="ml-2 size-4" />
-                    </Link>
-                  </Button>
                 </div>
                 <div className="relative lg:order-1">
                   <div className="w-[480px] overflow-hidden rounded-xl mx-auto lg:mx-0">
@@ -864,12 +853,6 @@ export default function LandingPage() {
                       <span>Built-in compliance validation preventing common rejection reasons</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
-                    <Link href="https://blog.mycure.md/mycure-is-philhealth-e-claims-certified/" target="_blank">
-                      Learn More about MYCURE's Accreditation
-                      <ChevronRight className="ml-2 size-4" />
-                    </Link>
-                  </Button>
                 </div>
               </motion.div>
 
@@ -905,12 +888,6 @@ export default function LandingPage() {
                       <span>Smart clinical templates that adapt to different specialties and procedures</span>
                     </li>
                   </ul>
-                  <Button variant="outline" className="mt-4 rounded-full h-12" asChild>
-                    <Link href="https://www.mycure.md/features" target="_blank">
-                      Learn More about MYCURE's Features
-                      <ChevronRight className="ml-2 size-4" />
-                    </Link>
-                  </Button>
                 </div>
                 <div className="relative lg:order-1">
                   <Image
@@ -926,7 +903,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Company Visibility Features Section */}
-        <section className="w-full py-20 md:py-32 bg-muted/30">
+        <section id="solutions" className="w-full py-20 md:py-32 bg-muted/30">
           <div className="container px-4 md:px-6 mx-auto max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1439,16 +1416,19 @@ export default function LandingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
+                    className="flex justify-center"
                   >
-                    <ShimmerButton
-                      className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl mx-auto flex items-center justify-center gap-2"
-                      background="#0099CC"
-                      shimmerColor="#ffffff"
-                      shimmerDuration="3s"
-                    >
-                      Get started
-                      <ArrowRight className="size-4" />
-                    </ShimmerButton>
+                    <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
+                      <ShimmerButton
+                        className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                        background="#0099CC"
+                        shimmerColor="#ffffff"
+                        shimmerDuration="3s"
+                      >
+                        Get started
+                        <ArrowRight className="size-4" />
+                      </ShimmerButton>
+                    </Link>
                   </motion.div>
                 </div>
               </motion.div>
@@ -1456,7 +1436,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* How It Works Section - Interactive Timeline */}
-        <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+        <section id="how-it-works" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
 
           <div className="container px-4 md:px-6 relative">
@@ -1551,17 +1531,19 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-center"
+                className="text-center flex flex-col items-center"
               >
-                <ShimmerButton
-                  className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl mx-auto flex items-center justify-center gap-2"
-                  background="#0099CC"
-                  shimmerColor="#ffffff"
-                  shimmerDuration="3s"
-                >
-                  Start Free Trial
-                  <ArrowRight className="size-4" />
-                </ShimmerButton>
+                <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
+                  <ShimmerButton
+                    className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    background="#0099CC"
+                    shimmerColor="#ffffff"
+                    shimmerDuration="3s"
+                  >
+                    Get Started Today
+                    <ArrowRight className="size-4" />
+                  </ShimmerButton>
+                </Link>
                 <p className="text-sm text-muted-foreground mt-4">
                   No credit card required • 15-day free trial • Setup in minutes
                 </p>
@@ -1658,22 +1640,18 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <ShimmerButton
-                    className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                    background="#0099CC"
-                    shimmerColor="#ffffff"
-                    shimmerDuration="3s"
-                  >
-                    Get Started Today
-                    <ArrowRight className="size-4" />
-                  </ShimmerButton>
-                  <Button
-                    variant="outline"
-                    className="h-12 px-6 py-3 text-base font-semibold rounded-full border-2 hover:bg-muted/50 transition-all duration-300 flex items-center justify-center"
-                  >
-                    Schedule a Demo
-                  </Button>
+                <div className="flex justify-center items-center">
+                  <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
+                    <ShimmerButton
+                      className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                      background="#0099CC"
+                      shimmerColor="#ffffff"
+                      shimmerDuration="3s"
+                    >
+                      Transform Your Practice
+                      <ArrowRight className="size-4" />
+                    </ShimmerButton>
+                  </Link>
                 </div>
 
                 <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
@@ -1687,7 +1665,7 @@ export default function LandingPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>Complete training included</span>
+                    <span>Training via webinars</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
@@ -1702,9 +1680,110 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="w-full bg-muted/30 border-t border-border/40">
-        <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 py-12">
-            {/* Company Info */}
+        <div className="container px-4 md:px-6 py-12">
+          {/* Mobile Layout - Two Sections */}
+          <div className="sm:hidden">
+            {/* Company Info Section - Full Width on Mobile */}
+            <div className="mb-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 font-bold">
+                  <div className="size-8 rounded-full bg-white flex items-center justify-center">
+                    <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
+                  </div>
+                  <span>MYCURE</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Transforming healthcare management with innovative clinic solutions for providers worldwide.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  © 2024 MYCURE. All rights reserved.
+                </p>
+                <div className="flex space-x-4">
+                  <Link href="https://www.facebook.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                  </Link>
+                  <Link href="https://www.instagram.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                  </Link>
+                  <Link href="https://www.linkedin.com/company/mycure" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Links Section - 2 Column Grid on Mobile */}
+            <div className="grid grid-cols-2 gap-4">
+              {/* Left Column - Resources and Legal */}
+              <div className="space-y-6">
+                {/* Resources */}
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Resources</h3>
+                  <ul className="space-y-2 text-sm">
+                    <li>
+                      <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                        About
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="https://blog.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Blog
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Careers
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Legal */}
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Legal</h3>
+                  <ul className="space-y-2 text-sm">
+                    <li>
+                      <Link href="https://www.mycure.md/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Privacy Policy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="https://www.mycure.md/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Terms of Service
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Right Column - Support */}
+              <div className="space-y-4">
+                <h3 className="font-semibold">Support</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Link href="https://help.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                      Help Center
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="mailto:helpdesk@mycure.md" className="text-muted-foreground hover:text-foreground transition-colors">
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop/Tablet Layout - 4 Columns */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {/* Company */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold">
                 <div className="size-8 rounded-full bg-white flex items-center justify-center">
@@ -1714,6 +1793,9 @@ export default function LandingPage() {
               </div>
               <p className="text-sm text-muted-foreground">
                 Transforming healthcare management with innovative clinic solutions for providers worldwide.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                © 2024 MYCURE. All rights reserved.
               </p>
               <div className="flex space-x-4">
                 <Link href="https://www.facebook.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -1734,101 +1816,22 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Product */}
+            {/* Resources */}
             <div className="space-y-4">
-              <h3 className="font-semibold">Product</h3>
+              <h3 className="font-semibold">Resources</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Telehealth
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Directory
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Patient Portal
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Solutions */}
-            <div className="space-y-4">
-              <h3 className="font-semibold">Solutions</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Outpatient Clinics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Hospitals
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Diagnostics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Laboratories
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Pharmacy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Dental Clinics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Skin Clinics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    OFW Clinics
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div className="space-y-4">
-              <h3 className="font-semibold">Company</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="https://blog.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     Careers
                   </Link>
                 </li>
@@ -1840,38 +1843,33 @@ export default function LandingPage() {
               <h3 className="font-semibold">Support</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="https://help.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     Help Center
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="mailto:helpdesk@mycure.md" className="text-muted-foreground hover:text-foreground transition-colors">
                     Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Security (CSI)
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>
 
-          <div className="border-t border-border/40 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-muted-foreground">© 2024 MYCURE. All rights reserved.</p>
-              <div className="flex gap-6 text-sm">
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Privacy Policy
-                </Link>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Terms of Service
-                </Link>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  HIPAA Compliance
-                </Link>
-              </div>
+            {/* Legal */}
+            <div className="space-y-4">
+              <h3 className="font-semibold">Legal</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="https://www.mycure.md/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://www.mycure.md/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
