@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-export default function PrivacyPolicyPage() {
+export default function TermsAndConditionsPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
@@ -26,19 +26,31 @@ export default function PrivacyPolicyPage() {
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
-    { id: "introduction", title: "1. Introduction" },
-    { id: "information-we-collect", title: "2. Information We Collect" },
-    { id: "lawful-basis", title: "3. Lawful Basis for Processing" },
-    { id: "how-we-use", title: "4. How We Use Information" },
-    { id: "sharing-disclosure", title: "5. Sharing and Disclosure" },
-    { id: "data-retention", title: "6. Data Retention" },
-    { id: "data-security", title: "7. Data Security" },
-    { id: "user-rights", title: "8. User Rights" },
-    { id: "childrens-privacy", title: "9. Children's Privacy" },
-    { id: "international-transfers", title: "10. International Data Transfers" },
-    { id: "breach-notification", title: "11. Data Breach Notification" },
-    { id: "policy-changes", title: "12. Changes to This Policy" },
-    { id: "contact", title: "13. Contact Information" },
+    { id: "acceptance", title: "1. Acceptance of Terms" },
+    { id: "eligibility", title: "2. Eligibility" },
+    { id: "account", title: "3. Account Registration" },
+    { id: "services", title: "4. Services Provided" },
+    { id: "use-restrictions", title: "5. Use Restrictions" },
+    { id: "payment", title: "6. Payment and Billing" },
+    { id: "refunds", title: "7. Refunds and Cancellations" },
+    { id: "intellectual-property", title: "8. Intellectual Property" },
+    { id: "confidentiality", title: "9. Confidentiality" },
+    { id: "disclaimers", title: "10. Disclaimers" },
+    { id: "limitation", title: "11. Limitation of Liability" },
+    { id: "indemnification", title: "12. Indemnification" },
+    { id: "compliance", title: "13. Healthcare Compliance" },
+    { id: "third-party", title: "14. Third-Party Services" },
+    { id: "modifications", title: "15. Modifications to Service" },
+    { id: "termination", title: "16. Termination" },
+    { id: "data-security", title: "17. Data Security and Privacy" },
+    { id: "force-majeure", title: "18. Force Majeure" },
+    { id: "severability", title: "19. Severability" },
+    { id: "entire-agreement", title: "20. Entire Agreement" },
+    { id: "assignment", title: "21. Assignment" },
+    { id: "governing-law", title: "22. Governing Law" },
+    { id: "notices", title: "23. Notices" },
+    { id: "contact-information", title: "24. Contact Information" },
+    { id: "acknowledgment", title: "25. Acknowledgment" },
   ]
 
   useEffect(() => {
@@ -57,7 +69,7 @@ export default function PrivacyPolicyPage() {
       
       // Check if we're at the bottom of the page
       if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("contact")
+        setActiveSection("acknowledgment")
       } else {
         // Find the section that's most visible in the viewport
         let currentSection = ""
@@ -149,10 +161,10 @@ export default function PrivacyPolicyPage() {
                 Back to Home
               </Link>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                Privacy Policy
+                Terms and Conditions
               </h1>
               <p className="text-lg text-muted-foreground mb-4">
-                Your privacy is important to us. This policy outlines how we collect, use, and protect your information.
+                Please read these Terms and Conditions carefully before using our services.
               </p>
               <p className="text-sm text-muted-foreground">
                 Effective Date: August 29, 2025
@@ -169,277 +181,383 @@ export default function PrivacyPolicyPage() {
               <div className="flex-1 max-w-4xl">
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
-                  {/* Section 1: Introduction */}
-                  <section id="introduction" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+                  {/* Section 1: Acceptance of Terms */}
+                  <section id="acceptance" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      This Privacy Policy explains how MYCURE ("we," "our," "us") collects, uses, discloses, and safeguards personal data. We are committed to protecting your privacy in compliance with the Philippine Data Privacy Act of 2012 (DPA) and aligned with global standards such as the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA).
+                      By accessing, browsing, or using the MYCURE platform ("Services"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to all the terms and conditions, you must not use the Services.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      By accessing or using our services, you consent to the practices described in this Privacy Policy.
+                      These Terms constitute a legally binding agreement between you (or the entity you represent) and MYCURE.
                     </p>
                   </section>
 
-                  {/* Section 2: Information We Collect */}
-                  <section id="information-we-collect" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
+                  {/* Section 2: Eligibility */}
+                  <section id="eligibility" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">2. Eligibility</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      We may collect the following categories of personal information:
+                      To use our Services, you must:
                     </p>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span><strong>Personal Identification Data</strong> – name, address, email, phone number, date of birth.</span>
+                        <span>Be at least 18 years old or the legal age of majority in your jurisdiction.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span><strong>Medical and Health Data</strong> – health records, medical history, prescriptions, treatment details (when required for service delivery).</span>
+                        <span>Be a licensed healthcare provider, clinic, or authorized personnel.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span><strong>Account Information</strong> – login credentials, user preferences.</span>
+                        <span>Have the legal authority to enter into these Terms.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span><strong>Financial Information</strong> – billing details, payment method, and transaction records.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Usage Information</strong> – IP address, device identifiers, browsing activity within our platforms.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Other Information</strong> – any additional data you voluntarily provide.</span>
+                        <span>Not be barred from using the Services under applicable law.</span>
                       </li>
                     </ul>
                   </section>
 
-                  {/* Section 3: Lawful Basis for Processing */}
-                  <section id="lawful-basis" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">3. Lawful Basis for Processing</h2>
+                  {/* Section 3: Account Registration */}
+                  <section id="account" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">3. Account Registration</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      We process personal data based on the following grounds:
+                      You must create an account to access certain features. You agree to:
                     </p>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Performance of a contract (e.g., delivering services requested).</span>
+                        <span>Provide accurate, current, and complete information.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Compliance with legal obligations (e.g., healthcare reporting).</span>
+                        <span>Maintain and promptly update your account information.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Legitimate interests (e.g., service improvement, fraud prevention).</span>
+                        <span>Keep your login credentials confidential and secure.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Consent (when explicitly required, such as marketing or sensitive data use).</span>
+                        <span>Notify us immediately of any unauthorized access or security breach.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Accept responsibility for all activities under your account.</span>
                       </li>
                     </ul>
                   </section>
 
-                  {/* Section 4: How We Use Information */}
-                  <section id="how-we-use" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">4. How We Use Information</h2>
+                  {/* Section 4: Services Provided */}
+                  <section id="services" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">4. Services Provided</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      We use personal information for:
+                      MYCURE provides healthcare management software including but not limited to:
                     </p>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Delivering healthcare-related services and managing accounts.</span>
+                        <span>Electronic Medical Records (EMR) management.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Processing payments and transactions.</span>
+                        <span>Appointment scheduling and management.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Improving user experience and platform performance.</span>
+                        <span>Billing and invoicing systems.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Sending updates, notices, or promotional materials (with consent).</span>
+                        <span>Inventory management.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Fulfilling regulatory and compliance requirements.</span>
+                        <span>Analytics and reporting tools.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Preventing fraud, misuse, or unlawful activity.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 5: Sharing and Disclosure */}
-                  <section id="sharing-disclosure" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">5. Sharing and Disclosure</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We do not sell personal information. Data may be shared only with:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Healthcare Providers</strong> – doctors, nurses, and clinics as part of patient care.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Service Providers</strong> – billing partners, IT support, cloud services under strict confidentiality agreements.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Regulatory Authorities</strong> – when legally required.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span><strong>Business Transfers</strong> – mergers, acquisitions, or restructuring, ensuring data protection continuity.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 6: Data Retention */}
-                  <section id="data-retention" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">6. Data Retention</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We retain personal data only as long as necessary for:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Service provision.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Legal and regulatory compliance.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Archival and auditing purposes.</span>
+                        <span>Patient communication features.</span>
                       </li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      When no longer needed, data will be securely deleted or anonymized.
+                      Services may vary based on your subscription plan and region.
                     </p>
                   </section>
 
-                  {/* Section 7: Data Security */}
+                  {/* Section 5: Use Restrictions */}
+                  <section id="use-restrictions" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">5. Use Restrictions</h2>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      You agree NOT to:
+                    </p>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Use the Services for any illegal or unauthorized purpose.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Violate any laws, regulations, or third-party rights.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Attempt to gain unauthorized access to any portion of the Services.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Interfere with or disrupt the Services or servers.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Transmit viruses, malware, or harmful code.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Reverse engineer, decompile, or disassemble the Services.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Share your account credentials with unauthorized parties.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Use automated systems to access the Services without permission.</span>
+                      </li>
+                    </ul>
+                  </section>
+
+                  {/* Section 6: Payment and Billing */}
+                  <section id="payment" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">6. Payment and Billing</h2>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      By subscribing to our paid Services, you agree to:
+                    </p>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Pay all applicable fees according to your selected plan.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Provide valid payment information and keep it current.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Authorize automatic recurring charges for subscription services.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Pay any applicable taxes, duties, or government fees.</span>
+                      </li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      All fees are non-refundable unless otherwise stated. We reserve the right to modify pricing with 30 days' notice.
+                    </p>
+                  </section>
+
+                  {/* Section 7: Refunds and Cancellations */}
+                  <section id="refunds" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">7. Refunds and Cancellations</h2>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>You may cancel your subscription at any time through your account settings.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>Cancellation takes effect at the end of the current billing period.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>No refunds are provided for partial months or unused services.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>We may offer refunds at our sole discretion for exceptional circumstances.</span>
+                      </li>
+                    </ul>
+                  </section>
+
+                  {/* Section 8: Intellectual Property */}
+                  <section id="intellectual-property" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">8. Intellectual Property</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      All intellectual property rights in the Services, including software, content, features, and functionality, are owned by MYCURE or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Services in accordance with these Terms.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      You retain ownership of data you input into the Services but grant us a license to use, process, and store such data to provide the Services.
+                    </p>
+                  </section>
+
+                  {/* Section 9: Confidentiality */}
+                  <section id="confidentiality" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">9. Confidentiality</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Both parties agree to maintain the confidentiality of any proprietary or confidential information disclosed during the use of Services. This includes but is not limited to technical data, business strategies, and patient information.
+                    </p>
+                  </section>
+
+                  {/* Section 10: Disclaimers */}
+                  <section id="disclaimers" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">10. Disclaimers</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DISCLAIM ALL WARRANTIES INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      We do not guarantee that the Services will be uninterrupted, secure, or error-free. We are not responsible for any medical decisions made using the Services.
+                    </p>
+                  </section>
+
+                  {/* Section 11: Limitation of Liability */}
+                  <section id="limitation" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">11. Limitation of Liability</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      TO THE MAXIMUM EXTENT PERMITTED BY LAW, MYCURE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      Our total liability shall not exceed the amount paid by you for the Services in the 12 months preceding the claim.
+                    </p>
+                  </section>
+
+                  {/* Section 12: Indemnification */}
+                  <section id="indemnification" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">12. Indemnification</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      You agree to indemnify, defend, and hold harmless MYCURE, its affiliates, officers, directors, employees, and agents from any claims, damages, losses, liabilities, costs, and expenses arising from your use of the Services, violation of these Terms, or infringement of any third-party rights.
+                    </p>
+                  </section>
+
+                  {/* Section 13: Healthcare Compliance */}
+                  <section id="compliance" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">13. Healthcare Compliance</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      You acknowledge that the use of Services in healthcare settings may be subject to various regulations including but not limited to HIPAA, Data Privacy Act, and local healthcare laws. You are responsible for ensuring your use of the Services complies with all applicable regulations.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      We will maintain appropriate safeguards for protected health information as required by law.
+                    </p>
+                  </section>
+
+                  {/* Section 14: Third-Party Services */}
+                  <section id="third-party" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">14. Third-Party Services</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      The Services may integrate with or link to third-party services. We are not responsible for the content, accuracy, or practices of third-party services. Your use of third-party services is governed by their respective terms and policies.
+                    </p>
+                  </section>
+
+                  {/* Section 15: Modifications to Service */}
+                  <section id="modifications" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">15. Modifications to Service</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      We reserve the right to modify, suspend, or discontinue any part of the Services at any time. We will provide reasonable notice for significant changes that materially affect your use of the Services.
+                    </p>
+                  </section>
+
+                  {/* Section 16: Termination */}
+                  <section id="termination" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">16. Termination</h2>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      We may terminate or suspend your account immediately, without prior notice, if:
+                    </p>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>You breach these Terms.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>You fail to pay applicable fees.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>We are required to do so by law.</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-primary">•</span>
+                        <span>We discontinue the Services.</span>
+                      </li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      Upon termination, your right to use the Services will immediately cease. We will retain and use your information as necessary to comply with legal obligations.
+                    </p>
+                  </section>
+
+                  {/* Section 17: Data Security and Privacy */}
                   <section id="data-security" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">7. Data Security</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We implement administrative, technical, and physical safeguards including:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Encryption of sensitive data.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Access controls and authentication.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Regular audits and monitoring.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Secure storage and transmission protocols.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 8: User Rights */}
-                  <section id="user-rights" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">8. User Rights</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      Subject to applicable laws, you have the right to:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Access your personal data.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Request correction of inaccurate information.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Request deletion ("right to be forgotten").</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Restrict or object to processing.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Withdraw consent at any time (without affecting prior lawful processing).</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Data portability (when applicable).</span>
-                      </li>
-                    </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Requests can be submitted via the contact information provided below.
-                    </p>
-                  </section>
-
-                  {/* Section 9: Children's Privacy */}
-                  <section id="childrens-privacy" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">9. Children's Privacy</h2>
+                    <h2 className="text-2xl font-semibold mb-4">17. Data Security and Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      We do not knowingly collect personal data from children under 13 years old (or the age required by local law). If collected in a healthcare context, parental/guardian consent will always be required.
+                      Your use of the Services is also governed by our Privacy Policy. We implement industry-standard security measures to protect your data, but cannot guarantee absolute security. You are responsible for maintaining the security of your account credentials.
                     </p>
                   </section>
 
-                  {/* Section 10: International Data Transfers */}
-                  <section id="international-transfers" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">10. International Data Transfers</h2>
+                  {/* Section 18: Force Majeure */}
+                  <section id="force-majeure" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">18. Force Majeure</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      If personal data is transferred outside the Philippines, we ensure adequate safeguards (e.g., contractual clauses, equivalent protection laws) to protect your data.
+                      Neither party shall be liable for any delay or failure to perform due to causes beyond their reasonable control, including but not limited to acts of God, natural disasters, war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, accidents, strikes, or shortages of transportation, facilities, fuel, energy, labor, or materials.
                     </p>
                   </section>
 
-                  {/* Section 11: Data Breach Notification */}
-                  <section id="breach-notification" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">11. Data Breach Notification</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      In the event of a data breach, we will:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Notify affected individuals and authorities within legally required timeframes.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Provide details on scope, risks, and mitigation steps.</span>
-                      </li>
-                    </ul>
-                  </section>
-
-                  {/* Section 12: Changes to This Policy */}
-                  <section id="policy-changes" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">12. Changes to This Policy</h2>
+                  {/* Section 19: Severability */}
+                  <section id="severability" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">19. Severability</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      We may update this Privacy Policy from time to time. Changes will be notified via email or platform announcements. Continued use of our services after updates constitutes acceptance.
+                      If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that these Terms shall otherwise remain in full force and effect.
                     </p>
                   </section>
 
-                  {/* Section 13: Contact Information */}
-                  <section id="contact" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">13. Contact Information</h2>
+                  {/* Section 20: Entire Agreement */}
+                  <section id="entire-agreement" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">20. Entire Agreement</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      For questions, concerns, or to exercise your rights, please contact us at:
+                      These Terms, together with our Privacy Policy and any other agreements expressly incorporated by reference, constitute the entire agreement between you and MYCURE regarding the use of Services.
+                    </p>
+                  </section>
+
+                  {/* Section 21: Assignment */}
+                  <section id="assignment" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">21. Assignment</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      You may not assign or transfer these Terms without our prior written consent. We may assign our rights and obligations under these Terms without restriction.
+                    </p>
+                  </section>
+
+                  {/* Section 22: Governing Law */}
+                  <section id="governing-law" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">22. Governing Law</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      These Terms shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Quezon City, Philippines.
+                    </p>
+                  </section>
+
+                  {/* Section 23: Notices */}
+                  <section id="notices" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">23. Notices</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      All notices under these Terms shall be in writing and deemed given when delivered personally, sent by confirmed email, or sent by certified mail, return receipt requested, to the addresses provided during registration or as updated in account settings.
+                    </p>
+                  </section>
+
+                  {/* Section 24: Contact Information */}
+                  <section id="contact-information" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">24. Contact Information</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      For questions about these Terms and Conditions, please contact us at:
                     </p>
                     <p className="mt-4">
                       <a href="mailto:helpdesk@mycure.md" className="text-primary hover:underline">
                         helpdesk@mycure.md
                       </a>
+                    </p>
+                  </section>
+
+                  {/* Section 25: Acknowledgment */}
+                  <section id="acknowledgment" className="mb-12">
+                    <h2 className="text-2xl font-semibold mb-4">25. Acknowledgment</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      BY USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS AND CONDITIONS, UNDERSTAND THEM, AND AGREE TO BE BOUND BY THEM. IF YOU DO NOT AGREE TO THESE TERMS AND CONDITIONS, YOU ARE NOT AUTHORIZED TO USE THE SERVICES.
                     </p>
                   </section>
                 </div>
@@ -448,7 +566,7 @@ export default function PrivacyPolicyPage() {
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
                 <div className="sticky top-24">
-                  <div className="border rounded-lg p-6">
+                  <div className="border rounded-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
                     <nav className="space-y-2">
                       {sections.map((section) => (

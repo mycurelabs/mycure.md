@@ -1751,7 +1751,7 @@ export default function LandingPage() {
                       </Link>
                     </li>
                     <li>
-                      <Link href="https://www.mycure.md/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                      <Link href="/terms-and-conditions" className="text-muted-foreground hover:text-foreground transition-colors">
                         Terms of Service
                       </Link>
                     </li>
@@ -1859,7 +1859,7 @@ export default function LandingPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://www.mycure.md/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/terms-and-conditions" className="text-muted-foreground hover:text-foreground transition-colors">
                     Terms of Service
                   </Link>
                 </li>
