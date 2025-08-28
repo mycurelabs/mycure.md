@@ -1695,9 +1695,6 @@ export default function LandingPage() {
                 <p className="text-sm text-muted-foreground">
                   Transforming healthcare management with innovative clinic solutions for providers worldwide.
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  © 2024 MYCURE. All rights reserved.
-                </p>
                 <div className="flex space-x-4">
                   <Link href="https://www.facebook.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1794,9 +1791,6 @@ export default function LandingPage() {
               <p className="text-sm text-muted-foreground">
                 Transforming healthcare management with innovative clinic solutions for providers worldwide.
               </p>
-              <p className="text-sm text-muted-foreground">
-                © 2024 MYCURE. All rights reserved.
-              </p>
               <div className="flex space-x-4">
                 <Link href="https://www.facebook.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1860,7 +1854,7 @@ export default function LandingPage() {
               <h3 className="font-semibold">Legal</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="https://www.mycure.md/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/privacy-policy" className="text-muted-foreground hover:text-foreground transition-colors">
                     Privacy Policy
                   </Link>
                 </li>
@@ -1872,6 +1866,13 @@ export default function LandingPage() {
               </ul>
             </div>
           </div>
+        </div>
+        
+        {/* Copyright - Bottom of Footer */}
+        <div className="container px-4 md:px-6 py-4 border-t">
+          <p className="text-xs text-muted-foreground text-center">
+            © {new Date().getFullYear()} MYCURE. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

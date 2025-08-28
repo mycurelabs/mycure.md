@@ -34,7 +34,16 @@
       "Bash(npx shadcn@latest add \"https://magicui.design/r/rainbow-button\")",
       "Bash(npx shadcn@latest add \"https://magicui.design/r/animated-shiny-text\")",
       "Bash(npx shadcn@latest add \"https://magicui.design/r/animated-gradient-text\")",
-      "Bash(npx shadcn:*)"
+      "Bash(npx shadcn:*)",
+      "Bash(git clone:*)",
+      "Read(/tmp/blog-template/**)",
+      "Read(/tmp/blog-template/app/**)",
+      "Read(/tmp/blog-template/app/blog/[slug]/**)",
+      "Read(/tmp/blog-template/app/**)",
+      "Read(/tmp/blog-template/**)",
+      "Read(/tmp/blog-template/components/**)",
+      "Read(/tmp/blog-template/components/**)",
+      "Read(/tmp/blog-template/blog/content/**)"
     ],
     "deny": [],
     "ask": []
