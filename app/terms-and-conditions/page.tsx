@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import {
   ArrowLeft,
   Moon,
@@ -155,7 +156,12 @@ export default function TermsAndConditionsPage() {
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 md:px-6 py-16 md:py-20">
-            <div className="max-w-4xl">
+            <motion.div 
+              className="max-w-4xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
                 Back to Home
@@ -169,7 +175,7 @@ export default function TermsAndConditionsPage() {
               <p className="text-sm text-muted-foreground">
                 Effective Date: August 29, 2025
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -182,7 +188,14 @@ export default function TermsAndConditionsPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
                   {/* Section 1: Acceptance of Terms */}
-                  <section id="acceptance" className="mb-12">
+                  <motion.section 
+                    id="acceptance" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       By accessing, browsing, or using the MYCURE platform ("Services"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to all the terms and conditions, you must not use the Services.
@@ -190,10 +203,17 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       These Terms constitute a legally binding agreement between you (or the entity you represent) and MYCURE.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 2: Eligibility */}
-                  <section id="eligibility" className="mb-12">
+                  <motion.section 
+                    id="eligibility" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">2. Eligibility</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       To use our Services, you must:
@@ -216,10 +236,17 @@ export default function TermsAndConditionsPage() {
                         <span>Not be barred from using the Services under applicable law.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 3: Account Registration */}
-                  <section id="account" className="mb-12">
+                  <motion.section 
+                    id="account" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">3. Account Registration</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       You must create an account to access certain features. You agree to:
@@ -246,10 +273,17 @@ export default function TermsAndConditionsPage() {
                         <span>Accept responsibility for all activities under your account.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 4: Services Provided */}
-                  <section id="services" className="mb-12">
+                  <motion.section 
+                    id="services" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">4. Services Provided</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       MYCURE provides healthcare management software including but not limited to:
@@ -283,10 +317,17 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       Services may vary based on your subscription plan and region.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 5: Use Restrictions */}
-                  <section id="use-restrictions" className="mb-12">
+                  <motion.section 
+                    id="use-restrictions" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">5. Use Restrictions</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       You agree NOT to:
@@ -325,10 +366,17 @@ export default function TermsAndConditionsPage() {
                         <span>Use automated systems to access the Services without permission.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 6: Payment and Billing */}
-                  <section id="payment" className="mb-12">
+                  <motion.section 
+                    id="payment" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">6. Payment and Billing</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       By subscribing to our paid Services, you agree to:
@@ -354,10 +402,17 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       All fees are non-refundable unless otherwise stated. We reserve the right to modify pricing with 30 days' notice.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 7: Refunds and Cancellations */}
-                  <section id="refunds" className="mb-12">
+                  <motion.section 
+                    id="refunds" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">7. Refunds and Cancellations</h2>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
@@ -377,10 +432,17 @@ export default function TermsAndConditionsPage() {
                         <span>We may offer refunds at our sole discretion for exceptional circumstances.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 8: Intellectual Property */}
-                  <section id="intellectual-property" className="mb-12">
+                  <motion.section 
+                    id="intellectual-property" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">8. Intellectual Property</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       All intellectual property rights in the Services, including software, content, features, and functionality, are owned by MYCURE or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Services in accordance with these Terms.
@@ -388,18 +450,26 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       You retain ownership of data you input into the Services but grant us a license to use, process, and store such data to provide the Services.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 9: Confidentiality */}
-                  <section id="confidentiality" className="mb-12">
+                  <motion.section 
+                    id="confidentiality" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">9. Confidentiality</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Both parties agree to maintain the confidentiality of any proprietary or confidential information disclosed during the use of Services. This includes but is not limited to technical data, business strategies, and patient information.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 10: Disclaimers */}
-                  <section id="disclaimers" className="mb-12">
+                  <motion.section 
+                    id="disclaimers" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">10. Disclaimers</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DISCLAIM ALL WARRANTIES INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
@@ -407,10 +477,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       We do not guarantee that the Services will be uninterrupted, secure, or error-free. We are not responsible for any medical decisions made using the Services.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 11: Limitation of Liability */}
-                  <section id="limitation" className="mb-12">
+                  <motion.section 
+                    id="limitation" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">11. Limitation of Liability</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       TO THE MAXIMUM EXTENT PERMITTED BY LAW, MYCURE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
@@ -418,18 +489,20 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       Our total liability shall not exceed the amount paid by you for the Services in the 12 months preceding the claim.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 12: Indemnification */}
-                  <section id="indemnification" className="mb-12">
+                  <motion.section 
+                    id="indemnification" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">12. Indemnification</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       You agree to indemnify, defend, and hold harmless MYCURE, its affiliates, officers, directors, employees, and agents from any claims, damages, losses, liabilities, costs, and expenses arising from your use of the Services, violation of these Terms, or infringement of any third-party rights.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 13: Healthcare Compliance */}
-                  <section id="compliance" className="mb-12">
+                  <motion.section 
+                    id="compliance" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">13. Healthcare Compliance</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       You acknowledge that the use of Services in healthcare settings may be subject to various regulations including but not limited to HIPAA, Data Privacy Act, and local healthcare laws. You are responsible for ensuring your use of the Services complies with all applicable regulations.
@@ -437,26 +510,29 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       We will maintain appropriate safeguards for protected health information as required by law.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 14: Third-Party Services */}
-                  <section id="third-party" className="mb-12">
+                  <motion.section 
+                    id="third-party" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">14. Third-Party Services</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       The Services may integrate with or link to third-party services. We are not responsible for the content, accuracy, or practices of third-party services. Your use of third-party services is governed by their respective terms and policies.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 15: Modifications to Service */}
-                  <section id="modifications" className="mb-12">
+                  <motion.section 
+                    id="modifications" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">15. Modifications to Service</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       We reserve the right to modify, suspend, or discontinue any part of the Services at any time. We will provide reasonable notice for significant changes that materially affect your use of the Services.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 16: Termination */}
-                  <section id="termination" className="mb-12">
+                  <motion.section 
+                    id="termination" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">16. Termination</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We may terminate or suspend your account immediately, without prior notice, if:
@@ -482,66 +558,74 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       Upon termination, your right to use the Services will immediately cease. We will retain and use your information as necessary to comply with legal obligations.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 17: Data Security and Privacy */}
-                  <section id="data-security" className="mb-12">
+                  <motion.section 
+                    id="data-security" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">17. Data Security and Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Your use of the Services is also governed by our Privacy Policy. We implement industry-standard security measures to protect your data, but cannot guarantee absolute security. You are responsible for maintaining the security of your account credentials.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 18: Force Majeure */}
-                  <section id="force-majeure" className="mb-12">
+                  <motion.section 
+                    id="force-majeure" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">18. Force Majeure</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Neither party shall be liable for any delay or failure to perform due to causes beyond their reasonable control, including but not limited to acts of God, natural disasters, war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, accidents, strikes, or shortages of transportation, facilities, fuel, energy, labor, or materials.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 19: Severability */}
-                  <section id="severability" className="mb-12">
+                  <motion.section 
+                    id="severability" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">19. Severability</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that these Terms shall otherwise remain in full force and effect.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 20: Entire Agreement */}
-                  <section id="entire-agreement" className="mb-12">
+                  <motion.section 
+                    id="entire-agreement" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">20. Entire Agreement</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       These Terms, together with our Privacy Policy and any other agreements expressly incorporated by reference, constitute the entire agreement between you and MYCURE regarding the use of Services.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 21: Assignment */}
-                  <section id="assignment" className="mb-12">
+                  <motion.section 
+                    id="assignment" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">21. Assignment</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       You may not assign or transfer these Terms without our prior written consent. We may assign our rights and obligations under these Terms without restriction.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 22: Governing Law */}
-                  <section id="governing-law" className="mb-12">
+                  <motion.section 
+                    id="governing-law" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">22. Governing Law</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       These Terms shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Quezon City, Philippines.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 23: Notices */}
-                  <section id="notices" className="mb-12">
+                  <motion.section 
+                    id="notices" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">23. Notices</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       All notices under these Terms shall be in writing and deemed given when delivered personally, sent by confirmed email, or sent by certified mail, return receipt requested, to the addresses provided during registration or as updated in account settings.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 24: Contact Information */}
-                  <section id="contact-information" className="mb-12">
+                  <motion.section 
+                    id="contact-information" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">24. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       For questions about these Terms and Conditions, please contact us at:
@@ -551,21 +635,27 @@ export default function TermsAndConditionsPage() {
                         helpdesk@mycure.md
                       </a>
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 25: Acknowledgment */}
-                  <section id="acknowledgment" className="mb-12">
+                  <motion.section 
+                    id="acknowledgment" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">25. Acknowledgment</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       BY USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS AND CONDITIONS, UNDERSTAND THEM, AND AGREE TO BE BOUND BY THEM. IF YOU DO NOT AGREE TO THESE TERMS AND CONDITIONS, YOU ARE NOT AUTHORIZED TO USE THE SERVICES.
                     </p>
-                  </section>
+                  </motion.section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <div className="sticky top-24">
+                <motion.div 
+                  className="sticky top-24"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <div className="border rounded-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
                     <nav className="space-y-2">
@@ -584,7 +674,7 @@ export default function TermsAndConditionsPage() {
                       ))}
                     </nav>
                   </div>
-                </div>
+                </motion.div>
               </aside>
             </div>
           </div>

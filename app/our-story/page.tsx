@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import {
   ArrowLeft,
   Moon,
@@ -143,7 +144,12 @@ export default function OurStoryPage() {
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 md:px-6 py-16 md:py-20">
-            <div className="max-w-4xl">
+            <motion.div 
+              className="max-w-4xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
                 Back to Home
@@ -154,7 +160,7 @@ export default function OurStoryPage() {
               <p className="text-xl text-muted-foreground">
                 MYCURE starts and ends with real people
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -187,7 +193,14 @@ export default function OurStoryPage() {
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 1: Meet Paulette */}
-                  <section id="meet-paulette" className="mb-20">
+                  <motion.section 
+                    id="meet-paulette" 
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <div className="md:flex md:gap-8 items-start">
                       <div className="md:w-2/5 mb-6 md:mb-0">
                         <Image 
@@ -222,12 +235,19 @@ export default function OurStoryPage() {
                         </p>
                       </div>
                     </div>
-                  </section>
+                  </motion.section>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 2: About the Founders */}
-                  <section id="about-founders" className="mb-20">
+                  <motion.section 
+                    id="about-founders" 
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-3xl font-semibold mb-8">About the Founders</h2>
                     
                     <div className="grid md:grid-cols-2 gap-12">
@@ -263,12 +283,19 @@ export default function OurStoryPage() {
                         </p>
                       </div>
                     </div>
-                  </section>
+                  </motion.section>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 3: The Problem */}
-                  <section id="the-problem" className="mb-20">
+                  <motion.section 
+                    id="the-problem" 
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-3xl font-semibold mb-6">The Problem</h2>
                     
                     <div className="mb-6">
@@ -288,12 +315,19 @@ export default function OurStoryPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Thus health professionals are unable to optimize patient healthcare. In the same manner, patients have difficulty monitoring and organizing their medical data and history.
                     </p>
-                  </section>
+                  </motion.section>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 4: Our Purpose */}
-                  <section id="our-purpose" className="mb-20">
+                  <motion.section 
+                    id="our-purpose" 
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-3xl font-semibold mb-6">Our Purpose</h2>
                     
                     <div className="mb-6">
@@ -321,12 +355,19 @@ export default function OurStoryPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       They are our true inspirations, the reasons for our being and existence.
                     </p>
-                  </section>
+                  </motion.section>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 5: Our Values */}
-                  <section id="our-values" className="mb-20">
+                  <motion.section 
+                    id="our-values" 
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-3xl font-semibold mb-8">Our Values</h2>
                     
                     <p className="text-muted-foreground leading-relaxed mb-6">
@@ -351,13 +392,18 @@ export default function OurStoryPage() {
                         className="rounded-lg w-full object-cover"
                       />
                     </div>
-                  </section>
+                  </motion.section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <div className="sticky top-24">
+                <motion.div 
+                  className="sticky top-24"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <div className="border rounded-lg p-6">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
                     <nav className="space-y-2">
@@ -376,7 +422,7 @@ export default function OurStoryPage() {
                       ))}
                     </nav>
                   </div>
-                </div>
+                </motion.div>
               </aside>
             </div>
           </div>

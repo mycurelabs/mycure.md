@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import {
   ArrowLeft,
   Moon,
@@ -143,7 +144,12 @@ export default function PrivacyPolicyPage() {
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 md:px-6 py-16 md:py-20">
-            <div className="max-w-4xl">
+            <motion.div 
+              className="max-w-4xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
                 Back to Home
@@ -157,7 +163,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-sm text-muted-foreground">
                 Effective Date: August 29, 2025
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -170,7 +176,14 @@ export default function PrivacyPolicyPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
                   {/* Section 1: Introduction */}
-                  <section id="introduction" className="mb-12">
+                  <motion.section 
+                    id="introduction" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       This Privacy Policy explains how MYCURE ("we," "our," "us") collects, uses, discloses, and safeguards personal data. We are committed to protecting your privacy in compliance with the Philippine Data Privacy Act of 2012 (DPA) and aligned with global standards such as the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA).
@@ -178,10 +191,17 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       By accessing or using our services, you consent to the practices described in this Privacy Policy.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 2: Information We Collect */}
-                  <section id="information-we-collect" className="mb-12">
+                  <motion.section 
+                    id="information-we-collect" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We may collect the following categories of personal information:
@@ -212,10 +232,17 @@ export default function PrivacyPolicyPage() {
                         <span><strong>Other Information</strong> – any additional data you voluntarily provide.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 3: Lawful Basis for Processing */}
-                  <section id="lawful-basis" className="mb-12">
+                  <motion.section 
+                    id="lawful-basis" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">3. Lawful Basis for Processing</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We process personal data based on the following grounds:
@@ -238,10 +265,17 @@ export default function PrivacyPolicyPage() {
                         <span>Consent (when explicitly required, such as marketing or sensitive data use).</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 4: How We Use Information */}
-                  <section id="how-we-use" className="mb-12">
+                  <motion.section 
+                    id="how-we-use" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">4. How We Use Information</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We use personal information for:
@@ -272,10 +306,17 @@ export default function PrivacyPolicyPage() {
                         <span>Preventing fraud, misuse, or unlawful activity.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 5: Sharing and Disclosure */}
-                  <section id="sharing-disclosure" className="mb-12">
+                  <motion.section 
+                    id="sharing-disclosure" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">5. Sharing and Disclosure</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We do not sell personal information. Data may be shared only with:
@@ -298,10 +339,17 @@ export default function PrivacyPolicyPage() {
                         <span><strong>Business Transfers</strong> – mergers, acquisitions, or restructuring, ensuring data protection continuity.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 6: Data Retention */}
-                  <section id="data-retention" className="mb-12">
+                  <motion.section 
+                    id="data-retention" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">6. Data Retention</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We retain personal data only as long as necessary for:
@@ -323,10 +371,17 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       When no longer needed, data will be securely deleted or anonymized.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 7: Data Security */}
-                  <section id="data-security" className="mb-12">
+                  <motion.section 
+                    id="data-security" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">7. Data Security</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We implement administrative, technical, and physical safeguards including:
@@ -349,10 +404,17 @@ export default function PrivacyPolicyPage() {
                         <span>Secure storage and transmission protocols.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 8: User Rights */}
-                  <section id="user-rights" className="mb-12">
+                  <motion.section 
+                    id="user-rights" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">8. User Rights</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       Subject to applicable laws, you have the right to:
@@ -386,26 +448,47 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">
                       Requests can be submitted via the contact information provided below.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 9: Children's Privacy */}
-                  <section id="childrens-privacy" className="mb-12">
+                  <motion.section 
+                    id="childrens-privacy" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">9. Children's Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       We do not knowingly collect personal data from children under 13 years old (or the age required by local law). If collected in a healthcare context, parental/guardian consent will always be required.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 10: International Data Transfers */}
-                  <section id="international-transfers" className="mb-12">
+                  <motion.section 
+                    id="international-transfers" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">10. International Data Transfers</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       If personal data is transferred outside the Philippines, we ensure adequate safeguards (e.g., contractual clauses, equivalent protection laws) to protect your data.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 11: Data Breach Notification */}
-                  <section id="breach-notification" className="mb-12">
+                  <motion.section 
+                    id="breach-notification" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">11. Data Breach Notification</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       In the event of a data breach, we will:
@@ -420,18 +503,32 @@ export default function PrivacyPolicyPage() {
                         <span>Provide details on scope, risks, and mitigation steps.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 12: Changes to This Policy */}
-                  <section id="policy-changes" className="mb-12">
+                  <motion.section 
+                    id="policy-changes" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">12. Changes to This Policy</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       We may update this Privacy Policy from time to time. Changes will be notified via email or platform announcements. Continued use of our services after updates constitutes acceptance.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 13: Contact Information */}
-                  <section id="contact" className="mb-12">
+                  <motion.section 
+                    id="contact" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">13. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       For questions, concerns, or to exercise your rights, please contact us at:
@@ -441,13 +538,18 @@ export default function PrivacyPolicyPage() {
                         helpdesk@mycure.md
                       </a>
                     </p>
-                  </section>
+                  </motion.section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <div className="sticky top-24">
+                <motion.div 
+                  className="sticky top-24"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <div className="border rounded-lg p-6">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
                     <nav className="space-y-2">
@@ -466,7 +568,7 @@ export default function PrivacyPolicyPage() {
                       ))}
                     </nav>
                   </div>
-                </div>
+                </motion.div>
               </aside>
             </div>
           </div>

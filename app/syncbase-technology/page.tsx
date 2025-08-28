@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import {
   ArrowLeft,
   Moon,
@@ -142,7 +143,12 @@ export default function SyncbaseTechnologyPage() {
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 md:px-6 py-16 md:py-20">
-            <div className="max-w-4xl">
+            <motion.div 
+              className="max-w-4xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
                 Back to Home
@@ -156,7 +162,7 @@ export default function SyncbaseTechnologyPage() {
               <p className="text-lg text-muted-foreground">
                 MYCURE Syncbase is the cost-effective setup for your clinic management system. It enables clinics and hospitals to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
               </p>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -169,7 +175,14 @@ export default function SyncbaseTechnologyPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
                   {/* Section 1: Why Syncbase? */}
-                  <section id="why-syncbase" className="mb-12">
+                  <motion.section 
+                    id="why-syncbase" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">Why Syncbase?</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       Setting up a health information system is a major investment for healthcare facilities. Traditional desktop-based applications often require expensive hardware and on-premise servers to run onsite.
@@ -196,10 +209,17 @@ export default function SyncbaseTechnologyPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       It lets you work offline without disruption and syncs your data to the cloud once you're back online.
                     </p>
-                  </section>
+                  </motion.section>
 
                   {/* Section 2: Key Features */}
-                  <section id="key-features" className="mb-12">
+                  <motion.section 
+                    id="key-features" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-6">Key Features</h2>
                     
                     <div className="mb-8">
@@ -243,10 +263,17 @@ export default function SyncbaseTechnologyPage() {
                         </li>
                       </ul>
                     </div>
-                  </section>
+                  </motion.section>
 
                   {/* Section 3: Security & Privacy */}
-                  <section id="security-privacy" className="mb-12">
+                  <motion.section 
+                    id="security-privacy" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">Security & Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                       MYCURE is designed with healthcare-grade data protection in mind. It complies with international standards for patient data privacy and security.
@@ -273,10 +300,17 @@ export default function SyncbaseTechnologyPage() {
                         <span><strong>Compliance with Data Privacy Standards</strong> – built around international healthcare privacy requirements.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 4: Benefits */}
-                  <section id="benefits" className="mb-12">
+                  <motion.section 
+                    id="benefits" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">Benefits</h2>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
@@ -296,10 +330,17 @@ export default function SyncbaseTechnologyPage() {
                         <span>Protects sensitive patient information at every step.</span>
                       </li>
                     </ul>
-                  </section>
+                  </motion.section>
 
                   {/* Section 5: Demo */}
-                  <section id="demo" className="mb-12">
+                  <motion.section 
+                    id="demo" 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <h2 className="text-2xl font-semibold mb-4">Demo</h2>
                     <ul className="space-y-3 text-muted-foreground mb-6">
                       <li className="flex gap-2">
@@ -333,13 +374,18 @@ export default function SyncbaseTechnologyPage() {
                         </ShimmerButton>
                       </Link>
                     </div>
-                  </section>
+                  </motion.section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <div className="sticky top-24">
+                <motion.div 
+                  className="sticky top-24"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <div className="border rounded-lg p-6">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
                     <nav className="space-y-2">
@@ -358,7 +404,7 @@ export default function SyncbaseTechnologyPage() {
                       ))}
                     </nav>
                   </div>
-                </div>
+                </motion.div>
               </aside>
             </div>
           </div>
