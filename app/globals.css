@@ -52,6 +52,14 @@ body {
     --color-3: oklch(69.6% 0.165 251);
     --color-4: oklch(80.2% 0.134 225);
     --color-5: oklch(90.7% 0.231 133);
+    
+    /* Dynamic gradient colors for light mode */
+    --gradient-primary: #008FCC;
+    --gradient-secondary: #0085CC;
+    --gradient-tertiary: #00B8CC;
+    --gradient-quaternary: #0099CC;
+    --gradient-quinary: #0099CC;
+    --gradient-bg: #c7e2ff;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -91,6 +99,14 @@ body {
     --color-3: oklch(69.6% 0.165 251);
     --color-4: oklch(80.2% 0.134 225);
     --color-5: oklch(90.7% 0.231 133);
+    
+    /* Dynamic gradient colors for dark mode */
+    --gradient-primary: #33A6D6;
+    --gradient-secondary: #3BA2D6;
+    --gradient-tertiary: #4DC2D6;
+    --gradient-quaternary: #47B8D6;
+    --gradient-quinary: #47B8D6;
+    --gradient-bg: #1a2631;
   }
   .theme {
     --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
@@ -98,6 +114,23 @@ body {
     --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
     --animate-shiny-text: shiny-text 8s infinite;
     --animate-gradient: gradient 8s linear infinite;
+  }
+
+  /* Dynamic gradient backgrounds for sections */
+  .brand-gradient-bg {
+    background: radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), 
+                radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), 
+                radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), 
+                radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), 
+                radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff;
+  }
+
+  .dark .brand-gradient-bg {
+    background: radial-gradient(at 19% 67%, #33A6D6 0px, transparent 50%), 
+                radial-gradient(at 24% 7%, #3BA2D6 0px, transparent 50%), 
+                radial-gradient(at 63% 87%, #4DC2D6 0px, transparent 50%), 
+                radial-gradient(at 61% 5%, #47B8D6 0px, transparent 50%), 
+                radial-gradient(at 67% 17%, #47B8D6 0px, transparent 50%) #1a2631;
   }
 }
 

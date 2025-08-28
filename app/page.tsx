@@ -389,12 +389,7 @@ export default function LandingPage() {
       </header>
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden text-primary-foreground relative" style={{
-          "--_gradient-blend-mode": "normal",
-          "--_gradient-blur": "0px",
-          background: "radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff",
-          mixBlendMode: "var(--_gradient-blend-mode)"
-        } as React.CSSProperties}>
+        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden text-white relative brand-gradient-bg">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -587,8 +582,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
             >
-              <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-block h-8 flex items-center justify-center">
-                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={150}>
+              <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
+                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent" shimmerWidth={150}>
                   Features
                 </AnimatedShinyText>
               </div>
@@ -622,12 +617,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Medical Data Tracker Section */}
-        <section className="w-full py-20 md:py-32 text-primary-foreground relative overflow-hidden" style={{
-          "--_gradient-blend-mode": "normal",
-          "--_gradient-blur": "0px",
-          background: "radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff",
-          mixBlendMode: "var(--_gradient-blend-mode)"
-        } as React.CSSProperties}>
+        <section className="w-full py-20 md:py-32 text-primary-foreground relative overflow-hidden brand-gradient-bg">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -703,7 +693,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Image + Content Features Section */}
-        <section className="w-full py-20 md:py-32 bg-white">
+        <section className="w-full py-20 md:py-32 bg-white dark:bg-[#1a1a1a]">
           <div className="container px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -712,8 +702,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-block h-8 flex items-center justify-center">
-                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={150}>
+              <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
+                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={150}>
                   Why Choose MYCURE
                 </AnimatedShinyText>
               </div>
@@ -1073,8 +1063,8 @@ export default function LandingPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                   >
-                    <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-flex items-center justify-center h-8 w-fit">
-                      <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent !leading-none" shimmerWidth={140}>
+                    <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8 w-fit">
+                      <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={140}>
                         Healthcare Excellence
                       </AnimatedShinyText>
                     </div>
@@ -1113,7 +1103,7 @@ export default function LandingPage() {
                       </p>
                       <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border border-primary/20">
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
+                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                                 <Calendar className="w-4 h-4 text-white" />
@@ -1123,8 +1113,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Today 2:30 PM</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-primary/20 border border-primary/30 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={120}>Confirmed</AnimatedShinyText>
+                            <div className="text-xs bg-primary/30 dark:bg-primary/60 border border-primary/40 dark:border-primary/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={120}>Confirmed</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1157,7 +1147,7 @@ export default function LandingPage() {
                       </p>
                       <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
+                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
                                 <Zap className="w-4 h-4 text-white" />
@@ -1167,8 +1157,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">2,847 active files</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-purple-600 !bg-gradient-to-r !from-transparent !via-purple-600/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={160}>HIPAA Compliant</AnimatedShinyText>
+                            <div className="text-xs bg-purple-500/30 dark:bg-purple-500/60 border border-purple-500/40 dark:border-purple-500/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-purple-600 dark:!text-purple-200 !bg-gradient-to-r !from-transparent !via-purple-600/80 dark:!via-purple-200/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={160}>HIPAA Compliant</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1201,7 +1191,7 @@ export default function LandingPage() {
                       </p>
                       <div className="bg-gradient-to-br from-orange-500/5 to-orange-500/10 rounded-2xl p-6 border border-orange-500/20">
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
+                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
                                 <Video className="w-4 h-4 text-white" />
@@ -1211,8 +1201,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">256-bit AES encryption</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-orange-500/20 border border-orange-500/30 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-orange-600 !bg-gradient-to-r !from-transparent !via-orange-600/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={100}>Active</AnimatedShinyText>
+                            <div className="text-xs bg-orange-500/30 dark:bg-orange-500/60 border border-orange-500/40 dark:border-orange-500/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-orange-600 dark:!text-orange-200 !bg-gradient-to-r !from-transparent !via-orange-600/80 dark:!via-orange-200/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={100}>Active</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1245,7 +1235,7 @@ export default function LandingPage() {
                       </p>
                       <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/80 rounded-xl">
+                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                                 <WifiOff className="w-4 h-4 text-white" />
@@ -1255,8 +1245,8 @@ export default function LandingPage() {
                                 <div className="text-xs text-muted-foreground">Real-time insights</div>
                               </div>
                             </div>
-                            <div className="text-xs bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-green-600 !bg-gradient-to-r !from-transparent !via-green-600/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={110}>SYNCED</AnimatedShinyText>
+                            <div className="text-xs bg-green-500/30 dark:bg-green-500/60 border border-green-500/40 dark:border-green-500/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
+                              <AnimatedShinyText className="!mx-0 !max-w-none !text-green-600 dark:!text-green-200 !bg-gradient-to-r !from-transparent !via-green-600/80 dark:!via-green-200/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={110}>SYNCED</AnimatedShinyText>
                             </div>
                           </div>
                         </div>
@@ -1477,8 +1467,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <div className="rounded-full px-3 py-1 bg-primary/10 border border-primary/20 inline-block h-8 flex items-center justify-center">
-                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] !bg-gradient-to-r !from-transparent !via-[#004d66]/80 !via-50% !to-transparent" shimmerWidth={150}>
+              <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
+                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent" shimmerWidth={150}>
                   How It Works
                 </AnimatedShinyText>
               </div>
@@ -1582,13 +1572,7 @@ export default function LandingPage() {
         {/* FAQ Section */}
         <section
           id="faq"
-          className="w-full py-20 md:py-32 text-primary-foreground relative overflow-hidden"
-          style={{
-            "--_gradient-blend-mode": "normal",
-            "--_gradient-blur": "0px",
-            background: "radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff",
-            mixBlendMode: "var(--_gradient-blend-mode)"
-          } as React.CSSProperties}
+          className="w-full py-20 md:py-32 text-white relative overflow-hidden brand-gradient-bg"
         >
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
