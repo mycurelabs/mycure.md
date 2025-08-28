@@ -461,6 +461,11 @@ export default function SyncbaseTechnologyPage() {
                       </Link>
                     </li>
                     <li>
+                      <Link href="/our-story" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Our Story
+                      </Link>
+                    </li>
+                    <li>
                       <Link href="/syncbase-technology" className="text-muted-foreground hover:text-foreground transition-colors">
                         Syncbase
                       </Link>
@@ -549,6 +554,11 @@ export default function SyncbaseTechnologyPage() {
                 <li>
                   <Link href="https://blog.mycure.md/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                     Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/our-story" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Our Story
                   </Link>
                 </li>
                 <li>
