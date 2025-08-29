@@ -507,7 +507,7 @@ export default function LandingPage() {
                 className="space-y-8 md:space-y-12 max-w-6xl mx-auto"
               >
                 {/* Top Row - 5 Logos */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 lg:gap-8 place-items-center">
+                <div className="flex items-center justify-center gap-6 md:gap-8 lg:gap-12 flex-wrap">
                   {[
                     { name: "Medicard", src: "/Client Logos/Medicard.png" },
                     { name: "Skin 101", src: "/Client Logos/Skin 101.png" },
@@ -524,9 +524,9 @@ export default function LandingPage() {
                       <Image
                         src={logo.src}
                         alt={`${logo.name} logo`}
-                        width={160}
-                        height={80}
-                        className="w-24 h-14 sm:w-28 sm:h-16 md:w-32 md:h-18 lg:w-36 lg:h-20 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
+                        width={120}
+                        height={60}
+                        className="w-16 h-10 sm:w-18 sm:h-11 md:w-20 md:h-12 lg:w-24 lg:h-14 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
                       />
                       <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-sm font-medium rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-50 whitespace-nowrap">
                         {logo.name}
@@ -537,9 +537,9 @@ export default function LandingPage() {
                 </div>
                 
                 {/* Bottom Row - 5 Logos */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 lg:gap-8 place-items-center">
+                <div className="flex items-center justify-center gap-6 md:gap-8 lg:gap-12 flex-wrap">
                   {[
-                    { name: "Vicente L. Danguilan Memorial Clinic", src: "/Client Logos/Vicente L. Danguilan Memorial Clinic .png" },
+                    { name: "Vicente L. Danguilan Memorial Clinic", src: "/Client Logos/Vicente L. Danguilan Memorial Clinic .jpeg" },
                     { name: "Lablife Medical & Diagnostic Center", src: "/Client Logos/Lablife Medical & Diagnostic Center-Murphy Cubao.png" },
                     { name: "Newport EW Villa Medica", src: "/Client Logos/Newport EW Villa Medica.png" },
                     { name: "PhilCare", src: "/Client Logos/PhilCare.png" },
@@ -554,9 +554,9 @@ export default function LandingPage() {
                       <Image
                         src={logo.src}
                         alt={`${logo.name} logo`}
-                        width={160}
-                        height={80}
-                        className="w-24 h-14 sm:w-28 sm:h-16 md:w-32 md:h-18 lg:w-36 lg:h-20 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
+                        width={120}
+                        height={60}
+                        className="w-16 h-10 sm:w-18 sm:h-11 md:w-20 md:h-12 lg:w-24 lg:h-14 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
                       />
                       <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-sm font-medium rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-50 whitespace-nowrap">
                         {logo.name}
