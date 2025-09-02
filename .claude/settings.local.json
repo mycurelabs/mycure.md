@@ -44,7 +44,8 @@
       "Read(/tmp/blog-template/components/**)",
       "Read(/tmp/blog-template/components/**)",
       "Read(/tmp/blog-template/blog/content/**)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
