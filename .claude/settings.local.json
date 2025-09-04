@@ -46,7 +46,10 @@
       "Read(/tmp/blog-template/blog/content/**)",
       "Bash(lsof:*)",
       "Bash(mkdir:*)",
-      "mcp__playwright-mcp__browser_take_screenshot"
+      "mcp__playwright-mcp__browser_take_screenshot",
+      "mcp__playwright-mcp__browser_wait_for",
+      "mcp__playwright-mcp__browser_evaluate",
+      "mcp__playwright-mcp__browser_resize"
     ],
     "deny": [],
     "ask": []

@@ -351,7 +351,7 @@ export default function ClinicsPage() {
 
       <main className="flex-1">
         {/* Hero Section - Split Layout */}
-        <section id="hero" className="w-full py-6">
+        <section id="hero" className="w-full py-8 sm:py-12 md:py-20 bg-background">
           <div className="container px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               {/* Hero Image - Shows first on mobile, left side on desktop */}
@@ -388,12 +388,12 @@ export default function ClinicsPage() {
                     </div>
                   </div>
                   
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
                     The All-in-One{" "}
                     <span className="text-primary">Clinic Management System</span>{" "}
                     That Actually Works
                   </h1>
-                  <p className="text-lg text-muted-foreground">
+                  <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
                     From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
                     Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
                   </p>
@@ -401,7 +401,7 @@ export default function ClinicsPage() {
                 <div className="flex justify-center lg:justify-start">
                   <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
                     <ShimmerButton 
-                      className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                      className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                       background="#0099CC"
                       shimmerColor="#ffffff"
                       shimmerDuration="2s"
@@ -417,8 +417,8 @@ export default function ClinicsPage() {
         </section>
 
         {/* Solutions Section (formerly Problem Statement) */}
-        <section id="solutions" className="w-full py-16 md:py-24 bg-background">
-          <div className="container px-4 md:px-6">
+        <section id="solutions" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -433,10 +433,10 @@ export default function ClinicsPage() {
                   </AnimatedShinyText>
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                 Turn Daily Challenges Into Success Stories
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
               </p>
             </motion.div>
@@ -487,8 +487,8 @@ export default function ClinicsPage() {
         </section>
 
         {/* Solution Section */}
-        <section id="solution" className="w-full py-16 md:py-24">
-          <div className="container px-4 md:px-6">
+        <section id="solution" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
             {/* Content Section - Centered Vertical Layout */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -507,13 +507,13 @@ export default function ClinicsPage() {
               </div>
               
               {/* Headline */}
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                 Everything Your Clinic Needs.<br />
                 Nothing It Doesn't.
               </h2>
               
               {/* Subheadline */}
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 MYCURE brings together the three core functions every clinic depends on—medical records, 
                 patient scheduling, and billing—in one comprehensive platform that works offline and 
                 reduces admin time by 60%.
@@ -523,7 +523,7 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
                   <ShimmerButton 
-                    className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     background="#0099CC"
                     shimmerColor="#ffffff"
                     shimmerDuration="2s"
@@ -565,8 +565,8 @@ export default function ClinicsPage() {
         </section>
 
         {/* Features Section - Patient Journey */}
-        <section id="features" className="w-full py-16 bg-muted/30">
-          <div className="container px-4 md:px-6">
+        <section id="features" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -592,7 +592,7 @@ export default function ClinicsPage() {
                 
                 {/* Subheadline */}
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Discover why 780+ clinics switched to MYCURE's integrated workflow that connects every 
+                  Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every 
                   touchpoint—from booking to billing—in one intuitive platform that your entire team 
                   can master in minutes.
                 </p>
@@ -716,7 +716,7 @@ export default function ClinicsPage() {
           end="bottom top"
           scrub={true}
         >
-          <section id="csi-guarantee" className="w-full py-12 md:py-20 mb-20 md:mb-32 relative">
+          <section id="csi-guarantee" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
             <div className="container px-4 md:px-6">
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 {/* Sticky Left Content */}
@@ -732,11 +732,11 @@ export default function ClinicsPage() {
                         MYCURE CSI Guarantee
                       </AnimatedShinyText>
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
                       Protected by Design,<br />
                       Compliant by Default
                     </h2>
-                    <p className="text-lg md:text-xl text-muted-foreground mt-6 max-w-lg">
+                    <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">
                       Your patients trust you with their most sensitive health information. MYCURE CSI ensures 
                       that trust is never broken with enterprise-grade security, automatic compliance, and 
                       seamless interoperability.
@@ -932,8 +932,8 @@ export default function ClinicsPage() {
         </Scrollytelling.Root>
 
         {/* Specialties Section - Card Grid Style */}
-        <section id="specialties" className="w-full py-16 md:py-24 bg-background">
-          <div className="container px-4 md:px-6">
+        <section id="specialties" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -948,10 +948,10 @@ export default function ClinicsPage() {
                   </AnimatedShinyText>
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                 One Platform. Every Specialty.
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 MYCURE adapts to your practice with specialized workflows for every medical field. 
                 Experience healthcare technology that speaks your specialty's language.
               </p>
@@ -1003,8 +1003,8 @@ export default function ClinicsPage() {
         </section>
 
         {/* Advantages Section - Image + Content Features */}
-        <section id="advantages" className="w-full py-20 md:py-32 bg-white dark:bg-[#1a1a1a]">
-          <div className="container px-4 md:px-6">
+        <section id="advantages" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1017,9 +1017,9 @@ export default function ClinicsPage() {
                   The MYCURE Advantage
                 </AnimatedShinyText>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Why Clinics Choose MYCURE</h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Experience the features that make MYCURE the trusted choice for over 780 clinics nationwide.
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Why Clinics Choose MYCURE</h2>
+              <p className="max-w-[800px] text-muted-foreground text-xl md:text-2xl leading-relaxed">
+                Experience the features that make MYCURE the trusted choice for clinics nationwide.
               </p>
             </motion.div>
 
@@ -1046,8 +1046,8 @@ export default function ClinicsPage() {
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       {React.createElement(advantages[0].icon, { className: "size-6" })}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">{advantages[0].title}</h3>
-                    <p className="text-muted-foreground text-lg">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">{advantages[0].title}</h3>
+                    <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
                       {advantages[0].description}
                     </p>
                   </div>
@@ -1075,8 +1075,8 @@ export default function ClinicsPage() {
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       {React.createElement(advantages[1].icon, { className: "size-6" })}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">{advantages[1].title}</h3>
-                    <p className="text-muted-foreground text-lg">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">{advantages[1].title}</h3>
+                    <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
                       {advantages[1].description}
                     </p>
                   </div>
@@ -1122,8 +1122,8 @@ export default function ClinicsPage() {
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       {React.createElement(advantages[2].icon, { className: "size-6" })}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">{advantages[2].title}</h3>
-                    <p className="text-muted-foreground text-lg">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">{advantages[2].title}</h3>
+                    <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
                       {advantages[2].description}
                     </p>
                   </div>
@@ -1151,8 +1151,8 @@ export default function ClinicsPage() {
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       {React.createElement(advantages[3].icon, { className: "size-6" })}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">{advantages[3].title}</h3>
-                    <p className="text-muted-foreground text-lg">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">{advantages[3].title}</h3>
+                    <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
                       {advantages[3].description}
                     </p>
                   </div>
@@ -1180,8 +1180,8 @@ export default function ClinicsPage() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-background to-muted/30">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1191,10 +1191,10 @@ export default function ClinicsPage() {
             >
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                  <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
                     Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
                   </h2>
-                  <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                     Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
                     patient care.
                   </p>
@@ -1203,7 +1203,7 @@ export default function ClinicsPage() {
                 <div className="flex justify-center items-center">
                   <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
                     <ShimmerButton
-                      className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                      className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                       background="#0099CC"
                       shimmerColor="#ffffff"
                       shimmerDuration="3s"

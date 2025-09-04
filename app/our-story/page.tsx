@@ -143,7 +143,7 @@ export default function OurStoryPage() {
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
-          <div className="container px-4 md:px-6 py-16 md:py-20">
+          <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
             <motion.div 
               className="max-w-4xl"
               initial={{ opacity: 0, y: 20 }}
@@ -154,10 +154,10 @@ export default function OurStoryPage() {
                 <ArrowLeft className="size-4" />
                 Back to Home
               </Link>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
                 Our Story
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
                 MYCURE starts and ends with real people
               </p>
             </motion.div>
@@ -166,7 +166,7 @@ export default function OurStoryPage() {
 
         {/* Content Section with TOC */}
         <section className="w-full">
-          <div className="container px-4 md:px-6 py-12">
+          <div className="container px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
             <div className="flex gap-12">
               {/* Main Content */}
               <div className="flex-1 max-w-4xl">
@@ -174,7 +174,7 @@ export default function OurStoryPage() {
                   
                   {/* YouTube Video */}
                   <div className="mb-8">
-                    <h2 className="text-3xl font-semibold mb-3">Watch Our Journey</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3">Watch Our Journey</h2>
                     <p className="text-lg text-muted-foreground">
                       Discover how personal experience shaped our mission to transform healthcare
                     </p>
@@ -212,7 +212,7 @@ export default function OurStoryPage() {
                         />
                       </div>
                       <div className="md:w-3/5">
-                        <h2 className="text-3xl font-semibold mb-6">Meet Paulette</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">Meet Paulette</h2>
                         
                         <p className="text-muted-foreground leading-relaxed mb-4">
                           Paulette became a young widow at age 30. Her two children were just 4- and 6-year olds then. Despite limited resources, she managed to give her kids a good life.
@@ -248,7 +248,7 @@ export default function OurStoryPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-3xl font-semibold mb-8">About the Founders</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">About the Founders</h2>
                     
                     <div className="grid md:grid-cols-2 gap-12">
                       {/* Dale's Column */}
@@ -296,7 +296,7 @@ export default function OurStoryPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-3xl font-semibold mb-6">The Problem</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">The Problem</h2>
                     
                     <div className="mb-6">
                       <Image 
@@ -328,7 +328,7 @@ export default function OurStoryPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-3xl font-semibold mb-6">Our Purpose</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">Our Purpose</h2>
                     
                     <div className="mb-6">
                       <Image 
@@ -368,7 +368,7 @@ export default function OurStoryPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-3xl font-semibold mb-8">Our Values</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">Our Values</h2>
                     
                     <p className="text-muted-foreground leading-relaxed mb-6">
                       To further go the extra mile, we practice the <span className="font-bold">8 Codes of Being</span>:
@@ -671,7 +671,7 @@ export default function OurStoryPage() {
         </div>
         
         {/* Copyright - Bottom of Footer */}
-        <div className="container px-4 md:px-6 py-4 border-t">
+        <div className="container px-4 sm:px-6 md:px-8 py-4 border-t">
           <p className="text-xs text-muted-foreground text-center">
             © {new Date().getFullYear()} MYCURE. All rights reserved.
           </p>

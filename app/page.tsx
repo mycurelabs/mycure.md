@@ -306,7 +306,7 @@ export default function LandingPage() {
             </Link>
             <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
               <ShimmerButton 
-                className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
+                className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full" 
                 background="#0099CC"
                 shimmerColor="#ffffff"
                 shimmerDuration="2s"
@@ -384,7 +384,7 @@ export default function LandingPage() {
                 </Link>
                 <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
                   <ShimmerButton 
-                    className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
+                    className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full" 
                     background="#0099CC"
                     shimmerColor="#ffffff"
                     shimmerDuration="2s"
@@ -400,7 +400,7 @@ export default function LandingPage() {
       </header>
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden text-white relative brand-gradient-bg">
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden text-white relative brand-gradient-bg">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -424,10 +424,10 @@ export default function LandingPage() {
                   </AnimatedGradientText>
                 </div>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 text-white">
                 The Complete Healthcare Management Platform
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">
                 MYCURE empowers healthcare providers with comprehensive clinic management solutions. Serving small practices to large multi-specialty clinics, we help you streamline patient care, ensure compliance, and optimize operations.
               </p>
 
@@ -437,7 +437,7 @@ export default function LandingPage() {
                   <RainbowButton
                     variant="outline"
                     size="lg"
-                    className="!h-12 !px-8 !font-semibold !rounded-full whitespace-nowrap"
+                    className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap"
                   >
                     Get Started Today
                     <ArrowRight className="ml-2 size-4" />
@@ -498,8 +498,8 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Logos Section */}
-        <section className="w-full py-16 md:py-20 border-y bg-muted/30">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-8 sm:py-12 md:py-16 border-y bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -580,7 +580,7 @@ export default function LandingPage() {
         </section>
         {/* Features Section */}
         <section id="features" className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -609,7 +609,7 @@ export default function LandingPage() {
               {features.map((feature, i) => (
                 <motion.div key={i} variants={item}>
                   <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
-                    <CardContent className="p-6 flex flex-col h-full">
+                    <CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full">
                       <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
                         {feature.icon}
                       </div>
@@ -623,7 +623,7 @@ export default function LandingPage() {
           </div>
         </section>
         {/* Medical Data Tracker Section */}
-        <section className="w-full py-20 md:py-32 text-primary-foreground relative overflow-hidden brand-gradient-bg">
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 text-primary-foreground relative overflow-hidden brand-gradient-bg">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -700,7 +700,7 @@ export default function LandingPage() {
         </section>
         {/* Image + Content Features Section */}
         <section id="features" className="w-full py-20 md:py-32 bg-white dark:bg-[#1a1a1a]">
-          <div className="container px-4 md:px-6">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -942,7 +942,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl md:text-2xl font-bold">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">
                     <span className="font-bold">Eliminate</span>{" "}
                     <span className="font-normal text-muted-foreground">
                       unnecessary tool costs with one comprehensive platform.
@@ -967,7 +967,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl md:text-2xl font-bold">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">
                     <span className="font-bold">Reduce</span>{" "}
                     <span className="font-normal text-muted-foreground">
                       administrative burden through intelligent automation.
@@ -992,7 +992,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl md:text-2xl font-bold">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">
                     <span className="font-bold">Improve</span>{" "}
                     <span className="font-normal text-muted-foreground">
                       patient satisfaction with seamless scheduling, clear communication, and reduced wait times through optimized workflows.
@@ -1017,7 +1017,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl md:text-2xl font-bold">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">
                     <span className="font-bold">Protect</span>{" "}
                     <span className="font-normal text-muted-foreground">
                       your revenue with automatic compliance monitoring, HIPAA security, and regulatory reporting that prevents costly fines.
@@ -1034,8 +1034,8 @@ export default function LandingPage() {
           end="bottom top"
           scrub={true}
         >
-          <section className="w-full py-12 md:py-20 mb-20 md:mb-32 relative">
-            <div className="container px-4 md:px-6">
+          <section className="w-full py-8 sm:py-12 md:py-16 mb-16 sm:mb-20 md:mb-32 relative">
+            <div className="container px-4 sm:px-6 md:px-8">
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 {/* Sticky Left Content */}
                 <div className="lg:sticky lg:top-32 space-y-6">
@@ -1050,7 +1050,7 @@ export default function LandingPage() {
                         Healthcare Excellence
                       </AnimatedShinyText>
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
                       Built for healthcare
                       <br />excellence
                     </h2>
@@ -1080,7 +1080,7 @@ export default function LandingPage() {
                           <p className="text-muted-foreground">Powerful dashboard control</p>
                         </div>
                       </div>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                         Take control of every patient interaction from one powerful dashboard. Watch as complex medical workflows transform into streamlined processes—from initial consultation to final treatment documentation, everything flows seamlessly.
                       </p>
                       <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border border-primary/20">
@@ -1124,7 +1124,7 @@ export default function LandingPage() {
                           <p className="text-muted-foreground">Intelligent automation</p>
                         </div>
                       </div>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                         See your entire practice come alive with intelligent automation. Real-time insights reveal optimization opportunities while smart scheduling eliminates bottlenecks—turning operational chaos into competitive advantage.
                       </p>
                       <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
@@ -1168,7 +1168,7 @@ export default function LandingPage() {
                           <p className="text-muted-foreground">Enterprise-grade telehealth</p>
                         </div>
                       </div>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                         Bridge the distance between you and your patients with enterprise-grade telehealth. Experience the future of patient care where technology enhances connection rather than replacing it—secure, seamless, and surprisingly human.
                       </p>
                       <div className="bg-gradient-to-br from-orange-500/5 to-orange-500/10 rounded-2xl p-6 border border-orange-500/20">
@@ -1212,7 +1212,7 @@ export default function LandingPage() {
                           <p className="text-muted-foreground">Offline-first design</p>
                         </div>
                       </div>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                         Discover true peace of mind with offline-first design. Whether internet fails or power fluctuates, your practice continues uninterrupted. When connectivity returns, everything syncs perfectly—like the disruption never happened.
                       </p>
                       <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
@@ -1243,7 +1243,7 @@ export default function LandingPage() {
           </section>
         </Scrollytelling.Root>
         {/* All-in-One Integration Section */}
-        <section className="w-full pt-28 md:pt-40 pb-20 md:pb-32 bg-muted/20 relative overflow-hidden">
+        <section className="w-full pt-20 sm:pt-28 md:pt-40 pb-12 sm:pb-16 md:pb-20 lg:pb-32 bg-muted/20 relative overflow-hidden">
           <div className="container px-4 md:px-6 relative">
             <div className="max-w-4xl mx-auto text-center relative">
               {/* Floating Integration Icons */}
@@ -1407,7 +1407,7 @@ export default function LandingPage() {
               >
                 <div className="space-y-8">
                   <div className="space-y-6">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                       Healthcare that <br className="hidden sm:block" />
                       <span style={{color: '#0099CC'}}>works together</span>
                     </h2>
@@ -1625,8 +1625,8 @@ export default function LandingPage() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-background to-muted/30">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-br from-background to-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

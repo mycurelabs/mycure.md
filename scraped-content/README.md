@@ -27,6 +27,7 @@ scraped-content/
 | Date | Source URL | Target Page | Layout Style | Status |
 |------|------------|-------------|--------------|--------|
 | 2025-01-03 | https://www.mycure.md/clinics | /app/clinics/page.tsx | product-style | In Progress |
+| 2025-01-04 | https://www.notion.com/product/mail | /app/clinics/page.tsx | modern-spacious | Analyzed |
 
 ## Usage
 
