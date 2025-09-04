@@ -17,13 +17,18 @@ import {
   Calendar,
   UserX,
   FileX,
+  FileText,
+  Camera,
+  Package,
+  DollarSign,
+  WifiOff,
+  MessageCircle,
   Shield,
   Lock,
   Cloud,
   CheckCircle,
   Check,
   MessageSquare,
-  WifiOff,
   Globe,
   Baby,
   Heart,
@@ -54,7 +59,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function SkinPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -75,67 +80,67 @@ export default function ClinicsPage() {
 
   const solutions = [
     { 
-      icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
+      icon: FileText,
+      title: "Digital Medical Records",
+      description: "Transform paper charts into secure digital records with complete treatment history and client preferences" 
     },
     { 
-      icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
+      icon: Camera,
+      title: "Smart Attachments",
+      description: "Turn physical before/after photos into organized digital galleries with treatment tracking and progress documentation" 
     },
     { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
+      icon: DollarSign,
+      title: "Point-of-Sales",
+      description: "Convert complex billing into streamlined payment processing with product sales and package management" 
     },
     { 
-      icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
+      icon: Package,
+      title: "Inventory Management",
+      description: "Change supply chaos into automated inventory tracking for skincare products and aesthetic supplies" 
     },
     { 
-      icon: Star,
-      title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
+      icon: WifiOff,
+      title: "Works Offline",
+      description: "Transform connectivity worries into confidence with offline-capable system that syncs when ready" 
     },
     { 
-      icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      icon: MessageCircle,
+      title: "Team Communication",
+      description: "Replace fragmented communication with built-in chat for seamless clinic coordination" 
     },
   ]
 
   const specialties = [
     { 
       icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      title: "Medical Dermatology",
+      description: "Comprehensive skin condition management with diagnosis tracking, treatment protocols, and medication history" 
+    },
+    { 
+      icon: Star,
+      title: "Cosmetic Treatments",
+      description: "Advanced aesthetic procedure management including injectables, chemical peels, and non-invasive treatments" 
+    },
+    { 
+      icon: Zap,
+      title: "Laser Therapy",
+      description: "Laser treatment tracking with session management, parameter recording, and outcome documentation" 
     },
     { 
       icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
+      title: "Injectables & Fillers",
+      description: "Detailed injection mapping, product tracking, and treatment interval management for Botox and dermal fillers" 
     },
     { 
-      icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      icon: TrendingUp,
+      title: "Body Contouring",
+      description: "Body sculpting and contouring treatment plans with progress tracking and measurement documentation" 
     },
     { 
-      icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
-    },
-    { 
-      icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
-    },
-    { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      icon: Shield,
+      title: "Medical Spa Services",
+      description: "Full-service medical spa management including facials, wellness treatments, and therapeutic services" 
     },
   ]
 
@@ -391,10 +396,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/skin-clinics-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Beauty - Aesthetic clinic reception and treatment areas"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -412,19 +417,19 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE Beauty
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
-                    <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    The Premier{" "}
+                    <span className="text-primary">Aesthetic & Skin Clinic</span>{" "}
+                    Management Platform
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    Easy appointment booking, inventory management, and secure client records with relationship management, 
+                    analytics and reporting designed specifically for aesthetic and dermatology clinics.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -458,15 +463,15 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Transform Your Clinic
+                    Elevate Your Beauty Business
                   </AnimatedShinyText>
                 </div>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                Turn Daily Challenges Into Success Stories
+                Turn Beauty Services Into Client Experiences
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
+                See how MYCURE Beauty transforms aesthetic clinics into thriving businesses with intelligent client management and treatment tracking
               </p>
             </motion.div>
             
@@ -700,10 +705,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
+                    <NumberTicker value={500000} delay={0.3} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Medical Records
+                    Client Records
                   </div>
                 </motion.div>
                 <motion.div
@@ -714,10 +719,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
+                    <NumberTicker value={2000000} delay={0.4} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Patients Served
+                    Treatments Performed
                   </div>
                 </motion.div>
                 <motion.div
@@ -728,10 +733,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
+                    <NumberTicker value={95} delay={0.5} className="font-bold text-primary" />%
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Transactions Completed
+                    Client Satisfaction
                   </div>
                 </motion.div>
               </div>
@@ -974,21 +979,21 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Seamless Offline Operations
+                    Continuous Skin Care
                   </AnimatedShinyText>
                 </div>
               </div>
 
               {/* Headline */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl">
-                Never Stop Caring, Even Without Internet
+                Beauty Services That Never Stop
               </h2>
 
               {/* Description */}
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                MYCURE's offline mode ensures your clinic never stops serving patients. 
-                Access records, manage appointments, and process transactions anywhere—all changes 
-                sync automatically when you're back online.
+                MYCURE's offline capabilities ensure your aesthetic clinic operates smoothly 24/7. 
+                Access client records, track treatments, and manage appointments seamlessly—everything 
+                syncs perfectly when you're back online.
               </p>
 
               {/* Offline Sync Video */}
@@ -1012,7 +1017,7 @@ export default function ClinicsPage() {
                       transformOrigin: 'center',
                       clipPath: 'inset(0 2px 0 2px)'
                     }}
-                    aria-label="MYCURE Offline Sync - Never Stop Caring"
+                    aria-label="MYCURE Skin Care Offline - Continuous Beauty Services"
                   />
                 </div>
               </motion.div>
@@ -1029,27 +1034,27 @@ export default function ClinicsPage() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Full Patient Records Offline</h3>
+                  <h3 className="font-semibold text-lg">Client Records Access</h3>
                   <p className="text-sm text-muted-foreground">
-                    Access complete patient histories and medical records without internet
+                    View complete treatment histories and skin analysis offline
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Appointment Management</h3>
+                  <h3 className="font-semibold text-lg">Treatment Tracking</h3>
                   <p className="text-sm text-muted-foreground">
-                    Schedule and manage appointments seamlessly even when offline
+                    Document procedures and progress without internet dependency
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Secure Local Encryption</h3>
+                  <h3 className="font-semibold text-lg">Appointment Sync</h3>
                   <p className="text-sm text-muted-foreground">
-                    All offline data is encrypted and secured on your local device
+                    Schedule and manage bookings with automatic synchronization
                   </p>
                 </div>
               </motion.div>
@@ -1318,11 +1323,11 @@ export default function ClinicsPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
+                    Ready to <span className="text-[#0099CC]">elevate</span> your beauty business?
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
-                    patient care.
+                    Join leading aesthetic clinics who trust MYCURE Beauty to transform their client experiences and grow
+                    their practices.
                   </p>
                 </div>
 
@@ -1334,7 +1339,7 @@ export default function ClinicsPage() {
                       shimmerColor="#ffffff"
                       shimmerDuration="3s"
                     >
-                      Transform Your Practice
+                      Elevate Your Beauty Business
                       <ArrowRight className="size-4" />
                     </ShimmerButton>
                   </Link>

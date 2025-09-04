@@ -17,6 +17,12 @@ import {
   Calendar,
   UserX,
   FileX,
+  ClipboardList,
+  Package,
+  MessageCircle,
+  GraduationCap,
+  DollarSign,
+  Package2,
   Shield,
   Lock,
   Cloud,
@@ -54,7 +60,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function DentalPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -75,67 +81,67 @@ export default function ClinicsPage() {
 
   const solutions = [
     { 
-      icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
-    },
-    { 
-      icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
-    },
-    { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
+      icon: Stethoscope,
+      title: "Digital Charting",
+      description: "Transform paper charts into interactive digital tooth maps with visual treatment planning and periodontal tracking" 
     },
     { 
       icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
+      title: "Appointment Precision",
+      description: "Turn scheduling chaos into organized workflows - never miss an appointment, never miss a tooth" 
     },
     { 
-      icon: Star,
-      title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
+      icon: Package,
+      title: "Inventory Management",
+      description: "Convert supply tracking headaches into automated inventory management for dental materials and equipment" 
     },
     { 
-      icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      icon: DollarSign,
+      title: "Integrated Billing",
+      description: "Change complex insurance claims into streamlined billing with automated processing and patient payment tracking" 
+    },
+    { 
+      icon: MessageCircle,
+      title: "Team Communication",
+      description: "Transform fragmented communication into seamless team coordination with built-in chat for your dental practice" 
+    },
+    { 
+      icon: GraduationCap,
+      title: "Student Support",
+      description: "Replace learning barriers with free webinar series and training resources for dentistry students and new practitioners" 
     },
   ]
 
   const specialties = [
     { 
-      icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      icon: Stethoscope,
+      title: "Visual Dental Charting",
+      description: "Interactive tooth mapping with periodontal charts, treatment notes, and visual documentation for comprehensive patient records" 
     },
     { 
-      icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
+      icon: ClipboardList,
+      title: "Treatment Planning",
+      description: "Create comprehensive treatment plans with cost estimates, phase scheduling, and patient consent tracking" 
+    },
+    { 
+      icon: Sparkles,
+      title: "Orthodontics Support",
+      description: "Track braces adjustments, aligner progress, and orthodontic treatment milestones with specialized tools" 
+    },
+    { 
+      icon: Shield,
+      title: "Endodontics Tools",
+      description: "Root canal tracking, procedure documentation, and endodontic treatment history management" 
     },
     { 
       icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      title: "Pediatric Dentistry",
+      description: "Child-friendly interfaces, behavior management notes, and specialized pediatric dental charting" 
     },
     { 
-      icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
-    },
-    { 
-      icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
-    },
-    { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      icon: Heart,
+      title: "Oral Surgery",
+      description: "Surgical procedure planning, post-operative tracking, and comprehensive surgical documentation" 
     },
   ]
 
@@ -391,10 +397,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/dental-clinics-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Dental - Advanced dental practice management"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -412,19 +418,19 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE for Dental
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
-                    <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    The Complete{" "}
+                    <span className="text-primary">Dental Practice Management</span>{" "}
+                    Platform
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    Everything your dental clinic needs from appointments, billing, inventory, to advanced charting. 
+                    Transform your dental practice with digital tools designed specifically for dentists.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -458,15 +464,15 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Transform Your Clinic
+                    Transform Your Dental Practice
                   </AnimatedShinyText>
                 </div>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                Turn Daily Challenges Into Success Stories
+                Turn Dental Challenges Into Practice Success
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
+                See how MYCURE Dental transforms common dental practice challenges into powerful competitive advantages
               </p>
             </motion.div>
             
@@ -530,22 +536,22 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Complete Clinic Solution
+                    Complete Dental Solution
                   </AnimatedShinyText>
                 </div>
               </div>
               
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                Everything Your Clinic Needs.<br />
+                Everything Your Dental Practice Needs.<br />
                 Nothing It Doesn't.
               </h2>
               
               {/* Subheadline */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                MYCURE brings together the three core functions every clinic depends on—medical records, 
-                patient scheduling, and billing—in one comprehensive platform that works offline and 
-                reduces admin time by 60%.
+                MYCURE brings together advanced dental charting, appointment management, 
+                and billing in one comprehensive platform designed specifically for dental practices, 
+                reducing chair-side admin time by 60%.
               </p>
               
               {/* CTA */}
@@ -609,14 +615,14 @@ export default function ClinicsPage() {
                 <div className="flex justify-center mb-4">
                   <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                     <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                      End-to-End Workflow
+                      Dental Workflow Excellence
                     </AnimatedShinyText>
                   </div>
                 </div>
                 
                 {/* Headline */}
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  How MYCURE Automates Your Entire Patient Workflow
+                  How MYCURE Streamlines Your Dental Practice Workflow
                 </h2>
                 
                 {/* Subheadline */}
@@ -636,8 +642,8 @@ export default function ClinicsPage() {
                 className="relative"
               >
                 <Image
-                  src="/section-assets/clinic-page/clinic-journey.webp"
-                  alt="MYCURE Patient Journey Flow - From Appointments to Billing"
+                  src="/section-assets/dental-clinics/dental-workflow.webp"
+                  alt="MYCURE Dental Workflow - From Booking to Treatment"
                   width={1200}
                   height={600}
                   className="w-full h-auto rounded-2xl"
@@ -703,7 +709,7 @@ export default function ClinicsPage() {
                     <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Medical Records
+                    Dental Records
                   </div>
                 </motion.div>
                 <motion.div
@@ -717,7 +723,7 @@ export default function ClinicsPage() {
                     <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Patients Served
+                    Patients Treated
                   </div>
                 </motion.div>
                 <motion.div
@@ -731,7 +737,7 @@ export default function ClinicsPage() {
                     <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Transactions Completed
+                    Procedures Completed
                   </div>
                 </motion.div>
               </div>
@@ -974,21 +980,21 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Seamless Offline Operations
+                    Uninterrupted Dental Practice
                   </AnimatedShinyText>
                 </div>
               </div>
 
               {/* Headline */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl">
-                Never Stop Caring, Even Without Internet
+                Keep Your Practice Running, Online or Offline
               </h2>
 
               {/* Description */}
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                MYCURE's offline mode ensures your clinic never stops serving patients. 
-                Access records, manage appointments, and process transactions anywhere—all changes 
-                sync automatically when you're back online.
+                MYCURE's offline capabilities ensure your dental practice never misses a beat. 
+                Access dental charts, plan treatments, and manage patient records seamlessly—everything 
+                syncs automatically when connectivity returns.
               </p>
 
               {/* Offline Sync Video */}
@@ -1012,7 +1018,7 @@ export default function ClinicsPage() {
                       transformOrigin: 'center',
                       clipPath: 'inset(0 2px 0 2px)'
                     }}
-                    aria-label="MYCURE Offline Sync - Never Stop Caring"
+                    aria-label="MYCURE Dental Offline - Uninterrupted Practice"
                   />
                 </div>
               </motion.div>
@@ -1029,27 +1035,27 @@ export default function ClinicsPage() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Full Patient Records Offline</h3>
+                  <h3 className="font-semibold text-lg">Access Dental Charts</h3>
                   <p className="text-sm text-muted-foreground">
-                    Access complete patient histories and medical records without internet
+                    View and update dental charts and tooth diagrams without internet
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Appointment Management</h3>
+                  <h3 className="font-semibold text-lg">Treatment Planning</h3>
                   <p className="text-sm text-muted-foreground">
-                    Schedule and manage appointments seamlessly even when offline
+                    Create and modify treatment plans even when offline
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Secure Local Encryption</h3>
+                  <h3 className="font-semibold text-lg">Automatic Billing Sync</h3>
                   <p className="text-sm text-muted-foreground">
-                    All offline data is encrypted and secured on your local device
+                    Process billing and insurance claims with automatic synchronization
                   </p>
                 </div>
               </motion.div>
@@ -1318,11 +1324,11 @@ export default function ClinicsPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
+                    Ready to <span className="text-[#0099CC]">modernize</span> your dental practice?
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
-                    patient care.
+                    Join thousands of dentists who trust MYCURE to digitize their practice and deliver
+                    exceptional patient care.
                   </p>
                 </div>
 
@@ -1376,7 +1382,7 @@ export default function ClinicsPage() {
                 <span>MYCURE</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Transforming healthcare management with innovative clinic solutions for providers worldwide.
+                Transforming dental practices with innovative digital solutions for dentists worldwide.
               </p>
             </div>
 

@@ -274,6 +274,21 @@ export default function LandingPage() {
                 <DropdownMenuItem asChild>
                   <Link href="/clinics">Clinics</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/corporate">Corporate</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dental">Dental</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/skin">Skin/Aesthetics</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/diagnostics">Diagnostics</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/mobile-labs">Mobile Labs</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <Link
@@ -356,6 +371,41 @@ export default function LandingPage() {
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Clinics
+                      </Link>
+                      <Link 
+                        href="/corporate" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Corporate
+                      </Link>
+                      <Link 
+                        href="/dental" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Dental
+                      </Link>
+                      <Link 
+                        href="/skin" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Skin/Aesthetics
+                      </Link>
+                      <Link 
+                        href="/diagnostics" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Diagnostics
+                      </Link>
+                      <Link 
+                        href="/mobile-labs" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Mobile Labs
                       </Link>
                     </AccordionContent>
                   </AccordionItem>

@@ -53,12 +53,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
+import { Beaker, Activity, FileCheck, CreditCard, Download, Network, MapPin, TestTube, Route, Wifi } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function MobileLabsPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [activeTab, setActiveTab] = useState("imaging")
 
   useEffect(() => {
     setMounted(true)
@@ -75,113 +77,113 @@ export default function ClinicsPage() {
 
   const solutions = [
     { 
-      icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
+      icon: Clock,
+      title: "Wasted Time & Resources",
+      description: "Transform manual processes into automated workflows saving hours daily with location-based registrations" 
     },
     { 
       icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
+      title: "Long Wait Times",
+      description: "Turn patient delays into quick turnarounds with mobile-optimized scheduling and queue management" 
     },
     { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
+      icon: Users,
+      title: "Overworked Staff",
+      description: "Convert staff stress into productivity with an easy-to-use system designed for mobile operations" 
     },
     { 
       icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
+      title: "Cancelled Appointments",
+      description: "Change no-shows into confirmed visits using automated reminders and flexible mobile booking" 
     },
     { 
       icon: Star,
-      title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
+      title: "Frustrated Patients",
+      description: "Transform complaints into satisfaction with mobile-friendly patient portals and instant results" 
     },
     { 
-      icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      icon: FileCheck,
+      title: "Error-prone Reports",
+      description: "Replace manual errors with digital accuracy through automated validation on-the-go" 
     },
   ]
 
   const specialties = [
     { 
-      icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      icon: TestTube,
+      title: "Sample Collection",
+      description: "On-site sample collection with barcode tracking and chain of custody management" 
     },
     { 
-      icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
+      icon: Activity,
+      title: "Field Testing",
+      description: "Point-of-care testing with instant result processing and validation" 
     },
     { 
-      icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      icon: Route,
+      title: "Route Management",
+      description: "Optimize daily routes and schedule multiple location visits efficiently" 
     },
     { 
-      icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
+      icon: CreditCard,
+      title: "Mobile Billing",
+      description: "Process payments on-site with integrated insurance verification" 
     },
     { 
-      icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
+      icon: Download,
+      title: "Result Delivery",
+      description: "Instant digital delivery of results to patients and referring physicians" 
     },
     { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      icon: Wifi,
+      title: "Offline Sync",
+      description: "Work seamlessly offline and auto-sync when connectivity is restored" 
     },
   ]
 
   const advantages = [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
-      description: "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
+      title: "Work Online or Offline",
+      description: "With MYCURE Syncbase, work as if you have an in-house server with all cloud conveniences. Even if the Internet is down, you can still create records on any device.",
+      icon: WifiOff,
+      image: "/section-assets/clinic-page/carousel/carousel-network.webp",
+      bullets: [
+        "Continue working even without internet connectivity",
+        "Automatic synchronization when connection is restored",
+        "Local data storage ensures uninterrupted mobile lab operations"
+      ]
+    },
+    {
+      title: "Location-Based Registration",
+      description: "Handle multiple locations with ease using GPS-enabled patient registration and automated location tracking for compliance.",
+      icon: MapPin,
+      image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
+      bullets: [
+        "GPS-enabled check-ins for accurate location tracking",
+        "Multi-site schedule management from a single dashboard",
+        "Automated mileage and route tracking for reporting"
+      ]
+    },
+    {
+      title: "Protected by MYCURE CSI Guarantee",
+      description: "As a healthcare provider, your patients trust you with their private electronic health records. We protect that information with our CSI guarantee.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation"
+        "Compliance with healthcare regulations and standards",
+        "Security with encrypted data and secure access controls",
+        "Interoperability with HL7-ready integration capabilities"
       ]
     },
     {
-      title: "Gain New Insights Into Your Clinic",
-      description: "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
-      icon: BarChart,
-      image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
-      bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing"
-      ]
-    },
-    {
-      title: "A Lifeline for Your Clinic",
-      description: "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
-      icon: Cloud,
+      title: "Maintain Communication with Lab Staff",
+      description: "MYCURE Mobile Labs comes with its own chat feature, allowing everyone in your team to stay in touch throughout the day.",
+      icon: MessageSquare,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support"
-      ]
-    },
-    {
-      title: "Easy Appointment Booking for Your Patients",
-      description: "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
-      icon: Calendar,
-      image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
-      bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%"
+        "Coordinate sample collections across multiple locations",
+        "Real-time updates on test results and urgent findings",
+        "Team messaging for efficient field operations"
       ]
     },
   ]
@@ -336,6 +338,27 @@ export default function ClinicsPage() {
                       >
                         Dental
                       </Link>
+                      <Link 
+                        href="/skin" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Skin/Aesthetics
+                      </Link>
+                      <Link 
+                        href="/diagnostics" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Diagnostics
+                      </Link>
+                      <Link 
+                        href="/mobile-labs" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Mobile Labs
+                      </Link>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -391,10 +414,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/mobile-labs-clinics-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Mobile Labs - Mobile diagnostic services interface"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -412,19 +435,19 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE Mobile Labs
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
+                    The Simplest{" "}
                     <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    for Mobile Labs
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    MYCURE Diagnostics is an easy to use, secure, cloud-based clinic information system that you can 
+                    set up no matter where your mobile lab is based.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -458,7 +481,7 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Transform Your Clinic
+                    Transform Your Mobile Lab
                   </AnimatedShinyText>
                 </div>
               </div>
@@ -466,7 +489,7 @@ export default function ClinicsPage() {
                 Turn Daily Challenges Into Success Stories
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
+                See how MYCURE Mobile Labs transforms common mobile lab challenges into powerful operational advantages
               </p>
             </motion.div>
             
@@ -530,22 +553,21 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Complete Clinic Solution
+                    Complete Mobile Solution
                   </AnimatedShinyText>
                 </div>
               </div>
               
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                Everything Your Clinic Needs.<br />
+                Everything Your Mobile Lab Needs.<br />
                 Nothing It Doesn't.
               </h2>
               
               {/* Subheadline */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                MYCURE brings together the three core functions every clinic depends on—medical records, 
-                patient scheduling, and billing—in one comprehensive platform that works offline and 
-                reduces admin time by 60%.
+                MYCURE brings together the core functions every mobile lab depends on—patient registration, 
+                sample tracking, and result delivery—in one comprehensive platform that works anywhere, anytime.
               </p>
               
               {/* CTA */}
@@ -609,21 +631,20 @@ export default function ClinicsPage() {
                 <div className="flex justify-center mb-4">
                   <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                     <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                      End-to-End Workflow
+                      Seamless Mobile Workflow
                     </AnimatedShinyText>
                   </div>
                 </div>
                 
                 {/* Headline */}
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  How MYCURE Automates Your Entire Patient Workflow
+                  How MYCURE Automates Your Entire Mobile Lab Workflow
                 </h2>
                 
                 {/* Subheadline */}
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every 
-                  touchpoint—from booking to billing—in one intuitive platform that your entire team 
-                  can master in minutes.
+                  Discover why mobile labs nationwide are switching to MYCURE's integrated workflow that handles 
+                  location-based registrations with ease—from sample collection to result delivery.
                 </p>
               </div>
 
@@ -636,8 +657,8 @@ export default function ClinicsPage() {
                 className="relative"
               >
                 <Image
-                  src="/section-assets/clinic-page/clinic-journey.webp"
-                  alt="MYCURE Patient Journey Flow - From Appointments to Billing"
+                  src="/section-assets/diagnostics/diagnostics-workflow.webp"
+                  alt="MYCURE Mobile Lab Workflow - From Sample Collection to Result Delivery"
                   width={1200}
                   height={600}
                   className="w-full h-auto rounded-2xl"
@@ -654,8 +675,8 @@ export default function ClinicsPage() {
                 className="mt-8 text-center"
               >
                 <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-                  Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, 
-                  and ensuring a complete patient experience from start to finish.
+                  Every touchpoint works together seamlessly—eliminating manual processes, tracking samples accurately, 
+                  and ensuring timely results delivery regardless of location.
                 </p>
               </motion.div>
             </motion.div>
@@ -736,6 +757,138 @@ export default function ClinicsPage() {
                 </motion.div>
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Advanced Tools Section - Notion Style Tabs */}
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <div className="flex justify-center mb-4">
+                <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
+                  <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
+                    Advanced Mobile Diagnostics
+                  </AnimatedShinyText>
+                </div>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Advanced Tools for a Growing Mobile Lab
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                We're here to make managing your mobile lab so much easier. We offer full functionality for our free accounts, 
+                and you only need to upgrade as your mobile lab grows.
+              </p>
+            </motion.div>
+
+            {/* Tab Navigation */}
+            <div className="flex justify-center mb-12">
+              <div className="flex gap-4 p-2 bg-background rounded-full border border-border/40 shadow-sm">
+                {[
+                  { id: "imaging", label: "Imaging" },
+                  { id: "laboratory", label: "Laboratory" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? "text-white shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
+                    style={activeTab === tab.id ? { backgroundColor: '#0099CC' } : undefined}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              >
+                {/* Left side - Images */}
+                <div className="relative order-2 lg:order-1">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src={activeTab === "imaging" 
+                        ? "/section-assets/diagnostics/diagnostics-tab-imaging.webp"
+                        : "/section-assets/diagnostics/diagnostics-tab-laboratory.webp"
+                      }
+                      width={600}
+                      height={400}
+                      alt={activeTab === "imaging"
+                        ? "MYCURE Mobile Diagnostics Imaging Interface - Mobile Radiology"
+                        : "MYCURE Mobile Diagnostics Laboratory Interface - Mobile Lab Results"
+                      }
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Right side - Content */}
+                <div className="order-1 lg:order-2">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-8"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        {activeTab === "imaging" ? (
+                          <Activity className="size-5 text-primary" />
+                        ) : (
+                          <Beaker className="size-5 text-primary" />
+                        )}
+                        <h3 className="text-2xl sm:text-3xl font-bold">
+                          {activeTab === "imaging" ? "Mobile Imaging" : "Mobile Laboratory"}
+                        </h3>
+                      </div>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        {activeTab === "imaging"
+                          ? "Complete mobile radiology capabilities with portable equipment support"
+                          : "Comprehensive mobile lab management with on-site testing capabilities"}
+                      </p>
+                    </div>
+                    <ul className="space-y-4">
+                      {(activeTab === "imaging"
+                        ? [
+                            "Mobile-optimized DICOM viewer for field use",
+                            "Cloud-based image storage accessible anywhere",
+                            "Offline-capable reporting with auto-sync",
+                            "Remote consultation tools for expert review"
+                          ]
+                        : [
+                            "Portable analyzer integration and calibration",
+                            "Mobile sample tracking with GPS location",
+                            "Cloud-synced results with offline capability",
+                            "Field-ready quality control management"
+                          ]
+                      ).map((item, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <Check className="size-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-base leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </div>
+              </motion.div>
           </div>
         </section>
 
@@ -981,14 +1134,14 @@ export default function ClinicsPage() {
 
               {/* Headline */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl">
-                Never Stop Caring, Even Without Internet
+                Never Stop Working, Even Without Internet
               </h2>
 
               {/* Description */}
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                MYCURE's offline mode ensures your clinic never stops serving patients. 
-                Access records, manage appointments, and process transactions anywhere—all changes 
-                sync automatically when you're back online.
+                MYCURE's offline mode ensures your mobile lab operations continue uninterrupted. 
+                Collect samples, process tests, and manage patient data anywhere—all changes sync 
+                automatically when you're back online.
               </p>
 
               {/* Offline Sync Video */}
@@ -1012,7 +1165,7 @@ export default function ClinicsPage() {
                       transformOrigin: 'center',
                       clipPath: 'inset(0 2px 0 2px)'
                     }}
-                    aria-label="MYCURE Offline Sync - Never Stop Caring"
+                    aria-label="MYCURE Offline Sync - Work Anywhere, Sync Everywhere"
                   />
                 </div>
               </motion.div>
@@ -1029,27 +1182,27 @@ export default function ClinicsPage() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Full Patient Records Offline</h3>
+                  <h3 className="font-semibold text-lg">Full Functionality Offline</h3>
                   <p className="text-sm text-muted-foreground">
-                    Access complete patient histories and medical records without internet
+                    Complete sample collection and processing without internet connectivity
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Appointment Management</h3>
+                  <h3 className="font-semibold text-lg">Smart Data Sync</h3>
                   <p className="text-sm text-muted-foreground">
-                    Schedule and manage appointments seamlessly even when offline
+                    Automatic synchronization when connection is restored with conflict resolution
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Secure Local Encryption</h3>
+                  <h3 className="font-semibold text-lg">Local Data Security</h3>
                   <p className="text-sm text-muted-foreground">
-                    All offline data is encrypted and secured on your local device
+                    Encrypted local storage ensures patient data remains secure offline
                   </p>
                 </div>
               </motion.div>
@@ -1318,11 +1471,11 @@ export default function ClinicsPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
+                    Ready to <span className="text-[#0099CC]">mobilize</span> your diagnostic services?
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
-                    patient care.
+                    Join hundreds of mobile labs who trust MYCURE to streamline their operations and deliver
+                    better patient care anywhere.
                   </p>
                 </div>
 
@@ -1334,7 +1487,7 @@ export default function ClinicsPage() {
                       shimmerColor="#ffffff"
                       shimmerDuration="3s"
                     >
-                      Transform Your Practice
+                      Transform Your Mobile Lab
                       <ArrowRight className="size-4" />
                     </ShimmerButton>
                   </Link>

@@ -53,12 +53,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
+import { Beaker, Activity, FileCheck, CreditCard, Download, Network } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function DiagnosticsPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [activeTab, setActiveTab] = useState("imaging")
 
   useEffect(() => {
     setMounted(true)
@@ -75,113 +77,113 @@ export default function ClinicsPage() {
 
   const solutions = [
     { 
-      icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
+      icon: Clock,
+      title: "Wasted Time & Resources",
+      description: "Transform manual processes into automated workflows saving 3+ hours daily with seamless LIS/RIS integration" 
     },
     { 
       icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
+      title: "Long Wait Times",
+      description: "Turn patient delays into quick turnarounds with smart appointment booking and automated queue management" 
     },
     { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
+      icon: Users,
+      title: "Overworked Staff",
+      description: "Convert staff stress into productivity with an easy-to-use laboratory information system that simplifies complex tasks" 
     },
     { 
       icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
+      title: "Cancelled Appointments",
+      description: "Change no-shows into confirmed visits using automated reminders and flexible online rebooking" 
     },
     { 
       icon: Star,
-      title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
+      title: "Frustrated Patients",
+      description: "Transform complaints into satisfaction with online results access and patient portal convenience" 
     },
     { 
-      icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      icon: FileCheck,
+      title: "Error-prone Reports",
+      description: "Replace manual errors with digital accuracy through automated validation and standardized reporting" 
     },
   ]
 
   const specialties = [
     { 
-      icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      icon: Beaker,
+      title: "Laboratory Information System (LIS)",
+      description: "Complete lab workflow automation from sample collection to result delivery with barcode tracking and quality control" 
     },
     { 
-      icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
+      icon: Calendar,
+      title: "Booking System",
+      description: "Smart appointment scheduling with automated confirmations, queue management, and walk-in handling" 
     },
     { 
-      icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      icon: Activity,
+      title: "Radiology Information System (RIS)",
+      description: "Comprehensive imaging center management with PACS integration, modality worklists, and structured reporting" 
     },
     { 
-      icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
+      icon: CreditCard,
+      title: "Billing",
+      description: "Integrated payment processing with insurance claims, package deals, and automated invoicing" 
     },
     { 
-      icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
+      icon: Download,
+      title: "Online Results",
+      description: "Instant digital test results delivery with secure patient portals and automated notifications" 
     },
     { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      icon: Network,
+      title: "Interoperability",
+      description: "HL7-ready integration connecting with hospitals, clinics, and healthcare providers seamlessly" 
     },
   ]
 
   const advantages = [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
-      description: "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
+      title: "Easy to Integrate. Easy to Use.",
+      description: "Connect seamlessly with healthcare providers and expand your diagnostic center's reach.",
+      icon: Network,
+      image: "/section-assets/clinic-page/carousel/carousel-network.webp",
+      bullets: [
+        "Get more customers through referrals from connected clinics",
+        "Easily validate prescriptions and test orders",
+        "Promote your diagnostic services across the network"
+      ]
+    },
+    {
+      title: "Send Test Results Instantly",
+      description: "Give your patients quick access to their test results through the MYCURE app for patients.",
+      icon: Download,
+      image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
+      bullets: [
+        "Patient Portal for Diagnostic Tests with secure access",
+        "Tabulated Cumulative Results for easy comparison",
+        "Quick Appointment Booking directly from results page"
+      ]
+    },
+    {
+      title: "Protected by MYCURE CSI Guarantee",
+      description: "As a healthcare provider, your patients trust you with their private electronic health records. We protect that information with our CSI guarantee.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation"
+        "Compliance with healthcare regulations and standards",
+        "Security with encrypted data and secure access controls",
+        "Interoperability with HL7-ready integration capabilities"
       ]
     },
     {
-      title: "Gain New Insights Into Your Clinic",
-      description: "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
-      icon: BarChart,
-      image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
-      bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing"
-      ]
-    },
-    {
-      title: "A Lifeline for Your Clinic",
-      description: "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
-      icon: Cloud,
+      title: "Maintain Communication with Lab Staff",
+      description: "MYCURE Diagnostics comes with its own chat feature, allowing everyone in your lab to stay in touch on busy days.",
+      icon: MessageSquare,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support"
-      ]
-    },
-    {
-      title: "Easy Appointment Booking for Your Patients",
-      description: "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
-      icon: Calendar,
-      image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
-      bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%"
+        "Office staff can ask questions about billing without interrupting workflows",
+        "Communicate with other techs at your lab quickly and efficiently",
+        "Coordinate sample processing and result verification seamlessly"
       ]
     },
   ]
@@ -391,10 +393,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/diagnostics-clinics-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Diagnostics - Laboratory and imaging center interface"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -412,19 +414,19 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE Diagnostics
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
-                    <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    Your{" "}
+                    <span className="text-primary">Diagnostic Center</span>{" "}
+                    Transformed
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    The best tool to streamline diagnostic laboratories and imaging centers' operations, 
+                    automate routine tasks, and reduce costs and errors.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -700,7 +702,7 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
+                    <NumberTicker value={1700000} delay={0.3} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                     Medical Records
@@ -714,10 +716,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
+                    <NumberTicker value={1450000} delay={0.4} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Patients Served
+                    Lives Saved
                   </div>
                 </motion.div>
                 <motion.div
@@ -728,14 +730,146 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
+                    <NumberTicker value={780} delay={0.5} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Transactions Completed
+                    Partner Providers
                   </div>
                 </motion.div>
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Advanced Tools Section - Notion Style Tabs */}
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <div className="flex justify-center mb-4">
+                <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
+                  <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
+                    Advanced Diagnostics
+                  </AnimatedShinyText>
+                </div>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Advanced Tools for a Busy Diagnostic Center
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                We're here to make managing your lab so much easier. We offer full functionality for our free accounts, 
+                and you only need to upgrade as your center grows. We're here to help you make the world a healthier place.
+              </p>
+            </motion.div>
+
+            {/* Tab Navigation */}
+            <div className="flex justify-center mb-12">
+              <div className="flex gap-4 p-2 bg-background rounded-full border border-border/40 shadow-sm">
+                {[
+                  { id: "imaging", label: "Imaging" },
+                  { id: "laboratory", label: "Laboratory" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? "text-white shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
+                    style={activeTab === tab.id ? { backgroundColor: '#0099CC' } : undefined}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              >
+                {/* Left side - Images */}
+                <div className="relative order-2 lg:order-1">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src={activeTab === "imaging" 
+                        ? "/section-assets/diagnostics/diagnostics-tab-imaging.webp"
+                        : "/section-assets/diagnostics/diagnostics-tab-laboratory.webp"
+                      }
+                      width={600}
+                      height={400}
+                      alt={activeTab === "imaging"
+                        ? "MYCURE Diagnostics Imaging Interface - Radiology Report"
+                        : "MYCURE Diagnostics Laboratory Interface - Lab Results"
+                      }
+                      className="rounded-xl shadow-lg w-full"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Right side - Content */}
+                <div className="order-1 lg:order-2">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-8"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        {activeTab === "imaging" ? (
+                          <Activity className="size-5 text-primary" />
+                        ) : (
+                          <Beaker className="size-5 text-primary" />
+                        )}
+                        <h3 className="text-2xl sm:text-3xl font-bold">
+                          {activeTab === "imaging" ? "Imaging" : "Laboratory"}
+                        </h3>
+                      </div>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        {activeTab === "imaging"
+                          ? "Complete radiology report interface with ultrasound imaging capabilities"
+                          : "Comprehensive lab results management with patient data tracking"}
+                      </p>
+                    </div>
+                    <ul className="space-y-4">
+                      {(activeTab === "imaging"
+                        ? [
+                            "Digital imaging with DICOM support and PACS integration",
+                            "Structured reporting templates for consistent documentation",
+                            "Real-time collaboration with referring physicians",
+                            "Automated measurements and annotations"
+                          ]
+                        : [
+                            "Automated result entry from analyzers and instruments",
+                            "Reference range validation and critical value alerts",
+                            "Cumulative patient history and trend analysis",
+                            "Quality control tracking and compliance reporting"
+                          ]
+                      ).map((item, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <Check className="size-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-base leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </div>
+              </motion.div>
           </div>
         </section>
 
@@ -974,21 +1108,21 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Seamless Offline Operations
+                    Always-On Diagnostics
                   </AnimatedShinyText>
                 </div>
               </div>
 
               {/* Headline */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl">
-                Never Stop Caring, Even Without Internet
+                Process Results Anywhere, Anytime
               </h2>
 
               {/* Description */}
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                MYCURE's offline mode ensures your clinic never stops serving patients. 
-                Access records, manage appointments, and process transactions anywhere—all changes 
-                sync automatically when you're back online.
+                MYCURE's offline mode keeps your diagnostic center fully operational. 
+                Process lab results, queue test orders, and manage reports seamlessly—all data 
+                synchronizes intelligently when you reconnect.
               </p>
 
               {/* Offline Sync Video */}
@@ -1012,7 +1146,7 @@ export default function ClinicsPage() {
                       transformOrigin: 'center',
                       clipPath: 'inset(0 2px 0 2px)'
                     }}
-                    aria-label="MYCURE Offline Sync - Never Stop Caring"
+                    aria-label="MYCURE Diagnostics Offline - Always-On Operations"
                   />
                 </div>
               </motion.div>
@@ -1029,27 +1163,27 @@ export default function ClinicsPage() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Full Patient Records Offline</h3>
+                  <h3 className="font-semibold text-lg">Process Lab Results</h3>
                   <p className="text-sm text-muted-foreground">
-                    Access complete patient histories and medical records without internet
+                    Enter and process lab results even without internet connectivity
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Appointment Management</h3>
+                  <h3 className="font-semibold text-lg">Queue Test Orders</h3>
                   <p className="text-sm text-muted-foreground">
-                    Schedule and manage appointments seamlessly even when offline
+                    Create and queue test orders locally for automatic processing
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Secure Local Encryption</h3>
+                  <h3 className="font-semibold text-lg">Smart Result Sync</h3>
                   <p className="text-sm text-muted-foreground">
-                    All offline data is encrypted and secured on your local device
+                    Intelligent synchronization ensures all results are delivered accurately
                   </p>
                 </div>
               </motion.div>
@@ -1188,7 +1322,7 @@ export default function ClinicsPage() {
                 </div>
               </motion.div>
 
-              {/* Feature 2 - Insights */}
+              {/* Feature 2 - Send Test Results */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1226,7 +1360,7 @@ export default function ClinicsPage() {
                 </div>
               </motion.div>
 
-              {/* Feature 3 - Lifeline */}
+              {/* Feature 3 - MYCURE CSI */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1264,7 +1398,7 @@ export default function ClinicsPage() {
                 </div>
               </motion.div>
 
-              {/* Feature 4 - Booking */}
+              {/* Feature 4 - Staff Communication */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1318,11 +1452,11 @@ export default function ClinicsPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
+                    Ready to <span className="text-[#0099CC]">transform</span> your diagnostic center?
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
-                    patient care.
+                    Join hundreds of labs and imaging centers who trust MYCURE to streamline their operations and deliver
+                    better patient care.
                   </p>
                 </div>
 
@@ -1334,7 +1468,7 @@ export default function ClinicsPage() {
                       shimmerColor="#ffffff"
                       shimmerDuration="3s"
                     >
-                      Transform Your Practice
+                      Transform Your Diagnostic Center
                       <ArrowRight className="size-4" />
                     </ShimmerButton>
                   </Link>

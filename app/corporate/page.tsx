@@ -11,32 +11,30 @@ import {
   X,
   Moon,
   Sun,
-  Clock,
-  Users,
-  AlertCircle,
-  Calendar,
-  UserX,
-  FileX,
   Shield,
   Lock,
   Cloud,
   CheckCircle,
   Check,
-  MessageSquare,
-  WifiOff,
-  Globe,
-  Baby,
-  Heart,
-  Sparkles,
-  Stethoscope,
-  Building2,
   ArrowRight,
   BarChart,
+  ShieldCheck,
+  Users,
+  Building2,
+  Clock,
   TrendingUp,
+  Stethoscope,
+  Heart,
   Zap,
   CalendarCheck,
   Star,
-  ShieldCheck,
+  FileText,
+  Target,
+  Activity,
+  DollarSign,
+  Award,
+  Briefcase,
+  Globe,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -54,7 +52,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function CorporatePage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -75,113 +73,113 @@ export default function ClinicsPage() {
 
   const solutions = [
     { 
+      icon: Activity,
+      title: "Employee Wellness",
+      description: "Transform employee health data into actionable wellness programs with comprehensive health tracking and preventive care management" 
+    },
+    { 
       icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
+      title: "Cost Optimization",
+      description: "Turn healthcare expenditure into strategic investment with transparent pricing, predictive analytics, and efficient resource allocation" 
     },
     { 
-      icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
+      icon: Shield,
+      title: "Compliance Management",
+      description: "Convert regulatory requirements into automated workflows with built-in DOH, HIPAA, and industry compliance standards" 
     },
     { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
+      icon: Users,
+      title: "Executive Health",
+      description: "Change annual check-ups into continuous health monitoring with personalized executive health packages and concierge services" 
     },
     { 
-      icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
+      icon: FileText,
+      title: "Centralized Records",
+      description: "Transform fragmented health data into unified employee health profiles accessible across all your corporate locations" 
     },
     { 
-      icon: Star,
-      title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
-    },
-    { 
-      icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      icon: Target,
+      title: "Productivity Analytics",
+      description: "Replace guesswork with data-driven insights linking employee wellness to productivity and reduced absenteeism" 
     },
   ]
 
   const specialties = [
     { 
-      icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      icon: Briefcase,
+      title: "Multi-site Operations",
+      description: "Centralized management system for corporate clinics across multiple locations with real-time synchronization and unified reporting" 
     },
     { 
       icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
-    },
-    { 
-      icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      title: "Annual Physical Exams",
+      description: "Streamlined APE workflows with automated scheduling, batch processing, and comprehensive health reports for entire organizations" 
     },
     { 
       icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
+      title: "Occupational Health",
+      description: "Complete occupational health management including pre-employment medicals, fitness-to-work assessments, and workplace injury tracking" 
     },
     { 
-      icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
+      icon: Award,
+      title: "HMO Integration",
+      description: "Seamless integration with all major HMO providers for automated eligibility verification and claims processing" 
     },
     { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      icon: DollarSign,
+      title: "Cost Analytics",
+      description: "Detailed healthcare spending analysis with department-wise breakdowns, trend identification, and ROI tracking" 
+    },
+    { 
+      icon: Globe,
+      title: "Global Standards",
+      description: "International compliance support for multinational corporations with customizable workflows per region" 
     },
   ]
 
   const advantages = [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
-      description: "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
-      icon: Shield,
-      image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
+      title: "Unified Multi-Branch Management",
+      description: "Manage all your corporate clinic branches from a single dashboard. Monitor performance, share resources, and maintain consistent standards across all locations.",
+      icon: Building2,
+      image: "/section-assets/clinic-page/carousel/carousel-network.webp",
       bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation"
+        "Real-time visibility across all clinic branches and departments",
+        "Centralized inventory management reducing wastage by 40%",
+        "Standardized protocols ensuring consistent care quality"
       ]
     },
     {
-      title: "Gain New Insights Into Your Clinic",
-      description: "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
+      title: "Employee Health Intelligence",
+      description: "Transform employee health data into strategic business intelligence. Identify health trends, predict risks, and implement targeted wellness programs.",
       icon: BarChart,
       image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
       bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing"
+        "Predictive analytics identifying health risks before they impact productivity",
+        "Department-wise health scorecards and wellness metrics",
+        "ROI tracking for wellness program investments"
       ]
     },
     {
-      title: "A Lifeline for Your Clinic",
-      description: "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
-      icon: Cloud,
-      image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
+      title: "Automated Compliance & Reporting",
+      description: "Stay compliant with DOH, DOLE, and industry regulations automatically. Generate required reports with one click and maintain audit-ready records.",
+      icon: ShieldCheck,
+      image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support"
+        "Automated regulatory report generation for government submissions",
+        "Built-in compliance checks preventing violations",
+        "Complete audit trails for all medical and administrative activities"
       ]
     },
     {
-      title: "Easy Appointment Booking for Your Patients",
-      description: "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
-      icon: Calendar,
+      title: "Seamless HMO & Benefits Management",
+      description: "Simplify complex HMO coordination and employee benefits administration. Process claims faster and reduce administrative overhead.",
+      icon: Users,
       image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
       bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%"
+        "Direct HMO integration eliminating manual verification",
+        "Automated benefits tracking and utilization reports",
+        "Instant eligibility checking reducing claim rejections by 60%"
       ]
     },
   ]
@@ -391,10 +389,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/corporate-clinics-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Corporate Clinics - Enterprise healthcare management"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -412,19 +410,19 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE for Corporate
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
-                    <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    Save Your{" "}
+                    <span className="text-primary">Corporate Clinic</span>{" "}
+                    from Chaos
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    MYCURE transforms corporate healthcare with comprehensive electronic medical records, 
+                    seamless HMO integration, and powerful analytics that drive employee wellness and reduce costs.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -458,15 +456,15 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Transform Your Clinic
+                    Enterprise Solutions
                   </AnimatedShinyText>
                 </div>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                Turn Daily Challenges Into Success Stories
+                Turn Corporate Healthcare Challenges Into Strategic Advantages
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
+                See how MYCURE Corporate transforms complex healthcare management into streamlined operations that boost productivity and employee satisfaction
               </p>
             </motion.div>
             
@@ -530,22 +528,22 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Complete Clinic Solution
+                    Complete Corporate Solution
                   </AnimatedShinyText>
                 </div>
               </div>
               
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                Everything Your Clinic Needs.<br />
-                Nothing It Doesn't.
+                Enterprise Healthcare.<br />
+                Simplified.
               </h2>
               
               {/* Subheadline */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                MYCURE brings together the three core functions every clinic depends on—medical records, 
-                patient scheduling, and billing—in one comprehensive platform that works offline and 
-                reduces admin time by 60%.
+                MYCURE Corporate brings together employee health management, HMO coordination, 
+                and compliance reporting in one unified platform that scales with your organization 
+                and reduces healthcare costs by 30%.
               </p>
               
               {/* CTA */}
@@ -576,7 +574,7 @@ export default function ClinicsPage() {
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/KL4tCmttTPs"
-                  title="MYCURE Clinic Management Platform - Complete Solution"
+                  title="MYCURE Corporate Healthcare Platform - Enterprise Solution"
                   loading="lazy"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
@@ -593,7 +591,7 @@ export default function ClinicsPage() {
           </div>
         </section>
 
-        {/* Features Section - Patient Journey */}
+        {/* Features Section - Corporate Benefits */}
         <section id="features" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
             <motion.div
@@ -609,25 +607,24 @@ export default function ClinicsPage() {
                 <div className="flex justify-center mb-4">
                   <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                     <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                      End-to-End Workflow
+                      Corporate Benefits
                     </AnimatedShinyText>
                   </div>
                 </div>
                 
                 {/* Headline */}
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  How MYCURE Automates Your Entire Patient Workflow
+                  How MYCURE Transforms Corporate Healthcare
                 </h2>
                 
                 {/* Subheadline */}
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every 
-                  touchpoint—from booking to billing—in one intuitive platform that your entire team 
-                  can master in minutes.
+                  From employee wellness to regulatory compliance, discover why leading corporations trust MYCURE 
+                  to manage their healthcare operations efficiently and cost-effectively.
                 </p>
               </div>
 
-              {/* Patient Journey Image */}
+              {/* Corporate Journey Image */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -637,7 +634,7 @@ export default function ClinicsPage() {
               >
                 <Image
                   src="/section-assets/clinic-page/clinic-journey.webp"
-                  alt="MYCURE Patient Journey Flow - From Appointments to Billing"
+                  alt="MYCURE Corporate Healthcare Journey - From Onboarding to Analytics"
                   width={1200}
                   height={600}
                   className="w-full h-auto rounded-2xl"
@@ -654,8 +651,8 @@ export default function ClinicsPage() {
                 className="mt-8 text-center"
               >
                 <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-                  Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, 
-                  and ensuring a complete patient experience from start to finish.
+                  Every employee touchpoint integrated seamlessly—from onboarding health assessments to 
+                  retirement planning, ensuring comprehensive healthcare management throughout the employment lifecycle.
                 </p>
               </motion.div>
             </motion.div>
@@ -676,11 +673,11 @@ export default function ClinicsPage() {
               className="flex flex-col items-center justify-center space-y-6 text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-                Trusted by Healthcare Providers Worldwide
+                Trusted by Leading Corporations Nationwide
               </h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">
-                MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic
-                management technology.
+                MYCURE Corporate helps businesses save millions in healthcare costs while improving 
+                employee wellness and satisfaction.
               </p>
             </motion.div>
 
@@ -700,10 +697,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
+                    <NumberTicker value={250000} delay={0.3} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Medical Records
+                    Employees Served
                   </div>
                 </motion.div>
                 <motion.div
@@ -714,10 +711,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
+                    <NumberTicker value={500} delay={0.4} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Patients Served
+                    Corporate Clients
                   </div>
                 </motion.div>
                 <motion.div
@@ -728,10 +725,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
+                    <NumberTicker value={30} delay={0.5} className="font-bold text-primary" />%
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Transactions Completed
+                    Cost Reduction
                   </div>
                 </motion.div>
               </div>
@@ -762,13 +759,13 @@ export default function ClinicsPage() {
                       </AnimatedShinyText>
                     </div>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
-                      Protected by Design,<br />
-                      Compliant by Default
+                      Enterprise Security,<br />
+                      Total Compliance
                     </h2>
                     <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">
-                      Your patients trust you with their most sensitive health information. MYCURE CSI ensures 
-                      that trust is never broken with enterprise-grade security, automatic compliance, and 
-                      seamless interoperability.
+                      Your corporate health data requires enterprise-grade protection. MYCURE CSI delivers 
+                      bank-level security, automatic compliance, and seamless integration with your existing 
+                      corporate systems.
                     </p>
                   </motion.div>
                 </div>
@@ -789,13 +786,14 @@ export default function ClinicsPage() {
                           <CheckCircle className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">HIPAA-Compliant from Day One</h3>
-                          <p className="text-muted-foreground">Automatic healthcare compliance</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">Multi-Regulatory Compliance</h3>
+                          <p className="text-muted-foreground">DOH, DOLE, HIPAA standards met</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Start accepting patients immediately with built-in HIPAA compliance. No configuration needed—we handle 
-                        encryption, access controls, and audit logs automatically so you can focus on patient care, not paperwork.
+                        Navigate complex regulatory requirements effortlessly. Built-in compliance with Philippine DOH, 
+                        DOLE regulations, and international HIPAA standards. Automatic report generation for government 
+                        submissions and audit requirements.
                       </p>
                       <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
                         <div className="space-y-3">
@@ -805,8 +803,8 @@ export default function ClinicsPage() {
                                 <CheckCircle className="w-4 h-4 text-white" />
                               </div>
                               <div>
-                                <div className="font-semibold text-sm">Compliance Status</div>
-                                <div className="text-xs text-muted-foreground">100% HIPAA Compliant</div>
+                                <div className="font-semibold text-sm">DOH Compliance</div>
+                                <div className="text-xs text-muted-foreground">Philippine health standards</div>
                               </div>
                             </div>
                             <div className="text-xs font-medium text-green-600">Active</div>
@@ -815,8 +813,8 @@ export default function ClinicsPage() {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                               <div>
-                                <div className="font-semibold text-sm">Audit Logs</div>
-                                <div className="text-xs text-muted-foreground">Automatic tracking enabled</div>
+                                <div className="font-semibold text-sm">DOLE Requirements</div>
+                                <div className="text-xs text-muted-foreground">Labor compliance automated</div>
                               </div>
                             </div>
                           </div>
@@ -824,8 +822,8 @@ export default function ClinicsPage() {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                               <div>
-                                <div className="font-semibold text-sm">Access Controls</div>
-                                <div className="text-xs text-muted-foreground">Role-based permissions active</div>
+                                <div className="font-semibold text-sm">HIPAA Standards</div>
+                                <div className="text-xs text-muted-foreground">International privacy compliance</div>
                               </div>
                             </div>
                           </div>
@@ -849,13 +847,14 @@ export default function ClinicsPage() {
                           <Shield className="w-6 h-6 text-purple-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Bank-Level Security Infrastructure</h3>
-                          <p className="text-muted-foreground">Enterprise-grade protection</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Enterprise-Grade Security</h3>
+                          <p className="text-muted-foreground">Military-grade encryption</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Sleep soundly with our dual-layer security approach. AES-256 encryption protects your data at rest, 
-                        while advanced deidentification techniques ensure patient privacy even in worst-case scenarios.
+                        Protect sensitive employee health data with bank-level security infrastructure. Multi-layer 
+                        encryption, role-based access controls, and comprehensive audit trails ensure your corporate 
+                        data remains secure and confidential.
                       </p>
                       <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
                         <div className="space-y-3">
@@ -865,8 +864,8 @@ export default function ClinicsPage() {
                                 <Shield className="w-4 h-4 text-white" />
                               </div>
                               <div>
-                                <div className="font-semibold text-sm">AES-256 Encryption</div>
-                                <div className="text-xs text-muted-foreground">Military-grade data protection</div>
+                                <div className="font-semibold text-sm">256-bit Encryption</div>
+                                <div className="text-xs text-muted-foreground">Banking-grade security</div>
                               </div>
                             </div>
                             <div className="text-xs font-medium text-purple-600">Active</div>
@@ -875,8 +874,8 @@ export default function ClinicsPage() {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
                               <div>
-                                <div className="font-semibold text-sm">Data Deidentification</div>
-                                <div className="text-xs text-muted-foreground">Automated anonymization</div>
+                                <div className="font-semibold text-sm">Role-Based Access</div>
+                                <div className="text-xs text-muted-foreground">Department-level controls</div>
                               </div>
                             </div>
                           </div>
@@ -884,8 +883,8 @@ export default function ClinicsPage() {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
                               <div>
-                                <div className="font-semibold text-sm">Dual-Layer Protection</div>
-                                <div className="text-xs text-muted-foreground">Encryption + anonymization</div>
+                                <div className="font-semibold text-sm">Audit Trails</div>
+                                <div className="text-xs text-muted-foreground">Complete activity logging</div>
                               </div>
                             </div>
                           </div>
@@ -909,13 +908,14 @@ export default function ClinicsPage() {
                           <Cloud className="w-6 h-6 text-blue-600" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-blue-600">Connect with Any Healthcare System</h3>
-                          <p className="text-muted-foreground">Universal interoperability</p>
+                          <h3 className="text-2xl md:text-3xl font-bold text-blue-600">Seamless Corporate Integration</h3>
+                          <p className="text-muted-foreground">Connect with existing systems</p>
                         </div>
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Break down data silos and connect seamlessly with labs, hospitals, pharmacies, and insurance providers. 
-                        Share records, receive results, and process claims—all from one unified platform.
+                        Integrate effortlessly with your HR systems, HMO partners, and healthcare providers. 
+                        API-ready architecture ensures smooth data flow between MYCURE and your existing corporate 
+                        infrastructure.
                       </p>
                       <div className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 rounded-2xl p-6 border border-blue-500/20">
                         <div className="space-y-3">
@@ -925,8 +925,8 @@ export default function ClinicsPage() {
                                 <Cloud className="w-4 h-4 text-white" />
                               </div>
                               <div>
-                                <div className="font-semibold text-sm">Healthcare Network</div>
-                                <div className="text-xs text-muted-foreground">Comprehensive connectivity</div>
+                                <div className="font-semibold text-sm">HR System Integration</div>
+                                <div className="text-xs text-muted-foreground">SAP, Oracle, Workday ready</div>
                               </div>
                             </div>
                             <div className="text-xs font-medium text-blue-600">Connected</div>
@@ -935,8 +935,8 @@ export default function ClinicsPage() {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                               <div>
-                                <div className="font-semibold text-sm">Lab & Diagnostic Centers</div>
-                                <div className="text-xs text-muted-foreground">Instant result sharing</div>
+                                <div className="font-semibold text-sm">HMO Partners</div>
+                                <div className="text-xs text-muted-foreground">All major providers supported</div>
                               </div>
                             </div>
                           </div>
@@ -944,8 +944,8 @@ export default function ClinicsPage() {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                               <div>
-                                <div className="font-semibold text-sm">Insurance & HMO Partners</div>
-                                <div className="text-xs text-muted-foreground">Streamlined claims processing</div>
+                                <div className="font-semibold text-sm">Healthcare Networks</div>
+                                <div className="text-xs text-muted-foreground">Labs, hospitals, pharmacies</div>
                               </div>
                             </div>
                           </div>
@@ -974,21 +974,21 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Seamless Offline Operations
+                    Enterprise Offline Resilience
                   </AnimatedShinyText>
                 </div>
               </div>
 
               {/* Headline */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl">
-                Never Stop Caring, Even Without Internet
+                Business Continuity, Guaranteed
               </h2>
 
               {/* Description */}
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                MYCURE's offline mode ensures your clinic never stops serving patients. 
-                Access records, manage appointments, and process transactions anywhere—all changes 
-                sync automatically when you're back online.
+                MYCURE's enterprise-grade offline capabilities ensure your multi-location operations 
+                continue seamlessly. Coordinate across branches, manage corporate data, and maintain 
+                business operations regardless of connectivity.
               </p>
 
               {/* Offline Sync Video */}
@@ -1012,7 +1012,7 @@ export default function ClinicsPage() {
                       transformOrigin: 'center',
                       clipPath: 'inset(0 2px 0 2px)'
                     }}
-                    aria-label="MYCURE Offline Sync - Never Stop Caring"
+                    aria-label="MYCURE Enterprise Offline - Business Continuity"
                   />
                 </div>
               </motion.div>
@@ -1029,27 +1029,27 @@ export default function ClinicsPage() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Full Patient Records Offline</h3>
+                  <h3 className="font-semibold text-lg">Multi-Branch Coordination</h3>
                   <p className="text-sm text-muted-foreground">
-                    Access complete patient histories and medical records without internet
+                    Manage multiple locations with automatic conflict resolution when syncing
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Appointment Management</h3>
+                  <h3 className="font-semibold text-lg">Corporate Data Sync</h3>
                   <p className="text-sm text-muted-foreground">
-                    Schedule and manage appointments seamlessly even when offline
+                    Centralized data management with intelligent synchronization protocols
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                     <Check className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Secure Local Encryption</h3>
+                  <h3 className="font-semibold text-lg">Enterprise Security</h3>
                   <p className="text-sm text-muted-foreground">
-                    All offline data is encrypted and secured on your local device
+                    Enterprise-grade encryption for all offline corporate data
                   </p>
                 </div>
               </motion.div>
@@ -1070,16 +1070,16 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Specialized Workflows
+                    Corporate Features
                   </AnimatedShinyText>
                 </div>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                One Platform. Every Specialty.
+                Built for Enterprise Scale
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                MYCURE adapts to your practice with specialized workflows for every medical field. 
-                Experience healthcare technology that speaks your specialty's language.
+                MYCURE Corporate adapts to your organization's unique needs with specialized modules 
+                designed for large-scale healthcare management.
               </p>
             </motion.div>
             
@@ -1140,17 +1140,17 @@ export default function ClinicsPage() {
             >
               <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
                 <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={150}>
-                  The MYCURE Advantage
+                  The MYCURE Corporate Advantage
                 </AnimatedShinyText>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Why Clinics Choose MYCURE</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Why Corporations Choose MYCURE</h2>
               <p className="max-w-[800px] text-muted-foreground text-xl md:text-2xl leading-relaxed">
-                Experience the features that make MYCURE the trusted choice for clinics nationwide.
+                Experience the features that make MYCURE the preferred choice for enterprise healthcare management.
               </p>
             </motion.div>
 
             <div className="space-y-20">
-              {/* Feature 1 - HIPAA Telehealth */}
+              {/* Feature 1 - Multi-Branch Management */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1188,7 +1188,7 @@ export default function ClinicsPage() {
                 </div>
               </motion.div>
 
-              {/* Feature 2 - Insights */}
+              {/* Feature 2 - Health Intelligence */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1226,7 +1226,7 @@ export default function ClinicsPage() {
                 </div>
               </motion.div>
 
-              {/* Feature 3 - Lifeline */}
+              {/* Feature 3 - Compliance */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1264,7 +1264,7 @@ export default function ClinicsPage() {
                 </div>
               </motion.div>
 
-              {/* Feature 4 - Booking */}
+              {/* Feature 4 - HMO Management */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1318,11 +1318,11 @@ export default function ClinicsPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
+                    Ready to <span className="text-[#0099CC]">revolutionize</span> your corporate healthcare?
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
-                    patient care.
+                    Join hundreds of leading corporations who trust MYCURE to manage their employee healthcare 
+                    efficiently and cost-effectively.
                   </p>
                 </div>
 
@@ -1334,7 +1334,7 @@ export default function ClinicsPage() {
                       shimmerColor="#ffffff"
                       shimmerDuration="3s"
                     >
-                      Transform Your Practice
+                      Transform Your Corporate Healthcare
                       <ArrowRight className="size-4" />
                     </ShimmerButton>
                   </Link>
@@ -1351,11 +1351,11 @@ export default function ClinicsPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>Training via webinars</span>
+                    <span>Enterprise support</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>Cancel anytime</span>
+                    <span>Scale as you grow</span>
                   </div>
                 </div>
               </div>
@@ -1376,7 +1376,7 @@ export default function ClinicsPage() {
                 <span>MYCURE</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Transforming healthcare management with innovative clinic solutions for providers worldwide.
+                Transforming corporate healthcare management with innovative solutions for enterprises worldwide.
               </p>
             </div>
 
