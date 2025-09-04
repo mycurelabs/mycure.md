@@ -54,7 +54,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function HospitalPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -75,113 +75,124 @@ export default function ClinicsPage() {
 
   const solutions = [
     { 
-      icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
+      icon: Clock,
+      title: "Time & Resource Savings",
+      description: "Save 3+ hours daily by eliminating manual paperwork and automating OPD workflows" 
     },
     { 
       icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
+      title: "Reduced Wait Times",
+      description: "Cut patient wait times by 60% with smart queuing and efficient appointment management" 
     },
     { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
+      icon: Users,
+      title: "Staff Empowerment",
+      description: "Reduce staff workload with intuitive tools designed for busy hospital environments" 
     },
     { 
       icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
+      title: "Appointment Control",
+      description: "Slash cancellations by 40% with automated reminders and easy rebooking systems" 
     },
     { 
       icon: Star,
       title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
+      description: "Boost patient satisfaction scores with seamless OPD experiences and shorter wait times" 
     },
     { 
-      icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      icon: FileX,
+      title: "Error-Free Reports",
+      description: "Generate accurate, compliance-ready reports automatically in seconds, not hours" 
     },
   ]
 
   const specialties = [
     { 
-      icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      icon: Building2,
+      title: "Multi-Department Integration",
+      description: "Seamlessly connect your OPD with other hospital departments for unified patient care and smooth referrals" 
     },
     { 
-      icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
+      icon: Shield,
+      title: "CSI Guarantee",
+      description: "Hospital-grade security with Compliance, Security, and Interoperability built into every feature" 
     },
     { 
-      icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      icon: MessageSquare,
+      title: "Staff Communication",
+      description: "Built-in secure messaging for instant coordination between OPD staff and other departments" 
     },
     { 
-      icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
+      icon: WifiOff,
+      title: "Offline Capability",
+      description: "Continue operations even without internet with MYCURE Syncbase technology" 
+    },
+    { 
+      icon: Globe,
+      title: "MYCURE One Network",
+      description: "Expand your reach with professional profiles that help new patients find and book appointments" 
     },
     { 
       icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
-    },
-    { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      title: "Advanced Analytics",
+      description: "Real-time OPD performance metrics and automated daily reports for data-driven decisions" 
     },
   ]
 
   const advantages = [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
-      description: "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
-      icon: Shield,
-      image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
-      bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation"
-      ]
-    },
-    {
-      title: "Gain New Insights Into Your Clinic",
-      description: "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
-      icon: BarChart,
-      image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
-      bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing"
-      ]
-    },
-    {
-      title: "A Lifeline for Your Clinic",
-      description: "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
+      title: "A Lifeline for Your OPD Clinic",
+      description: "Digitize your entire OPD operations with cloud-based records that grow with your hospital. Access complete patient histories instantly from any department.",
       icon: Cloud,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support"
+        "Complete electronic health records accessible across departments",
+        "Prior illnesses, vaccinations, and medications all in one place",
+        "Automatic backups with enterprise-grade security"
       ]
     },
     {
       title: "Easy Appointment Booking for Your Patients",
-      description: "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
+      description: "Let patients book OPD appointments 24/7 with MYCURE Booking. Show real-time availability for multiple doctors and specialties in your hospital.",
       icon: Calendar,
       image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
       bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%"
+        "Patients see all available doctors and time slots instantly",
+        "Reduce reception desk workload by 70%",
+        "Smart scheduling prevents overbooking and optimizes doctor time"
+      ]
+    },
+    {
+      title: "Reach New Patients with MYCURE One Network",
+      description: "Expand your hospital's reach with a professional profile on MYCURE One. Let patients find your OPD services and book appointments directly.",
+      icon: Globe,
+      image: "/section-assets/clinic-page/carousel/carousel-network.webp",
+      bullets: [
+        "Professional hospital profile showcasing all OPD services",
+        "Patients can search by specialty, location, and availability",
+        "Direct appointment booking from search results"
+      ]
+    },
+    {
+      title: "Maintain Communication Across Departments",
+      description: "Built-in secure messaging keeps your entire OPD team connected. Coordinate with other departments without interrupting patient care.",
+      icon: MessageSquare,
+      image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
+      bullets: [
+        "Instant messaging between OPD staff and departments",
+        "Share patient updates and lab results securely",
+        "Reduce phone calls and physical document transfers"
+      ]
+    },
+    {
+      title: "Online or Offline - Always Operational",
+      description: "With MYCURE Syncbase, your OPD never stops. Work offline during internet outages and automatically sync when connection returns.",
+      icon: WifiOff,
+      image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
+      bullets: [
+        "Continue seeing patients even without internet",
+        "All devices sync automatically when back online",
+        "Never lose data due to connectivity issues"
       ]
     },
   ]
@@ -424,10 +435,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/hospital-opd-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Hospital OPD - Modern hospital outpatient department management"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -445,19 +456,18 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE Hospitals
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
-                    <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    Robust CMS and EMR for{" "}
+                    <span className="text-primary">Modern Hospital OPD</span>
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    Keep your hospital's outpatient department operations running smoothly with MYCURE Hospital-OPD. 
+                    Designed for OPD clinics of all sizes, from small departments to large multi-specialty hospitals.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -491,7 +501,7 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Transform Your Clinic
+                    Transform Your Hospital OPD
                   </AnimatedShinyText>
                 </div>
               </div>
@@ -563,7 +573,7 @@ export default function ClinicsPage() {
               <div className="flex justify-center">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Complete Clinic Solution
+                    Complete Hospital OPD Solution
                   </AnimatedShinyText>
                 </div>
               </div>
@@ -733,10 +743,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
+                    <NumberTicker value={500000} delay={0.3} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Medical Records
+                    OPD Visits Managed
                   </div>
                 </motion.div>
                 <motion.div
@@ -747,10 +757,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
+                    <NumberTicker value={60} delay={0.4} className="font-bold text-primary" />%
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Patients Served
+                    Reduced Wait Times
                   </div>
                 </motion.div>
                 <motion.div
@@ -761,10 +771,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
+                    <NumberTicker value={24} delay={0.5} className="font-bold text-primary" />/7
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Transactions Completed
+                    System Availability
                   </div>
                 </motion.div>
               </div>
@@ -1103,7 +1113,7 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Specialized Workflows
+                    Hospital-Grade Workflows
                   </AnimatedShinyText>
                 </div>
               </div>
@@ -1176,7 +1186,7 @@ export default function ClinicsPage() {
                   The MYCURE Advantage
                 </AnimatedShinyText>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Why Clinics Choose MYCURE</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Why Hospitals Choose MYCURE</h2>
               <p className="max-w-[800px] text-muted-foreground text-xl md:text-2xl leading-relaxed">
                 Experience the features that make MYCURE the trusted choice for clinics nationwide.
               </p>

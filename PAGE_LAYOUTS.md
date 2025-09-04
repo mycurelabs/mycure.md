@@ -79,7 +79,45 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 
 ---
 
-### 4. download-style
+### 4. feature-style
+**Description**: Clean, focused feature page inspired by modern SaaS products (Notion Calendar pattern)
+**Characteristics**:
+- Minimal hero with punchy headline and single CTA
+- Product icon/badge positioning
+- 2x2 feature grid with icons
+- Integration showcase with alternating layouts
+- Benefits section with visual demonstrations
+- Tool/platform compatibility grid
+- Download options for multiple platforms
+- FAQ accordion at bottom
+- Clean, spacious design with ample whitespace
+- Focus on single product/feature
+- Subtle animations and transitions
+
+**Key Components**:
+- Product badge/icon
+- Feature cards with icons
+- Integration screenshots
+- Platform download buttons
+- Expandable FAQ items
+- Testimonial cards (optional)
+
+**Section Flow Pattern**:
+1. Hero with product icon and single CTA
+2. Primary features (2x2 grid)
+3. Integration showcase (alternating layouts)
+4. Benefits/use cases section
+5. Tool compatibility grid
+6. Download/access options
+7. FAQ section
+
+**Files using this layout**:
+- `/app/booking/page.tsx` - Booking feature page (implemented)
+- `/app/telehealth/page.tsx` - Telehealth feature page (implemented)
+
+---
+
+### 5. download-style
 **Description**: Platform download and installation options showcase
 **Characteristics**:
 - Tab-based navigation for categories
@@ -96,28 +134,32 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 
 ## Layout Components Matrix
 
-| Component | landing-style | document-style | product-style | download-style |
-|-----------|--------------|----------------|---------------|----------------|
-| Complex Nav Header | ✓ | ✗ | ✓ | ✗ |
-| Simple Header | ✗ | ✓ | ✗ | ✓ |
-| Hero with Badge | ✗ | ✗ | ✓ | ✗ |
-| Hero Section | ✓ | ✓ | ✓ | ✓ |
-| Back Button | ✗ | ✓ | ✗ | ✓ |
-| Sidebar TOC | ✗ | ✓ | ✗ | ✗ |
-| Mobile TOC | ✗ | ✓ | ✗ | ✗ |
-| Scrollspy | ✗ | ✓ | ✗ | ✗ |
-| Solution Cards | ✗ | ✗ | ✓ | ✗ |
-| Feature Cards | ✓ | ✗ | ✓ | ✗ |
-| Video Embed | ✗ | ✗ | ✓ | ✗ |
-| Journey Maps | ✗ | ✗ | ✓ | ✗ |
-| NumberTicker | ✓ | ✗ | ✓ | ✗ |
-| Sticky Scroll | ✗ | ✗ | ✓ | ✗ |
-| Image + Content | ✗ | ✗ | ✓ | ✗ |
-| ShimmerButton | ✓ | ✗ | ✓ | ✗ |
-| Statistics | ✓ | ✗ | ✓ | ✗ |
-| Tabs | ✗ | ✗ | ✗ | ✓ |
-| Animations | Heavy | Light | Heavy | Moderate |
-| Footer | Full | Full | Full | Simple |
+| Component | landing-style | document-style | product-style | feature-style | download-style |
+|-----------|--------------|----------------|---------------|---------------|----------------|
+| Complex Nav Header | ✓ | ✗ | ✓ | ✓ | ✗ |
+| Simple Header | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Hero with Badge | ✗ | ✗ | ✓ | ✗ | ✗ |
+| Hero Section | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Product Icon | ✗ | ✗ | ✗ | ✓ | ✗ |
+| Back Button | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Sidebar TOC | ✗ | ✓ | ✗ | ✗ | ✗ |
+| Mobile TOC | ✗ | ✓ | ✗ | ✗ | ✗ |
+| Scrollspy | ✗ | ✓ | ✗ | ✗ | ✗ |
+| Solution Cards | ✗ | ✗ | ✓ | ✗ | ✗ |
+| Feature Cards | ✓ | ✗ | ✓ | ✓ | ✗ |
+| Video Embed | ✗ | ✗ | ✓ | ✓ | ✗ |
+| Journey Maps | ✗ | ✗ | ✓ | ✗ | ✗ |
+| NumberTicker | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Sticky Scroll | ✗ | ✗ | ✓ | ✗ | ✗ |
+| Image + Content | ✗ | ✗ | ✓ | ✓ | ✗ |
+| ShimmerButton | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Statistics | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Integration Grid | ✗ | ✗ | ✗ | ✓ | ✗ |
+| FAQ Accordion | ✗ | ✗ | ✗ | ✓ | ✗ |
+| Download Links | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Tabs | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Animations | Heavy | Light | Heavy | Subtle | Moderate |
+| Footer | Full | Full | Full | Full | Simple |
 
 ## Usage Guidelines
 
@@ -143,6 +185,14 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 - Feature showcases
 - Industry-specific products
 - B2B product pages
+
+**feature-style**:
+- Individual feature pages
+- Single tool/module presentations
+- Focused functionality showcases
+- Integration-heavy features
+- Clean, modern SaaS features
+- When you need less complexity than product-style
 
 **download-style**: 
 - Download/installation pages

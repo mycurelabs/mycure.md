@@ -50,7 +50,9 @@
       "mcp__playwright-mcp__browser_wait_for",
       "mcp__playwright-mcp__browser_evaluate",
       "mcp__playwright-mcp__browser_resize",
-      "WebSearch"
+      "WebSearch",
+      "mcp__playwright-mcp__browser_close",
+      "mcp__playwright-mcp__browser_click"
     ],
     "deny": [],
     "ask": []

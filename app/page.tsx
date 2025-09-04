@@ -256,13 +256,22 @@ export default function LandingPage() {
             <span>MYCURE</span>
           </button>
           <nav className="hidden md:flex gap-8">
-            <Link
-              href="#features"
-              onClick={(e) => scrollToSection(e, '#features')}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Features
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground p-0 h-auto flex items-center gap-1">
+                  Features
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem asChild>
+                  <Link href="/booking">Booking</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/telehealth">Telehealth</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground p-0 h-auto flex items-center gap-1">
@@ -273,6 +282,9 @@ export default function LandingPage() {
               <DropdownMenuContent align="start">
                 <DropdownMenuItem asChild>
                   <Link href="/clinics">Clinics</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/hospital">Hospital</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/corporate">Corporate</Link>
@@ -350,16 +362,29 @@ export default function LandingPage() {
             className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
           >
             <div className="container py-4 flex flex-col gap-4">
-              <Link 
-                href="#features" 
-                className="py-2 text-sm font-medium" 
-                onClick={(e) => scrollToSection(e, '#features')}
-              >
-                Features
-              </Link>
-              
               <div className="py-2">
                 <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="features" className="border-none">
+                    <AccordionTrigger className="py-0 hover:no-underline">
+                      <span className="text-sm font-medium">Features</span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <Link 
+                        href="/booking" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Booking
+                      </Link>
+                      <Link 
+                        href="/telehealth" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Telehealth
+                      </Link>
+                    </AccordionContent>
+                  </AccordionItem>
                   <AccordionItem value="solutions" className="border-none">
                     <AccordionTrigger className="py-0 hover:no-underline">
                       <span className="text-sm font-medium">Solutions</span>
@@ -371,6 +396,13 @@ export default function LandingPage() {
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Clinics
+                      </Link>
+                      <Link 
+                        href="/hospital" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Hospital
                       </Link>
                       <Link 
                         href="/corporate" 

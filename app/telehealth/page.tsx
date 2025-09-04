@@ -37,6 +37,7 @@ import {
   CalendarCheck,
   Star,
   ShieldCheck,
+  Video,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -54,7 +55,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react"
 
-export default function ClinicsPage() {
+export default function TelehealthPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -76,112 +77,112 @@ export default function ClinicsPage() {
   const solutions = [
     { 
       icon: TrendingUp,
-      title: "Time Efficiency",
-      description: "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations" 
+      title: "Increase Your Revenue",
+      description: "Treat more patients and reduce no-shows by 40% with secure video consultations and automated reminders" 
     },
     { 
-      icon: Zap,
-      title: "Patient Flow",
-      description: "Turn long wait times into 40% faster patient flow through smart scheduling and queue management" 
-    },
-    { 
-      icon: Heart,
-      title: "Staff Wellness",
-      description: "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive" 
-    },
-    { 
-      icon: CalendarCheck,
-      title: "Schedule Optimization",
-      description: "Change cancellations into full schedules using automated reminders and easy rebooking systems" 
-    },
-    { 
-      icon: Star,
-      title: "Patient Satisfaction",
-      description: "Transform patient frustration into 5-star reviews with seamless experiences that delight" 
+      icon: Users,
+      title: "Build Your Clientele",
+      description: "Expand your practice beyond physical hours and build patient loyalty with convenient virtual care options" 
     },
     { 
       icon: ShieldCheck,
-      title: "Compliance & Security",
-      description: "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting" 
+      title: "Secure Medical Records",
+      description: "Keep patient data safe with HIPAA-compliant storage and international data privacy regulations" 
+    },
+    { 
+      icon: Building2,
+      title: "Group Practice Ready",
+      description: "Coordinate seamlessly with other physicians and centralize medical records in one comprehensive workspace" 
+    },
+    { 
+      icon: Video,
+      title: "Conference Calls",
+      description: "Host multi-participant video consultations for group therapy, family consultations, or team meetings" 
+    },
+    { 
+      icon: Clock,
+      title: "24/7 Availability",
+      description: "Let patients book appointments anytime through your professional booking website" 
     },
   ]
 
   const specialties = [
     { 
-      icon: Sparkles,
-      title: "Skin & Aesthetics",
-      description: "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking" 
+      icon: Video,
+      title: "HD Video Consultations",
+      description: "Crystal-clear video and audio quality for professional virtual consultations with screen sharing capabilities" 
     },
     { 
-      icon: Heart,
-      title: "Maternity Care",
-      description: "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records" 
+      icon: MessageSquare,
+      title: "Secure Messaging",
+      description: "HIPAA-compliant chat system for patient communication with file sharing and appointment reminders" 
     },
     { 
-      icon: Baby,
-      title: "Pediatric Care",
-      description: "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking" 
+      icon: Calendar,
+      title: "Smart Scheduling",
+      description: "Automated appointment booking with calendar integration, timezone management, and buffer time settings" 
     },
     { 
-      icon: Stethoscope,
-      title: "Dentistry",
-      description: "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping" 
+      icon: FileX,
+      title: "Digital Prescriptions",
+      description: "Issue and send electronic prescriptions directly to pharmacies with dosage tracking and refill management" 
     },
     { 
-      icon: BarChart,
-      title: "Diagnostics",
-      description: "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation" 
+      icon: Shield,
+      title: "End-to-End Encryption",
+      description: "Military-grade encryption for all patient data, video calls, and medical records with audit trails" 
     },
     { 
-      icon: Building2,
-      title: "Corporate Health",
-      description: "Employee wellness programs, occupational health management, and executive check-up packages" 
+      icon: Globe,
+      title: "Multi-Platform Access",
+      description: "Access from any device - desktop, tablet, or mobile - with synchronized data across all platforms" 
     },
   ]
 
   const advantages = [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
-      description: "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
-      icon: Shield,
+      title: "Start Virtual Consultations in Minutes",
+      description: "Launch your telemedicine practice instantly with our ready-to-use platform. No complex setup or technical expertise required.",
+      icon: Video,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation"
+        "One-click video calls with HD quality and screen sharing",
+        "Built-in waiting room for managing multiple patients",
+        "Automatic recording and transcription for documentation"
       ]
     },
     {
-      title: "Gain New Insights Into Your Clinic",
-      description: "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
-      icon: BarChart,
+      title: "Expand Beyond Physical Boundaries",
+      description: "Reach patients anywhere, anytime. Break geographical barriers and provide care to patients who can't visit in person.",
+      icon: Globe,
       image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
       bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing"
+        "Treat patients from multiple locations without travel",
+        "Accommodate patients with mobility challenges or transportation issues",
+        "Expand your practice reach to underserved areas"
       ]
     },
     {
-      title: "A Lifeline for Your Clinic",
-      description: "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
-      icon: Cloud,
+      title: "Integrated Virtual Care Workflow",
+      description: "Seamlessly blend virtual and in-person care with our comprehensive telehealth tools designed for modern healthcare.",
+      icon: Zap,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support"
+        "Switch between virtual and in-person appointments effortlessly",
+        "Complete patient journey from booking to follow-up online",
+        "Integrated billing and insurance processing for virtual visits"
       ]
     },
     {
-      title: "Easy Appointment Booking for Your Patients",
-      description: "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
-      icon: Calendar,
-      image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
+      title: "Group Practice Collaboration",
+      description: "Perfect for multi-physician practices. Coordinate care, share resources, and manage your virtual practice together.",
+      icon: Users,
+      image: "/section-assets/clinic-page/carousel/carousel-network.webp",
       bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%"
+        "Multi-provider video conferences for case discussions",
+        "Shared patient records and treatment plans",
+        "Centralized scheduling across all providers"
       ]
     },
   ]
@@ -424,10 +425,10 @@ export default function ClinicsPage() {
                 className="relative order-1 lg:order-1"
               >
                 <Image
-                  src="/section-assets/clinic-page/outpatient-clinics-hero-section.png"
+                  src="/hero-section-assets/telehealth-feature-hero-image.webp"
                   width={600}
                   height={500}
-                  alt="MYCURE Clinics - Healthcare professionals at reception desks"
+                  alt="MYCURE Telehealth - Virtual consultations and telemedicine platform"
                   className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
                   priority
                 />
@@ -445,19 +446,18 @@ export default function ClinicsPage() {
                   <div className="flex justify-center lg:justify-start">
                     <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                       <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                        MYCURE for Clinics
+                        MYCURE Telehealth
                       </AnimatedShinyText>
                     </div>
                   </div>
                   
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    The All-in-One{" "}
-                    <span className="text-primary">Clinic Management System</span>{" "}
-                    That Actually Works
+                    Everything You Need to Build Your{" "}
+                    <span className="text-primary">Telemedicine Practice</span>
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. 
-                    Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.
+                    Give your patients the quality telehealth care they deserve, without having to visit in-person. 
+                    Expand your practice reach, increase revenue, and provide convenient virtual consultations.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
@@ -491,15 +491,15 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Transform Your Clinic
+                    Virtual Practice Solutions
                   </AnimatedShinyText>
                 </div>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                Turn Daily Challenges Into Success Stories
+                Transform Your Practice with Telehealth
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
+                See how virtual consultations can expand your practice reach, increase revenue, and improve patient satisfaction
               </p>
             </motion.div>
             
@@ -608,8 +608,8 @@ export default function ClinicsPage() {
             >
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/KL4tCmttTPs"
-                  title="MYCURE Clinic Management Platform - Complete Solution"
+                  src="https://www.youtube-nocookie.com/embed/bkNMU65Zh4s"
+                  title="MYCURE Telehealth - Virtual Care Platform"
                   loading="lazy"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
@@ -733,10 +733,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={13239859} delay={0.3} className="font-bold text-primary" />
+                    <NumberTicker value={850000} delay={0.3} className="font-bold text-primary" />+
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Medical Records
+                    Virtual Consultations
                   </div>
                 </motion.div>
                 <motion.div
@@ -747,10 +747,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={2946953} delay={0.4} className="font-bold text-primary" />
+                    <NumberTicker value={95} delay={0.4} className="font-bold text-primary" />%
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Patients Served
+                    Patient Satisfaction
                   </div>
                 </motion.div>
                 <motion.div
@@ -761,10 +761,10 @@ export default function ClinicsPage() {
                   className="text-center space-y-2"
                 >
                   <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                    <NumberTicker value={6242974} delay={0.5} className="font-bold text-primary" />
+                    <NumberTicker value={40} delay={0.5} className="font-bold text-primary" />%
                   </div>
                   <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
-                    Transactions Completed
+                    Reduced No-Shows
                   </div>
                 </motion.div>
               </div>
@@ -1103,16 +1103,16 @@ export default function ClinicsPage() {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
                   <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Specialized Workflows
+                    Telehealth Features
                   </AnimatedShinyText>
                 </div>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                One Platform. Every Specialty.
+                Complete Virtual Care Platform
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                MYCURE adapts to your practice with specialized workflows for every medical field. 
-                Experience healthcare technology that speaks your specialty's language.
+                Everything you need for professional virtual consultations. From video calls to digital prescriptions, 
+                we've got you covered with enterprise-grade security.
               </p>
             </motion.div>
             
@@ -1351,11 +1351,11 @@ export default function ClinicsPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                    Ready to <span className="text-[#0099CC]">transform</span> your healthcare practice?
+                    Let Us Do the <span className="text-[#0099CC]">Work</span> for You
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve
-                    patient care.
+                    Worrying about the shift to digital records? We've got you covered. Our lean implementation process 
+                    ensures you get what you need: customized forms, optimized workflows, and well-trained staff.
                   </p>
                 </div>
 
@@ -1367,7 +1367,7 @@ export default function ClinicsPage() {
                       shimmerColor="#ffffff"
                       shimmerDuration="3s"
                     >
-                      Transform Your Practice
+                      Start Your Virtual Practice
                       <ArrowRight className="size-4" />
                     </ShimmerButton>
                   </Link>
