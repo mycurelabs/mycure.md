@@ -1,0 +1,139 @@
+{
+  "url": "https://www.mycure.md/clinics",
+  "title": "Flexible Clinic Management System | MYCURE Software for Clinics",
+  "scrapedDate": "2025-01-03",
+  "sections": [
+    {
+      "type": "hero",
+      "heading": "MYCURE CLINICS",
+      "subheading": "Simplified Workflows, Faster Results, Better Performance.",
+      "description": "Keep your outpatient clinic running smoothly all day long with the MYCURE Clinics app. We've designed a platform that benefits large and small operations.",
+      "cta": "Contact Us"
+    },
+    {
+      "type": "problem-statement",
+      "heading": "Your clinic system should not cause you more problems",
+      "problems": [
+        "Wasted time and resources",
+        "Long wait times",
+        "Overworked staff",
+        "Cancelled appointments",
+        "Frustrated patients",
+        "Error-prone reports",
+        "Compliance issues"
+      ]
+    },
+    {
+      "type": "solution",
+      "heading": "Stay in Control",
+      "content": "MYCURE Clinics is an end-to-end solution that eliminates the old challenges of processing paperwork manually..."
+    },
+    {
+      "type": "experience",
+      "heading": "Experience MYCURE Clinics",
+      "content": "MYCURE integrates outpatient clinic operations into a clean and simple interface..."
+    },
+    {
+      "type": "why-switch",
+      "heading": "Why do clinics switch to MYCURE?",
+      "content": "MYCURE integrates critical clinic operations into a clean, simple interface..."
+    },
+    {
+      "type": "features",
+      "items": [
+        {
+          "title": "MYCURE Clinics is No Ordinary EHR App",
+          "description": "It's a cloud-based clinic system built for the specialized needs of healthcare..."
+        },
+        {
+          "title": "Advanced Tools for a Growing Clinic",
+          "description": "We're here to make managing your multispecialty clinic so much easier..."
+        }
+      ]
+    },
+    {
+      "type": "csi-guarantee",
+      "heading": "Protect Your Clinic Thanks to MYCURE CSI",
+      "features": ["Compliance", "Security", "Interoperability"]
+    },
+    {
+      "type": "communication",
+      "heading": "Maintain Communication with Clinic Staff",
+      "content": "MYCURE Doctors comes with its own chat feature..."
+    },
+    {
+      "type": "syncbase",
+      "heading": "Online or Off, MYCURE Clinics Is Here for You",
+      "content": "With the MYCURE Syncbase, you'll be able to work as if you have an in-house server..."
+    },
+    {
+      "type": "mycure-one",
+      "heading": "Help Your Patients Find You",
+      "content": "Join MYCURE ONE, a global directory of healthcare providers..."
+    },
+    {
+      "type": "specialties",
+      "heading": "Customized for You",
+      "subtitle": "MYCURE has built-in workflows across a range of specialties.",
+      "items": [
+        "Multispecialty",
+        "Skin & Aesthetics",
+        "Maternity Care",
+        "Pediatric Care",
+        "Dentistry",
+        "Diagnostics",
+        "Corporate"
+      ]
+    },
+    {
+      "type": "value-proposition",
+      "heading": "Invaluable Clinic Management System at an Affordable Price",
+      "content": "MYCURE Clinic offers a variety of tools that you can mix and match..."
+    },
+    {
+      "type": "advantages",
+      "heading": "The MYCURE Clinic Advantage",
+      "features": [
+        "Reach New Patients With the MYCURE One Network",
+        "We Offer a HIPAA-Compliant Telehealth Platform",
+        "Gain New Insights Into Your Clinic's Strengths and Weaknesses",
+        "A Lifeline for Your Clinic",
+        "Easy Appointment Booking for Your Patients"
+      ]
+    },
+    {
+      "type": "statistics",
+      "heading": "Built With Care for People Who Care",
+      "stats": [
+        { "number": "1,700,000", "label": "MEDICAL RECORDS" },
+        { "number": "1,450,000", "label": "LIVES SAVED" },
+        { "number": "780", "label": "PARTNER PROVIDERS" }
+      ]
+    },
+    {
+      "type": "get-started",
+      "heading": "Get Started Today!",
+      "subtitle": "Joining MYCURE is simple",
+      "steps": [
+        {
+          "title": "Create your Free Account",
+          "description": "MYCURE is very easy to set up. No program installation needed since it's a web-based application."
+        },
+        {
+          "title": "Customize your Clinic",
+          "description": "Utilize our range of modules and features that will tailor-fit your clinic operations and services."
+        },
+        {
+          "title": "Get Started!",
+          "description": "Take advantage of our tutorials and training videos or book a virtual session with one of our specialists."
+        }
+      ]
+    },
+    {
+      "type": "training",
+      "heading": "LEARN THE BASICS WITH EASE",
+      "subtitle": "Worrying about the shift to digital records? We got you covered.",
+      "content": "We understand that it may be difficult to change what you're used to doing..."
+    }
+  ]
+}

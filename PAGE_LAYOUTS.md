@@ -41,7 +41,45 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 
 ---
 
-### 3. download-style
+### 3. product-style
+**Description**: Product-focused marketing page with modern design patterns and conversion optimization
+**Characteristics**:
+- Hero section with AnimatedShinyText badge for product positioning
+- Problem-to-Solution card grids addressing specific pain points
+- Embedded media (YouTube videos) for product demonstrations
+- Visual storytelling through journey maps and process flows
+- Statistics sections with NumberTicker animations
+- Sticky scroll sections using Scrollytelling for progressive reveals
+- Alternating Image + Content layouts for feature showcases
+- Multiple ShimmerButton CTAs for conversion points
+- Glass morphism effects and gradient backgrounds
+- Comprehensive use of Framer Motion animations with viewport triggers
+- Responsive grid layouts with mobile-first approach
+
+**Key Components**:
+- `AnimatedShinyText` - Badge-style product announcements
+- `ShimmerButton` - Primary call-to-action buttons
+- `NumberTicker` - Animated statistics display
+- `Scrollytelling` - Sticky scroll interactions
+- `Card` components with icons for solutions/features
+
+**Section Flow Pattern**:
+1. Hero with badge and dual CTAs
+2. Solutions grid (problem-to-solution narrative)
+3. Product demo (video or interactive element)
+4. Visual feature presentation (journey/process)
+5. Specialty/category cards
+6. Social proof (statistics tracker)
+7. Security/compliance features (sticky scroll)
+8. Detailed advantages (alternating layouts)
+9. Final conversion CTA
+
+**Files using this layout**:
+- `/app/clinics/page.tsx` - Clinics product page (definitive standard)
+
+---
+
+### 4. download-style
 **Description**: Platform download and installation options showcase
 **Characteristics**:
 - Tab-based navigation for categories
@@ -58,18 +96,28 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 
 ## Layout Components Matrix
 
-| Component | landing-style | document-style | download-style |
-|-----------|--------------|----------------|----------------|
-| Complex Nav Header | ✓ | ✗ | ✗ |
-| Simple Header | ✗ | ✓ | ✓ |
-| Hero Section | ✓ | ✓ | ✓ |
-| Back Button | ✗ | ✓ | ✓ |
-| Sidebar TOC | ✗ | ✓ | ✗ |
-| Mobile TOC | ✗ | ✓ | ✗ |
-| Scrollspy | ✗ | ✓ | ✗ |
-| Tabs | ✗ | ✗ | ✓ |
-| Animations | Heavy | Light | Moderate |
-| Footer | Full | Full | Simple |
+| Component | landing-style | document-style | product-style | download-style |
+|-----------|--------------|----------------|---------------|----------------|
+| Complex Nav Header | ✓ | ✗ | ✓ | ✗ |
+| Simple Header | ✗ | ✓ | ✗ | ✓ |
+| Hero with Badge | ✗ | ✗ | ✓ | ✗ |
+| Hero Section | ✓ | ✓ | ✓ | ✓ |
+| Back Button | ✗ | ✓ | ✗ | ✓ |
+| Sidebar TOC | ✗ | ✓ | ✗ | ✗ |
+| Mobile TOC | ✗ | ✓ | ✗ | ✗ |
+| Scrollspy | ✗ | ✓ | ✗ | ✗ |
+| Solution Cards | ✗ | ✗ | ✓ | ✗ |
+| Feature Cards | ✓ | ✗ | ✓ | ✗ |
+| Video Embed | ✗ | ✗ | ✓ | ✗ |
+| Journey Maps | ✗ | ✗ | ✓ | ✗ |
+| NumberTicker | ✓ | ✗ | ✓ | ✗ |
+| Sticky Scroll | ✗ | ✗ | ✓ | ✗ |
+| Image + Content | ✗ | ✗ | ✓ | ✗ |
+| ShimmerButton | ✓ | ✗ | ✓ | ✗ |
+| Statistics | ✓ | ✗ | ✓ | ✗ |
+| Tabs | ✗ | ✗ | ✗ | ✓ |
+| Animations | Heavy | Light | Heavy | Moderate |
+| Footer | Full | Full | Full | Simple |
 
 ## Usage Guidelines
 
@@ -87,6 +135,14 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 - Blog posts (if implemented)
 - Technology/feature explanations
 - Service descriptions
+
+**product-style**:
+- Product marketing pages
+- Service offerings
+- Solution presentations
+- Feature showcases
+- Industry-specific products
+- B2B product pages
 
 **download-style**: 
 - Download/installation pages

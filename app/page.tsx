@@ -42,6 +42,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTheme } from "next-themes"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import * as Scrollytelling from "@bsmnt/scrollytelling"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -257,13 +263,19 @@ export default function LandingPage() {
             >
               Features
             </Link>
-            <Link
-              href="#solutions"
-              onClick={(e) => scrollToSection(e, '#solutions')}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Solutions
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground p-0 h-auto flex items-center gap-1">
+                  Solutions
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem asChild>
+                  <Link href="/clinics">Clinics</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               href="#how-it-works"
               onClick={(e) => scrollToSection(e, '#how-it-works')}
@@ -277,12 +289,6 @@ export default function LandingPage() {
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               FAQs
-            </Link>
-            <Link
-              href="/our-story"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Our Story
             </Link>
           </nav>
           <div className="hidden md:flex gap-4 items-center">
@@ -337,13 +343,24 @@ export default function LandingPage() {
                 Features
               </Link>
               
-              <Link 
-                href="#solutions" 
-                className="py-2 text-sm font-medium" 
-                onClick={(e) => scrollToSection(e, '#solutions')}
-              >
-                Solutions
-              </Link>
+              <div className="py-2">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="solutions" className="border-none">
+                    <AccordionTrigger className="py-0 hover:no-underline">
+                      <span className="text-sm font-medium">Solutions</span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <Link 
+                        href="/clinics" 
+                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Clinics
+                      </Link>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
               
               <Link 
                 href="#how-it-works" 
@@ -359,14 +376,6 @@ export default function LandingPage() {
                 onClick={(e) => scrollToSection(e, '#faq')}
               >
                 FAQs
-              </Link>
-              
-              <Link 
-                href="/our-story" 
-                className="py-2 text-sm font-medium" 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Our Story
               </Link>
               
               <div className="flex flex-col gap-2 pt-2 border-t">
