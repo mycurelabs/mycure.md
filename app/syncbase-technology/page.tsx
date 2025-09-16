@@ -142,7 +142,7 @@ export default function SyncbaseTechnologyPage() {
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
-          <div className="container px-4 md:px-6 py-16 md:py-20">
+          <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
             <motion.div 
               className="max-w-4xl"
               initial={{ opacity: 0, y: 20 }}
@@ -153,13 +153,13 @@ export default function SyncbaseTechnologyPage() {
                 <ArrowLeft className="size-4" />
                 Back to Home
               </Link>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
                 MYCURE Syncbase
               </h1>
-              <p className="text-xl text-muted-foreground mb-4">
+              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
                 The holy grail of online-offline technology
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                 MYCURE Syncbase is the cost-effective setup for your clinic management system. It enables clinics and hospitals to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
               </p>
             </motion.div>
@@ -168,7 +168,7 @@ export default function SyncbaseTechnologyPage() {
 
         {/* Content Section with TOC */}
         <section className="w-full">
-          <div className="container px-4 md:px-6 py-12">
+          <div className="container px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
             <div className="flex gap-12">
               {/* Main Content */}
               <div className="flex-1 max-w-4xl">
@@ -183,7 +183,7 @@ export default function SyncbaseTechnologyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">Why Syncbase?</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Why Syncbase?</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       Setting up a health information system is a major investment for healthcare facilities. Traditional desktop-based applications often require expensive hardware and on-premise servers to run onsite.
                     </p>
@@ -274,7 +274,7 @@ export default function SyncbaseTechnologyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">Security & Privacy</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Security & Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                       MYCURE is designed with healthcare-grade data protection in mind. It complies with international standards for patient data privacy and security.
                     </p>
@@ -311,7 +311,7 @@ export default function SyncbaseTechnologyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">Benefits</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Benefits</h2>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
@@ -341,7 +341,7 @@ export default function SyncbaseTechnologyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">Demo</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Demo</h2>
                     <ul className="space-y-3 text-muted-foreground mb-6">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
@@ -653,7 +653,7 @@ export default function SyncbaseTechnologyPage() {
         </div>
         
         {/* Copyright - Bottom of Footer */}
-        <div className="container px-4 md:px-6 py-4 border-t">
+        <div className="container px-4 sm:px-6 md:px-8 py-4 border-t">
           <p className="text-xs text-muted-foreground text-center">
             © {new Date().getFullYear()} MYCURE. All rights reserved.
           </p>

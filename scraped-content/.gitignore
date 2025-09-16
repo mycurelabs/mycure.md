@@ -1,0 +1,20 @@
+# Ignore large screenshot files
+screenshots/*.png
+screenshots/*.jpg
+screenshots/*.jpeg
+
+# Ignore downloaded assets that might be large
+assets/**/*.png
+assets/**/*.jpg
+assets/**/*.jpeg
+assets/**/*.gif
+assets/**/*.mp4
+assets/**/*.webm
+
+# Keep directory structure
+!screenshots/.gitkeep
+!data/.gitkeep
+!assets/.gitkeep
+
+# Always track data files
+!data/*.json

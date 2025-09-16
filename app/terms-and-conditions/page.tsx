@@ -155,7 +155,7 @@ export default function TermsAndConditionsPage() {
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
-          <div className="container px-4 md:px-6 py-16 md:py-20">
+          <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
             <motion.div 
               className="max-w-4xl"
               initial={{ opacity: 0, y: 20 }}
@@ -166,13 +166,13 @@ export default function TermsAndConditionsPage() {
                 <ArrowLeft className="size-4" />
                 Back to Home
               </Link>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
                 Terms and Conditions
               </h1>
-              <p className="text-lg text-muted-foreground mb-4">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
                 Please read these Terms and Conditions carefully before using our services.
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Effective Date: August 29, 2025
               </p>
             </motion.div>
@@ -181,7 +181,7 @@ export default function TermsAndConditionsPage() {
 
         {/* Content Section with TOC */}
         <section className="w-full">
-          <div className="container px-4 md:px-6 py-12">
+          <div className="container px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
             <div className="flex gap-12">
               {/* Main Content */}
               <div className="flex-1 max-w-4xl">
@@ -196,7 +196,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Acceptance of Terms</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       By accessing, browsing, or using the MYCURE platform ("Services"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to all the terms and conditions, you must not use the Services.
                     </p>
@@ -214,7 +214,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">2. Eligibility</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Eligibility</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       To use our Services, you must:
                     </p>
@@ -247,7 +247,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">3. Account Registration</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Account Registration</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       You must create an account to access certain features. You agree to:
                     </p>
@@ -284,7 +284,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">4. Services Provided</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. Services Provided</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       MYCURE provides healthcare management software including but not limited to:
                     </p>
@@ -328,7 +328,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">5. Use Restrictions</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Use Restrictions</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       You agree NOT to:
                     </p>
@@ -377,7 +377,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">6. Payment and Billing</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Payment and Billing</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       By subscribing to our paid Services, you agree to:
                     </p>
@@ -413,7 +413,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">7. Refunds and Cancellations</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Refunds and Cancellations</h2>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
@@ -443,7 +443,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">8. Intellectual Property</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Intellectual Property</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       All intellectual property rights in the Services, including software, content, features, and functionality, are owned by MYCURE or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Services in accordance with these Terms.
                     </p>
@@ -461,7 +461,7 @@ export default function TermsAndConditionsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">9. Confidentiality</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Confidentiality</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Both parties agree to maintain the confidentiality of any proprietary or confidential information disclosed during the use of Services. This includes but is not limited to technical data, business strategies, and patient information.
                     </p>
@@ -470,7 +470,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 10: Disclaimers */}
                   <motion.section 
                     id="disclaimers" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">10. Disclaimers</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. Disclaimers</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DISCLAIM ALL WARRANTIES INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                     </p>
@@ -482,7 +482,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 11: Limitation of Liability */}
                   <motion.section 
                     id="limitation" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">11. Limitation of Liability</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Limitation of Liability</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       TO THE MAXIMUM EXTENT PERMITTED BY LAW, MYCURE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
                     </p>
@@ -494,7 +494,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 12: Indemnification */}
                   <motion.section 
                     id="indemnification" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">12. Indemnification</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. Indemnification</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       You agree to indemnify, defend, and hold harmless MYCURE, its affiliates, officers, directors, employees, and agents from any claims, damages, losses, liabilities, costs, and expenses arising from your use of the Services, violation of these Terms, or infringement of any third-party rights.
                     </p>
@@ -503,7 +503,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 13: Healthcare Compliance */}
                   <motion.section 
                     id="compliance" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">13. Healthcare Compliance</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Healthcare Compliance</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       You acknowledge that the use of Services in healthcare settings may be subject to various regulations including but not limited to HIPAA, Data Privacy Act, and local healthcare laws. You are responsible for ensuring your use of the Services complies with all applicable regulations.
                     </p>
@@ -515,7 +515,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 14: Third-Party Services */}
                   <motion.section 
                     id="third-party" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">14. Third-Party Services</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">14. Third-Party Services</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       The Services may integrate with or link to third-party services. We are not responsible for the content, accuracy, or practices of third-party services. Your use of third-party services is governed by their respective terms and policies.
                     </p>
@@ -524,7 +524,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 15: Modifications to Service */}
                   <motion.section 
                     id="modifications" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">15. Modifications to Service</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">15. Modifications to Service</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       We reserve the right to modify, suspend, or discontinue any part of the Services at any time. We will provide reasonable notice for significant changes that materially affect your use of the Services.
                     </p>
@@ -533,7 +533,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 16: Termination */}
                   <motion.section 
                     id="termination" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">16. Termination</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">16. Termination</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We may terminate or suspend your account immediately, without prior notice, if:
                     </p>
@@ -563,7 +563,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 17: Data Security and Privacy */}
                   <motion.section 
                     id="data-security" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">17. Data Security and Privacy</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. Data Security and Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Your use of the Services is also governed by our Privacy Policy. We implement industry-standard security measures to protect your data, but cannot guarantee absolute security. You are responsible for maintaining the security of your account credentials.
                     </p>
@@ -572,7 +572,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 18: Force Majeure */}
                   <motion.section 
                     id="force-majeure" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">18. Force Majeure</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">18. Force Majeure</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       Neither party shall be liable for any delay or failure to perform due to causes beyond their reasonable control, including but not limited to acts of God, natural disasters, war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, accidents, strikes, or shortages of transportation, facilities, fuel, energy, labor, or materials.
                     </p>
@@ -581,7 +581,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 19: Severability */}
                   <motion.section 
                     id="severability" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">19. Severability</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Severability</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that these Terms shall otherwise remain in full force and effect.
                     </p>
@@ -590,7 +590,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 20: Entire Agreement */}
                   <motion.section 
                     id="entire-agreement" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">20. Entire Agreement</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">20. Entire Agreement</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       These Terms, together with our Privacy Policy and any other agreements expressly incorporated by reference, constitute the entire agreement between you and MYCURE regarding the use of Services.
                     </p>
@@ -599,7 +599,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 21: Assignment */}
                   <motion.section 
                     id="assignment" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">21. Assignment</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">21. Assignment</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       You may not assign or transfer these Terms without our prior written consent. We may assign our rights and obligations under these Terms without restriction.
                     </p>
@@ -608,7 +608,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 22: Governing Law */}
                   <motion.section 
                     id="governing-law" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">22. Governing Law</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">22. Governing Law</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       These Terms shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Quezon City, Philippines.
                     </p>
@@ -617,7 +617,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 23: Notices */}
                   <motion.section 
                     id="notices" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">23. Notices</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">23. Notices</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       All notices under these Terms shall be in writing and deemed given when delivered personally, sent by confirmed email, or sent by certified mail, return receipt requested, to the addresses provided during registration or as updated in account settings.
                     </p>
@@ -626,7 +626,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 24: Contact Information */}
                   <motion.section 
                     id="contact-information" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">24. Contact Information</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">24. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       For questions about these Terms and Conditions, please contact us at:
                     </p>
@@ -640,7 +640,7 @@ export default function TermsAndConditionsPage() {
                   {/* Section 25: Acknowledgment */}
                   <motion.section 
                     id="acknowledgment" className="mb-12">
-                    <h2 className="text-2xl font-semibold mb-4">25. Acknowledgment</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">25. Acknowledgment</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       BY USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS AND CONDITIONS, UNDERSTAND THEM, AND AGREE TO BE BOUND BY THEM. IF YOU DO NOT AGREE TO THESE TERMS AND CONDITIONS, YOU ARE NOT AUTHORIZED TO USE THE SERVICES.
                     </p>
@@ -735,7 +735,7 @@ export default function TermsAndConditionsPage() {
                   </div>
                   <span>MYCURE</span>
                 </div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm sm:text-base text-muted-foreground">
                   Transforming healthcare management with innovative clinic solutions for providers worldwide.
                 </p>
                 <div className="flex space-x-4">
@@ -836,7 +836,7 @@ export default function TermsAndConditionsPage() {
                 </div>
                 <span>MYCURE</span>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Transforming healthcare management with innovative clinic solutions for providers worldwide.
               </p>
               <div className="flex space-x-4">
@@ -923,7 +923,7 @@ export default function TermsAndConditionsPage() {
         </div>
         
         {/* Copyright - Bottom of Footer */}
-        <div className="container px-4 md:px-6 py-4 border-t">
+        <div className="container px-4 sm:px-6 md:px-8 py-4 border-t">
           <p className="text-xs text-muted-foreground text-center">
             © {new Date().getFullYear()} MYCURE. All rights reserved.
           </p>

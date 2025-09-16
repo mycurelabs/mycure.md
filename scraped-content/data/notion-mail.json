@@ -1,0 +1,86 @@
+{
+  "source": "https://www.notion.com/product/mail",
+  "scraped_date": "2025-01-04",
+  "design_patterns": {
+    "typography": {
+      "hero_headline": {
+        "classes": "text-5xl md:text-6xl lg:text-7xl",
+        "font_weight": "font-bold",
+        "tracking": "tracking-tight",
+        "line_height": "leading-tight"
+      },
+      "section_headline": {
+        "classes": "text-4xl md:text-5xl lg:text-6xl",
+        "font_weight": "font-bold",
+        "tracking": "tracking-tight"
+      },
+      "subheadline": {
+        "classes": "text-xl md:text-2xl",
+        "color": "text-muted-foreground",
+        "line_height": "leading-relaxed"
+      },
+      "body_text": {
+        "classes": "text-lg",
+        "color": "text-muted-foreground",
+        "line_height": "leading-relaxed"
+      }
+    },
+    "spacing": {
+      "section_padding": "py-20 md:py-32",
+      "container_padding": "px-4 md:px-6",
+      "component_spacing": "space-y-8 md:space-y-12",
+      "card_padding": "p-6 md:p-8"
+    },
+    "layout": {
+      "max_width_container": "max-w-5xl mx-auto",
+      "max_width_text": "max-w-3xl mx-auto",
+      "max_width_narrow": "max-w-2xl mx-auto",
+      "center_alignment": "text-center",
+      "grid_gap": "gap-8 md:gap-12"
+    },
+    "colors": {
+      "background_alternating": ["bg-background", "bg-muted/30"],
+      "primary_cta": "bg-black text-white dark:bg-white dark:text-black",
+      "secondary_cta": "border border-gray-300"
+    },
+    "components": {
+      "testimonial_carousel": {
+        "structure": "horizontal scrolling",
+        "card_style": "rounded borders with padding",
+        "layout": "2 rows of testimonials"
+      },
+      "feature_sections": {
+        "pattern": "icon + heading + description",
+        "layout": "alternating left/right with images",
+        "spacing": "generous whitespace"
+      },
+      "cta_buttons": {
+        "primary": "large, high contrast, rounded",
+        "size": "h-12 px-6 py-3 text-base"
+      }
+    }
+  },
+  "content_examples": {
+    "hero": {
+      "headline": "The inbox that thinks like you",
+      "subheadline": "Meet Notion Mail, the inbox that organizes itself, drafts emails, and schedules meetings any way you'd like."
+    },
+    "sections": [
+      {
+        "title": "Every email organized, automatically.",
+        "description": "Tell Notion AI what types of emails are important to read, and it'll automatically label and sort them as they arrive."
+      },
+      {
+        "title": "Every reply drafted, quickly.",
+        "description": "Never write the same email twice. Create email templates that you can reuse in a click."
+      }
+    ]
+  },
+  "key_observations": {
+    "visual_hierarchy": "Very clear with dramatic size differences between elements",
+    "whitespace": "Generous use of whitespace for breathing room",
+    "simplicity": "Clean, minimal design with focus on content",
+    "consistency": "Consistent spacing and typography throughout",
+    "responsive": "Mobile-first with progressive enhancement"
+  }
+}

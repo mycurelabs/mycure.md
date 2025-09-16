@@ -112,7 +112,7 @@ export default function DownloadPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-16 md:py-24 relative overflow-hidden">
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
 
           <div className="container px-4 md:px-6 relative">
@@ -164,10 +164,10 @@ export default function DownloadPage() {
                 </div>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                 {platforms[activeTab].title}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
                 {platforms[activeTab].subtitle}
               </p>
 
@@ -190,8 +190,8 @@ export default function DownloadPage() {
         </section>
 
         {/* Platform Selection */}
-        <section className="w-full py-16 bg-muted/30">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-8 sm:py-12 md:py-16 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -199,7 +199,7 @@ export default function DownloadPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
                 Award-winning apps for every device
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -311,8 +311,8 @@ export default function DownloadPage() {
         </section>
 
         {/* App Screenshot */}
-        <section className="w-full py-16">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-8 sm:py-12 md:py-16">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -335,8 +335,8 @@ export default function DownloadPage() {
         </section>
 
         {/* Features */}
-        <section className="w-full py-16 bg-muted/30">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-8 sm:py-12 md:py-16 bg-muted/30">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -344,7 +344,7 @@ export default function DownloadPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
                 Why healthcare providers choose MYCURE
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -377,8 +377,8 @@ export default function DownloadPage() {
         </section>
 
         {/* System Requirements */}
-        <section className="w-full py-16">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-8 sm:py-12 md:py-16">
+          <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -386,7 +386,7 @@ export default function DownloadPage() {
               transition={{ duration: 0.6 }}
               className="max-w-4xl mx-auto"
             >
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-12">System Requirements</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center mb-12">System Requirements</h2>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <Card className="border-border/40 bg-background">
@@ -464,7 +464,7 @@ export default function DownloadPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-16 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
+        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
 
           <div className="container px-4 md:px-6 relative">
@@ -475,10 +475,10 @@ export default function DownloadPage() {
               transition={{ duration: 0.6 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
                 Ready to transform your healthcare practice?
               </h2>
-              <p className="text-lg md:text-xl text-primary-foreground/80 mb-8">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-foreground/80 leading-relaxed mb-8">
                 Join thousands of healthcare providers who trust MYCURE for their clinic management needs.
               </p>
 

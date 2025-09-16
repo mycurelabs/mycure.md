@@ -143,7 +143,7 @@ export default function PrivacyPolicyPage() {
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
-          <div className="container px-4 md:px-6 py-16 md:py-20">
+          <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
             <motion.div 
               className="max-w-4xl"
               initial={{ opacity: 0, y: 20 }}
@@ -154,13 +154,13 @@ export default function PrivacyPolicyPage() {
                 <ArrowLeft className="size-4" />
                 Back to Home
               </Link>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
                 Privacy Policy
               </h1>
-              <p className="text-lg text-muted-foreground mb-4">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
                 Your privacy is important to us. This policy outlines how we collect, use, and protect your information.
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Effective Date: August 29, 2025
               </p>
             </motion.div>
@@ -169,7 +169,7 @@ export default function PrivacyPolicyPage() {
 
         {/* Content Section with TOC */}
         <section className="w-full">
-          <div className="container px-4 md:px-6 py-12">
+          <div className="container px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
             <div className="flex gap-12">
               {/* Main Content */}
               <div className="flex-1 max-w-4xl">
@@ -184,7 +184,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Introduction</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       This Privacy Policy explains how MYCURE ("we," "our," "us") collects, uses, discloses, and safeguards personal data. We are committed to protecting your privacy in compliance with the Philippine Data Privacy Act of 2012 (DPA) and aligned with global standards such as the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA).
                     </p>
@@ -202,7 +202,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Information We Collect</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We may collect the following categories of personal information:
                     </p>
@@ -243,7 +243,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">3. Lawful Basis for Processing</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Lawful Basis for Processing</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We process personal data based on the following grounds:
                     </p>
@@ -276,7 +276,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">4. How We Use Information</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. How We Use Information</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We use personal information for:
                     </p>
@@ -317,7 +317,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">5. Sharing and Disclosure</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Sharing and Disclosure</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We do not sell personal information. Data may be shared only with:
                     </p>
@@ -350,7 +350,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">6. Data Retention</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Data Retention</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We retain personal data only as long as necessary for:
                     </p>
@@ -382,7 +382,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">7. Data Security</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Data Security</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       We implement administrative, technical, and physical safeguards including:
                     </p>
@@ -415,7 +415,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">8. User Rights</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. User Rights</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       Subject to applicable laws, you have the right to:
                     </p>
@@ -459,7 +459,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">9. Children's Privacy</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Children's Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       We do not knowingly collect personal data from children under 13 years old (or the age required by local law). If collected in a healthcare context, parental/guardian consent will always be required.
                     </p>
@@ -474,7 +474,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">10. International Data Transfers</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. International Data Transfers</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       If personal data is transferred outside the Philippines, we ensure adequate safeguards (e.g., contractual clauses, equivalent protection laws) to protect your data.
                     </p>
@@ -489,7 +489,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">11. Data Breach Notification</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Data Breach Notification</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       In the event of a data breach, we will:
                     </p>
@@ -514,7 +514,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">12. Changes to This Policy</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. Changes to This Policy</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       We may update this Privacy Policy from time to time. Changes will be notified via email or platform announcements. Continued use of our services after updates constitutes acceptance.
                     </p>
@@ -529,7 +529,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-semibold mb-4">13. Contact Information</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       For questions, concerns, or to exercise your rights, please contact us at:
                     </p>
@@ -629,7 +629,7 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <span>MYCURE</span>
                 </div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm sm:text-base text-muted-foreground">
                   Transforming healthcare management with innovative clinic solutions for providers worldwide.
                 </p>
                 <div className="flex space-x-4">
@@ -730,7 +730,7 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <span>MYCURE</span>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Transforming healthcare management with innovative clinic solutions for providers worldwide.
               </p>
               <div className="flex space-x-4">
@@ -817,7 +817,7 @@ export default function PrivacyPolicyPage() {
         </div>
         
         {/* Copyright - Bottom of Footer */}
-        <div className="container px-4 md:px-6 py-4 border-t">
+        <div className="container px-4 sm:px-6 md:px-8 py-4 border-t">
           <p className="text-xs text-muted-foreground text-center">
             © {new Date().getFullYear()} MYCURE. All rights reserved.
           </p>
