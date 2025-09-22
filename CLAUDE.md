@@ -4,17 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MYCURE is a healthcare management SaaS application built with Next.js 14, TypeScript, and the App Router architecture. The project is a modern clinic management system landing page with download options for multiple platforms.
+MYCURE is a healthcare management SaaS application built with Next.js 14, TypeScript, and the App Router architecture. The project provides comprehensive clinic and healthcare management features across multiple platforms.
 
 ## Development Commands
-
-**Important**: This project is not using pnpm. Use npm for all package management:
 
 ```bash
 # Install dependencies
 npm install
 
-# Run development server
+# Run development server (port 3000)
 npm run dev
 
 # Build for production
@@ -27,100 +25,113 @@ npm run start
 npm run lint
 ```
 
-## Important Configuration
+**Note**: This project uses npm, not pnpm or yarn.
 
-### Build Settings
-The project has the following build configurations in `next.config.mjs`:
-- **ESLint errors are ignored during builds** (`ignoreDuringBuilds: true`)
-- **TypeScript errors are ignored during builds** (`ignoreBuildErrors: true`)
-- **Images are unoptimized** (`unoptimized: true`)
+## Architecture Overview
 
-These settings suggest the project prioritizes rapid development over strict type safety during builds.
+### Page Layout System
 
-### shadcn/ui Components
-This project uses shadcn/ui components configured via `components.json`:
-- Style: default
-- RSC: true (React Server Components enabled)
-- TypeScript: true
-- Tailwind config: `tailwind.config.js` (not .ts as referenced in components.json)
-- CSS file: `app/globals.css`
-- Base color: neutral
-- CSS variables: enabled
-- Icon library: Lucide React
+The project uses 5 distinct layout patterns (documented in `PAGE_LAYOUTS.md`):
 
-**Component Architecture**: The project has a comprehensive set of 47+ shadcn/ui components already installed, including advanced components like charts, carousels, and data tables.
+1. **landing-style**: Complex marketing pages with heavy animations
+2. **document-style**: Long-form content with sidebar navigation and scrollspy
+3. **product-style**: Product marketing with sticky scroll, NumberTicker stats, and conversion optimization
+4. **feature-style**: Clean SaaS feature pages with 2x2 grids and FAQ sections
+5. **download-style**: Platform download pages with tab navigation
 
-To add new shadcn/ui components:
-```bash
-npx shadcn-ui@latest add <component-name>
-```
+### Component Patterns
 
-## Architecture Patterns
+Key reusable patterns (documented in `COMPONENT_PATTERNS.md`):
+- **AnimatedShinyText**: Badge-style product positioning
+- **ShimmerButton**: Primary CTA buttons with shimmer effect
+- **NumberTicker**: Animated statistics with staggered delays
+- **Scrollytelling**: Sticky scroll with progressive content reveal
+- **Card Grids**: Responsive layouts (2x2, 2x3, 1x3)
 
-### Page Structure
-- **Landing Page** (`app/page.tsx`): Client component with extensive animations using Framer Motion
-- **Download Page** (`app/download/page.tsx`): Platform-specific download options (Desktop, Mobile, Tablet, Web)
+### Animation Strategy
+- Viewport-triggered animations using Framer Motion
+- Stagger effects for lists/grids (0.1s delay increments)
+- Progressive reveals (0.2s, 0.3s, 0.4s delays)
+- `viewport={{ once: true }}` for performance
 
-### Styling System
-- **Primary Color**: `#0099CC` (defined in `tailwind.config.js`)
-- **CSS Variables**: Used for theming with HSL color values
-- **Dark Mode**: Implemented using `next-themes` with system preference detection
-- **Utility Function**: `cn()` in `/lib/utils.ts` for conditional class merging
+## Build Configuration
+
+The project has relaxed build settings in `next.config.mjs`:
+- ESLint errors ignored during builds
+- TypeScript errors ignored during builds
+- Images are unoptimized
+
+This configuration prioritizes rapid development and deployment.
+
+## Component System
+
+### shadcn/ui Integration
+- 47+ pre-installed components in `/components/ui/`
+- Configuration in `components.json` (note: references `tailwind.config.ts` but actual file is `.js`)
+- To add new components: `npx shadcn-ui@latest add <component-name>`
 
 ### Component Organization
-- All shadcn/ui components are in `/components/ui/` (47+ components)
-- Custom hooks are duplicated in both `/hooks/` and `/components/ui/` (e.g., `use-toast.ts`, `use-mobile.tsx`)
-- Theme provider wraps the entire application in the root layout
-- Global CSS imports in layout: `@/styles/globals.css` (note: actual path is `app/globals.css`)
+- **UI Components** (`/components/ui/`): shadcn/ui primitives
+- **Magic UI** (`/components/magicui/`): Custom animated components
+- **Sections** (`/components/sections/`): Reusable page sections
+- **Hooks** (`/hooks/` and `/components/ui/`): Custom React hooks (duplicated)
 
-## Key Features
+## Styling System
 
-### Platform Support
-The application promotes availability across:
-- Desktop (Windows, macOS, Linux)
-- Mobile (iOS, Android)
-- Tablet (iPad, Android tablets)
-- Web (Browser-based access)
+### Core Configuration
+- **Primary Color**: `#0099CC` (brand blue)
+- **CSS Variables**: HSL color system for theming
+- **Dark Mode**: Implemented with next-themes
+- **Utility**: `cn()` function in `/lib/utils.ts` for class merging
 
-### Healthcare-Specific Elements
-- HIPAA compliance messaging
-- Patient management features
-- Clinic operation streamlining
-- Healthcare provider testimonials
-- Multi-stage onboarding workflow
+### Design Patterns
+- Glass morphism: `bg-background/95 backdrop-blur-sm border-white/10`
+- Brand gradient: `brand-gradient-bg` class
+- Responsive grids: Mobile-first with md: and lg: breakpoints
+- Section spacing: `py-20 md:py-32`
+- Container: `container px-4 md:px-6`
 
-## Development Notes
+## Page Routes
 
-### Current State
-- Git branch: `version-10` (main branch: `main`)
-- No test framework configured
-- No ESLint configuration file present (using Next.js defaults)
-- Package manager: **npm** (not pnpm)
-- Project name: "my-v0-project" (likely generated from v0.dev)
+### Main Pages
+- `/` - Landing page (landing-style)
+- `/download` - Platform downloads (download-style)
 
-### Path Aliases
-Configured in `tsconfig.json`:
-- `@/*` maps to the project root
+### Product Pages (product-style)
+- `/clinics` - Clinics product page (definitive product-style standard)
+- `/hospital` - Hospital solutions
+- `/diagnostics` - Diagnostic services
+- `/telehealth` - Telehealth features (feature-style)
+- `/booking` - Booking system (feature-style)
 
-### Static Assets
-- Logo: `/mycure-logo.svg`
-- Service worker: `/static/sw.js`
-- Various placeholder images in `/public/`
+### Content Pages (document-style)
+- `/privacy-policy` - Privacy policy
+- `/terms-and-conditions` - Terms of service
+- `/our-story` - Company story
+- `/syncbase-technology` - Technology explanation
 
-### Key Dependencies
-- **UI Framework**: React 18 with Next.js 14 App Router
-- **Styling**: Tailwind CSS with shadcn/ui component library
-- **Icons**: Lucide React (extensive icon set)
-- **Animation**: Framer Motion for complex animations
-- **Forms**: React Hook Form with Zod validation
-- **Charts**: Recharts for data visualization
-- **Theme**: next-themes for dark/light mode switching
-- **Toast Notifications**: Sonner for user notifications
+### Specialty Pages
+- `/dental` - Dental practices
+- `/skin` - Dermatology
+- `/corporate` - Corporate solutions
+- `/mobile-labs` - Mobile laboratory services
 
-### Component System Architecture
-The project follows a layered component architecture:
-1. **Base UI Components** (`/components/ui/`): shadcn/ui primitives
-2. **Custom Components** (`/components/`): Application-specific components
-3. **Page Components** (`/app/`): Route-level components with App Router
-4. **Shared Utilities** (`/lib/`): Common utilities and helpers
-5. **Custom Hooks** (`/hooks/`): Reusable React hooks
+## Key Dependencies
+
+### Core Framework
+- Next.js 14.2.16 with App Router
+- React 18 with TypeScript
+- Tailwind CSS with tailwindcss-animate
+
+### UI Libraries
+- shadcn/ui components (47+ components)
+- Framer Motion for animations
+- GSAP for advanced animations
+- @bsmnt/scrollytelling for sticky scroll
+
+### Utilities
+- React Hook Form + Zod for forms
+- Recharts for data visualization
+- Sonner for toast notifications
+- date-fns for date handling
+- clsx + tailwind-merge for styling
