@@ -1,7 +1,0 @@
-runConfig:
-  runtime: nodejs20
-  cpu: 1                # Minimum allowed value
-  memoryMiB: 512        # Minimum allowed value
-  maxInstances: 2       # Reduced from 10
-  minInstances: 0       # KEY: Allow scaling to zero!
-  concurrency: 10       # Reduced for testing
