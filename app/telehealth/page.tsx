@@ -608,7 +608,7 @@ export default function TelehealthPage() {
             >
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/bkNMU65Zh4s"
+                  src="https://www.youtube-nocookie.com/embed/9gxJX_eokC0"
                   title="MYCURE Telehealth - Virtual Care Platform"
                   loading="lazy"
                   referrerPolicy="strict-origin-when-cross-origin"

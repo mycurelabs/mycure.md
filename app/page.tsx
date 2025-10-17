@@ -502,7 +502,7 @@ export default function LandingPage() {
                     colorTo="#FF6B35"
                     speed={1.5}
                   >
-                    🚀 INTRODUCING: MYCURE X
+                    ✨ INTRODUCING MYCURE X
                   </AnimatedGradientText>
                 </div>
               </div>
@@ -510,7 +510,7 @@ export default function LandingPage() {
                 The Complete Healthcare Management Platform
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">
-                MYCURE empowers healthcare providers with comprehensive clinic management solutions. Serving small practices to large multi-specialty clinics, we help you streamline patient care, ensure compliance, and optimize operations.
+                MYCURE X brings next-generation technology to healthcare management. Experience the clinic management system trusted by thousands, now with lightning-fast performance, enhanced offline capabilities, and intelligent workflows designed specifically for Philippine healthcare providers.
               </p>
 
               {/* CTA Section */}
@@ -535,11 +535,11 @@ export default function LandingPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="size-4 text-white" />
-                  <span>15-day free trial</span>
+                  <span>Next-gen performance</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="size-4 text-white" />
-                  <span>Setup in minutes</span>
+                  <span>Complete CMS solution</span>
                 </div>
               </div>
             </motion.div>
