@@ -888,12 +888,13 @@ export default function LandingPage() {
                       loop
                       playsInline
                       className="w-full h-auto object-cover"
-                      style={{ 
-                        transform: 'scale(1.02)', 
+                      style={{
+                        transform: 'scale(1.02)',
                         transformOrigin: 'center',
                         clipPath: 'inset(0 2px 0 2px)'
                       }}
                       aria-label="Seamless Offline Operations Demo"
+                      suppressHydrationWarning
                     />
                   </div>
                 </div>
