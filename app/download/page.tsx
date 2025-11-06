@@ -517,36 +517,6 @@ export default function DownloadPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="w-full bg-gray-900 text-gray-300 py-12">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2 font-bold text-white">
-              <div className="size-8 rounded-full bg-white flex items-center justify-center">
-                <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={24} height={24} />
-              </div>
-              <span>MYCURE</span>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-              <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                Home
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                Support
-              </Link>
-            </div>
-
-            <div className="text-sm text-gray-500">&copy; {new Date().getFullYear()} MYCURE. All rights reserved.</div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

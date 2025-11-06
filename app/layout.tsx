@@ -8,6 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics as GoogleAnalytics } from "@/components/analytics"
+import { Footer } from "@/components/sections/Footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -40,6 +41,7 @@ export default function RootLayout({
           <TooltipProvider>
             <ScrollProgress />
             {children}
+            <Footer />
           </TooltipProvider>
         </ThemeProvider>
         <VercelAnalytics />
