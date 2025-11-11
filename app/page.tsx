@@ -797,7 +797,7 @@ export default function LandingPage() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Built for Modern Teams</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Enterprise-grade capabilities with healthcare-specific design, ensuring compliance, reliability, and seamless operations.
+                Enterprise-grade capabilities with healthcare-specific design, providing compliance, reliability, and seamless operations.
               </p>
             </motion.div>
 
@@ -840,7 +840,7 @@ export default function LandingPage() {
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Role-based access controls ensuring staff see only authorized patient information</span>
+                      <span>Role-based access controls so staff see only authorized patient information</span>
                     </li>
                   </ul>
                 </div>
@@ -875,12 +875,12 @@ export default function LandingPage() {
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="size-5 text-primary" />
-                      <span>Local backup systems ensuring zero data loss during connectivity issues</span>
+                      <span>Local backup systems providing zero data loss during connectivity issues</span>
                     </li>
                   </ul>
                 </div>
                 <div className="relative lg:order-1">
-                  <div className="w-[480px] overflow-hidden rounded-xl mx-auto lg:mx-0">
+                  <div className="w-full max-w-[480px] overflow-hidden rounded-xl mx-auto lg:mx-0">
                     <video
                       src="/Features Photos/Built for Modern Teams/mycure-syncbase-demo.mp4"
                       autoPlay
@@ -901,6 +901,7 @@ export default function LandingPage() {
               </motion.div>
 
               {/* Feature 3 - Simplified PhilHealth Claims Management */}
+              {/* TEMPORARILY HIDDEN - PhilHealth Claims Management Section
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -943,6 +944,7 @@ export default function LandingPage() {
                   </ul>
                 </div>
               </motion.div>
+              */}
 
               {/* Feature 4 - Effortless Clinical Workflows */}
               <motion.div
@@ -1138,7 +1140,7 @@ export default function LandingPage() {
                       <br />excellence
                     </h2>
                     <p className="text-lg md:text-xl text-muted-foreground mt-6 max-w-lg">
-                      Healthcare providers deserve technology that matches their professional standards. MYCURE combines enterprise-grade capabilities with healthcare-specific design, ensuring that every feature supports clinical excellence while maintaining operational efficiency and regulatory compliance.
+                      Healthcare providers deserve technology that matches their professional standards. MYCURE combines enterprise-grade capabilities with healthcare-specific design, so that every feature supports clinical excellence while maintaining operational efficiency and regulatory compliance.
                     </p>
                   </motion.div>
                 </div>
@@ -1666,7 +1668,7 @@ export default function LandingPage() {
                 {
                   question: "What is MYCURE?",
                   answer:
-                    "MYCURE is a comprehensive healthcare management platform designed specifically for clinics, hospitals, and healthcare facilities. From patient registration to PhilHealth claims, we streamline every aspect of your practice while ensuring HIPAA compliance and operational efficiency.",
+                    "MYCURE is a comprehensive healthcare management platform designed specifically for clinics and healthcare facilities. We streamline your practice operations while maintaining HIPAA compliance and operational efficiency.",
                 },
                 {
                   question: "How much does MYCURE cost?",
@@ -1680,16 +1682,19 @@ export default function LandingPage() {
                 },
                 {
                   question: "What platforms does MYCURE support?",
-                  answer: "MYCURE works on desktop computers through web browsers (Chrome, Firefox, Safari) and as downloadable applications for Windows and Mac. Our platform also includes mobile-responsive patient portals and offline capabilities for uninterrupted practice operations.",
+                  answer: "MYCURE works on Mac computers through Chromium-based browsers (Chrome, Edge, Brave). Our platform is optimized for these environments to deliver the best performance and reliability.",
                 },
                 {
                   question: "What kind of support do you offer healthcare providers?",
-                  answer:
-                    "We provide specialized healthcare support through our two-tier team of Helpdesk and Technical specialists who understand clinic workflows and regulatory requirements. Our support includes Monday-Friday 9am-6pm coverage with up to 2-hour response times, on-call assistance for critical patient care issues, healthcare-focused training for medical staff, and ongoing CMS optimization guidance tailored to your practice needs.",
+                  answer: (
+                    <>
+                      Visit <a href="https://portal.mycure.md" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">portal.mycure.md</a> for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.
+                    </>
+                  ),
                 },
                 {
                   question: "Can I try MYCURE before committing?",
-                  answer: "Yes! Start with our 15-day free trial that includes full platform access, dedicated onboarding support, and no credit card requirement. Most practices are fully operational within their first week of implementation.",
+                  answer: "Yes! Start with our 15-day free trial that includes full platform access and no credit card requirement. We'll provide you with a demo app link to explore the platform at your own pace.",
                 },
               ].map((faq, i) => (
                 <AccordionItem
