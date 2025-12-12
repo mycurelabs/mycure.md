@@ -25,7 +25,7 @@ export function StickyFeatures({
     <div ref={containerRef} className={cn("relative", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         {/* Left: Scrolling text content */}
-        <div className="space-y-32 lg:space-y-[50vh]">
+        <div className="space-y-16 lg:space-y-[50vh]">
           {items.map((item, index) => (
             <FeatureText
               key={index}
@@ -34,8 +34,8 @@ export function StickyFeatures({
               onInView={() => setActiveIndex(index)}
             />
           ))}
-          {/* Spacer for last item to scroll past */}
-          <div className="h-[30vh]" />
+          {/* Spacer for last item to scroll past - desktop only */}
+          <div className="hidden lg:block h-[30vh]" />
         </div>
 
         {/* Right: Sticky image panel */}
@@ -100,7 +100,7 @@ function FeatureText({
         {item.description}
       </p>
       {/* Mobile: Show image inline */}
-      <div className="lg:hidden mt-6 rounded-xl overflow-hidden">
+      <div className="lg:hidden mt-6 relative aspect-square rounded-xl overflow-hidden">
         {item.image}
       </div>
     </motion.div>
