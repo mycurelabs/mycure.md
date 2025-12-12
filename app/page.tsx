@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 import {
   Check,
   ChevronRight,
@@ -37,17 +38,21 @@ import { RainbowButton } from "@/components/magicui/rainbow-button"
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import NumberTicker from "@/components/magicui/number-ticker"
+import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
+import { LogoCloud } from "@/components/ui/logo-cloud"
+import { StickyFeatures } from "@/components/ui/sticky-features"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTheme } from "next-themes"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import * as Scrollytelling from "@bsmnt/scrollytelling"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -255,69 +260,142 @@ export default function LandingPage() {
             </div>
             <span>MYCURE</span>
           </button>
-          <nav className="hidden md:flex gap-8">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground p-0 h-auto flex items-center gap-1">
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList className="gap-2">
+              {/* Features Dropdown - 1 column */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">
                   Features
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                <DropdownMenuItem asChild>
-                  <Link href="/booking">Booking</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/telehealth">Telehealth</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground p-0 h-auto flex items-center gap-1">
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[320px] gap-1 p-2">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/booking" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Booking</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Let patients schedule appointments online and reduce wait times.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/telehealth" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Telehealth</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Secure video consultations for virtual patient care.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {/* Solutions Dropdown - 2 columns */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">
                   Solutions
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                <DropdownMenuItem asChild>
-                  <Link href="/clinics">Clinics</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/hospital">Hospital</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/corporate">Corporate</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/dental">Dental</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/skin">Skin/Aesthetics</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/diagnostics">Diagnostics</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/mobile-labs">Mobile Labs</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link
-              href="#how-it-works"
-              onClick={(e) => scrollToSection(e, '#how-it-works')}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              How it Works
-            </Link>
-            <Link
-              href="#faq"
-              onClick={(e) => scrollToSection(e, '#faq')}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              FAQs
-            </Link>
-          </nav>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[500px] gap-1 p-2 md:grid-cols-2">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/clinics" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Clinics</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Streamlined workflows for outpatient clinic operations.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/hospital" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Hospital</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Comprehensive management for hospital operations.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/corporate" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Corporate</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Employee health programs and physical exams.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/dental" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Dental</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Specialized tools for dental practice management.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/skin" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Skin & Aesthetics</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Dermatology and aesthetic clinic solutions.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/diagnostics" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Diagnostics</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            Laboratory and imaging workflow management.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/mobile-labs" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Mobile Labs</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
+                            On-site diagnostic services and specimen collection.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {/* Simple Links */}
+              <NavigationMenuItem>
+                <Link
+                  href="#how-it-works"
+                  onClick={(e) => scrollToSection(e, '#how-it-works')}
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none"
+                >
+                  How it Works
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link
+                  href="#faq"
+                  onClick={(e) => scrollToSection(e, '#faq')}
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none"
+                >
+                  FAQs
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <div className="hidden md:flex gap-4 items-center">
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
               {mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
@@ -502,19 +580,19 @@ export default function LandingPage() {
                     colorTo="#FF6B35"
                     speed={1.5}
                   >
-                    ✨ INTRODUCING MYCURE X
+                    ✨ MYCURE X: Launches soon
                   </AnimatedGradientText>
                 </div>
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 text-white">
-                The Complete Healthcare Management Platform
+                Your practice, simplified.<br />Your patients, first.
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">
-                MYCURE X brings next-generation technology to healthcare management. Experience the clinic management system trusted by thousands, now with lightning-fast performance, enhanced offline capabilities, and intelligent workflows designed specifically for Philippine healthcare providers.
+                Transform your practice with the clinic management system designed for Philippine healthcare—secure, offline-capable, and ready to simplify your entire operation.
               </p>
 
               {/* CTA Section */}
-              <div className="flex justify-center items-center mb-8">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
                 <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
                   <RainbowButton
                     variant="outline"
@@ -525,22 +603,15 @@ export default function LandingPage() {
                     <ArrowRight className="ml-2 size-4" />
                   </RainbowButton>
                 </Link>
-              </div>
-
-
-              <div className="flex items-center justify-center gap-6 text-sm text-white/70">
-                <div className="flex items-center gap-2">
-                  <Check className="size-4 text-white" />
-                  <span>HIPAA Compliant</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="size-4 text-white" />
-                  <span>Next-gen performance</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="size-4 text-white" />
-                  <span>Complete CMS solution</span>
-                </div>
+                <Link href="#video-demo" onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap"
+                  >
+                    Watch Demo
+                  </Button>
+                </Link>
               </div>
             </motion.div>
 
@@ -579,7 +650,7 @@ export default function LandingPage() {
             </motion.div>
           </div>
         </section>
-        {/* Logos Section */}
+        {/* Logo Cloud Section */}
         <section className="w-full py-8 sm:py-12 md:py-16 border-y bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
@@ -589,79 +660,81 @@ export default function LandingPage() {
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center"
             >
-              <p className="text-sm font-medium text-muted-foreground">Trusted by leading healthcare providers</p>
-              <motion.div
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="space-y-8 md:space-y-12 max-w-6xl mx-auto"
-              >
-                {/* Top Row - 5 Logos */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 lg:gap-8 place-items-center">
-                  {[
-                    { name: "Medicard", src: "/Client Logos/Medicard.png" },
-                    { name: "Skin 101", src: "/Client Logos/Skin 101.png" },
-                    { name: "Premier Medical Center", src: "/Client Logos/Premier Medical Center.png" },
-                    { name: "Duya Med Diagnostic Clinic", src: "/Client Logos/Duya Med Diagnostic Clinic.png" },
-                    { name: "Ferrer OB-GYN and Medical Clinic", src: "/Client Logos/Ferrer OB-GYN and Medical Clinic.png" }
-                  ].map((logo, index) => (
-                    <motion.div
-                      key={logo.name}
-                      variants={item}
-                      className="relative group flex items-center justify-center p-2"
-                      whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
-                    >
-                      <Image
-                        src={logo.src}
-                        alt={`${logo.name} logo`}
-                        width={160}
-                        height={80}
-                        className="w-24 h-14 sm:w-28 sm:h-16 md:w-32 md:h-18 lg:w-36 lg:h-20 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
-                      />
-                      <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-sm font-medium rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-50 whitespace-nowrap">
-                        {logo.name}
-                        <span className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"></span>
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-                
-                {/* Bottom Row - 5 Logos */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 lg:gap-8 place-items-center">
-                  {[
-                    { name: "Vicente L. Danguilan Memorial Clinic", src: "/Client Logos/Vicente L. Danguilan Memorial Clinic .png" },
-                    { name: "Lablife Medical & Diagnostic Center", src: "/Client Logos/Lablife Medical & Diagnostic Center-Murphy Cubao.png" },
-                    { name: "Newport EW Villa Medica", src: "/Client Logos/Newport EW Villa Medica.png" },
-                    { name: "PhilCare", src: "/Client Logos/PhilCare.png" },
-                    { name: "Unihealth Parañaque Hospital ENT Center", src: "/Client Logos/Unihealth Parañaque Hospital ENT Center.png" }
-                  ].map((logo, index) => (
-                    <motion.div
-                      key={logo.name}
-                      variants={item}
-                      className="relative group flex items-center justify-center p-2"
-                      whileHover={{ scale: 1.08, transition: { duration: 0.3 } }}
-                    >
-                      <Image
-                        src={logo.src}
-                        alt={`${logo.name} logo`}
-                        width={160}
-                        height={80}
-                        className="w-24 h-14 sm:w-28 sm:h-16 md:w-32 md:h-18 lg:w-36 lg:h-20 object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:scale-105"
-                      />
-                      <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-sm font-medium rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-50 whitespace-nowrap">
-                        {logo.name}
-                        <span className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"></span>
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-muted-foreground">Trusted by experts.</p>
+                <p className="text-lg font-semibold text-foreground">Used by healthcare leaders.</p>
+              </div>
+              <LogoCloud
+                logos={[
+                  { src: "/Client Logos/Medicard.png", alt: "Medicard", name: "Medicard" },
+                  { src: "/Client Logos/Skin 101.png", alt: "Skin 101", name: "Skin 101" },
+                  { src: "/Client Logos/Premier Medical Center.png", alt: "Premier Medical Center", name: "Premier Medical Center" },
+                  { src: "/Client Logos/Duya Med Diagnostic Clinic.png", alt: "Duya Med Diagnostic Clinic", name: "Duya Med Diagnostic Clinic" },
+                  { src: "/Client Logos/Ferrer OB-GYN and Medical Clinic.png", alt: "Ferrer OB-GYN and Medical Clinic", name: "Ferrer OB-GYN and Medical Clinic" },
+                  { src: "/Client Logos/Vicente L. Danguilan Memorial Clinic.png", alt: "Vicente L. Danguilan Memorial Clinic", name: "Vicente L. Danguilan Memorial Clinic" },
+                  { src: "/Client Logos/Lablife Medical & Diagnostic Center-Murphy Cubao.png", alt: "Lablife Medical & Diagnostic Center", name: "Lablife Medical & Diagnostic Center" },
+                  { src: "/Client Logos/Newport EW Villa Medica.png", alt: "Newport EW Villa Medica", name: "Newport EW Villa Medica" },
+                  { src: "/Client Logos/PhilCare.png", alt: "PhilCare", name: "PhilCare" },
+                  { src: "/Client Logos/Unihealth Parañaque Hospital ENT Center.png", alt: "Unihealth Parañaque Hospital ENT Center", name: "Unihealth Parañaque Hospital ENT Center" },
+                ]}
+                className="w-full max-w-6xl"
+              />
             </motion.div>
           </div>
         </section>
+
+        {/* Sticky Features Section - Koala Mascot */}
+        <section className="w-full py-20 md:py-32">
+          <div className="container px-4 md:px-6">
+            <StickyFeatures
+              items={[
+                {
+                  badge: "CLEAR YOUR MIND",
+                  title: "The Reality",
+                  description: "Paper-based tracking, inconsistent follow-ups, and endless back-and-forth create chaos in your clinic operations every single day. Your time is consumed by paperwork instead of patients.",
+                  image: (
+                    <Image
+                      src="/Koalas/koala-scene1.jpg"
+                      alt="Koala doctor overwhelmed with paperwork"
+                      fill
+                      className="object-cover rounded-xl"
+                    />
+                  ),
+                },
+                {
+                  badge: "KNOW THE BASICS: IMPERFECT",
+                  title: "The Frustration",
+                  description: "You didn't become a healthcare provider to spend your nights buried in administrative tasks. The dedication you bring to your patients is being drained by paperwork.",
+                  image: (
+                    <Image
+                      src="/Koalas/koala-scene2.jpg"
+                      alt="Koala doctor feeling frustrated"
+                      fill
+                      className="object-cover rounded-xl"
+                    />
+                  ),
+                },
+                {
+                  badge: "TIME TO TRANSFORM",
+                  title: "The Truth",
+                  description: "Your patients deserve your full attention—and you deserve tools that actually work. It's time for technology that serves healthcare, not the other way around.",
+                  image: (
+                    <Image
+                      src="/Koalas/koala-scene3.jpg"
+                      alt="Koala doctor confident and happy"
+                      fill
+                      className="object-cover rounded-xl"
+                    />
+                  ),
+                },
+              ]}
+            />
+          </div>
+        </section>
+
         {/* Features Section */}
-        <section id="features" className="w-full py-20 md:py-32">
+        <section id="features" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1113,223 +1186,15 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        {/* Sticky Scroll Features Section */}
-        <Scrollytelling.Root
-          start="top bottom"
-          end="bottom top"
-          scrub={true}
-        >
-          <section className="w-full py-8 sm:py-12 md:py-16 mb-16 sm:mb-20 md:mb-32 relative">
-            <div className="container px-4 sm:px-6 md:px-8">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                {/* Sticky Left Content */}
-                <div className="lg:sticky lg:top-32 space-y-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8 w-fit">
-                      <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={140}>
-                        Healthcare Excellence
-                      </AnimatedShinyText>
-                    </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
-                      Built for healthcare
-                      <br />excellence
-                    </h2>
-                    <p className="text-lg md:text-xl text-muted-foreground mt-6 max-w-lg">
-                      Healthcare providers deserve technology that matches their professional standards. MYCURE combines enterprise-grade capabilities with healthcare-specific design, so that every feature supports clinical excellence while maintaining operational efficiency and regulatory compliance.
-                    </p>
-                  </motion.div>
-                </div>
-
-                {/* Progressive Feature Reveals */}
-                <div className="space-y-40">
-                  {/* Feature 1 - Patient Scheduling */}
-                  <Scrollytelling.Animation
-                    tween={{
-                      start: 0,
-                      end: 30,
-                      from: { opacity: 0, y: 60, scale: 0.9 }
-                    }}
-                  >
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
-                          <Calendar className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-primary">Your Clinical Command Center</h3>
-                          <p className="text-muted-foreground">Powerful dashboard control</p>
-                        </div>
-                      </div>
-                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        Take control of every patient interaction from one powerful dashboard. Watch as complex medical workflows transform into streamlined processes—from initial consultation to final treatment documentation, everything flows seamlessly.
-                      </p>
-                      <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border border-primary/20">
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                <Calendar className="w-4 h-4 text-white" />
-                              </div>
-                              <div>
-                                <div className="font-semibold text-sm">Dr. Smith - Cardiology</div>
-                                <div className="text-xs text-muted-foreground">Today 2:30 PM</div>
-                              </div>
-                            </div>
-                            <div className="text-xs bg-primary/30 dark:bg-primary/60 border border-primary/40 dark:border-primary/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={120}>Confirmed</AnimatedShinyText>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Scrollytelling.Animation>
-
-                  <Scrollytelling.Waypoint at={25} label="feature-1" />
-
-                  {/* Feature 2 - Medical Records */}
-                  <Scrollytelling.Animation
-                    tween={{
-                      start: 20,
-                      end: 50,
-                      from: { opacity: 0, y: 60, scale: 0.9 }
-                    }}
-                  >
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
-                          <Zap className="w-6 h-6 text-purple-600" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Operations That Actually Work</h3>
-                          <p className="text-muted-foreground">Intelligent automation</p>
-                        </div>
-                      </div>
-                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        See your entire practice come alive with intelligent automation. Real-time insights reveal optimization opportunities while smart scheduling eliminates bottlenecks—turning operational chaos into competitive advantage.
-                      </p>
-                      <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                                <Zap className="w-4 h-4 text-white" />
-                              </div>
-                              <div>
-                                <div className="font-semibold text-sm">Patient Records</div>
-                                <div className="text-xs text-muted-foreground">2,847 active files</div>
-                              </div>
-                            </div>
-                            <div className="text-xs bg-purple-500/30 dark:bg-purple-500/60 border border-purple-500/40 dark:border-purple-500/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-purple-600 dark:!text-purple-200 !bg-gradient-to-r !from-transparent !via-purple-600/80 dark:!via-purple-200/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={160}>HIPAA Compliant</AnimatedShinyText>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Scrollytelling.Animation>
-
-                  <Scrollytelling.Waypoint at={50} label="feature-2" />
-
-                  {/* Feature 3 - Security & Compliance */}
-                  <Scrollytelling.Animation
-                    tween={{
-                      start: 35,
-                      end: 65,
-                      from: { opacity: 0, y: 60, scale: 0.9 }
-                    }}
-                  >
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center">
-                          <Video className="w-6 h-6 text-orange-600" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-orange-600">Virtual Care That Feels Personal</h3>
-                          <p className="text-muted-foreground">Enterprise-grade telehealth</p>
-                        </div>
-                      </div>
-                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        Bridge the distance between you and your patients with enterprise-grade telehealth. Experience the future of patient care where technology enhances connection rather than replacing it—secure, seamless, and surprisingly human.
-                      </p>
-                      <div className="bg-gradient-to-br from-orange-500/5 to-orange-500/10 rounded-2xl p-6 border border-orange-500/20">
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                                <Video className="w-4 h-4 text-white" />
-                              </div>
-                              <div>
-                                <div className="font-semibold text-sm">Security Status</div>
-                                <div className="text-xs text-muted-foreground">256-bit AES encryption</div>
-                              </div>
-                            </div>
-                            <div className="text-xs bg-orange-500/30 dark:bg-orange-500/60 border border-orange-500/40 dark:border-orange-500/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-orange-600 dark:!text-orange-200 !bg-gradient-to-r !from-transparent !via-orange-600/80 dark:!via-orange-200/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={100}>Active</AnimatedShinyText>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Scrollytelling.Animation>
-
-                  <Scrollytelling.Waypoint at={75} label="feature-3" />
-
-                  {/* Feature 4 - Analytics & Insights */}
-                  <Scrollytelling.Animation
-                    tween={{
-                      start: 45,
-                      end: 100,
-                      from: { opacity: 0, y: 60, scale: 0.9 }
-                    }}
-                  >
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
-                          <WifiOff className="w-6 h-6 text-green-600" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-green-600">Your Practice, Always On</h3>
-                          <p className="text-muted-foreground">Offline-first design</p>
-                        </div>
-                      </div>
-                      <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        Discover true peace of mind with offline-first design. Whether internet fails or power fluctuates, your practice continues uninterrupted. When connectivity returns, everything syncs perfectly—like the disruption never happened.
-                      </p>
-                      <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                <WifiOff className="w-4 h-4 text-white" />
-                              </div>
-                              <div>
-                                <div className="font-semibold text-sm">Practice Analytics</div>
-                                <div className="text-xs text-muted-foreground">Real-time insights</div>
-                              </div>
-                            </div>
-                            <div className="text-xs bg-green-500/30 dark:bg-green-500/60 border border-green-500/40 dark:border-green-500/70 rounded-full px-3 py-1 inline-flex items-center justify-center h-7 min-w-fit">
-                              <AnimatedShinyText className="!mx-0 !max-w-none !text-green-600 dark:!text-green-200 !bg-gradient-to-r !from-transparent !via-green-600/80 dark:!via-green-200/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={110}>SYNCED</AnimatedShinyText>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Scrollytelling.Animation>
-
-                  <Scrollytelling.Waypoint at={100} label="feature-4" />
-                </div>
-              </div>
-            </div>
-          </section>
-        </Scrollytelling.Root>
         {/* All-in-One Integration Section */}
-        <section className="w-full pt-20 sm:pt-28 md:pt-40 pb-12 sm:pb-16 md:pb-20 lg:pb-32 bg-muted/20 relative overflow-hidden">
-          <div className="container px-4 md:px-6 relative">
+        <section className="w-full pt-20 sm:pt-28 md:pt-40 pb-12 sm:pb-16 md:pb-20 lg:pb-32 bg-background relative overflow-hidden">
+          <DotPattern
+            className={cn(
+              "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
+              "opacity-50"
+            )}
+          />
+          <div className="container px-4 md:px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center relative">
               {/* Floating Integration Icons */}
               <div className="absolute inset-0 pointer-events-none">
@@ -1544,7 +1409,7 @@ export default function LandingPage() {
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
                 What you can achieve with MYCURE{" "}
-                <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg">in just 7 days</span>
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-xl">in just 7 days</span>
               </h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">
                 Transform your healthcare practice step by step with our guided onboarding process.
@@ -1700,7 +1565,7 @@ export default function LandingPage() {
                 <AccordionItem
                   key={i}
                   value={`item-${i}`}
-                  className="border-white/20 bg-white/10 backdrop-blur-sm rounded-lg mb-4 px-6"
+                  className="border-white/20 bg-white/10 backdrop-blur-sm rounded-xl mb-4 px-6"
                 >
                   <AccordionTrigger className="text-white hover:text-white/80 text-left text-lg font-medium">
                     {faq.question}
@@ -1747,18 +1612,18 @@ export default function LandingPage() {
                   </Link>
                 </div>
 
-                <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>No setup fees</span>
+                    <span>See demo video</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>15-day Free Trial</span>
+                    <span>30-day free trial</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
-                    <span>Training via webinars</span>
+                    <span>Training on-premises</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="size-4 text-primary" />
