@@ -22,5 +22,5 @@ export default function MobileLabsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }

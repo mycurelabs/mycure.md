@@ -1,0 +1,156 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { Check, ArrowRight } from "lucide-react"
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import type { LucideIcon } from "lucide-react"
+
+interface TimelineStep {
+  title: string
+  icon: LucideIcon
+  items: string[]
+}
+
+interface TimelineContent {
+  today: TimelineStep[]
+  day3: TimelineStep[]
+  day7: TimelineStep[]
+}
+
+interface TimelineConfig {
+  badge: string
+  headline: string
+  headlineHighlight: string
+  description: string
+  tabs: { id: string; label: string }[]
+  content: TimelineContent
+  cta: { text: string; href: string }
+  ctaNote: string
+}
+
+interface TimelineSectionProps {
+  config: TimelineConfig
+}
+
+export function TimelineSection({ config }: TimelineSectionProps) {
+  const [activeDay, setActiveDay] = useState<keyof TimelineContent>("today")
+
+  return (
+    <section id="how-it-works" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+
+      <div className="container px-4 md:px-6 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+        >
+          <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
+            <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent" shimmerWidth={150}>
+              {config.badge}
+            </AnimatedShinyText>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+            {config.headline}{" "}
+            <span className="bg-primary/10 text-primary px-3 py-1 rounded-xl">{config.headlineHighlight}</span>
+          </h2>
+          <p className="max-w-[800px] text-muted-foreground md:text-lg">
+            {config.description}
+          </p>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto">
+          {/* Timeline Navigation */}
+          <div className="flex justify-center mb-12">
+            <div className="flex gap-4 p-2 bg-background rounded-full border border-border/40 shadow-sm">
+              {config.tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveDay(tab.id as keyof TimelineContent)}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                    activeDay === tab.id
+                      ? "text-white shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
+                  style={activeDay === tab.id ? { backgroundColor: '#0099CC' } : undefined}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Timeline Content */}
+          <motion.div
+            key={activeDay}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid md:grid-cols-3 gap-8 mb-12"
+          >
+            {config.content[activeDay].map((step, index) => {
+              const Icon = step.icon
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="bg-background rounded-2xl p-6 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-semibold">{step.title}</h3>
+                    </div>
+                    <ul className="space-y-3">
+                      {step.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
+                            <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
+                          </div>
+                          <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center flex flex-col items-center"
+          >
+            <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
+              <ShimmerButton
+                className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                background="#0099CC"
+                shimmerColor="#ffffff"
+                shimmerDuration="3s"
+              >
+                {config.cta.text}
+                <ArrowRight className="size-4" />
+              </ShimmerButton>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-4">
+              {config.ctaNote}
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}

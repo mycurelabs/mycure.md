@@ -1,29 +1,14 @@
 "use client"
 
-import React from "react"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { motion } from "framer-motion"
-import {
-  ArrowLeft,
-  Moon,
-  Sun,
-  ChevronDown,
-  ChevronRight,
-  Menu,
-  X,
-} from "lucide-react"
+import { ArrowLeft, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { DocumentHeader } from "@/components/sections/shared"
 
 export default function TermsAndConditionsPage() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
@@ -54,28 +39,19 @@ export default function TermsAndConditionsPage() {
     { id: "acknowledgment", title: "25. Acknowledgment" },
   ]
 
+  // Track active section based on scroll position
   useEffect(() => {
-    setMounted(true)
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-
-      // Update active section based on scroll position
       const scrollPosition = window.scrollY + 100
       const windowHeight = window.innerHeight
       const documentHeight = document.documentElement.scrollHeight
-      
-      // Check if we're at the bottom of the page
+
       if (scrollPosition + windowHeight >= documentHeight - 100) {
         setActiveSection("acknowledgment")
       } else {
-        // Find the section that's most visible in the viewport
         let currentSection = ""
         let maxVisibility = 0
-        
+
         for (const section of sections) {
           const element = document.getElementById(section.id)
           if (element) {
@@ -108,10 +84,6 @@ export default function TermsAndConditionsPage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -128,29 +100,7 @@ export default function TermsAndConditionsPage() {
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
-      {/* Simplified Header - Matching main page style */}
-      <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}
-      >
-        <div className="container flex h-16 items-center justify-between">
-          <Link 
-            href="/"
-            className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity"
-          >
-            <div className="size-8 rounded-full bg-white flex items-center justify-center">
-              <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
-            </div>
-            <span>MYCURE</span>
-          </Link>
-          
-          <div className="flex gap-4 items-center">
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
-              {mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <DocumentHeader />
 
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}

@@ -14,7 +14,7 @@ export interface NumberTickerProps {
   startValue?: number;
 }
 
-export default function NumberTicker({
+export function NumberTicker({
   value,
   direction = "up",
   className,

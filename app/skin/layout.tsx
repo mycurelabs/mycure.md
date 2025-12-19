@@ -22,5 +22,5 @@ export default function SkinLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }

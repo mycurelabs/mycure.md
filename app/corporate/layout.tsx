@@ -22,5 +22,5 @@ export default function CorporateLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }

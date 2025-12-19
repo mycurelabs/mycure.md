@@ -22,5 +22,5 @@ export default function DiagnosticsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }

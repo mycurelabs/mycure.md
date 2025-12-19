@@ -1,133 +1,86 @@
 "use client"
 
-import React from "react"
-import { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import {
-  ChevronRight,
-  Menu,
-  X,
-  Moon,
-  Sun,
   Clock,
   Users,
   AlertCircle,
   Calendar,
   UserX,
-  FileX,
   Shield,
-  Lock,
-  Cloud,
-  CheckCircle,
-  Check,
-  MessageSquare,
-  WifiOff,
   Globe,
-  Baby,
-  Heart,
-  Sparkles,
-  Stethoscope,
   Building2,
   ArrowRight,
-  BarChart,
-  TrendingUp,
   Zap,
-  CalendarCheck,
+  Check,
+  MessageSquare,
   Star,
-  ShieldCheck,
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { useTheme } from "next-themes"
-import NumberTicker from "@/components/magicui/number-ticker"
+import { NumberTicker } from "@/components/magicui/number-ticker"
 import { ShimmerButton } from "@/components/magicui/shimmer-button"
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ChevronDown } from "lucide-react"
+import { ProductHeader } from "@/components/sections/product-page"
 
 export default function BookingPage() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
   const [activeTab, setActiveTab] = useState("doctors")
 
-  useEffect(() => {
-    setMounted(true)
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
-
   const solutions = [
-    { 
+    {
       icon: Clock,
       title: "Long Wait Times",
-      description: "Reduced wait times by 70% with smart scheduling and automated queue management" 
+      description: "Reduced wait times by 70% with smart scheduling and automated queue management"
     },
-    { 
+    {
       icon: AlertCircle,
       title: "Missed Appointments",
-      description: "Automated reminders reduce no-shows by 40% through SMS and email notifications" 
+      description: "Automated reminders reduce no-shows by 40% through SMS and email notifications"
     },
-    { 
+    {
       icon: Calendar,
       title: "Manual Scheduling",
-      description: "Save 3+ hours daily with automated booking and intelligent appointment management" 
+      description: "Save 3+ hours daily with automated booking and intelligent appointment management"
     },
-    { 
+    {
       icon: UserX,
       title: "Patient Frustration",
-      description: "Increase patient satisfaction with 24/7 online booking and real-time updates" 
+      description: "Increase patient satisfaction with 24/7 online booking and real-time updates"
     },
   ]
 
   const specialties = [
-    { 
+    {
       icon: Globe,
       title: "Professional Booking Page",
-      description: "Create your branded appointment website with custom domain and professional design templates" 
+      description: "Create your branded appointment website with custom domain and professional design templates"
     },
-    { 
+    {
       icon: MessageSquare,
       title: "Automated Reminders",
-      description: "SMS and email notifications reduce no-shows with personalized appointment confirmations and follow-ups" 
+      description: "SMS and email notifications reduce no-shows with personalized appointment confirmations and follow-ups"
     },
-    { 
+    {
       icon: Zap,
       title: "Flexible Scheduling",
-      description: "Support for virtual and in-person appointments with customizable time slots and buffer periods" 
+      description: "Support for virtual and in-person appointments with customizable time slots and buffer periods"
     },
-    { 
+    {
       icon: Calendar,
       title: "Calendar Integration",
-      description: "Seamlessly sync with Google Calendar, Outlook, and other existing calendar systems" 
+      description: "Seamlessly sync with Google Calendar, Outlook, and other existing calendar systems"
     },
-    { 
+    {
       icon: Users,
       title: "Patient Management",
-      description: "Complete patient profiles with appointment history, preferences, and contact information" 
+      description: "Complete patient profiles with appointment history, preferences, and contact information"
     },
-    { 
+    {
       icon: Building2,
       title: "API Integration",
-      description: "Connect with existing hospital information systems and electronic health records" 
+      description: "Connect with existing hospital information systems and electronic health records"
     },
   ]
 
@@ -180,271 +133,7 @@ export default function BookingPage() {
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
-      {/* Header */}
-      <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
-          isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"
-        }`}
-      >
-        <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity">
-            <div className="size-8 rounded-full bg-white flex items-center justify-center">
-              <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
-            </div>
-            <span>MYCURE</span>
-          </Link>
-          
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList className="gap-2">
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">
-                  Features
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[320px] gap-1 p-2">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/booking" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Booking</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Let patients schedule appointments online and reduce wait times.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/telehealth" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Telehealth</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Secure video consultations for virtual patient care.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">
-                  Solutions
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[500px] gap-1 p-2 md:grid-cols-2">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/clinics" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Clinics</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Streamlined workflows for outpatient clinic operations.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/hospital" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Hospital</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Comprehensive management for hospital operations.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/corporate" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Corporate</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Employee health programs and physical exams.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/dental" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Dental</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Specialized tools for dental practice management.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/skin" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Skin & Aesthetics</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Dermatology and aesthetic clinic solutions.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/diagnostics" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Diagnostics</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Laboratory and imaging workflow management.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/mobile-labs" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Mobile Labs</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">On-site diagnostic services and specimen collection.</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/#how-it-works" className="group inline-flex h-9 w-max items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none">
-                  How it Works
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/#faq" className="group inline-flex h-9 w-max items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none">
-                  FAQs
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          
-          <div className="hidden md:flex gap-4 items-center">
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
-              {mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            <Link
-              href="https://next.cms.mycure.md/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Log In
-            </Link>
-            <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-              <ShimmerButton 
-                className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
-                background="#0099CC"
-                shimmerColor="#ffffff"
-                shimmerDuration="2s"
-              >
-                Get Started
-                <ChevronRight className="ml-1 size-4" />
-              </ShimmerButton>
-            </Link>
-          </div>
-          
-          <div className="flex items-center gap-4 md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
-              {mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
-          >
-            <div className="container py-4 flex flex-col gap-4">
-              <div className="py-2">
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="features" className="border-none">
-                    <AccordionTrigger className="py-0 hover:no-underline">
-                      <span className="text-sm font-medium">Features</span>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <Link 
-                        href="/booking" 
-                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Booking
-                      </Link>
-                      <Link 
-                        href="/telehealth" 
-                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Telehealth
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="solutions" className="border-none">
-                    <AccordionTrigger className="py-0 hover:no-underline">
-                      <span className="text-sm font-medium">Solutions</span>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <Link 
-                        href="/clinics" 
-                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Clinics
-                      </Link>
-                      <Link 
-                        href="/hospital" 
-                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Hospital
-                      </Link>
-                      <Link 
-                        href="/corporate" 
-                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Corporate
-                      </Link>
-                      <Link 
-                        href="/dental" 
-                        className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Dental
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-              
-              <Link 
-                href="/#how-it-works" 
-                className="py-2 text-sm font-medium" 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                How it Works
-              </Link>
-              
-              <Link 
-                href="/#faq" 
-                className="py-2 text-sm font-medium" 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                FAQs
-              </Link>
-              
-              <div className="flex flex-col gap-2 pt-2 border-t">
-                <Link href="https://next.cms.mycure.md/" target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
-                  Log In
-                </Link>
-                <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-                  <ShimmerButton 
-                    className="h-10 px-4 py-2 text-sm font-medium rounded-full" 
-                    background="#0099CC"
-                    shimmerColor="#ffffff"
-                    shimmerDuration="2s"
-                  >
-                    Get Started
-                    <ChevronRight className="ml-1 size-4" />
-                  </ShimmerButton>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </header>
+      <ProductHeader />
 
       <main className="flex-1">
         {/* Hero Section - Split Layout */}
@@ -484,20 +173,20 @@ export default function BookingPage() {
                       </AnimatedShinyText>
                     </div>
                   </div>
-                  
+
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
                     The{" "}
                     <span className="text-primary">Easy Booking App</span>{" "}
                     to Grow Your Practice
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    Accept online appointments 24/7 with professional booking pages. Set up in 10 minutes, 
+                    Accept online appointments 24/7 with professional booking pages. Set up in 10 minutes,
                     reduce no-shows by 70%, and let patients self-schedule while you focus on care.
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-start">
                   <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-                    <ShimmerButton 
+                    <ShimmerButton
                       className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                       background="#0099CC"
                       shimmerColor="#ffffff"
@@ -537,7 +226,7 @@ export default function BookingPage() {
                 See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice
               </p>
             </motion.div>
-            
+
             <motion.div
               variants={{
                 hidden: { opacity: 0 },
@@ -605,8 +294,8 @@ export default function BookingPage() {
                 Activate your Appointment Scheduling Website
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Patients can directly book their next visit on your professional booking page. 
-                It's a digital hub where you can showcase your services and medical professionals 
+                Patients can directly book their next visit on your professional booking page.
+                It's a digital hub where you can showcase your services and medical professionals
                 like having your very own website.
               </p>
             </motion.div>
@@ -649,7 +338,7 @@ export default function BookingPage() {
                     transition={{ duration: 0.3 }}
                   >
                     <Image
-                      src={activeTab === "doctors" 
+                      src={activeTab === "doctors"
                         ? "/section-assets/booking/booking-tab-doctors.webp"
                         : "/section-assets/booking/booking-tab-clinics.webp"
                       }
@@ -736,23 +425,23 @@ export default function BookingPage() {
                   </AnimatedShinyText>
                 </div>
               </div>
-              
+
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                 Watch How You Can Improve<br />
                 Your Patient Attendance Rate
               </h2>
-              
+
               {/* Subheadline */}
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Discover how MYCURE Booking helps you reduce no-shows, optimize scheduling, 
+                Discover how MYCURE Booking helps you reduce no-shows, optimize scheduling,
                 and create a seamless booking experience for your patients.
               </p>
-              
+
               {/* CTA */}
               <div className="flex justify-center">
                 <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-                  <ShimmerButton 
+                  <ShimmerButton
                     className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     background="#0099CC"
                     shimmerColor="#ffffff"

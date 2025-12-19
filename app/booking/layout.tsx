@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: 'Accept online appointments 24/7 with MYCURE Booking. Set up your professional booking page in 10 minutes.',
     url: 'https://mycure.md/booking',
     siteName: 'MYCURE',
-    locale: 'en_US',
+    locale: 'en_PH',
     type: 'website',
   },
 }
@@ -19,5 +19,5 @@ export default function BookingLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }

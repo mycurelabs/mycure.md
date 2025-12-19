@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: 'Launch your telemedicine practice with MYCURE\'s complete virtual care platform.',
     url: 'https://mycure.md/telehealth',
     siteName: 'MYCURE',
-    locale: 'en_US',
+    locale: 'en_PH',
     type: 'website',
   },
 }
@@ -19,5 +19,5 @@ export default function TelehealthLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }
