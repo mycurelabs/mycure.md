@@ -33,28 +33,28 @@ export const heroConfig: HeroConfig = {
     suffix: "Platform",
   },
   description:
-    "Everything your dental clinic needs from appointments, billing, inventory, to advanced charting. Transform your dental practice with digital tools designed specifically for dentists.",
+    "Everything your dental clinic needs from appointments, billing, inventory, to advanced charting. Improve your dental practice with digital tools designed specifically for dentists.",
   image: {
     src: "/hero-section-assets/dental-clinics-hero-image.webp",
     alt: "MYCURE Dental - Advanced dental practice management",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
 
 export const solutionsGridConfig: SolutionsGridConfig = {
-  badge: "Transform Your Dental Practice",
+  badge: "Improve Your Dental Practice",
   headline: "Turn Dental Challenges Into Practice Success",
   description:
-    "See how MYCURE Dental transforms common dental practice challenges into powerful competitive advantages",
+    "See how MYCURE Dental turns common dental practice challenges into powerful competitive advantages",
   items: [
     {
       icon: Stethoscope,
       title: "Digital Charting",
       description:
-        "Transform paper charts into interactive digital tooth maps with visual treatment planning and periodontal tracking",
+        "Turn paper charts into interactive digital tooth maps with visual treatment planning and periodontal tracking",
     },
     {
       icon: CalendarCheck,
@@ -78,7 +78,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: MessageCircle,
       title: "Team Communication",
       description:
-        "Transform fragmented communication into seamless team coordination with built-in chat for your dental practice",
+        "Turn fragmented communication into smooth team coordination with built-in chat for your dental practice",
     },
     {
       icon: GraduationCap,
@@ -93,9 +93,9 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Dental Solution",
   headline: "Everything Your Dental Practice Needs.\nNothing It Doesn't.",
   description:
-    "MYCURE brings together advanced dental charting, appointment management, and billing in one comprehensive platform designed specifically for dental practices, reducing chair-side admin time by 60%.",
+    "MYCURE brings together advanced dental charting, appointment management, and billing in one comprehensive platform designed specifically for dental practices, helping reduce chair-side admin time.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -114,11 +114,11 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Dental Workflow - From Booking to Treatment",
   },
   footnote:
-    "Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
+    "Every touchpoint works together smoothly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description:
     "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
@@ -200,7 +200,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Real-time dashboards showing patient flow and clinic performance metrics",
         "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing",
+        "Historical trend reports to help plan for busy periods and staffing needs",
       ],
     },
     {
@@ -212,7 +212,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Instant access to complete patient histories from any device",
         "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support",
+        "Smooth migration from paper records with our digitization support",
       ],
     },
     {
@@ -224,7 +224,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "24/7 online booking reducing phone calls and administrative work",
         "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%",
+        "Automated reminders helping reduce no-shows",
       ],
     },
   ],
@@ -239,7 +239,7 @@ export const finalCtaConfig: FinalCtaConfig = {
   description:
     "Join thousands of dentists who trust MYCURE to digitize their practice and deliver exceptional patient care.",
   cta: {
-    text: "Transform Your Practice",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [

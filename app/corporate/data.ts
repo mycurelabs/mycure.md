@@ -34,13 +34,13 @@ export const heroConfig: HeroConfig = {
     suffix: "from Chaos",
   },
   description:
-    "MYCURE transforms corporate healthcare with comprehensive electronic medical records, seamless HMO integration, and powerful analytics that drive employee wellness and reduce costs.",
+    "MYCURE streamlines corporate healthcare with comprehensive electronic medical records, integrated HMO workflows, and analytics that drive employee wellness and reduce costs.",
   image: {
     src: "/hero-section-assets/corporate-clinics-hero-image.webp",
     alt: "MYCURE Corporate Clinics - Enterprise healthcare management",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
@@ -49,19 +49,19 @@ export const solutionsGridConfig: SolutionsGridConfig = {
   badge: "Enterprise Solutions",
   headline: "Turn Corporate Healthcare Challenges Into Strategic Advantages",
   description:
-    "See how MYCURE Corporate transforms complex healthcare management into streamlined operations that boost productivity and employee satisfaction",
+    "See how MYCURE Corporate turns complex healthcare management into streamlined operations that boost productivity and employee satisfaction",
   items: [
     {
       icon: Activity,
       title: "Employee Wellness",
       description:
-        "Transform employee health data into actionable wellness programs with comprehensive health tracking and preventive care management",
+        "Turn employee health data into actionable wellness programs with comprehensive health tracking and preventive care management",
     },
     {
       icon: TrendingUp,
       title: "Cost Optimization",
       description:
-        "Turn healthcare expenditure into strategic investment with transparent pricing, predictive analytics, and efficient resource allocation",
+        "Turn healthcare expenditure into strategic investment with transparent pricing, data-driven insights, and efficient resource allocation",
     },
     {
       icon: Shield,
@@ -79,7 +79,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: FileText,
       title: "Centralized Records",
       description:
-        "Transform fragmented health data into unified employee health profiles accessible across all your corporate locations",
+        "Consolidate fragmented health data into unified employee health profiles accessible across all your corporate locations",
     },
     {
       icon: Target,
@@ -94,9 +94,9 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Corporate Solution",
   headline: "Enterprise Healthcare.\nSimplified.",
   description:
-    "MYCURE Corporate brings together employee health management, HMO coordination, and compliance reporting in one unified platform that scales with your organization and reduces healthcare costs by 30%.",
+    "MYCURE Corporate brings together employee health management, HMO coordination, and compliance reporting in one unified platform that scales with your organization and helps reduce healthcare costs.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -107,7 +107,7 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
 
 export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "Corporate Benefits",
-  headline: "How MYCURE Transforms Corporate Healthcare",
+  headline: "How MYCURE Improves Corporate Healthcare",
   description:
     "From employee wellness to regulatory compliance, discover why leading corporations trust MYCURE to manage their healthcare operations efficiently and cost-effectively.",
   image: {
@@ -115,7 +115,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Corporate Healthcare Journey - From Onboarding to Analytics",
   },
   footnote:
-    "Every employee touchpoint integrated seamlessly—from onboarding health assessments to retirement planning, ensuring comprehensive healthcare management throughout the employment lifecycle.",
+    "Every employee touchpoint integrated smoothly—from onboarding health assessments to retirement planning, ensuring comprehensive healthcare management throughout the employment lifecycle.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
@@ -125,7 +125,7 @@ export const statisticsConfig: StatisticsConfig = {
   items: [
     { value: 250000, label: "Employees Served", suffix: "+", delay: 0.3 },
     { value: 500, label: "Corporate Clients", suffix: "+", delay: 0.4 },
-    { value: 30, label: "Cost Reduction", suffix: "%", delay: 0.5 },
+    { value: 10, label: "Years in Healthcare", suffix: "+", delay: 0.5 },
   ],
 }
 
@@ -157,7 +157,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Award,
       title: "HMO Integration",
       description:
-        "Seamless integration with all major HMO providers for automated eligibility verification and claims processing",
+        "Direct integration with all major HMO providers for automated eligibility verification and claims processing",
     },
     {
       icon: DollarSign,
@@ -167,9 +167,9 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     },
     {
       icon: Globe,
-      title: "Global Standards",
+      title: "Regional Compliance",
       description:
-        "International compliance support for multinational corporations with customizable workflows per region",
+        "Compliance support for corporations across multiple locations with customizable workflows per region",
     },
   ],
 }
@@ -188,18 +188,18 @@ export const advantagesConfig: AdvantagesConfig = {
       image: "/section-assets/clinic-page/carousel/carousel-network.webp",
       bullets: [
         "Real-time visibility across all clinic branches and departments",
-        "Centralized inventory management reducing wastage by 40%",
+        "Centralized inventory management reducing wastage significantly",
         "Standardized protocols ensuring consistent care quality",
       ],
     },
     {
       title: "Employee Health Intelligence",
       description:
-        "Transform employee health data into strategic business intelligence. Identify health trends, predict risks, and implement targeted wellness programs.",
+        "Turn employee health data into strategic business intelligence. Identify health trends, monitor risks, and implement targeted wellness programs.",
       icon: BarChart,
       image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
       bullets: [
-        "Predictive analytics identifying health risks before they impact productivity",
+        "Health trend analysis identifying risks before they impact productivity",
         "Department-wise health scorecards and wellness metrics",
         "ROI tracking for wellness program investments",
       ],
@@ -217,7 +217,7 @@ export const advantagesConfig: AdvantagesConfig = {
       ],
     },
     {
-      title: "Seamless HMO & Benefits Management",
+      title: "Integrated HMO & Benefits Management",
       description:
         "Simplify complex HMO coordination and employee benefits administration. Process claims faster and reduce administrative overhead.",
       icon: Users,
@@ -225,7 +225,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Direct HMO integration eliminating manual verification",
         "Automated benefits tracking and utilization reports",
-        "Instant eligibility checking reducing claim rejections by 60%",
+        "Instant eligibility checking reducing claim rejections significantly",
       ],
     },
   ],
@@ -234,13 +234,13 @@ export const advantagesConfig: AdvantagesConfig = {
 export const finalCtaConfig: FinalCtaConfig = {
   headline: {
     prefix: "Ready to",
-    highlight: "revolutionize",
+    highlight: "improve",
     suffix: "your corporate healthcare?",
   },
   description:
     "Join hundreds of leading corporations who trust MYCURE to manage their employee healthcare efficiently and cost-effectively.",
   cta: {
-    text: "Transform Your Corporate Healthcare",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [

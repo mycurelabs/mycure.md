@@ -39,16 +39,16 @@ export const heroConfig: HeroConfig = {
     alt: "MYCURE Hospital OPD - Modern hospital outpatient department management",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
 
 export const solutionsGridConfig: SolutionsGridConfig = {
-  badge: "Transform Your Hospital OPD",
+  badge: "Improve Your Hospital OPD",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice",
+    "See how MYCURE Hospitals turns common OPD challenges into powerful competitive advantages for your practice",
   items: [
     {
       icon: Clock,
@@ -60,7 +60,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Zap,
       title: "Reduced Wait Times",
       description:
-        "Cut patient wait times by 60% with smart queuing and efficient appointment management",
+        "Cut patient wait times with smart queuing and efficient appointment management",
     },
     {
       icon: Users,
@@ -72,13 +72,13 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: CalendarCheck,
       title: "Appointment Control",
       description:
-        "Slash cancellations by 40% with automated reminders and easy rebooking systems",
+        "Reduce cancellations with automated reminders and easy rebooking systems",
     },
     {
       icon: Star,
       title: "Patient Satisfaction",
       description:
-        "Boost patient satisfaction scores with seamless OPD experiences and shorter wait times",
+        "Boost patient satisfaction scores with smooth OPD experiences and shorter wait times",
     },
     {
       icon: FileX,
@@ -93,9 +93,9 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Hospital OPD Solution",
   headline: "Everything Your Clinic Needs.\nNothing It Doesn't.",
   description:
-    "MYCURE brings together the three core functions every clinic depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and reduces admin time by 60%.",
+    "MYCURE brings together the three core functions every hospital OPD depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and helps reduce admin time.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -114,11 +114,11 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
   },
   footnote:
-    "Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
+    "Every touchpoint works together smoothly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description:
     "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
@@ -138,7 +138,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Building2,
       title: "Multi-Department Integration",
       description:
-        "Seamlessly connect your OPD with other hospital departments for unified patient care and smooth referrals",
+        "Easily connect your OPD with other hospital departments for unified patient care and smooth referrals",
     },
     {
       icon: Shield,
@@ -199,7 +199,7 @@ export const advantagesConfig: AdvantagesConfig = {
       image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
       bullets: [
         "Patients see all available doctors and time slots instantly",
-        "Reduce reception desk workload by 70%",
+        "Helps reduce reception desk workload",
         "Smart scheduling prevents overbooking and optimizes doctor time",
       ],
     },
@@ -245,13 +245,13 @@ export const advantagesConfig: AdvantagesConfig = {
 export const finalCtaConfig: FinalCtaConfig = {
   headline: {
     prefix: "Ready to",
-    highlight: "transform",
+    highlight: "improve",
     suffix: "your healthcare practice?",
   },
   description:
     "Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve patient care.",
   cta: {
-    text: "Transform Your Practice",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [

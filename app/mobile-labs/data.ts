@@ -41,22 +41,22 @@ export const heroConfig: HeroConfig = {
     alt: "MYCURE Mobile Labs - Mobile diagnostic services interface",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
 
 export const solutionsGridConfig: SolutionsGridConfig = {
-  badge: "Transform Your Mobile Lab",
+  badge: "Improve Your Mobile Lab",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Mobile Labs transforms common mobile lab challenges into powerful operational advantages",
+    "See how MYCURE Mobile Labs turns common mobile lab challenges into powerful operational advantages",
   items: [
     {
       icon: Clock,
       title: "Wasted Time & Resources",
       description:
-        "Transform manual processes into automated workflows saving hours daily with location-based registrations",
+        "Turn manual processes into automated workflows saving hours daily with location-based registrations",
     },
     {
       icon: Zap,
@@ -80,7 +80,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Star,
       title: "Frustrated Patients",
       description:
-        "Transform complaints into satisfaction with mobile-friendly patient portals and instant results",
+        "Turn complaints into satisfaction with mobile-friendly patient portals and instant results",
     },
     {
       icon: FileCheck,
@@ -97,7 +97,7 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   description:
     "MYCURE brings together the core functions every mobile lab depends on—patient registration, sample tracking, and result delivery—in one comprehensive platform that works anywhere, anytime.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -107,7 +107,7 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
 }
 
 export const featureJourneyConfig: FeatureJourneyConfig = {
-  badge: "Seamless Mobile Workflow",
+  badge: "Smooth Mobile Workflow",
   headline: "How MYCURE Automates Your Entire Mobile Lab Workflow",
   description:
     "Discover why mobile labs nationwide are switching to MYCURE's integrated workflow that handles location-based registrations with ease—from sample collection to result delivery.",
@@ -116,11 +116,11 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Mobile Lab Workflow - From Sample Collection to Result Delivery",
   },
   footnote:
-    "Every touchpoint works together seamlessly—eliminating manual processes, tracking samples accurately, and ensuring timely results delivery regardless of location.",
+    "Every touchpoint works together smoothly—eliminating manual processes, tracking samples accurately, and ensuring timely results delivery regardless of location.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description:
     "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
@@ -170,7 +170,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Wifi,
       title: "Offline Sync",
       description:
-        "Work seamlessly offline and auto-sync when connectivity is restored",
+        "Work smoothly offline and auto-sync when connectivity is restored",
     },
   ],
 }
@@ -241,7 +241,7 @@ export const finalCtaConfig: FinalCtaConfig = {
   description:
     "Join hundreds of mobile labs who trust MYCURE to streamline their operations and deliver better patient care anywhere.",
   cta: {
-    text: "Transform Your Mobile Lab",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [

@@ -30,7 +30,7 @@ export const heroConfig: HeroConfig = {
   headline: {
     prefix: "Your",
     highlight: "Diagnostic Center",
-    suffix: "Transformed",
+    suffix: "Upgraded",
   },
   description:
     "The best tool to streamline diagnostic laboratories and imaging centers' operations, automate routine tasks, and reduce costs and errors.",
@@ -39,22 +39,22 @@ export const heroConfig: HeroConfig = {
     alt: "MYCURE Diagnostics - Laboratory and imaging center interface",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
 
 export const solutionsGridConfig: SolutionsGridConfig = {
-  badge: "Transform Your Clinic",
+  badge: "Improve Your Clinic",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice",
+    "See how MYCURE Diagnostics turns common clinic problems into powerful competitive advantages for your practice",
   items: [
     {
       icon: Clock,
       title: "Wasted Time & Resources",
       description:
-        "Transform manual processes into automated workflows saving 3+ hours daily with seamless LIS/RIS integration",
+        "Turn manual processes into automated workflows that save significant time with smooth LIS/RIS integration",
     },
     {
       icon: Zap,
@@ -78,7 +78,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Star,
       title: "Frustrated Patients",
       description:
-        "Transform complaints into satisfaction with online results access and patient portal convenience",
+        "Turn complaints into satisfaction with online results access and patient portal convenience",
     },
     {
       icon: FileCheck,
@@ -93,9 +93,9 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Clinic Solution",
   headline: "Everything Your Clinic Needs.\nNothing It Doesn't.",
   description:
-    "MYCURE brings together the three core functions every clinic depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and reduces admin time by 60%.",
+    "MYCURE brings together the three core functions every diagnostic center depends on—test management, patient scheduling, and billing—in one comprehensive platform that works offline and helps reduce admin time.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -114,11 +114,11 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
   },
   footnote:
-    "Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
+    "Every touchpoint works together smoothly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description:
     "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
@@ -168,7 +168,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Network,
       title: "Interoperability",
       description:
-        "HL7-ready integration connecting with hospitals, clinics, and healthcare providers seamlessly",
+        "HL7-ready integration connecting with hospitals, clinics, and healthcare providers smoothly",
     },
   ],
 }
@@ -182,7 +182,7 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "Easy to Integrate. Easy to Use.",
       description:
-        "Connect seamlessly with healthcare providers and expand your diagnostic center's reach.",
+        "Connect easily with healthcare providers and expand your diagnostic center's reach.",
       icon: Network,
       image: "/section-assets/clinic-page/carousel/carousel-network.webp",
       bullets: [
@@ -224,7 +224,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Office staff can ask questions about billing without interrupting workflows",
         "Communicate with other techs at your lab quickly and efficiently",
-        "Coordinate sample processing and result verification seamlessly",
+        "Coordinate sample processing and result verification efficiently",
       ],
     },
   ],
@@ -233,13 +233,13 @@ export const advantagesConfig: AdvantagesConfig = {
 export const finalCtaConfig: FinalCtaConfig = {
   headline: {
     prefix: "Ready to",
-    highlight: "transform",
+    highlight: "improve",
     suffix: "your diagnostic center?",
   },
   description:
     "Join hundreds of labs and imaging centers who trust MYCURE to streamline their operations and deliver better patient care.",
   cta: {
-    text: "Transform Your Diagnostic Center",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [

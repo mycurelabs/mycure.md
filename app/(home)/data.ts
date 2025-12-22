@@ -23,10 +23,10 @@ export const heroConfig = {
     line2: "Your patients, first.",
   },
   description:
-    "Transform your practice with the clinic management system designed for Philippine healthcare—secure, offline-capable, and ready to simplify your entire operation.",
+    "Streamline your practice with the clinic management system designed for Philippine healthcare—secure, offline-capable, and ready to simplify your entire operation.",
   cta: {
     primary: {
-      text: "Get Started Today",
+      text: "Book a Demo",
       href: "https://calendly.com/mycure/demo",
     },
     secondary: {
@@ -76,7 +76,7 @@ export const stickyFeaturesConfig = [
     imageAlt: "Koala doctor feeling frustrated",
   },
   {
-    badge: "TIME TO TRANSFORM",
+    badge: "A BETTER WAY",
     title: "The Truth",
     description: "Your patients deserve your full attention—and you deserve tools that actually work. It's time for technology that serves healthcare, not the other way around.",
     image: "/Koalas/koala-scene3.jpg",
@@ -93,8 +93,8 @@ export interface FeatureItem {
 
 export const featuresGridConfig = {
   badge: "Features",
-  headline: "Powerful Tools to Transform Your Healthcare Practice",
-  description: "MYCURE provides an integrated set of solutions tailored to physicians, clinics, and diagnostics. From patient records to telehealth, our platform empowers your team to deliver care more efficiently, securely, and seamlessly.",
+  headline: "Complete Tools to Improve Your Healthcare Practice",
+  description: "MYCURE provides an integrated set of solutions tailored to physicians, clinics, and diagnostics. From patient records to telehealth, our platform empowers your team to deliver care more efficiently and securely.",
   items: [
     {
       title: "Physicians",
@@ -131,7 +131,7 @@ export const featuresGridConfig = {
 
 // Statistics Config
 export const statisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description: "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
     { value: 13239859, label: "Medical Records", delay: 0.3 },
@@ -144,7 +144,7 @@ export const statisticsConfig = {
 export const whyChooseConfig = {
   badge: "Why Choose MYCURE",
   headline: "Built for Modern Teams",
-  description: "Enterprise-grade capabilities with healthcare-specific design, providing compliance, reliability, and seamless operations.",
+  description: "Enterprise-grade capabilities with healthcare-specific design, providing compliance, reliability, and smooth operations.",
   items: [
     {
       title: "HIPAA Security & Compliance",
@@ -161,7 +161,7 @@ export const whyChooseConfig = {
       imagePosition: "left" as const,
     },
     {
-      title: "Seamless Offline Operations",
+      title: "Reliable Offline Operations",
       description: "Work confidently regardless of internet connectivity. MYCURE's advanced offline capabilities ensure your practice continues operating smoothly, with automatic synchronization when connectivity returns.",
       icon: WifiOff,
       mediaType: "video" as const,
@@ -212,7 +212,7 @@ export const visibilityConfig = {
     },
     {
       bold: "Improve",
-      normal: "patient satisfaction with seamless scheduling, clear communication, and reduced wait times through optimized workflows.",
+      normal: "patient satisfaction with efficient scheduling, clear communication, and reduced wait times through optimized workflows.",
       image: "/Features Photos/Visibility for your entire clinic/improve-patient-satisfaction.png",
       imageAlt: "MYCURE clinic management dashboard showing patient management features",
       gradient: "from-green-400 via-blue-400 to-blue-500",
@@ -233,9 +233,9 @@ export const integrationConfig = {
     before: "Healthcare that",
     highlight: "works together",
   },
-  description: "MYCURE integrates seamlessly with your existing healthcare workflows rather than replacing them. Our platform enhances what already works while filling critical gaps in patient records, specialist coordination, and compliance—adapting to your practice, not the other way around.",
+  description: "MYCURE works with your existing healthcare workflows rather than replacing them. Our platform enhances what already works while filling critical gaps in patient records, specialist coordination, and compliance—adapting to your practice, not the other way around.",
   cta: {
-    text: "Get started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   icons: [
@@ -267,7 +267,7 @@ export const timelineConfig = {
   badge: "How It Works",
   headline: "What you can achieve with MYCURE",
   headlineHighlight: "in just 7 days",
-  description: "Transform your healthcare practice step by step with our guided onboarding process.",
+  description: "Improve your healthcare practice step by step with our guided onboarding process.",
   tabs: [
     { id: "today", label: "Today" },
     { id: "day3", label: "Day 3" },
@@ -340,12 +340,12 @@ export const timelineConfig = {
     ],
     day7: [
       {
-        title: "Full Automation",
+        title: "Streamlined Operations",
         icon: Zap,
         items: [
-          "Automate 90% of administrative tasks",
-          "Set up AI-powered patient triage",
-          "Enable predictive analytics for scheduling",
+          "Automate routine administrative tasks",
+          "Set up smart patient queuing workflows",
+          "Use scheduling insights to reduce wait times",
           "Configure automated billing workflows",
         ],
       },
@@ -363,7 +363,7 @@ export const timelineConfig = {
         title: "Scale Your Practice",
         icon: Star,
         items: [
-          "Reduce administrative time by 60%",
+          "Reduce administrative burden significantly",
           "Increase patient satisfaction scores",
           "Improve appointment scheduling efficiency",
           "Enhance overall practice profitability",
@@ -372,7 +372,7 @@ export const timelineConfig = {
     ],
   } as TimelineContent,
   cta: {
-    text: "Get Started Today",
+    text: "Start Free Trial",
     href: "https://calendly.com/mycure/demo",
   },
   ctaNote: "No credit card required • 15-day free trial • Setup in minutes",
@@ -417,17 +417,17 @@ export const faqConfig = {
 export const finalCtaConfig = {
   headline: {
     before: "Ready to",
-    highlight: "transform",
+    highlight: "improve",
     after: "your healthcare practice?",
   },
   description: "Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve patient care.",
   cta: {
-    text: "Transform Your Practice",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [
     "See demo video",
-    "30-day free trial",
+    "15-day free trial",
     "Training on-premises",
     "Cancel anytime",
   ],

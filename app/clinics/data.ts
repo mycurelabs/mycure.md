@@ -39,28 +39,28 @@ export const heroConfig: HeroConfig = {
     alt: "MYCURE Clinics - Healthcare professionals at reception desks",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
 
 export const solutionsGridConfig: SolutionsGridConfig = {
-  badge: "Transform Your Clinic",
+  badge: "Improve Your Clinic",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice",
+    "See how MYCURE Clinics turns common clinic problems into powerful competitive advantages for your practice",
   items: [
     {
       icon: TrendingUp,
       title: "Time Efficiency",
       description:
-        "Transform wasted hours into 3+ hours saved daily with automated workflows and streamlined operations",
+        "Turn wasted hours into 3+ hours saved daily with automated workflows and streamlined operations",
     },
     {
       icon: Zap,
       title: "Patient Flow",
       description:
-        "Turn long wait times into 40% faster patient flow through smart scheduling and queue management",
+        "Turn long wait times into faster patient flow through smart scheduling and queue management",
     },
     {
       icon: Heart,
@@ -78,7 +78,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Star,
       title: "Patient Satisfaction",
       description:
-        "Transform patient frustration into 5-star reviews with seamless experiences that delight",
+        "Turn patient frustration into positive reviews with smooth experiences that delight",
     },
     {
       icon: ShieldCheck,
@@ -93,9 +93,9 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Clinic Solution",
   headline: "Everything Your Clinic Needs.\nNothing It Doesn't.",
   description:
-    "MYCURE brings together the three core functions every clinic depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and reduces admin time by 60%.",
+    "MYCURE brings together the three core functions every clinic depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and helps reduce admin time.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -114,11 +114,11 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
   },
   footnote:
-    "Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
+    "Every touchpoint works together smoothly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description:
     "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
@@ -162,7 +162,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: BarChart,
       title: "Diagnostics",
       description:
-        "Seamless laboratory result integration, test tracking, and diagnostic center workflow automation",
+        "Integrated laboratory result management, test tracking, and diagnostic center workflow automation",
     },
     {
       icon: Building2,
@@ -200,7 +200,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Real-time dashboards showing patient flow and clinic performance metrics",
         "Automated daily reports highlighting areas for improvement",
-        "Predictive analytics to forecast busy periods and optimize staffing",
+        "Historical trend reports to help plan for busy periods and staffing needs",
       ],
     },
     {
@@ -212,7 +212,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Instant access to complete patient histories from any device",
         "Automatic backups ensuring your data is never lost",
-        "Seamless migration from paper records with our digitization support",
+        "Smooth migration from paper records with our digitization support",
       ],
     },
     {
@@ -224,7 +224,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "24/7 online booking reducing phone calls and administrative work",
         "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders reducing no-shows by up to 70%",
+        "Automated reminders helping reduce no-shows",
       ],
     },
   ],
@@ -233,13 +233,13 @@ export const advantagesConfig: AdvantagesConfig = {
 export const finalCtaConfig: FinalCtaConfig = {
   headline: {
     prefix: "Ready to",
-    highlight: "transform",
+    highlight: "improve",
     suffix: "your healthcare practice?",
   },
   description:
     "Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve patient care.",
   cta: {
-    text: "Transform Your Practice",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [

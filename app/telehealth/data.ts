@@ -39,14 +39,14 @@ export const heroConfig: HeroConfig = {
     alt: "MYCURE Telehealth - Virtual consultations and telemedicine platform",
   },
   cta: {
-    text: "Get Started",
+    text: "Book a Demo",
     href: "https://calendly.com/mycure/demo",
   },
 }
 
 export const solutionsGridConfig: SolutionsGridConfig = {
   badge: "Virtual Practice Solutions",
-  headline: "Transform Your Practice with Telehealth",
+  headline: "Improve Your Practice with Telehealth",
   description:
     "See how virtual consultations can expand your practice reach, increase revenue, and improve patient satisfaction",
   items: [
@@ -54,7 +54,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: TrendingUp,
       title: "Increase Your Revenue",
       description:
-        "Treat more patients and reduce no-shows by 40% with secure video consultations and automated reminders",
+        "Treat more patients and reduce no-shows with secure video consultations and automated reminders",
     },
     {
       icon: Users,
@@ -72,7 +72,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Building2,
       title: "Group Practice Ready",
       description:
-        "Coordinate seamlessly with other physicians and centralize medical records in one comprehensive workspace",
+        "Coordinate easily with other physicians and centralize medical records in one comprehensive workspace",
     },
     {
       icon: Video,
@@ -93,9 +93,9 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Clinic Solution",
   headline: "Everything Your Clinic Needs.\nNothing It Doesn't.",
   description:
-    "MYCURE brings together the three core functions every clinic depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and reduces admin time by 60%.",
+    "MYCURE brings together the three core functions every clinic depends on—medical records, patient scheduling, and billing—in one comprehensive platform that works offline and helps reduce admin time.",
   cta: {
-    text: "Get Started",
+    text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
   },
   video: {
@@ -114,17 +114,17 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
   },
   footnote:
-    "Every touchpoint works together seamlessly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
+    "Every touchpoint works together smoothly—eliminating paperwork, reducing wait times, and ensuring a complete patient experience from start to finish.",
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Worldwide",
+  headline: "Trusted by Healthcare Providers Across the Philippines",
   description:
     "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
   items: [
     { value: 850000, label: "Virtual Consultations", suffix: "+", delay: 0.3 },
-    { value: 95, label: "Patient Satisfaction", suffix: "%", delay: 0.4 },
-    { value: 40, label: "Reduced No-Shows", suffix: "%", delay: 0.5 },
+    { value: 10, label: "Years in Healthcare", suffix: "+", delay: 0.4 },
+    { value: 780, label: "Partner Providers", delay: 0.5 },
   ],
 }
 
@@ -206,7 +206,7 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "Integrated Virtual Care Workflow",
       description:
-        "Seamlessly blend virtual and in-person care with our comprehensive telehealth tools designed for modern healthcare.",
+        "Easily blend virtual and in-person care with our comprehensive telehealth tools designed for modern healthcare.",
       icon: Zap,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
@@ -239,7 +239,7 @@ export const finalCtaConfig: FinalCtaConfig = {
   description:
     "Worrying about the shift to digital records? We've got you covered. Our lean implementation process ensures you get what you need: customized forms, optimized workflows, and well-trained staff.",
   cta: {
-    text: "Start Your Virtual Practice",
+    text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
   },
   features: [
