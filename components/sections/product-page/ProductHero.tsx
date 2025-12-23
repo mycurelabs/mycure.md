@@ -4,8 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import type { HeroConfig } from "@/components/types/product-page"
 
 interface ProductHeroProps {
@@ -44,11 +44,7 @@ export function ProductHero({ config }: ProductHeroProps) {
             <div className="space-y-4">
               {/* Animated Badge */}
               <div className="flex justify-center lg:justify-start">
-                <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
-                  <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    {config.badge}
-                  </AnimatedShinyText>
-                </div>
+                <AnimatedBadge>{config.badge}</AnimatedBadge>
               </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
@@ -62,15 +58,10 @@ export function ProductHero({ config }: ProductHeroProps) {
             </div>
             <div className="flex justify-center lg:justify-start">
               <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
-                <ShimmerButton
-                  className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                  background="#0099CC"
-                  shimmerColor="#ffffff"
-                  shimmerDuration="2s"
-                >
+                <PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base flex items-center justify-center gap-2">
                   {config.cta.text}
                   <ArrowRight className="size-4" />
-                </ShimmerButton>
+                </PrimaryButton>
               </Link>
             </div>
           </motion.div>

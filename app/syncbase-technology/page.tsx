@@ -16,7 +16,7 @@ import {
   ExternalLink,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import { DocumentHeader } from "@/components/sections/shared"
 
 export default function SyncbaseTechnologyPage() {
@@ -151,10 +151,10 @@ export default function SyncbaseTechnologyPage() {
                     <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden shadow-lg">
                       <iframe
                         className="absolute top-0 left-0 w-full h-full"
-                        src="https://www.youtube.com/embed/siFBgZMt26k"
+                        src="https://www.youtube-nocookie.com/embed/siFBgZMt26k"
                         title="MYCURE Syncbase Demo"
                         frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                       ></iframe>
                     </div>
@@ -316,15 +316,10 @@ export default function SyncbaseTechnologyPage() {
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
-                        <ShimmerButton
-                          className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                          background="#0099CC"
-                          shimmerColor="#ffffff"
-                          shimmerDuration="3s"
-                        >
+                        <PrimaryButton slow className="flex items-center justify-center gap-2">
                           👉 Book a Demo Today
                           <ExternalLink className="size-4" />
-                        </ShimmerButton>
+                        </PrimaryButton>
                       </Link>
                     </div>
                   </motion.section>

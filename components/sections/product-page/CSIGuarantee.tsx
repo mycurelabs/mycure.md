@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { CheckCircle, Shield, Cloud } from "lucide-react"
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
 import * as Scrollytelling from "@bsmnt/scrollytelling"
 
 export function CSIGuarantee() {
@@ -23,11 +23,7 @@ export function CSIGuarantee() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8 w-fit">
-                  <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={140}>
-                    MYCURE CSI Guarantee
-                  </AnimatedShinyText>
-                </div>
+                <AnimatedBadge>MYCURE CSI Guarantee</AnimatedBadge>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
                   Protected by Design,<br />
                   Compliant by Default

@@ -51,36 +51,42 @@ export const solutionsGridConfig: SolutionsGridConfig = {
     "See how MYCURE Dental turns common dental practice challenges into powerful competitive advantages",
   items: [
     {
+      id: "digital-charting",
       icon: Stethoscope,
       title: "Digital Charting",
       description:
         "Turn paper charts into interactive digital tooth maps with visual treatment planning and periodontal tracking",
     },
     {
+      id: "appointment-precision",
       icon: CalendarCheck,
       title: "Appointment Precision",
       description:
         "Turn scheduling chaos into organized workflows - never miss an appointment, never miss a tooth",
     },
     {
+      id: "inventory-management",
       icon: Package,
       title: "Inventory Management",
       description:
         "Convert supply tracking headaches into automated inventory management for dental materials and equipment",
     },
     {
+      id: "integrated-billing",
       icon: DollarSign,
       title: "Integrated Billing",
       description:
         "Change complex insurance claims into streamlined billing with automated processing and patient payment tracking",
     },
     {
+      id: "team-communication",
       icon: MessageCircle,
       title: "Team Communication",
       description:
         "Turn fragmented communication into smooth team coordination with built-in chat for your dental practice",
     },
     {
+      id: "student-support",
       icon: GraduationCap,
       title: "Student Support",
       description:
@@ -135,36 +141,42 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
+      id: "visual-dental-charting",
       icon: Stethoscope,
       title: "Visual Dental Charting",
       description:
         "Interactive tooth mapping with periodontal charts, treatment notes, and visual documentation for comprehensive patient records",
     },
     {
+      id: "treatment-planning",
       icon: ClipboardList,
       title: "Treatment Planning",
       description:
         "Create comprehensive treatment plans with cost estimates, phase scheduling, and patient consent tracking",
     },
     {
+      id: "orthodontics-support",
       icon: Sparkles,
       title: "Orthodontics Support",
       description:
         "Track braces adjustments, aligner progress, and orthodontic treatment milestones with specialized tools",
     },
     {
+      id: "endodontics-tools",
       icon: Shield,
       title: "Endodontics Tools",
       description:
         "Root canal tracking, procedure documentation, and endodontic treatment history management",
     },
     {
+      id: "pediatric-dentistry",
       icon: Baby,
       title: "Pediatric Dentistry",
       description:
         "Child-friendly interfaces, behavior management notes, and specialized pediatric dental charting",
     },
     {
+      id: "oral-surgery",
       icon: Heart,
       title: "Oral Surgery",
       description:

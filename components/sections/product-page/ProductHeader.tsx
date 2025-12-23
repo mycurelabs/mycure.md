@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { ChevronRight, Menu, X, Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { usePageState } from "@/hooks/use-page-state"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -153,15 +153,10 @@ export function ProductHeader() {
             Log In
           </Link>
           <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-            <ShimmerButton
-              className="h-10 px-4 py-2 text-sm font-medium rounded-full"
-              background="#0099CC"
-              shimmerColor="#ffffff"
-              shimmerDuration="2s"
-            >
+            <PrimaryButton className="h-10 px-4 py-2 text-sm font-medium">
               Get Started
               <ChevronRight className="ml-1 size-4" />
-            </ShimmerButton>
+            </PrimaryButton>
           </Link>
         </div>
 
@@ -174,20 +169,24 @@ export function ProductHeader() {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-controls="mobile-menu"
+            aria-expanded={mobileMenuOpen}
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-            <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <motion.div
+        <motion.nav
+          id="mobile-menu"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
+          aria-label="Mobile navigation"
         >
           <div className="container py-4 flex flex-col gap-4">
             <div className="py-2">
@@ -272,19 +271,14 @@ export function ProductHeader() {
                 Log In
               </Link>
               <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-                <ShimmerButton
-                  className="h-10 px-4 py-2 text-sm font-medium rounded-full"
-                  background="#0099CC"
-                  shimmerColor="#ffffff"
-                  shimmerDuration="2s"
-                >
+                <PrimaryButton className="h-10 px-4 py-2 text-sm font-medium rounded-full">
                   Get Started
                   <ChevronRight className="ml-1 size-4" />
-                </ShimmerButton>
+                </PrimaryButton>
               </Link>
             </div>
           </div>
-        </motion.div>
+        </motion.nav>
       )}
     </header>
   )

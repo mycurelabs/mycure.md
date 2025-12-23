@@ -3,8 +3,8 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { AnimatedBadge } from "@/components/ui/animated-badge"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import { viewportOnce, transition } from "@/lib/animation-variants"
 import type { VideoShowcaseConfig } from "@/components/types/product-page"
 
@@ -42,15 +42,10 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
           {/* CTA */}
           <div className="flex justify-center">
             <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
-              <ShimmerButton
-                className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                background="#0099CC"
-                shimmerColor="#ffffff"
-                shimmerDuration="2s"
-              >
+              <PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base flex items-center justify-center gap-2">
                 {config.cta.text}
                 <ArrowRight className="size-4" />
-              </ShimmerButton>
+              </PrimaryButton>
             </Link>
           </div>
         </motion.div>

@@ -16,11 +16,10 @@ import {
 } from "lucide-react"
 import type {
   HeroConfig,
-  SolutionsGridConfig,
+  IconCardGridConfig,
   VideoShowcaseConfig,
   FeatureJourneyConfig,
   StatisticsConfig,
-  SpecialtiesGridConfig,
   AdvantagesConfig,
   FinalCtaConfig,
 } from "@/components/types/product-page"
@@ -44,43 +43,50 @@ export const heroConfig: HeroConfig = {
   },
 }
 
-export const solutionsGridConfig: SolutionsGridConfig = {
+export const solutionsGridConfig: IconCardGridConfig = {
+  sectionId: "solutions",
   badge: "Improve Your Hospital OPD",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
     "See how MYCURE Hospitals turns common OPD challenges into powerful competitive advantages for your practice",
   items: [
     {
+      id: "time-resource-savings",
       icon: Clock,
       title: "Time & Resource Savings",
       description:
         "Save 3+ hours daily by eliminating manual paperwork and automating OPD workflows",
     },
     {
+      id: "reduced-wait-times",
       icon: Zap,
       title: "Reduced Wait Times",
       description:
         "Cut patient wait times with smart queuing and efficient appointment management",
     },
     {
+      id: "staff-empowerment",
       icon: Users,
       title: "Staff Empowerment",
       description:
         "Reduce staff workload with intuitive tools designed for busy hospital environments",
     },
     {
+      id: "appointment-control",
       icon: CalendarCheck,
       title: "Appointment Control",
       description:
         "Reduce cancellations with automated reminders and easy rebooking systems",
     },
     {
+      id: "patient-satisfaction",
       icon: Star,
       title: "Patient Satisfaction",
       description:
         "Boost patient satisfaction scores with smooth OPD experiences and shorter wait times",
     },
     {
+      id: "error-free-reports",
       icon: FileX,
       title: "Error-Free Reports",
       description:
@@ -128,43 +134,50 @@ export const statisticsConfig: StatisticsConfig = {
   ],
 }
 
-export const specialtiesGridConfig: SpecialtiesGridConfig = {
+export const specialtiesGridConfig: IconCardGridConfig = {
+  sectionId: "specialties",
   badge: "Hospital-Grade Workflows",
   headline: "One Platform. Every Specialty.",
   description:
     "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
+      id: "multi-department-integration",
       icon: Building2,
       title: "Multi-Department Integration",
       description:
         "Easily connect your OPD with other hospital departments for unified patient care and smooth referrals",
     },
     {
+      id: "csi-guarantee",
       icon: Shield,
       title: "CSI Guarantee",
       description:
         "Hospital-grade security with Compliance, Security, and Interoperability built into every feature",
     },
     {
+      id: "staff-communication",
       icon: MessageSquare,
       title: "Staff Communication",
       description:
         "Built-in secure messaging for instant coordination between OPD staff and other departments",
     },
     {
+      id: "offline-capability",
       icon: WifiOff,
       title: "Offline Capability",
       description:
         "Continue operations even without internet with MYCURE Syncbase technology",
     },
     {
+      id: "mycure-one-network",
       icon: Globe,
       title: "MYCURE One Network",
       description:
         "Expand your reach with professional profiles that help new patients find and book appointments",
     },
     {
+      id: "advanced-analytics",
       icon: BarChart,
       title: "Advanced Analytics",
       description:

@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
 
 interface WhyChooseItem {
   title: string
@@ -38,11 +38,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
-          <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
-            <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none !flex !items-center" shimmerWidth={150}>
-              {config.badge}
-            </AnimatedShinyText>
-          </div>
+          <AnimatedBadge>{config.badge}</AnimatedBadge>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{config.headline}</h2>
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}

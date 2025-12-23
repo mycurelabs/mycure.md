@@ -51,36 +51,42 @@ export const solutionsGridConfig: SolutionsGridConfig = {
     "See how MYCURE Diagnostics turns common clinic problems into powerful competitive advantages for your practice",
   items: [
     {
+      id: "wasted-time-resources",
       icon: Clock,
       title: "Wasted Time & Resources",
       description:
         "Turn manual processes into automated workflows that save significant time with smooth LIS/RIS integration",
     },
     {
+      id: "long-wait-times",
       icon: Zap,
       title: "Long Wait Times",
       description:
         "Turn patient delays into quick turnarounds with smart appointment booking and automated queue management",
     },
     {
+      id: "overworked-staff",
       icon: Users,
       title: "Overworked Staff",
       description:
         "Convert staff stress into productivity with an easy-to-use laboratory information system that simplifies complex tasks",
     },
     {
+      id: "cancelled-appointments",
       icon: CalendarCheck,
       title: "Cancelled Appointments",
       description:
         "Change no-shows into confirmed visits using automated reminders and flexible online rebooking",
     },
     {
+      id: "frustrated-patients",
       icon: Star,
       title: "Frustrated Patients",
       description:
         "Turn complaints into satisfaction with online results access and patient portal convenience",
     },
     {
+      id: "error-prone-reports",
       icon: FileCheck,
       title: "Error-prone Reports",
       description:
@@ -135,36 +141,42 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
+      id: "laboratory-information-system",
       icon: Beaker,
       title: "Laboratory Information System (LIS)",
       description:
         "Complete lab workflow automation from sample collection to result delivery with barcode tracking and quality control",
     },
     {
+      id: "booking-system",
       icon: Calendar,
       title: "Booking System",
       description:
         "Smart appointment scheduling with automated confirmations, queue management, and walk-in handling",
     },
     {
+      id: "radiology-information-system",
       icon: Activity,
       title: "Radiology Information System (RIS)",
       description:
         "Comprehensive imaging center management with PACS integration, modality worklists, and structured reporting",
     },
     {
+      id: "billing",
       icon: CreditCard,
       title: "Billing",
       description:
         "Integrated payment processing with insurance claims, package deals, and automated invoicing",
     },
     {
+      id: "online-results",
       icon: Download,
       title: "Online Results",
       description:
         "Instant digital test results delivery with secure patient portals and automated notifications",
     },
     {
+      id: "interoperability",
       icon: Network,
       title: "Interoperability",
       description:

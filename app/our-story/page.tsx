@@ -134,10 +134,10 @@ export default function OurStoryPage() {
                   <div className="relative w-full aspect-video mb-20 rounded-lg overflow-hidden">
                     <iframe
                       className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/zvM3LIvq-6k"
+                      src="https://www.youtube-nocookie.com/embed/zvM3LIvq-6k"
                       title="MYCURE Our Story"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
                   </div>

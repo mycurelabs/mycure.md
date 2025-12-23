@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Check } from "lucide-react"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import type { FinalCtaConfig } from "@/components/types/product-page"
 
 interface FinalCTAProps {
@@ -33,15 +33,10 @@ export function FinalCTA({ config }: FinalCTAProps) {
 
             <div className="flex justify-center items-center">
               <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
-                <ShimmerButton
-                  className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                  background="#0099CC"
-                  shimmerColor="#ffffff"
-                  shimmerDuration="3s"
-                >
+                <PrimaryButton slow className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base flex items-center justify-center gap-2">
                   {config.cta.text}
                   <ArrowRight className="size-4" />
-                </ShimmerButton>
+                </PrimaryButton>
               </Link>
             </div>
 

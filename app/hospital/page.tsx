@@ -3,13 +3,12 @@
 import {
   ProductHeader,
   ProductHero,
-  SolutionsGrid,
+  IconCardGrid,
   VideoShowcase,
   FeatureJourney,
   StatisticsBar,
   CSIGuarantee,
   OfflineCapability,
-  SpecialtiesGrid,
   AdvantagesSection,
   FinalCTA,
 } from "@/components/sections/product-page"
@@ -32,13 +31,13 @@ export default function HospitalPage() {
 
       <main className="flex-1">
         <ProductHero config={heroConfig} />
-        <SolutionsGrid config={solutionsGridConfig} />
+        <IconCardGrid config={solutionsGridConfig} />
         <VideoShowcase config={videoShowcaseConfig} />
         <FeatureJourney config={featureJourneyConfig} />
         <StatisticsBar config={statisticsConfig} />
         <CSIGuarantee />
         <OfflineCapability />
-        <SpecialtiesGrid config={specialtiesGridConfig} />
+        <IconCardGrid config={specialtiesGridConfig} />
         <AdvantagesSection config={advantagesConfig} />
         <FinalCTA config={finalCtaConfig} />
       </main>

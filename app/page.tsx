@@ -7,15 +7,15 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Check, ChevronRight, Menu, X, Moon, Sun, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import { RainbowButton } from "@/components/magicui/rainbow-button"
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { NumberTicker } from "@/components/magicui/number-ticker"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
-import { LogoCloud } from "@/components/ui/logo-cloud"
-import { StickyFeatures } from "@/components/ui/sticky-features"
+import { LogoCloud } from "@/components/custom/logo-cloud"
+import { StickyFeatures } from "@/components/custom/sticky-features"
 import { usePageState } from "@/hooks/use-page-state"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
@@ -124,7 +124,7 @@ export default function LandingPage() {
             </Button>
             <Link href={navigationConfig.loginUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Log In</Link>
             <Link href={navigationConfig.ctaUrl} target="_blank" rel="noopener noreferrer">
-              <ShimmerButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full" background="#0099CC" shimmerColor="#ffffff" shimmerDuration="2s">Get Started<ChevronRight className="ml-1 size-4" /></ShimmerButton>
+              <PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base">Get Started<ChevronRight className="ml-1 size-4" /></PrimaryButton>
             </Link>
           </div>
           <div className="flex items-center gap-4 md:hidden">
@@ -150,7 +150,7 @@ export default function LandingPage() {
               {navigationConfig.links.map((link) => (<Link key={link.href} href={link.href} className="py-2 text-sm font-medium" onClick={(e) => scrollToSection(e, link.href)}>{link.label}</Link>))}
               <div className="flex flex-col gap-2 pt-2 border-t">
                 <Link href={navigationConfig.loginUrl} target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>Log In</Link>
-                <Link href={navigationConfig.ctaUrl} target="_blank" rel="noopener noreferrer"><ShimmerButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold rounded-full" background="#0099CC" shimmerColor="#ffffff" shimmerDuration="2s">Get Started<ChevronRight className="ml-1 size-4" /></ShimmerButton></Link>
+                <Link href={navigationConfig.ctaUrl} target="_blank" rel="noopener noreferrer"><PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base">Get Started<ChevronRight className="ml-1 size-4" /></PrimaryButton></Link>
               </div>
             </div>
           </motion.div>
@@ -207,7 +207,7 @@ export default function LandingPage() {
           <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-              <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center"><AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent" shimmerWidth={150}>{featuresGridConfig.badge}</AnimatedShinyText></div>
+              <AnimatedBadge>{featuresGridConfig.badge}</AnimatedBadge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{featuresGridConfig.headline}</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">{featuresGridConfig.description}</p>
             </motion.div>
@@ -259,7 +259,7 @@ export default function LandingPage() {
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{integrationConfig.description}</p>
                   </div>
                   <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
-                    <Link href={integrationConfig.cta.href} target="_blank" rel="noopener noreferrer"><ShimmerButton className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2" background="#0099CC" shimmerColor="#ffffff" shimmerDuration="3s">{integrationConfig.cta.text}<ArrowRight className="size-4" /></ShimmerButton></Link>
+                    <Link href={integrationConfig.cta.href} target="_blank" rel="noopener noreferrer"><PrimaryButton slow className="flex items-center justify-center gap-2">{integrationConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link>
                   </motion.div>
                 </div>
               </motion.div>
@@ -295,7 +295,7 @@ export default function LandingPage() {
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} <span className="text-[#0099CC]">{finalCtaConfig.headline.highlight}</span> {finalCtaConfig.headline.after}</h2>
                   <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{finalCtaConfig.description}</p>
                 </div>
-                <div className="flex justify-center items-center"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer"><ShimmerButton className="h-12 px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2" background="#0099CC" shimmerColor="#ffffff" shimmerDuration="3s">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></ShimmerButton></Link></div>
+                <div className="flex justify-center items-center"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer"><PrimaryButton slow className="h-12 flex items-center justify-center gap-2">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link></div>
                 <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">{finalCtaConfig.features.map((feature, i) => (<div key={i} className="flex items-center gap-2"><Check className="size-4 text-primary" /><span>{feature}</span></div>))}</div>
               </div>
             </motion.div>

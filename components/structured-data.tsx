@@ -1,3 +1,15 @@
+/**
+ * Structured Data (JSON-LD) for SEO
+ *
+ * SECURITY NOTE: This component uses dangerouslySetInnerHTML to inject JSON-LD
+ * scripts. This is safe because:
+ * 1. All schema data is statically defined within this file
+ * 2. No user input or dynamic data is used in the schemas
+ * 3. JSON.stringify() properly escapes the static objects
+ *
+ * If schema data ever becomes dynamic (e.g., from CMS or API), this must be
+ * refactored to use proper sanitization or Next.js metadata API.
+ */
 export function StructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",

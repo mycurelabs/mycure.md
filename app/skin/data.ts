@@ -52,36 +52,42 @@ export const solutionsGridConfig: SolutionsGridConfig = {
     "See how MYCURE Beauty turns aesthetic clinics into thriving businesses with intelligent client management and treatment tracking",
   items: [
     {
+      id: "digital-medical-records",
       icon: FileText,
       title: "Digital Medical Records",
       description:
         "Turn paper charts into secure digital records with complete treatment history and client preferences",
     },
     {
+      id: "smart-attachments",
       icon: Camera,
       title: "Smart Attachments",
       description:
         "Turn physical before/after photos into organized digital galleries with treatment tracking and progress documentation",
     },
     {
+      id: "point-of-sales",
       icon: DollarSign,
       title: "Point-of-Sales",
       description:
         "Convert complex billing into streamlined payment processing with product sales and package management",
     },
     {
+      id: "inventory-management",
       icon: Package,
       title: "Inventory Management",
       description:
         "Change supply chaos into automated inventory tracking for skincare products and aesthetic supplies",
     },
     {
+      id: "works-offline",
       icon: WifiOff,
       title: "Works Offline",
       description:
         "Turn connectivity worries into confidence with offline-capable system that syncs when ready",
     },
     {
+      id: "team-communication",
       icon: MessageCircle,
       title: "Team Communication",
       description:
@@ -136,36 +142,42 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
+      id: "medical-dermatology",
       icon: Sparkles,
       title: "Medical Dermatology",
       description:
         "Comprehensive skin condition management with diagnosis tracking, treatment protocols, and medication history",
     },
     {
+      id: "cosmetic-treatments",
       icon: Star,
       title: "Cosmetic Treatments",
       description:
         "Advanced aesthetic procedure management including injectables, chemical peels, and non-invasive treatments",
     },
     {
+      id: "laser-therapy",
       icon: Zap,
       title: "Laser Therapy",
       description:
         "Laser treatment tracking with session management, parameter recording, and outcome documentation",
     },
     {
+      id: "injectables-fillers",
       icon: Heart,
       title: "Injectables & Fillers",
       description:
         "Detailed injection mapping, product tracking, and treatment interval management for Botox and dermal fillers",
     },
     {
+      id: "body-contouring",
       icon: TrendingUp,
       title: "Body Contouring",
       description:
         "Body sculpting and contouring treatment plans with progress tracking and measurement documentation",
     },
     {
+      id: "medical-spa-services",
       icon: Shield,
       title: "Medical Spa Services",
       description:

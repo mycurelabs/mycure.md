@@ -1,17 +1,24 @@
 import { LucideIcon } from "lucide-react"
 
-// Solution/Problem Grid Types
-export interface SolutionItem {
+// Generic Icon Card Item (unified type for grid items)
+export interface IconCardItem {
+  id: string
   icon: LucideIcon
   title: string
   description: string
 }
 
-// Specialty Grid Types
-export interface SpecialtyItem {
-  icon: LucideIcon
-  title: string
+// Legacy aliases for backward compatibility
+export type SolutionItem = IconCardItem
+export type SpecialtyItem = IconCardItem
+
+// Unified Icon Card Grid Config
+export interface IconCardGridConfig {
+  sectionId: string
+  badge: string
+  headline: string
   description: string
+  items: IconCardItem[]
 }
 
 // Advantage Section Types
@@ -120,6 +127,61 @@ export interface FinalCtaConfig {
     href: string
   }
   features: string[]
+}
+
+// How It Works Section Types
+export interface HowItWorksStep {
+  number: number
+  title: string
+  items: string[]
+}
+
+export interface HowItWorksConfig {
+  badge: string
+  headline: string
+  description: string
+  steps: HowItWorksStep[]
+  cta: {
+    text: string
+    href: string
+  }
+  ctaNote?: string
+}
+
+// Testimonials Section Types
+export interface Testimonial {
+  quote: string
+  author: string
+  role: string
+  rating: number
+}
+
+export interface TestimonialsConfig {
+  badge: string
+  headline: string
+  description: string
+  testimonials: Testimonial[]
+}
+
+// Tab Section Types (for booking page)
+export interface TabContent {
+  id: string
+  label: string
+  icon: LucideIcon
+  title: string
+  subtitle: string
+  features: string[]
+  image: {
+    src: string
+    alt: string
+  }
+}
+
+export interface TabSectionConfig {
+  badge: string
+  headline: string
+  description: string
+  tabs: TabContent[]
 }
 
 // Complete Product Page Configuration

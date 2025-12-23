@@ -19,7 +19,7 @@ import {
   FinalCTA,
 } from "@/components/sections/product-page"
 
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
 
 import {
   heroConfig,
@@ -57,11 +57,7 @@ export default function MobileLabsPage() {
               className="text-center mb-12"
             >
               <div className="flex justify-center mb-4">
-                <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
-                  <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                    Advanced Mobile Diagnostics
-                  </AnimatedShinyText>
-                </div>
+                <AnimatedBadge>Advanced Mobile Diagnostics</AnimatedBadge>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                 Advanced Tools for a Growing Mobile Lab

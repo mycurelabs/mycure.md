@@ -1,8 +1,9 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { reducedMotionTransition } from "@/lib/animation-variants";
 
 interface FeatureItem {
   badge?: string;
@@ -20,6 +21,7 @@ export function StickyFeatures({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div ref={containerRef} className={cn("relative", className)}>
@@ -46,7 +48,7 @@ export function StickyFeatures({
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: activeIndex === index ? 1 : 0 }}
-                transition={{ duration: 0.5 }}
+                transition={prefersReducedMotion ? reducedMotionTransition : { duration: 0.5 }}
                 className={cn(
                   "absolute inset-0",
                   activeIndex === index ? "z-10" : "z-0"
@@ -72,6 +74,7 @@ function FeatureText({
   onInView: () => void;
 }) {
   const ref = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const isInView = useInView(ref, {
     margin: "-40% 0px -40% 0px", // Trigger when in center 20% of viewport
   });
@@ -83,9 +86,12 @@ function FeatureText({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0.3, y: 20 }}
-      animate={{ opacity: isInView ? 1 : 0.3, y: isInView ? 0 : 20 }}
-      transition={{ duration: 0.5 }}
+      initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0.3, y: 20 }}
+      animate={prefersReducedMotion
+        ? { opacity: 1, y: 0 }
+        : { opacity: isInView ? 1 : 0.3, y: isInView ? 0 : 20 }
+      }
+      transition={prefersReducedMotion ? reducedMotionTransition : { duration: 0.5 }}
       className="space-y-4"
     >
       {item.badge && (

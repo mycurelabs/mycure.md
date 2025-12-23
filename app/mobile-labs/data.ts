@@ -53,36 +53,42 @@ export const solutionsGridConfig: SolutionsGridConfig = {
     "See how MYCURE Mobile Labs turns common mobile lab challenges into powerful operational advantages",
   items: [
     {
+      id: "wasted-time-resources",
       icon: Clock,
       title: "Wasted Time & Resources",
       description:
         "Turn manual processes into automated workflows saving hours daily with location-based registrations",
     },
     {
+      id: "long-wait-times",
       icon: Zap,
       title: "Long Wait Times",
       description:
         "Turn patient delays into quick turnarounds with mobile-optimized scheduling and queue management",
     },
     {
+      id: "overworked-staff",
       icon: Users,
       title: "Overworked Staff",
       description:
         "Convert staff stress into productivity with an easy-to-use system designed for mobile operations",
     },
     {
+      id: "cancelled-appointments",
       icon: CalendarCheck,
       title: "Cancelled Appointments",
       description:
         "Change no-shows into confirmed visits using automated reminders and flexible mobile booking",
     },
     {
+      id: "frustrated-patients",
       icon: Star,
       title: "Frustrated Patients",
       description:
         "Turn complaints into satisfaction with mobile-friendly patient portals and instant results",
     },
     {
+      id: "error-prone-reports",
       icon: FileCheck,
       title: "Error-prone Reports",
       description:
@@ -137,36 +143,42 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
+      id: "sample-collection",
       icon: TestTube,
       title: "Sample Collection",
       description:
         "On-site sample collection with barcode tracking and chain of custody management",
     },
     {
+      id: "field-testing",
       icon: Activity,
       title: "Field Testing",
       description:
         "Point-of-care testing with instant result processing and validation",
     },
     {
+      id: "route-management",
       icon: Route,
       title: "Route Management",
       description:
         "Optimize daily routes and schedule multiple location visits efficiently",
     },
     {
+      id: "mobile-billing",
       icon: CreditCard,
       title: "Mobile Billing",
       description:
         "Process payments on-site with integrated insurance verification",
     },
     {
+      id: "result-delivery",
       icon: Download,
       title: "Result Delivery",
       description:
         "Instant digital delivery of results to patients and referring physicians",
     },
     {
+      id: "offline-sync",
       icon: Wifi,
       title: "Offline Sync",
       description:

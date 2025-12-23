@@ -52,36 +52,42 @@ export const solutionsGridConfig: SolutionsGridConfig = {
     "See how MYCURE Corporate turns complex healthcare management into streamlined operations that boost productivity and employee satisfaction",
   items: [
     {
+      id: "employee-wellness",
       icon: Activity,
       title: "Employee Wellness",
       description:
         "Turn employee health data into actionable wellness programs with comprehensive health tracking and preventive care management",
     },
     {
+      id: "cost-optimization",
       icon: TrendingUp,
       title: "Cost Optimization",
       description:
         "Turn healthcare expenditure into strategic investment with transparent pricing, data-driven insights, and efficient resource allocation",
     },
     {
+      id: "compliance-management",
       icon: Shield,
       title: "Compliance Management",
       description:
         "Convert regulatory requirements into automated workflows with built-in DOH, HIPAA, and industry compliance standards",
     },
     {
+      id: "executive-health",
       icon: Users,
       title: "Executive Health",
       description:
         "Change annual check-ups into continuous health monitoring with personalized executive health packages and concierge services",
     },
     {
+      id: "centralized-records",
       icon: FileText,
       title: "Centralized Records",
       description:
         "Consolidate fragmented health data into unified employee health profiles accessible across all your corporate locations",
     },
     {
+      id: "productivity-analytics",
       icon: Target,
       title: "Productivity Analytics",
       description:
@@ -136,36 +142,42 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     "MYCURE Corporate adapts to your organization's unique needs with specialized modules designed for large-scale healthcare management.",
   items: [
     {
+      id: "multi-site-operations",
       icon: Briefcase,
       title: "Multi-site Operations",
       description:
         "Centralized management system for corporate clinics across multiple locations with real-time synchronization and unified reporting",
     },
     {
+      id: "annual-physical-exams",
       icon: Heart,
       title: "Annual Physical Exams",
       description:
         "Streamlined APE workflows with automated scheduling, batch processing, and comprehensive health reports for entire organizations",
     },
     {
+      id: "occupational-health",
       icon: Stethoscope,
       title: "Occupational Health",
       description:
         "Complete occupational health management including pre-employment medicals, fitness-to-work assessments, and workplace injury tracking",
     },
     {
+      id: "hmo-integration",
       icon: Award,
       title: "HMO Integration",
       description:
         "Direct integration with all major HMO providers for automated eligibility verification and claims processing",
     },
     {
+      id: "cost-analytics",
       icon: DollarSign,
       title: "Cost Analytics",
       description:
         "Detailed healthcare spending analysis with department-wise breakdowns, trend identification, and ROI tracking",
     },
     {
+      id: "regional-compliance",
       icon: Globe,
       title: "Regional Compliance",
       description:

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { AnimatedBadge } from "@/components/ui/animated-badge"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { staggerContainer, staggerItem, viewportOnce, transition } from "@/lib/animation-variants"
 import type { SolutionsGridConfig } from "@/components/types/product-page"
 
@@ -39,9 +39,9 @@ export function SolutionsGrid({ config }: SolutionsGridProps) {
           viewport={viewportOnce}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {config.items.map((solution, index) => (
+          {config.items.map((solution) => (
             <motion.div
-              key={index}
+              key={solution.id}
               variants={staggerItem}
               transition={transition.medium}
             >

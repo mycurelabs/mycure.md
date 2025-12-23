@@ -51,36 +51,42 @@ export const solutionsGridConfig: SolutionsGridConfig = {
     "See how virtual consultations can expand your practice reach, increase revenue, and improve patient satisfaction",
   items: [
     {
+      id: "increase-revenue",
       icon: TrendingUp,
       title: "Increase Your Revenue",
       description:
         "Treat more patients and reduce no-shows with secure video consultations and automated reminders",
     },
     {
+      id: "build-clientele",
       icon: Users,
       title: "Build Your Clientele",
       description:
         "Expand your practice beyond physical hours and build patient loyalty with convenient virtual care options",
     },
     {
+      id: "secure-medical-records",
       icon: ShieldCheck,
       title: "Secure Medical Records",
       description:
         "Keep patient data safe with HIPAA-compliant storage and international data privacy regulations",
     },
     {
+      id: "group-practice-ready",
       icon: Building2,
       title: "Group Practice Ready",
       description:
         "Coordinate easily with other physicians and centralize medical records in one comprehensive workspace",
     },
     {
+      id: "conference-calls",
       icon: Video,
       title: "Conference Calls",
       description:
         "Host multi-participant video consultations for group therapy, family consultations, or team meetings",
     },
     {
+      id: "24-7-availability",
       icon: Clock,
       title: "24/7 Availability",
       description:
@@ -135,36 +141,42 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
     "Everything you need for professional virtual consultations. From video calls to digital prescriptions, we've got you covered with enterprise-grade security.",
   items: [
     {
+      id: "hd-video-consultations",
       icon: Video,
       title: "HD Video Consultations",
       description:
         "Crystal-clear video and audio quality for professional virtual consultations with screen sharing capabilities",
     },
     {
+      id: "secure-messaging",
       icon: MessageSquare,
       title: "Secure Messaging",
       description:
         "HIPAA-compliant chat system for patient communication with file sharing and appointment reminders",
     },
     {
+      id: "smart-scheduling",
       icon: Calendar,
       title: "Smart Scheduling",
       description:
         "Automated appointment booking with calendar integration, timezone management, and buffer time settings",
     },
     {
+      id: "digital-prescriptions",
       icon: FileX,
       title: "Digital Prescriptions",
       description:
         "Issue and send electronic prescriptions directly to pharmacies with dosage tracking and refill management",
     },
     {
+      id: "end-to-end-encryption",
       icon: Shield,
       title: "End-to-End Encryption",
       description:
         "Military-grade encryption for all patient data, video calls, and medical records with audit trails",
     },
     {
+      id: "multi-platform-access",
       icon: Globe,
       title: "Multi-Platform Access",
       description:

@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
 import type { FeatureJourneyConfig } from "@/components/types/product-page"
 
 interface FeatureJourneyProps {
@@ -22,13 +22,9 @@ export function FeatureJourney({ config }: FeatureJourneyProps) {
         >
           {/* Header Content */}
           <div className="text-center mb-12 space-y-4">
-            {/* AnimatedShinyText Badge */}
+            {/* Animated Badge */}
             <div className="flex justify-center mb-4">
-              <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-flex items-center justify-center h-8">
-                <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent !leading-none" shimmerWidth={150}>
-                  {config.badge}
-                </AnimatedShinyText>
-              </div>
+              <AnimatedBadge>{config.badge}</AnimatedBadge>
             </div>
 
             {/* Headline */}

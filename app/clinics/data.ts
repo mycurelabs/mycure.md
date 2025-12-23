@@ -16,11 +16,10 @@ import {
 } from "lucide-react"
 import type {
   HeroConfig,
-  SolutionsGridConfig,
+  IconCardGridConfig,
   VideoShowcaseConfig,
   FeatureJourneyConfig,
   StatisticsConfig,
-  SpecialtiesGridConfig,
   AdvantagesConfig,
   FinalCtaConfig,
 } from "@/components/types/product-page"
@@ -44,43 +43,50 @@ export const heroConfig: HeroConfig = {
   },
 }
 
-export const solutionsGridConfig: SolutionsGridConfig = {
+export const solutionsGridConfig: IconCardGridConfig = {
+  sectionId: "solutions",
   badge: "Improve Your Clinic",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
     "See how MYCURE Clinics turns common clinic problems into powerful competitive advantages for your practice",
   items: [
     {
+      id: "time-efficiency",
       icon: TrendingUp,
       title: "Time Efficiency",
       description:
         "Turn wasted hours into 3+ hours saved daily with automated workflows and streamlined operations",
     },
     {
+      id: "patient-flow",
       icon: Zap,
       title: "Patient Flow",
       description:
         "Turn long wait times into faster patient flow through smart scheduling and queue management",
     },
     {
+      id: "staff-wellness",
       icon: Heart,
       title: "Staff Wellness",
       description:
         "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive",
     },
     {
+      id: "schedule-optimization",
       icon: CalendarCheck,
       title: "Schedule Optimization",
       description:
         "Change cancellations into full schedules using automated reminders and easy rebooking systems",
     },
     {
+      id: "patient-satisfaction",
       icon: Star,
       title: "Patient Satisfaction",
       description:
         "Turn patient frustration into positive reviews with smooth experiences that delight",
     },
     {
+      id: "compliance-security",
       icon: ShieldCheck,
       title: "Compliance & Security",
       description:
@@ -128,43 +134,50 @@ export const statisticsConfig: StatisticsConfig = {
   ],
 }
 
-export const specialtiesGridConfig: SpecialtiesGridConfig = {
+export const specialtiesGridConfig: IconCardGridConfig = {
+  sectionId: "specialties",
   badge: "Specialized Workflows",
   headline: "One Platform. Every Specialty.",
   description:
     "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
+      id: "skin-aesthetics",
       icon: Sparkles,
       title: "Skin & Aesthetics",
       description:
         "Specialized tools for dermatology procedures, cosmetic treatments, and aesthetic consultations with before/after tracking",
     },
     {
+      id: "maternity-care",
       icon: Heart,
       title: "Maternity Care",
       description:
         "Complete prenatal to postnatal journey management with trimester tracking, appointment scheduling, and delivery records",
     },
     {
+      id: "pediatric-care",
       icon: Baby,
       title: "Pediatric Care",
       description:
         "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking",
     },
     {
+      id: "dentistry",
       icon: Stethoscope,
       title: "Dentistry",
       description:
         "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping",
     },
     {
+      id: "diagnostics",
       icon: BarChart,
       title: "Diagnostics",
       description:
         "Integrated laboratory result management, test tracking, and diagnostic center workflow automation",
     },
     {
+      id: "corporate-health",
       icon: Building2,
       title: "Corporate Health",
       description:

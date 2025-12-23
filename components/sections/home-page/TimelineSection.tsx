@@ -4,8 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Check, ArrowRight } from "lucide-react"
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text"
-import { ShimmerButton } from "@/components/magicui/shimmer-button"
+import { AnimatedBadge } from "@/components/custom/animated-badge"
+import { PrimaryButton } from "@/components/custom/primary-button"
 import type { LucideIcon } from "lucide-react"
 
 interface TimelineStep {
@@ -50,11 +50,7 @@ export function TimelineSection({ config }: TimelineSectionProps) {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
-          <div className="rounded-full px-3 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 inline-block h-8 flex items-center justify-center">
-            <AnimatedShinyText className="text-xs font-medium !mx-0 !max-w-none !text-[#004d66] dark:!text-white !bg-gradient-to-r !from-transparent !via-[#004d66]/80 dark:!via-white/80 !via-50% !to-transparent" shimmerWidth={150}>
-              {config.badge}
-            </AnimatedShinyText>
-          </div>
+          <AnimatedBadge>{config.badge}</AnimatedBadge>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
             {config.headline}{" "}
             <span className="bg-primary/10 text-primary px-3 py-1 rounded-xl">{config.headlineHighlight}</span>
@@ -135,15 +131,10 @@ export function TimelineSection({ config }: TimelineSectionProps) {
             className="text-center flex flex-col items-center"
           >
             <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
-              <ShimmerButton
-                className="px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                background="#0099CC"
-                shimmerColor="#ffffff"
-                shimmerDuration="3s"
-              >
+              <PrimaryButton slow className="flex items-center justify-center gap-2">
                 {config.cta.text}
                 <ArrowRight className="size-4" />
-              </ShimmerButton>
+              </PrimaryButton>
             </Link>
             <p className="text-sm text-muted-foreground mt-4">
               {config.ctaNote}
