@@ -19,11 +19,11 @@ import type { LucideIcon } from "lucide-react"
 export const heroConfig = {
   badge: "✨ MYCURE X: Launches soon",
   headline: {
-    line1: "Your practice, simplified.",
+    line1: "Healthcare made simple.",
     line2: "Your patients, first.",
   },
   description:
-    "Streamline your practice with the clinic management system designed for Philippine healthcare—secure, offline-capable, and ready to simplify your entire operation.",
+    "Streamline clinic operations with the enterprise-grade clinic management system designed for Philippine healthcare—secure, offline-capable, and ready to simplify your entire operation.",
   cta: {
     primary: {
       text: "Book a Demo",
@@ -64,14 +64,14 @@ export const stickyFeaturesConfig = [
   {
     badge: "CLEAR YOUR MIND",
     title: "The Reality",
-    description: "Paper-based tracking, inconsistent follow-ups, and endless back-and-forth create chaos in your clinic operations every single day. Your time is consumed by paperwork instead of patients.",
+    description: "Paper-based tracking, inconsistent follow-ups, and endless back-and-forth create chaos in clinic operations every single day. Administrative burden diverts focus from patient care.",
     image: "/Koalas/koala-scene1.jpg",
     imageAlt: "Koala doctor overwhelmed with paperwork",
   },
   {
     badge: "KNOW THE BASICS: IMPERFECT",
     title: "The Frustration",
-    description: "You didn't become a healthcare provider to spend your nights buried in administrative tasks. The dedication you bring to your patients is being drained by paperwork.",
+    description: "Healthcare teams deserve tools that respect their time. Administrative efficiency enables better patient care.",
     image: "/Koalas/koala-scene2.jpg",
     imageAlt: "Koala doctor feeling frustrated",
   },
@@ -93,11 +93,11 @@ export interface FeatureItem {
 
 export const featuresGridConfig = {
   badge: "Features",
-  headline: "Complete Tools to Improve Your Healthcare Practice",
-  description: "MYCURE provides an integrated set of solutions tailored to physicians, clinics, and diagnostics. From patient records to telehealth, our platform empowers your team to deliver care more efficiently and securely.",
+  headline: "Complete Tools to Improve Healthcare Operations",
+  description: "MYCURE provides an integrated set of solutions tailored to healthcare facilities, clinics, and diagnostic centers. From patient records to telehealth, our platform empowers your team to deliver care more efficiently and securely.",
   items: [
     {
-      title: "Physicians",
+      title: "Healthcare Professionals",
       description: "Explore a simpler way to create electronic medical records, prescriptions, and diagnostic test orders.",
       icon: Stethoscope,
     },
@@ -131,8 +131,8 @@ export const featuresGridConfig = {
 
 // Statistics Config
 export const statisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
-  description: "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
+  description: "MYCURE is dedicated to helping healthcare facilities and teams save lives every day through innovative clinic management technology.",
   items: [
     { value: 13239859, label: "Medical Records", delay: 0.3 },
     { value: 2946953, label: "Patients Served", delay: 0.4 },
@@ -400,8 +400,8 @@ export const faqConfig = {
       answer: "MYCURE works on Mac computers through Chromium-based browsers (Chrome, Edge, Brave). Our platform is optimized for these environments to deliver the best performance and reliability.",
     },
     {
-      question: "What kind of support do you offer healthcare providers?",
-      answer: "Visit portal.mycure.md for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.",
+      question: "What kind of support do you offer?",
+      answer: "Visit portal.mycure.md for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare organizations.",
       hasLink: true,
       linkText: "portal.mycure.md",
       linkHref: "https://portal.mycure.md",
@@ -418,9 +418,9 @@ export const finalCtaConfig = {
   headline: {
     before: "Ready to",
     highlight: "improve",
-    after: "your healthcare practice?",
+    after: "your clinic operations?",
   },
-  description: "Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve patient care.",
+  description: "Join thousands of healthcare facilities that trust MYCURE to streamline their operations and improve patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

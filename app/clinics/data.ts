@@ -48,7 +48,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
   badge: "Improve Your Clinic",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Clinics turns common clinic problems into powerful competitive advantages for your practice",
+    "See how MYCURE Clinics transforms common clinic problems into operational advantages for healthcare facilities",
   items: [
     {
       id: "time-efficiency",
@@ -124,9 +124,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping healthcare facilities save lives every day through innovative clinic management technology.",
   items: [
     { value: 13239859, label: "Medical Records", delay: 0.3 },
     { value: 2946953, label: "Patients Served", delay: 0.4 },
@@ -139,7 +139,7 @@ export const specialtiesGridConfig: IconCardGridConfig = {
   badge: "Specialized Workflows",
   headline: "One Platform. Every Specialty.",
   description:
-    "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
+    "MYCURE adapts to healthcare facility operations with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
       id: "skin-aesthetics",
@@ -247,10 +247,10 @@ export const finalCtaConfig: FinalCtaConfig = {
   headline: {
     prefix: "Ready to",
     highlight: "improve",
-    suffix: "your healthcare practice?",
+    suffix: "your clinic operations?",
   },
   description:
-    "Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve patient care.",
+    "Join thousands of healthcare facilities that trust MYCURE to streamline their operations and improve patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

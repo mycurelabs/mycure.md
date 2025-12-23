@@ -48,7 +48,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
   badge: "Improve Your Clinic",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Diagnostics turns common clinic problems into powerful competitive advantages for your practice",
+    "See how MYCURE Diagnostics transforms common diagnostic center challenges into operational advantages",
   items: [
     {
       id: "wasted-time-resources",
@@ -124,9 +124,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping healthcare facilities improve diagnostics through innovative clinic management technology.",
   items: [
     { value: 1700000, label: "Medical Records", delay: 0.3 },
     { value: 1450000, label: "Lives Saved", delay: 0.4 },
@@ -138,7 +138,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
   badge: "Specialized Workflows",
   headline: "One Platform. Every Specialty.",
   description:
-    "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
+    "MYCURE adapts to diagnostic center operations with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
       id: "laboratory-information-system",
@@ -187,7 +187,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
 
 export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
-  headline: "Why Clinics Choose MYCURE",
+  headline: "Why Diagnostic Centers Choose MYCURE",
   description:
     "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
   items: [
@@ -218,7 +218,7 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "Protected by MYCURE CSI Guarantee",
       description:
-        "As a healthcare provider, your patients trust you with their private electronic health records. We protect that information with our CSI guarantee.",
+        "As a healthcare organization, your commitment to data security builds patient trust. We protect that information with our CSI guarantee.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
@@ -249,7 +249,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your diagnostic center?",
   },
   description:
-    "Join hundreds of labs and imaging centers who trust MYCURE to streamline their operations and deliver better patient care.",
+    "Join hundreds of labs and imaging centers that trust MYCURE to streamline their operations and deliver better patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

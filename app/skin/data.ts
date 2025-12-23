@@ -125,9 +125,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping aesthetic clinics deliver superior patient outcomes through innovative clinic management technology.",
   items: [
     { value: 500000, label: "Client Records", suffix: "+", delay: 0.3 },
     { value: 2000000, label: "Treatments Performed", suffix: "+", delay: 0.4 },
@@ -188,7 +188,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
 
 export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
-  headline: "Why Clinics Choose MYCURE",
+  headline: "Why Aesthetic Clinics Choose MYCURE",
   description:
     "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
   items: [
@@ -250,7 +250,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your beauty business?",
   },
   description:
-    "Join leading aesthetic clinics who trust MYCURE Beauty to improve their client experiences and grow their practices.",
+    "Join leading aesthetic clinics that trust MYCURE Beauty to improve client experiences and operational efficiency.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

@@ -25,7 +25,7 @@ export const heroConfig: HeroConfig = {
   headline: {
     prefix: "The",
     highlight: "Easy Booking App",
-    suffix: "to Grow Your Practice",
+    suffix: "for Healthcare Facilities",
   },
   description:
     "Accept online appointments 24/7 with professional booking pages. Set up in 10 minutes, reduce no-shows by 70%, and let patients self-schedule while you focus on care.",
@@ -44,7 +44,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
   badge: "Transform Your Clinic",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Clinics transforms common clinic problems into powerful competitive advantages for your practice",
+    "See how MYCURE Clinics transforms common clinic problems into operational advantages for healthcare facilities",
   items: [
     {
       id: "long-wait-times",
@@ -81,26 +81,8 @@ export const tabSectionConfig: TabSectionConfig = {
   badge: "Professional Booking Page",
   headline: "Activate your Appointment Scheduling Website",
   description:
-    "Patients can directly book their next visit on your professional booking page. It's a digital hub where you can showcase your services and medical professionals like having your very own website.",
+    "Patients can directly book their next visit on your professional booking page. It's a digital hub where you can showcase your services and healthcare facilities like having your professional web presence.",
   tabs: [
-    {
-      id: "doctors",
-      label: "Doctors",
-      icon: Users,
-      title: "For Individual Practitioners",
-      subtitle:
-        "Patients can directly book their next visit on your professional booking page",
-      features: [
-        "Create your professional website with custom branding",
-        "Set your availability preferences and working hours",
-        "Accept online bookings 24/7 from any device",
-        "Automatic appointment confirmations and reminders",
-      ],
-      image: {
-        src: "/section-assets/booking/booking-tab-doctors.webp",
-        alt: "MYCURE Booking for Doctors - Professional booking page",
-      },
-    },
     {
       id: "clinics",
       label: "Clinics",
@@ -117,6 +99,24 @@ export const tabSectionConfig: TabSectionConfig = {
       image: {
         src: "/section-assets/booking/booking-tab-clinics.webp",
         alt: "MYCURE Booking for Clinics - Multi-provider management",
+      },
+    },
+    {
+      id: "doctors",
+      label: "Doctors",
+      icon: Users,
+      title: "For Individual Practitioners",
+      subtitle:
+        "Patients can directly book their next visit on your professional booking page",
+      features: [
+        "Create your professional website with custom branding",
+        "Set your availability preferences and working hours",
+        "Accept online bookings 24/7 from any device",
+        "Automatic appointment confirmations and reminders",
+      ],
+      image: {
+        src: "/section-assets/booking/booking-tab-doctors.webp",
+        alt: "MYCURE Booking for Doctors - Professional booking page",
       },
     },
   ],
@@ -147,7 +147,7 @@ export const howItWorksConfig: HowItWorksConfig = {
       number: 1,
       title: "Set up your page",
       items: [
-        "Add your practice details and branding",
+        "Add your facility details and branding",
         "Set your availability and services",
         "Configure booking rules and preferences",
         "Customize your booking page design",
@@ -185,7 +185,7 @@ export const testimonialsConfig: TestimonialsConfig = {
   badge: "Testimonials",
   headline: "What Our Clients are Saying",
   description:
-    "Don't just take our word for it. See what healthcare providers have to say about their experience with MYCURE Booking.",
+    "Don't just take our word for it. See what healthcare leaders have to say about their experience with MYCURE Booking.",
   testimonials: [
     {
       quote:
@@ -211,7 +211,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "website in less than 10 minutes",
   },
   description:
-    "Join thousands of healthcare providers who've streamlined their booking process and improved patient attendance rates.",
+    "Join thousands of healthcare facilities that have streamlined their booking process and improved patient attendance rates.",
   cta: {
     text: "Start Your Free Trial",
     href: "https://calendly.com/mycure/demo",

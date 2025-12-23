@@ -48,7 +48,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
   badge: "Improve Your Hospital OPD",
   headline: "Turn Daily Challenges Into Success Stories",
   description:
-    "See how MYCURE Hospitals turns common OPD challenges into powerful competitive advantages for your practice",
+    "See how MYCURE Hospitals transforms common OPD challenges into operational advantages for hospital systems",
   items: [
     {
       id: "time-resource-savings",
@@ -124,9 +124,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping hospitals improve patient outcomes through innovative clinic management technology.",
   items: [
     { value: 500000, label: "OPD Visits Managed", delay: 0.3 },
     { value: 60, label: "Reduced Wait Times", delay: 0.4 },
@@ -139,7 +139,7 @@ export const specialtiesGridConfig: IconCardGridConfig = {
   badge: "Hospital-Grade Workflows",
   headline: "One Platform. Every Specialty.",
   description:
-    "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
+    "MYCURE adapts to hospital operations with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
   items: [
     {
       id: "multi-department-integration",
@@ -259,10 +259,10 @@ export const finalCtaConfig: FinalCtaConfig = {
   headline: {
     prefix: "Ready to",
     highlight: "improve",
-    suffix: "your healthcare practice?",
+    suffix: "your hospital operations?",
   },
   description:
-    "Join thousands of healthcare providers who trust MYCURE to streamline their operations and improve patient care.",
+    "Join thousands of healthcare facilities that trust MYCURE to streamline their operations and improve patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

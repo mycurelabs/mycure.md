@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "",
   },
   description:
-    "Give your patients the quality telehealth care they deserve, without having to visit in-person. Expand your practice reach, increase revenue, and provide convenient virtual consultations.",
+    "Give your patients the quality telehealth care they deserve, without having to visit in-person. Expand your clinic's reach, increase revenue, and provide convenient virtual consultations.",
   image: {
     src: "/hero-section-assets/telehealth-feature-hero-image.webp",
     alt: "MYCURE Telehealth - Virtual consultations and telemedicine platform",
@@ -62,7 +62,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Users,
       title: "Build Your Clientele",
       description:
-        "Expand your practice beyond physical hours and build patient loyalty with convenient virtual care options",
+        "Expand your clinic's reach beyond physical hours and build patient loyalty with convenient virtual care options",
     },
     {
       id: "secure-medical-records",
@@ -76,7 +76,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Building2,
       title: "Group Practice Ready",
       description:
-        "Coordinate easily with other physicians and centralize medical records in one comprehensive workspace",
+        "Coordinate easily with your care team and centralize medical records in one comprehensive workspace",
     },
     {
       id: "conference-calls",
@@ -124,9 +124,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping healthcare teams deliver virtual care through innovative clinic management technology.",
   items: [
     { value: 850000, label: "Virtual Consultations", suffix: "+", delay: 0.3 },
     { value: 10, label: "Years in Healthcare", suffix: "+", delay: 0.4 },

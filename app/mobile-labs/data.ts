@@ -126,9 +126,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping mobile labs improve diagnostics through innovative clinic management technology.",
   items: [
     { value: 13239859, label: "Medical Records", delay: 0.3 },
     { value: 2946953, label: "Patients Served", delay: 0.4 },
@@ -189,7 +189,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
 
 export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
-  headline: "Why Clinics Choose MYCURE",
+  headline: "Why Mobile Labs Choose MYCURE",
   description:
     "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
   items: [
@@ -251,7 +251,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your diagnostic services?",
   },
   description:
-    "Join hundreds of mobile labs who trust MYCURE to streamline their operations and deliver better patient care anywhere.",
+    "Join hundreds of mobile labs that trust MYCURE to streamline their operations and deliver better patient care anywhere.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

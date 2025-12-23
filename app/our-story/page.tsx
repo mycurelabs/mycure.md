@@ -301,7 +301,7 @@ export default function OurStoryPage() {
                     </p>
                     
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      While they see themselves as simply doing their everyday jobs, we see individuals that impact change on humanity; we see heroes that truly make the world a better place. MYCURE commits to design and build innovative tech tools and products specifically for our doctors and health professionals. Our goal is to help and enable these heroes, to make their jobs easier and more efficient.
+                      While they see themselves as simply doing their everyday jobs, we see individuals that impact change on humanity; we see heroes that truly make the world a better place. MYCURE commits to design and build innovative tech tools and products specifically for healthcare teams and professionals. Our goal is to help and enable these heroes, to make their jobs easier and more efficient.
                     </p>
                     
                     <p className="text-muted-foreground leading-relaxed">

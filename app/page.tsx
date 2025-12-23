@@ -15,7 +15,6 @@ import { NumberTicker } from "@/components/magicui/number-ticker"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
 import { LogoCloud } from "@/components/custom/logo-cloud"
-import { StickyFeatures } from "@/components/custom/sticky-features"
 import { usePageState } from "@/hooks/use-page-state"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
@@ -27,12 +26,11 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
-import { WhyChooseSection, VisibilitySection, TimelineSection } from "@/components/sections/home-page"
+import { WhyChooseSection, VisibilitySection, TimelineSection, StorybrandSection } from "@/components/sections/home-page"
 
 import {
   heroConfig,
   logosConfig,
-  stickyFeaturesConfig,
   featuresGridConfig,
   statisticsConfig,
   whyChooseConfig,
@@ -195,12 +193,8 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Sticky Features Section */}
-        <section className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
-            <StickyFeatures items={stickyFeaturesConfig.map((stickyItem) => ({ badge: stickyItem.badge, title: stickyItem.title, description: stickyItem.description, image: <Image src={stickyItem.image} alt={stickyItem.imageAlt} fill className="object-cover rounded-xl" /> }))} />
-          </div>
-        </section>
+        {/* Storybrand Section */}
+        <StorybrandSection />
 
         {/* Features Section */}
         <section id="features" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">

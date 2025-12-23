@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "Platform",
   },
   description:
-    "Everything your dental clinic needs from appointments, billing, inventory, to advanced charting. Improve your dental practice with digital tools designed specifically for dentists.",
+    "Everything your dental clinic needs from appointments, billing, inventory, to advanced charting. Improve clinic operations with digital tools designed specifically for dental professionals.",
   image: {
     src: "/hero-section-assets/dental-clinics-hero-image.webp",
     alt: "MYCURE Dental - Advanced dental practice management",
@@ -124,9 +124,9 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 }
 
 export const statisticsConfig: StatisticsConfig = {
-  headline: "Trusted by Healthcare Providers Across the Philippines",
+  headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to help healthcare providers save lives every day through innovative clinic management technology.",
+    "MYCURE is dedicated to helping healthcare facilities improve outcomes through innovative clinic management technology.",
   items: [
     { value: 13239859, label: "Dental Records", delay: 0.3 },
     { value: 2946953, label: "Patients Treated", delay: 0.4 },
@@ -249,7 +249,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your dental practice?",
   },
   description:
-    "Join thousands of dentists who trust MYCURE to digitize their practice and deliver exceptional patient care.",
+    "Join thousands of dental clinics that trust MYCURE to digitize operations and deliver exceptional patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",
