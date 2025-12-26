@@ -65,6 +65,7 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
               title={config.video.title}
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
+              sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
               allowFullScreen
               className="absolute inset-0 w-full h-full"
             />

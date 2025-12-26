@@ -136,7 +136,7 @@ export default function OurStoryPage() {
                       className="absolute top-0 left-0 w-full h-full"
                       src="https://www.youtube-nocookie.com/embed/zvM3LIvq-6k"
                       title="MYCURE Our Story"
-                      frameBorder="0"
+                      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
                       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
@@ -215,7 +215,7 @@ export default function OurStoryPage() {
                           />
                         </div>
                         <p className="text-muted-foreground leading-relaxed">
-                          <span className="font-semibold">Dale</span> runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called <a href="http://www.butchukoy.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sipa</a> and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started <a href="http://www.mightyminds.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mighty Minds</a>, a nonprofit organization that helps kids finish school.
+                          <span className="font-semibold">Dale</span> runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called <a href="https://www.butchukoy.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sipa</a> and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started <a href="https://www.mightyminds.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mighty Minds</a>, a nonprofit organization that helps kids finish school.
                         </p>
                       </div>
                       

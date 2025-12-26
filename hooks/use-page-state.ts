@@ -1,7 +1,44 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { useTheme } from "next-themes"
+
+/**
+ * Throttle function to limit how often a function can be called
+ */
+function useThrottle<T extends (...args: unknown[]) => void>(
+  callback: T,
+  delay: number
+): T {
+  const lastCall = useRef(0)
+  const lastArgs = useRef<unknown[] | null>(null)
+  const timeoutId = useRef<NodeJS.Timeout | null>(null)
+
+  return useCallback(
+    ((...args: unknown[]) => {
+      const now = Date.now()
+      const timeSinceLastCall = now - lastCall.current
+
+      if (timeSinceLastCall >= delay) {
+        lastCall.current = now
+        callback(...args)
+      } else {
+        // Schedule a trailing call
+        lastArgs.current = args
+        if (!timeoutId.current) {
+          timeoutId.current = setTimeout(() => {
+            lastCall.current = Date.now()
+            if (lastArgs.current) {
+              callback(...lastArgs.current)
+            }
+            timeoutId.current = null
+          }, delay - timeSinceLastCall)
+        }
+      }
+    }) as T,
+    [callback, delay]
+  )
+}
 
 export interface PageState {
   /** Whether the page has scrolled past the threshold */
@@ -50,19 +87,23 @@ export function usePageState(options: UsePageStateOptions = {}): PageState {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
+  // Throttled scroll handler - limits updates to every 100ms for better performance
+  const handleScroll = useThrottle(
+    useCallback(() => {
+      setIsScrolled(window.scrollY > scrollThreshold)
+    }, [scrollThreshold]),
+    100
+  )
+
   useEffect(() => {
     setMounted(true)
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > scrollThreshold)
-    }
-
     // Check initial scroll position
-    handleScroll()
+    setIsScrolled(window.scrollY > scrollThreshold)
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [scrollThreshold])
+  }, [scrollThreshold, handleScroll])
 
   const toggleTheme = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark")

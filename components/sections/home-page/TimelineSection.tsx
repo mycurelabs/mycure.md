@@ -70,10 +70,9 @@ export function TimelineSection({ config }: TimelineSectionProps) {
                   onClick={() => setActiveDay(tab.id as keyof TimelineContent)}
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeDay === tab.id
-                      ? "text-white shadow-sm"
+                      ? "text-white shadow-sm bg-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   }`}
-                  style={activeDay === tab.id ? { backgroundColor: '#0099CC' } : undefined}
                 >
                   {tab.label}
                 </button>

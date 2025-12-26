@@ -46,12 +46,9 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeTab === tab.id
-                    ? "text-white shadow-sm"
+                    ? "text-white shadow-sm bg-primary"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
-                style={
-                  activeTab === tab.id ? { backgroundColor: "#0099CC" } : undefined
-                }
               >
                 {tab.label}
               </button>

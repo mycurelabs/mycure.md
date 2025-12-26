@@ -153,7 +153,7 @@ export default function SyncbaseTechnologyPage() {
                         className="absolute top-0 left-0 w-full h-full"
                         src="https://www.youtube-nocookie.com/embed/siFBgZMt26k"
                         title="MYCURE Syncbase Demo"
-                        frameBorder="0"
+                        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                       ></iframe>

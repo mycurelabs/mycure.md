@@ -212,34 +212,12 @@ export default function DownloadPage() {
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Download MYCURE for{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Windows
-                </Link>
-                ,{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Mac
-                </Link>
-                ,{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  iOS
-                </Link>
-                ,{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Android
-                </Link>
-                , and{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Web
-                </Link>
-                . Add MYCURE to your{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  browser
-                </Link>{" "}
-                and{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  email
-                </Link>
-                , too.
+                <span className="text-primary">Windows</span>,{" "}
+                <span className="text-primary">Mac</span>,{" "}
+                <span className="text-primary">iOS</span>,{" "}
+                <span className="text-primary">Android</span>, and{" "}
+                <span className="text-primary">Web</span>.
+                Add MYCURE to your browser and email, too.
               </p>
             </motion.div>
 

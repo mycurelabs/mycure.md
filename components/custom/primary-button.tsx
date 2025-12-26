@@ -17,7 +17,7 @@ interface PrimaryButtonProps
 }
 
 /**
- * Primary brand button with MYCURE's signature cyan color (#0099CC)
+ * Primary brand button with MYCURE's signature cyan color
  * Wraps ShimmerButton with consistent brand configuration
  */
 export const PrimaryButton = React.forwardRef<
@@ -27,7 +27,7 @@ export const PrimaryButton = React.forwardRef<
   return (
     <ShimmerButton
       ref={ref}
-      background="#0099CC"
+      background="var(--gradient-quinary)"
       shimmerColor="#ffffff"
       shimmerDuration={slow ? "3s" : "2s"}
       className={cn(

@@ -11,6 +11,20 @@ export const metadata: Metadata = {
     siteName: 'MYCURE',
     locale: 'en_PH',
     type: 'website',
+    images: [
+      {
+        url: '/hero-section-assets/corporate-clinics-hero-image.webp',
+        width: 1200,
+        height: 630,
+        alt: 'MYCURE Corporate Clinic Software',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Corporate Clinic Software | MYCURE for Occupational Health',
+    description: 'Enterprise healthcare management with employee health tracking and APE management.',
+    images: ['/hero-section-assets/corporate-clinics-hero-image.webp'],
   },
   alternates: {
     canonical: 'https://mycure.md/corporate',

@@ -31,3 +31,10 @@ yarn-error.log*
 next-env.d.ts
 
 .DS_Store
+
+# IDE configs
+.idea/
+.vscode/settings.json
+
+# Claude Code local settings
+.claude/settings.local.json

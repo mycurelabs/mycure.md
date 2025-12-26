@@ -11,6 +11,20 @@ export const metadata: Metadata = {
     siteName: 'MYCURE',
     locale: 'en_PH',
     type: 'website',
+    images: [
+      {
+        url: '/hero-section-assets/skin-clinics-hero-image.webp',
+        width: 1200,
+        height: 630,
+        alt: 'MYCURE Dermatology Clinic Software',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dermatology Clinic Software | MYCURE for Skin Clinics',
+    description: 'Specialized software for dermatology clinics with photo documentation and treatment tracking.',
+    images: ['/hero-section-assets/skin-clinics-hero-image.webp'],
   },
   alternates: {
     canonical: 'https://mycure.md/skin',
