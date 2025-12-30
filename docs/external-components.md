@@ -148,19 +148,21 @@ All MagicUI components will be installed to:
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 // Animated Buttons
-import { RainbowButton } from "@/components/ui/rainbow-button";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { RainbowButton } from "@/components/magicui/rainbow-button";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
+// Preferred: Use PrimaryButton wrapper for brand-consistent shimmer buttons
+import { PrimaryButton } from "@/components/custom/primary-button";
 
 // Text Animations
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 
 // Number Animations
-import { NumberTicker } from "@/components/ui/number-ticker";
+import { NumberTicker } from "@/components/magicui/number-ticker";
 
 // Background Effects
-import { DotPattern } from "@/components/ui/dot-pattern";
-import { GridPattern } from "@/components/ui/grid-pattern";
+import { DotPattern } from "@/components/magicui/dot-pattern";
+import { GridPattern } from "@/components/magicui/grid-pattern";
 
 // Scrolling Content
 import { Marquee } from "@/components/ui/marquee";

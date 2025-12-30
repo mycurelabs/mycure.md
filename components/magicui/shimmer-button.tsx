@@ -1,4 +1,7 @@
+"use client";
+
 import React, { CSSProperties, ComponentPropsWithoutRef } from "react";
+import { useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -29,6 +32,8 @@ export const ShimmerButton = React.forwardRef<
     },
     ref,
   ) => {
+    const prefersReducedMotion = useReducedMotion();
+
     return (
       <button
         style={
@@ -43,25 +48,27 @@ export const ShimmerButton = React.forwardRef<
         }
         className={cn(
           "group relative z-0 flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap border border-white/10 px-6 py-3 text-white [background:var(--bg)] [border-radius:var(--radius)] dark:text-black",
-          "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px",
+          !prefersReducedMotion && "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px",
           className,
         )}
         ref={ref}
         {...props}
       >
-        {/* spark container */}
-        <div
-          className={cn(
-            "-z-30 blur-[2px]",
-            "absolute inset-0 overflow-visible [container-type:size]",
-          )}
-        >
-          {/* spark */}
-          <div className="absolute inset-0 h-[100cqh] animate-shimmer-slide [aspect-ratio:1] [border-radius:0] [mask:none]">
-            {/* spark before */}
-            <div className="absolute -inset-full w-auto rotate-0 animate-spin-around [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]" />
+        {/* spark container - hidden when reduced motion is preferred */}
+        {!prefersReducedMotion && (
+          <div
+            className={cn(
+              "-z-30 blur-[2px]",
+              "absolute inset-0 overflow-visible [container-type:size]",
+            )}
+          >
+            {/* spark */}
+            <div className="absolute inset-0 h-[100cqh] animate-shimmer-slide [aspect-ratio:1] [border-radius:0] [mask:none]">
+              {/* spark before */}
+              <div className="absolute -inset-full w-auto rotate-0 animate-spin-around [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]" />
+            </div>
           </div>
-        </div>
+        )}
         {children}
 
         {/* Highlight */}
@@ -71,8 +78,8 @@ export const ShimmerButton = React.forwardRef<
 
             "rounded-2xl px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#ffffff1f]",
 
-            // transition
-            "transform-gpu transition-all duration-300 ease-in-out",
+            // transition - only when motion is allowed
+            !prefersReducedMotion && "transform-gpu transition-all duration-300 ease-in-out",
 
             // on hover
             "group-hover:shadow-[inset_0_-6px_10px_#ffffff3f]",

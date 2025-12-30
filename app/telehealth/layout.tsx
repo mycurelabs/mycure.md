@@ -2,22 +2,32 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Start Your Virtual Practice | MYCURE Telehealth',
-  description: 'Everything you need to build your telemedicine practice. Give patients quality telehealth care without in-person visits. Expand your practice reach, increase revenue, and provide convenient virtual consultations.',
+  description: 'Launch your telemedicine practice with MYCURE Telehealth. Video consultations, e-prescriptions, and secure patient care. Expand your reach.',
   keywords: 'telehealth, telemedicine, virtual consultations, online medical practice, video consultations, remote healthcare, digital health platform',
   openGraph: {
     title: 'Start Your Virtual Practice | MYCURE Telehealth',
     description: 'Launch your telemedicine practice with MYCURE\'s complete virtual care platform.',
     url: 'https://mycure.md/telehealth',
     siteName: 'MYCURE',
+    locale: 'en_PH',
+    type: 'website',
     images: [
       {
-        url: '/og-telehealth.png',
+        url: '/hero-section-assets/telehealth-feature-hero-image.webp',
         width: 1200,
         height: 630,
-      }
+        alt: 'MYCURE Telehealth - Virtual Care Platform',
+      },
     ],
-    locale: 'en_US',
-    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Start Your Virtual Practice | MYCURE Telehealth',
+    description: 'Launch your telemedicine practice with MYCURE\'s complete virtual care platform.',
+    images: ['/hero-section-assets/telehealth-feature-hero-image.webp'],
+  },
+  alternates: {
+    canonical: 'https://mycure.md/telehealth',
   },
 }
 
@@ -26,5 +36,5 @@ export default function TelehealthLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return children
 }

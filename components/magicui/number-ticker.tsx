@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -14,7 +14,7 @@ export interface NumberTickerProps {
   startValue?: number;
 }
 
-export default function NumberTicker({
+export function NumberTicker({
   value,
   direction = "up",
   className,
@@ -23,20 +23,44 @@ export default function NumberTicker({
   startValue = 0,
 }: NumberTickerProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(direction === "down" ? value : startValue);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Format the final value for display
+  const formattedValue = Intl.NumberFormat("en-US", {
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
+  }).format(value);
+
+  // For reduced motion, start at the final value (no animation)
+  const initialValue = prefersReducedMotion
+    ? value
+    : direction === "down"
+      ? value
+      : startValue;
+
+  const motionValue = useMotionValue(initialValue);
   const springValue = useSpring(motionValue, {
-    damping: 60,
-    stiffness: 100,
+    // Instant transition when reduced motion is preferred
+    damping: prefersReducedMotion ? 1000 : 60,
+    stiffness: prefersReducedMotion ? 1000 : 100,
   });
   const isInView = useInView(ref, { once: true, margin: "0px" });
 
   useEffect(() => {
+    // Skip animation entirely when reduced motion is preferred
+    if (prefersReducedMotion) {
+      if (ref.current) {
+        ref.current.textContent = formattedValue;
+      }
+      return;
+    }
+
     if (isInView) {
       setTimeout(() => {
         motionValue.set(direction === "down" ? startValue : value);
       }, delay * 1000);
     }
-  }, [motionValue, isInView, delay, value, direction, startValue]);
+  }, [motionValue, isInView, delay, value, direction, startValue, prefersReducedMotion, formattedValue]);
 
   useEffect(
     () =>
@@ -58,6 +82,7 @@ export default function NumberTicker({
         className,
       )}
       ref={ref}
+      aria-label={formattedValue}
     />
   );
 }

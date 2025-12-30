@@ -35,5 +35,5 @@ export default function HospitalLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return children;
 }

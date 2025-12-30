@@ -17,7 +17,7 @@ export function Footer() {
                 <span>MYCURE</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Transforming healthcare management with innovative clinic solutions for providers worldwide.
+                Transforming healthcare management with innovative clinic solutions for healthcare organizations.
               </p>
               <div className="flex space-x-4">
                 <Link href="https://www.facebook.com/mycure.md/" className="text-muted-foreground hover:text-foreground transition-colors">

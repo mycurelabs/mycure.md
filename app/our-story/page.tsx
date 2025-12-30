@@ -1,26 +1,15 @@
 "use client"
 
-import React from "react"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import {
-  ArrowLeft,
-  Moon,
-  Sun,
-  Menu,
-  X,
-  Check,
-} from "lucide-react"
+import { ArrowLeft, Menu, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
+import { DocumentHeader } from "@/components/sections/shared"
 
 export default function OurStoryPage() {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
@@ -31,28 +20,19 @@ export default function OurStoryPage() {
     { id: "our-values", title: "Our Values" },
   ]
 
+  // Track active section based on scroll position
   useEffect(() => {
-    setMounted(true)
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-
-      // Update active section based on scroll position
       const scrollPosition = window.scrollY + 100
       const windowHeight = window.innerHeight
       const documentHeight = document.documentElement.scrollHeight
-      
-      // Check if we're at the bottom of the page
+
       if (scrollPosition + windowHeight >= documentHeight - 100) {
         setActiveSection("our-values")
       } else {
-        // Find the section that's most visible in the viewport
         let currentSection = ""
         let maxVisibility = 0
-        
+
         for (const section of sections) {
           const element = document.getElementById(section.id)
           if (element) {
@@ -60,20 +40,18 @@ export default function OurStoryPage() {
             const elementTop = rect.top
             const elementBottom = rect.bottom
             const viewportHeight = window.innerHeight
-            
-            // Calculate how much of the element is visible
+
             const visibleTop = Math.max(0, elementTop)
             const visibleBottom = Math.min(viewportHeight, elementBottom)
             const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-            
-            // If this section is more visible than previous ones, or if we're scrolled past it
+
             if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
               maxVisibility = visibleHeight
               currentSection = section.id
             }
           }
         }
-        
+
         if (currentSection) {
           setActiveSection(currentSection)
         }
@@ -84,10 +62,6 @@ export default function OurStoryPage() {
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -116,29 +90,7 @@ export default function OurStoryPage() {
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
-      {/* Simplified Header - Matching main page style */}
-      <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}
-      >
-        <div className="container flex h-16 items-center justify-between">
-          <Link 
-            href="/"
-            className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity"
-          >
-            <div className="size-8 rounded-full bg-white flex items-center justify-center">
-              <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
-            </div>
-            <span>MYCURE</span>
-          </Link>
-          
-          <div className="flex gap-4 items-center">
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
-              {mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <DocumentHeader />
 
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}
@@ -182,10 +134,10 @@ export default function OurStoryPage() {
                   <div className="relative w-full aspect-video mb-20 rounded-lg overflow-hidden">
                     <iframe
                       className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/zvM3LIvq-6k"
+                      src="https://www.youtube-nocookie.com/embed/zvM3LIvq-6k"
                       title="MYCURE Our Story"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
                   </div>
@@ -263,7 +215,7 @@ export default function OurStoryPage() {
                           />
                         </div>
                         <p className="text-muted-foreground leading-relaxed">
-                          <span className="font-semibold">Dale</span> runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called <a href="http://www.butchukoy.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sipa</a> and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started <a href="http://www.mightyminds.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mighty Minds</a>, a nonprofit organization that helps kids finish school.
+                          <span className="font-semibold">Dale</span> runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called <a href="https://www.butchukoy.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sipa</a> and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started <a href="https://www.mightyminds.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mighty Minds</a>, a nonprofit organization that helps kids finish school.
                         </p>
                       </div>
                       
@@ -349,7 +301,7 @@ export default function OurStoryPage() {
                     </p>
                     
                     <p className="text-muted-foreground leading-relaxed mb-4">
-                      While they see themselves as simply doing their everyday jobs, we see individuals that impact change on humanity; we see heroes that truly make the world a better place. MYCURE commits to design and build innovative tech tools and products specifically for our doctors and health professionals. Our goal is to help and enable these heroes, to make their jobs easier and more efficient.
+                      While they see themselves as simply doing their everyday jobs, we see individuals that impact change on humanity; we see heroes that truly make the world a better place. MYCURE commits to design and build innovative tech tools and products specifically for healthcare teams and professionals. Our goal is to help and enable these heroes, to make their jobs easier and more efficient.
                     </p>
                     
                     <p className="text-muted-foreground leading-relaxed">

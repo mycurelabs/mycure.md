@@ -2,11 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx,mdx}",
     "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.ts",
+    "./styles/**/*.ts",
   ],
   theme: {
     container: {
@@ -106,6 +105,10 @@ module.exports = {
             backgroundPosition: "var(--bg-size, 300%) 0",
           },
         },
+        "marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -115,6 +118,7 @@ module.exports = {
         "rainbow": "rainbow 2s linear infinite",
         "shiny-text": "shiny-text 8s infinite",
         "gradient": "gradient 8s linear infinite",
+        "marquee": "marquee 8s linear infinite",
       },
     },
   },

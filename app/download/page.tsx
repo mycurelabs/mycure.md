@@ -20,10 +20,18 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export default function DownloadPage() {
-  const [activeTab, setActiveTab] = useState("desktop")
+type PlatformKey = "desktop" | "mobile" | "tablet" | "web";
 
-  const platforms = {
+export default function DownloadPage() {
+  const [activeTab, setActiveTab] = useState<PlatformKey>("desktop")
+
+  const platforms: Record<PlatformKey, {
+    title: string;
+    subtitle: string;
+    primaryButton: string;
+    primaryIcon: React.ReactNode;
+    downloads: { name: string; icon: string; version: string; size: string }[];
+  }> = {
     desktop: {
       title: "MYCURE for Desktop",
       subtitle: "Full-featured clinic management for your computer",
@@ -204,38 +212,16 @@ export default function DownloadPage() {
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Download MYCURE for{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Windows
-                </Link>
-                ,{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Mac
-                </Link>
-                ,{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  iOS
-                </Link>
-                ,{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Android
-                </Link>
-                , and{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  Web
-                </Link>
-                . Add MYCURE to your{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  browser
-                </Link>{" "}
-                and{" "}
-                <Link href="#" className="text-primary hover:underline">
-                  email
-                </Link>
-                , too.
+                <span className="text-primary">Windows</span>,{" "}
+                <span className="text-primary">Mac</span>,{" "}
+                <span className="text-primary">iOS</span>,{" "}
+                <span className="text-primary">Android</span>, and{" "}
+                <span className="text-primary">Web</span>.
+                Add MYCURE to your browser and email, too.
               </p>
             </motion.div>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as PlatformKey)} className="w-full">
               <div className="flex justify-center mb-8">
                 <TabsList className="grid w-full max-w-2xl grid-cols-4 rounded-full p-1 bg-background border border-border/40">
                   <TabsTrigger
