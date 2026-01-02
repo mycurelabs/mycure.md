@@ -14,7 +14,8 @@ import { AnimatedGradientText } from "@/components/magicui/animated-gradient-tex
 import { NumberTicker } from "@/components/magicui/number-ticker"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
-import { LogoCloud } from "@/components/custom/logo-cloud"
+import { Marquee } from "@/components/ui/marquee"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { YouTubeFacade } from "@/components/custom/youtube-facade"
 import { usePageState } from "@/hooks/use-page-state"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -189,7 +190,30 @@ export default function LandingPage() {
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center">
               <div className="space-y-1"><p className="text-sm font-medium text-muted-foreground">{logosConfig.heading}</p><p className="text-lg font-semibold text-foreground">{logosConfig.subheading}</p></div>
-              <LogoCloud logos={logosConfig.logos} className="w-full max-w-6xl" />
+              <div className="relative w-full max-w-6xl overflow-hidden">
+                <TooltipProvider delayDuration={100}>
+                  <Marquee pauseOnHover className="[--duration:60s] [--gap:2rem] md:[--gap:3rem]">
+                    {logosConfig.logos.map((logo) => (
+                      <Tooltip key={logo.alt}>
+                        <TooltipTrigger asChild>
+                          <div className="flex shrink-0 items-center justify-center">
+                            <Image
+                              src={logo.src}
+                              alt={logo.alt}
+                              width={240}
+                              height={96}
+                              className="h-20 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-24"
+                            />
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{logo.name || logo.alt}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </Marquee>
+                </TooltipProvider>
+              </div>
             </motion.div>
           </div>
         </section>

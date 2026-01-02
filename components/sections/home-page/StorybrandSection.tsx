@@ -12,7 +12,6 @@ import {
   ChevronRight
 } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
-import * as Scrollytelling from "@bsmnt/scrollytelling"
 
 // Notification data for The Reality section
 const allNotifications = [
@@ -91,17 +90,12 @@ export function StorybrandSection() {
   }, [])
 
   return (
-    <Scrollytelling.Root
-      start="top bottom"
-      end="bottom top"
-      scrub={true}
-    >
-      <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
-        <div className="container px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Sticky Left Content */}
-            <div className="lg:sticky lg:top-32 space-y-6">
-              <motion.div
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
+      <div className="container px-4 md:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Sticky Left Content */}
+          <div className="lg:sticky lg:top-32 space-y-6">
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -340,9 +334,8 @@ export function StorybrandSection() {
                 </div>
               </motion.div>
             </div>
-          </div>
         </div>
-      </section>
-    </Scrollytelling.Root>
+      </div>
+    </section>
   )
 }

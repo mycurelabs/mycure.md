@@ -2,7 +2,6 @@
 // These are project-specific components not from shadcn/ui registry
 
 export * from "./animated-badge"
-export * from "./logo-cloud"
 export * from "./primary-button"
 export * from "./sticky-features"
 export * from "./youtube-facade"
