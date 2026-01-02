@@ -28,7 +28,7 @@ export const heroConfig: HeroConfig = {
     suffix: "for Healthcare Facilities",
   },
   description:
-    "Accept online appointments 24/7 with professional booking pages. Set up in 10 minutes, reduce no-shows by 70%, and let patients self-schedule while you focus on care.",
+    "Accept online appointments 24/7 with professional booking pages. Set up in minutes, help reduce no-shows, and let patients self-schedule while you focus on care.",
   image: {
     src: "/hero-section-assets/booking-feature-hero-image.webp",
     alt: "MYCURE Booking - Easy appointment scheduling system",
@@ -51,21 +51,21 @@ export const solutionsGridConfig: IconCardGridConfig = {
       icon: Clock,
       title: "Long Wait Times",
       description:
-        "Reduced wait times by 70% with smart scheduling and automated queue management",
+        "Help reduce wait times with smart scheduling and automated queue management",
     },
     {
       id: "missed-appointments",
       icon: AlertCircle,
       title: "Missed Appointments",
       description:
-        "Automated reminders reduce no-shows by 40% through SMS and email notifications",
+        "Automated reminders help reduce no-shows through SMS and email notifications",
     },
     {
       id: "manual-scheduling",
       icon: Calendar,
       title: "Manual Scheduling",
       description:
-        "Save 3+ hours daily with automated booking and intelligent appointment management",
+        "Save time with automated booking and intelligent appointment management",
     },
     {
       id: "patient-frustration",
@@ -211,7 +211,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "website in less than 10 minutes",
   },
   description:
-    "Join thousands of healthcare facilities that have streamlined their booking process and improved patient attendance rates.",
+    "Join healthcare facilities across the Philippines that have streamlined their booking process and improved patient attendance rates.",
   cta: {
     text: "Start Your Free Trial",
     href: "https://calendly.com/mycure/demo",

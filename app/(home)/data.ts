@@ -23,7 +23,7 @@ export const heroConfig = {
     line2: "Your patients, first.",
   },
   description:
-    "Streamline clinic operations with the enterprise-grade clinic management system designed for Philippine healthcare—secure, offline-capable, and ready to simplify your entire operation.",
+    "An enterprise-grade clinic management system designed for Philippine healthcare. Secure, offline-capable, and built to simplify your operations.",
   cta: {
     primary: {
       text: "Book a Demo",
@@ -65,7 +65,7 @@ export const stickyFeaturesConfig = [
   {
     badge: "CLEAR YOUR MIND",
     title: "The Reality",
-    description: "Paper-based tracking, inconsistent follow-ups, and endless back-and-forth create chaos in clinic operations every single day. Administrative burden diverts focus from patient care.",
+    description: "Paper-based tracking, inconsistent follow-ups, and constant back-and-forth create daily chaos in clinic operations. Administrative burden diverts focus from patient care.",
     image: "/Koalas/koala-scene1.jpg",
     imageAlt: "Koala doctor overwhelmed with paperwork",
   },
@@ -79,7 +79,7 @@ export const stickyFeaturesConfig = [
   {
     badge: "A BETTER WAY",
     title: "The Truth",
-    description: "Your patients deserve your full attention—and you deserve tools that actually work. It's time for technology that serves healthcare, not the other way around.",
+    description: "Your patients deserve your full attention—and you deserve tools that work. Technology should serve healthcare, not the other way around.",
     image: "/Koalas/koala-scene3.jpg",
     imageAlt: "Koala doctor confident and happy",
   },
@@ -95,36 +95,36 @@ export interface FeatureItem {
 export const featuresGridConfig = {
   badge: "Features",
   headline: "Complete Tools to Improve Healthcare Operations",
-  description: "MYCURE provides an integrated set of solutions tailored to healthcare facilities, clinics, and diagnostic centers. From patient records to telehealth, our platform empowers your team to deliver care more efficiently and securely.",
+  description: "MYCURE provides an integrated set of solutions for healthcare facilities, clinics, and diagnostic centers. From patient records to telehealth, our platform enables your team to deliver care more efficiently and securely.",
   items: [
     {
       title: "Healthcare Professionals",
-      description: "Explore a simpler way to create electronic medical records, prescriptions, and diagnostic test orders.",
+      description: "Create electronic medical records, prescriptions, and diagnostic test orders with a streamlined interface.",
       icon: Stethoscope,
     },
     {
       title: "Outpatient Clinics",
-      description: "Experience streamlined workflows and real-time reports for optimized operational efficiency.",
+      description: "Streamlined workflows and real-time reports help optimize operational efficiency.",
       icon: Hospital,
     },
     {
       title: "Diagnostics",
-      description: "Embrace a simplified diagnostic test process from specimen collection to online test results.",
+      description: "Manage the diagnostic test process from specimen collection to online test results.",
       icon: FlaskConical,
     },
     {
       title: "Easy Scheduling",
-      description: "Let your patients schedule appointments with ease and cut down on long waiting times.",
+      description: "Patients can schedule appointments online, helping reduce waiting times.",
       icon: Calendar,
     },
     {
       title: "Telehealth",
-      description: "Try a safe and secure platform to build your virtual practice through video and audio calls.",
+      description: "A secure platform for virtual consultations through video and audio calls.",
       icon: Video,
     },
     {
       title: "Work Offline",
-      description: "Enjoy the benefits of using a cloud-based medical software even with little to no internet connection.",
+      description: "Continue using MYCURE even with limited or no internet connection.",
       icon: WifiOff,
     },
   ] as FeatureItem[],
@@ -133,7 +133,7 @@ export const featuresGridConfig = {
 // Statistics Config
 export const statisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
-  description: "MYCURE is dedicated to helping healthcare facilities and teams save lives every day through innovative clinic management technology.",
+  description: "MYCURE helps healthcare facilities and teams deliver better care through modern clinic management technology.",
   items: [
     { value: 13239859, label: "Medical Records", delay: 0.3 },
     { value: 2946953, label: "Patients Served", delay: 0.4 },
@@ -145,39 +145,39 @@ export const statisticsConfig = {
 export const whyChooseConfig = {
   badge: "Why Choose MYCURE",
   headline: "Built for Modern Teams",
-  description: "Enterprise-grade capabilities with healthcare-specific design, providing compliance, reliability, and smooth operations.",
+  description: "Enterprise-grade capabilities with healthcare-specific design. Compliance, reliability, and smooth operations.",
   items: [
     {
       title: "HIPAA Security & Compliance",
-      description: "MYCURE demonstrates industry-leading commitment to protecting patient data with comprehensive HIPAA compliance, end-to-end encryption, and rigorous security protocols that exceed healthcare standards.",
+      description: "MYCURE demonstrates a strong commitment to protecting patient data with HIPAA compliance, end-to-end encryption, and rigorous security protocols that meet healthcare standards.",
       icon: Shield,
       mediaType: "image" as const,
       mediaSrc: "/Features Photos/Built for Modern Teams/Hipaa-compliance-mycure.webp",
       mediaAlt: "HIPAA Security & Compliance",
       bullets: [
-        "End-to-end data encryption for all patient communications and records",
-        "Automated compliance monitoring with real-time alerts and audit trails",
+        "End-to-end data encryption for patient communications and records",
+        "Compliance monitoring with real-time alerts and audit trails",
         "Role-based access controls so staff see only authorized patient information",
       ],
       imagePosition: "left" as const,
     },
     {
       title: "Reliable Offline Operations",
-      description: "Work confidently regardless of internet connectivity. MYCURE's advanced offline capabilities ensure your practice continues operating smoothly, with automatic synchronization when connectivity returns.",
+      description: "Work confidently regardless of internet connectivity. MYCURE's offline capabilities help your practice continue operating smoothly, with automatic synchronization when connectivity returns.",
       icon: WifiOff,
       mediaType: "video" as const,
       mediaSrc: "/Features Photos/Built for Modern Teams/mycure-syncbase-demo.mp4",
-      mediaAlt: "Seamless Offline Operations Demo",
+      mediaAlt: "Offline Operations Demo",
       bullets: [
-        "Full offline patient record access for electronic medical record management",
+        "Offline patient record access for electronic medical record management",
         "Smart data synchronization that resolves conflicts and updates automatically",
-        "Local backup systems providing zero data loss during connectivity issues",
+        "Local backup systems designed to minimize data loss during connectivity issues",
       ],
       imagePosition: "right" as const,
     },
     {
       title: "Effortless Clinical Workflows",
-      description: "Experience healthcare software designed by medical professionals for medical professionals. Intuitive interfaces reduce training time while powerful features enhance clinical documentation and patient care efficiency.",
+      description: "Healthcare software designed by medical professionals for medical professionals. Intuitive interfaces reduce training time while powerful features enhance clinical documentation and patient care efficiency.",
       icon: Stethoscope,
       mediaType: "image" as const,
       mediaSrc: "/Features Photos/Built for Modern Teams/effortless-clinical-workflows-v3.png",
@@ -364,7 +364,7 @@ export const timelineConfig = {
         title: "Scale Your Practice",
         icon: Star,
         items: [
-          "Reduce administrative burden significantly",
+          "Reduce administrative burden",
           "Increase patient satisfaction scores",
           "Improve appointment scheduling efficiency",
           "Enhance overall practice profitability",
@@ -382,34 +382,34 @@ export const timelineConfig = {
 // FAQ Config
 export const faqConfig = {
   headline: "Frequently Asked Questions",
-  description: "We've compiled a list of frequently asked questions to help you get started.",
+  description: "Common questions about getting started with MYCURE.",
   items: [
     {
       question: "What is MYCURE?",
-      answer: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics and healthcare facilities. We streamline your practice operations while maintaining HIPAA compliance and operational efficiency.",
+      answer: "MYCURE is a healthcare management platform designed for clinics and healthcare facilities. It streamlines practice operations including patient records, scheduling, billing, and telehealth.",
     },
     {
       question: "How much does MYCURE cost?",
-      answer: "MYCURE offers flexible pricing plans designed for healthcare facilities of all sizes, from small clinics to large hospitals. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
+      answer: "MYCURE offers flexible pricing plans for healthcare facilities of all sizes, from small clinics to large hospitals. Plans include essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore your options.",
     },
     {
       question: "Is MYCURE compliant with healthcare regulations?",
-      answer: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics, hospitals, and healthcare facilities. From patient registration to billing, we streamline every aspect of your practice while ensuring HIPAA compliance and operational efficiency.",
+      answer: "MYCURE is designed with HIPAA compliance in mind. The platform includes end-to-end encryption, role-based access controls, and audit trails to support your compliance requirements. We recommend consulting with your compliance team for specific regulatory needs.",
     },
     {
       question: "What platforms does MYCURE support?",
-      answer: "MYCURE works on Mac computers through Chromium-based browsers (Chrome, Edge, Brave). Our platform is optimized for these environments to deliver the best performance and reliability.",
+      answer: "MYCURE works on Mac and Windows computers through Chromium-based browsers (Chrome, Edge, Brave). The platform is optimized for these environments for best performance and reliability.",
     },
     {
       question: "What kind of support do you offer?",
-      answer: "Visit portal.mycure.md for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare organizations.",
+      answer: "Visit portal.mycure.md for self-service support including our knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare organizations.",
       hasLink: true,
       linkText: "portal.mycure.md",
       linkHref: "https://portal.mycure.md",
     },
     {
       question: "Can I try MYCURE before committing?",
-      answer: "Yes! Start with our 15-day free trial that includes full platform access and no credit card requirement. We'll provide you with a demo app link to explore the platform at your own pace.",
+      answer: "Yes. Start with a 15-day free trial that includes full platform access. No credit card is required. We'll provide you with a demo app link to explore the platform at your own pace.",
     },
   ],
 }
@@ -421,7 +421,7 @@ export const finalCtaConfig = {
     highlight: "improve",
     after: "your clinic operations?",
   },
-  description: "Join thousands of healthcare facilities that trust MYCURE to streamline their operations and improve patient care.",
+  description: "Join healthcare facilities across the Philippines that trust MYCURE to streamline their operations and improve patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

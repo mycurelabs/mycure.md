@@ -55,7 +55,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
       icon: Clock,
       title: "Time & Resource Savings",
       description:
-        "Save 3+ hours daily by eliminating manual paperwork and automating OPD workflows",
+        "Reduce time spent on manual paperwork by automating OPD workflows and documentation",
     },
     {
       id: "reduced-wait-times",
@@ -65,9 +65,9 @@ export const solutionsGridConfig: IconCardGridConfig = {
         "Cut patient wait times with smart queuing and efficient appointment management",
     },
     {
-      id: "staff-empowerment",
+      id: "staff-support",
       icon: Users,
-      title: "Staff Empowerment",
+      title: "Staff Support",
       description:
         "Reduce staff workload with intuitive tools designed for busy hospital environments",
     },
@@ -114,7 +114,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "End-to-End Workflow",
   headline: "How MYCURE Automates Your Entire Patient Workflow",
   description:
-    "Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
+    "Discover why hospitals are choosing MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
   image: {
     src: "/section-assets/clinic-page/clinic-journey.webp",
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
@@ -126,11 +126,11 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to helping hospitals improve patient outcomes through innovative clinic management technology.",
+    "MYCURE helps hospitals deliver better care through modern healthcare management technology.",
   items: [
     { value: 500000, label: "OPD Visits Managed", delay: 0.3 },
-    { value: 60, label: "Reduced Wait Times", delay: 0.4 },
-    { value: 24, label: "System Availability", delay: 0.5 },
+    { value: 60, label: "% Reduced Wait Times", delay: 0.4 },
+    { value: 24, label: "/7 System Availability", delay: 0.5 },
   ],
 }
 
@@ -190,7 +190,7 @@ export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
   headline: "Why Hospitals Choose MYCURE",
   description:
-    "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
+    "Experience the features that make MYCURE the trusted choice for hospitals across the Philippines.",
   items: [
     {
       title: "A Lifeline for Your OPD Clinic",
@@ -249,7 +249,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Continue seeing patients even without internet",
         "All devices sync automatically when back online",
-        "Never lose data due to connectivity issues",
+        "Data protection designed to minimize loss during connectivity issues",
       ],
     },
   ],
@@ -262,7 +262,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your hospital operations?",
   },
   description:
-    "Join thousands of healthcare facilities that trust MYCURE to streamline their operations and improve patient care.",
+    "Join hospitals across the Philippines that trust MYCURE to streamline their OPD operations and improve patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

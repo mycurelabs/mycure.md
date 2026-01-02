@@ -115,7 +115,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "End-to-End Workflow",
   headline: "How MYCURE Automates Your Entire Patient Workflow",
   description:
-    "Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
+    "Discover why aesthetic clinics are choosing MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
   image: {
     src: "/section-assets/clinic-page/clinic-journey.webp",
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
@@ -127,7 +127,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to helping aesthetic clinics deliver superior patient outcomes through innovative clinic management technology.",
+    "MYCURE helps aesthetic clinics deliver better client experiences through modern clinic management technology.",
   items: [
     { value: 500000, label: "Client Records", suffix: "+", delay: 0.3 },
     { value: 2000000, label: "Treatments Performed", suffix: "+", delay: 0.4 },
@@ -139,7 +139,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
   badge: "Specialized Workflows",
   headline: "One Platform. Every Specialty.",
   description:
-    "MYCURE adapts to your practice with specialized workflows for every medical field. Experience healthcare technology that speaks your specialty's language.",
+    "MYCURE adapts to your practice with specialized workflows for aesthetic and dermatology services. Experience technology designed for beauty and skincare professionals.",
   items: [
     {
       id: "medical-dermatology",
@@ -190,54 +190,54 @@ export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
   headline: "Why Aesthetic Clinics Choose MYCURE",
   description:
-    "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
+    "Experience the features that make MYCURE the trusted choice for aesthetic clinics across the Philippines.",
   items: [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
+      title: "Before/After Photo Management",
       description:
-        "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
-      icon: Shield,
+        "Document treatment progress with organized photo galleries. Compare results across sessions and share outcomes with clients to build confidence in your services.",
+      icon: Camera,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation",
+        "Secure before/after photo galleries organized by treatment",
+        "Side-by-side comparison views for client consultations",
+        "Treatment progress tracking with dated documentation",
       ],
     },
     {
-      title: "Gain New Insights Into Your Clinic",
+      title: "Client Relationship Management",
       description:
-        "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
-      icon: BarChart,
+        "Build lasting relationships with comprehensive client profiles. Track preferences, treatment history, and product purchases to deliver personalized experiences.",
+      icon: Heart,
       image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
       bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Historical trend reports to help plan for busy periods and staffing needs",
+        "Complete client profiles with preferences and treatment history",
+        "Product purchase history for personalized recommendations",
+        "Loyalty tracking and package management",
       ],
     },
     {
-      title: "A Lifeline for Your Clinic",
+      title: "Aesthetic Treatment Tracking",
       description:
-        "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
-      icon: Cloud,
+        "Track injectable placements, treatment intervals, and session schedules. Help ensure proper timing between treatments and maintain treatment protocols.",
+      icon: Sparkles,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Smooth migration from paper records with our digitization support",
+        "Injectable mapping for Botox and filler placements",
+        "Treatment interval tracking for proper scheduling",
+        "Session history with dosage and product documentation",
       ],
     },
     {
-      title: "Easy Appointment Booking for Your Patients",
+      title: "Product & Service Sales",
       description:
-        "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
-      icon: Calendar,
+        "Integrated point-of-sale for skincare products and treatment packages. Manage retail inventory alongside clinic services in one system.",
+      icon: DollarSign,
       image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
       bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders helping reduce no-shows",
+        "Sell skincare products directly through the system",
+        "Package deals and treatment bundles management",
+        "Inventory tracking for retail and professional products",
       ],
     },
   ],

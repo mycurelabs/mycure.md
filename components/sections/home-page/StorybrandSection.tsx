@@ -132,7 +132,7 @@ export function StorybrandSection() {
                   </div>
                 </div>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Paper-based tracking, inconsistent follow-ups, and endless back-and-forth create chaos in your clinic operations every single day.
+                  Paper-based tracking, inconsistent follow-ups, and constant back-and-forth create daily chaos in your clinic operations.
                 </p>
                 {/* Endless Notifications - Dismiss to reveal more */}
                 <div className="bg-gradient-to-br from-red-500/5 to-orange-500/10 rounded-2xl p-6 border border-red-500/20">
@@ -248,7 +248,7 @@ export function StorybrandSection() {
                   </div>
                 </div>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  With MYCURE, each patient encounter flows seamlessly into the next. No hunting for records. No double-entry. Just care.
+                  With MYCURE, each patient encounter flows smoothly into the next. No hunting for records. No double-entry. Just care.
                 </p>
                 {/* Next Patient Dashboard */}
                 <div className="bg-gradient-to-br from-green-500/5 to-blue-500/10 rounded-2xl p-4 border border-green-500/20">

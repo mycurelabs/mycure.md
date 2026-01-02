@@ -114,7 +114,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "Dental Workflow Excellence",
   headline: "How MYCURE Streamlines Your Dental Practice Workflow",
   description:
-    "Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
+    "Discover why dental practices are choosing MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
   image: {
     src: "/section-assets/dental-clinics/dental-workflow.webp",
     alt: "MYCURE Dental Workflow - From Booking to Treatment",
@@ -126,7 +126,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to helping healthcare facilities improve outcomes through innovative clinic management technology.",
+    "MYCURE helps dental practices deliver better patient care through modern clinic management technology.",
   items: [
     { value: 13239859, label: "Dental Records", delay: 0.3 },
     { value: 2946953, label: "Patients Treated", delay: 0.4 },
@@ -187,56 +187,56 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
 
 export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
-  headline: "Why Clinics Choose MYCURE",
+  headline: "Why Dental Practices Choose MYCURE",
   description:
-    "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
+    "Experience the features that make MYCURE the trusted choice for dental practices across the Philippines.",
   items: [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
+      title: "Interactive Digital Dental Charting",
       description:
-        "Your patients' privacy matters to us, which is why we've gone the extra mile to meet the standards of the United States' Health Insurance Portability and Accountability Act (HIPAA).",
-      icon: Shield,
+        "Replace paper charts with interactive tooth mapping that helps dentists document conditions, track treatments, and plan procedures visually.",
+      icon: Stethoscope,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "End-to-end encrypted video consultations protecting patient privacy",
-        "HIPAA-compliant storage and transmission of all telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation",
+        "Visual tooth-by-tooth charting with condition and treatment tracking",
+        "Periodontal charting with pocket depth measurements",
+        "Treatment history accessible at a glance during consultations",
       ],
     },
     {
-      title: "Gain New Insights Into Your Clinic",
+      title: "Streamlined Treatment Planning",
       description:
-        "Thanks to the daily reports tool on MYCURE, you'll be able to identify problems before they result in inconveniences for your patients and staff.",
-      icon: BarChart,
+        "Create comprehensive treatment plans with cost estimates and phase scheduling. Help patients understand their treatment options and payment paths.",
+      icon: ClipboardList,
       image: "/section-assets/clinic-page/carousel/carousel-insights.webp",
       bullets: [
-        "Real-time dashboards showing patient flow and clinic performance metrics",
-        "Automated daily reports highlighting areas for improvement",
-        "Historical trend reports to help plan for busy periods and staffing needs",
+        "Multi-phase treatment plans with estimated costs per procedure",
+        "Patient consent tracking and treatment acceptance workflow",
+        "Track treatment progress across multiple appointments",
       ],
     },
     {
-      title: "A Lifeline for Your Clinic",
+      title: "Dental-Specific Inventory Management",
       description:
-        "Use MYCURE Clinics' cloud-based system to digitize your patients' records. You'll be able to glance over electronic copies of complete health records all in one place!",
-      icon: Cloud,
+        "Keep track of dental materials, consumables, and equipment. Receive alerts when supplies run low so you're always prepared for procedures.",
+      icon: Package,
       image: "/section-assets/clinic-page/carousel/carousel-lifeline.webp",
       bullets: [
-        "Instant access to complete patient histories from any device",
-        "Automatic backups ensuring your data is never lost",
-        "Smooth migration from paper records with our digitization support",
+        "Track dental supplies, materials, and disposables by category",
+        "Low-stock alerts help prevent procedure delays",
+        "Supplier management and purchase order tracking",
       ],
     },
     {
-      title: "Easy Appointment Booking for Your Patients",
+      title: "Easy Appointment Booking for Patients",
       description:
-        "Make booking appointments easy for your patients with MYCURE Booking. Your patients can use the app to see your availability and book appointments.",
+        "Let patients book dental appointments online at their convenience. Reduce phone calls and give your front desk more time for patient care.",
       icon: Calendar,
       image: "/section-assets/clinic-page/carousel/carousel-booking.webp",
       bullets: [
-        "24/7 online booking reducing phone calls and administrative work",
-        "Smart scheduling that prevents double-booking and optimizes clinic time",
-        "Automated reminders helping reduce no-shows",
+        "24/7 online booking for routine and specialty dental visits",
+        "Appointment type selection (cleaning, consultation, procedure)",
+        "Automated reminders to help reduce no-shows",
       ],
     },
   ],
@@ -249,7 +249,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your dental practice?",
   },
   description:
-    "Join thousands of dental clinics that trust MYCURE to digitize operations and deliver exceptional patient care.",
+    "Join dental practices across the Philippines that trust MYCURE to digitize operations and deliver better patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

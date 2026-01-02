@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Hospital OPD Management Software | MYCURE",
-  description: "Streamline your hospital outpatient department with MYCURE's comprehensive CMS and EMR system. Manage multi-department operations, reduce wait times by 60%, and enhance patient care with 24/7 availability.",
+  description: "Streamline your hospital outpatient department with MYCURE's comprehensive CMS and EMR system. Manage multi-department operations, reduce wait times, and enhance patient care.",
   keywords: "hospital OPD software, outpatient management system, hospital CMS, hospital EMR, multi-department integration, healthcare management system, hospital patient management, OPD queue management, hospital appointment system, medical records management",
   openGraph: {
     title: "Hospital OPD Management Software | MYCURE",
     description: "Streamline your hospital outpatient department with MYCURE's comprehensive CMS and EMR system. Manage multi-department operations, reduce wait times, and enhance patient care.",
     type: "website",
-    url: "https://www.mycure.md/hospital",
+    url: "https://mycure.md/hospital",
     images: [
       {
         url: "/hero-section-assets/hospital-opd-hero-image.webp",

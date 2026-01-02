@@ -90,7 +90,7 @@ export default function DownloadPage() {
     {
       icon: <Users className="w-5 h-5" />,
       title: "Team Collaboration",
-      description: "Work seamlessly with your entire staff",
+      description: "Work smoothly with your entire staff",
     },
   ]
 
@@ -208,7 +208,7 @@ export default function DownloadPage() {
               className="text-center mb-12"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-                Award-winning apps for every device
+                Apps for every device
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Download MYCURE for{" "}
@@ -334,7 +334,7 @@ export default function DownloadPage() {
                 Why healthcare providers choose MYCURE
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Trusted by thousands of healthcare professionals worldwide for secure, efficient clinic management.
+                Trusted by healthcare professionals across the Philippines for secure, efficient clinic management.
               </p>
             </motion.div>
 
@@ -465,7 +465,7 @@ export default function DownloadPage() {
                 Ready to transform your healthcare practice?
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-foreground/80 leading-relaxed mb-8">
-                Join thousands of healthcare providers who trust MYCURE for their clinic management needs.
+                Join healthcare providers across the Philippines who trust MYCURE for their clinic management needs.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -487,7 +487,7 @@ export default function DownloadPage() {
               <div className="flex items-center justify-center gap-6 text-sm text-primary-foreground/70 mt-8">
                 <div className="flex items-center gap-2">
                   <Check className="size-4 text-primary-foreground" />
-                  <span>14-day free trial</span>
+                  <span>15-day free trial</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="size-4 text-primary-foreground" />

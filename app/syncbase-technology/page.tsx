@@ -209,7 +209,7 @@ export default function SyncbaseTechnologyPage() {
                         </li>
                         <li className="flex gap-2">
                           <span className="text-primary">•</span>
-                          <span>Data consolidation occurs seamlessly once internet connectivity is restored.</span>
+                          <span>Data consolidation occurs smoothly once internet connectivity is restored.</span>
                         </li>
                       </ul>
                     </div>
