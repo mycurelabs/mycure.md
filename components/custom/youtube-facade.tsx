@@ -95,8 +95,8 @@ export function YouTubeFacade({ videoId, title, className }: YouTubeFacadeProps)
         onError={handleThumbnailError}
       />
       {/* Play button overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 group-active:bg-black/40 transition-colors">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 group-hover:bg-white group-hover:scale-110 group-active:scale-95 transition-all duration-200 flex items-center justify-center shadow-lg">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/60 group-hover:bg-white/80 group-hover:scale-110 group-active:scale-95 transition-all duration-200 flex items-center justify-center shadow-lg">
           <Play className="w-8 h-8 sm:w-10 sm:h-10 text-primary fill-primary ml-1" />
         </div>
       </div>

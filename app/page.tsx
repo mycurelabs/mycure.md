@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 import { WhyChooseSection, VisibilitySection, TimelineSection, StorybrandSection } from "@/components/sections/home-page"
+import { MobileNav } from "@/components/sections/product-page/MobileNav"
 
 import {
   heroConfig,
@@ -129,32 +130,20 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4 md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">{mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}<span className="sr-only">Toggle theme</span></Button>
-            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}<span className="sr-only">Toggle menu</span></Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-controls="mobile-menu"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </Button>
           </div>
         </div>
-        {mobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b">
-            <div className="container py-4 flex flex-col gap-4">
-              <div className="py-2">
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="features" className="border-none">
-                    <AccordionTrigger className="py-0 hover:no-underline"><span className="text-sm font-medium">Features</span></AccordionTrigger>
-                    <AccordionContent>{navigationConfig.features.map((navItem) => (<Link key={navItem.href} href={navItem.href} className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground" onClick={() => setMobileMenuOpen(false)}>{navItem.label}</Link>))}</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="solutions" className="border-none">
-                    <AccordionTrigger className="py-0 hover:no-underline"><span className="text-sm font-medium">Solutions</span></AccordionTrigger>
-                    <AccordionContent>{navigationConfig.solutions.map((navItem) => (<Link key={navItem.href} href={navItem.href} className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground" onClick={() => setMobileMenuOpen(false)}>{navItem.label}</Link>))}</AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-              {navigationConfig.links.map((link) => (<Link key={link.href} href={link.href} className="py-2 text-sm font-medium" onClick={(e) => scrollToSection(e, link.href)}>{link.label}</Link>))}
-              <div className="flex flex-col gap-2 pt-2 border-t">
-                <Link href={navigationConfig.loginUrl} target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>Log In</Link>
-                <Link href={navigationConfig.ctaUrl} target="_blank" rel="noopener noreferrer"><PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base">Get Started<ChevronRight className="ml-1 size-4" /></PrimaryButton></Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
+        {/* Mobile Menu */}
+        <MobileNav isOpen={mobileMenuOpen} onOpenChange={setMobileMenuOpen} />
       </header>
 
       <main className="flex-1">
@@ -169,8 +158,8 @@ export default function LandingPage() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">{heroConfig.description}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-                <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer"><RainbowButton variant="outline" size="lg" className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></RainbowButton></Link>
-                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }}><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap">{heroConfig.cta.secondary.text}</Button></Link>
+                <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer"><RainbowButton variant="outline" size="lg" className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></RainbowButton></Link>
+                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }}><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
               </div>
             </motion.div>
             <motion.div id="video-demo" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">

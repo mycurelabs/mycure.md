@@ -187,7 +187,7 @@ export const whyChooseConfig = {
         "Streamlined documentation workflows that reduce administrative burden",
         "Smart clinical templates that adapt to different specialties and procedures",
       ],
-      imagePosition: "right" as const,
+      imagePosition: "left" as const,
     },
   ],
 }

@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { ChevronRight, Menu, X, Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { usePageState } from "@/hooks/use-page-state"
@@ -15,7 +14,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { MobileNav } from "./MobileNav"
 
 export function ProductHeader() {
   const { isScrolled, mobileMenuOpen, setMobileMenuOpen, mounted, theme, toggleTheme } = usePageState()
@@ -179,107 +178,7 @@ export function ProductHeader() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <motion.nav
-          id="mobile-menu"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
-          aria-label="Mobile navigation"
-        >
-          <div className="container py-4 flex flex-col gap-4">
-            <div className="py-2">
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="features" className="border-none">
-                  <AccordionTrigger className="py-0 hover:no-underline">
-                    <span className="text-sm font-medium">Features</span>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <Link
-                      href="/booking"
-                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Booking
-                    </Link>
-                    <Link
-                      href="/telehealth"
-                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Telehealth
-                    </Link>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="solutions" className="border-none">
-                  <AccordionTrigger className="py-0 hover:no-underline">
-                    <span className="text-sm font-medium">Solutions</span>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <Link
-                      href="/clinics"
-                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Clinics
-                    </Link>
-                    <Link
-                      href="/hospital"
-                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Hospital
-                    </Link>
-                    <Link
-                      href="/corporate"
-                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Corporate
-                    </Link>
-                    <Link
-                      href="/dental"
-                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Dental
-                    </Link>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-
-            <Link
-              href="/#how-it-works"
-              className="py-2 text-sm font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              How it Works
-            </Link>
-
-            <Link
-              href="/#faq"
-              className="py-2 text-sm font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              FAQs
-            </Link>
-
-            <div className="flex flex-col gap-2 pt-2 border-t">
-              <Link href="https://next.cms.mycure.md/" target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
-                Log In
-              </Link>
-              <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-                <PrimaryButton className="h-10 px-4 py-2 text-sm font-medium rounded-full">
-                  Get Started
-                  <ChevronRight className="ml-1 size-4" />
-                </PrimaryButton>
-              </Link>
-            </div>
-          </div>
-        </motion.nav>
-      )}
+      <MobileNav isOpen={mobileMenuOpen} onOpenChange={setMobileMenuOpen} />
     </header>
   )
 }

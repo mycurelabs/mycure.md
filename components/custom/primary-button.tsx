@@ -31,7 +31,7 @@ export const PrimaryButton = React.forwardRef<
       shimmerColor="#ffffff"
       shimmerDuration={slow ? "3s" : "2s"}
       className={cn(
-        "px-6 py-3 text-base font-semibold rounded-full shadow-lg hover:shadow-xl",
+        "px-6 py-3 min-h-[44px] text-base font-semibold rounded-full shadow-lg hover:shadow-xl",
         className
       )}
       {...props}
