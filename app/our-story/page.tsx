@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft, Menu, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
+import { YouTubeFacade } from "@/components/custom/youtube-facade"
 
 export default function OurStoryPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
@@ -132,14 +133,10 @@ export default function OurStoryPage() {
                     </p>
                   </div>
                   <div className="relative w-full aspect-video mb-20 rounded-lg overflow-hidden">
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube-nocookie.com/embed/zvM3LIvq-6k"
+                    <YouTubeFacade
+                      videoId="zvM3LIvq-6k"
                       title="MYCURE Our Story"
-                      sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
+                    />
                   </div>
                   
                   <hr className="border-t border-border/40 my-12" />

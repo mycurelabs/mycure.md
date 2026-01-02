@@ -5,8 +5,30 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { PrimaryButton } from "@/components/custom/primary-button"
+import { YouTubeFacade } from "@/components/custom/youtube-facade"
 import { viewportOnce, transition } from "@/lib/animation-variants"
 import type { VideoShowcaseConfig } from "@/components/types/product-page"
+
+/**
+ * Extract YouTube video ID from various URL formats
+ * Supports: youtube-nocookie.com/embed/ID, youtube.com/embed/ID, youtube.com/watch?v=ID, youtu.be/ID
+ */
+function extractVideoId(url: string): string {
+  // Match embed URL: youtube-nocookie.com/embed/VIDEO_ID or youtube.com/embed/VIDEO_ID
+  const embedMatch = url.match(/\/embed\/([a-zA-Z0-9_-]+)/)
+  if (embedMatch) return embedMatch[1]
+
+  // Match watch URL: youtube.com/watch?v=VIDEO_ID
+  const watchMatch = url.match(/[?&]v=([a-zA-Z0-9_-]+)/)
+  if (watchMatch) return watchMatch[1]
+
+  // Match short URL: youtu.be/VIDEO_ID
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/)
+  if (shortMatch) return shortMatch[1]
+
+  // Fallback: return the URL as-is (might already be a video ID)
+  return url
+}
 
 interface VideoShowcaseProps {
   config: VideoShowcaseConfig
@@ -60,14 +82,9 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
           className="relative mx-auto max-w-5xl mt-16"
         >
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
-            <iframe
-              src={config.video.src}
+            <YouTubeFacade
+              videoId={extractVideoId(config.video.src)}
               title={config.video.title}
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-              sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
             />
             <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
           </div>

@@ -35,6 +35,7 @@ export const heroConfig = {
     },
   },
   video: {
+    videoId: "tye5mfEtoBw",
     src: "https://www.youtube-nocookie.com/embed/tye5mfEtoBw",
     title: "MYCURE Healthcare Management Platform Introduction",
     watchUrl: "https://www.youtube.com/watch?v=tye5mfEtoBw",
@@ -393,7 +394,7 @@ export const faqConfig = {
     },
     {
       question: "Is MYCURE compliant with healthcare regulations?",
-      answer: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics, hospitals, and healthcare facilities. From patient registration to PhilHealth claims, we streamline every aspect of your practice while ensuring HIPAA compliance and operational efficiency.",
+      answer: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics, hospitals, and healthcare facilities. From patient registration to billing, we streamline every aspect of your practice while ensuring HIPAA compliance and operational efficiency.",
     },
     {
       question: "What platforms does MYCURE support?",

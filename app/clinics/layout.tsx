@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Clinic Management Software | MYCURE for Outpatient Clinics',
-  description: 'Streamline your clinic operations with MYCURE. Complete EMR, scheduling, billing, and PhilHealth integration for Philippine outpatient clinics.',
+  description: 'Streamline your clinic operations with MYCURE. Complete EMR, scheduling, and comprehensive billing for Philippine outpatient clinics.',
   keywords: 'clinic management software, outpatient clinic EMR, clinic scheduling system, Philippine clinic software, patient management system',
   openGraph: {
     title: 'Clinic Management Software | MYCURE for Outpatient Clinics',
-    description: 'Streamline your clinic operations with MYCURE. Complete EMR, scheduling, billing, and PhilHealth integration.',
+    description: 'Streamline your clinic operations with MYCURE. Complete EMR, scheduling, and comprehensive billing.',
     url: 'https://mycure.md/clinics',
     siteName: 'MYCURE',
     locale: 'en_PH',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Clinic Management Software | MYCURE for Outpatient Clinics',
-    description: 'Streamline your clinic operations with MYCURE. Complete EMR, scheduling, billing, and PhilHealth integration.',
+    description: 'Streamline your clinic operations with MYCURE. Complete EMR, scheduling, and comprehensive billing.',
     images: ['/section-assets/clinic-page/outpatient-clinics-hero-section.png'],
   },
   alternates: {

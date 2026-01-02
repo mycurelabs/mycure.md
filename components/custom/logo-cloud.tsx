@@ -29,6 +29,8 @@ export function LogoCloud({
           // Static layout for reduced motion - center the logos
           prefersReducedMotion && "flex-wrap justify-center",
         )}
+        // GPU acceleration hint - use inline style since Tailwind lacks will-change-transform
+        style={{ willChange: prefersReducedMotion ? "auto" : "transform" }}
       >
         {/* Only duplicate logos when animating */}
         {(prefersReducedMotion ? logos : [...logos, ...logos]).map((logo, idx) => (

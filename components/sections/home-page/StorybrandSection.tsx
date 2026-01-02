@@ -157,6 +157,7 @@ export function StorybrandSection() {
                             animate={{ opacity: 1, y: index * 48 }}
                             exit={{ opacity: 0, x: 100, transition: { duration: 0.2 } }}
                             transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                            style={{ willChange: "transform, opacity" }}
                             className={`absolute left-0 right-0 bg-white dark:bg-gray-800 rounded-xl p-3 shadow-sm border ${
                               card.type === 'urgent' ? 'border-red-200 dark:border-red-800' : 'border-orange-200 dark:border-orange-800'
                             }`}
@@ -218,6 +219,7 @@ export function StorybrandSection() {
                         initial={{ width: "0%" }}
                         whileInView={{ width: "30%" }}
                         viewport={{ once: true }}
+                        style={{ willChange: "width" }}
                         transition={{
                           duration: 2,
                           ease: "easeOut",
@@ -301,6 +303,7 @@ export function StorybrandSection() {
                                   initial={{ opacity: 0, scale: 0.8 }}
                                   animate={{ opacity: 1, scale: 1 }}
                                   transition={{ delay: index * 0.15, type: "spring", stiffness: 300 }}
+                                  style={{ willChange: "transform, opacity" }}
                                   className="flex items-center gap-2 p-1.5 bg-green-50 dark:bg-green-900/20 rounded-lg"
                                 >
                                   <motion.div

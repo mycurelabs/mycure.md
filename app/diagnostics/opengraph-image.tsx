@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'MYCURE - Healthcare Management Platform'
+export const alt = 'MYCURE Diagnostics - Diagnostic Center Software'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -38,7 +38,7 @@ export default async function Image() {
               letterSpacing: '-2px',
             }}
           >
-            MYCURE
+            MYCURE Diagnostics
           </div>
           <div
             style={{
@@ -48,7 +48,7 @@ export default async function Image() {
               fontWeight: 600,
             }}
           >
-            Clinic Management System
+            Diagnostic Center Software
           </div>
           <div
             style={{
@@ -58,7 +58,7 @@ export default async function Image() {
               lineHeight: 1.4,
             }}
           >
-            Trusted by Leading Philippine Healthcare Providers
+            Laboratory and imaging center management made simple
           </div>
           <div
             style={{
@@ -69,15 +69,15 @@ export default async function Image() {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 8, height: 8, backgroundColor: '#22c55e', borderRadius: '50%' }} />
-              <span style={{ color: '#e2e8f0', fontSize: 18 }}>HIPAA Compliant</span>
+              <span style={{ color: '#e2e8f0', fontSize: 18 }}>Lab Results</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 8, height: 8, backgroundColor: '#22c55e', borderRadius: '50%' }} />
-              <span style={{ color: '#e2e8f0', fontSize: 18 }}>Works Offline</span>
+              <span style={{ color: '#e2e8f0', fontSize: 18 }}>Imaging Integration</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 8, height: 8, backgroundColor: '#22c55e', borderRadius: '50%' }} />
-              <span style={{ color: '#e2e8f0', fontSize: 18 }}>24/7 Support</span>
+              <span style={{ color: '#e2e8f0', fontSize: 18 }}>Result Delivery</span>
             </div>
           </div>
         </div>

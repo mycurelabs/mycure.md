@@ -15,6 +15,7 @@ import { NumberTicker } from "@/components/magicui/number-ticker"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
 import { LogoCloud } from "@/components/custom/logo-cloud"
+import { YouTubeFacade } from "@/components/custom/youtube-facade"
 import { usePageState } from "@/hooks/use-page-state"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
@@ -171,9 +172,9 @@ export default function LandingPage() {
                 <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }}><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap">{heroConfig.cta.secondary.text}</Button></Link>
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
+            <motion.div id="video-demo" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
-                <iframe src={heroConfig.video.src} title={heroConfig.video.title} loading="lazy" referrerPolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups" allowFullScreen className="absolute inset-0 w-full h-full" />
+                <YouTubeFacade videoId={heroConfig.video.videoId} title={heroConfig.video.title} />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
               </div>
               <noscript><div className="aspect-video rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center"><Link href={heroConfig.video.watchUrl} className="text-white hover:text-white/80 transition-colors" target="_blank" rel="noopener noreferrer">Watch MYCURE Introduction Video</Link></div></noscript>
