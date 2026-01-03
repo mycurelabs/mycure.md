@@ -41,7 +41,7 @@ export function AdvantagesSection({ config }: AdvantagesSectionProps) {
                 transition={{ duration: 0.6 }}
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
-                <div className={`relative ${isEven ? 'order-2 lg:order-1' : 'lg:order-1'}`}>
+                <div className={`relative ${isEven ? 'order-2 lg:order-1' : 'order-2 lg:order-2'}`}>
                   <Image
                     src={advantage.image}
                     width={480}
@@ -50,7 +50,7 @@ export function AdvantagesSection({ config }: AdvantagesSectionProps) {
                     className="relative rounded-xl"
                   />
                 </div>
-                <div className={`space-y-6 ${isEven ? 'order-1 lg:order-2' : 'lg:order-2'}`}>
+                <div className={`space-y-6 ${isEven ? 'order-1 lg:order-2' : 'order-1 lg:order-1'}`}>
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       {React.createElement(advantage.icon, { className: "size-6" })}
