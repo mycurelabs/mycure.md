@@ -140,7 +140,7 @@ export function StorybrandSection() {
                     Never-ending and confusing
                   </div>
                   <div className="relative h-40 overflow-hidden">
-                    <AnimatePresence mode="popLayout">
+                    <AnimatePresence mode="wait">
                       {visibleCards.map(({ cardId, instanceId }, index) => {
                         const card = allNotifications[cardId]
                         return (

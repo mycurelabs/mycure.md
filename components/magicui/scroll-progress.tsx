@@ -20,6 +20,7 @@ export function ScrollProgress({ className }: ScrollProgressProps) {
       style={{
         scaleX: scrollYProgress,
         transformOrigin: "0%",
+        willChange: "transform",
       }}
     />
   );

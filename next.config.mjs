@@ -12,6 +12,7 @@ const nextConfig = {
   // Image optimization enabled (Next.js default)
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000, // 1 year cache for optimized images
     remotePatterns: [
       {
         protocol: 'https',
