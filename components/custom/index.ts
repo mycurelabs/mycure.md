@@ -3,5 +3,4 @@
 
 export * from "./animated-badge"
 export * from "./primary-button"
-export * from "./sticky-features"
 export * from "./youtube-facade"
