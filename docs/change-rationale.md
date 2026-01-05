@@ -2,7 +2,7 @@
 
 **Purpose:** Explains the reasoning behind major content changes made to the MYCURE website.
 **Date:** 2026-01-02
-**Scope:** Homepage, clinics, hospital, diagnostics, dental, skin, telehealth, corporate, mobile-labs, booking, our-story, syncbase-technology, download pages
+**Scope:** Homepage, clinics, diagnostics, skin, telehealth, corporate, mobile-labs, booking, our-story, syncbase-technology, download pages
 
 ---
 
@@ -14,23 +14,21 @@
 
 ### Phase 1: Product Pages
 3. `app/clinics/data.ts` - Clinics page copy configuration
-4. `app/hospital/data.ts` - Hospital OPD page copy configuration
-5. `app/diagnostics/data.ts` - Diagnostics page copy configuration
+4. `app/diagnostics/data.ts` - Diagnostics page copy configuration
 
 ### Phase 2: Specialty Pages
-6. `app/dental/data.ts` - Dental practice page copy configuration
-7. `app/skin/data.ts` - Aesthetic/skin clinic page copy configuration
-8. `app/telehealth/data.ts` - Telehealth feature page copy configuration
+5. `app/skin/data.ts` - Aesthetic/skin clinic page copy configuration
+6. `app/telehealth/data.ts` - Telehealth feature page copy configuration
 
 ### Phase 3: Enterprise & Feature Pages
-9. `app/corporate/data.ts` - Corporate clinics page copy configuration
-10. `app/mobile-labs/data.ts` - Mobile labs page copy configuration
-11. `app/booking/data.ts` - Booking feature page copy configuration
+7. `app/corporate/data.ts` - Corporate clinics page copy configuration
+8. `app/mobile-labs/data.ts` - Mobile labs page copy configuration
+9. `app/booking/data.ts` - Booking feature page copy configuration
 
 ### Phase 4: Document Pages
-12. `app/our-story/page.tsx` - Founder story page (no changes needed)
-13. `app/syncbase-technology/page.tsx` - Syncbase technology page copy
-14. `app/download/page.tsx` - Download page copy
+10. `app/our-story/page.tsx` - Founder story page (no changes needed)
+11. `app/syncbase-technology/page.tsx` - Syncbase technology page copy
+12. `app/download/page.tsx` - Download page copy
 
 ---
 
@@ -103,7 +101,7 @@ See `docs/claims-to-verify.md` for complete list.
 
 ---
 
-# Phase 1: Product Pages (Clinics, Hospital, Diagnostics)
+# Phase 1: Product Pages (Clinics, Diagnostics)
 
 **Date:** 2026-01-02
 
@@ -124,39 +122,6 @@ See `docs/claims-to-verify.md` for complete list.
 | Original | Changed To | Rationale |
 |----------|------------|-----------|
 | "empowered teams" | "Support your team with intuitive tools" | "Empowers/empowered" is on banned phrases list |
-
----
-
-## Hospital Page Changes
-
-### Softened Unverifiable Claims
-
-| Original | Changed To | Rationale |
-|----------|------------|-----------|
-| "Save 3+ hours daily" | "Reduce time spent on manual paperwork" | Unverified time claim; focus on benefit |
-| "Never lose data" | "designed to minimize loss" | Absolute claim; technically impossible |
-| "Join thousands of healthcare facilities" | "Join hospitals across the Philippines" | Consistent; page-appropriate language |
-
-### Context Corrections
-
-| Original | Changed To | Rationale |
-|----------|------------|-----------|
-| "clinics nationwide are switching" | "hospitals are choosing" | Wrong context; this is hospital page |
-| "trusted choice for clinics nationwide" | "trusted choice for hospitals across the Philippines" | Wrong context; page-appropriate |
-
-### Brand Voice Compliance
-
-| Original | Changed To | Rationale |
-|----------|------------|-----------|
-| "Staff Empowerment" (title) | "Staff Support" | "Empowerment" is on banned phrases list |
-
-### Clarity Improvements
-
-| Original | Changed To | Rationale |
-|----------|------------|-----------|
-| "60" (wait times) | "60%" (Reduced Wait Times) | Missing unit; unclear without context |
-| "24" (availability) | "24/7" (System Availability) | Missing unit; unclear without context |
-| "improve patient outcomes" | "deliver better care" | Consistent with homepage pattern |
 
 ---
 
@@ -198,41 +163,29 @@ See `docs/claims-to-verify.md` for complete list.
 
 See `docs/claims-to-verify.md` for complete list including:
 
-1. **Hospital statistics** - 500K OPD visits, 60% wait time reduction, 24/7 availability
-2. **Diagnostics statistics** - 1.7M test results, 1.45M patients, 780 partners
-3. **CSI Guarantee** - Formal definition and coverage
+1. **Diagnostics statistics** - 1.7M test results, 1.45M patients, 780 partners
+2. **CSI Guarantee** - Formal definition and coverage
 
 ---
 
 ## Testing Recommendations (Phase 1)
 
-1. Review clinics, hospital, and diagnostics pages in staging
+1. Review clinics and diagnostics pages in staging
 2. Verify statistics banner displays correctly with updated labels
 3. Confirm page-specific language is contextually appropriate
 4. Check navigation consistency across product pages
 
 ---
 
-# Phase 2: Specialty Pages (Dental, Skin, Telehealth)
+# Phase 2: Specialty Pages (Skin, Telehealth)
 
 **Date:** 2026-01-02
 
 ---
 
-## Critical Change: Duplicate Advantages Sections
+## Critical Change: Duplicate Advantages Section
 
-Both dental and skin pages had **identical** "Advantages" sections copied from the clinics page. These were completely rewritten with specialty-specific content.
-
-### Dental Page - New Advantages Section
-
-| Original (Generic) | New (Specialty-Specific) |
-|-------------------|--------------------------|
-| HIPAA-Compliant Telehealth Platform | Interactive Digital Dental Charting |
-| Gain New Insights Into Your Clinic | Streamlined Treatment Planning |
-| A Lifeline for Your Clinic | Dental-Specific Inventory Management |
-| Easy Appointment Booking | Easy Appointment Booking for Patients |
-
-**Rationale:** The generic HIPAA/insights/lifeline content was not relevant to dental practices. New content focuses on tooth charting, treatment planning, and dental supplies.
+The skin page had an "Advantages" section copied from the clinics page. This was completely rewritten with specialty-specific content.
 
 ### Skin Page - New Advantages Section
 
@@ -244,19 +197,6 @@ Both dental and skin pages had **identical** "Advantages" sections copied from t
 | Easy Appointment Booking | Product & Service Sales |
 
 **Rationale:** Aesthetic clinics need photo galleries, injectable tracking, and retail POS. Uses "client" terminology appropriate for beauty industry.
-
----
-
-## Dental Page Changes
-
-### Context Corrections
-
-| Original | Changed To | Rationale |
-|----------|------------|-----------|
-| "clinics nationwide are switching" | "dental practices are choosing" | Wrong context; this is dental page |
-| "trusted choice for clinics nationwide" | "dental practices across the Philippines" | Wrong context; page-appropriate |
-| "improve outcomes" | "deliver better patient care" | Consistent pattern |
-| "Join thousands of dental clinics" | "Join dental practices across the Philippines" | Inconsistent count claim |
 
 ---
 
@@ -311,15 +251,14 @@ Both dental and skin pages had **identical** "Advantages" sections copied from t
 
 See `docs/claims-to-verify.md` for complete list including:
 
-1. **Dental statistics** - Uses company-wide numbers; may need specialty-specific data
-2. **Skin statistics** - 500K client records, 2M treatments, 10+ years
-3. **Telehealth statistics** - 850K+ virtual consultations, 780 partner providers
+1. **Skin statistics** - 500K client records, 2M treatments, 10+ years
+2. **Telehealth statistics** - 850K+ virtual consultations, 780 partner providers
 
 ---
 
 ## Testing Recommendations (Phase 2)
 
-1. Review dental, skin, and telehealth pages in staging
+1. Review skin and telehealth pages in staging
 2. Verify new Advantages sections render correctly with new icons
 3. Confirm specialty-specific terminology is contextually appropriate
 4. Check that skin page uses "client" consistently vs "patient"
@@ -482,24 +421,11 @@ See `docs/claims-to-verify.md` for complete list including:
 
 ## Overview
 
-Audited all page layout.tsx files for metadata consistency with copy cleanup changes. Found 4 issues where metadata descriptions contained claims that were softened in the main copy.
+Audited all page layout.tsx files for metadata consistency with copy cleanup changes. Found 2 issues where metadata descriptions contained claims that were softened in the main copy.
 
 ---
 
 ## Fixes Applied
-
-### hospital/layout.tsx
-
-| Field | Original | Changed To | Rationale |
-|-------|----------|------------|-----------|
-| description | "reduce wait times by 60%" | "reduce wait times" | Unverified percentage removed |
-| openGraph.url | "https://www.mycure.md/hospital" | "https://mycure.md/hospital" | URL consistency (no www) |
-
-### dental/layout.tsx
-
-| Field | Original | Changed To | Rationale |
-|-------|----------|------------|-----------|
-| description | "seamless billing" | "integrated billing" | "seamless" is banned phrase |
 
 ### booking/layout.tsx
 

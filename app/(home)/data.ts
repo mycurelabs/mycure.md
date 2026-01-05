@@ -19,11 +19,11 @@ import type { LucideIcon } from "lucide-react"
 export const heroConfig = {
   badge: "✨ MYCURE X: Launches soon",
   headline: {
-    line1: "Healthcare made simple.",
-    line2: "Your patients, first.",
+    line1: "Run the clinic",
+    line2: "you've always envisioned.",
   },
   description:
-    "An enterprise-grade clinic management system designed for Philippine healthcare. Secure, offline-capable, and built to simplify your operations.",
+    "No more lost records. No more scheduling chaos. Just a practice that runs smoothly—so you can focus on what matters.",
   cta: {
     primary: {
       text: "Book a Demo",
@@ -442,9 +442,7 @@ export const navigationConfig = {
   ],
   solutions: [
     { label: "Clinics", href: "/clinics", description: "Streamlined workflows for outpatient clinic operations." },
-    { label: "Hospital", href: "/hospital", description: "Comprehensive management for hospital operations." },
     { label: "Corporate", href: "/corporate", description: "Employee health programs and physical exams." },
-    { label: "Dental", href: "/dental", description: "Specialized tools for dental practice management." },
     { label: "Skin & Aesthetics", href: "/skin", description: "Dermatology and aesthetic clinic solutions." },
     { label: "Diagnostics", href: "/diagnostics", description: "Laboratory and imaging workflow management." },
     { label: "Mobile Labs", href: "/mobile-labs", description: "On-site diagnostic services and specimen collection." },

@@ -163,11 +163,11 @@ export const specialtiesGridConfig: IconCardGridConfig = {
         "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking",
     },
     {
-      id: "dentistry",
+      id: "specialty-charting",
       icon: Stethoscope,
-      title: "Dentistry",
+      title: "Specialty Charting",
       description:
-        "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping",
+        "Visual charting tools, treatment planning, and appointment management with specialty-specific workflows",
     },
     {
       id: "diagnostics",

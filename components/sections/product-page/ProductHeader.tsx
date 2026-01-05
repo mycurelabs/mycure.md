@@ -76,25 +76,9 @@ export function ProductHeader() {
                   </li>
                   <li>
                     <NavigationMenuLink asChild>
-                      <Link href="/hospital" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Hospital</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Comprehensive management for hospital operations.</p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
                       <Link href="/corporate" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                         <div className="text-sm font-medium leading-none">Corporate</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Employee health programs and physical exams.</p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="/dental" className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Dental</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">Specialized tools for dental practice management.</p>
                       </Link>
                     </NavigationMenuLink>
                   </li>

@@ -2,7 +2,7 @@
 
 **Purpose:** List of website claims that require internal confirmation before publishing.
 **Generated:** 2026-01-02
-**Scope:** Homepage, clinics, hospital, diagnostics, dental, skin, telehealth, corporate, mobile-labs, booking, our-story, syncbase-technology, download pages (all pages complete)
+**Scope:** Homepage, clinics, diagnostics, skin, telehealth, corporate, mobile-labs, booking, our-story, syncbase-technology, download pages (all pages complete)
 
 ---
 
@@ -45,15 +45,6 @@
 
 ## Priority 4: Page-Specific Metrics (Phase 1)
 
-### Hospital Page Statistics
-| Metric | Current Value | Verification Needed |
-|--------|---------------|---------------------|
-| OPD Visits Managed | 500,000 | Confirm this is accurate and trackable |
-| Reduced Wait Times | 60% | Confirm methodology for measuring wait time reduction |
-| System Availability | 24/7 | Confirm actual uptime SLA or historical availability |
-
-**Action Required:** Confirm with product/engineering team that hospital statistics are accurate and defensible.
-
 ### Diagnostics Page Statistics
 | Metric | Current Value | Verification Needed |
 |--------|---------------|---------------------|
@@ -66,7 +57,6 @@
 ### CSI Guarantee Claims
 | Page | Claim | Verification Needed |
 |------|-------|---------------------|
-| Hospital | "CSI Guarantee - Compliance, Security, and Interoperability" | Confirm CSI is a formal guarantee or certification |
 | Diagnostics | "Protected by MYCURE CSI Guarantee" | Confirm CSI guarantee terms and what it covers |
 
 **Action Required:** Confirm with legal/product team that CSI Guarantee is formally defined.
@@ -93,15 +83,6 @@ The following claims were softened during revision per brand voice guidelines:
 | "save lives every day" | "deliver better care" | Dramatic claim |
 | "Join thousands" | "Join healthcare facilities across the Philippines" | Inconsistent with facility count |
 
-### Hospital Page
-| Original | Revised To | Reason |
-|----------|------------|--------|
-| "Save 3+ hours daily" | "Reduce time spent on manual paperwork" | Unverified time claim |
-| "Staff Empowerment" | "Staff Support" | Banned phrase |
-| "clinics nationwide" | "hospitals are choosing" | Wrong context (hospital page) |
-| "Never lose data" | "designed to minimize loss" | Absolute claim |
-| "Join thousands" | "Join hospitals across the Philippines" | Inconsistent with facility count |
-
 ### Diagnostics Page
 | Original | Revised To | Reason |
 |----------|------------|--------|
@@ -109,15 +90,6 @@ The following claims were softened during revision per brand voice guidelines:
 | "clinics nationwide" | "diagnostic centers are choosing" | Wrong context (diagnostics page) |
 | "Lives Saved" metric | "Patients Served" | Problematic metric |
 | "clinics nationwide" (advantages) | "diagnostic centers across the Philippines" | Wrong context |
-
-### Dental Page
-| Original | Revised To | Reason |
-|----------|------------|--------|
-| "clinics nationwide" | "dental practices are choosing" | Wrong context (dental page) |
-| "improve outcomes" | "deliver better patient care" | Consistent pattern |
-| "clinics nationwide" (advantages) | "dental practices across the Philippines" | Wrong context |
-| "Join thousands of dental clinics" | "Join dental practices across the Philippines" | Inconsistent with count |
-| Generic Advantages section | Dental-specific content | Duplicate content rewritten |
 
 ### Skin Page
 | Original | Revised To | Reason |
@@ -178,15 +150,6 @@ The following claims were softened during revision per brand voice guidelines:
 ---
 
 ## Priority 5: Page-Specific Metrics (Phase 2)
-
-### Dental Page Statistics
-| Metric | Current Value | Verification Needed |
-|--------|---------------|---------------------|
-| Dental Records | 13,239,859 | Same as company-wide; confirm if accurate for dental specifically |
-| Patients Treated | 2,946,953 | Same as company-wide; confirm if accurate for dental specifically |
-| Procedures Completed | 6,242,974 | Same as company-wide; confirm if accurate for dental specifically |
-
-**Note:** Dental page uses company-wide statistics. Consider if specialty-specific metrics are available.
 
 ### Skin Page Statistics
 | Metric | Current Value | Verification Needed |
@@ -251,8 +214,6 @@ The following claims were softened during revision per brand voice guidelines:
 ### Metadata Claims Already Fixed
 | File | Original Claim | Fixed To |
 |------|---------------|----------|
-| hospital/layout.tsx | "reduce wait times by 60%" | "reduce wait times" |
-| dental/layout.tsx | "seamless billing" | "integrated billing" |
 | booking/layout.tsx | "in 10 minutes, reduce no-shows by 70%" | "in minutes and help reduce no-shows" |
 | syncbase-technology/layout.tsx | "Work seamlessly" + "holy grail" | "Work smoothly" + "Advanced" |
 

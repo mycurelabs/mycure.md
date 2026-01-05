@@ -19,19 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/hospital`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/corporate`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/dental`,
       lastModified: lastUpdate,
       changeFrequency: "monthly",
       priority: 0.8,
