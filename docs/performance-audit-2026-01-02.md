@@ -168,7 +168,7 @@ const formatter = useMemo(
 
 5. **Reduce AnimatePresence scope**
    - Only wrap elements that need exit animations
-   - Consider `mode="wait"` instead of `mode="popLayout"`
+   - Use `mode="popLayout"` for lists, `mode="wait"` only for single-child transitions
 
 6. **Throttle viewport triggers**
    - Add intersection observer `rootMargin` buffer
