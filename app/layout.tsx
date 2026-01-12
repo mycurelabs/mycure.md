@@ -11,11 +11,7 @@ import { Analytics as GoogleAnalytics } from "@/components/analytics"
 import { Footer } from "@/components/sections/Footer"
 import { StructuredData } from "@/components/structured-data"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
-
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
@@ -92,14 +88,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        {/* Preload critical above-fold resources */}
-        <link rel="preload" href="/mycure-logo.svg" as="image" type="image/svg+xml" />
         <StructuredData />
       </head>
       <body className={`${inter.variable} ${lora.variable} font-sans`}>
