@@ -24,7 +24,7 @@ export function IconCardGrid({ config }: IconCardGridProps) {
           <div className="flex justify-center mb-4">
             <AnimatedBadge>{config.badge}</AnimatedBadge>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight mb-6">
             {config.headline}
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

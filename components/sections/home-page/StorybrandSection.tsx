@@ -102,7 +102,7 @@ export function StorybrandSection() {
                 transition={{ duration: 0.6 }}
               >
                 <AnimatedBadge>Your Journey</AnimatedBadge>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mt-4">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight mt-4">
                   From Chaos<br />to Clarity
                 </h2>
                 <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">

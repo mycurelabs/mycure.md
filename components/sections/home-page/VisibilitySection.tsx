@@ -32,7 +32,7 @@ export function VisibilitySection({ config }: VisibilitySectionProps) {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">
             {config.headline}
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">

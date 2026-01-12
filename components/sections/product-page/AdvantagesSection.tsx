@@ -23,7 +23,7 @@ export function AdvantagesSection({ config }: AdvantagesSectionProps) {
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{config.headline}</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight">{config.headline}</h2>
           <p className="max-w-[800px] text-muted-foreground text-xl md:text-2xl leading-relaxed">
             {config.description}
           </p>

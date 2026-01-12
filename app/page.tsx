@@ -15,7 +15,6 @@ import { NumberTicker } from "@/components/magicui/number-ticker"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
 import { Marquee } from "@/components/ui/marquee"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { YouTubeFacade } from "@/components/custom/youtube-facade"
 import { usePageState } from "@/hooks/use-page-state"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -155,7 +154,7 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center max-w-4xl mx-auto mb-12">
               <div className="mb-6"><div className="rounded-full px-4 py-1.5 bg-white/90 border border-white/30 backdrop-blur-sm shadow-lg inline-block"><AnimatedGradientText className="text-sm font-medium" colorFrom="var(--gradient-quinary)" colorTo="#FF6B35" speed={1.5}>{heroConfig.badge}</AnimatedGradientText></div></div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">{heroConfig.description}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
                 <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer"><RainbowButton variant="outline" size="lg" className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></RainbowButton></Link>
@@ -180,28 +179,23 @@ export default function LandingPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center">
               <div className="space-y-1"><p className="text-sm font-medium text-muted-foreground">{logosConfig.heading}</p><p className="text-lg font-semibold text-foreground">{logosConfig.subheading}</p></div>
               <div className="relative w-full max-w-6xl overflow-hidden">
-                <TooltipProvider delayDuration={100}>
-                  <Marquee pauseOnHover className="[--duration:60s] [--gap:2rem] md:[--gap:3rem]">
-                    {logosConfig.logos.map((logo) => (
-                      <Tooltip key={logo.alt}>
-                        <TooltipTrigger asChild>
-                          <div className="flex shrink-0 items-center justify-center">
-                            <Image
-                              src={logo.src}
-                              alt={logo.alt}
-                              width={240}
-                              height={96}
-                              className="h-20 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-24"
-                            />
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{logo.name || logo.alt}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </Marquee>
-                </TooltipProvider>
+                <Marquee pauseOnHover className="[--duration:60s] [--gap:2rem] md:[--gap:3rem] pb-10">
+                  {logosConfig.logos.map((logo) => (
+                    <div key={logo.alt} className="group/logo relative flex shrink-0 items-center justify-center">
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={240}
+                        height={96}
+                        className="h-20 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-24"
+                      />
+                      {/* CSS-only tooltip */}
+                      <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md opacity-0 transition-opacity group-hover/logo:opacity-100">
+                        {logo.name || logo.alt}
+                      </div>
+                    </div>
+                  ))}
+                </Marquee>
               </div>
             </motion.div>
           </div>
@@ -216,7 +210,7 @@ export default function LandingPage() {
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <AnimatedBadge>{featuresGridConfig.badge}</AnimatedBadge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{featuresGridConfig.headline}</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">{featuresGridConfig.headline}</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">{featuresGridConfig.description}</p>
             </motion.div>
             <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -232,7 +226,7 @@ export default function LandingPage() {
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 md:px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">{statisticsConfig.headline}</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">{statisticsConfig.headline}</h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{statisticsConfig.description}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10">
@@ -263,7 +257,7 @@ export default function LandingPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative z-10 py-16 md:py-24">
                 <div className="space-y-8">
                   <div className="space-y-6">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" /><span className="text-primary">{integrationConfig.headline.highlight}</span></h2>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" /><span className="text-primary">{integrationConfig.headline.highlight}</span></h2>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{integrationConfig.description}</p>
                   </div>
                   <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
@@ -285,7 +279,7 @@ export default function LandingPage() {
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 md:px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">{faqConfig.headline}</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">{faqConfig.headline}</h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{faqConfig.description}</p>
             </motion.div>
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
@@ -300,7 +294,7 @@ export default function LandingPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center max-w-4xl mx-auto">
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} <span className="text-primary">{finalCtaConfig.headline.highlight}</span> {finalCtaConfig.headline.after}</h2>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} <span className="text-primary">{finalCtaConfig.headline.highlight}</span> {finalCtaConfig.headline.after}</h2>
                   <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{finalCtaConfig.description}</p>
                 </div>
                 <div className="flex justify-center items-center"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer"><PrimaryButton slow className="h-12 flex items-center justify-center gap-2">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link></div>

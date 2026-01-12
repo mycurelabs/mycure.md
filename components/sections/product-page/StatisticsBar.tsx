@@ -22,7 +22,7 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center space-y-6 text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">
             {config.headline}
           </h2>
           <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">

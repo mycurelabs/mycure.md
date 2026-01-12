@@ -1,6 +1,6 @@
 import type React from "react"
 import "./globals.css"
-import { Inter } from "next/font/google"
+import { Inter, Lora } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ScrollProgress } from "@/components/magicui/scroll-progress"
@@ -11,7 +11,16 @@ import { Analytics as GoogleAnalytics } from "@/components/analytics"
 import { Footer } from "@/components/sections/Footer"
 import { StructuredData } from "@/components/structured-data"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+  weight: ["400", "500", "600", "700"],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mycure.md"),
@@ -83,14 +92,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* Preload critical above-fold resources */}
+        <link rel="preload" href="/mycure-logo.svg" as="image" type="image/svg+xml" />
         <StructuredData />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${lora.variable} font-sans`}>
         <GoogleAnalytics />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>

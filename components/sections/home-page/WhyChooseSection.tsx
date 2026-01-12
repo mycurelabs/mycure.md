@@ -39,7 +39,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{config.headline}</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">{config.headline}</h2>
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}
           </p>
