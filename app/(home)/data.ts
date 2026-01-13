@@ -23,14 +23,14 @@ export const heroConfig = {
     line2: "you've always envisioned.",
   },
   description:
-    "No more lost records. No more scheduling chaos. Just a practice that runs smoothly—so you can focus on what matters.",
+    "No more lost records. No more scheduling chaos. Just a practice that runs smoothly — so you can focus on what matters.",
   cta: {
     primary: {
       text: "Book a Demo",
       href: "https://calendly.com/mycure/demo",
     },
     secondary: {
-      text: "Watch Demo",
+      text: "Watch an Overview",
       href: "#video-demo",
     },
   },
