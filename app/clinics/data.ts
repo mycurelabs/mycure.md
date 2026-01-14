@@ -55,7 +55,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
       icon: TrendingUp,
       title: "Time Efficiency",
       description:
-        "Turn wasted hours into 3+ hours saved daily with automated workflows and streamlined operations",
+        "Reduce time spent on administrative tasks with automated workflows and streamlined operations",
     },
     {
       id: "patient-flow",
@@ -69,7 +69,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
       icon: Heart,
       title: "Staff Wellness",
       description:
-        "Convert staff burnout into empowered teams with intuitive tools that make work enjoyable and productive",
+        "Support your team with intuitive tools that reduce repetitive tasks and help them focus on patient care",
     },
     {
       id: "schedule-optimization",
@@ -126,7 +126,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to helping healthcare facilities save lives every day through innovative clinic management technology.",
+    "MYCURE helps healthcare facilities deliver better care through modern clinic management technology.",
   items: [
     { value: 13239859, label: "Medical Records", delay: 0.3 },
     { value: 2946953, label: "Patients Served", delay: 0.4 },
@@ -163,11 +163,11 @@ export const specialtiesGridConfig: IconCardGridConfig = {
         "Child-focused workflows with growth charts, vaccination schedules, and developmental milestone tracking",
     },
     {
-      id: "dentistry",
+      id: "specialty-charting",
       icon: Stethoscope,
-      title: "Dentistry",
+      title: "Specialty Charting",
       description:
-        "Comprehensive dental charting, treatment planning, and appointment management with visual tooth mapping",
+        "Visual charting tools, treatment planning, and appointment management with specialty-specific workflows",
     },
     {
       id: "diagnostics",
@@ -250,7 +250,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your clinic operations?",
   },
   description:
-    "Join thousands of healthcare facilities that trust MYCURE to streamline their operations and improve patient care.",
+    "Join healthcare facilities across the Philippines that trust MYCURE to streamline their operations and improve patient care.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

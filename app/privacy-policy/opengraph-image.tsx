@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'MYCURE - Healthcare Management Platform'
+export const alt = 'Privacy Policy - MYCURE'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -38,7 +38,7 @@ export default async function Image() {
               letterSpacing: '-2px',
             }}
           >
-            MYCURE
+            Privacy Policy
           </div>
           <div
             style={{
@@ -48,7 +48,7 @@ export default async function Image() {
               fontWeight: 600,
             }}
           >
-            Clinic Management System
+            Your Data, Protected
           </div>
           <div
             style={{
@@ -58,27 +58,7 @@ export default async function Image() {
               lineHeight: 1.4,
             }}
           >
-            Trusted by Leading Philippine Healthcare Providers
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              gap: 32,
-              marginTop: 40,
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 8, height: 8, backgroundColor: '#22c55e', borderRadius: '50%' }} />
-              <span style={{ color: '#e2e8f0', fontSize: 18 }}>HIPAA Compliant</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 8, height: 8, backgroundColor: '#22c55e', borderRadius: '50%' }} />
-              <span style={{ color: '#e2e8f0', fontSize: 18 }}>Works Offline</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 8, height: 8, backgroundColor: '#22c55e', borderRadius: '50%' }} />
-              <span style={{ color: '#e2e8f0', fontSize: 18 }}>24/7 Support</span>
-            </div>
+            How MYCURE handles and protects your information
           </div>
         </div>
       </div>

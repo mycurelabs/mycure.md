@@ -127,7 +127,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Leading Corporations Nationwide",
   description:
-    "MYCURE Corporate helps businesses save millions in healthcare costs while improving employee wellness and satisfaction.",
+    "MYCURE Corporate helps businesses manage healthcare costs while improving employee wellness and satisfaction.",
   items: [
     { value: 250000, label: "Employees Served", suffix: "+", delay: 0.3 },
     { value: 500, label: "Corporate Clients", suffix: "+", delay: 0.4 },
@@ -200,7 +200,7 @@ export const advantagesConfig: AdvantagesConfig = {
       image: "/section-assets/clinic-page/carousel/carousel-network.webp",
       bullets: [
         "Real-time visibility across all clinic branches and departments",
-        "Centralized inventory management reducing wastage significantly",
+        "Centralized inventory management helping reduce wastage",
         "Standardized protocols ensuring consistent care quality",
       ],
     },
@@ -237,7 +237,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Direct HMO integration eliminating manual verification",
         "Automated benefits tracking and utilization reports",
-        "Instant eligibility checking reducing claim rejections significantly",
+        "Instant eligibility checking helping reduce claim rejections",
       ],
     },
   ],

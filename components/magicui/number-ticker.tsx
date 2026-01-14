@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -25,11 +25,17 @@ export function NumberTicker({
   const ref = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
+  // Memoize formatter to avoid creating new instance on every frame
+  const formatter = useMemo(
+    () => new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: decimalPlaces,
+      maximumFractionDigits: decimalPlaces,
+    }),
+    [decimalPlaces]
+  );
+
   // Format the final value for display
-  const formattedValue = Intl.NumberFormat("en-US", {
-    minimumFractionDigits: decimalPlaces,
-    maximumFractionDigits: decimalPlaces,
-  }).format(value);
+  const formattedValue = formatter.format(value);
 
   // For reduced motion, start at the final value (no animation)
   const initialValue = prefersReducedMotion
@@ -62,18 +68,16 @@ export function NumberTicker({
     }
   }, [motionValue, isInView, delay, value, direction, startValue, prefersReducedMotion, formattedValue]);
 
-  useEffect(
-    () =>
-      springValue.on("change", (latest) => {
-        if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat("en-US", {
-            minimumFractionDigits: decimalPlaces,
-            maximumFractionDigits: decimalPlaces,
-          }).format(Number(latest.toFixed(decimalPlaces)));
-        }
-      }),
-    [springValue, decimalPlaces],
-  );
+  useEffect(() => {
+    const unsubscribe = springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = formatter.format(
+          Number(latest.toFixed(decimalPlaces))
+        );
+      }
+    });
+    return unsubscribe;
+  }, [springValue, formatter, decimalPlaces]);
 
   return (
     <span

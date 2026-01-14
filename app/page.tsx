@@ -14,7 +14,8 @@ import { AnimatedGradientText } from "@/components/magicui/animated-gradient-tex
 import { NumberTicker } from "@/components/magicui/number-ticker"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { Card, CardContent } from "@/components/ui/card"
-import { LogoCloud } from "@/components/custom/logo-cloud"
+import { Marquee } from "@/components/ui/marquee"
+import { YouTubeFacade } from "@/components/custom/youtube-facade"
 import { usePageState } from "@/hooks/use-page-state"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
@@ -27,6 +28,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 import { WhyChooseSection, VisibilitySection, TimelineSection, StorybrandSection } from "@/components/sections/home-page"
+import { MobileNav } from "@/components/sections/product-page/MobileNav"
 
 import {
   heroConfig,
@@ -127,32 +129,20 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4 md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">{mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}<span className="sr-only">Toggle theme</span></Button>
-            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}<span className="sr-only">Toggle menu</span></Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-controls="mobile-menu"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </Button>
           </div>
         </div>
-        {mobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b">
-            <div className="container py-4 flex flex-col gap-4">
-              <div className="py-2">
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="features" className="border-none">
-                    <AccordionTrigger className="py-0 hover:no-underline"><span className="text-sm font-medium">Features</span></AccordionTrigger>
-                    <AccordionContent>{navigationConfig.features.map((navItem) => (<Link key={navItem.href} href={navItem.href} className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground" onClick={() => setMobileMenuOpen(false)}>{navItem.label}</Link>))}</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="solutions" className="border-none">
-                    <AccordionTrigger className="py-0 hover:no-underline"><span className="text-sm font-medium">Solutions</span></AccordionTrigger>
-                    <AccordionContent>{navigationConfig.solutions.map((navItem) => (<Link key={navItem.href} href={navItem.href} className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground" onClick={() => setMobileMenuOpen(false)}>{navItem.label}</Link>))}</AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-              {navigationConfig.links.map((link) => (<Link key={link.href} href={link.href} className="py-2 text-sm font-medium" onClick={(e) => scrollToSection(e, link.href)}>{link.label}</Link>))}
-              <div className="flex flex-col gap-2 pt-2 border-t">
-                <Link href={navigationConfig.loginUrl} target="_blank" rel="noopener noreferrer" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>Log In</Link>
-                <Link href={navigationConfig.ctaUrl} target="_blank" rel="noopener noreferrer"><PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base">Get Started<ChevronRight className="ml-1 size-4" /></PrimaryButton></Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
+        {/* Mobile Menu */}
+        <MobileNav isOpen={mobileMenuOpen} onOpenChange={setMobileMenuOpen} />
       </header>
 
       <main className="flex-1">
@@ -164,16 +154,16 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center max-w-4xl mx-auto mb-12">
               <div className="mb-6"><div className="rounded-full px-4 py-1.5 bg-white/90 border border-white/30 backdrop-blur-sm shadow-lg inline-block"><AnimatedGradientText className="text-sm font-medium" colorFrom="var(--gradient-quinary)" colorTo="#FF6B35" speed={1.5}>{heroConfig.badge}</AnimatedGradientText></div></div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">{heroConfig.description}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-                <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer"><RainbowButton variant="outline" size="lg" className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></RainbowButton></Link>
-                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }}><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap">{heroConfig.cta.secondary.text}</Button></Link>
+                <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer"><RainbowButton variant="outline" size="lg" className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></RainbowButton></Link>
+                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }}><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
+            <motion.div id="video-demo" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
-                <iframe src={heroConfig.video.src} title={heroConfig.video.title} loading="lazy" referrerPolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups" allowFullScreen className="absolute inset-0 w-full h-full" />
+                <YouTubeFacade videoId={heroConfig.video.videoId} title={heroConfig.video.title} />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
               </div>
               <noscript><div className="aspect-video rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center"><Link href={heroConfig.video.watchUrl} className="text-white hover:text-white/80 transition-colors" target="_blank" rel="noopener noreferrer">Watch MYCURE Introduction Video</Link></div></noscript>
@@ -188,7 +178,25 @@ export default function LandingPage() {
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center">
               <div className="space-y-1"><p className="text-sm font-medium text-muted-foreground">{logosConfig.heading}</p><p className="text-lg font-semibold text-foreground">{logosConfig.subheading}</p></div>
-              <LogoCloud logos={logosConfig.logos} className="w-full max-w-6xl" />
+              <div className="relative w-full max-w-6xl overflow-hidden">
+                <Marquee pauseOnHover className="[--duration:60s] [--gap:2rem] md:[--gap:3rem] pb-10">
+                  {logosConfig.logos.map((logo) => (
+                    <div key={logo.alt} className="group/logo relative flex shrink-0 items-center justify-center">
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={240}
+                        height={96}
+                        className="h-20 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-24"
+                      />
+                      {/* CSS-only tooltip */}
+                      <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md opacity-0 transition-opacity group-hover/logo:opacity-100">
+                        {logo.name || logo.alt}
+                      </div>
+                    </div>
+                  ))}
+                </Marquee>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -202,7 +210,7 @@ export default function LandingPage() {
           <div className="container px-4 sm:px-6 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <AnimatedBadge>{featuresGridConfig.badge}</AnimatedBadge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{featuresGridConfig.headline}</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">{featuresGridConfig.headline}</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">{featuresGridConfig.description}</p>
             </motion.div>
             <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -218,7 +226,7 @@ export default function LandingPage() {
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 md:px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">{statisticsConfig.headline}</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">{statisticsConfig.headline}</h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{statisticsConfig.description}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10">
@@ -249,7 +257,7 @@ export default function LandingPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative z-10 py-16 md:py-24">
                 <div className="space-y-8">
                   <div className="space-y-6">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" /><span className="text-primary">{integrationConfig.headline.highlight}</span></h2>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" /><span className="text-primary">{integrationConfig.headline.highlight}</span></h2>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{integrationConfig.description}</p>
                   </div>
                   <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
@@ -271,11 +279,11 @@ export default function LandingPage() {
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 md:px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">{faqConfig.headline}</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">{faqConfig.headline}</h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{faqConfig.description}</p>
             </motion.div>
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-              {faqConfig.items.map((faq, i) => (<AccordionItem key={i} value={`item-${i}`} className="border-white/20 bg-white/10 backdrop-blur-sm rounded-xl mb-4 px-6"><AccordionTrigger className="text-white hover:text-white/80 text-left text-lg font-medium">{faq.question}</AccordionTrigger><AccordionContent className="text-white/80 text-xl leading-relaxed">{faq.hasLink ? (<>Visit <a href={faq.linkHref} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{faq.linkText}</a> for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.</>) : faq.answer}</AccordionContent></AccordionItem>))}
+              {faqConfig.items.map((faq, i) => (<AccordionItem key={i} value={`item-${i}`} className="border-white/20 bg-white/10 backdrop-blur-sm rounded-xl mb-3 sm:mb-4 px-4 sm:px-6"><AccordionTrigger className="text-white hover:text-white/80 text-left text-base sm:text-lg font-medium py-4 sm:py-5">{faq.question}</AccordionTrigger><AccordionContent className="text-white/80 text-base sm:text-lg leading-relaxed">{faq.hasLink ? (<>Visit <a href={faq.linkHref} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{faq.linkText}</a> for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.</>) : faq.answer}</AccordionContent></AccordionItem>))}
             </Accordion>
           </div>
         </section>
@@ -286,7 +294,7 @@ export default function LandingPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center max-w-4xl mx-auto">
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} <span className="text-primary">{finalCtaConfig.headline.highlight}</span> {finalCtaConfig.headline.after}</h2>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} <span className="text-primary">{finalCtaConfig.headline.highlight}</span> {finalCtaConfig.headline.after}</h2>
                   <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{finalCtaConfig.description}</p>
                 </div>
                 <div className="flex justify-center items-center"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer"><PrimaryButton slow className="h-12 flex items-center justify-center gap-2">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link></div>

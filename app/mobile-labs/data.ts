@@ -57,7 +57,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Clock,
       title: "Wasted Time & Resources",
       description:
-        "Turn manual processes into automated workflows saving hours daily with location-based registrations",
+        "Turn manual processes into automated workflows with location-based registrations",
     },
     {
       id: "long-wait-times",
@@ -116,7 +116,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "Smooth Mobile Workflow",
   headline: "How MYCURE Automates Your Entire Mobile Lab Workflow",
   description:
-    "Discover why mobile labs nationwide are switching to MYCURE's integrated workflow that handles location-based registrations with ease—from sample collection to result delivery.",
+    "Discover why mobile labs are choosing MYCURE's integrated workflow that handles location-based registrations with ease—from sample collection to result delivery.",
   image: {
     src: "/section-assets/diagnostics/diagnostics-workflow.webp",
     alt: "MYCURE Mobile Lab Workflow - From Sample Collection to Result Delivery",
@@ -191,7 +191,7 @@ export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
   headline: "Why Mobile Labs Choose MYCURE",
   description:
-    "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
+    "Experience the features that make MYCURE the trusted choice for mobile labs across the Philippines.",
   items: [
     {
       title: "Work Online or Offline",

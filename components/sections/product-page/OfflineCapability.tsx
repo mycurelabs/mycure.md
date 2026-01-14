@@ -21,7 +21,7 @@ export function OfflineCapability() {
           </div>
 
           {/* Headline */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight max-w-3xl">
             Never Stop Caring, Even Without Internet
           </h2>
 

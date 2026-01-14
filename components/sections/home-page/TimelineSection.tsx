@@ -51,7 +51,7 @@ export function TimelineSection({ config }: TimelineSectionProps) {
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight leading-tight">
             {config.headline}{" "}
             <span className="bg-primary/10 text-primary px-3 py-1 rounded-xl">{config.headlineHighlight}</span>
           </h2>

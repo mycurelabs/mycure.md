@@ -60,7 +60,7 @@
     --color-3: oklch(69.6% 0.165 251);
     --color-4: oklch(80.2% 0.134 225);
     --color-5: oklch(90.7% 0.231 133);
-    
+
     /* Dynamic gradient colors for light mode */
     --gradient-primary: #008FCC;
     --gradient-secondary: #0085CC;
@@ -107,7 +107,7 @@
     --color-3: oklch(69.6% 0.165 251);
     --color-4: oklch(80.2% 0.134 225);
     --color-5: oklch(90.7% 0.231 133);
-    
+
     /* Dynamic gradient colors for dark mode */
     --gradient-primary: #33A6D6;
     --gradient-secondary: #3BA2D6;
@@ -122,6 +122,8 @@
     --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
     --animate-shiny-text: shiny-text 8s infinite;
     --animate-gradient: gradient 8s linear infinite;
+    --animate-marquee: marquee var(--duration) infinite linear;
+    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   }
 
   /* Dynamic gradient backgrounds for sections */
@@ -148,6 +150,9 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
 
@@ -207,6 +212,22 @@
   @keyframes gradient {
   to {
     background-position: var(--bg-size, 300%) 0;
+    }
+  }
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }

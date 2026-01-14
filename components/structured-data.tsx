@@ -16,9 +16,9 @@ export function StructuredData() {
     "@type": "Organization",
     name: "MYCURE",
     url: "https://mycure.md",
-    logo: "https://mycure.md/logo.png",
+    logo: "https://mycure.md/mycure-logo.svg",
     description:
-      "MYCURE is a comprehensive healthcare management platform designed specifically for Philippine healthcare providers. Trusted by 2,900+ clinics and hospitals.",
+      "MYCURE is a comprehensive healthcare management platform designed specifically for Philippine healthcare providers. Trusted by leading clinics and hospitals.",
     foundingDate: "2013",
     foundingLocation: {
       "@type": "Place",
@@ -54,8 +54,7 @@ export function StructuredData() {
       "Electronic Medical Records (EMR)",
       "Patient Registration",
       "Appointment Scheduling",
-      "PhilHealth Integration",
-      "HIPAA Compliance",
+            "HIPAA Compliance",
       "Offline Capability",
       "Telehealth",
       "Laboratory Management",
@@ -74,10 +73,11 @@ export function StructuredData() {
     "@type": "WebSite",
     name: "MYCURE",
     url: "https://mycure.md",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://mycure.md/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
+    description: "Comprehensive clinic management system for Philippine healthcare providers",
+    publisher: {
+      "@type": "Organization",
+      name: "MYCURE",
+      url: "https://mycure.md",
     },
   };
 
@@ -106,7 +106,7 @@ export function StructuredData() {
         name: "Is MYCURE compliant with healthcare regulations?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, MYCURE is designed to be HIPAA compliant and supports Philippine healthcare requirements including PhilHealth integration, DOH reporting, and secure patient data management.",
+          text: "Yes, MYCURE is designed to be HIPAA compliant and supports Philippine healthcare requirements with secure patient data management.",
         },
       },
       {

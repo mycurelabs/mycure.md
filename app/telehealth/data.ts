@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "",
   },
   description:
-    "Give your patients the quality telehealth care they deserve, without having to visit in-person. Expand your clinic's reach, increase revenue, and provide convenient virtual consultations.",
+    "Give your patients the quality telehealth care they deserve, without having to visit in-person. Expand your clinic's reach and provide convenient virtual consultations.",
   image: {
     src: "/hero-section-assets/telehealth-feature-hero-image.webp",
     alt: "MYCURE Telehealth - Virtual consultations and telemedicine platform",
@@ -48,14 +48,14 @@ export const solutionsGridConfig: SolutionsGridConfig = {
   badge: "Virtual Practice Solutions",
   headline: "Improve Your Practice with Telehealth",
   description:
-    "See how virtual consultations can expand your practice reach, increase revenue, and improve patient satisfaction",
+    "See how virtual consultations can expand your practice reach and improve patient satisfaction",
   items: [
     {
-      id: "increase-revenue",
+      id: "grow-your-practice",
       icon: TrendingUp,
-      title: "Increase Your Revenue",
+      title: "Grow Your Practice",
       description:
-        "Treat more patients and reduce no-shows with secure video consultations and automated reminders",
+        "Treat more patients and help reduce no-shows with secure video consultations and automated reminders",
     },
     {
       id: "build-clientele",
@@ -114,7 +114,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "End-to-End Workflow",
   headline: "How MYCURE Automates Your Entire Patient Workflow",
   description:
-    "Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
+    "Discover why healthcare providers are choosing MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
   image: {
     src: "/section-assets/clinic-page/clinic-journey.webp",
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
@@ -173,7 +173,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Shield,
       title: "End-to-End Encryption",
       description:
-        "Military-grade encryption for all patient data, video calls, and medical records with audit trails",
+        "Enterprise-grade encryption for all patient data, video calls, and medical records with audit trails",
     },
     {
       id: "multi-platform-access",
@@ -189,7 +189,7 @@ export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
   headline: "Why Clinics Choose MYCURE",
   description:
-    "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
+    "Experience the features that make MYCURE the trusted choice for healthcare providers across the Philippines.",
   items: [
     {
       title: "Start Virtual Consultations in Minutes",

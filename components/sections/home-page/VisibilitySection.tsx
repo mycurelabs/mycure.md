@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 interface VisibilityItem {
   bold: string
@@ -31,7 +32,7 @@ export function VisibilitySection({ config }: VisibilitySectionProps) {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">
             {config.headline}
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
@@ -50,9 +51,11 @@ export function VisibilitySection({ config }: VisibilitySectionProps) {
               className="space-y-6"
             >
               <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${item.gradient} p-1`}>
-                <img
+                <Image
                   src={item.image}
                   alt={item.imageAlt}
+                  width={600}
+                  height={256}
                   className="w-full h-64 object-cover object-top rounded-xl"
                 />
               </div>

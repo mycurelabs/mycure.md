@@ -1,6 +1,6 @@
 import type React from "react"
 import "./globals.css"
-import { Inter } from "next/font/google"
+import { Inter, Lora } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ScrollProgress } from "@/components/magicui/scroll-progress"
@@ -11,7 +11,12 @@ import { Analytics as GoogleAnalytics } from "@/components/analytics"
 import { Footer } from "@/components/sections/Footer"
 import { StructuredData } from "@/components/structured-data"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+  weight: ["400", "500", "600", "700"],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mycure.md"),
@@ -19,15 +24,14 @@ export const metadata: Metadata = {
     default: "MYCURE - Clinic Management System for Philippine Healthcare",
     template: "%s | MYCURE",
   },
-  description: "Streamline your clinic with MYCURE. Trusted by 2,900+ Philippine healthcare providers. HIPAA compliant, works offline, PhilHealth ready. Free trial.",
+  description: "Streamline your clinic with MYCURE. Trusted by leading Philippine healthcare providers. HIPAA compliant, works offline. Free trial.",
   keywords: [
     "clinic management system",
     "healthcare management software",
     "EMR Philippines",
     "electronic medical records",
     "clinic software Philippines",
-    "PhilHealth integration",
-    "HIPAA compliant healthcare software",
+        "HIPAA compliant healthcare software",
     "patient management system",
     "medical practice management",
     "healthcare automation",
@@ -53,12 +57,12 @@ export const metadata: Metadata = {
     url: "https://mycure.md",
     siteName: "MYCURE",
     title: "MYCURE - Clinic Management System for Philippine Healthcare",
-    description: "Transform your healthcare practice with MYCURE. Trusted by 2,900+ Philippine healthcare providers. HIPAA compliant, works offline, PhilHealth ready.",
+    description: "Transform your healthcare practice with MYCURE. Trusted by leading Philippine healthcare providers. HIPAA compliant, works offline.",
   },
   twitter: {
     card: "summary_large_image",
     title: "MYCURE - Clinic Management System for Philippine Healthcare",
-    description: "Transform your healthcare practice with MYCURE. Trusted by 2,900+ Philippine healthcare providers.",
+    description: "Transform your healthcare practice with MYCURE. Trusted by leading Philippine healthcare providers.",
     creator: "@mycaboret",
   },
   alternates: {
@@ -87,10 +91,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <StructuredData />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${lora.variable} font-sans`}>
         <GoogleAnalytics />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>

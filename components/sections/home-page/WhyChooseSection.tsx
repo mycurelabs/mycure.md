@@ -39,7 +39,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{config.headline}</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">{config.headline}</h2>
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}
           </p>
@@ -60,7 +60,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
                 {/* Media */}
-                <div className={`relative ${isImageLeft ? "order-2 lg:order-1" : "lg:order-1"}`}>
+                <div className={`relative ${isImageLeft ? "order-2 lg:order-1" : "order-2 lg:order-2"}`}>
                   {item.mediaType === "image" ? (
                     <Image
                       src={item.mediaSrc}
@@ -91,7 +91,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
                 </div>
 
                 {/* Content */}
-                <div className={`space-y-6 ${isImageLeft ? "order-1 lg:order-2" : "lg:order-2"}`}>
+                <div className={`space-y-6 ${isImageLeft ? "order-1 lg:order-2" : "order-1 lg:order-1"}`}>
                   <div className="space-y-4">
                     <div className="size-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       <Icon className="size-6" />

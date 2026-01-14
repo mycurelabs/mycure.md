@@ -99,7 +99,6 @@ This configuration prioritizes rapid development and deployment.
 
 ### Product Pages (product-style)
 - `/clinics` - Clinics product page (definitive product-style standard)
-- `/hospital` - Hospital solutions
 - `/diagnostics` - Diagnostic services
 - `/telehealth` - Telehealth features (feature-style)
 - `/booking` - Booking system (feature-style)
@@ -111,7 +110,6 @@ This configuration prioritizes rapid development and deployment.
 - `/syncbase-technology` - Technology explanation
 
 ### Specialty Pages
-- `/dental` - Dental practices
 - `/skin` - Dermatology
 - `/corporate` - Corporate solutions
 - `/mobile-labs` - Mobile laboratory services

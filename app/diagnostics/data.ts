@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "Upgraded",
   },
   description:
-    "The best tool to streamline diagnostic laboratories and imaging centers' operations, automate routine tasks, and reduce costs and errors.",
+    "A comprehensive platform to streamline diagnostic laboratories and imaging centers' operations, automate routine tasks, and help reduce costs and errors.",
   image: {
     src: "/hero-section-assets/diagnostics-clinics-hero-image.webp",
     alt: "MYCURE Diagnostics - Laboratory and imaging center interface",
@@ -114,7 +114,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "End-to-End Workflow",
   headline: "How MYCURE Automates Your Entire Patient Workflow",
   description:
-    "Discover why clinics nationwide are switching to MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
+    "Discover why diagnostic centers are choosing MYCURE's integrated workflow that connects every touchpoint—from booking to billing—in one intuitive platform that your entire team can master in minutes.",
   image: {
     src: "/section-assets/clinic-page/clinic-journey.webp",
     alt: "MYCURE Patient Journey Flow - From Appointments to Billing",
@@ -126,10 +126,10 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
 export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
-    "MYCURE is dedicated to helping healthcare facilities improve diagnostics through innovative clinic management technology.",
+    "MYCURE helps diagnostic centers deliver better patient care through modern healthcare management technology.",
   items: [
-    { value: 1700000, label: "Medical Records", delay: 0.3 },
-    { value: 1450000, label: "Lives Saved", delay: 0.4 },
+    { value: 1700000, label: "Test Results Delivered", delay: 0.3 },
+    { value: 1450000, label: "Patients Served", delay: 0.4 },
     { value: 780, label: "Partner Providers", delay: 0.5 },
   ],
 }
@@ -189,7 +189,7 @@ export const advantagesConfig: AdvantagesConfig = {
   badge: "The MYCURE Advantage",
   headline: "Why Diagnostic Centers Choose MYCURE",
   description:
-    "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
+    "Experience the features that make MYCURE the trusted choice for diagnostic centers across the Philippines.",
   items: [
     {
       title: "Easy to Integrate. Easy to Use.",

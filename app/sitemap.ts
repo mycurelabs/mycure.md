@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://mycure.md";
   // Use fixed date to prevent unnecessary re-crawling on each build
-  const lastUpdate = new Date("2024-12-26");
+  const lastUpdate = new Date("2025-01-02");
 
   return [
     {
@@ -19,19 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/hospital`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/corporate`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/dental`,
       lastModified: lastUpdate,
       changeFrequency: "monthly",
       priority: 0.8,
@@ -74,6 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/our-story`,
+      lastModified: lastUpdate,
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/syncbase-technology`,
       lastModified: lastUpdate,
       changeFrequency: "yearly",
       priority: 0.5,
