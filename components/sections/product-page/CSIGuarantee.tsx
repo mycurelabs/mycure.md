@@ -164,7 +164,7 @@ export function CSIGuarantee() {
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Break down data silos and connect seamlessly with labs, hospitals, pharmacies, and insurance providers.
+                Break down data silos and connect seamlessly with labs, clinics, pharmacies, and insurance providers.
                 Share records, receive results, and process claims—all from one unified platform.
               </p>
               <div className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 rounded-2xl p-6 border border-blue-500/20">

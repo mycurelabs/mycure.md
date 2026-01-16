@@ -18,7 +18,7 @@ export function StructuredData() {
     url: "https://mycure.md",
     logo: "https://mycure.md/mycure-logo.svg",
     description:
-      "MYCURE is a comprehensive healthcare management platform designed specifically for Philippine healthcare providers. Trusted by leading clinics and hospitals.",
+      "MYCURE is a comprehensive healthcare management platform designed specifically for Philippine healthcare providers. Trusted by leading clinics and multi-specialty practices.",
     foundingDate: "2013",
     foundingLocation: {
       "@type": "Place",
@@ -98,7 +98,7 @@ export function StructuredData() {
         name: "How much does MYCURE cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE offers flexible pricing plans designed for healthcare facilities of all sizes, from small clinics to large hospitals. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
+          text: "MYCURE offers flexible pricing plans designed for healthcare facilities of all sizes, from growing clinics to enterprise practices. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
         },
       },
       {
@@ -114,7 +114,7 @@ export function StructuredData() {
         name: "What platforms does MYCURE support?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE works on Mac computers through Chromium-based browsers (Chrome, Edge, Brave). Our platform is optimized for these environments to deliver the best performance and reliability.",
+          text: "MYCURE works on Mac and Windows computers through Google Chrome. Our platform is optimized for this environment to deliver the best performance and reliability.",
         },
       },
       {
