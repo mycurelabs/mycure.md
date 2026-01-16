@@ -29,7 +29,7 @@ export function ProductHero({ config }: ProductHeroProps) {
               width={600}
               height={500}
               alt={config.image.alt}
-              className="rounded-2xl w-full h-auto mx-auto max-w-sm md:max-w-none"
+              className="rounded-2xl w-full aspect-[6/5] mx-auto max-w-sm md:max-w-none"
               priority
             />
           </motion.div>
