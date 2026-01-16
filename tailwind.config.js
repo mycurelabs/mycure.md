@@ -113,6 +113,10 @@ module.exports = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "marquee-vertical": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -122,7 +126,8 @@ module.exports = {
         "rainbow": "rainbow 2s linear infinite",
         "shiny-text": "shiny-text 8s infinite",
         "gradient": "gradient 8s linear infinite",
-        "marquee": "marquee 8s linear infinite",
+        "marquee": "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },
