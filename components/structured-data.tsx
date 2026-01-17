@@ -28,8 +28,8 @@ export function StructuredData() {
       },
     },
     sameAs: [
-      "https://www.facebook.com/mycaboret",
-      "https://www.linkedin.com/company/mycaboret",
+      "https://www.facebook.com/mycure.md",
+      "https://www.linkedin.com/company/mycure",
     ],
     contactPoint: {
       "@type": "ContactPoint",
