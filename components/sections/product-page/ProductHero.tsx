@@ -48,9 +48,7 @@ export function ProductHero({ config }: ProductHeroProps) {
               </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-tight">
-                {config.headline.prefix}{" "}
-                <span className="text-primary">{config.headline.highlight}</span>{" "}
-                {config.headline.suffix}
+                {config.headline.prefix} {config.headline.highlight} {config.headline.suffix}
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
                 {config.description}

@@ -179,7 +179,7 @@ export default function LandingPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center">
               <div className="space-y-1"><p className="text-sm font-medium text-muted-foreground">{logosConfig.heading}</p><p className="text-lg font-semibold text-foreground">{logosConfig.subheading}</p></div>
               <div className="relative w-full max-w-6xl overflow-hidden">
-                <Marquee pauseOnHover className="[--duration:60s] [--gap:2rem] md:[--gap:3rem] pb-10">
+                <Marquee pauseOnHover className="[--duration:40s] [--gap:2rem] md:[--gap:3rem] pb-10">
                   {logosConfig.logos.map((logo) => (
                     <div key={logo.alt} className="group/logo relative flex shrink-0 items-center justify-center">
                       <Image
@@ -257,7 +257,7 @@ export default function LandingPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative z-10 py-16 md:py-24">
                 <div className="space-y-8">
                   <div className="space-y-6">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" /><span className="text-primary">{integrationConfig.headline.highlight}</span></h2>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" />{integrationConfig.headline.highlight}</h2>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{integrationConfig.description}</p>
                   </div>
                   <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
@@ -294,10 +294,10 @@ export default function LandingPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center max-w-4xl mx-auto">
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} <span className="text-primary">{finalCtaConfig.headline.highlight}</span> {finalCtaConfig.headline.after}</h2>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} {finalCtaConfig.headline.highlight} {finalCtaConfig.headline.after}</h2>
                   <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{finalCtaConfig.description}</p>
                 </div>
-                <div className="flex justify-center items-center"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer"><PrimaryButton slow className="h-12 flex items-center justify-center gap-2">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link></div>
+                <div className="flex justify-center items-center"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer"><PrimaryButton slow className="h-11 sm:h-12 flex items-center justify-center gap-2">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link></div>
                 <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">{finalCtaConfig.features.map((feature, i) => (<div key={i} className="flex items-center gap-2"><Check className="size-4 text-primary" /><span>{feature}</span></div>))}</div>
               </div>
             </motion.div>

@@ -24,7 +24,7 @@ export function FinalCTA({ config }: FinalCTAProps) {
           <div className="space-y-8">
             <div className="space-y-6">
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-tight">
-                {config.headline.prefix} <span className="text-primary">{config.headline.highlight}</span> {config.headline.suffix}
+                {config.headline.prefix} {config.headline.highlight} {config.headline.suffix}
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {config.description}
