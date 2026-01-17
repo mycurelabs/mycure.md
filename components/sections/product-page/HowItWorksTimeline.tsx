@@ -87,8 +87,9 @@ export function HowItWorksTimeline({ config }: HowItWorksTimelineProps) {
               href={config.cta.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="w-full sm:w-auto"
             >
-              <PrimaryButton slow className="flex items-center justify-center gap-2">
+              <PrimaryButton slow className="flex items-center justify-center gap-2 w-full sm:w-auto">
                 {config.cta.text}
                 <ArrowRight className="size-4" />
               </PrimaryButton>

@@ -307,13 +307,14 @@ export default function SyncbaseTechnologyPage() {
                       </li>
                     </ul>
                     
-                    <div className="flex justify-start mt-2">
-                      <Link 
-                        href="https://calendly.com/mycure/demo" 
-                        target="_blank" 
+                    <div className="flex justify-start mt-2 px-4 sm:px-0">
+                      <Link
+                        href="https://calendly.com/mycure/demo"
+                        target="_blank"
                         rel="noopener noreferrer"
+                        className="w-full sm:w-auto"
                       >
-                        <PrimaryButton slow className="flex items-center justify-center gap-2">
+                        <PrimaryButton slow className="flex items-center justify-center gap-2 w-full sm:w-auto">
                           👉 Book a Demo Today
                           <ExternalLink className="size-4" />
                         </PrimaryButton>

@@ -62,9 +62,9 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
           </p>
 
           {/* CTA */}
-          <div className="flex justify-center">
-            <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
-              <PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base flex items-center justify-center gap-2">
+          <div className="flex justify-center px-4 sm:px-0">
+            <Link href={config.cta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base flex items-center justify-center gap-2 w-full sm:w-auto">
                 {config.cta.text}
                 <ArrowRight className="size-4" />
               </PrimaryButton>
