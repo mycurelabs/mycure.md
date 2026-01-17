@@ -113,7 +113,7 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
               rel="noopener noreferrer"
               onClick={handleLinkClick}
             >
-              <PrimaryButton className="w-full h-11 text-base font-medium rounded-full">
+              <PrimaryButton className="w-full h-11 sm:h-12 text-base font-medium rounded-full">
                 Get Started
                 <ChevronRight className="ml-1 size-4" />
               </PrimaryButton>
