@@ -68,6 +68,8 @@ export function TimelineSection({ config }: TimelineSectionProps) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveDay(tab.id as keyof TimelineContent)}
+                  aria-label={`View timeline for ${tab.label}`}
+                  aria-pressed={activeDay === tab.id}
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeDay === tab.id
                       ? "text-white shadow-sm bg-primary"

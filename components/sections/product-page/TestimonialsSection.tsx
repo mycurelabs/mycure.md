@@ -56,7 +56,11 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
                   </div>
                   <p className="text-lg mb-6 flex-grow">{testimonial.quote}</p>
                   <div className="flex items-center gap-4 mt-auto pt-4 border-t border-border/40">
-                    <div className="size-10 rounded-full bg-muted flex items-center justify-center text-foreground font-medium">
+                    <div
+                      className="size-10 rounded-full bg-muted flex items-center justify-center text-foreground font-medium"
+                      role="img"
+                      aria-label={`Avatar for ${testimonial.author}`}
+                    >
                       {testimonial.author.charAt(0)}
                     </div>
                     <div>

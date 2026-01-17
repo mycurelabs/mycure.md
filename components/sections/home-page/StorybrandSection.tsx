@@ -167,7 +167,7 @@ export function StorybrandSection() {
                                 type="button"
                                 onClick={() => dismissCard(index)}
                                 className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-                                aria-label="Dismiss notification"
+                                aria-label={`Dismiss: ${card.text}`}
                               >
                                 <X className="w-4 h-4 text-gray-400" />
                               </button>
