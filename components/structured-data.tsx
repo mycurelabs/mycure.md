@@ -98,7 +98,7 @@ export function StructuredData() {
         name: "How much does MYCURE cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE offers flexible pricing plans designed for healthcare facilities of all sizes, from growing clinics to enterprise practices. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
+          text: "MYCURE offers flexible pricing plans for multi-specialty clinics and enterprise healthcare organizations. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
         },
       },
       {
