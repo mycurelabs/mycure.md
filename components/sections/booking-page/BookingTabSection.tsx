@@ -76,7 +76,7 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
                   width={600}
                   height={400}
                   alt={activeTabContent.image.alt}
-                  className="rounded-xl shadow-lg w-full"
+                  className="rounded-xl w-full"
                 />
               </motion.div>
             </div>
