@@ -17,7 +17,7 @@ import type { LucideIcon } from "lucide-react"
 
 // Hero Section Config
 export const heroConfig = {
-  badge: "✨ MYCURE X: Launches soon",
+  badge: "✨ MYCURE X is on the Horizon",
   headline: {
     line1: "Run the clinic",
     line2: "you've always envisioned.",

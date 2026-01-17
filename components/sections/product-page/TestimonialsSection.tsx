@@ -16,7 +16,7 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
       id="testimonials"
       className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background"
     >
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
