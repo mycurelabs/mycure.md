@@ -29,7 +29,7 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
           <div className="flex justify-center mb-4">
             <AnimatedBadge>{config.badge}</AnimatedBadge>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight mb-6">
             {config.headline}
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -76,7 +76,7 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
                   width={600}
                   height={400}
                   alt={activeTabContent.image.alt}
-                  className="rounded-xl shadow-lg w-full"
+                  className="rounded-xl w-full"
                 />
               </motion.div>
             </div>

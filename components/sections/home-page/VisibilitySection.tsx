@@ -23,8 +23,8 @@ interface VisibilitySectionProps {
 
 export function VisibilitySection({ config }: VisibilitySectionProps) {
   return (
-    <section className="w-full py-20 md:py-32 bg-muted/30">
-      <div className="container px-4 md:px-6 mx-auto max-w-6xl">
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
+      <div className="container px-4 sm:px-6 md:px-8 mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export function VisibilitySection({ config }: VisibilitySectionProps) {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {config.items.map((item, index) => (
             <motion.div
               key={index}

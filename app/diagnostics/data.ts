@@ -180,7 +180,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Network,
       title: "Interoperability",
       description:
-        "HL7-ready integration connecting with hospitals, clinics, and healthcare providers smoothly",
+        "HL7-ready integration connecting with clinics, laboratories, and healthcare providers smoothly",
     },
   ],
 }

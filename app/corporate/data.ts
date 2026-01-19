@@ -34,7 +34,7 @@ export const heroConfig: HeroConfig = {
     suffix: "from Chaos",
   },
   description:
-    "MYCURE streamlines corporate healthcare with comprehensive electronic medical records, integrated HMO workflows, and analytics that drive employee wellness and reduce costs.",
+    "MYCURE streamlines corporate healthcare and occupational health management with comprehensive electronic medical records, integrated HMO workflows, and analytics that drive employee wellness and reduce costs.",
   image: {
     src: "/hero-section-assets/corporate-clinics-hero-image.webp",
     alt: "MYCURE Corporate Clinics - Enterprise healthcare management",
@@ -70,7 +70,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Shield,
       title: "Compliance Management",
       description:
-        "Convert regulatory requirements into automated workflows with built-in DOH, HIPAA, and industry compliance standards",
+        "Convert regulatory requirements into automated workflows with built-in DOH, DOLE, OSH, and HIPAA compliance standards for occupational health",
     },
     {
       id: "executive-health",
@@ -100,7 +100,7 @@ export const videoShowcaseConfig: VideoShowcaseConfig = {
   badge: "Complete Corporate Solution",
   headline: "Enterprise Healthcare.\nSimplified.",
   description:
-    "MYCURE Corporate brings together employee health management, HMO coordination, and compliance reporting in one unified platform that scales with your organization and helps reduce healthcare costs.",
+    "MYCURE Corporate brings together occupational health management, employee wellness tracking, HMO coordination, and compliance reporting in one unified platform that scales with your organization and helps reduce healthcare costs.",
   cta: {
     text: "Schedule a Walkthrough",
     href: "https://calendly.com/mycure/demo",
@@ -121,7 +121,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
     alt: "MYCURE Corporate Healthcare Journey - From Onboarding to Analytics",
   },
   footnote:
-    "Every employee touchpoint integrated smoothly—from onboarding health assessments to retirement planning, ensuring comprehensive healthcare management throughout the employment lifecycle.",
+    "Every employee touchpoint integrated smoothly—from pre-employment medicals and onboarding health assessments to fitness-to-work certifications and retirement planning, ensuring comprehensive healthcare management throughout the employment lifecycle.",
 }
 
 export const statisticsConfig: StatisticsConfig = {

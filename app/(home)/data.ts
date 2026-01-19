@@ -17,7 +17,7 @@ import type { LucideIcon } from "lucide-react"
 
 // Hero Section Config
 export const heroConfig = {
-  badge: "✨ MYCURE X: Launches soon",
+  badge: "✨ MYCURE X is on the Horizon",
   headline: {
     line1: "Run the clinic",
     line2: "you've always envisioned.",
@@ -386,11 +386,11 @@ export const faqConfig = {
   items: [
     {
       question: "What is MYCURE?",
-      answer: "MYCURE is a healthcare management platform designed for clinics and healthcare facilities. It streamlines practice operations including patient records, scheduling, billing, and telehealth.",
+      answer: "MYCURE is a healthcare management platform designed for multi-specialty clinics and enterprise healthcare facilities. It streamlines practice operations including patient records, scheduling, billing, and telehealth.",
     },
     {
       question: "How much does MYCURE cost?",
-      answer: "MYCURE offers flexible pricing plans for healthcare facilities of all sizes, from small clinics to large hospitals. Plans include essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore your options.",
+      answer: "MYCURE offers flexible pricing plans for multi-specialty clinics and enterprise healthcare organizations. Plans include essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore your options.",
     },
     {
       question: "Is MYCURE compliant with healthcare regulations?",
@@ -398,7 +398,7 @@ export const faqConfig = {
     },
     {
       question: "What platforms does MYCURE support?",
-      answer: "MYCURE works on Mac and Windows computers through Chromium-based browsers (Chrome, Edge, Brave). The platform is optimized for these environments for best performance and reliability.",
+      answer: "MYCURE works on Mac and Windows computers through Google Chrome. The platform is optimized for this environment for best performance and reliability.",
     },
     {
       question: "What kind of support do you offer?",

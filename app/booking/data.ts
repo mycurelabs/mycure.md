@@ -1,9 +1,7 @@
 import {
   Clock,
   Users,
-  AlertCircle,
   Calendar,
-  UserX,
   Shield,
   Globe,
   Building2,
@@ -54,13 +52,6 @@ export const solutionsGridConfig: IconCardGridConfig = {
         "Help reduce wait times with smart scheduling and automated queue management",
     },
     {
-      id: "missed-appointments",
-      icon: AlertCircle,
-      title: "Missed Appointments",
-      description:
-        "Automated reminders help reduce no-shows through SMS and email notifications",
-    },
-    {
       id: "manual-scheduling",
       icon: Calendar,
       title: "Manual Scheduling",
@@ -68,11 +59,11 @@ export const solutionsGridConfig: IconCardGridConfig = {
         "Save time with automated booking and intelligent appointment management",
     },
     {
-      id: "patient-frustration",
-      icon: UserX,
-      title: "Patient Frustration",
+      id: "patient-experience",
+      icon: Users,
+      title: "Patient Experience",
       description:
-        "Increase patient satisfaction with 24/7 online booking and real-time updates",
+        "Increase patient satisfaction with 24/7 online booking, automated reminders, and real-time updates that help reduce no-shows",
     },
   ],
 }
@@ -89,11 +80,11 @@ export const tabSectionConfig: TabSectionConfig = {
       icon: Building2,
       title: "For Medical Facilities",
       subtitle:
-        "Comprehensive booking system for multi-doctor clinics and hospitals",
+        "Comprehensive booking system for multi-doctor and multi-specialty clinics",
       features: [
         "Manage multiple doctors and departments",
         "Queue management and walk-in handling",
-        "API integration with existing hospital systems",
+        "API integration with existing enterprise clinic systems",
         "Real-time availability across all providers",
       ],
       image: {

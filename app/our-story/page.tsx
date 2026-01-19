@@ -154,7 +154,7 @@ export default function OurStoryPage() {
                       <div className="md:w-2/5 mb-6 md:mb-0">
                         <Image 
                           src="/Our Story Photos/mycure-web-our-story-paulette.185cb5b.png"
-                          alt="Paulette"
+                          alt="Paulette - In loving memory"
                           width={400}
                           height={400}
                           className="rounded-lg w-full object-cover"
@@ -205,7 +205,7 @@ export default function OurStoryPage() {
                         <div className="flex justify-center mb-4">
                           <Image 
                             src="/Our Story Photos/mycure-our-story-dale.png"
-                            alt="Dale"
+                            alt="Dale - MYCURE Co-founder"
                             width={300}
                             height={300}
                             className="rounded-lg w-full max-w-[300px] object-cover"
@@ -221,7 +221,7 @@ export default function OurStoryPage() {
                         <div className="flex justify-center mb-4">
                           <Image 
                             src="/Our Story Photos/mycure-our-story-joel.png"
-                            alt="Joel"
+                            alt="Joel - MYCURE Co-founder"
                             width={300}
                             height={300}
                             className="rounded-lg w-full max-w-[300px] object-cover"
@@ -250,7 +250,7 @@ export default function OurStoryPage() {
                     <div className="mb-6">
                       <Image 
                         src="/Our Story Photos/mycure-our-story-problem.png"
-                        alt="The Problem"
+                        alt="Healthcare challenges illustration - Problems MYCURE solves"
                         width={800}
                         height={400}
                         className="rounded-lg w-full object-cover"
@@ -281,8 +281,8 @@ export default function OurStoryPage() {
                     
                     <div className="mb-6">
                       <Image 
-                        src="/Our Story Photos/mycure-team.png"
-                        alt="MYCURE Team"
+                        src="/Our Story Photos/mycure-team.webp"
+                        alt="MYCURE Team - Healthcare technology innovators"
                         width={800}
                         height={400}
                         className="rounded-lg w-full object-cover"

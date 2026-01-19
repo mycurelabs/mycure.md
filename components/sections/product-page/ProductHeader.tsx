@@ -136,7 +136,7 @@ export function ProductHeader() {
             Log In
           </Link>
           <Link href="https://calendly.com/mycure/demo" target="_blank" rel="noopener noreferrer">
-            <PrimaryButton className="h-10 px-4 py-2 text-sm font-medium">
+            <PrimaryButton className="h-11 sm:h-12 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium">
               Get Started
               <ChevronRight className="ml-1 size-4" />
             </PrimaryButton>

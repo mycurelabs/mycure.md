@@ -39,10 +39,10 @@ export function TimelineSection({ config }: TimelineSectionProps) {
   const [activeDay, setActiveDay] = useState<keyof TimelineContent>("today")
 
   return (
-    <section id="how-it-works" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+    <section id="how-it-works" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
 
-      <div className="container px-4 md:px-6 relative">
+      <div className="container px-4 sm:px-6 md:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export function TimelineSection({ config }: TimelineSectionProps) {
           <AnimatedBadge>{config.badge}</AnimatedBadge>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight leading-tight">
             {config.headline}{" "}
-            <span className="bg-primary/10 text-primary px-3 py-1 rounded-xl">{config.headlineHighlight}</span>
+            <span className="px-3 py-1">{config.headlineHighlight}</span>
           </h2>
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}
@@ -68,6 +68,8 @@ export function TimelineSection({ config }: TimelineSectionProps) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveDay(tab.id as keyof TimelineContent)}
+                  aria-label={`View timeline for ${tab.label}`}
+                  aria-pressed={activeDay === tab.id}
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeDay === tab.id
                       ? "text-white shadow-sm bg-primary"
@@ -129,8 +131,8 @@ export function TimelineSection({ config }: TimelineSectionProps) {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-center flex flex-col items-center"
           >
-            <Link href={config.cta.href} target="_blank" rel="noopener noreferrer">
-              <PrimaryButton slow className="flex items-center justify-center gap-2">
+            <Link href={config.cta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <PrimaryButton slow className="flex items-center justify-center gap-2 w-full sm:w-auto">
                 {config.cta.text}
                 <ArrowRight className="size-4" />
               </PrimaryButton>

@@ -29,7 +29,7 @@ interface WhyChooseSectionProps {
 
 export function WhyChooseSection({ config }: WhyChooseSectionProps) {
   return (
-    <section className="w-full py-20 md:py-32 bg-white dark:bg-[#1a1a1a]">
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-white dark:bg-[#1a1a1a]">
       <div className="container px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="grid lg:grid-cols-2 gap-12 items-center"
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               >
                 {/* Media */}
                 <div className={`relative ${isImageLeft ? "order-2 lg:order-1" : "order-2 lg:order-2"}`}>
@@ -97,7 +97,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
                       <Icon className="size-6" />
                     </div>
                     <h3 className="text-2xl md:text-3xl font-bold">{item.title}</h3>
-                    <p className="text-muted-foreground text-lg">
+                    <p className="text-muted-foreground text-base sm:text-lg">
                       {item.description}
                     </p>
                   </div>

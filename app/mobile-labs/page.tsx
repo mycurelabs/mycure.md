@@ -115,7 +115,7 @@ export default function MobileLabsPage() {
                       ? "MYCURE Mobile Diagnostics Imaging Interface - Mobile Radiology"
                       : "MYCURE Mobile Diagnostics Laboratory Interface - Mobile Lab Results"
                     }
-                    className="rounded-xl shadow-lg w-full"
+                    className="rounded-xl w-full"
                   />
                 </motion.div>
               </div>

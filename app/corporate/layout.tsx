@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Corporate Clinic Software | MYCURE for Occupational Health',
-  description: 'Enterprise healthcare management for corporate clinics. Employee health tracking, APE management, and compliance reporting for Philippine companies.',
-  keywords: 'corporate clinic software, occupational health system, employee health management, APE software, Philippine corporate healthcare',
+  description: 'Occupational health management software for corporate clinics. Employee health tracking, APE management, pre-employment medicals, and DOLE compliance reporting for Philippine companies.',
+  keywords: 'corporate clinic software, occupational health system, occupational health management, employee health management, APE software, Philippine corporate healthcare, DOLE compliance, workplace health',
   openGraph: {
     title: 'Corporate Clinic Software | MYCURE for Occupational Health',
-    description: 'Enterprise healthcare management with employee health tracking and APE management.',
+    description: 'Occupational health management software with employee health tracking, APE management, and DOLE compliance.',
     url: 'https://mycure.md/corporate',
     siteName: 'MYCURE',
     locale: 'en_PH',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Corporate Clinic Software | MYCURE for Occupational Health',
-    description: 'Enterprise healthcare management with employee health tracking and APE management.',
+    description: 'Occupational health management software with employee health tracking, APE management, and DOLE compliance.',
     images: ['/hero-section-assets/corporate-clinics-hero-image.webp'],
   },
   alternates: {

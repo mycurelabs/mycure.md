@@ -114,7 +114,7 @@ export default function SyncbaseTechnologyPage() {
                 The holy grail of online-offline technology
               </p>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                MYCURE Syncbase is the cost-effective setup for your clinic management system. It enables clinics and hospitals to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
+                MYCURE Syncbase is the cost-effective setup for your clinic management system. It enables clinics and multi-specialty practices to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
               </p>
             </motion.div>
           </div>
@@ -273,7 +273,7 @@ export default function SyncbaseTechnologyPage() {
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Scalable for clinics, hospitals, or multi-branch health facilities.</span>
+                        <span>Scalable for clinics, enterprises, or multi-branch health facilities.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
@@ -307,13 +307,14 @@ export default function SyncbaseTechnologyPage() {
                       </li>
                     </ul>
                     
-                    <div className="flex justify-start mt-2">
-                      <Link 
-                        href="https://calendly.com/mycure/demo" 
-                        target="_blank" 
+                    <div className="flex justify-start mt-2 px-4 sm:px-0">
+                      <Link
+                        href="https://calendly.com/mycure/demo"
+                        target="_blank"
                         rel="noopener noreferrer"
+                        className="w-full sm:w-auto"
                       >
-                        <PrimaryButton slow className="flex items-center justify-center gap-2">
+                        <PrimaryButton slow className="flex items-center justify-center gap-2 w-full sm:w-auto">
                           👉 Book a Demo Today
                           <ExternalLink className="size-4" />
                         </PrimaryButton>

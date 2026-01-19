@@ -7,7 +7,7 @@ import { AnimatedBadge } from "@/components/custom/animated-badge"
 export function CSIGuarantee() {
   return (
     <section id="csi-guarantee" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Sticky Left Content */}
           <div className="lg:sticky lg:top-32 space-y-6">
@@ -164,7 +164,7 @@ export function CSIGuarantee() {
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Break down data silos and connect seamlessly with labs, hospitals, pharmacies, and insurance providers.
+                Break down data silos and connect seamlessly with labs, clinics, pharmacies, and insurance providers.
                 Share records, receive results, and process claims—all from one unified platform.
               </p>
               <div className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 rounded-2xl p-6 border border-blue-500/20">

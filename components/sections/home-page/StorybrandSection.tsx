@@ -91,7 +91,7 @@ export function StorybrandSection() {
 
   return (
     <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Sticky Left Content */}
           <div className="lg:sticky lg:top-32 space-y-6">
@@ -167,7 +167,7 @@ export function StorybrandSection() {
                                 type="button"
                                 onClick={() => dismissCard(index)}
                                 className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-                                aria-label="Dismiss notification"
+                                aria-label={`Dismiss: ${card.text}`}
                               >
                                 <X className="w-4 h-4 text-gray-400" />
                               </button>

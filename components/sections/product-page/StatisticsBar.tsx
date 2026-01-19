@@ -15,7 +15,7 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
       <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
-      <div className="container px-4 md:px-6 relative">
+      <div className="container px-4 sm:px-6 md:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

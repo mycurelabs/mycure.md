@@ -16,7 +16,7 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
       id="testimonials"
       className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background"
     >
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,11 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
                   </div>
                   <p className="text-lg mb-6 flex-grow">{testimonial.quote}</p>
                   <div className="flex items-center gap-4 mt-auto pt-4 border-t border-border/40">
-                    <div className="size-10 rounded-full bg-muted flex items-center justify-center text-foreground font-medium">
+                    <div
+                      className="size-10 rounded-full bg-muted flex items-center justify-center text-foreground font-medium"
+                      role="img"
+                      aria-label={`Avatar for ${testimonial.author}`}
+                    >
                       {testimonial.author.charAt(0)}
                     </div>
                     <div>
