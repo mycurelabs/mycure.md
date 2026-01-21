@@ -5,10 +5,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { Check, ChevronRight, Menu, X, Moon, Sun, ArrowRight } from "lucide-react"
+import { Activity, Check, ChevronRight, Menu, X, Moon, Sun, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PrimaryButton } from "@/components/custom/primary-button"
-import { RainbowButton } from "@/components/magicui/rainbow-button"
+import { ShimmerButton } from "@/components/magicui/shimmer-button"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { NumberTicker } from "@/components/magicui/number-ticker"
@@ -153,17 +153,17 @@ export default function LandingPage() {
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 sm:px-6 md:px-8 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center max-w-4xl mx-auto mb-12">
-              <div className="mb-6"><div className="rounded-full px-4 py-1.5 bg-white/90 border border-white/30 backdrop-blur-sm shadow-lg inline-block"><AnimatedGradientText className="text-sm font-medium" colorFrom="var(--gradient-quinary)" colorTo="#FF6B35" speed={1.5}>{heroConfig.badge}</AnimatedGradientText></div></div>
+              <div className="mb-6"><div className="inline-flex items-center rounded-full px-4 py-1.5 bg-white/90 border border-white/20 backdrop-blur-sm shadow-lg"><Activity className="size-4 text-cyan-500 mr-2" /><AnimatedGradientText className="text-sm font-medium" colorFrom="var(--gradient-quinary)" colorTo="#FF6B35" speed={1.5}>{heroConfig.badge}</AnimatedGradientText></div></div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">{heroConfig.description}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-                <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto"><RainbowButton variant="outline" size="lg" className="!h-12 sm:!h-14 !px-6 sm:!px-8 !text-base sm:!text-lg !font-semibold !rounded-full whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></RainbowButton></Link>
+                <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto"><ShimmerButton background="#0099CC" shimmerColor="#FFFFFF" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></ShimmerButton></Link>
                 <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full sm:w-auto"><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
               </div>
             </motion.div>
             <motion.div id="video-demo" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
-                <YouTubeFacade videoId={heroConfig.video.videoId} title={heroConfig.video.title} />
+                <YouTubeFacade videoId={heroConfig.video.videoId} title={heroConfig.video.title} poster="/images/hero-video-thumbnail.jpg" />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
               </div>
               <noscript><div className="aspect-video rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center"><Link href={heroConfig.video.watchUrl} className="text-white hover:text-white/80 transition-colors" target="_blank" rel="noopener noreferrer">Watch MYCURE Introduction Video</Link></div></noscript>

@@ -56,14 +56,14 @@ export const solutionsGridConfig: IconCardGridConfig = {
       icon: Calendar,
       title: "Manual Scheduling",
       description:
-        "Save time with automated booking and intelligent appointment management",
+        "Save valuable staff time with automated online booking and intelligent appointment management",
     },
     {
       id: "patient-experience",
       icon: Users,
       title: "Patient Experience",
       description:
-        "Increase patient satisfaction with 24/7 online booking, automated reminders, and real-time updates that help reduce no-shows",
+        "Boost patient satisfaction with 24/7 booking, automated reminders, and real-time updates to reduce no-shows",
     },
   ],
 }

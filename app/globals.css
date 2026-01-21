@@ -61,13 +61,13 @@
     --color-4: oklch(80.2% 0.134 225);
     --color-5: oklch(90.7% 0.231 133);
 
-    /* Dynamic gradient colors for light mode */
-    --gradient-primary: #008FCC;
-    --gradient-secondary: #0085CC;
-    --gradient-tertiary: #00B8CC;
-    --gradient-quaternary: #0099CC;
-    --gradient-quinary: #0099CC;
-    --gradient-bg: #c7e2ff;
+    /* Dynamic gradient colors for light mode (30% darker) */
+    --gradient-primary: #006B99;
+    --gradient-secondary: #005C8A;
+    --gradient-tertiary: #008299;
+    --gradient-quaternary: #007099;
+    --gradient-quinary: #007099;
+    --gradient-bg: #9ecfff;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -126,21 +126,13 @@
     --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   }
 
-  /* Dynamic gradient backgrounds for sections */
+  /* Dynamic gradient backgrounds for sections - uses CSS variables for maintainability */
   .brand-gradient-bg {
-    background: radial-gradient(at 19% 67%, #008FCC 0px, transparent 50%), 
-                radial-gradient(at 24% 7%, #0085CC 0px, transparent 50%), 
-                radial-gradient(at 63% 87%, #00B8CC 0px, transparent 50%), 
-                radial-gradient(at 61% 5%, #0099CC 0px, transparent 50%), 
-                radial-gradient(at 67% 17%, #0099CC 0px, transparent 50%) #c7e2ff;
-  }
-
-  .dark .brand-gradient-bg {
-    background: radial-gradient(at 19% 67%, #33A6D6 0px, transparent 50%), 
-                radial-gradient(at 24% 7%, #3BA2D6 0px, transparent 50%), 
-                radial-gradient(at 63% 87%, #4DC2D6 0px, transparent 50%), 
-                radial-gradient(at 61% 5%, #47B8D6 0px, transparent 50%), 
-                radial-gradient(at 67% 17%, #47B8D6 0px, transparent 50%) #1a2631;
+    background: radial-gradient(at 19% 67%, var(--gradient-primary) 0px, transparent 50%),
+                radial-gradient(at 24% 7%, var(--gradient-secondary) 0px, transparent 50%),
+                radial-gradient(at 63% 87%, var(--gradient-tertiary) 0px, transparent 50%),
+                radial-gradient(at 61% 5%, var(--gradient-quaternary) 0px, transparent 50%),
+                radial-gradient(at 67% 17%, var(--gradient-quinary) 0px, transparent 50%) var(--gradient-bg);
   }
 }
 
@@ -178,56 +170,3 @@
   pointer-events: none !important;
 }
 
-@theme inline {
-  @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-    }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
-    }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
-    }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-    }
-  }
-  @keyframes rainbow {
-  0% {
-    background-position: 0%;
-    }
-  100% {
-    background-position: 200%;
-    }
-  }
-  @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;
-    }
-  }
-  @keyframes gradient {
-  to {
-    background-position: var(--bg-size, 300%) 0;
-    }
-  }
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
-}
