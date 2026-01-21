@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 interface YouTubeFacadeProps {
   videoId: string;
   title: string;
+  /** Optional local poster image path for LCP optimization */
+  poster?: string;
   className?: string;
 }
 
@@ -22,7 +24,7 @@ interface YouTubeFacadeProps {
  * - Touch-friendly active states
  * - No autoplay (blocked on mobile anyway)
  */
-export function YouTubeFacade({ videoId, title, className }: YouTubeFacadeProps) {
+export function YouTubeFacade({ videoId, title, poster, className }: YouTubeFacadeProps) {
   const [showVideo, setShowVideo] = useState(false);
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -86,13 +88,13 @@ export function YouTubeFacade({ videoId, title, className }: YouTubeFacadeProps)
       aria-label={`Play video: ${title}`}
     >
       <Image
-        src={thumbnailUrls[thumbnailIndex]}
+        src={poster || thumbnailUrls[thumbnailIndex]}
         alt={title}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
         className="object-cover"
         priority
-        onError={handleThumbnailError}
+        onError={poster ? undefined : handleThumbnailError}
       />
       {/* Play button overlay */}
       <div className="absolute inset-0 flex items-center justify-center">

@@ -1,23 +1,17 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Check, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
-import { PrimaryButton } from "@/components/custom/primary-button"
+import { ShimmerButton } from "@/components/magicui/shimmer-button"
 import type { LucideIcon } from "lucide-react"
 
-interface TimelineStep {
+interface ProcessStep {
+  step: number
   title: string
+  description: string
   icon: LucideIcon
-  items: string[]
-}
-
-interface TimelineContent {
-  today: TimelineStep[]
-  day3: TimelineStep[]
-  day7: TimelineStep[]
 }
 
 interface TimelineConfig {
@@ -25,8 +19,7 @@ interface TimelineConfig {
   headline: string
   headlineHighlight: string
   description: string
-  tabs: { id: string; label: string }[]
-  content: TimelineContent
+  processSteps: ProcessStep[]
   cta: { text: string; href: string }
   ctaNote: string
 }
@@ -36,13 +29,12 @@ interface TimelineSectionProps {
 }
 
 export function TimelineSection({ config }: TimelineSectionProps) {
-  const [activeDay, setActiveDay] = useState<keyof TimelineContent>("today")
-
   return (
     <section id="how-it-works" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
 
       <div className="container px-4 sm:px-6 md:px-8 relative">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,82 +52,61 @@ export function TimelineSection({ config }: TimelineSectionProps) {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Timeline Navigation */}
-          <div className="flex justify-center mb-12">
-            <div className="flex gap-4 p-2 bg-background rounded-full border border-border/40 shadow-sm">
-              {config.tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveDay(tab.id as keyof TimelineContent)}
-                  aria-label={`View timeline for ${tab.label}`}
-                  aria-pressed={activeDay === tab.id}
-                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeDay === tab.id
-                      ? "text-white shadow-sm bg-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Timeline Content */}
-          <motion.div
-            key={activeDay}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="grid md:grid-cols-3 gap-8 mb-12"
-          >
-            {config.content[activeDay].map((step, index) => {
+        <div className="max-w-5xl mx-auto">
+          {/* 3-Step Process */}
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+            {config.processSteps.map((step, index) => {
               const Icon = step.icon
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-background rounded-2xl p-6 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  className="bg-background rounded-2xl p-6 lg:p-8 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300 relative"
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
+                  {/* Step Number */}
+                  <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-md">
+                    {step.step}
+                  </div>
+
+                  <div className="space-y-4 pt-2">
+                    {/* Icon and Title */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-primary" />
                       </div>
-                      <h3 className="text-lg font-semibold">{step.title}</h3>
+                      <h3 className="text-xl font-bold">{step.title}</h3>
                     </div>
-                    <ul className="space-y-3">
-                      {step.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-3">
-                          <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
-                            <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
-                          </div>
-                          <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                 </motion.div>
               )
             })}
-          </motion.div>
+          </div>
 
           {/* Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="text-center flex flex-col items-center"
           >
             <Link href={config.cta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <PrimaryButton slow className="flex items-center justify-center gap-2 w-full sm:w-auto">
+              <ShimmerButton
+                background="#0099CC"
+                shimmerColor="#FFFFFF"
+                className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold w-full sm:w-auto"
+              >
                 {config.cta.text}
-                <ArrowRight className="size-4" />
-              </PrimaryButton>
+                <ArrowRight className="ml-2 size-4" />
+              </ShimmerButton>
             </Link>
             <p className="text-sm text-muted-foreground mt-4">
               {config.ctaNote}

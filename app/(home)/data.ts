@@ -12,12 +12,15 @@ import {
   Video,
   WifiOff,
   Check,
+  UserPlus,
+  Settings,
+  Download,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 // Hero Section Config
 export const heroConfig = {
-  badge: "✨ MYCURE X is on the Horizon",
+  badge: "Powering Clinics That Scale",
   headline: {
     line1: "Run the clinic",
     line2: "you've always envisioned.",
@@ -252,126 +255,38 @@ export const integrationConfig = {
 }
 
 // Timeline Config (How It Works)
-export interface TimelineStep {
+export interface ProcessStep {
+  step: number
   title: string
+  description: string
   icon: LucideIcon
-  items: string[]
-}
-
-export interface TimelineContent {
-  today: TimelineStep[]
-  day3: TimelineStep[]
-  day7: TimelineStep[]
 }
 
 export const timelineConfig = {
   badge: "How It Works",
-  headline: "What you can achieve with MYCURE",
-  headlineHighlight: "in just 7 days",
-  description: "Improve your healthcare practice step by step with our guided onboarding process.",
-  tabs: [
-    { id: "today", label: "Today" },
-    { id: "day3", label: "Day 3" },
-    { id: "day7", label: "Day 7" },
+  headline: "Get Started with MYCURE",
+  headlineHighlight: "in 3 Simple Steps",
+  description: "From signup to managing your first patient in minutes. No technical skills required.",
+  processSteps: [
+    {
+      step: 1,
+      title: "Create Your Account",
+      description: "Sign up in under 2 minutes. No credit card required—just your email and you're in.",
+      icon: UserPlus,
+    },
+    {
+      step: 2,
+      title: "Set Up Your Practice",
+      description: "Add your team, configure services, and import existing patient data with guided setup.",
+      icon: Settings,
+    },
+    {
+      step: 3,
+      title: "Start Managing Patients",
+      description: "Begin scheduling appointments, managing records, and streamlining your practice immediately.",
+      icon: Download,
+    },
   ],
-  content: {
-    today: [
-      {
-        title: "Setup Your Clinic",
-        icon: Users,
-        items: [
-          "Create your clinic profile in minutes",
-          "Add your first staff members and departments",
-          "Configure basic settings and preferences",
-          "Import existing patient data securely",
-        ],
-      },
-      {
-        title: "Patient Registration",
-        icon: Shield,
-        items: [
-          "Register your first patients",
-          "Set up appointment scheduling",
-          "Configure patient communication preferences",
-          "Enable HIPAA-compliant data storage",
-        ],
-      },
-      {
-        title: "Basic Operations",
-        icon: Zap,
-        items: [
-          "Schedule your first appointments",
-          "Start using digital patient records",
-          "Set up basic billing and invoicing",
-          "Configure notification preferences",
-        ],
-      },
-    ],
-    day3: [
-      {
-        title: "Advanced Features",
-        icon: BarChart,
-        items: [
-          "Connect with lab systems and pharmacies",
-          "Set up automated appointment reminders",
-          "Configure advanced reporting dashboards",
-          "Enable telemedicine capabilities",
-        ],
-      },
-      {
-        title: "Workflow Optimization",
-        icon: Layers,
-        items: [
-          "Automate patient check-in processes",
-          "Set up custom treatment protocols",
-          "Configure insurance verification workflows",
-          "Enable prescription management",
-        ],
-      },
-      {
-        title: "Team Collaboration",
-        icon: Users,
-        items: [
-          "Set up department-specific workflows",
-          "Configure staff scheduling and shifts",
-          "Enable secure internal messaging",
-          "Set up role-based access controls",
-        ],
-      },
-    ],
-    day7: [
-      {
-        title: "Streamlined Operations",
-        icon: Zap,
-        items: [
-          "Automate routine administrative tasks",
-          "Set up smart patient queuing workflows",
-          "Use scheduling insights to reduce wait times",
-          "Configure automated billing workflows",
-        ],
-      },
-      {
-        title: "Advanced Analytics",
-        icon: BarChart,
-        items: [
-          "Generate comprehensive practice reports",
-          "Track key performance indicators",
-          "Monitor patient satisfaction metrics",
-          "Analyze revenue and efficiency trends",
-        ],
-      },
-      {
-        title: "Scale Your Practice",
-        icon: Star,
-        items: [
-          "Reduce administrative burden",
-          "Increase patient satisfaction scores",
-          "Improve appointment scheduling efficiency",
-          "Enhance overall practice profitability",
-        ],
-      },
-    ],
-  } as TimelineContent,
   cta: {
     text: "Start Free Trial",
     href: "https://calendly.com/mycure/demo",

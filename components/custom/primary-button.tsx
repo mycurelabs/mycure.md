@@ -27,7 +27,7 @@ export const PrimaryButton = React.forwardRef<
   return (
     <ShimmerButton
       ref={ref}
-      background="var(--gradient-quinary)"
+      background="#0099CC"
       shimmerColor="#ffffff"
       shimmerDuration={slow ? "3s" : "2s"}
       className={cn(
