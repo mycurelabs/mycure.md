@@ -52,11 +52,11 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               // Allow 'unsafe-eval' in dev mode for React Fast Refresh
-              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://va.vercel-scripts.com`,
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com`,
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: https:",
-              "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+              "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://td.doubleclick.net",
               "frame-ancestors 'none'",
               "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
               "worker-src 'self' blob:",

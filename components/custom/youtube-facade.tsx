@@ -64,9 +64,7 @@ export function YouTubeFacade({ videoId, title, poster, className }: YouTubeFaca
         ref={iframeRef}
         src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
         title={title}
-        referrerPolicy="strict-origin-when-cross-origin"
-        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
-        allow="encrypted-media"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         tabIndex={0}
         className={cn("absolute inset-0 w-full h-full", className)}
