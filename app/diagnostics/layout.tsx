@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/hero-section-assets/diagnostics-clinics-hero-image.webp',
+        url: '/og-banners/mycure-og-banner.webp',
         width: 1200,
         height: 630,
         alt: 'MYCURE Diagnostic Center Software',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Diagnostic Center Software | MYCURE for Labs & Imaging',
     description: 'Complete laboratory and imaging center management with LIS integration and automated reporting.',
-    images: ['/hero-section-assets/diagnostics-clinics-hero-image.webp'],
+    images: ['/og-banners/mycure-og-banner.webp'],
   },
   alternates: {
     canonical: 'https://mycure.md/diagnostics',
