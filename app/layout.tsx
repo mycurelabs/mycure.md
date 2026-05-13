@@ -21,7 +21,7 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mycure.md"),
   title: {
-    default: "MYCURE - Clinic Management System for Philippine Healthcare",
+    default: "MYCURE — EMR and Clinic Management System for Philippine Healthcare",
     template: "%s | MYCURE",
   },
   description: "Streamline your clinic with MYCURE. Trusted by leading Philippine healthcare providers. HIPAA compliant, works offline. Free trial.",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     locale: "en_PH",
     url: "https://mycure.md",
     siteName: "MYCURE",
-    title: "MYCURE - Clinic Management System for Philippine Healthcare",
+    title: "MYCURE — EMR and Clinic Management System for Philippine Healthcare",
     description: "Transform your healthcare practice with MYCURE. Trusted by leading Philippine healthcare providers. HIPAA compliant, works offline.",
     images: [
       {
@@ -69,9 +69,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MYCURE - Clinic Management System for Philippine Healthcare",
+    title: "MYCURE — EMR and Clinic Management System for Philippine Healthcare",
     description: "Transform your healthcare practice with MYCURE. Trusted by leading Philippine healthcare providers.",
-    creator: "@mycaboret",
+    site: "@mycuremd",
+    creator: "@mycuremd",
     images: ["/og-banners/mycure-og-banner.webp"],
   },
   alternates: {

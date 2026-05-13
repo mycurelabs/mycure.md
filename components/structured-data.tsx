@@ -19,7 +19,7 @@ export function StructuredData() {
     logo: "https://mycure.md/mycure-logo.svg",
     description:
       "MYCURE is a comprehensive healthcare management platform designed specifically for Philippine healthcare providers. Trusted by leading clinics and multi-specialty practices.",
-    foundingDate: "2013",
+    foundingDate: "2016",
     foundingLocation: {
       "@type": "Place",
       address: {
@@ -29,7 +29,9 @@ export function StructuredData() {
     },
     sameAs: [
       "https://www.facebook.com/mycure.md",
+      "https://www.instagram.com/mycure.md/",
       "https://www.linkedin.com/company/mycure",
+      "https://x.com/mycuremd",
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -54,7 +56,8 @@ export function StructuredData() {
       "Electronic Medical Records (EMR)",
       "Patient Registration",
       "Appointment Scheduling",
-            "HIPAA Compliance",
+      "Data Privacy Act (RA 10173) Compliance",
+      "PhilHealth eClaims 3.0 Submission",
       "Offline Capability",
       "Telehealth",
       "Laboratory Management",
@@ -90,7 +93,7 @@ export function StructuredData() {
         name: "What is MYCURE?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics and healthcare facilities. We streamline your practice operations while maintaining HIPAA compliance and operational efficiency.",
+          text: "MYCURE is an EMR and clinic management system built for Philippine healthcare providers, designed to comply with Republic Act 10173 (the Data Privacy Act of 2012) and National Privacy Commission (NPC) requirements. It supports the core clinical workflow — patient registration, charting, prescriptions, billing — from a single portal, with offline capability for clinics in areas with unreliable bandwidth.",
         },
       },
       {
@@ -98,7 +101,7 @@ export function StructuredData() {
         name: "How much does MYCURE cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE offers flexible pricing plans for multi-specialty clinics and enterprise healthcare organizations. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
+          text: "MYCURE pricing is denominated in Philippine peso (PHP) and structured for Philippine clinics under the regulatory environment of the Data Privacy Act (RA 10173) and PhilHealth eClaims 3.0. Contact sales for a clinic-size-specific quote, or start the 15-day free trial without a credit card.",
         },
       },
       {
@@ -106,7 +109,7 @@ export function StructuredData() {
         name: "Is MYCURE compliant with healthcare regulations?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, MYCURE is designed to be HIPAA compliant and supports Philippine healthcare requirements with secure patient data management.",
+          text: "Yes. MYCURE is built to comply with Republic Act 10173 (the Data Privacy Act of 2012) and operates under National Privacy Commission (NPC) requirements for Philippine healthcare providers. It is built to support PhilHealth eClaims 3.0 submission in line with PhilHealth Advisory PA2025-0076, with patient-privacy controls comparable to HIPAA standards for clinics serving international patients.",
         },
       },
       {
@@ -114,7 +117,7 @@ export function StructuredData() {
         name: "What platforms does MYCURE support?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE works on Mac and Windows computers through Google Chrome. Our platform is optimized for this environment to deliver the best performance and reliability.",
+          text: "MYCURE runs in Google Chrome on Mac and Windows desktops used at Philippine clinics, and is designed to operate offline so patient records can be captured under Data Privacy Act (RA 10173) requirements even when internet access is intermittent.",
         },
       },
       {
@@ -122,7 +125,7 @@ export function StructuredData() {
         name: "Can I try MYCURE before committing?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! Start with our 15-day free trial that includes full platform access and no credit card requirement. We'll provide you with a demo app link to explore the platform at your own pace.",
+          text: "Yes — MYCURE offers a 15-day free trial with full access to EMR, scheduling, and billing features built around PhilHealth eClaims 3.0 workflows and Data Privacy Act (RA 10173) controls. No credit card is required.",
         },
       },
     ],
