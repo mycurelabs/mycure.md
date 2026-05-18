@@ -19,7 +19,7 @@ export function StructuredData() {
     logo: "https://mycure.md/mycure-logo.svg",
     description:
       "MYCURE is a comprehensive healthcare management platform designed specifically for Philippine healthcare providers. Trusted by leading clinics and multi-specialty practices.",
-    foundingDate: "2013",
+    foundingDate: "2016",
     foundingLocation: {
       "@type": "Place",
       address: {
@@ -29,7 +29,9 @@ export function StructuredData() {
     },
     sameAs: [
       "https://www.facebook.com/mycure.md",
+      "https://www.instagram.com/mycure.md/",
       "https://www.linkedin.com/company/mycure",
+      "https://x.com/mycuremd",
     ],
     contactPoint: {
       "@type": "ContactPoint",
