@@ -218,12 +218,12 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "Built for Healthcare Data Trust",
       description:
-        "Diagnostic data carries weight. MYCURE encrypts records at rest, applies role-based access, and ships with the integration standards labs already work in.",
+        "Diagnostic data carries weight. MYCURE handles records with appropriate safeguards, controls who can see what, and connects with the integration standards labs already work in.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
         "Workflows that align with healthcare data-handling requirements in your region",
-        "Encrypted record storage with role-based access controls",
+        "Protected record storage with appropriate access controls",
         "Interoperability with HL7-ready integration capabilities",
       ],
     },

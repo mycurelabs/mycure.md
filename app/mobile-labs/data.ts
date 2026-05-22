@@ -220,12 +220,12 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "Built for Healthcare Data Trust",
       description:
-        "Patient records on the move still need protection. MYCURE encrypts data at rest, gates access by role, and connects with the systems your lab already uses.",
+        "Patient records on the move still need protection. MYCURE handles data with appropriate safeguards, controls who can see what, and connects with the systems your lab already uses.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
         "Workflows that align with healthcare data-handling requirements in your region",
-        "Encrypted record storage with role-based access controls",
+        "Protected record storage with appropriate access controls",
         "Interoperability with HL7-ready integration capabilities",
       ],
     },

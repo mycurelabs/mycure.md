@@ -226,24 +226,24 @@ export default function SyncbaseTechnologyPage() {
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Security & Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      MYCURE is designed with healthcare-grade data protection in mind. It complies with international standards for patient data privacy and security.
+                      MYCURE is built with healthcare data protection in mind, aligned with international standards relevant to patient privacy.
                     </p>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-3">
                         <Shield className="size-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>SSL/TLS</strong> – encrypted connections for data in transit.</span>
+                        <span><strong>Secure Connections</strong> – data transmitted with appropriate protections.</span>
                       </li>
                       <li className="flex gap-3">
                         <Lock className="size-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Data Encryption</strong> – secure storage and transmission of records.</span>
+                        <span><strong>Data Protection</strong> – records handled with appropriate care during storage and transmission.</span>
                       </li>
                       <li className="flex gap-3">
                         <Key className="size-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>User Designated Access</strong> – role-based permissions for staff.</span>
+                        <span><strong>User Designated Access</strong> – appropriate permissions for staff.</span>
                       </li>
                       <li className="flex gap-3">
                         <Cloud className="size-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Secure Cloud Hosting</strong> – reliable and scalable infrastructure.</span>
+                        <span><strong>Reliable Cloud Hosting</strong> – scalable infrastructure built for healthcare.</span>
                       </li>
                       <li className="flex gap-3">
                         <CheckCircle className="size-5 text-primary flex-shrink-0 mt-0.5" />
