@@ -138,7 +138,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
   badge: "Telehealth Features",
   headline: "Complete Virtual Care Platform",
   description:
-    "Everything you need for professional virtual consultations. From video calls to digital prescriptions, we've got you covered with enterprise-grade security.",
+    "Everything you need for professional virtual consultations. From video calls to digital prescriptions, with encrypted patient data throughout.",
   items: [
     {
       id: "hd-video-consultations",
@@ -173,7 +173,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: Shield,
       title: "End-to-End Encryption",
       description:
-        "Enterprise-grade encryption for all patient data, video calls, and medical records with audit trails",
+        "AES-256 encryption for patient data, video calls, and medical records, with audit trails",
     },
     {
       id: "multi-platform-access",

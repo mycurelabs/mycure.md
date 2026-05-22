@@ -148,7 +148,7 @@ export const statisticsConfig = {
 export const whyChooseConfig = {
   badge: "Why Choose MYCURE",
   headline: "Built for Modern Teams",
-  description: "Enterprise-grade capabilities with healthcare-specific design. Compliance, reliability, and smooth operations.",
+  description: "Built for healthcare workflows: reliable, compliance-aware, and easy for clinical teams to run day to day.",
   items: [
     {
       title: "HIPAA Security & Compliance",

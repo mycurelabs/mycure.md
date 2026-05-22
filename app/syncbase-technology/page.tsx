@@ -231,7 +231,7 @@ export default function SyncbaseTechnologyPage() {
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-3">
                         <Shield className="size-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Grade A+ SSL</strong> – enterprise-grade encryption in transit.</span>
+                        <span><strong>SSL/TLS</strong> – encrypted connections for data in transit.</span>
                       </li>
                       <li className="flex gap-3">
                         <Lock className="size-5 text-primary flex-shrink-0 mt-0.5" />
