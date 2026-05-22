@@ -1,0 +1,47 @@
+# MYCURE
+
+> MYCURE is a clinic management system and electronic medical
+> records (EMR) platform for clinics, multi-specialty groups,
+> corporate clinics, diagnostic centers, and aesthetic clinics.
+> Used by healthcare organizations in the Philippines and
+> internationally. Operated by TOPSI Inc. Founded 2016.
+
+## Core product pages
+
+- [Clinics](https://mycure.md/clinics): All-in-one clinic management
+  for outpatient practices — scheduling, billing, EMR, telehealth.
+- [Corporate](https://mycure.md/corporate): Corporate clinic and
+  occupational health management for organizations with on-site
+  health programs.
+- [Telehealth](https://mycure.md/telehealth): Virtual consultations
+  with encrypted video and integrated EMR.
+- [Booking](https://mycure.md/booking): Online appointment scheduling
+  with patient self-service.
+- [Diagnostics](https://mycure.md/diagnostics): Laboratory and
+  imaging center workflow management.
+- [Mobile Labs](https://mycure.md/mobile-labs): On-site diagnostic
+  services with location-based registration.
+- [Skin & Aesthetics](https://mycure.md/skin): MYCURE Beauty for
+  dermatology and aesthetic clinics with before/after photo
+  management.
+- [Syncbase Technology](https://mycure.md/syncbase-technology):
+  MYCURE's offline-first synchronization architecture.
+
+## About
+
+- [Our Story](https://mycure.md/our-story): Company background.
+- [Privacy Policy](https://mycure.md/privacy-policy)
+- [Terms and Conditions](https://mycure.md/terms-and-conditions)
+
+## Try MYCURE
+
+- [Book a demo](https://calendly.com/mycure/demo)
+- [Customer portal](https://portal.mycure.md)
+
+## Operating details
+
+- Country: Philippines
+- Founded: 2016
+- Founder: Dale Dennis David
+- Operating organization: TOPSI Inc.
+- Sitemap: https://mycure.md/sitemap.xml
