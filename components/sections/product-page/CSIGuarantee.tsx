@@ -81,7 +81,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Access Controls</div>
-                        <div className="text-xs text-muted-foreground">Role-based permissions active</div>
+                        <div className="text-xs text-muted-foreground">Appropriate permissions active</div>
                       </div>
                     </div>
                   </div>
