@@ -6,30 +6,37 @@
 > Used by healthcare providers across the Philippines.
 > Operated by TOPSI Inc. Founded 2016.
 
+MYCURE consolidates patient records, scheduling, billing, telehealth, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronises records back to the cloud when the connection returns.
+
 ## Core product pages
 
-- [Clinics](https://mycure.md/clinics): All-in-one clinic management
-  for outpatient practices — scheduling, billing, EMR, telehealth.
-- [Corporate](https://mycure.md/corporate): Corporate clinic and
-  occupational health management for organizations with on-site
-  health programs.
-- [Telehealth](https://mycure.md/telehealth): Virtual consultations
-  with encrypted video and integrated EMR.
-- [Booking](https://mycure.md/booking): Online appointment scheduling
-  with patient self-service.
-- [Diagnostics](https://mycure.md/diagnostics): Laboratory and
-  imaging center workflow management.
-- [Mobile Labs](https://mycure.md/mobile-labs): On-site diagnostic
-  services with patient registration at the collection point.
-- [Skin & Aesthetics](https://mycure.md/skin): MYCURE Beauty for
-  dermatology and aesthetic clinics with before/after photo
-  management.
-- [Syncbase Technology](https://mycure.md/syncbase-technology):
-  MYCURE's offline-first synchronization architecture.
+### [Clinics](https://mycure.md/clinics)
+All-in-one clinic management for outpatient practices. Covers patient registration, electronic medical records, scheduling, billing, prescriptions, and follow-up reminders. Includes integrated telehealth so consultations and in-person visits live in the same record. Designed for solo practitioners, group clinics, and multi-specialty outpatient organisations.
+
+### [Corporate](https://mycure.md/corporate)
+Corporate clinic and occupational-health management for organisations that run on-site clinics or employee health programs. Handles pre-employment medicals, annual physical exams, fitness-to-work assessments, vaccination tracking, and corporate health reporting. Supports the regulatory expectations that apply to occupational health in the Philippines.
+
+### [Telehealth](https://mycure.md/telehealth)
+Virtual consultations with integrated video, secure messaging, scheduling, and digital prescriptions. Patient communications and records sit alongside in-person visit history in the same EMR, so providers do not maintain two parallel patient files. Includes appointment reminders and multi-device access for clinicians on the move.
+
+### [Booking](https://mycure.md/booking)
+Online appointment scheduling with patient self-service. Patients book, reschedule, and cancel without phoning the front desk; clinics manage availability, buffer times, and provider calendars from the same console. Reduces front-desk phone load and no-shows through automated reminders.
+
+### [Diagnostics](https://mycure.md/diagnostics)
+Laboratory and imaging workflow management for diagnostic centres and labs. Covers test ordering, specimen tracking, result entry, report delivery to referring providers, and follow-up booking from the results page. Supports HL7-ready integrations so existing analyser fleets connect without a rip-and-replace.
+
+### [Mobile Labs](https://mycure.md/mobile-labs)
+On-site diagnostic services for teams running mobile or pop-up collection events. Patient registration happens at the collection point; mileage and route tracking feed into reporting; results flow back into the same diagnostic workflow used by fixed-location labs.
+
+### [Skin & Aesthetics — MYCURE Beauty](https://mycure.md/skin)
+Dermatology and aesthetic clinic management with before/after photo handling, treatment plans, package billing, and patient follow-up reminders. Built for solo aesthetic practices and multi-branch beauty/dermatology clinics.
+
+### [Syncbase Technology](https://mycure.md/syncbase-technology)
+MYCURE's offline-first synchronisation architecture. Records stay accessible to clinicians during connectivity outages and reconcile automatically when the connection returns. Supports cross-device access for clinicians who move between rooms, branches, or sites.
 
 ## About
 
-- [Our Story](https://mycure.md/our-story): Company background.
+- [Our Story](https://mycure.md/our-story): How MYCURE started, who's behind it, and the clinics the team built it with. Founded 2016 by Dale Dennis David. Operated by TOPSI Inc.
 - [Privacy Policy](https://mycure.md/privacy-policy): How MYCURE handles user and patient data.
 - [Terms and Conditions](https://mycure.md/terms-and-conditions): Service terms for using MYCURE.
 
