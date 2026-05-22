@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { ProductHeader } from '@/components/sections/product-page'
 
 export const metadata: Metadata = {
   title: 'Page Not Found',
@@ -12,9 +13,11 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="container px-4 py-16 text-center">
-        <div className="space-y-6">
+    <div className="flex min-h-[100dvh] flex-col bg-background">
+      <ProductHeader />
+      <main className="flex-1 flex items-center justify-center">
+        <div className="container px-4 py-16 text-center">
+          <div className="space-y-6">
           <h1 className="text-6xl md:text-8xl font-bold text-primary">404</h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
             Page Not Found
@@ -55,8 +58,9 @@ export default function NotFound() {
               <Link href="/skin" className="underline">MYCURE Beauty</Link>
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
