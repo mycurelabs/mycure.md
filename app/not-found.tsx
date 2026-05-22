@@ -37,6 +37,24 @@ export default function NotFound() {
               Explore Features
             </Link>
           </div>
+          <div className="pt-6 border-t border-border max-w-md mx-auto">
+            <p className="text-sm text-muted-foreground mb-3">
+              Looking for something specific?
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 text-sm">
+              <Link href="/clinics" className="underline">Clinics</Link>
+              <span>•</span>
+              <Link href="/corporate" className="underline">Corporate</Link>
+              <span>•</span>
+              <Link href="/telehealth" className="underline">Telehealth</Link>
+              <span>•</span>
+              <Link href="/booking" className="underline">Booking</Link>
+              <span>•</span>
+              <Link href="/diagnostics" className="underline">Diagnostics</Link>
+              <span>•</span>
+              <Link href="/skin" className="underline">MYCURE Beauty</Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
