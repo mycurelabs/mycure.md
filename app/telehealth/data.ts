@@ -138,7 +138,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
   badge: "Telehealth Features",
   headline: "Complete Virtual Care Platform",
   description:
-    "Everything you need for professional virtual consultations. From video calls to digital prescriptions, with patient data handled with appropriate care throughout.",
+    "Everything you need for professional virtual consultations — video calls, digital prescriptions, and patient communications handled responsibly throughout.",
   items: [
     {
       id: "hd-video-consultations",

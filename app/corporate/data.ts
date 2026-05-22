@@ -114,7 +114,7 @@ export const featureJourneyConfig: FeatureJourneyConfig = {
   badge: "Corporate Benefits",
   headline: "How MYCURE Improves Corporate Healthcare",
   description:
-    "From employee wellness to regulatory compliance, discover why leading corporations trust MYCURE to manage their healthcare operations efficiently and cost-effectively.",
+    "From employee wellness to regulatory compliance, MYCURE Corporate gives HR and clinic teams one place to manage healthcare operations efficiently and cost-effectively.",
   image: {
     src: "/section-assets/clinic-page/clinic-journey.webp",
     alt: "MYCURE Corporate Healthcare Journey - From Onboarding to Analytics",
@@ -238,7 +238,7 @@ export const finalCtaConfig: FinalCtaConfig = {
     suffix: "your corporate healthcare?",
   },
   description:
-    "Join hundreds of leading corporations who trust MYCURE to manage their employee healthcare efficiently and cost-effectively.",
+    "Bring your employee healthcare into one platform built for corporate clinic and occupational-health teams.",
   cta: {
     text: "Book Your Demo",
     href: "https://calendly.com/mycure/demo",

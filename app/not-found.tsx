@@ -18,46 +18,46 @@ export default function NotFound() {
       <main className="flex-1 flex items-center justify-center">
         <div className="container px-4 py-16 text-center">
           <div className="space-y-6">
-          <h1 className="text-6xl md:text-8xl font-bold text-primary">404</h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-            Page Not Found
-          </h2>
-          <p className="text-muted-foreground max-w-md mx-auto">
-            Sorry, we couldn't find the page you're looking for.
-            It might have been moved or doesn't exist.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
-            >
-              Go to Homepage
-            </Link>
-            <Link
-              href="/#features"
-              className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
-            >
-              Explore Features
-            </Link>
-          </div>
-          <div className="pt-6 border-t border-border max-w-md mx-auto">
-            <p className="text-sm text-muted-foreground mb-3">
-              Looking for something specific?
+            <h1 className="text-6xl md:text-8xl font-bold text-primary">404</h1>
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+              Page Not Found
+            </h2>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Sorry, we couldn't find the page you're looking for.
+              It might have been moved or doesn't exist.
             </p>
-            <div className="flex flex-wrap justify-center gap-2 text-sm">
-              <Link href="/clinics" className="underline">Clinics</Link>
-              <span aria-hidden="true">•</span>
-              <Link href="/corporate" className="underline">Corporate</Link>
-              <span aria-hidden="true">•</span>
-              <Link href="/telehealth" className="underline">Telehealth</Link>
-              <span aria-hidden="true">•</span>
-              <Link href="/booking" className="underline">Booking</Link>
-              <span aria-hidden="true">•</span>
-              <Link href="/diagnostics" className="underline">Diagnostics</Link>
-              <span aria-hidden="true">•</span>
-              <Link href="/skin" className="underline">MYCURE Beauty</Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                Go to Homepage
+              </Link>
+              <Link
+                href="/#features"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
+              >
+                Explore Features
+              </Link>
             </div>
-          </div>
+            <div className="pt-6 border-t border-border max-w-md mx-auto">
+              <p className="text-sm text-muted-foreground mb-3">
+                Looking for something specific?
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 text-sm">
+                <Link href="/clinics" className="underline">Clinics</Link>
+                <span aria-hidden="true">•</span>
+                <Link href="/corporate" className="underline">Corporate</Link>
+                <span aria-hidden="true">•</span>
+                <Link href="/telehealth" className="underline">Telehealth</Link>
+                <span aria-hidden="true">•</span>
+                <Link href="/booking" className="underline">Booking</Link>
+                <span aria-hidden="true">•</span>
+                <Link href="/diagnostics" className="underline">Diagnostics</Link>
+                <span aria-hidden="true">•</span>
+                <Link href="/skin" className="underline">MYCURE Beauty</Link>
+              </div>
+            </div>
           </div>
         </div>
       </main>

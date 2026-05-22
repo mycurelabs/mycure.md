@@ -195,12 +195,12 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "HIPAA-Compliant Telehealth Platform",
       description:
-        "Built around healthcare data privacy standards including HIPAA, so clinics serving international or visiting patients can operate with confidence.",
+        "Built around healthcare data privacy standards including HIPAA, so clinics can offer virtual care with confidence.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
         "Securely handled video consultations protecting patient privacy",
-        "HIPAA-aligned data handling for all telehealth records",
+        "HIPAA-compliant handling of telehealth records",
         "Integrated billing for virtual consultations with automatic documentation",
       ],
     },

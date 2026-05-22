@@ -107,9 +107,9 @@ export function CSIGuarantee() {
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                MYCURE applies layered safeguards so patient information is handled with appropriate
-                care. Records sit behind protective controls, and privacy-conscious practices help
-                keep sensitive details out of the wrong hands.
+                MYCURE applies layered safeguards so patient information is handled responsibly.
+                Records sit behind protective controls, and privacy-conscious practices reduce the
+                chance that identifying details end up where they shouldn't.
               </p>
               <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
                 <div className="space-y-3">
@@ -119,8 +119,8 @@ export function CSIGuarantee() {
                         <Shield className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">Data Protection Safeguards</div>
-                        <div className="text-xs text-muted-foreground">Records handled with appropriate care</div>
+                        <div className="font-semibold text-sm">Data Protection</div>
+                        <div className="text-xs text-muted-foreground">Patient records held behind protective controls</div>
                       </div>
                     </div>
                     <div className="text-xs font-medium text-purple-600">Active</div>
@@ -130,7 +130,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Privacy-Conscious Handling</div>
-                        <div className="text-xs text-muted-foreground">Sensitive details kept appropriately private</div>
+                        <div className="text-xs text-muted-foreground">Identifying details managed with extra care</div>
                       </div>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Layered Safeguards</div>
-                        <div className="text-xs text-muted-foreground">Privacy and security working together</div>
+                        <div className="text-xs text-muted-foreground">Protection and privacy reinforcing each other</div>
                       </div>
                     </div>
                   </div>

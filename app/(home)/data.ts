@@ -152,14 +152,14 @@ export const whyChooseConfig = {
   items: [
     {
       title: "HIPAA Security & Compliance",
-      description: "MYCURE is HIPAA-aligned and built with safeguards to help clinics handle patient data responsibly.",
+      description: "MYCURE is HIPAA-compliant and built with safeguards to help clinics handle patient data responsibly.",
       icon: Shield,
       mediaType: "image" as const,
       mediaSrc: "/Features Photos/Built for Modern Teams/Hipaa-compliance-mycure.webp",
       mediaAlt: "HIPAA Security & Compliance",
       bullets: [
         "Safeguarded handling of patient communications and records",
-        "Compliance monitoring to help meet healthcare reporting expectations",
+        "Compliance monitoring with activity logs and reporting for healthcare workflows",
         "Access settings so staff see only the patient information they need",
       ],
       imagePosition: "left" as const,
@@ -309,7 +309,7 @@ export const faqConfig = {
     },
     {
       question: "Is MYCURE compliant with healthcare regulations?",
-      answer: "MYCURE is designed with HIPAA-aligned practices in mind. The platform is built with safeguards and access controls that support responsible handling of healthcare information. We recommend consulting with your compliance team for specific regulatory needs.",
+      answer: "MYCURE is designed with HIPAA compliance in mind. The platform is built with safeguards and access controls that support responsible handling of healthcare information. We recommend consulting with your compliance team for specific regulatory needs.",
     },
     {
       question: "What platforms does MYCURE support?",
