@@ -366,6 +366,6 @@ export const navigationConfig = {
     { label: "How it Works", href: "#how-it-works" },
     { label: "FAQs", href: "#faq" },
   ],
-  loginUrl: "https://next.cms.mycure.md/",
+  loginUrl: "https://mycure.localfirsthealth.com",
   ctaUrl: "https://calendly.com/mycure/demo",
 }

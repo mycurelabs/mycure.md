@@ -128,7 +128,7 @@ export function ProductHeader() {
             <span className="sr-only">Toggle theme</span>
           </Button>
           <Link
-            href="https://next.cms.mycure.md/"
+            href="https://mycure.localfirsthealth.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
