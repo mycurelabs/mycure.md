@@ -53,7 +53,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://blog.mycure.md/" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                    <Link href="https://portal.mycureapp.com/blog" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
                       Blog
                     </Link>
                   </li>
@@ -149,7 +149,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="https://portal.mycureapp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="https://portal.mycureapp.com/blog" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
                   Blog
                 </Link>
               </li>
