@@ -2,8 +2,7 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://mycure.md";
-  // Use fixed date to prevent unnecessary re-crawling on each build
-  const lastUpdate = new Date("2025-01-02");
+  const lastUpdate = new Date();
 
   return [
     {
@@ -53,12 +52,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: lastUpdate,
       changeFrequency: "monthly",
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/download`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
-      priority: 0.6,
     },
     {
       url: `${baseUrl}/our-story`,
