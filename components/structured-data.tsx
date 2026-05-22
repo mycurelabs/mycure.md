@@ -50,7 +50,6 @@ export function StructuredData() {
       "@type": "Offer",
       url: "https://calendly.com/mycure/demo",
       availability: "https://schema.org/InStock",
-      priceCurrency: "PHP",
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "PHP",

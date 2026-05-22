@@ -43,15 +43,15 @@ export default function NotFound() {
             </p>
             <div className="flex flex-wrap justify-center gap-2 text-sm">
               <Link href="/clinics" className="underline">Clinics</Link>
-              <span>•</span>
+              <span aria-hidden="true">•</span>
               <Link href="/corporate" className="underline">Corporate</Link>
-              <span>•</span>
+              <span aria-hidden="true">•</span>
               <Link href="/telehealth" className="underline">Telehealth</Link>
-              <span>•</span>
+              <span aria-hidden="true">•</span>
               <Link href="/booking" className="underline">Booking</Link>
-              <span>•</span>
+              <span aria-hidden="true">•</span>
               <Link href="/diagnostics" className="underline">Diagnostics</Link>
-              <span>•</span>
+              <span aria-hidden="true">•</span>
               <Link href="/skin" className="underline">MYCURE Beauty</Link>
             </div>
           </div>

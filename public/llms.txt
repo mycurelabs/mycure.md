@@ -3,8 +3,8 @@
 > MYCURE is a clinic management system and electronic medical
 > records (EMR) platform for clinics, multi-specialty groups,
 > corporate clinics, diagnostic centers, and aesthetic clinics.
-> Used by healthcare organizations in the Philippines and
-> internationally. Operated by TOPSI Inc. Founded 2016.
+> Used by healthcare providers across the Philippines.
+> Operated by TOPSI Inc. Founded 2016.
 
 ## Core product pages
 
@@ -20,7 +20,7 @@
 - [Diagnostics](https://mycure.md/diagnostics): Laboratory and
   imaging center workflow management.
 - [Mobile Labs](https://mycure.md/mobile-labs): On-site diagnostic
-  services with location-based registration.
+  services with patient registration at the collection point.
 - [Skin & Aesthetics](https://mycure.md/skin): MYCURE Beauty for
   dermatology and aesthetic clinics with before/after photo
   management.
@@ -30,8 +30,8 @@
 ## About
 
 - [Our Story](https://mycure.md/our-story): Company background.
-- [Privacy Policy](https://mycure.md/privacy-policy)
-- [Terms and Conditions](https://mycure.md/terms-and-conditions)
+- [Privacy Policy](https://mycure.md/privacy-policy): How MYCURE handles user and patient data.
+- [Terms and Conditions](https://mycure.md/terms-and-conditions): Service terms for using MYCURE.
 
 ## Try MYCURE
 

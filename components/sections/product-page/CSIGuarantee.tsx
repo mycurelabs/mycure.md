@@ -119,7 +119,7 @@ export function CSIGuarantee() {
                       </div>
                       <div>
                         <div className="font-semibold text-sm">AES-256 Encryption</div>
-                        <div className="text-xs text-muted-foreground">AES-256 data encryption</div>
+                        <div className="text-xs text-muted-foreground">Records stay encrypted at rest</div>
                       </div>
                     </div>
                     <div className="text-xs font-medium text-purple-600">Active</div>
