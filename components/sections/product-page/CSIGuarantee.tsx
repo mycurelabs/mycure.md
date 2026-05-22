@@ -24,7 +24,7 @@ export function CSIGuarantee() {
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">
                 Your patients trust you with their most sensitive health information. MYCURE CSI ensures
-                that trust is never broken with enterprise-grade security, automatic compliance, and
+                that trust is never broken with strong encryption, automatic compliance, and
                 seamless interoperability.
               </p>
             </motion.div>
@@ -102,8 +102,8 @@ export function CSIGuarantee() {
                   <Shield className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Bank-Level Security Infrastructure</h3>
-                  <p className="text-muted-foreground">Enterprise-grade protection</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Encrypted by Default</h3>
+                  <p className="text-muted-foreground">Patient data stays private</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -119,7 +119,7 @@ export function CSIGuarantee() {
                       </div>
                       <div>
                         <div className="font-semibold text-sm">AES-256 Encryption</div>
-                        <div className="text-xs text-muted-foreground">Military-grade data protection</div>
+                        <div className="text-xs text-muted-foreground">AES-256 data encryption</div>
                       </div>
                     </div>
                     <div className="text-xs font-medium text-purple-600">Active</div>
