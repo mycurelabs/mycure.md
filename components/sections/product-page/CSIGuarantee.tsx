@@ -23,9 +23,9 @@ export function CSIGuarantee() {
                 Compliant by Default
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">
-                Your patients trust you with their most sensitive health information. MYCURE CSI ensures
-                that trust is never broken with enterprise-grade security, automatic compliance, and
-                seamless interoperability.
+                Your patients trust you with their most sensitive health information. MYCURE CSI
+                helps keep that trust intact through responsible data handling, compliance-aware
+                workflows, and connections to the systems clinics already work with.
               </p>
             </motion.div>
           </div>
@@ -81,7 +81,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Access Controls</div>
-                        <div className="text-xs text-muted-foreground">Role-based permissions active</div>
+                        <div className="text-xs text-muted-foreground">Appropriate permissions active</div>
                       </div>
                     </div>
                   </div>
@@ -102,13 +102,14 @@ export function CSIGuarantee() {
                   <Shield className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Bank-Level Security Infrastructure</h3>
-                  <p className="text-muted-foreground">Enterprise-grade protection</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-purple-600">Encrypted by Default</h3>
+                  <p className="text-muted-foreground">Patient data stays private</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Sleep soundly with our dual-layer security approach. AES-256 encryption protects your data at rest,
-                while advanced deidentification techniques ensure patient privacy even in worst-case scenarios.
+                MYCURE applies layered safeguards so patient information is handled responsibly.
+                Records sit behind protective controls, and privacy-conscious practices reduce the
+                chance that identifying details end up where they shouldn't.
               </p>
               <div className="bg-gradient-to-br from-purple-500/5 to-purple-500/10 rounded-2xl p-6 border border-purple-500/20">
                 <div className="space-y-3">
@@ -118,8 +119,8 @@ export function CSIGuarantee() {
                         <Shield className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">AES-256 Encryption</div>
-                        <div className="text-xs text-muted-foreground">Military-grade data protection</div>
+                        <div className="font-semibold text-sm">Data Protection</div>
+                        <div className="text-xs text-muted-foreground">Patient records held behind protective controls</div>
                       </div>
                     </div>
                     <div className="text-xs font-medium text-purple-600">Active</div>
@@ -128,8 +129,8 @@ export function CSIGuarantee() {
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
                       <div>
-                        <div className="font-semibold text-sm">Data Deidentification</div>
-                        <div className="text-xs text-muted-foreground">Automated anonymization</div>
+                        <div className="font-semibold text-sm">Privacy-Conscious Handling</div>
+                        <div className="text-xs text-muted-foreground">Identifying details managed with extra care</div>
                       </div>
                     </div>
                   </div>
@@ -137,8 +138,8 @@ export function CSIGuarantee() {
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
                       <div>
-                        <div className="font-semibold text-sm">Dual-Layer Protection</div>
-                        <div className="text-xs text-muted-foreground">Encryption + anonymization</div>
+                        <div className="font-semibold text-sm">Layered Safeguards</div>
+                        <div className="text-xs text-muted-foreground">Protection and privacy reinforcing each other</div>
                       </div>
                     </div>
                   </div>

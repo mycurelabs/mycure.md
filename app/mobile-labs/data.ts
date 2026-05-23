@@ -218,14 +218,14 @@ export const advantagesConfig: AdvantagesConfig = {
       ],
     },
     {
-      title: "Protected by MYCURE CSI Guarantee",
+      title: "Built for Healthcare Data Trust",
       description:
-        "As a healthcare provider, your patients trust you with their private electronic health records. We protect that information with our CSI guarantee.",
+        "Patient records on the move still need protection. MYCURE handles data with appropriate safeguards, controls who can see what, and connects with the systems your lab already uses.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
-        "Compliance with healthcare regulations and standards",
-        "Security with encrypted data and secure access controls",
+        "Workflows that align with healthcare data-handling requirements in your region",
+        "Protected record storage with appropriate access controls",
         "Interoperability with HL7-ready integration capabilities",
       ],
     },

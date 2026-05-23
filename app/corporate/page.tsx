@@ -6,7 +6,6 @@ import {
   SolutionsGrid,
   VideoShowcase,
   FeatureJourney,
-  StatisticsBar,
   CSIGuarantee,
   OfflineCapability,
   SpecialtiesGrid,
@@ -19,7 +18,6 @@ import {
   solutionsGridConfig,
   videoShowcaseConfig,
   featureJourneyConfig,
-  statisticsConfig,
   specialtiesGridConfig,
   advantagesConfig,
   finalCtaConfig,
@@ -35,7 +33,6 @@ export default function CorporatePage() {
         <SolutionsGrid config={solutionsGridConfig} />
         <VideoShowcase config={videoShowcaseConfig} />
         <FeatureJourney config={featureJourneyConfig} />
-        <StatisticsBar config={statisticsConfig} />
         <CSIGuarantee />
         <OfflineCapability />
         <SpecialtiesGrid config={specialtiesGridConfig} />

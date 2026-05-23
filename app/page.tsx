@@ -147,7 +147,7 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden text-white relative brand-gradient-bg">
+        <section className="w-full pt-20 pb-12 sm:pt-24 sm:pb-16 md:py-20 lg:py-32 overflow-hidden text-white relative brand-gradient-bg">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -283,7 +283,7 @@ export default function LandingPage() {
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{faqConfig.description}</p>
             </motion.div>
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-              {faqConfig.items.map((faq, i) => (<AccordionItem key={i} value={`item-${i}`} className="border-white/20 bg-white/10 backdrop-blur-sm rounded-xl mb-3 sm:mb-4 px-4 sm:px-6"><AccordionTrigger className="text-white hover:text-white/80 text-left text-base sm:text-lg font-medium py-4 sm:py-5">{faq.question}</AccordionTrigger><AccordionContent className="text-white/80 text-base sm:text-lg leading-relaxed">{faq.hasLink ? (<>Visit <a href={faq.linkHref} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{faq.linkText}</a> for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.</>) : faq.answer}</AccordionContent></AccordionItem>))}
+              {faqConfig.items.map((faq, i) => (<AccordionItem key={i} value={`item-${i}`} className="border-white/20 bg-white/10 backdrop-blur-sm rounded-xl mb-3 sm:mb-4 px-4 sm:px-6"><AccordionTrigger className="text-white hover:text-white/80 text-left text-base sm:text-lg font-medium py-4 sm:py-5">{faq.question}</AccordionTrigger><AccordionContent className="text-white/80 text-base sm:text-lg leading-relaxed">{faq.hasLink ? (<>Visit <a href={faq.linkHref} target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-white/80">{faq.linkText}</a> for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.</>) : faq.answer}</AccordionContent></AccordionItem>))}
             </Accordion>
           </div>
         </section>

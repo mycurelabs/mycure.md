@@ -48,9 +48,14 @@ export function StructuredData() {
     operatingSystem: "Web Browser",
     offers: {
       "@type": "Offer",
-      price: "0",
-      priceCurrency: "PHP",
-      description: "15-day free trial available",
+      url: "https://calendly.com/mycure/demo",
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "PHP",
+        description: "Custom pricing for multi-specialty clinics and enterprise healthcare organizations.",
+      },
+      description: "15-day free trial. Contact for a pricing quote tailored to your clinic.",
     },
     featureList: [
       "Electronic Medical Records (EMR)",
