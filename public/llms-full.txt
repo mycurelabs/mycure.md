@@ -1,0 +1,177 @@
+# MYCURE — Full Content Reference
+
+> MYCURE is a clinic management system and electronic medical
+> records (EMR) platform for clinics, multi-specialty groups,
+> corporate clinics, diagnostic centers, and aesthetic clinics.
+> Used by healthcare providers across the Philippines.
+> Operated by TOPSI Inc. Founded 2016.
+
+MYCURE consolidates patient records, scheduling, billing, telehealth, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
+
+## What this file is
+
+This is the deeper companion to https://mycure.md/llms.txt. The shorter `llms.txt` carries a navigable index of pages with one- or two-sentence summaries. This `llms-full.txt` carries enough per-page substance for an LLM agent to ground a MYCURE answer without crawling the JavaScript-heavy marketing pages. Every paragraph below is sourced from existing on-site copy or product configuration; nothing here has been synthesized.
+
+## Company
+
+MYCURE was founded in 2016 by Dale Dennis David and is operated by TOPSI Inc. The company is based at The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila, Philippines, and serves healthcare providers across the Philippines.
+
+Across the homepage and product pages, MYCURE positions itself as "Built for healthcare workflows: reliable, compliance-aware, and easy for clinical teams to run day to day." The platform is HIPAA-compliant and built with safeguards to help clinics handle patient data responsibly.
+
+## Platform overview
+
+MYCURE provides an integrated set of solutions for healthcare facilities, clinics, and diagnostic centers. From patient records to telehealth, the platform enables teams to deliver care more efficiently and securely.
+
+Core areas covered:
+
+- **Healthcare Professionals** — Create electronic medical records, prescriptions, and diagnostic test orders with a streamlined interface.
+- **Outpatient Clinics** — Streamlined workflows and real-time reports help optimize operational efficiency.
+- **Diagnostics** — Manage the diagnostic test process from specimen collection to online test results.
+- **Easy Scheduling** — Patients can schedule appointments online, helping reduce waiting times.
+- **Telehealth** — A secure platform for virtual consultations through video and audio calls.
+- **Work Offline** — Continue using MYCURE even with limited or no internet connection.
+
+## Product line
+
+### Clinics — https://mycure.md/clinics
+
+MYCURE Clinics is clinic management software for outpatient practices — patient scheduling, billing, electronic medical records, and telehealth in one platform. Reduces wait times, eliminates paperwork, and gives your staff the tools to focus on patient care instead of admin.
+
+Operational areas the product covers:
+
+- Time Efficiency — Reduce time spent on administrative tasks with automated workflows and streamlined operations.
+- Patient Flow — Turn long wait times into faster patient flow through smart scheduling and queue management.
+- Staff Wellness — Support your team with intuitive tools that reduce repetitive tasks and help them focus on patient care.
+- Schedule Optimization — Change cancellations into full schedules using automated reminders and easy rebooking systems.
+- Patient Satisfaction — Turn patient frustration into positive reviews with smooth experiences that delight.
+- Compliance & Security — Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting.
+
+Specialty workflows are supported, including Skin & Aesthetics, Maternity Care, and Pediatric Care, among others. MYCURE Clinics integrates with the broader MYCURE platform so telehealth consultations and in-person visits share the same patient record.
+
+### Corporate — https://mycure.md/corporate
+
+MYCURE Corporate is occupational-health and corporate-clinic management software for organizations that run on-site clinics or employee health programs. Handles annual physical exams, fitness-to-work assessments, HMO coordination, and corporate health reporting in one place.
+
+Operational areas the product covers:
+
+- Employee Wellness — Programs to support employee health.
+- Cost Optimization — Tools to manage healthcare spend.
+- Compliance Management — Built-in DOH, DOLE, OSH, and HIPAA compliance support.
+- Executive Health — Tailored workflows for executive health programs.
+- Centralized Records — Employee health records in one place.
+- Productivity Analytics — Reporting that ties health programs to workforce metrics.
+
+### Telehealth — https://mycure.md/telehealth
+
+MYCURE Telehealth is a virtual-care platform for clinics that want to offer remote consultations alongside in-person care. Includes HD video consultations, secure messaging, smart scheduling, and digital prescriptions — all in the same patient record as in-person visits.
+
+What's included:
+
+- HD Video Consultations — Video calls between provider and patient.
+- Secure Messaging — Encrypted patient-provider messaging.
+- Smart Scheduling — Calendar and appointment scheduling.
+- Digital Prescriptions — Prescribe and share digitally.
+- Secure Communications — Patient data, video calls, and medical records handled with appropriate safeguards and activity logging.
+- Multi-Platform Access — Access on multiple devices.
+
+The page also positions MYCURE Telehealth as HIPAA-compliant and built around healthcare data privacy standards, so clinics can offer virtual care with confidence.
+
+### Booking — https://mycure.md/booking
+
+MYCURE Booking is online appointment scheduling software for healthcare facilities. Patients book, reschedule, and cancel 24/7 through professional booking pages; clinics manage availability, buffer times, and provider calendars from the same console. Helps reduce no-shows through automated reminders.
+
+Operational areas the product covers:
+
+- Long Wait Times — Reduce queueing through online scheduling.
+- Manual Scheduling — Replace phone-based scheduling with self-service.
+- Patient Experience — Smooth, professional booking surfaces.
+
+The page hosts real testimonials from named medical professionals on how MYCURE Booking fits their practice.
+
+### Diagnostics — https://mycure.md/diagnostics
+
+MYCURE Diagnostics is workflow software for diagnostic laboratories and imaging centers. Streamlines test ordering, specimen tracking, result entry, and report delivery; supports HL7-ready integrations so existing analyzer fleets connect without a full replacement.
+
+Operational areas the product covers:
+
+- Wasted Time & Resources — Eliminate redundant data entry.
+- Long Wait Times — Faster result delivery.
+- Overworked Staff — Reduce manual processes.
+- Cancelled Appointments — Reminder and rebooking tools.
+- Frustrated Patients — Self-service result access.
+- Error-prone Reports — Structured templates and validations.
+
+### Mobile Labs — https://mycure.md/mobile-labs
+
+MYCURE Mobile Labs is a clinic management system for teams running mobile or pop-up collection events. Patient registration happens at the collection point, mileage and route tracking feed into reporting, and results flow back into the same diagnostic workflow used by fixed-location labs.
+
+Operational areas the product covers:
+
+- Wasted Time & Resources — Reduce duplication between mobile and fixed-site work.
+- Long Wait Times — On-site queue management.
+- Overworked Staff — Streamlined collection and registration.
+- Cancelled Appointments — Reminder and rebooking tools.
+- Frustrated Patients — Self-service result access.
+- Error-prone Reports — Structured templates and validations.
+
+The page also documents an "Advanced Mobile Diagnostics" section covering mobile imaging and mobile laboratory workflows.
+
+### Skin & Aesthetics (MYCURE Beauty) — https://mycure.md/skin
+
+MYCURE Beauty is clinic management software for dermatology and aesthetic practices. Handles appointment booking, inventory, client records, before/after photo management, treatment plans, and package billing — built for solo aesthetic practices and multi-branch beauty/dermatology clinics.
+
+Operational areas the product covers:
+
+- Digital Medical Records — Aesthetic and dermatology-specific record-keeping.
+- Smart Attachments — Before/after photo handling.
+- Point-of-Sales — Integrated payments and packages.
+- Inventory Management — Stock for products and consumables.
+- Works Offline — Continue operating without connectivity.
+- Team Communication — Built-in internal messaging.
+
+## Cross-product capabilities
+
+### Offline-first architecture (Syncbase) — https://mycure.md/syncbase-technology
+
+MYCURE is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns. The Syncbase architecture supports cross-device access for clinicians who move between rooms, branches, or sites.
+
+Security and privacy positioning on the Syncbase page (post-2026-05-22 site copy update):
+
+- Secure Connections — Data transmitted with appropriate protections.
+- Data Protection — Records handled with appropriate care during storage and transmission.
+- User Designated Access — Appropriate permissions for staff.
+- Secure Cloud Hosting — Scalable infrastructure built for healthcare.
+- Compliance with Data Privacy Standards — Built around international healthcare privacy requirements.
+
+### Data trust and privacy (CSI)
+
+On every product page, the CSI section frames MYCURE's data-handling posture:
+
+"Your patients trust you with their most sensitive health information. MYCURE CSI helps keep that trust intact through responsible data handling, compliance-aware workflows, and connections to the systems clinics already work with."
+
+CSI covers three pillars across product pages:
+
+- **HIPAA-Compliant from Day One** — Start accepting patients immediately with built-in HIPAA compliance.
+- **Encrypted by Default** — MYCURE applies layered safeguards so patient information is handled responsibly. Records sit behind protective controls, and privacy-conscious practices reduce the chance that identifying details end up where they shouldn't.
+- **Connect with Any Healthcare System** — Break down data silos and connect seamlessly with labs, clinics, pharmacies, and insurance providers.
+
+## Frequently asked questions (from the homepage FAQ)
+
+- **What is MYCURE?** — MYCURE is a healthcare management platform designed for clinics and healthcare facilities, streamlining practice operations while maintaining HIPAA compliance.
+- **How much does MYCURE cost?** — MYCURE offers flexible pricing plans for multi-specialty clinics and enterprise healthcare organizations. Contact MYCURE or start a free trial to explore the best option for your practice.
+- **Is MYCURE compliant with healthcare regulations?** — Yes, MYCURE is HIPAA-compliant and supports Philippine healthcare requirements with secure patient data management.
+- **What platforms does MYCURE support?** — MYCURE works on Mac and Windows computers through Google Chrome.
+- **Can I try MYCURE before committing?** — Yes — a 15-day free trial with full platform access, no credit card required, is available.
+
+## Operating details
+
+- Country: Philippines
+- Founded: 2016
+- Founder: Dale Dennis David
+- Operating organization: TOPSI Inc.
+- Operating address: The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila
+- Sitemap: https://mycure.md/sitemap.xml
+- Index file: https://mycure.md/llms.txt
+- Customer portal: https://portal.mycure.md
+- Book a demo: https://calendly.com/mycure/demo
+- Telephone: +63 2 7799 6262
