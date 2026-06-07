@@ -8,6 +8,8 @@ import { ArrowLeft, Menu, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
 import { YouTubeFacade } from "@/components/custom/youtube-facade"
+import { BreadcrumbSchema } from "@/components/schemas/BreadcrumbSchema"
+import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
 
 export default function OurStoryPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
@@ -92,6 +94,16 @@ export default function OurStoryPage() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <DocumentHeader />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://mycure.md" },
+          { name: "Our Story", url: "https://mycure.md/our-story" },
+        ]}
+      />
+      <VideoObjectSchema
+        videoId="zvM3LIvq-6k"
+        name="MYCURE Our Story"
+      />
 
       <main className="flex-1">
         {/* Hero Section - Blog Template Style */}
