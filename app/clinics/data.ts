@@ -32,7 +32,7 @@ export const heroConfig: HeroConfig = {
     suffix: "That Actually Works",
   },
   description:
-    "From patient scheduling to billing, manage every aspect of your outpatient clinic in one unified platform. Reduce wait times, eliminate paperwork, and give your staff the tools they need to focus on patient care.",
+    "MYCURE Clinics is clinic management software for outpatient practices — patient scheduling, billing, electronic medical records, and telehealth in one platform. Reduces wait times, eliminates paperwork, and gives your staff the tools to focus on patient care instead of admin.",
   image: {
     src: "/section-assets/clinic-page/outpatient-clinics-hero-section.png",
     alt: "MYCURE Clinics - Healthcare professionals at reception desks",

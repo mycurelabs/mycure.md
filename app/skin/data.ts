@@ -34,7 +34,7 @@ export const heroConfig: HeroConfig = {
     suffix: "Management Platform",
   },
   description:
-    "Easy appointment booking, inventory management, and secure client records with relationship management, analytics and reporting designed specifically for aesthetic and dermatology clinics.",
+    "MYCURE Beauty is clinic management software for dermatology and aesthetic practices. Handles appointment booking, inventory, client records, before/after photo management, treatment plans, and package billing — built for solo aesthetic practices and multi-branch beauty/dermatology clinics.",
   image: {
     src: "/hero-section-assets/skin-clinics-hero-image.webp",
     alt: "MYCURE Beauty - Aesthetic clinic reception and treatment areas",
