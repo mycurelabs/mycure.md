@@ -11,7 +11,7 @@ export function VideoObjectSchema({ videoId, name, description }: VideoObjectSch
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name,
-    thumbnailUrl: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+    thumbnailUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
     contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
     embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
     publisher: {

@@ -29,7 +29,13 @@ import {
 
 export default function CorporatePage() {
   const videoId = videoShowcaseConfig.video.src.split("/").pop() ?? ""
-  const serviceName = `${heroConfig.headline.prefix} ${heroConfig.headline.highlight} ${heroConfig.headline.suffix}`
+  const serviceName = [
+    heroConfig.headline.prefix,
+    heroConfig.headline.highlight,
+    heroConfig.headline.suffix,
+  ]
+    .filter(Boolean)
+    .join(" ")
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
