@@ -168,6 +168,7 @@ export default function LandingPage() {
             <motion.div id="video-demo" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
                 <YouTubeFacade videoId={heroConfig.video.videoId} title={heroConfig.video.title} poster="/images/hero-video-thumbnail.jpg" />
+                <VideoObjectSchema videoId={heroConfig.video.videoId} name={heroConfig.video.title} />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
               </div>
               <noscript><div className="aspect-video rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center"><Link href={heroConfig.video.watchUrl} className="text-white hover:text-white/80 transition-colors" target="_blank" rel="noopener noreferrer">Watch MYCURE Introduction Video</Link></div></noscript>
