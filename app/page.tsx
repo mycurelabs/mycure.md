@@ -274,6 +274,11 @@ export default function LandingPage() {
         </section>
 
         {/* Timeline Section */}
+        <HowToSchema
+          name={`${timelineConfig.headline} ${timelineConfig.headlineHighlight}`}
+          description={timelineConfig.description}
+          steps={timelineConfig.processSteps.map((s) => ({ name: s.title, text: s.description }))}
+        />
         <TimelineSection config={timelineConfig} />
 
         {/* FAQ Section */}
