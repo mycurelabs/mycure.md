@@ -27,6 +27,19 @@ export function StructuredData() {
         addressCountry: "PH",
       },
     },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center",
+      addressLocality: "Pasig",
+      addressRegion: "Metro Manila",
+      postalCode: "1600",
+      addressCountry: "PH",
+    },
+    founder: {
+      "@type": "Person",
+      name: "Dale Dennis David",
+    },
+    legalName: "TOPSI Inc.",
     sameAs: [
       "https://www.facebook.com/mycure.md",
       "https://www.instagram.com/mycure.md/",
