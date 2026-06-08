@@ -21,6 +21,7 @@ import {
 import { BreadcrumbSchema } from "@/components/schemas/BreadcrumbSchema"
 import { ServiceSchema } from "@/components/schemas/ServiceSchema"
 import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
+import { getServiceMeta } from "@/components/schemas/utils"
 
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 
@@ -37,14 +38,7 @@ import {
 
 export default function MobileLabsPage() {
   const [activeTab, setActiveTab] = useState("imaging")
-  const videoId = videoShowcaseConfig.video.src.split("/").pop() ?? ""
-  const serviceName = [
-    heroConfig.headline.prefix,
-    heroConfig.headline.highlight,
-    heroConfig.headline.suffix,
-  ]
-    .filter(Boolean)
-    .join(" ")
+  const { videoId, serviceName } = getServiceMeta(heroConfig, videoShowcaseConfig)
 
   return (
     <div className="flex min-h-[100dvh] flex-col">

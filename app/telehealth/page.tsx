@@ -16,6 +16,7 @@ import {
 import { BreadcrumbSchema } from "@/components/schemas/BreadcrumbSchema"
 import { ServiceSchema } from "@/components/schemas/ServiceSchema"
 import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
+import { getServiceMeta } from "@/components/schemas/utils"
 
 import {
   heroConfig,
@@ -29,14 +30,7 @@ import {
 } from "./data"
 
 export default function TelehealthPage() {
-  const videoId = videoShowcaseConfig.video.src.split("/").pop() ?? ""
-  const serviceName = [
-    heroConfig.headline.prefix,
-    heroConfig.headline.highlight,
-    heroConfig.headline.suffix,
-  ]
-    .filter(Boolean)
-    .join(" ")
+  const { videoId, serviceName } = getServiceMeta(heroConfig, videoShowcaseConfig)
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
