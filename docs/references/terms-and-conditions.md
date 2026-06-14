@@ -94,9 +94,10 @@
 - User indemnification
 - Defense obligations
 
-#### Section 13: Healthcare Compliance (Line ~506)
-- HIPAA compliance
-- Regulatory requirements
+#### Section 13: Healthcare Compliance and Data Protection Roles (Line ~506)
+- Controller / processor roles
+- Data Privacy Act and GDPR scope
+- HIPAA / Business Associate Agreement
 - User responsibilities
 
 #### Section 14: Third-Party Services (Line ~518)

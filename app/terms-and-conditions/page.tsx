@@ -24,7 +24,7 @@ export default function TermsAndConditionsPage() {
     { id: "disclaimers", title: "10. Disclaimers" },
     { id: "limitation", title: "11. Limitation of Liability" },
     { id: "indemnification", title: "12. Indemnification" },
-    { id: "compliance", title: "13. Healthcare Compliance" },
+    { id: "compliance", title: "13. Healthcare Compliance and Data Protection Roles" },
     { id: "third-party", title: "14. Third-Party Services" },
     { id: "modifications", title: "15. Modifications to Service" },
     { id: "termination", title: "16. Termination" },
@@ -123,7 +123,10 @@ export default function TermsAndConditionsPage() {
                 Please read these Terms and Conditions carefully before using our services.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground">
-                Effective Date: August 29, 2025
+                Effective Date: June 08, 2026
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mt-1">
+                Operated by TOPSI Inc. (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;)
               </p>
             </motion.div>
           </div>
@@ -151,7 +154,7 @@ export default function TermsAndConditionsPage() {
                       By accessing, browsing, or using the MYCURE platform ("Services"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to all the terms and conditions, you must not use the Services.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      These Terms constitute a legally binding agreement between you (or the entity you represent) and MYCURE.
+                      These Terms constitute a legally binding agreement between you (or the entity you represent) and MYCURE, operated by TOPSI Inc.
                     </p>
                   </motion.section>
 
@@ -265,7 +268,7 @@ export default function TermsAndConditionsPage() {
                       </li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      Services may vary based on your subscription plan and region.
+                      Services may vary based on your subscription plan and region. The Services are software tools intended to support, not replace, the professional judgment of licensed healthcare providers.
                     </p>
                   </motion.section>
 
@@ -364,24 +367,9 @@ export default function TermsAndConditionsPage() {
                     transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Refunds and Cancellations</h2>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>You may cancel your subscription at any time through your account settings.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Cancellation takes effect at the end of the current billing period.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>No refunds are provided for partial months or unused services.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        <span>We may offer refunds at our sole discretion for exceptional circumstances.</span>
-                      </li>
-                    </ul>
+                    <p className="text-muted-foreground leading-relaxed">
+                      You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. No refunds are provided for partial months or unused services. We may offer refunds at our sole discretion for exceptional circumstances.
+                    </p>
                   </motion.section>
 
                   {/* Section 8: Intellectual Property */}
@@ -398,7 +386,7 @@ export default function TermsAndConditionsPage() {
                       All intellectual property rights in the Services, including software, content, features, and functionality, are owned by MYCURE or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Services in accordance with these Terms.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      You retain ownership of data you input into the Services but grant us a license to use, process, and store such data to provide the Services.
+                      You retain all ownership of the data you and your authorized users input into the Services ("Customer Data"). You grant MYCURE a limited, worldwide, royalty-free license to host, process, transmit, and store Customer Data solely to provide and support the Services, and to create Anonymized and Aggregated Data as described in Section 13 and in our Privacy Policy.
                     </p>
                   </motion.section>
 
@@ -422,10 +410,10 @@ export default function TermsAndConditionsPage() {
                     id="disclaimers" className="mb-12">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. Disclaimers</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DISCLAIM ALL WARRANTIES INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                      THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WE DISCLAIM ALL WARRANTIES INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. We do not warrant that the Services will be uninterrupted, timely, secure, error-free, or free of viruses or other harmful components, and we do not guarantee any specific result, uptime, or level of availability except as may be expressly set out in a separate written service-level agreement.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      We do not guarantee that the Services will be uninterrupted, secure, or error-free. We are not responsible for any medical decisions made using the Services.
+                      The Services do not provide medical advice and MYCURE is not a healthcare provider. All clinical, diagnostic, and treatment decisions are the sole responsibility of the licensed healthcare professionals using the Services, who must exercise their own independent professional judgment. We are not responsible or liable for any medical decision, act, or omission made in reliance on the Services.
                     </p>
                   </motion.section>
 
@@ -434,10 +422,10 @@ export default function TermsAndConditionsPage() {
                     id="limitation" className="mb-12">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Limitation of Liability</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      TO THE MAXIMUM EXTENT PERMITTED BY LAW, MYCURE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
+                      TO THE MAXIMUM EXTENT PERMITTED BY LAW, MYCURE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES. OUR TOTAL AGGREGATE LIABILITY ARISING OUT OF OR RELATING TO THE SERVICES OR THESE TERMS SHALL NOT EXCEED THE AMOUNT PAID BY YOU FOR THE SERVICES IN THE 12 MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      Our total liability shall not exceed the amount paid by you for the Services in the 12 months preceding the claim.
+                      Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law, including liability for death or personal injury caused by negligence, for fraud, or for willful misconduct.
                     </p>
                   </motion.section>
 
@@ -453,12 +441,18 @@ export default function TermsAndConditionsPage() {
                   {/* Section 13: Healthcare Compliance */}
                   <motion.section 
                     id="compliance" className="mb-12">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Healthcare Compliance</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Healthcare Compliance and Data Protection Roles</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      You acknowledge that the use of Services in healthcare settings may be subject to various regulations including but not limited to HIPAA, Data Privacy Act, and local healthcare laws. You are responsible for ensuring your use of the Services complies with all applicable regulations.
+                      You acknowledge that the use of the Services in healthcare settings is subject to laws and regulations that may include the Philippine Data Privacy Act of 2012 (Republic Act No. 10173) and its Implementing Rules and Regulations, and, where applicable to you, the EU/UK GDPR and other local healthcare and privacy laws.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mt-4">
-                      We will maintain appropriate safeguards for protected health information as required by law.
+                      As between the parties, you (the healthcare provider, clinic, or organization) are the data controller / personal information controller for patient and clinical data, and MYCURE acts as your data processor / personal information processor, processing such data only on your documented instructions and as described in our Privacy Policy. You are responsible for establishing a lawful basis for your processing and for obtaining any patient consents required by law.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      We will implement reasonable and appropriate organizational, physical, and technical safeguards designed to protect personal and health data consistent with the Data Privacy Act and prevailing industry standards.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
+                      Where you are subject to the US Health Insurance Portability and Accountability Act (HIPAA), we will, upon request and where commercially reasonable, enter into a Business Associate Agreement; absent a signed Business Associate Agreement, the Services are not represented as HIPAA-compliant for your particular use.
                     </p>
                   </motion.section>
 
@@ -515,7 +509,7 @@ export default function TermsAndConditionsPage() {
                     id="data-security" className="mb-12">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. Data Security and Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Your use of the Services is also governed by our Privacy Policy. We implement industry-standard security measures to protect your data, but cannot guarantee absolute security. You are responsible for maintaining the security of your account credentials.
+                      Your use of the Services is also governed by our Privacy Policy. We implement industry-standard security measures designed to protect your data; however, no method of transmission or storage is completely secure, and we cannot and do not guarantee absolute security. You are responsible for maintaining the confidentiality and security of your account credentials.
                     </p>
                   </motion.section>
 
@@ -560,7 +554,7 @@ export default function TermsAndConditionsPage() {
                     id="governing-law" className="mb-12">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">22. Governing Law</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      These Terms shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Quezon City, Philippines.
+                      These Terms shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Quezon City, Philippines. Nothing in this section deprives a consumer or data subject of the protection afforded by the mandatory laws of their country of residence.
                     </p>
                   </motion.section>
 
