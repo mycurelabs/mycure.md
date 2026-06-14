@@ -18,6 +18,10 @@ import {
   AdvantagesSection,
   FinalCTA,
 } from "@/components/sections/product-page"
+import { BreadcrumbSchema } from "@/components/schemas/BreadcrumbSchema"
+import { ServiceSchema } from "@/components/schemas/ServiceSchema"
+import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
+import { getServiceMeta } from "@/components/schemas/utils"
 
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 
@@ -34,10 +38,26 @@ import {
 
 export default function MobileLabsPage() {
   const [activeTab, setActiveTab] = useState("imaging")
+  const { videoId, serviceName } = getServiceMeta(heroConfig, videoShowcaseConfig)
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <ProductHeader />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://mycure.md" },
+          { name: "Mobile Labs", url: "https://mycure.md/mobile-labs" },
+        ]}
+      />
+      <ServiceSchema
+        name={serviceName}
+        description={heroConfig.description}
+        url="https://mycure.md/mobile-labs"
+      />
+      <VideoObjectSchema
+        videoId={videoId}
+        name={videoShowcaseConfig.video.title}
+      />
 
       <main className="flex-1">
         <ProductHero config={heroConfig} />
