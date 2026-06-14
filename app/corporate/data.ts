@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "from Chaos",
   },
   description:
-    "MYCURE streamlines corporate healthcare and occupational health management with comprehensive electronic medical records, integrated HMO workflows, and analytics that drive employee wellness and reduce costs.",
+    "MYCURE Corporate is occupational-health and corporate-clinic management software for organizations that run on-site clinics or employee health programs. Handles annual physical exams, fitness-to-work assessments, HMO coordination, and corporate health reporting in one place.",
   image: {
     src: "/hero-section-assets/corporate-clinics-hero-image.webp",
     alt: "MYCURE Corporate Clinics - Enterprise healthcare management",

@@ -27,6 +27,19 @@ export function StructuredData() {
         addressCountry: "PH",
       },
     },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center",
+      addressLocality: "Pasig",
+      addressRegion: "Metro Manila",
+      postalCode: "1600",
+      addressCountry: "PH",
+    },
+    founder: {
+      "@type": "Person",
+      name: "Dale Dennis David",
+    },
+    legalName: "TOPSI Inc.",
     sameAs: [
       "https://www.facebook.com/mycure.md",
       "https://www.instagram.com/mycure.md/",
@@ -88,53 +101,6 @@ export function StructuredData() {
     },
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What is MYCURE?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics and healthcare facilities. We streamline your practice operations while maintaining HIPAA compliance and operational efficiency.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How much does MYCURE cost?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "MYCURE offers flexible pricing plans for multi-specialty clinics and enterprise healthcare organizations. Our plans include all essential features with transparent pricing and no hidden fees. Contact us or start a free trial to explore the best option for your practice.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is MYCURE compliant with healthcare regulations?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, MYCURE is designed to be HIPAA compliant and supports Philippine healthcare requirements with secure patient data management.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What platforms does MYCURE support?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "MYCURE works on Mac and Windows computers through Google Chrome. Our platform is optimized for this environment to deliver the best performance and reliability.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I try MYCURE before committing?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes! Start with our 15-day free trial that includes full platform access and no credit card requirement. We'll provide you with a demo app link to explore the platform at your own pace.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
       <script
@@ -148,10 +114,6 @@ export function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     </>
   );

@@ -26,7 +26,7 @@ export const heroConfig: HeroConfig = {
     suffix: "for Healthcare Facilities",
   },
   description:
-    "Accept online appointments 24/7 with professional booking pages. Set up in minutes, help reduce no-shows, and let patients self-schedule while you focus on care.",
+    "MYCURE Booking is online appointment scheduling software for healthcare facilities. Patients book, reschedule, and cancel 24/7 through professional booking pages; clinics manage availability, buffer times, and provider calendars from the same console. Helps reduce no-shows through automated reminders.",
   image: {
     src: "/hero-section-assets/booking-feature-hero-image.webp",
     alt: "MYCURE Booking - Easy appointment scheduling system",

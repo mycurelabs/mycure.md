@@ -35,7 +35,7 @@ export const heroConfig: HeroConfig = {
     suffix: "for Mobile Labs",
   },
   description:
-    "MYCURE Diagnostics is an easy to use, secure, cloud-based clinic information system that you can set up no matter where your mobile lab is based.",
+    "MYCURE Mobile Labs is a clinic management system for teams running mobile or pop-up collection events. Patient registration happens at the collection point, mileage and route tracking feed into reporting, and results flow back into the same diagnostic workflow used by fixed-location labs.",
   image: {
     src: "/hero-section-assets/mobile-labs-clinics-hero-image.webp",
     alt: "MYCURE Mobile Labs - Mobile diagnostic services interface",

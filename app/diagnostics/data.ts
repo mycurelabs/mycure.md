@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "Upgraded",
   },
   description:
-    "A comprehensive platform to streamline diagnostic laboratories and imaging centers' operations, automate routine tasks, and help reduce costs and errors.",
+    "MYCURE Diagnostics is workflow software for diagnostic laboratories and imaging centers. Streamlines test ordering, specimen tracking, result entry, and report delivery; supports HL7-ready integrations so existing analyzer fleets connect without a full replacement.",
   image: {
     src: "/hero-section-assets/diagnostics-clinics-hero-image.webp",
     alt: "MYCURE Diagnostics - Laboratory and imaging center interface",

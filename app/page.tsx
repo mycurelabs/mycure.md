@@ -29,6 +29,7 @@ import {
 
 import { WhyChooseSection, VisibilitySection, TimelineSection, StorybrandSection } from "@/components/sections/home-page"
 import { MobileNav } from "@/components/sections/product-page/MobileNav"
+import { HomeFAQSchema } from "@/components/schemas/HomeFAQSchema"
 import { MedicalBusinessSchema } from "@/components/schemas/MedicalBusinessSchema"
 import { HowToSchema } from "@/components/schemas/HowToSchema"
 import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
@@ -68,6 +69,7 @@ export default function LandingPage() {
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
+      <HomeFAQSchema />
       <MedicalBusinessSchema />
       {/* Header */}
       <header className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}>

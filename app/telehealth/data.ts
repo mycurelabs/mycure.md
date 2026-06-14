@@ -33,7 +33,7 @@ export const heroConfig: HeroConfig = {
     suffix: "",
   },
   description:
-    "Give your patients the quality telehealth care they deserve, without having to visit in-person. Expand your clinic's reach and provide convenient virtual consultations.",
+    "MYCURE Telehealth is a virtual-care platform for clinics that want to offer remote consultations alongside in-person care. Includes HD video consultations, secure messaging, smart scheduling, and digital prescriptions — all in the same patient record as in-person visits.",
   image: {
     src: "/hero-section-assets/telehealth-feature-hero-image.webp",
     alt: "MYCURE Telehealth - Virtual consultations and telemedicine platform",
