@@ -77,5 +77,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${baseUrl}/security-overview`,
+      lastModified: lastUpdate,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/subprocessors`,
+      lastModified: lastUpdate,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }

@@ -81,7 +81,17 @@ export function Footer() {
                   </li>
                   <li>
                     <Link href="/terms-and-conditions" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                      Terms of Service
+                      Terms of Agreement
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/security-overview" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                      Security Overview
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/subprocessors" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                      Subprocessor List
                     </Link>
                   </li>
                 </ul>
@@ -199,7 +209,17 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/terms-and-conditions" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                  Terms of Service
+                  Terms of Agreement
+                </Link>
+              </li>
+              <li>
+                <Link href="/security-overview" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                  Security Overview
+                </Link>
+              </li>
+              <li>
+                <Link href="/subprocessors" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                  Subprocessor List
                 </Link>
               </li>
             </ul>
