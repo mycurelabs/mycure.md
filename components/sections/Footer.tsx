@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { NpcSeal } from "./NpcSeal"
 
 export function Footer() {
   return (
@@ -113,6 +114,7 @@ export function Footer() {
                   </Link>
                 </li>
               </ul>
+              <NpcSeal />
             </div>
           </div>
         </div>
@@ -147,6 +149,7 @@ export function Footer() {
                 </svg>
               </Link>
             </div>
+            <NpcSeal />
           </div>
 
           {/* Resources */}
