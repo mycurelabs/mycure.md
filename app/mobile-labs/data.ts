@@ -196,7 +196,7 @@ export const advantagesConfig: AdvantagesConfig = {
     {
       title: "Work Online or Offline",
       description:
-        "With MYCURE Syncbase, work as if you have an in-house server with all cloud conveniences. Even if the Internet is down, you can still create records on any device.",
+        "With MYCURE Maestro Technology, work as if you have an in-house server with all cloud conveniences. Even if the Internet is down, you can still create records on any device.",
       icon: WifiOff,
       image: "/section-assets/clinic-page/carousel/carousel-network.webp",
       bullets: [

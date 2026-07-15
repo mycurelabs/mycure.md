@@ -31,7 +31,7 @@ On-site diagnostic services for teams running mobile or pop-up collection events
 ### [Skin & Aesthetics](https://mycure.md/skin)
 MYCURE Beauty: dermatology and aesthetic clinic management with before/after photo handling, treatment plans, package billing, and patient follow-up reminders. Built for solo aesthetic practices and multi-branch beauty/dermatology clinics.
 
-### [Syncbase Technology](https://mycure.md/syncbase-technology)
+### [Maestro Technology](https://mycure.md/syncbase-technology)
 MYCURE's offline-first synchronization architecture. Records stay accessible to clinicians during connectivity outages and reconcile automatically when the connection returns. Supports cross-device access for clinicians who move between rooms, branches, or sites.
 
 ## About

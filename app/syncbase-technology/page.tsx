@@ -25,7 +25,7 @@ export default function SyncbaseTechnologyPage() {
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
-    { id: "why-syncbase", title: "Why Syncbase?" },
+    { id: "why-syncbase", title: "Why Maestro?" },
     { id: "key-features", title: "Key Features" },
     { id: "security-privacy", title: "Security & Privacy" },
     { id: "benefits", title: "Benefits" },
@@ -108,13 +108,13 @@ export default function SyncbaseTechnologyPage() {
                 Back to Home
               </Link>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                MYCURE Syncbase
+                MYCURE Maestro Technology
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
                 The holy grail of online-offline technology
               </p>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                MYCURE Syncbase is the cost-effective setup for your clinic management system. It enables clinics and multi-specialty practices to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
+                MYCURE Maestro (formerly Syncbase) is the cost-effective setup for your clinic management system. It enables clinics and multi-specialty practices to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
               </p>
             </motion.div>
           </div>
@@ -128,7 +128,7 @@ export default function SyncbaseTechnologyPage() {
               <div className="flex-1 max-w-4xl">
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
-                  {/* Section 1: Why Syncbase? */}
+                  {/* Section 1: Why Maestro? */}
                   <motion.section 
                     id="why-syncbase" 
                     className="mb-12"
@@ -137,7 +137,7 @@ export default function SyncbaseTechnologyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Why Syncbase?</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Why Maestro?</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       Setting up a health information system is a major investment for healthcare facilities. Traditional desktop-based applications often require expensive hardware and on-premise servers to run onsite.
                     </p>
@@ -145,14 +145,14 @@ export default function SyncbaseTechnologyPage() {
                       While newer web-based systems offer lower upfront costs, they suffer from a key limitation: when internet access is weak or unavailable, the system becomes inaccessible.
                     </p>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      <strong>MYCURE Syncbase solves this problem.</strong>
+                      <strong>MYCURE Maestro solves this problem.</strong>
                     </p>
                     
                     {/* Embedded YouTube Video */}
                     <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden shadow-lg">
                       <YouTubeFacade
                         videoId="siFBgZMt26k"
-                        title="MYCURE Syncbase Demo"
+                        title="MYCURE Maestro Demo"
                       />
                     </div>
                     
@@ -295,7 +295,7 @@ export default function SyncbaseTechnologyPage() {
                     <ul className="space-y-3 text-muted-foreground mb-6">
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>See MYCURE Syncbase in action.</span>
+                        <span>See MYCURE Maestro in action.</span>
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
@@ -303,7 +303,7 @@ export default function SyncbaseTechnologyPage() {
                       </li>
                       <li className="flex gap-2">
                         <span className="text-primary">•</span>
-                        <span>Learn how Syncbase can be tailored to your clinic's workflow.</span>
+                        <span>Learn how Maestro can be tailored to your clinic's workflow.</span>
                       </li>
                     </ul>
                     
