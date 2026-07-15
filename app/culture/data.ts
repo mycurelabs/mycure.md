@@ -22,7 +22,7 @@ export const heroConfig: HeroConfig = {
   tagline:
     "Building awesome apps is our mission. Building them with love and passion is our extra mile.",
   intro:
-    "MYCURE Inc. is a young tech startup born to save lives. We're a lean team of software engineers, designers, and problem-solvers building innovative solutions that make things easier for everyone through technology.",
+    "MYCURE Inc. is a healthcare technology company born to save lives. Founded in 2016, we're a team of software engineers, designers, and problem-solvers building health management solutions that make things easier for everyone through technology.",
   primaryCta: { label: "See open roles", href: "/culture/careers" },
   secondaryCta: { label: "Meet the leads", href: "#team" },
   image: { src: "/section-assets/mycure-about.png", alt: "The MYCURE team" },

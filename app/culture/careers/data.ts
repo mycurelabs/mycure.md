@@ -38,8 +38,10 @@ export const heroConfig: HeroConfig = {
   eyebrow: "Careers",
   title: "Do work that matters",
   tagline: "Help reshape healthcare for clinics across the Philippines.",
+  // "seasoned" + since-2016 framing per product owner 2026-07-15; activity claim
+  // traceable to the site's "10+ Years in Healthcare" stat.
   intro:
-    "We're an early-stage health-tech team building tools that help clinics deliver better care. The work is fast-paced and meaningful, with real impact on patients and the people who treat them.",
+    "We're a seasoned health-tech team that's been helping clinics deliver better care since 2016. The work is fast-paced and meaningful, with real impact on patients and the people who treat them.",
   primaryCta: { label: "View open roles", href: "#roles" },
   secondaryCta: { label: "How to apply", href: "#apply" },
   gradient: true,
@@ -209,6 +211,6 @@ export const applySteps: ApplyStep[] = [
 
 export const careersCta: CtaBandConfig = {
   headline: { before: "Don't see", highlight: "your role", after: "yet?" },
-  description: "We're growing fast. Send your CV and tell us how you'd help.",
+  description: "Our team keeps growing. Send your CV and tell us how you'd help.",
   cta: { text: "Email jobs@mycure.md", href: "mailto:jobs@mycure.md" },
 }
