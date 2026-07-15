@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { Department, Role } from "./types"
 
-/** Single role card. "Apply" opens the (placeholder) Google Form in a new tab. */
+/** Single role card. "Apply" opens the application Google Form in a new tab. */
 function JobCard({ role }: { role: Role }) {
   return (
     <Card className="flex h-full flex-col p-6">

@@ -82,7 +82,7 @@ export interface Role {
   type: string
   location: string
   summary: string
-  /** Google Form placeholder until final links are provided (placeholder: true). */
+  /** Shared application Google Form URL (all roles use the same form). */
   applyUrl: string
 }
 

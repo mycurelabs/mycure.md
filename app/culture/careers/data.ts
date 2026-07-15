@@ -14,16 +14,20 @@ import type { ApplyStep } from "@/components/sections/culture-page/HowToApply"
  * /culture/careers content — GENUINE content only, from the 8 captured job posts
  * + the live site (products/health/mycure/website/culture.mycure.com/old-culture-website).
  *
- * Applications: the live site uses a Typeform, but per issue #1384 the new pages
- * use Google Form PLACEHOLDERS marked TODO until final links are supplied.
+ * Applications: all roles link to the single live application Google Form
+ * (one form with an in-form role selector), supplied by MYCURE 2026-07-15.
  *
- * TODO (MYCURE input): the live Typeform lists additional/updated roles
- * (Customer Success Specialist, Operations, Digital Marketing Specialist,
- * Product Specialist, etc.). Confirm the canonical open-roles list before launch.
+ * TODO (MYCURE input): the form's own role dropdown (captured 2026-07-15, form
+ * self-labeled "as of October 2023") lists 12 roles — including Customer Success
+ * Specialist, Operations (Full-time + OJT), Product Specialist, and Digital
+ * Marketing Specialist — several of which don't match the 10 roles below.
+ * Confirm the canonical open-roles list before launch.
  */
 
-// TODO: replace with the final Google Form link(s) per role/department.
-const APPLY_FORM_PLACEHOLDER = "https://forms.gle/PLACEHOLDER"
+// Single live application Google Form shared by all roles (applicants pick the
+// role from the form's own dropdown). Supplied by MYCURE 2026-07-15.
+const APPLY_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdFFH2loF7JOSY49i1RwOjkRLYla37_y1xXsCSnAsehz3a_Sw/viewform"
 
 export const contactEmail = "jobs@mycure.md"
 // Real, approved office address (source: site MedicalBusinessSchema).
@@ -66,7 +70,7 @@ export const howWeWork: HighlightItem[] = [
 export const rolesHeading = "Open roles"
 export const rolesIntro = "Four teams, one mission. Find where you fit."
 export const placeholderNote =
-  "Application forms are being finalized—the links below are placeholders for now. You can also email jobs@mycure.md directly."
+  "All open roles use the same application form—select your role from the dropdown inside. You can also email jobs@mycure.md directly."
 
 export const departments: Department[] = [
   {
@@ -82,7 +86,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Full-stack web development across front-end and backend, with deep JavaScript expertise. Experience with Angular or React is a plus.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
       {
         title: "Junior Software Engineer",
@@ -90,7 +94,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Grow as an engineer alongside experienced developers. Solid CS fundamentals and JavaScript; Vue or React a plus. Fresh graduates welcome.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
     ],
   },
@@ -107,7 +111,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Design intuitive web and mobile experiences. Proficiency with Figma or Adobe XD; a portfolio is expected.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
       {
         title: "Creative Writer",
@@ -115,7 +119,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Write content that captures attention and supports our goals. Strong writing paired with commercial awareness.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
     ],
   },
@@ -132,7 +136,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Shape the product through strategy and problem-solving. Fresh graduates welcome; 200-hour minimum for OJT positions.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
       {
         title: "Business Development Manager",
@@ -140,7 +144,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Define strategy, build key customer relationships, and grow revenue—with a focus on Southeast Asia.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
       {
         title: "Sales & Marketing Specialist",
@@ -148,7 +152,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Drive sales and commercial strategy. Proven sales experience, fluent English, and MS Office; CRM and medical-industry background a plus.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
     ],
   },
@@ -165,7 +169,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Be the primary contact for clients and help them succeed. Account management experience with CRM (Salesforce, Zoho, or HubSpot) and Excel.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
       {
         title: "Customer Support Representative",
@@ -173,7 +177,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "Help clinics resolve issues with empathy. Strong communication and familiarity with GitHub, Jira, and CRM tools.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
       {
         title: "Administrative Assistant",
@@ -181,7 +185,7 @@ export const departments: Department[] = [
         location: "Philippines",
         summary:
           "A smart generalist keeping operations and customers happy. 1+ year of admin experience; English and Filipino; MS Office and Google Suite.",
-        applyUrl: APPLY_FORM_PLACEHOLDER,
+        applyUrl: APPLY_FORM_URL,
       },
     ],
   },
