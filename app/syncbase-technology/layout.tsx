@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'MYCURE - Maestro Technology',
-  description: 'MYCURE Maestro: Advanced online-offline technology. Work smoothly with or without internet connectivity for healthcare management.',
+  description: 'MYCURE Maestro (formerly Syncbase): Advanced online-offline technology. Work smoothly with or without internet connectivity for healthcare management.',
   openGraph: {
     title: 'MYCURE - Maestro Technology',
-    description: 'MYCURE Maestro: Advanced online-offline technology. Work smoothly with or without internet connectivity for healthcare management.',
+    description: 'MYCURE Maestro (formerly Syncbase): Advanced online-offline technology. Work smoothly with or without internet connectivity for healthcare management.',
     url: 'https://mycure.md/syncbase-technology',
     siteName: 'MYCURE',
     locale: 'en_PH',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'MYCURE - Maestro Technology',
-    description: 'MYCURE Maestro: Advanced online-offline technology. Work smoothly with or without internet connectivity for healthcare management.',
+    description: 'MYCURE Maestro (formerly Syncbase): Advanced online-offline technology. Work smoothly with or without internet connectivity for healthcare management.',
     images: ['/og-banners/mycure-og-banner.webp'],
   },
   alternates: {
