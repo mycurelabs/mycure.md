@@ -3,8 +3,6 @@ export { CultureHero } from "./CultureHero"
 export { MissionSection } from "./MissionSection"
 export { CoreValues } from "./CoreValues"
 export { LifeAtMycure } from "./LifeAtMycure"
-export { TeamGrid } from "./TeamGrid"
-export { CultureGallery } from "./CultureGallery"
 export { JobCategories } from "./JobCategories"
 
 // Careers page sections
@@ -22,9 +20,7 @@ export type {
   CtaBandConfig,
   ValueItem,
   HighlightItem,
-  TeamMember,
   DeptTeaser,
   Role,
   Department,
-  GalleryTile,
 } from "./types"

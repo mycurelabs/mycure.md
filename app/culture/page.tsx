@@ -6,8 +6,6 @@ import {
   MissionSection,
   CoreValues,
   LifeAtMycure,
-  TeamGrid,
-  CultureGallery,
   CtaBand,
 } from "@/components/sections/culture-page"
 import { BreadcrumbSchema } from "@/components/schemas/BreadcrumbSchema"
@@ -22,12 +20,6 @@ import {
   lifeIntro,
   lifeHighlights,
   lifeImages,
-  teamHeading,
-  teamIntro,
-  team,
-  galleryHeading,
-  galleryIntro,
-  gallery,
   cultureCta,
 } from "./data"
 
@@ -57,8 +49,6 @@ export default function CulturePage() {
           highlights={lifeHighlights}
           images={lifeImages}
         />
-        <TeamGrid heading={teamHeading} intro={teamIntro} members={team} />
-        <CultureGallery heading={galleryHeading} intro={galleryIntro} tiles={gallery} />
         <CtaBand config={cultureCta} />
       </main>
     </div>

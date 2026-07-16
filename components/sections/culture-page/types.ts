@@ -59,15 +59,6 @@ export interface HighlightItem {
   icon: LucideIcon
 }
 
-export interface TeamMember {
-  name: string
-  role: string
-  /** Genuine one-line blurb from the live site; optional. Never an invented bio. */
-  blurb?: string
-  /** Real asset path, or undefined to render a branded placeholder (TODO). */
-  image?: string
-}
-
 export interface DeptTeaser {
   id: string
   name: string
@@ -93,11 +84,4 @@ export interface Department {
   blurb: string
   icon: LucideIcon
   roles: Role[]
-}
-
-export interface GalleryTile {
-  /** Real asset path, or undefined to render a branded placeholder (TODO). */
-  src?: string
-  alt: string
-  span?: "tall" | "wide" | "normal"
 }

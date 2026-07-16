@@ -4,8 +4,6 @@ import type {
   MissionConfig,
   ValueItem,
   HighlightItem,
-  TeamMember,
-  GalleryTile,
   CtaBandConfig,
 } from "@/components/sections/culture-page"
 
@@ -24,7 +22,6 @@ export const heroConfig: HeroConfig = {
   intro:
     "MYCURE Inc. is a healthcare technology company born to save lives. Founded in 2016, we're a team of software engineers, designers, and problem-solvers building health management solutions that make things easier for everyone through technology.",
   primaryCta: { label: "See open roles", href: "/culture/careers" },
-  secondaryCta: { label: "Meet the leads", href: "#team" },
   image: { src: "/section-assets/mycure-about.png", alt: "The MYCURE team" },
 }
 
@@ -100,25 +97,6 @@ export const lifeHighlights: HighlightItem[] = [
 export const lifeImages = [
   { src: "/Our Story Photos/mycure-team.webp", alt: "The MYCURE team" },
   { src: "/Our Story Photos/mycure-our-story-community.png", alt: "MYCURE in the community" },
-]
-
-export const teamHeading = "Meet the leads"
-export const teamIntro = "The people steering MYCURE."
-// Titles and portraits confirmed by MYCURE.
-export const team: TeamMember[] = [
-  { name: "Dale", role: "Founder & CEO", image: "/section-assets/dale.png" },
-  { name: "Joff", role: "Vice President of Engineering", image: "/section-assets/joff.png" },
-]
-
-export const galleryHeading = "A glimpse into MYCURE life"
-export const galleryIntro = "The moments that make MYCURE more than just a workplace."
-// TODO: replace placeholder tiles with approved culture photos from the team.
-export const gallery: GalleryTile[] = [
-  { src: "/Our Story Photos/mycure-team.webp", alt: "MYCURE team", span: "wide" },
-  { alt: "Pan de Turo session", span: "normal" },
-  { alt: "Team celebration", span: "tall" },
-  { alt: "Collaborative workspace", span: "normal" },
-  { alt: "Team outing", span: "wide" },
 ]
 
 export const cultureCta: CtaBandConfig = {
