@@ -131,11 +131,11 @@ Topics covered on the page (from the solutions grid):
 
 ## Cross-product capabilities
 
-### Offline-first architecture (Syncbase) — https://mycure.md/syncbase-technology
+### Offline-first architecture (Maestro, formerly Syncbase) — https://mycure.md/syncbase-technology
 
-MYCURE is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns. The Syncbase architecture supports cross-device access for clinicians who move between rooms, branches, or sites.
+MYCURE is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns. The Maestro architecture supports cross-device access for clinicians who move between rooms, branches, or sites.
 
-Security and privacy positioning on the Syncbase page (verbatim from the page):
+Security and privacy positioning on the Maestro page (verbatim from the page):
 
 - Secure Connections — Data transmitted with appropriate protections.
 - Data Protection — Records handled with appropriate care during storage and transmission.

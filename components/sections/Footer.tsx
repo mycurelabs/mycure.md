@@ -65,7 +65,7 @@ export function Footer() {
                   </li>
                   <li>
                     <Link href="/syncbase-technology" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                      Syncbase
+                      Maestro Technology
                     </Link>
                   </li>
                 </ul>
@@ -173,7 +173,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/syncbase-technology" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                  Syncbase
+                  Maestro Technology
                 </Link>
               </li>
             </ul>
