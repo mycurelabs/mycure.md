@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: { absolute: "Careers | MYCURE" },
   description:
-    "Join MYCURE—a healthcare technology company transforming clinics across the Philippines. Explore roles in development, design, marketing, and customer success. OJT and internship roles welcome.",
+    "Join MYCURE—a healthcare technology company transforming clinics across the Philippines. Explore open roles in software engineering and customer support.",
   keywords: [
     "MYCURE careers",
     "healthcare tech jobs Philippines",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Careers | MYCURE",
     description:
-      "Build healthcare technology that matters. Explore roles across development, design, marketing, and customer success at MYCURE.",
+      "Build healthcare technology that matters. Explore open roles in software engineering and customer support at MYCURE.",
     url: "https://mycure.md/culture/careers",
     siteName: "MYCURE",
     locale: "en_PH",
