@@ -28,7 +28,7 @@ export function MissionSection({ config }: { config: MissionConfig }) {
           transition={{ duration: 0.5 }}
         >
           {config.eyebrow && (
-            <p className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <p className="text-sm font-semibold uppercase tracking-wider text-white mb-4">
               {config.eyebrow}
             </p>
           )}
@@ -36,7 +36,7 @@ export function MissionSection({ config }: { config: MissionConfig }) {
             {config.title}
           </h2>
           {config.subtitle && (
-            <p className="text-lg sm:text-xl text-white/80 leading-relaxed">{config.subtitle}</p>
+            <p className="text-lg sm:text-xl text-white leading-relaxed">{config.subtitle}</p>
           )}
         </motion.div>
 

@@ -1,4 +1,4 @@
-import { Flag, Target, Gem, Heart, Sparkles, Plane, Coffee, Lightbulb } from "lucide-react"
+import { Flag, Target, Gem, Heart, GraduationCap, Plane, Coffee, Lightbulb } from "lucide-react"
 import type {
   HeroConfig,
   MissionConfig,
@@ -18,11 +18,14 @@ export const heroConfig: HeroConfig = {
   eyebrow: "When in MYCURE",
   title: "Building healthcare tech, the extra mile",
   tagline:
-    "Building awesome apps is our mission. Building them with love and passion is our extra mile.",
+    "We build healthcare technology that helps clinics across the Philippines care for more patients, every day.",
   intro:
     "MYCURE Inc. is a healthcare technology company born to save lives. Founded in 2016, we're a team of software engineers, designers, and problem-solvers building health management solutions that make things easier for everyone through technology.",
-  primaryCta: { label: "See open roles", href: "/culture/careers" },
-  image: { src: "/section-assets/mycure-about.png", alt: "The MYCURE team" },
+  primaryCta: { label: "Explore careers", href: "/culture/careers" },
+  image: {
+    src: "/section-assets/mycure-about.png",
+    alt: "Illustration of a person working on a laptop under a tree",
+  },
 }
 
 export const missionConfig: MissionConfig = {
@@ -31,7 +34,7 @@ export const missionConfig: MissionConfig = {
   subtitle: "Our mission is the health of every patient we help reach.",
   paragraphs: [
     "MYCURE's mission is to save lives by providing innovative tech solutions for health facilities. By centralizing the way we organize and share health information, we make it more accessible and useful for doctors, patients, and healthcare organizations alike.",
-    "Our web-based clinic management system gives patients, doctors, clinic owners, and government health sectors the ability to securely store and retrieve health records anytime, anywhere—and we honor the health workers who care the extra mile for their patients every day.",
+    "Our web-based clinic management system gives patients, doctors, clinic owners, and government health sectors the ability to securely store and retrieve health records anytime, anywhere. We honor the health workers who care the extra mile for their patients every day.",
   ],
 }
 
@@ -45,36 +48,34 @@ export const values: ValueItem[] = [
     title: "First",
     icon: Flag,
     description:
-      "We take initiative and lead by example—shipping and improving instead of waiting for permission.",
+      "We take initiative and lead by example, shipping and improving rather than waiting for permission.",
   },
   {
     title: "Obsession",
     icon: Target,
-    description: "We're obsessed with quality and sweat the details others overlook.",
+    description: "We care about quality and the details that make software genuinely easy to use.",
   },
   {
     title: "One of a Kind",
     icon: Gem,
-    description:
-      "We solve problems our own way, building thoughtful solutions for real-world complexity.",
+    description: "We build for the real-world complexity of healthcare, in our own way.",
   },
   {
     title: "Love",
     icon: Heart,
-    description:
-      "We genuinely love what we do—and it shows in how we care for our users and each other.",
+    description: "We genuinely care about our work, our users, and each other.",
   },
 ]
 
 export const lifeHeading = "Life at MYCURE"
 export const lifeIntro =
-  "We genuinely enjoy spending time together—at work and well beyond it."
+  "We genuinely enjoy spending time together, at work and well beyond it."
 export const lifeHighlights: HighlightItem[] = [
   {
-    title: "Pan de Turo Saturdays",
+    title: "Learning from each other",
     description:
-      "Weekend tech sessions where we explore new tools and share what we learned that week.",
-    icon: Sparkles,
+      "We help each other grow, sharing what we know across engineering, design, and every other role on the team.",
+    icon: GraduationCap,
   },
   {
     title: "Adventures together",
@@ -82,8 +83,8 @@ export const lifeHighlights: HighlightItem[] = [
     icon: Plane,
   },
   {
-    title: "Mascots & good food",
-    description: "Shared dinners, office mascots, and a whole lot of laughter.",
+    title: "Good food",
+    description: "Shared dinners, good food, and a whole lot of laughter.",
     icon: Coffee,
   },
   {
@@ -92,12 +93,12 @@ export const lifeHighlights: HighlightItem[] = [
     icon: Lightbulb,
   },
 ]
-// Auto-advancing carousel — reuses existing real team/community photos.
-// TODO: add more approved culture photos from the team.
-export const lifeImages = [
-  { src: "/Our Story Photos/mycure-team.webp", alt: "The MYCURE team" },
-  { src: "/Our Story Photos/mycure-our-story-community.png", alt: "MYCURE in the community" },
-]
+// Static graphic for the Life at MYCURE section — a vector illustration (no stock
+// people photos), provided by MYCURE.
+export const lifeImage: { src: string; alt: string } | undefined = {
+  src: "/career.png",
+  alt: "Illustration of two MYCURE team members collaborating at a board of pinned notes",
+}
 
 export const cultureCta: CtaBandConfig = {
   headline: { before: "Ready to", highlight: "care the extra mile", after: "with us?" },

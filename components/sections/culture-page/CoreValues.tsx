@@ -3,14 +3,13 @@
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { DotPattern } from "@/components/magicui/dot-pattern"
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip"
 import type { ValueItem } from "./types"
 
 /**
  * Core values — emulates the homepage "works together" section: a centered
  * message with brand-blue circular icons. Each circle is a #0099CC disc with a
- * white lucide icon (white stroke), a hover tooltip, and the trait explained in
- * the body text beneath it.
+ * white lucide icon (white stroke), and the trait explained in the body text
+ * beneath it.
  */
 export function CoreValues({
   eyebrow,
@@ -61,18 +60,12 @@ export function CoreValues({
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button
-                      type="button"
-                      aria-label={value.title}
-                      className="mb-5 flex size-20 md:size-24 items-center justify-center rounded-full bg-[#0099CC] text-white shadow-lg shadow-primary/20 ring-4 ring-white transition-transform hover:scale-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
-                    >
-                      <Icon className="size-9 md:size-10" strokeWidth={1.5} />
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent>{value.title}</TooltipContent>
-                </Tooltip>
+                <div
+                  aria-hidden="true"
+                  className="mb-5 flex size-20 md:size-24 items-center justify-center rounded-full bg-[#0099CC] text-white shadow-lg shadow-primary/20 ring-4 ring-white"
+                >
+                  <Icon className="size-9 md:size-10" strokeWidth={1.5} />
+                </div>
                 <h3 className="text-xl md:text-2xl font-serif font-bold tracking-tight mb-2">
                   {value.title}
                 </h3>

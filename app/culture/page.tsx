@@ -19,7 +19,7 @@ import {
   lifeHeading,
   lifeIntro,
   lifeHighlights,
-  lifeImages,
+  lifeImage,
   cultureCta,
 } from "./data"
 
@@ -47,7 +47,7 @@ export default function CulturePage() {
           heading={lifeHeading}
           intro={lifeIntro}
           highlights={lifeHighlights}
-          images={lifeImages}
+          image={lifeImage}
         />
         <CtaBand config={cultureCta} />
       </main>
