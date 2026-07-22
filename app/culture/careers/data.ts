@@ -99,24 +99,6 @@ export const departments: Department[] = [
     ],
   },
   {
-    id: "creatives",
-    name: "Creatives",
-    internalName: "Creative Geeks",
-    blurb: "Designers and writers turning complex ideas into work people love.",
-    icon: Palette,
-    // No current openings (confirmed 2026-07-16) — renders the "no openings" state.
-    roles: [],
-  },
-  {
-    id: "marketing-business",
-    name: "Marketing & Business",
-    internalName: "Hustlers",
-    blurb: "The team driving growth and bringing MYCURE to clinics that need it.",
-    icon: TrendingUp,
-    // No current openings (confirmed 2026-07-16) — renders the "no openings" state.
-    roles: [],
-  },
-  {
     id: "customer-happiness",
     name: "Customer Happiness",
     internalName: "Happiness Agents",
@@ -135,6 +117,24 @@ export const departments: Department[] = [
         applyUrl: APPLY_FORM_URL,
       },
     ],
+  },
+  {
+    id: "creatives",
+    name: "Creatives",
+    internalName: "Creative Geeks",
+    blurb: "Designers and writers turning complex ideas into work people love.",
+    icon: Palette,
+    // No current openings (confirmed 2026-07-16) — renders the "no openings" state.
+    roles: [],
+  },
+  {
+    id: "marketing-business",
+    name: "Marketing & Business",
+    internalName: "Hustlers",
+    blurb: "The team driving growth and bringing MYCURE to clinics that need it.",
+    icon: TrendingUp,
+    // No current openings (confirmed 2026-07-16) — renders the "no openings" state.
+    roles: [],
   },
 ]
 
@@ -155,7 +155,7 @@ export const applySteps: ApplyStep[] = [
 ]
 
 export const careersCta: CtaBandConfig = {
-  headline: { before: "Don't see", highlight: "your role", after: "yet?" },
-  description: "Our team keeps growing. Send your CV and tell us how you'd help.",
-  cta: { text: "Email jobs@mycure.md", href: "mailto:jobs@mycure.md" },
+  headline: { before: "Curious about", highlight: "life at MYCURE", after: "?" },
+  description: "Get to know our team, values, and what day-to-day life at MYCURE looks like.",
+  cta: { text: "Explore our culture", href: "/culture" },
 }

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowUpRight, Mail, MapPin, Search } from "lucide-react"
+import { ArrowUpRight, MapPin, Search } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -36,20 +36,14 @@ function JobCard({ role }: { role: Role }) {
 }
 
 /** Professional empty state for a department with no current openings. */
-function NoOpenRolesState({ contactEmail }: { contactEmail: string }) {
+function NoOpenRolesState() {
   return (
     <Card className="flex flex-col items-center gap-3 p-8 text-center">
       <h4 className="text-lg font-semibold">No openings here right now</h4>
       <p className="max-w-md text-sm text-muted-foreground">
-        We&apos;re not actively hiring for this team at the moment, but we&apos;re always glad to
-        meet people who care the extra mile.
+        We&apos;re not actively hiring for this team at the moment. Check back soon, or browse
+        the roles we do have open above.
       </p>
-      <Button asChild variant="outline" size="sm">
-        <a href={`mailto:${contactEmail}`}>
-          <Mail className="size-4" />
-          Send us your CV
-        </a>
-      </Button>
     </Card>
   )
 }
@@ -174,7 +168,7 @@ export function DepartmentRoles({
                       ))}
                     </div>
                   ) : (
-                    <NoOpenRolesState contactEmail={contactEmail} />
+                    <NoOpenRolesState />
                   )}
                 </div>
               )
