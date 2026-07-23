@@ -56,8 +56,8 @@ export const howWeWork: HighlightItem[] = [
     icon: LineChart,
   },
   {
-    title: "OJT & internships",
-    description: "Fresh graduates and students are welcome through our OJT and internship roles.",
+    title: "Room to grow as a junior",
+    description: "Fresh graduates are welcome on the Junior Software Engineer track, growing alongside experienced developers.",
     icon: GraduationCap,
   },
   {
@@ -69,7 +69,7 @@ export const howWeWork: HighlightItem[] = [
 
 export const rolesHeading = "Open roles"
 export const rolesIntro = "Four teams, one mission. Find where you fit."
-export const placeholderNote =
+export const applyNote =
   "All open roles use the same application form—select your role from the dropdown inside. You can also email jobs@mycure.md directly."
 
 export const departments: Department[] = [

@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     "MYCURE careers",
     "healthcare tech jobs Philippines",
     "software engineer healthcare",
-    "OJT internship Philippines",
     "healthcare tech jobs Manila",
   ],
   openGraph: {

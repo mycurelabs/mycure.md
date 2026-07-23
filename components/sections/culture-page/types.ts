@@ -59,15 +59,6 @@ export interface HighlightItem {
   icon: LucideIcon
 }
 
-export interface DeptTeaser {
-  id: string
-  name: string
-  internalName: string
-  roles: string
-  icon: LucideIcon
-  href: string
-}
-
 export interface Role {
   title: string
   type: string

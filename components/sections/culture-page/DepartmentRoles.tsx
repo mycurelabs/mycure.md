@@ -51,14 +51,14 @@ function NoOpenRolesState() {
 export function DepartmentRoles({
   heading,
   intro,
-  placeholderNote,
+  applyNote,
   departments,
   contactEmail,
 }: {
   heading: string
   intro?: string
-  /** Shown when role apply links are still placeholders (TODO). */
-  placeholderNote?: string
+  /** Instructs applicants to pick their role inside the shared application form. */
+  applyNote?: string
   departments: Department[]
   contactEmail: string
 }) {
@@ -99,9 +99,9 @@ export function DepartmentRoles({
           {intro && <p className="text-lg text-muted-foreground">{intro}</p>}
         </motion.div>
 
-        {placeholderNote && (
+        {applyNote && (
           <p className="mx-auto mb-8 max-w-3xl text-center text-sm text-muted-foreground/80">
-            {placeholderNote}
+            {applyNote}
           </p>
         )}
 

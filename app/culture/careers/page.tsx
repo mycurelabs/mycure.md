@@ -17,7 +17,7 @@ import {
   howWeWork,
   rolesHeading,
   rolesIntro,
-  placeholderNote,
+  applyNote,
   departments,
   applyHeading,
   applySteps,
@@ -49,7 +49,7 @@ export default function CareersPage() {
         <DepartmentRoles
           heading={rolesHeading}
           intro={rolesIntro}
-          placeholderNote={placeholderNote}
+          applyNote={applyNote}
           departments={departments}
           contactEmail={contactEmail}
         />
