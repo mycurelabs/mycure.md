@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://mycure.md";
-  const lastUpdate = new Date();
+import { listPublishedProfiles } from "@/lib/hapihub/client";
 
+const baseUrl = "https://mycure.md";
+
+function staticRoutes(lastUpdate: Date): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
@@ -90,4 +91,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
   ];
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const lastUpdate = new Date();
+  const routes = staticRoutes(lastUpdate);
+
+  // Append published public-profile pages. `listPublishedProfiles` never
+  // throws (it swallows API/network errors and returns []), so a hapihub
+  // outage degrades to the static list rather than failing the build. Wrapped
+  // in try/catch too for belt-and-suspenders safety.
+  try {
+    const [people, organizations] = await Promise.all([
+      listPublishedProfiles("person"),
+      listPublishedProfiles("organization"),
+    ]);
+
+    for (const profile of people) {
+      if (!profile.slug) continue;
+      routes.push({
+        url: `${baseUrl}/d/${profile.slug}`,
+        lastModified: lastUpdate,
+        changeFrequency: "weekly",
+        priority: 0.6,
+      });
+    }
+    for (const profile of organizations) {
+      if (!profile.slug) continue;
+      routes.push({
+        url: `${baseUrl}/c/${profile.slug}`,
+        lastModified: lastUpdate,
+        changeFrequency: "weekly",
+        priority: 0.6,
+      });
+    }
+  } catch {
+    // Fall back to static routes only.
+  }
+
+  return routes;
 }
