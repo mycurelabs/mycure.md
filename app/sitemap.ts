@@ -55,6 +55,18 @@ function staticRoutes(lastUpdate: Date): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/culture`,
+      lastModified: lastUpdate,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/culture/careers`,
+      lastModified: lastUpdate,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/our-story`,
       lastModified: lastUpdate,
       changeFrequency: "yearly",

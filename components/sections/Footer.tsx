@@ -49,8 +49,13 @@ export function Footer() {
                 <h3 className="font-semibold">Resources</h3>
                 <ul className="-ml-2 text-sm">
                   <li>
-                    <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                    <Link href="/culture" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
                       About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/culture/careers" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                      Careers
                     </Link>
                   </li>
                   <li>
@@ -65,7 +70,7 @@ export function Footer() {
                   </li>
                   <li>
                     <Link href="/syncbase-technology" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                      Syncbase
+                      Maestro Technology
                     </Link>
                   </li>
                 </ul>
@@ -157,8 +162,13 @@ export function Footer() {
             <h3 className="font-semibold">Resources</h3>
             <ul className="-ml-2 text-sm">
               <li>
-                <Link href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="/culture" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
                   About
+                </Link>
+              </li>
+              <li>
+                <Link href="/culture/careers" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                  Careers
                 </Link>
               </li>
               <li>
@@ -173,7 +183,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/syncbase-technology" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                  Syncbase
+                  Maestro Technology
                 </Link>
               </li>
             </ul>
