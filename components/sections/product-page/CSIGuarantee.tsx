@@ -6,7 +6,7 @@ import { AnimatedBadge } from "@/components/custom/animated-badge"
 
 export function CSIGuarantee() {
   return (
-    <section id="csi-guarantee" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
+    <section id="mycure-csi" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Sticky Left Content */}
@@ -46,7 +46,7 @@ export function CSIGuarantee() {
                   <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-green-600">HIPAA-Aligned from Day One</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-green-600">HIPAA-Aligned Safeguards</h3>
                   <p className="text-muted-foreground">Safeguards that support your compliance</p>
                 </div>
               </div>
@@ -64,7 +64,7 @@ export function CSIGuarantee() {
                       </div>
                       <div>
                         <div className="font-semibold text-sm">Compliance Support</div>
-                        <div className="text-xs text-muted-foreground">HIPAA-aligned controls active</div>
+                        <div className="text-xs text-muted-foreground">HIPAA-aligned access controls</div>
                       </div>
                     </div>
                     <div className="text-xs font-medium text-green-600">Included</div>
@@ -74,7 +74,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Audit Logs</div>
-                        <div className="text-xs text-muted-foreground">Automatic tracking enabled</div>
+                        <div className="text-xs text-muted-foreground">Audit logging</div>
                       </div>
                     </div>
                   </div>
@@ -83,7 +83,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Access Controls</div>
-                        <div className="text-xs text-muted-foreground">Appropriate permissions active</div>
+                        <div className="text-xs text-muted-foreground">Role-based permissions</div>
                       </div>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ export function CSIGuarantee() {
                   <Cloud className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-blue-600">Connect with Any Healthcare System</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-blue-600">Connect Across Healthcare Systems</h3>
                   <p className="text-muted-foreground">Universal interoperability</p>
                 </div>
               </div>

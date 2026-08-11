@@ -4,7 +4,7 @@
 > records (EMR) platform for clinics, multi-specialty groups,
 > corporate clinics, diagnostic centers, and aesthetic clinics.
 > Used by healthcare providers across the Philippines.
-> Operated by TOPSI Inc. Founded 2016.
+> Operated by Team OPS Inc. dba MYCURE. Founded 2016.
 
 MYCURE consolidates patient records, scheduling, billing, telehealth, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
 
@@ -14,9 +14,9 @@ This is the deeper companion to https://mycure.md/llms.txt. The shorter `llms.tx
 
 ## Company
 
-MYCURE was founded in 2016 by Dale Dennis David and is operated by TOPSI Inc. The company is based at The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila, Philippines, and serves healthcare providers across the Philippines.
+MYCURE was founded in 2016 by Dale Dennis David and is operated by Team OPS Inc. dba MYCURE. The company is based at The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila, Philippines, and serves healthcare providers across the Philippines.
 
-Across the homepage and product pages, MYCURE positions itself as "Built for healthcare workflows: reliable, compliance-aware, and easy for clinical teams to run day to day." The platform is HIPAA-compliant and built with safeguards to help clinics handle patient data responsibly.
+Across the homepage and product pages, MYCURE positions itself as "Built for healthcare workflows: reliable, compliance-aware, and easy for clinical teams to run day to day." The platform is built with safeguards that support HIPAA-aligned handling of patient data.
 
 ## Platform overview
 
@@ -74,7 +74,7 @@ Features named on the page (from the specialties grid):
 - Secure Communications
 - Multi-Platform Access
 
-The page positions MYCURE Telehealth as HIPAA-compliant and built around healthcare data privacy standards, so clinics can offer virtual care with confidence.
+The page positions MYCURE Telehealth as HIPAA-aligned and built around healthcare data-privacy practices, so clinics can offer virtual care with confidence.
 
 ### Booking — https://mycure.md/booking
 
@@ -141,7 +141,7 @@ Security and privacy positioning on the Maestro page (verbatim from the page):
 - Data Protection — Records handled with appropriate care during storage and transmission.
 - User Designated Access — Appropriate permissions for staff.
 - Secure Cloud Hosting — Scalable infrastructure built for healthcare.
-- Compliance with Data Privacy Standards — Built around international healthcare privacy requirements.
+- Built for Data-Privacy Standards — Built around international healthcare privacy requirements.
 
 ### Data trust and privacy (CSI)
 
@@ -151,9 +151,9 @@ On every product page, the CSI section frames MYCURE's data-handling posture (ve
 
 CSI covers three pillars across product pages (verbatim from the page):
 
-- HIPAA-Compliant from Day One — Start accepting patients immediately with built-in HIPAA compliance.
+- HIPAA-Aligned Safeguards — MYCURE provides encryption, access controls, and audit logs that support HIPAA-aligned workflows.
 - Encrypted by Default — MYCURE applies layered safeguards so patient information is handled responsibly. Records sit behind protective controls, and privacy-conscious practices reduce the chance that identifying details end up where they shouldn't.
-- Connect with Any Healthcare System — Break down data silos and connect seamlessly with labs, clinics, pharmacies, and insurance providers.
+- Connect Across Healthcare Systems — Break down data silos and connect seamlessly with labs, clinics, pharmacies, and insurance providers.
 
 ## Frequently asked questions
 
@@ -172,7 +172,7 @@ Each question's full answer is rendered in the homepage HTML (and machine-readab
 - Country: Philippines
 - Founded: 2016
 - Founder: Dale Dennis David
-- Operating organization: TOPSI Inc.
+- Operating organization: Team OPS Inc. dba MYCURE
 - Operating address: The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila
 - Sitemap: https://mycure.md/sitemap.xml
 - Index file: https://mycure.md/llms.txt

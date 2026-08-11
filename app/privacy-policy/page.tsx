@@ -121,9 +121,6 @@ export default function PrivacyPolicyPage() {
               <p className="text-sm sm:text-base text-muted-foreground">
                 Effective Date: August 11, 2026
               </p>
-              <p className="text-sm sm:text-base text-muted-foreground mt-1">
-                Team OPS Inc. dba MYCURE (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
-              </p>
             </motion.div>
           </div>
         </section>

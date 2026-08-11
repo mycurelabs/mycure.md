@@ -4,7 +4,7 @@
 > records (EMR) platform for clinics, multi-specialty groups,
 > corporate clinics, diagnostic centers, and aesthetic clinics.
 > Used by healthcare providers across the Philippines.
-> Operated by TOPSI Inc. Founded 2016.
+> Operated by Team OPS Inc. dba MYCURE. Founded 2016.
 
 MYCURE consolidates patient records, scheduling, billing, telehealth, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
 
@@ -37,8 +37,10 @@ MYCURE's offline-first synchronization architecture. Records stay accessible to 
 ## About
 
 - [Our Story](https://mycure.md/our-story): How MYCURE started and the clinics the team built it with.
-- [Privacy Policy](https://mycure.md/privacy-policy): How MYCURE handles user and patient data.
-- [Terms and Conditions](https://mycure.md/terms-and-conditions): Service terms for using MYCURE.
+- [Privacy Notice](https://mycure.md/privacy-policy): How MYCURE handles user and patient data.
+- [Terms of Service](https://mycure.md/terms-and-conditions): Service terms for using MYCURE.
+- [Subprocessor List](https://mycure.md/subprocessors): Third-party service providers that process Customer Data.
+- [Security Overview](https://mycure.md/security-overview): MYCURE's security approach and shared-responsibility model.
 
 ## Try MYCURE
 
@@ -50,5 +52,5 @@ MYCURE's offline-first synchronization architecture. Records stay accessible to 
 - Country: Philippines
 - Founded: 2016
 - Founder: Dale Dennis David
-- Operating organization: TOPSI Inc.
+- Operating organization: Team OPS Inc. dba MYCURE
 - Sitemap: https://mycure.md/sitemap.xml
