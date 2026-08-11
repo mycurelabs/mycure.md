@@ -12,31 +12,32 @@ export default function PrivacyPolicyPage() {
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
-    { id: "scope", title: "1. Scope of This Privacy Policy" },
-    { id: "our-role", title: "2. Our Role in Processing Data" },
-    { id: "information-we-collect", title: "3. Information We Collect" },
-    { id: "how-we-collect", title: "4. How We Collect Information" },
-    { id: "how-we-use", title: "5. How We Use Information" },
-    { id: "legal-bases", title: "6. Legal Bases for Processing" },
-    { id: "how-we-share", title: "7. How We Share Information" },
-    { id: "ai-features", title: "8. AI-Assisted Features" },
-    { id: "anonymized-data", title: "9. Anonymized and Aggregated Data" },
+    { id: "scope", title: "1. Scope" },
+    { id: "our-role-in-processing-personal-data", title: "2. Our Role in Processing Personal Data" },
+    { id: "information-we-process", title: "3. Information We Process" },
+    { id: "how-we-obtain-information", title: "4. How We Obtain Information" },
+    { id: "how-we-process-information", title: "5. How We Process Information" },
+    { id: "lawful-bases", title: "6. Lawful Bases" },
+    { id: "sharing-and-disclosure", title: "7. Sharing and Disclosure" },
+    { id: "artificial-intelligence-and-automated-features", title: "8. Artificial Intelligence and Automated Features" },
+    { id: "aggregated-statistical-and-de-identified-information", title: "9. Aggregated, Statistical, and De-Identified Information" },
     { id: "data-retention", title: "10. Data Retention" },
     { id: "security", title: "11. Security" },
-    { id: "support-access", title: "12. Support Access" },
-    { id: "breach-notification", title: "13. Data Breach and Security Incident Notification" },
-    { id: "international-transfers", title: "14. International Data Transfers" },
-    { id: "children", title: "15. Children and Minor Patients" },
-    { id: "privacy-rights", title: "16. Your Privacy Rights" },
-    { id: "marketing", title: "17. Marketing Communications" },
-    { id: "cookies", title: "18. Cookies and Website Choices" },
-    { id: "third-party", title: "19. Third-Party Links and Services" },
-    { id: "changes", title: "20. Changes to This Privacy Policy" },
-    { id: "limitations", title: "21. Limitations" },
-    { id: "contact", title: "22. Contact Information" },
+    { id: "mycure-personnel-and-support-access", title: "12. MYCURE Personnel and Support Access" },
+    { id: "security-incidents-and-personal-data-breaches", title: "13. Security Incidents and Personal Data Breaches" },
+    { id: "international-processing", title: "14. International Processing" },
+    { id: "children-and-minor-patients", title: "15. Children and Minor Patients" },
+    { id: "privacy-rights", title: "16. Privacy Rights" },
+    { id: "philippines", title: "17. Philippines" },
+    { id: "marketing-and-service-communications", title: "18. Marketing and Service Communications" },
+    { id: "cookies-and-website-technologies", title: "19. Cookies and Website Technologies" },
+    { id: "third-party-websites-and-services", title: "20. Third-Party Websites and Services" },
+    { id: "changes-to-this-privacy-notice", title: "21. Changes to This Privacy Notice" },
+    { id: "relationship-to-customer-agreements", title: "22. Relationship to Customer Agreements" },
+    { id: "contact", title: "23. Contact" },
+    { id: "related-resources", title: "Related Resources" }
   ]
 
-  // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100
@@ -44,7 +45,7 @@ export default function PrivacyPolicyPage() {
       const documentHeight = document.documentElement.scrollHeight
 
       if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("contact")
+        setActiveSection(sections[sections.length - 1].id)
       } else {
         let currentSection = ""
         let maxVisibility = 0
@@ -98,7 +99,7 @@ export default function PrivacyPolicyPage() {
       <DocumentHeader />
 
       <main className="flex-1">
-        {/* Hero Section - Blog Template Style */}
+        {/* Hero Section */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
             <motion.div
@@ -112,16 +113,16 @@ export default function PrivacyPolicyPage() {
                 Back to Home
               </Link>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                Privacy Policy
+                Privacy Notice
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
-                Your privacy is important to us. This Privacy Policy explains how MYCURE collects, uses, discloses, protects, and retains personal data when you use our Services.
+                This Privacy Notice explains how <strong>Team OPS Inc. dba MYCURE (“MYCURE,” “we,” “us,” or “our”)</strong> processes personal data in connection with our websites, <strong>MYCURE CMS</strong>, patient-facing features, applications, integrations, support services, and related services.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground">
-                Effective Date: June 08, 2026
+                Effective Date: August 11, 2026
               </p>
               <p className="text-sm sm:text-base text-muted-foreground mt-1">
-                Operated by TOPSI Inc. (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
+                Team OPS Inc. dba MYCURE (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
               </p>
             </motion.div>
           </div>
@@ -143,17 +144,10 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <p className="text-muted-foreground leading-relaxed">
-                      This Privacy Policy explains how MYCURE collects, uses, discloses, protects, and retains personal data when you use our websites, clinic management platform, patient-facing features, applications, integrations, support services, and related services (collectively, the &ldquo;Services&rdquo;).
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      This Privacy Policy should be read together with our{" "}
-                      <Link href="/terms-and-conditions" className="text-primary hover:underline">Terms of Agreement</Link>{" "}
-                      and any applicable written agreement, Data Processing Addendum, Business Associate Agreement, Order Form, or other addendum.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">This Privacy Notice should be read together with our <strong>Terms of Service</strong>, <strong>Security Overview</strong>, <strong>Subprocessor List</strong>, and any applicable Order Form, Data Processing Agreement, Business Associate Agreement, service agreement, or other written agreement.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where a written agreement contains more specific privacy or data-processing terms, that agreement applies to the extent provided in that agreement.</p>
                   </motion.div>
 
-                  {/* Section 1 */}
                   <motion.section
                     id="scope"
                     className="mb-12"
@@ -162,382 +156,340 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Scope of This Privacy Policy</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      This Privacy Policy applies to personal data processed through MYCURE&rsquo;s Services, including information relating to Customers, Authorized Users, Patient Users, website visitors, and other individuals who interact with us.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4 mb-4">For purposes of this Privacy Policy:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Customer</strong> means the clinic, healthcare organization, company, practice, or other entity that subscribes to or uses the Services.</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Authorized User</strong> means a doctor, nurse, staff member, administrator, billing user, or other person authorized by a Customer to use the Services.</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Patient User</strong> means a patient, parent, guardian, or legally authorized representative using patient-facing features where enabled.</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Customer Data</strong> means data submitted to, uploaded to, stored in, generated through, or processed by the Services on behalf of a Customer, including patient and clinical data.</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Personal Data</strong> means information that identifies or can reasonably be linked to an individual.</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Patient Data</strong> means personal data relating to a patient, including health, clinical, billing, appointment, communication, or care-related information.</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Scope</h2>
+                    <p className="text-muted-foreground leading-relaxed">This Privacy Notice applies to personal data processed in connection with MYCURE, including information relating to:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>Customers;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>Authorized Users;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>patients and Patient Users;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>Customer representatives;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>website visitors;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>prospective Customers;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>support contacts; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other individuals who interact with MYCURE.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      This Privacy Policy does not replace a Customer&rsquo;s own privacy notices, consent forms, patient intake forms, medical record policies, or legal obligations. Customers are responsible for their own privacy and healthcare compliance obligations.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For purposes of this Privacy Notice:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Customer</strong> means a clinic, healthcare organization, practice, company, or other entity that subscribes to, deploys, or uses MYCURE CMS or related services.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Authorized User</strong> means a physician, dentist, nurse, healthcare professional, employee, contractor, administrator, or other person authorized by a Customer to access MYCURE CMS.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Customer Data</strong> means information submitted to, stored in, transmitted through, generated through, or otherwise processed through MYCURE CMS for or on behalf of a Customer, including patient and clinical information.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Patient Data</strong> means personal data relating to a patient, including health, clinical, appointment, billing, communication, and care-related information.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Service Administration Data</strong> means personal data that MYCURE processes for its own legitimate business and service-administration purposes, such as account administration, authentication and security, Customer relationship management, billing, contractual administration, support administration, legal compliance, and permitted business communications.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">This Privacy Notice does not replace a Customer's own privacy notice, patient notice, consent form, medical-record policy, or other legal obligation.</p>
                   </motion.section>
 
-                  {/* Section 2 */}
                   <motion.section
-                    id="our-role"
+                    id="our-role-in-processing-personal-data"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Our Role in Processing Data</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE processes different types of personal data in different roles.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For patient and clinical data entered, uploaded, or processed by or on behalf of a Customer, the Customer is generally the personal information controller, data controller, healthcare provider, covered entity, legal custodian of the medical record, or equivalent responsible party under applicable law.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      MYCURE generally acts as a personal information processor, data processor, service provider, business associate, or equivalent service provider role for such data, depending on the applicable legal framework and only to the extent such framework applies.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For information relating to MYCURE&rsquo;s own website visitors, billing contacts, sales leads, administrative contacts, support communications, and business operations, MYCURE may act as the controller or personal information controller.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      If you are a patient and have questions about your medical record, treatment, billing, consent, or clinical information, you should first contact your healthcare provider or clinic. Where appropriate, we may direct or forward your request to the relevant Customer.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Our Role in Processing Personal Data</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE may process different personal data in different legal capacities depending on the information, purpose, Customer relationship, deployment model, and applicable law.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Customer Data</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For Patient Data and other Customer Data that a Customer submits to or processes through MYCURE CMS, the Customer generally determines why and how that information is processed.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">In this context, the Customer generally acts as the data controller, personal information controller, healthcare provider, record custodian, or equivalent responsible party under applicable law.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE generally processes that Customer Data on behalf of the Customer as a data processor, personal information processor, service provider, or equivalent processing role.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE processes such Customer Data in accordance with the applicable Customer agreement, Customer instructions, configuration and use of MYCURE CMS, and applicable law.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Data Controlled by MYCURE</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may separately determine the purposes and means of processing Service Administration Data and other information relating to its own business operations.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">This may include personal data used for:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>account and Customer administration;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authentication and account security;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>fraud and misuse prevention;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>service administration;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing and contractual administration;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>business-contact management;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>support administration;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>legal and regulatory compliance;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>security monitoring;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>communications with Customer personnel; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>permitted sales, product, and business communications.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The same information may be processed in different capacities for different purposes.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For example, an Authorized User's email address may be processed on behalf of the Customer for access to MYCURE CMS while also being processed by MYCURE for security, account administration, or contractual communications.</p>
                   </motion.section>
 
-                  {/* Section 3 */}
                   <motion.section
-                    id="information-we-collect"
+                    id="information-we-process"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Information We Collect</h2>
-                    <p className="text-muted-foreground leading-relaxed">We may collect the following categories of information.</p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.1 Customer and Account Information</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">We may collect information about Customers and Authorized Users, such as:</p>
-                    <ul className="space-y-3 text-muted-foreground">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Information We Process</h2>
+                    <p className="text-muted-foreground leading-relaxed">Depending on the services used and the applicable relationship, we may process the following categories of information.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">3.1 Customer and Account Information</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">This may include:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
                       <li className="flex gap-2"><span className="text-primary">•</span><span>name;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>work email address;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>phone number;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>clinic, company, or organization name;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>job title, role, or department;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>account login information;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>user permissions, preferences, and settings;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing contact information; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>telephone number;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>organization or clinic name;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>position, role, or department;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>account information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>user roles and permissions;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authentication and account-security information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>preferences and settings;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing and contractual information; and</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>communications with MYCURE.</span></li>
                     </ul>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.2 Patient and Clinical Information</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">When Customers use the Services to manage patient care or clinic operations, the Services may process Patient Data, such as:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>patient name, contact details, date of birth, sex, address, and identifiers;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>appointment records;</span></li>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">3.2 Patient and Clinical Information</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">When Customers use MYCURE CMS for healthcare or clinic operations, Customer Data may include:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>patient identifiers and demographic information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>contact information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>appointments and visits;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>medical history;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>clinical notes;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>diagnoses, assessments, and treatment plans;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>prescriptions and medication information;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>laboratory, imaging, dental, pharmacy, or other clinical records;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>medical certificates, forms, and documents;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing, claims, or payment-related information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>diagnoses and assessments;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>examination findings;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>vital signs;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>allergies;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>medications and prescriptions;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>treatment plans and procedures;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>laboratory and diagnostic information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>imaging information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>dental information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>pharmacy information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>medical certificates;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>referrals;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>attachments and clinical documents;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing, HMO, insurance, or claims-related information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>occupational-health information;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>patient communications;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>consent, authorization, or representative information; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>other information entered by the Customer, Authorized Users, Patient Users, or authorized third-party integrations.</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>consent or representative information; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other information entered into or generated through MYCURE CMS.</span></li>
                     </ul>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.3 Patient-Facing Feature Information</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">Where patient-facing features are enabled, we may process information provided by or about Patient Users, such as:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>account registration information;</span></li>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Patient and clinical information may constitute sensitive, special-category, protected, or otherwise regulated personal data under applicable law.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">3.3 Patient-Facing Features</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where patient-facing functionality is enabled, MYCURE CMS may process information such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>account-registration information;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>appointment requests;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>patient forms;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>uploaded files or documents;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>messages or communications with the clinic;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>payment or billing-related information;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>access logs and portal activity;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>parent, guardian, caregiver, or representative information; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>other information submitted through patient-facing tools.</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>forms;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>messages;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>uploaded files and documents;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>account and portal activity;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing-related information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>representative, parent, guardian, or caregiver information; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other information submitted through the applicable functionality.</span></li>
                     </ul>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.4 Payment and Billing Information</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">We may collect billing-related information, such as:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing name and contact details;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>subscription plan;</span></li>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">3.4 Billing and Business Information</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may process information such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing contact details;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>subscription or service information;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>invoices;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>payment status;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>transaction records; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>tax or business registration information where applicable.</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>transaction records;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>tax or business registration information; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>related commercial records.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Payment card or payment method details may be processed by third-party payment processors. We do not intend to store full payment card numbers unless expressly stated and supported by appropriate safeguards.
-                    </p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.5 Technical, Device, and Usage Information</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">We may collect technical and usage information, such as:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>IP address;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>device type;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>browser type;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>operating system;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>log data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>session activity;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>access times;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>pages or features used;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>error reports;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>performance data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>security logs;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>approximate location derived from IP address; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>other diagnostic or analytics information.</span></li>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where payment services are provided through an external provider, payment information may also be processed by that provider under the applicable arrangement.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">3.5 Technical and Security Information</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Depending on the service and deployment, MYCURE may process:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>IP addresses;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>browser and device information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>operating-system information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authentication events;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>access and session information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>timestamps;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>application activity;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>error information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>system and security events;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>performance and diagnostic information; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other information reasonably necessary for operation, security, troubleshooting, and service administration.</span></li>
                     </ul>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.6 Cookies and Similar Technologies</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Our websites and Services may use cookies, local storage, analytics tools, and similar technologies to operate the Services, remember preferences, improve performance, understand usage, and protect security.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We do not use identifiable patient health data for third-party advertising.
-                    </p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">3.7 Support and Communications</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">If you contact us for support, sales, onboarding, implementation, training, or other inquiries, we may collect:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>your name and contact details;</span></li>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">3.6 Support Information</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">If you or a Customer contacts MYCURE for support, onboarding, implementation, training, security, or another inquiry, we may process:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>contact information;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>organization information;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>support request details;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>screenshots, files, or logs you provide;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>communications with our team; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>information necessary to investigate or resolve the request.</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>support-request information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>communications;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>screenshots, attachments, files, or logs supplied to us; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other information reasonably necessary to address the request.</span></li>
                     </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Customers and users should avoid including Patient Data or other sensitive Customer Data in support communications unless reasonably necessary for the applicable support issue.</p>
                   </motion.section>
 
-                  {/* Section 4 */}
                   <motion.section
-                    id="how-we-collect"
+                    id="how-we-obtain-information"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. How We Collect Information</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">We may collect information:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>directly from you;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from Customers and Authorized Users;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from Patient Users, parents, guardians, or authorized representatives;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>through use of the Services;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from devices, browsers, and systems used to access the Services;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from third-party integrations authorized by the Customer;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from payment processors or service providers;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from public or business sources where permitted; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>from communications with our sales, support, implementation, or operations teams.</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. How We Obtain Information</h2>
+                    <p className="text-muted-foreground leading-relaxed">Depending on the context, information may be provided or generated:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>directly by you;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>by a Customer or Authorized User;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>by a patient or authorized representative;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through use of MYCURE CMS;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through our websites;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through devices or systems accessing the services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through Customer-authorized integrations;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through service providers;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through business communications; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>through other lawful sources relevant to the applicable relationship.</span></li>
                     </ul>
                   </motion.section>
 
-                  {/* Section 5 */}
                   <motion.section
-                    id="how-we-use"
+                    id="how-we-process-information"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. How We Use Information</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We use personal data to provide, operate, maintain, secure, and improve the Services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4 mb-4">Depending on the context, we may use information to:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>create and manage accounts;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>provide clinic management and patient-facing features;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>support scheduling, documentation, billing, reporting, and other workflows;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>process payments and manage subscriptions;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>provide onboarding, implementation, training, and support;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>troubleshoot errors and technical issues;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>monitor performance and availability;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>protect against unauthorized access, fraud, misuse, abuse, or security threats;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>communicate with Customers, Authorized Users, and Patient Users;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>send service notices, updates, and administrative messages;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>respond to inquiries and requests;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>comply with legal, regulatory, contractual, and audit obligations;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>enforce our Terms of Agreement and other agreements;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>improve and develop the Services;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>create anonymized or aggregated data as described in this Privacy Policy; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>perform other purposes authorized by the Customer or permitted by applicable law.</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. How We Process Information</h2>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Customer Data</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE processes Customer Data on behalf of a Customer, processing may include activities reasonably necessary to:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>provide and operate MYCURE CMS;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>store and retrieve Customer Data;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>provide enabled functionality;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authenticate users;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>secure the service;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>provide support;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>troubleshoot problems;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>maintain and update the service;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>perform backup and recovery;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>respond to security incidents;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>transmit information through Customer-authorized integrations;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>perform Customer instructions; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>comply with obligations imposed by applicable law.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For Patient Data processed on behalf of a Customer, MYCURE uses such data to provide the Services according to the Customer&rsquo;s instructions, applicable agreements, and applicable law.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The Customer remains responsible for determining the purposes and lawful basis for its processing of Customer Data, including Patient Data, and for providing notices or obtaining consent or other authorization where required.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">MYCURE-Controlled Data</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE determines the purposes and means of processing, we may process personal data for purposes such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>establishing and administering Customer relationships;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>managing accounts;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authenticating users;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>maintaining security;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>preventing fraud and misuse;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>managing subscriptions, billing, and contracts;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>responding to inquiries;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>providing Customer support;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>administering our websites and services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>complying with law;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>maintaining business and accounting records;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>establishing, exercising, or defending legal rights;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>communicating service or security information; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>conducting permitted business and marketing communications.</span></li>
+                    </ul>
                   </motion.section>
 
-                  {/* Section 6 */}
                   <motion.section
-                    id="legal-bases"
+                    id="lawful-bases"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Legal Bases for Processing</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      Where a legal basis is required, we process personal data based on one or more of the following grounds, depending on the context:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Lawful Bases</h2>
+                    <p className="text-muted-foreground leading-relaxed">The lawful basis for processing depends on the applicable jurisdiction and context.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE acts as the controller or equivalent responsible party, processing may be based on grounds available under applicable law, which may include:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
                       <li className="flex gap-2"><span className="text-primary">•</span><span>performance of a contract;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>steps taken before entering into a contract;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>steps taken in connection with entering into a contract;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>compliance with legal obligations;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>legitimate business interests, such as operating, securing, supporting, and improving the Services;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>consent, where required;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>protection of vital interests, where applicable;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>performance of a task carried out in the public interest, where applicable; or</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>other lawful bases available under applicable law.</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>legitimate interests where recognized and applicable;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>consent where required;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>protection of vital interests where applicable; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>another lawful basis available under applicable law.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For Patient Data processed through a Customer&rsquo;s use of the Services, the Customer is generally responsible for determining the lawful basis for processing and for obtaining any required consents, notices, or authorizations.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE processes Customer Data on behalf of a Customer, the Customer is generally responsible for establishing the lawful basis for that processing.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Nothing in this Privacy Notice means that consent is required for every processing activity.</p>
                   </motion.section>
 
-                  {/* Section 7 */}
                   <motion.section
-                    id="how-we-share"
+                    id="sharing-and-disclosure"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. How We Share Information</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We do not sell personal data. We do not sell patient health data. We do not use identifiable patient health data for third-party advertising.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">We may disclose personal data in the following situations.</p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">7.1 With Customers and Authorized Users</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Information may be made available to the Customer and its Authorized Users according to account settings, user permissions, clinical workflows, and Customer configuration.
-                    </p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">7.2 With Patient Users and Authorized Representatives</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Where patient-facing features are enabled, information may be made available to Patient Users, parents, guardians, or authorized representatives according to Customer settings, applicable law, and the Customer&rsquo;s policies.
-                    </p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">7.3 With Service Providers and Subprocessors</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We may share information with vendors, service providers, and subprocessors who help us provide, secure, operate, support, and improve the Services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      These may include providers of hosting, infrastructure, storage, communications, SMS, email, payments, analytics, monitoring, security, support, implementation, and other operational services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We require service providers to protect personal data and use it only for authorized purposes. A current list is available in our{" "}
-                      <Link href="/subprocessors" className="text-primary hover:underline">Subprocessor List</Link>.
-                    </p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">7.4 With Third-Party Integrations</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Customers may enable integrations with third-party systems, such as laboratories, imaging centers, pharmacies, HMOs, payment providers, messaging tools, or other services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      When a Customer enables or authorizes an integration, personal data may be shared with or received from that third party as needed for the integration.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Third-party integrations may be subject to their own terms, privacy policies, and data practices.
-                    </p>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">7.5 For Legal, Safety, and Compliance Reasons</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">We may disclose information where we believe disclosure is necessary to:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>comply with law, regulation, court order, subpoena, or legal process;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>respond to lawful requests from government, regulatory, or law enforcement authorities;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>protect the rights, privacy, safety, or property of MYCURE, Customers, users, patients, or others;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>investigate fraud, abuse, security incidents, or technical issues;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>enforce our Terms of Agreement or other agreements; or</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>defend against legal claims.</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Sharing and Disclosure</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE does not sell identifiable Patient Data.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">We may disclose personal data in the circumstances described below.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.1 Customers and Authorized Users</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Customer Data may be made available to the applicable Customer and its Authorized Users according to permissions, configuration, workflow, and Customer instructions.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.2 Patients and Authorized Representatives</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where applicable functionality is enabled, information may be made available to patients or their authorized representatives according to the Customer's configuration, instructions, and applicable law.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.3 Subprocessors and Service Providers</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may engage third parties that process Customer Data on our behalf to help provide, operate, secure, maintain, support, or recover MYCURE CMS.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Our current material Subprocessors are identified in our:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Not every vendor used by MYCURE is a Subprocessor of Customer Data.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.4 Customer-Selected Third Parties</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Customers may configure or request connections to external systems or third parties, such as laboratories, imaging centers, pharmacies, insurers, payment services, communications providers, government systems, or other integrations.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE transmits Customer Data to a third party at the Customer's instruction, that third party does not become a MYCURE Subprocessor merely because MYCURE CMS communicates with it.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Third-party services may be governed by their own privacy, security, contractual, and data-processing terms.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.5 Legal and Protective Disclosures</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may process, preserve, or disclose information where reasonably necessary to:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>comply with applicable law or lawful process;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>respond to a legally binding request;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>protect the security of MYCURE CMS;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>investigate suspected fraud, misuse, or unauthorized access;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>protect the rights or safety of MYCURE, Customers, users, patients, or others; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>establish, exercise, or defend legal claims.</span></li>
                     </ul>
-
-                    <h3 className="text-lg sm:text-xl font-semibold mt-6 mb-3">7.6 Business Transfers</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      If MYCURE is involved in a merger, acquisition, financing, restructuring, sale of assets, or similar transaction, personal data may be disclosed or transferred as part of that transaction, subject to appropriate confidentiality and data protection safeguards.
-                    </p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.6 Business Transactions</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">If MYCURE undergoes a merger, acquisition, financing, restructuring, reorganization, sale of assets, or similar transaction, personal data may be transferred or disclosed as reasonably necessary for that transaction and subject to applicable confidentiality and data-protection requirements.</p>
                   </motion.section>
 
-                  {/* Section 8 */}
                   <motion.section
-                    id="ai-features"
+                    id="artificial-intelligence-and-automated-features"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. AI-Assisted Features</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE may introduce artificial intelligence, machine learning, automation, or assistive features from time to time.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      AI-assisted features, where enabled, are intended to support administrative, operational, documentation, communication, analytics, or workflow tasks. They are not a substitute for professional medical judgment.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Unless expressly agreed in writing, MYCURE does not use identifiable patient data or identifiable Customer Data to train artificial intelligence or machine learning models.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Users are responsible for reviewing and verifying AI-assisted outputs before relying on them or including them in patient records, communications, reports, claims, prescriptions, orders, certificates, or other official documents.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Additional terms may apply to specific AI-assisted features.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Artificial Intelligence and Automated Features</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE may introduce AI-assisted, machine-learning, automation, or similar functionality as MYCURE CMS evolves.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The introduction of such functionality does not by itself authorize an external AI provider to process Customer Data.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where a third-party AI or large-language-model provider will process Customer Data on MYCURE's behalf, MYCURE will address applicable Customer instructions or authorization, Subprocessor requirements, privacy and security review, and other requirements under the applicable agreement and law before or in connection with that processing.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Current material external Subprocessors are identified in our Subprocessor List.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Unless otherwise expressly authorized through an applicable Customer agreement or documented instruction, MYCURE does not authorize identifiable production Customer Data to be used to train general-purpose third-party AI or large-language models.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">AI-assisted functionality is not a substitute for professional medical judgment. Customers and healthcare professionals remain responsible for reviewing information used for clinical, professional, or regulated purposes.</p>
                   </motion.section>
 
-                  {/* Section 9 */}
                   <motion.section
-                    id="anonymized-data"
+                    id="aggregated-statistical-and-de-identified-information"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Anonymized and Aggregated Data</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      We may create and use anonymized, aggregated, or statistical information derived from use of the Services for purposes such as:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>operating and improving the Services;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>product development;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>analytics and reporting;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>performance monitoring;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>security and fraud prevention;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>benchmarking;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>research and development; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>developing or improving features, including automation or AI-assisted features where appropriate.</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Aggregated, Statistical, and De-Identified Information</h2>
+                    <p className="text-muted-foreground leading-relaxed">Where permitted by applicable law and the applicable Customer agreement or instructions, MYCURE may generate aggregated, statistical, or de-identified information for legitimate purposes such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>service operation;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>reliability and performance;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>security;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>capacity planning;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>product and service analysis; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>development and improvement.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Anonymized and aggregated data must not identify, and must not reasonably be capable of being used to identify, any individual patient, user, or Customer.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We do not attempt to re-identify anonymized data, and we require the same from third parties with whom we share such data.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We do not sell anonymized and aggregated data.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where available, Customers may request to opt out of having data associated with their account contribute to optional analytics, benchmarking, or machine-learning improvement activities that are not necessary to provide the Services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Opting out does not affect processing necessary to provide, secure, support, maintain, or improve the reliability of the Services.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Information treated as de-identified or anonymized for these purposes must not identify an individual where applicable law requires that status.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not treat identifiable Patient Data as anonymized merely because direct identifiers have been removed where the information remains reasonably capable of being linked to an individual.</p>
                   </motion.section>
 
-                  {/* Section 10 */}
                   <motion.section
                     id="data-retention"
                     className="mb-12"
@@ -547,30 +499,15 @@ export default function PrivacyPolicyPage() {
                     transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. Data Retention</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We retain personal data only for as long as reasonably necessary for the purposes described in this Privacy Policy, unless a longer retention period is required or permitted by law, contract, audit requirements, backup practices, dispute resolution, or legitimate business needs.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Retention periods may vary depending on the type of data and context.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For Customer Data, including Patient Data, retention may be governed by the Customer&rsquo;s subscription, configuration, written agreement, legal obligations, and medical recordkeeping requirements.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customers are responsible for determining appropriate retention periods for medical records and other regulated records under laws applicable to their organization and practice.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Following termination or expiration of a paid subscription, Customer Data will generally be made available for export for thirty (30) days, unless a different period is stated in an applicable agreement.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      After the export period, we may delete, archive, anonymize, or retain Customer Data in accordance with our agreements, backup practices, legal obligations, and legitimate business needs.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Backup copies may remain for a limited period before being overwritten or deleted according to our backup cycles.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">Retention depends on the type of information, MYCURE's role in processing it, the applicable Customer agreement, Customer instructions, legal requirements, operational requirements, and applicable law.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Customer Data</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Customers are responsible for determining the retention requirements applicable to their medical records and other regulated records.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Export, return, archival, retention, backup, and deletion of Customer Data following expiration or termination of MYCURE CMS are governed by the applicable Customer agreement and Service terms.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Deletion from active systems may not result in immediate deletion of residual information contained in ordinary backup cycles or information that must lawfully be preserved.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">MYCURE-Controlled Data</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE retains Service Administration Data and other information processed for its own purposes for as long as reasonably necessary for the applicable business, contractual, security, legal, accounting, dispute-resolution, or compliance purpose, subject to applicable law.</p>
                   </motion.section>
 
-                  {/* Section 11 */}
                   <motion.section
                     id="security"
                     className="mb-12"
@@ -580,93 +517,107 @@ export default function PrivacyPolicyPage() {
                     transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Security</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We use reasonable administrative, technical, physical, and organizational safeguards designed to protect personal data against unauthorized access, loss, misuse, alteration, or disclosure.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Safeguards may include access controls, authentication, encryption, logging, monitoring, backups, security review, and other measures appropriate to the Services and deployment model.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      No system, network, software, method of transmission, or method of storage is completely secure. We cannot guarantee absolute security.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customers are responsible for managing their own users, permissions, devices, networks, passwords, authentication settings, and internal security practices.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customers should notify us promptly if they suspect unauthorized access, account compromise, or a security incident involving the Services. For more information, see our{" "}
-                      <Link href="/security-overview" className="text-primary hover:underline">Security Overview</Link>.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE maintains reasonable technical and organizational safeguards appropriate to the nature of the service, information, deployment model, and reasonably foreseeable risks.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">These may include measures concerning:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authentication;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>access control;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>encryption;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>logging;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>monitoring;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>backups;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>personnel access;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>incident response; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other applicable security controls.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">No information system or security control can eliminate all risk, and MYCURE does not represent that unauthorized access, security incidents, vulnerabilities, or service interruptions can never occur.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Customers remain responsible for matters under their control, including their:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>Authorized Users;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>roles and permissions;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>passwords and authentication factors;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>email accounts;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>devices;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>networks;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>exported information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>third-party integrations; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other Customer-controlled security matters.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">More information is available in our:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
                   </motion.section>
 
-                  {/* Section 12 */}
                   <motion.section
-                    id="support-access"
+                    id="mycure-personnel-and-support-access"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. Support Access</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE personnel may access Customer accounts or Customer Data only where reasonably necessary to provide, maintain, secure, troubleshoot, improve, or support the Services; investigate suspected abuse, security issues, or technical problems; comply with law; or perform obligations under an applicable agreement.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We use reasonable safeguards designed to limit support access to authorized personnel and appropriate purposes.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customers acknowledge that certain support, maintenance, security, and troubleshooting activities may require limited access to Customer Data.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. MYCURE Personnel and Support Access</h2>
+                    <p className="text-muted-foreground leading-relaxed">Access to production Customer Data by MYCURE personnel is restricted to authorized personnel with an appropriate operational need.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Such access may occur where reasonably necessary for:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>support;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>maintenance;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>troubleshooting;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>security;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>incident investigation or response;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>backup or recovery;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>service administration;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>compliance with applicable law; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other activities necessary to provide the applicable service.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Support access does not make MYCURE the controller of Patient Data that MYCURE processes on behalf of a Customer.</p>
                   </motion.section>
 
-                  {/* Section 13 */}
                   <motion.section
-                    id="breach-notification"
+                    id="security-incidents-and-personal-data-breaches"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Data Breach and Security Incident Notification</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      If we become aware of a security incident involving personal data that requires notification under applicable law or applicable agreement, we will notify affected Customers or individuals as required by law and applicable agreement.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For Patient Data processed on behalf of a Customer, the Customer may be responsible for determining whether and how to notify patients, regulators, payors, employers, partners, or other third parties, unless applicable law requires MYCURE to notify directly.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We will provide reasonable cooperation and information available to us to support assessment and response, subject to security, confidentiality, legal, and operational limitations.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Security Incidents and Personal Data Breaches</h2>
+                    <p className="text-muted-foreground leading-relaxed">Where MYCURE processes Customer Data on behalf of a Customer and becomes aware of an applicable Security Incident or Personal Data Breach, MYCURE will provide notice and cooperation as required by the applicable Customer agreement and applicable law.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The Customer, as controller or equivalent responsible party for its Customer Data, generally remains responsible for determining and carrying out notifications to patients, data subjects, regulators, or other parties where that obligation rests with the Customer.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE remains responsible for any notification or other obligation imposed directly upon MYCURE by applicable law.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE acts as the controller of affected personal data, MYCURE will address notification obligations applicable to MYCURE in that capacity.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Security and privacy concerns relating to MYCURE may be reported to:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
                   </motion.section>
 
-                  {/* Section 14 */}
                   <motion.section
-                    id="international-transfers"
+                    id="international-processing"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">14. International Data Transfers</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE primarily serves healthcare organizations in the Philippines, but the Services may be accessed, supported, hosted, or processed in other locations depending on the Customer&rsquo;s deployment, configuration, service providers, support needs, and applicable agreement.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where personal data is transferred across borders, we use reasonable safeguards designed to protect personal data in accordance with applicable law.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where specific transfer mechanisms, contractual clauses, local hosting arrangements, or additional data protection terms are required, they must be addressed in an applicable Data Processing Addendum, Order Form, Business Associate Agreement, or other written agreement.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      MYCURE does not represent that the Services are approved, certified, or compliant for use in every jurisdiction unless expressly stated in a signed written agreement.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">14. International Processing</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE may serve Customers and users in multiple jurisdictions.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Personal data may therefore be processed or accessed in countries other than the country in which the Customer or individual is located, depending on:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>deployment model;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>Customer requirements;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>hosting location;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>enabled services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>Subprocessors;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>support arrangements; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>applicable written agreements.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where cross-border processing is subject to specific legal requirements, MYCURE and the applicable Customer will address the required safeguards, contractual mechanisms, instructions, or other measures as applicable to their respective roles.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Current material Subprocessors and applicable processing locations are identified in our:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not represent that MYCURE CMS is approved, certified, or legally suitable for every jurisdiction merely because it is technically accessible there.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Jurisdiction-specific requirements may be addressed through an Order Form, Data Processing Agreement, Business Associate Agreement, local terms, deployment arrangement, or other written agreement.</p>
                   </motion.section>
 
-                  {/* Section 15 */}
                   <motion.section
-                    id="children"
+                    id="children-and-minor-patients"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -674,24 +625,17 @@ export default function PrivacyPolicyPage() {
                     transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">15. Children and Minor Patients</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE does not knowingly collect personal data directly from children through patient-facing features except where such use is enabled by a Customer and occurs with the involvement, consent, or authorization of a parent, guardian, healthcare provider, or legally authorized representative where required by law.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where a minor&rsquo;s Patient Data is processed in the Services, it is generally processed on behalf of the treating clinic, healthcare provider, or Customer.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customers are responsible for determining who may access a minor patient&rsquo;s information and for obtaining and documenting any consent, authorization, or legal basis required for such access.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      MYCURE may restrict, suspend, or require additional verification for minor-related accounts or access where necessary to support legal, safety, privacy, or security requirements.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We do not sell minors&rsquo; personal data or use identifiable minor patient health data for third-party advertising.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE CMS may process information relating to children or minor patients where used by healthcare Customers for authorized healthcare or related purposes.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where such Patient Data is processed on behalf of a Customer, the Customer is generally responsible for determining:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>the lawful basis for processing;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>who may access the minor's information;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>whether parental, guardian, representative, or other authorization is required; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>applicable healthcare and recordkeeping requirements.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may apply reasonable identity, authorization, access, or security requirements to patient-facing functionality where appropriate.</p>
                   </motion.section>
 
-                  {/* Section 16 */}
                   <motion.section
                     id="privacy-rights"
                     className="mb-12"
@@ -700,141 +644,153 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">16. Your Privacy Rights</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      Depending on where you are located and the context of processing, you may have rights over your personal data, such as the right to:
-                    </p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>access your personal data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>request correction of inaccurate or incomplete data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>request deletion of personal data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>object to certain processing;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>restrict certain processing;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>withdraw consent where processing is based on consent;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>request data portability where applicable;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>opt out of certain communications or optional uses; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>lodge a complaint with a relevant authority where applicable.</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">16. Privacy Rights</h2>
+                    <p className="text-muted-foreground leading-relaxed">Privacy rights vary by jurisdiction and depend on MYCURE's role in processing the applicable information.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Subject to applicable law, individuals may have rights relating to matters such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>access;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>correction;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>deletion or erasure;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>objection;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>restriction;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>portability;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>withdrawal of consent where processing is based on consent; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>complaints to an applicable privacy or data-protection authority.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      These rights may be subject to legal limits, verification requirements, healthcare recordkeeping obligations, contractual obligations, security requirements, and exceptions under applicable law.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      If your request relates to Patient Data controlled by a clinic or healthcare provider, we may direct you to that Customer or forward your request to them. The Customer is generally responsible for responding to requests relating to medical records, care, treatment, billing, and clinical information.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      To exercise rights relating to MYCURE-controlled information, contact us using the details in the Contact Information section below.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">These rights may be subject to legal exceptions, verification requirements, medical-record retention requirements, contractual restrictions, or other limitations under applicable law.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Requests Concerning Customer or Patient Data</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">If a request concerns Patient Data or other Customer Data controlled by a clinic, healthcare organization, employer, insurer, or other Customer, the request should ordinarily be directed to that Customer.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may refer or forward the request to the applicable Customer and may assist the Customer as required by applicable law and the applicable agreement.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Requests Concerning Data Controlled by MYCURE</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For information for which MYCURE determines the purposes and means of processing, requests may be submitted to:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may request reasonable information necessary to verify identity, authority, or the scope of a request.</p>
                   </motion.section>
 
-                  {/* Section 17 */}
                   <motion.section
-                    id="marketing"
+                    id="philippines"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. Marketing Communications</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We may send service-related messages, administrative notices, product updates, billing notices, and security alerts.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where permitted by law, we may also send marketing or promotional communications. You may opt out of marketing communications by following the unsubscribe instructions in the message or contacting us.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Even if you opt out of marketing communications, we may still send non-marketing messages relating to your account, subscription, security, support, transactions, or use of the Services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We do not use identifiable patient health data for third-party advertising.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. Philippines</h2>
+                    <p className="text-muted-foreground leading-relaxed">For processing subject to the <strong>Philippine Data Privacy Act of 2012, its Implementing Rules and Regulations, and applicable issuances of the National Privacy Commission</strong>, the legal roles and responsibilities of MYCURE and its Customers are determined according to the applicable processing activity and agreement.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For Customer Data processed through MYCURE CMS on behalf of a Philippine healthcare Customer, the Customer will generally act as the <strong>Personal Information Controller (PIC)</strong> and MYCURE as the <strong>Personal Information Processor (PIP)</strong>.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may separately act as a PIC for Service Administration Data and other personal data for which MYCURE independently determines the purposes and means of processing.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Philippine Customers may also have a separate Data Processing and Security Agreement or other written agreement governing MYCURE's processing of Customer Data. Where that agreement contains more specific terms, those terms apply according to the agreement's provisions.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Questions or privacy requests concerning processing for which MYCURE acts as PIC may be directed to:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Requests concerning Patient Data controlled by a Customer should ordinarily be directed to the applicable clinic, healthcare organization, or other Customer.</p>
                   </motion.section>
 
-                  {/* Section 18 */}
                   <motion.section
-                    id="cookies"
+                    id="marketing-and-service-communications"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">18. Cookies and Website Choices</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Our websites may use cookies and similar technologies for functionality, analytics, security, performance, and user experience.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      You may be able to manage cookies through your browser settings or tools we provide. Blocking cookies may affect website or Service functionality.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where required by applicable law, we will provide additional choices or notices regarding cookies and similar technologies.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">18. Marketing and Service Communications</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE may send communications necessary or appropriate for:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>account administration;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>authentication;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>security;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>billing;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>support;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>service operation;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>contractual administration; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>important service updates.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where permitted by applicable law, MYCURE may also send product, business, educational, or marketing communications to appropriate Customer representatives, users, or business contacts.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Recipients may opt out of marketing communications through the mechanism provided in the communication or by contacting MYCURE.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Opting out of marketing communications does not prevent MYCURE from sending necessary account, security, billing, transactional, contractual, or service-related communications.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Identifiable Patient Data is not used for third-party advertising.</p>
                   </motion.section>
 
-                  {/* Section 19 */}
                   <motion.section
-                    id="third-party"
+                    id="cookies-and-website-technologies"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Third-Party Links and Services</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      The Services may contain links to or integrations with third-party websites, applications, systems, or services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      This Privacy Policy does not apply to third-party services that are not operated by MYCURE.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      We are not responsible for the privacy, security, or data practices of third parties. You should review their privacy policies and terms before using them.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Cookies and Website Technologies</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE websites may use cookies, local storage, and similar technologies for purposes such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>website functionality;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>security;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>preference management;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>performance; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>analytics.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Available controls may vary according to the website, technology, browser, and applicable jurisdiction.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where applicable law requires additional notice, consent, or choice concerning particular technologies, MYCURE will provide an appropriate mechanism.</p>
                   </motion.section>
 
-                  {/* Section 20 */}
                   <motion.section
-                    id="changes"
+                    id="third-party-websites-and-services"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">20. Changes to This Privacy Policy</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      We may update this Privacy Policy from time to time.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      If we make material changes, we will provide reasonable notice, such as by posting the updated policy on our website, sending email notice, or providing in-platform notice.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      The updated Privacy Policy will take effect on the date stated above or as otherwise stated in the notice.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Continued use of the Services after the effective date means the updated Privacy Policy applies to your use of the Services.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">20. Third-Party Websites and Services</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE websites or services may contain links to, or integrations with, services operated by third parties.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">This Privacy Notice does not govern independent third-party services that are not operated by MYCURE.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Third parties may maintain their own terms, privacy notices, security practices, and processing arrangements.</p>
                   </motion.section>
 
-                  {/* Section 21 */}
                   <motion.section
-                    id="limitations"
+                    id="changes-to-this-privacy-notice"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">21. Limitations</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      This Privacy Policy explains our privacy practices. It does not create warranties, expand contractual obligations, or limit rights and obligations set out in our Terms of Agreement or applicable written agreements.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      To the maximum extent permitted by law, liability relating to the Services is governed by our Terms of Agreement and applicable written agreements.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">21. Changes to This Privacy Notice</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE may update this Privacy Notice from time to time to reflect changes in:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>our services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>processing activities;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>technology;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>security practices;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>legal or regulatory requirements; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>business operations.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The current version will be posted at:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The effective date shown above indicates when the current version took effect.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where applicable law or an applicable agreement requires additional notice or another mechanism for a material change, MYCURE will follow that requirement.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">An update to this Privacy Notice does not by itself override a more specific obligation contained in an applicable written Customer agreement.</p>
                   </motion.section>
 
-                  {/* Section 22 */}
+                  <motion.section
+                    id="relationship-to-customer-agreements"
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">22. Relationship to Customer Agreements</h2>
+                    <p className="text-muted-foreground leading-relaxed">This Privacy Notice describes MYCURE's general privacy practices.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">It does not:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>replace a Customer's own privacy obligations;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>expand the purposes for which MYCURE may process Customer Data beyond applicable Customer instructions and agreements;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>reduce protections specifically established in an applicable Data Processing Agreement or other written agreement; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>create a representation that MYCURE CMS complies with every law or regulatory framework in every jurisdiction.</span></li>
+                    </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Contractual rights, obligations, liability provisions, data-processing instructions, retention requirements, processing locations, and other Customer-specific requirements remain governed by the applicable written agreement and Terms of Service.</p>
+                  </motion.section>
+
                   <motion.section
                     id="contact"
                     className="mb-12"
@@ -843,23 +799,26 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">22. Contact Information</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      For questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact:
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      MYCURE / TOPSI Inc.<br />
-                      Email:{" "}
-                      <a href="mailto:helpdesk@mycure.md" className="text-primary hover:underline">helpdesk@mycure.md</a>
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For privacy-related matters or data subject requests, you may contact:
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Data Protection Officer<br />
-                      Email:{" "}
-                      <a href="mailto:dpo@mycure.md" className="text-primary hover:underline">dpo@mycure.md</a>
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">23. Contact</h2>
+                    <p className="text-muted-foreground leading-relaxed">For privacy, data-protection, or security matters concerning MYCURE:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Team OPS Inc. dba MYCURE</strong><br />201 Malayan Plaza<br />ADB Avenue corner Opal Road<br />Ortigas Business Center<br />Pasig City, Philippines 1600</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Privacy &amp; Security Contact:</strong><br /><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">If your inquiry concerns a medical record or Patient Data controlled by a Customer, you should ordinarily contact the applicable clinic, healthcare organization, or other Customer directly.</p>
+                  </motion.section>
+
+                  <motion.section
+                    id="related-resources"
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Related Resources</h2>
+                    <p className="text-muted-foreground leading-relaxed"><strong>Privacy Notice</strong><br /><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Terms of Service</strong><br /><a href="/terms-and-conditions" className="text-primary hover:underline">https://mycure.md/terms-and-conditions</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
                   </motion.section>
                 </div>
               </div>
@@ -936,7 +895,6 @@ export default function PrivacyPolicyPage() {
           )}
         </div>
       </main>
-
     </div>
   )
 }

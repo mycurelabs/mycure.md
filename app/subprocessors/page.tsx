@@ -12,97 +12,17 @@ export default function SubprocessorsPage() {
   const [activeSection, setActiveSection] = useState("")
 
   const sections = [
-    { id: "what-is", title: "1. What Is a Subprocessor?" },
-    { id: "how-we-use", title: "2. How We Use Subprocessors" },
-    { id: "current", title: "3. Current Subprocessors" },
-    { id: "customer-integrations", title: "4. Customer-Enabled Third-Party Integrations" },
-    { id: "deployment", title: "5. Deployment-Specific Subprocessors" },
-    { id: "safeguards", title: "6. Subprocessor Safeguards" },
-    { id: "updates", title: "7. Updates to This List" },
-    { id: "questions", title: "8. Questions" },
+    { id: "what-is-a-subprocessor", title: "1. What Is a Subprocessor?" },
+    { id: "current-material-subprocessors", title: "2. Current Material Subprocessors" },
+    { id: "deployment-specific-processing", title: "3. Deployment-Specific Processing" },
+    { id: "customer-selected-third-party-services", title: "4. Customer-Selected Third-Party Services" },
+    { id: "artificial-intelligence-services", title: "5. Artificial Intelligence Services" },
+    { id: "subprocessor-safeguards", title: "6. Subprocessor Safeguards" },
+    { id: "changes-to-subprocessors", title: "7. Changes to Subprocessors" },
+    { id: "questions-and-privacy-contact", title: "8. Questions and Privacy Contact" },
+    { id: "related-resources", title: "Related Resources" }
   ]
 
-  const subprocessors = [
-    {
-      name: "DigitalOcean, LLC",
-      category: "Cloud hosting / infrastructure",
-      purpose: "Managed Kubernetes hosting, compute, networking, and backup storage",
-      region: "United States",
-      data: "Customer Data, usage data, technical data",
-    },
-    {
-      name: "Google LLC (Google Cloud)",
-      category: "Cloud storage, secret management, and sign-in",
-      purpose: "Object/file storage, encrypted secret management, and Google sign-in (OAuth)",
-      region: "United States / configured per deployment",
-      data: "Customer Data, account identifiers, application secrets",
-    },
-    {
-      name: "Twilio Inc. (SendGrid)",
-      category: "Email delivery",
-      purpose: "Transactional and service emails",
-      region: "United States",
-      data: "Contact details, message metadata, service notices",
-    },
-    {
-      name: "ActiveCampaign, LLC (Postmark)",
-      category: "Email delivery",
-      purpose: "Transactional and service emails",
-      region: "United States",
-      data: "Contact details, message metadata, service notices",
-    },
-    {
-      name: "Twilio Inc.",
-      category: "SMS / messaging",
-      purpose: "Appointment reminders, notifications, and patient communications where enabled",
-      region: "United States",
-      data: "Contact details, message content or metadata",
-    },
-    {
-      name: "Stripe, Inc.",
-      category: "Payment processing",
-      purpose: "Billing, subscription payments, and payment records",
-      region: "United States",
-      data: "Billing and transaction information",
-    },
-    {
-      name: "PayMongo Philippines, Inc.",
-      category: "Payment processing",
-      purpose: "Online payments and checkout for Philippine Customers",
-      region: "Philippines",
-      data: "Billing and transaction information",
-    },
-    {
-      name: "Odoo S.A. (Odoo Helpdesk)",
-      category: "Customer support",
-      purpose: "Support ticketing, troubleshooting, and customer communications",
-      region: "European Union (Belgium)",
-      data: "Support communications, account information, limited Customer Data where needed",
-    },
-    {
-      name: "Google LLC (Google Analytics)",
-      category: "Analytics",
-      purpose: "Website and product usage analytics",
-      region: "United States",
-      data: "Usage data, device and technical data",
-    },
-    {
-      name: "Cloudflare, Inc.",
-      category: "Security / DNS",
-      purpose: "DNS management and TLS for MYCURE domains",
-      region: "United States / Global",
-      data: "Technical and DNS query metadata",
-    },
-    {
-      name: "Internet Security Research Group (Let’s Encrypt)",
-      category: "Security / TLS certificates",
-      purpose: "Issuance of TLS/SSL certificates for MYCURE domains",
-      region: "United States",
-      data: "Domain technical data",
-    },
-  ]
-
-  // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100
@@ -110,7 +30,7 @@ export default function SubprocessorsPage() {
       const documentHeight = document.documentElement.scrollHeight
 
       if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("questions")
+        setActiveSection(sections[sections.length - 1].id)
       } else {
         let currentSection = ""
         let maxVisibility = 0
@@ -164,7 +84,7 @@ export default function SubprocessorsPage() {
       <DocumentHeader />
 
       <main className="flex-1">
-        {/* Hero Section - Blog Template Style */}
+        {/* Hero Section */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
             <motion.div
@@ -181,13 +101,13 @@ export default function SubprocessorsPage() {
                 Subprocessor List
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
-                This Subprocessor List identifies third-party service providers that MYCURE may use to provide, host, secure, support, maintain, or improve the MYCURE platform and related services.
+                This Subprocessor List identifies material third-party service providers that <strong>Team OPS Inc. dba MYCURE (“MYCURE,” “we,” “us,” or “our”)</strong> currently engages to process Customer Data in connection with <strong>MYCURE CMS</strong> and related services.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground">
-                Effective Date: June 08, 2026
+                Effective Date: August 11, 2026
               </p>
               <p className="text-sm sm:text-base text-muted-foreground mt-1">
-                Operated by TOPSI Inc. (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
+                Team OPS Inc. dba MYCURE (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
               </p>
             </motion.div>
           </div>
@@ -209,17 +129,12 @@ export default function SubprocessorsPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <p className="text-muted-foreground leading-relaxed">
-                      This page should be read together with our{" "}
-                      <Link href="/terms-and-conditions" className="text-primary hover:underline">Terms of Agreement</Link>,{" "}
-                      <Link href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>,{" "}
-                      <Link href="/security-overview" className="text-primary hover:underline">Security Overview</Link>, and any applicable Data Processing Addendum, Business Associate Agreement, Order Form, or other written agreement.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">This page should be read together with our <strong>Privacy Notice</strong>, <strong>Terms of Service</strong>, <strong>Security Overview</strong>, and any applicable data processing agreement, Business Associate Agreement, Order Form, or other written agreement with the Customer.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where a Customer has a written agreement containing more specific provisions regarding subprocessors, processing locations, or deployment responsibilities, that agreement applies to the extent provided in that agreement.</p>
                   </motion.div>
 
-                  {/* Section 1 */}
                   <motion.section
-                    id="what-is"
+                    id="what-is-a-subprocessor"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -227,153 +142,98 @@ export default function SubprocessorsPage() {
                     transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. What Is a Subprocessor?</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      A subprocessor is a third-party service provider engaged by MYCURE that may process personal data or Customer Data on behalf of MYCURE in connection with the Services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Subprocessors may help us with activities such as hosting, storage, security, communications, payments, support, analytics, monitoring, and other operational services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      MYCURE requires subprocessors that process personal data on our behalf to apply appropriate confidentiality, security, and data protection obligations.
-                    </p>
-                  </motion.section>
-
-                  {/* Section 2 */}
-                  <motion.section
-                    id="how-we-use"
-                    className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. How We Use Subprocessors</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">MYCURE may use subprocessors to:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>host and operate the Services;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>store and back up data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>send service-related emails, SMS, or notifications;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>process payments and billing;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>monitor performance, uptime, errors, and security events;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>provide customer support;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>troubleshoot technical issues;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>protect against abuse, fraud, or unauthorized access;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>maintain internal business systems;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>improve platform reliability and user experience; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>comply with legal, security, and operational obligations.</span></li>
+                    <p className="text-muted-foreground leading-relaxed">A <strong>Subprocessor</strong> is a third-party service provider engaged by MYCURE that processes Customer Data on behalf of MYCURE in connection with providing MYCURE CMS.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">A provider is not necessarily a Subprocessor merely because MYCURE uses its software, technology, or services.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For purposes of this list, Subprocessors generally do not include:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>software libraries, frameworks, databases, caches, or other components operated within MYCURE-controlled infrastructure where no external provider independently receives Customer Data;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>general website, corporate, administrative, sales, marketing, accounting, or business-service providers that do not process Customer Data on behalf of Customers through MYCURE CMS;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>third-party services selected, enabled, or controlled independently by a Customer; or</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>infrastructure and service providers selected and controlled by a Customer for a client-hosted or customer-managed deployment.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Subprocessors may vary depending on the Customer&rsquo;s subscription, enabled modules, deployment model, region, and applicable written agreement.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Other personal data processed by MYCURE for its own business, account-administration, website, security, billing, or similar purposes is addressed in our Privacy Notice as applicable.</p>
                   </motion.section>
 
-                  {/* Section 3 */}
                   <motion.section
-                    id="current"
+                    id="current-material-subprocessors"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Current Subprocessors</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      The table below identifies subprocessors that may process personal data or Customer Data in connection with the Services.
-                    </p>
-                    <div className="not-prose overflow-x-auto rounded-lg border">
-                      <table className="w-full text-sm text-left">
-                        <thead className="bg-muted/50 text-foreground">
-                          <tr>
-                            <th className="px-4 py-3 font-semibold whitespace-nowrap">Subprocessor</th>
-                            <th className="px-4 py-3 font-semibold whitespace-nowrap">Service Category</th>
-                            <th className="px-4 py-3 font-semibold">Purpose</th>
-                            <th className="px-4 py-3 font-semibold whitespace-nowrap">Location / Processing Region</th>
-                            <th className="px-4 py-3 font-semibold">Data Processed</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y">
-                          {subprocessors.map((sp, index) => (
-                            <tr key={index} className="align-top text-muted-foreground">
-                              <td className="px-4 py-3 font-medium text-foreground">{sp.name}</td>
-                              <td className="px-4 py-3">{sp.category}</td>
-                              <td className="px-4 py-3">{sp.purpose}</td>
-                              <td className="px-4 py-3">{sp.region}</td>
-                              <td className="px-4 py-3">{sp.data}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed mt-6">
-                      MYCURE does not currently use a third-party artificial intelligence or large language model subprocessor. If AI-assisted features are introduced, this list will be updated. MYCURE does not use identifiable patient data to train artificial intelligence or machine learning models unless expressly agreed in writing.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Underlying databases, caches, and other core components are operated within MYCURE&rsquo;s own hosted environment rather than provided by separate data subprocessors. Subprocessors and processing regions may vary depending on the Customer&rsquo;s deployment model, enabled modules, region, and applicable written agreement.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Current Material Subprocessors</h2>
+                    <p className="text-muted-foreground leading-relaxed">The following providers currently process Customer Data in connection with the applicable MYCURE-hosted MYCURE CMS service.</p>
+                    <div className="not-prose overflow-x-auto rounded-lg border mt-6"><table className="w-full text-sm text-left"><thead className="bg-muted/50 text-foreground"><tr><th className="px-4 py-3 font-semibold"><strong>Provider</strong></th><th className="px-4 py-3 font-semibold"><strong>Service</strong></th><th className="px-4 py-3 font-semibold"><strong>Primary Processing Location</strong></th><th className="px-4 py-3 font-semibold"><strong>Customer Data Involved</strong></th></tr></thead><tbody className="divide-y"><tr className="align-top text-muted-foreground"><td className="px-4 py-3 font-medium text-foreground"><strong>DigitalOcean</strong></td><td className="px-4 py-3">Cloud infrastructure, application hosting, database and storage infrastructure, object storage, backup/storage services, and related infrastructure services</td><td className="px-4 py-3"><strong>Singapore</strong></td><td className="px-4 py-3">Potentially all Customer Data, depending on the infrastructure component used</td></tr><tr className="align-top text-muted-foreground"><td className="px-4 py-3 font-medium text-foreground"><strong>Postmark</strong></td><td className="px-4 py-3">Transactional and system email delivery, including account verification, password-reset communications, and other applicable service-related communications</td><td className="px-4 py-3"><strong>United States</strong></td><td className="px-4 py-3">Primarily Authorized User names, email addresses, applicable message content, and delivery metadata</td></tr></tbody></table></div>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Patient clinical information is not intentionally transmitted to Postmark as part of the currently described account-verification and password-reset workflows.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The providers and processing arrangements applicable to a particular Customer may vary based on deployment model, enabled functionality, geographic requirements, and the Customer’s applicable written agreement.</p>
                   </motion.section>
 
-                  {/* Section 4 */}
                   <motion.section
-                    id="customer-integrations"
+                    id="deployment-specific-processing"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. Customer-Enabled Third-Party Integrations</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Some third-party services are not MYCURE subprocessors because they are enabled, selected, or authorized by the Customer.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4 mb-4">Examples may include:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>laboratory systems;</span></li>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Deployment-Specific Processing</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE CMS may be provided using different deployment models.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">MYCURE-Hosted Deployments</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For MYCURE-hosted services, MYCURE may engage infrastructure and other Subprocessors reasonably necessary to provide, operate, secure, maintain, support, and recover the applicable service.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Current material Subprocessors are identified above.</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Client-Hosted or Customer-Managed Deployments</h3>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For client-hosted, private-cloud, or customer-managed deployments, the Customer may select, provide, administer, or control its own hosting environment, infrastructure providers, networks, storage, backup systems, security services, or other technology.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">A provider selected or controlled by the Customer does not become a MYCURE Subprocessor solely because MYCURE CMS is deployed in or interacts with that environment.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The applicable Order Form, service agreement, data processing agreement, security agreement, Statement of Work, or other written agreement may further describe deployment-specific responsibilities.</p>
+                  </motion.section>
+
+                  <motion.section
+                    id="customer-selected-third-party-services"
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. Customer-Selected Third-Party Services</h2>
+                    <p className="text-muted-foreground leading-relaxed">Customers may enable, request, or authorize MYCURE CMS to connect with third-party services.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Examples may include:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>laboratories and diagnostic systems;</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>imaging or radiology systems;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>pharmacy systems;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>HMO or payor systems;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>accounting or payment systems;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>messaging platforms;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>patient communication tools;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>third-party reporting tools;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>government or regulatory portals;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>APIs or customer-managed integrations; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>other external systems selected or authorized by the Customer.</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>pharmacies;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>HMO, insurer, or payor systems;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>payment services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>accounting systems;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>messaging and communication services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>government or regulatory systems;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>reporting or analytics services;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>APIs; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other Customer-selected integrations.</span></li>
                     </ul>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customer-enabled integrations may be governed by the third party&rsquo;s own terms, privacy policy, security practices, and data processing arrangements.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Customers are responsible for determining whether third-party integrations are appropriate and lawful for their use case.
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">A third party selected or independently controlled by a Customer is not a MYCURE Subprocessor solely because MYCURE CMS transmits information to or receives information from that third party at the Customer’s instruction.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Customers are responsible for determining whether Customer-selected integrations and disclosures are appropriate and lawful for their use.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Third-party services may also be subject to their own terms, privacy notices, security practices, and data-processing arrangements.</p>
                   </motion.section>
 
-                  {/* Section 5 */}
                   <motion.section
-                    id="deployment"
+                    id="artificial-intelligence-services"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Deployment-Specific Subprocessors</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      The subprocessors used for a Customer may vary depending on deployment model.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For MYCURE-hosted cloud services, MYCURE may use hosting, infrastructure, monitoring, communications, support, and security subprocessors as needed to provide the Services.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For private cloud, client-hosted, or customer-managed deployments, some infrastructure, hosting, backup, security, or support responsibilities may belong to the Customer or to Customer-selected vendors.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Deployment-specific responsibilities should be confirmed in the applicable Order Form, Statement of Work, Security Addendum, Service Level Agreement, or other written agreement.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Artificial Intelligence Services</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE does not currently use a third-party artificial intelligence or large-language-model provider to process Customer Data as part of the production MYCURE CMS application.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may introduce AI-assisted functionality in the future.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">If an external AI or large-language-model provider is introduced and qualifies as a Subprocessor of Customer Data, MYCURE will address the applicable data-processing, authorization, security, and notice requirements and update this list as appropriate.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Use of development or internal productivity tools that do not receive production Customer Data does not make the provider of those tools a Subprocessor of Customer Data.</p>
                   </motion.section>
 
-                  {/* Section 6 */}
                   <motion.section
-                    id="safeguards"
+                    id="subprocessor-safeguards"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -381,71 +241,64 @@ export default function SubprocessorsPage() {
                     transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Subprocessor Safeguards</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE takes reasonable steps designed to ensure that subprocessors processing personal data on our behalf are subject to appropriate confidentiality, security, and data protection obligations.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4 mb-4">Depending on the nature of the service, these safeguards may include:</p>
-                    <ul className="space-y-3 text-muted-foreground">
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>written contractual obligations;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>confidentiality commitments;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>restrictions on use of personal data;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>security requirements;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>access control obligations;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>incident notification obligations;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>data protection terms;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>limitations on onward transfer;</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>return or deletion obligations; and</span></li>
-                      <li className="flex gap-2"><span className="text-primary">•</span><span>other safeguards appropriate to the service.</span></li>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE requires Subprocessors processing Customer Data on its behalf to be subject to appropriate contractual, confidentiality, security, and data-protection obligations taking into account the nature of the service and applicable law.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Depending on the Processing, these arrangements may address matters such as:</p>
+                    <ul className="space-y-3 text-muted-foreground mt-4">
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>processing instructions and permitted purposes;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>confidentiality;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>appropriate technical and organizational security measures;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>access restrictions;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>incident notification and cooperation;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>data protection requirements;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>onward processing;</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>return or deletion of data; and</span></li>
+                      <li className="flex gap-2"><span className="text-primary">•</span><span>other obligations appropriate to the Processing.</span></li>
                     </ul>
+                    <p className="text-muted-foreground leading-relaxed mt-4">The specific obligations applicable to a Subprocessor may vary according to the nature of its service, the Customer’s deployment, and applicable law.</p>
                   </motion.section>
 
-                  {/* Section 7 */}
                   <motion.section
-                    id="updates"
+                    id="changes-to-subprocessors"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Updates to This List</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      MYCURE may update this Subprocessor List from time to time as our Services, vendors, infrastructure, and business operations evolve.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Where required by applicable agreement, MYCURE will provide notice of material changes to subprocessors in accordance with the relevant Data Processing Addendum, Business Associate Agreement, Order Form, or other written agreement.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Continued use of the Services after an update to this Subprocessor List is governed by the Terms of Agreement and any applicable written agreement.
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Changes to Subprocessors</h2>
+                    <p className="text-muted-foreground leading-relaxed">MYCURE may add, replace, or discontinue Subprocessors as its services, infrastructure, security requirements, technology, availability requirements, and business operations evolve.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Where a new material Subprocessor will process Customer Data and an applicable written agreement or law requires notice or another documented mechanism, MYCURE will follow the applicable requirement.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">Urgent changes may sometimes be necessary for security, legal, availability, continuity, or similar operational reasons. Where applicable, notice may be provided after such a change where prior notice is not reasonably practicable and the applicable agreement permits it.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">This Subprocessor List is intended to remain current but does not permanently commit MYCURE to any particular infrastructure provider or technology.</p>
                   </motion.section>
 
-                  {/* Section 8 */}
                   <motion.section
-                    id="questions"
+                    id="questions-and-privacy-contact"
                     className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Questions</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      For questions about this Subprocessor List, please contact:
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      MYCURE / TOPSI Inc.<br />
-                      Email:{" "}
-                      <a href="mailto:helpdesk@mycure.md" className="text-primary hover:underline">helpdesk@mycure.md</a>
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      For privacy-related matters, please contact:
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      Data Protection Officer<br />
-                      Email:{" "}
-                      <a href="mailto:dpo@mycure.md" className="text-primary hover:underline">dpo@mycure.md</a>
-                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Questions and Privacy Contact</h2>
+                    <p className="text-muted-foreground leading-relaxed">Questions concerning this Subprocessor List, privacy, data protection, or security matters relating to MYCURE may be directed to:</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Team OPS Inc. dba MYCURE</strong><br />201 Malayan Plaza<br />ADB Avenue corner Opal Road<br />Ortigas Business Center<br />Pasig City, Philippines 1600</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Privacy &amp; Security Contact:</strong><br /><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></p>
+                  </motion.section>
+
+                  <motion.section
+                    id="related-resources"
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Related Resources</h2>
+                    <p className="text-muted-foreground leading-relaxed"><strong>Privacy Notice</strong><br /><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Terms of Service</strong><br /><a href="/terms-and-conditions" className="text-primary hover:underline">https://mycure.md/terms-and-conditions</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
+                    <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
                   </motion.section>
                 </div>
               </div>
@@ -522,7 +375,6 @@ export default function SubprocessorsPage() {
           )}
         </div>
       </main>
-
     </div>
   )
 }

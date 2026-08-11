@@ -90,7 +90,7 @@ export const solutionsGridConfig: IconCardGridConfig = {
       icon: ShieldCheck,
       title: "Compliance & Security",
       description:
-        "Replace compliance worries with peace of mind through built-in HIPAA compliance and automated reporting",
+        "Reduce compliance busywork with HIPAA-aligned safeguards and automated reporting that support your requirements",
     },
   ],
 }
@@ -193,14 +193,14 @@ export const advantagesConfig: AdvantagesConfig = {
     "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
   items: [
     {
-      title: "HIPAA-Compliant Telehealth Platform",
+      title: "HIPAA-Aligned Telehealth Platform",
       description:
-        "Built around healthcare data privacy standards including HIPAA, so clinics can offer virtual care with confidence.",
+        "Built around healthcare data-privacy practices, including HIPAA-aligned safeguards, so clinics can offer virtual care with confidence.",
       icon: Shield,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
         "Securely handled video consultations protecting patient privacy",
-        "HIPAA-compliant handling of telehealth records",
+        "HIPAA-aligned handling of telehealth records",
         "Integrated billing for virtual consultations with automatic documentation",
       ],
     },

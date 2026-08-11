@@ -226,7 +226,7 @@ export default function SyncbaseTechnologyPage() {
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Security & Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      MYCURE is built with healthcare data protection in mind and follows international standards for patient privacy.
+                      MYCURE is built with healthcare data protection in mind and is designed around international standards for patient privacy.
                     </p>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex gap-3">
@@ -247,7 +247,7 @@ export default function SyncbaseTechnologyPage() {
                       </li>
                       <li className="flex gap-3">
                         <CheckCircle className="size-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span><strong>Compliance with Data Privacy Standards</strong> – built around international healthcare privacy requirements.</span>
+                        <span><strong>Built for Data-Privacy Standards</strong> – built around international healthcare privacy requirements.</span>
                       </li>
                     </ul>
                   </motion.section>

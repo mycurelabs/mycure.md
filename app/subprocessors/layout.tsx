@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'MYCURE - Subprocessor List',
-  description: 'Third-party service providers that MYCURE may use to provide, host, secure, support, maintain, or improve the MYCURE platform and related services.',
+  description: 'Material third-party service providers that Team OPS Inc. dba MYCURE engages to process Customer Data in connection with MYCURE CMS and related services.',
   openGraph: {
     title: 'MYCURE - Subprocessor List',
-    description: 'Third-party service providers that MYCURE may use to provide, host, secure, support, maintain, or improve the MYCURE platform and related services.',
+    description: 'Material third-party service providers that Team OPS Inc. dba MYCURE engages to process Customer Data in connection with MYCURE CMS and related services.',
     url: 'https://mycure.md/subprocessors',
     siteName: 'MYCURE',
     locale: 'en_PH',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'MYCURE - Subprocessor List',
-    description: 'Third-party service providers that MYCURE may use to provide, host, secure, support, maintain, or improve the MYCURE platform and related services.',
+    description: 'Material third-party service providers that Team OPS Inc. dba MYCURE engages to process Customer Data in connection with MYCURE CMS and related services.',
     images: ['/og-banners/mycure-og-banner.webp'],
   },
   alternates: {

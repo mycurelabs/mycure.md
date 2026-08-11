@@ -69,7 +69,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: Shield,
       title: "Compliance Management",
       description:
-        "Convert regulatory requirements into automated workflows with built-in DOH, DOLE, OSH, and HIPAA compliance standards for occupational health",
+        "Convert regulatory requirements into automated workflows aligned to DOH, DOLE, and OSH occupational-health standards",
     },
     {
       id: "executive-health",
@@ -205,15 +205,15 @@ export const advantagesConfig: AdvantagesConfig = {
       ],
     },
     {
-      title: "Automated Compliance & Reporting",
+      title: "Automated Reporting & Compliance Support",
       description:
-        "Stay compliant with DOH, DOLE, and industry regulations automatically. Generate required reports with one click and maintain audit-ready records.",
+        "Support your DOH, DOLE, and industry reporting obligations. Generate required reports with one click and keep audit-ready records.",
       icon: ShieldCheck,
       image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       bullets: [
         "Automated regulatory report generation for government submissions",
-        "Built-in compliance checks preventing violations",
-        "Complete audit trails for all medical and administrative activities",
+        "Built-in compliance checks that surface issues early",
+        "Detailed audit trails across medical and administrative activities",
       ],
     },
     {

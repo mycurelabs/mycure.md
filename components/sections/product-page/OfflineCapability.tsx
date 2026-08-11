@@ -27,7 +27,7 @@ export function OfflineCapability() {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            MYCURE's offline mode ensures your clinic never stops serving patients.
+            MYCURE's offline mode helps your clinic keep serving patients even when the internet drops.
             Access records, manage appointments, and process transactions anywhere—all changes
             sync automatically when you're back online.
           </p>

@@ -69,7 +69,7 @@ export const solutionsGridConfig: SolutionsGridConfig = {
       icon: ShieldCheck,
       title: "Secure Medical Records",
       description:
-        "Keep patient data safe with HIPAA-compliant storage and international data privacy regulations",
+        "Keep patient data safe with encrypted, HIPAA-aligned storage and safeguards for international data-privacy requirements",
     },
     {
       id: "group-practice-ready",
@@ -152,7 +152,7 @@ export const specialtiesGridConfig: SpecialtiesGridConfig = {
       icon: MessageSquare,
       title: "Secure Messaging",
       description:
-        "HIPAA-compliant chat system for patient communication with file sharing and appointment reminders",
+        "Secure, HIPAA-aligned chat system for patient communication with file sharing and appointment reminders",
     },
     {
       id: "smart-scheduling",

@@ -20,7 +20,7 @@ export function HomeFAQSchema() {
         name: "What is MYCURE?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics and healthcare facilities. We streamline your practice operations while maintaining HIPAA compliance and operational efficiency.",
+          text: "MYCURE is a comprehensive healthcare management platform designed specifically for clinics and healthcare facilities. We streamline your practice operations with safeguards that support HIPAA-aligned patient-data handling and operational efficiency.",
         },
       },
       {
@@ -36,7 +36,7 @@ export function HomeFAQSchema() {
         name: "Is MYCURE compliant with healthcare regulations?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, MYCURE is designed to be HIPAA compliant and supports Philippine healthcare requirements with secure patient data management.",
+          text: "MYCURE is built with safeguards and secure patient-data management that support HIPAA-aligned workflows and Philippine healthcare requirements, giving your compliance team a strong foundation to meet your organization's specific needs.",
         },
       },
       {

@@ -39,7 +39,7 @@ export function StructuredData() {
       "@type": "Person",
       name: "Dale Dennis David",
     },
-    legalName: "TOPSI Inc.",
+    legalName: "Team OPS Inc.",
     sameAs: [
       "https://www.facebook.com/mycure.md",
       "https://www.instagram.com/mycure.md/",
@@ -74,7 +74,7 @@ export function StructuredData() {
       "Electronic Medical Records (EMR)",
       "Patient Registration",
       "Appointment Scheduling",
-            "HIPAA Compliance",
+            "HIPAA-Aligned Safeguards",
       "Offline Capability",
       "Telehealth",
       "Laboratory Management",
