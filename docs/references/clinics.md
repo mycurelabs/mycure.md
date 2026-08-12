@@ -191,7 +191,7 @@ Section IDs for anchor navigation:
 - `#features` - Features Section
 - `#specialties` - Specialties Section
 - `#tracker` - Medical Data Tracker
-- `#csi-guarantee` - CSI Guarantee Section
+- `#mycure-csi` - MYCURE CSI Section
 - `#advantages` - Advantages Section
 - `#final-cta` - Final CTA Section
 

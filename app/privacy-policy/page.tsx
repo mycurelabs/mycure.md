@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
     { id: "privacy-rights", title: "16. Privacy Rights" },
     { id: "philippines", title: "17. Philippines" },
     { id: "marketing-and-service-communications", title: "18. Marketing and Service Communications" },
-    { id: "cookies-and-website-technologies", title: "19. Cookies and Website Technologies" },
+    { id: "cookies-and-website-technologies", title: "19. Cookies, Website, and In-Application Technologies" },
     { id: "third-party-websites-and-services", title: "20. Third-Party Websites and Services" },
     { id: "changes-to-this-privacy-notice", title: "21. Changes to This Privacy Notice" },
     { id: "relationship-to-customer-agreements", title: "22. Relationship to Customer Agreements" },
@@ -716,7 +716,7 @@ export default function PrivacyPolicyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Cookies and Website Technologies</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Cookies, Website, and In-Application Technologies</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE websites may use cookies, local storage, and similar technologies for purposes such as:</p>
                     <ul className="space-y-3 text-muted-foreground mt-4">
                       <li className="flex gap-2"><span className="text-primary">•</span><span>website functionality;</span></li>
@@ -727,6 +727,9 @@ export default function PrivacyPolicyPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Available controls may vary according to the website, technology, browser, and applicable jurisdiction.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where applicable law requires additional notice, consent, or choice concerning particular technologies, MYCURE will provide an appropriate mechanism.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">MYCURE also uses in-application analytics and error-monitoring technologies within MYCURE CMS to understand product usage, maintain and improve reliability, diagnose problems, and develop the service.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">For these purposes, MYCURE processes Authorized User account and usage information—such as user identifiers, name, email address, organization identifiers, activity events, and technical and diagnostic information—as information for which MYCURE determines the purposes and means of processing. This may involve a third-party product-analytics and error-monitoring provider that processes such information on MYCURE's behalf, including in the United States.</p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">These in-application analytics and error-monitoring technologies are not intended to collect identifiable Patient Data, and MYCURE is implementing measures to exclude Patient Data and other sensitive Customer Data from diagnostic and error reports.</p>
                   </motion.section>
 
                   <motion.section
