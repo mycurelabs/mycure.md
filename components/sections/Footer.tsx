@@ -81,13 +81,13 @@ export function Footer() {
                 <h3 className="font-semibold">Legal</h3>
                 <ul className="-ml-2 text-sm">
                   <li>
-                    <Link href="https://www.mycure.md/privacy-policy" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                      Privacy Policy
+                    <Link href="/privacy-policy" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                      Privacy Notice
                     </Link>
                   </li>
                   <li>
                     <Link href="/terms-and-conditions" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                      Terms of Agreement
+                      Terms of Service
                     </Link>
                   </li>
                   <li>
@@ -217,12 +217,12 @@ export function Footer() {
             <ul className="-ml-2 text-sm">
               <li>
                 <Link href="/privacy-policy" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                  Privacy Policy
+                  Privacy Notice
                 </Link>
               </li>
               <li>
                 <Link href="/terms-and-conditions" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
-                  Terms of Agreement
+                  Terms of Service
                 </Link>
               </li>
               <li>

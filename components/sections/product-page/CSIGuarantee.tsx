@@ -6,7 +6,7 @@ import { AnimatedBadge } from "@/components/custom/animated-badge"
 
 export function CSIGuarantee() {
   return (
-    <section id="csi-guarantee" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
+    <section id="mycure-csi" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 mb-12 md:mb-20 lg:mb-32 relative bg-background">
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Sticky Left Content */}
@@ -17,15 +17,16 @@ export function CSIGuarantee() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <AnimatedBadge>MYCURE CSI Guarantee</AnimatedBadge>
+              <AnimatedBadge>MYCURE CSI</AnimatedBadge>
+              <p className="text-sm font-medium text-muted-foreground mt-3 tracking-wide">Compliance · Security · Interoperability</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight mt-4">
                 Protected by Design,<br />
-                Compliant by Default
+                Private by Default
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">
                 Your patients trust you with their most sensitive health information. MYCURE CSI
                 helps keep that trust intact through responsible data handling, compliance-aware
-                workflows, and connections to the systems clinics already work with.
+                workflows, and connections to the systems clinics already work with. Specific safeguards and integrations depend on your plan, configuration, and applicable agreement.
               </p>
             </motion.div>
           </div>
@@ -45,13 +46,14 @@ export function CSIGuarantee() {
                   <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-green-600">HIPAA-Compliant from Day One</h3>
-                  <p className="text-muted-foreground">Automatic healthcare compliance</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-green-600">HIPAA-Aligned Safeguards</h3>
+                  <p className="text-muted-foreground">Safeguards that support your compliance</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Start accepting patients immediately with built-in HIPAA compliance. No configuration needed—we handle
-                encryption, access controls, and audit logs automatically so you can focus on patient care, not paperwork.
+                Start seeing patients on infrastructure built for healthcare data. MYCURE provides encryption, access
+                controls, and audit logs that support HIPAA-aligned workflows—so your team can focus on patient care
+                while managing its own compliance obligations.
               </p>
               <div className="bg-gradient-to-br from-green-500/5 to-green-500/10 rounded-2xl p-6 border border-green-500/20">
                 <div className="space-y-3">
@@ -61,18 +63,18 @@ export function CSIGuarantee() {
                         <CheckCircle className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">Compliance Status</div>
-                        <div className="text-xs text-muted-foreground">100% HIPAA Compliant</div>
+                        <div className="font-semibold text-sm">Compliance Support</div>
+                        <div className="text-xs text-muted-foreground">HIPAA-aligned access controls</div>
                       </div>
                     </div>
-                    <div className="text-xs font-medium text-green-600">Active</div>
+                    <div className="text-xs font-medium text-green-600">Included</div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Audit Logs</div>
-                        <div className="text-xs text-muted-foreground">Automatic tracking enabled</div>
+                        <div className="text-xs text-muted-foreground">Audit logging</div>
                       </div>
                     </div>
                   </div>
@@ -81,7 +83,7 @@ export function CSIGuarantee() {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                       <div>
                         <div className="font-semibold text-sm">Access Controls</div>
-                        <div className="text-xs text-muted-foreground">Appropriate permissions active</div>
+                        <div className="text-xs text-muted-foreground">Role-based permissions</div>
                       </div>
                     </div>
                   </div>
@@ -123,7 +125,7 @@ export function CSIGuarantee() {
                         <div className="text-xs text-muted-foreground">Patient records held behind protective controls</div>
                       </div>
                     </div>
-                    <div className="text-xs font-medium text-purple-600">Active</div>
+                    <div className="text-xs font-medium text-purple-600">Included</div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                     <div className="flex items-center gap-3">
@@ -160,7 +162,7 @@ export function CSIGuarantee() {
                   <Cloud className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-blue-600">Connect with Any Healthcare System</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-blue-600">Connect Across Healthcare Systems</h3>
                   <p className="text-muted-foreground">Universal interoperability</p>
                 </div>
               </div>
@@ -180,7 +182,7 @@ export function CSIGuarantee() {
                         <div className="text-xs text-muted-foreground">Comprehensive connectivity</div>
                       </div>
                     </div>
-                    <div className="text-xs font-medium text-blue-600">Connected</div>
+                    <div className="text-xs font-medium text-blue-600">Included</div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white/90 dark:bg-gray-800 rounded-xl">
                     <div className="flex items-center gap-3">

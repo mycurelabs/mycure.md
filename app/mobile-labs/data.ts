@@ -202,7 +202,7 @@ export const advantagesConfig: AdvantagesConfig = {
       bullets: [
         "Continue working even without internet connectivity",
         "Automatic synchronization when connection is restored",
-        "Local data storage ensures uninterrupted mobile lab operations",
+        "Local data storage helps keep mobile lab operations running when connectivity drops",
       ],
     },
     {
