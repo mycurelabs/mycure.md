@@ -58,7 +58,7 @@ const nextConfig = {
               "img-src 'self' data: https:",
               "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://td.doubleclick.net",
               "frame-ancestors 'none'",
-              "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+              "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://hapihub.localfirsthealth.com https://hapihub.stg.localfirsthealth.com http://localhost:7500",
               "worker-src 'self' blob:",
             ].join('; '),
           },
