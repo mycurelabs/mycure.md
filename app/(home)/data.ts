@@ -155,7 +155,7 @@ export const whyChooseConfig = {
       description: "MYCURE is built with safeguards and access controls designed to support HIPAA-aligned handling of patient data.",
       icon: Shield,
       mediaType: "image" as const,
-      mediaSrc: "/Features Photos/Built for Modern Teams/Hipaa-compliance-mycure.webp",
+      mediaSrc: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
       mediaAlt: "HIPAA-Aligned Security",
       bullets: [
         "Safeguarded handling of patient communications and records",
