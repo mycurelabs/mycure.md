@@ -1,27 +1,22 @@
-"use client";
-
 import { cn } from "@/lib/utils";
-import { motion, useScroll } from "framer-motion";
-import React from "react";
 
 interface ScrollProgressProps {
   className?: string;
 }
 
+/**
+ * CSS-only reading progress bar driven by `animation-timeline: scroll(root)`.
+ * Hidden where scroll-driven animations are unsupported or reduced motion is
+ * requested (see `.scroll-progress` in app/globals.css). Server component.
+ */
 export function ScrollProgress({ className }: ScrollProgressProps) {
-  const { scrollYProgress } = useScroll();
-
   return (
-    <motion.div
+    <div
+      aria-hidden="true"
       className={cn(
-        "fixed inset-x-0 top-16 z-40 h-[1.85px] bg-gradient-to-r from-[var(--gradient-quinary)] via-[var(--gradient-tertiary)] to-[var(--gradient-quinary)] shadow-sm opacity-65",
+        "scroll-progress pointer-events-none fixed inset-x-0 top-16 z-40 h-[1.85px] bg-gradient-to-r from-[var(--gradient-quinary)] via-[var(--gradient-tertiary)] to-[var(--gradient-quinary)] shadow-sm opacity-65",
         className,
       )}
-      style={{
-        scaleX: scrollYProgress,
-        transformOrigin: "0%",
-        willChange: "transform",
-      }}
     />
   );
 }

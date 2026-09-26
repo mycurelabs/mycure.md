@@ -4,6 +4,7 @@ import { Inter, Lora } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ScrollProgress } from "@/components/magicui/scroll-progress"
+import { MotionProvider } from "@/components/providers/motion-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -110,8 +111,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <ScrollProgress />
-            {children}
-            <Footer />
+            <MotionProvider>
+              {children}
+              <Footer />
+            </MotionProvider>
           </TooltipProvider>
         </ThemeProvider>
         <VercelAnalytics />
