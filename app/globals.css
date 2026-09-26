@@ -172,3 +172,14 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+
+/* Scroll reveal (components/custom/reveal.tsx). Hidden state only after JS mounts. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    transition: opacity 300ms cubic-bezier(0, 0, 0.58, 1), transform 300ms cubic-bezier(0, 0, 0.58, 1);
+  }
+  .reveal[data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}

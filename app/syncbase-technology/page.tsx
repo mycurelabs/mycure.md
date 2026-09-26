@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { Reveal } from "@/components/custom/reveal"
 import {
   ArrowLeft,
   Menu,
@@ -22,7 +23,6 @@ import { YouTubeFacade } from "@/components/custom/youtube-facade"
 
 export default function SyncbaseTechnologyPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
   const sections = [
     { id: "why-syncbase", title: "Why Maestro?" },
@@ -33,47 +33,7 @@ export default function SyncbaseTechnologyPage() {
   ]
 
   // Track active section based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("demo")
-      } else {
-        let currentSection = ""
-        let maxVisibility = 0
-
-        for (const section of sections) {
-          const element = document.getElementById(section.id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            const elementTop = rect.top
-            const elementBottom = rect.bottom
-            const viewportHeight = window.innerHeight
-
-            const visibleTop = Math.max(0, elementTop)
-            const visibleBottom = Math.min(viewportHeight, elementBottom)
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-
-            if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
-              maxVisibility = visibleHeight
-              currentSection = section.id
-            }
-          }
-        }
-        
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const activeSection = useScrollSpy(sections.map((s) => s.id))
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -97,11 +57,8 @@ export default function SyncbaseTechnologyPage() {
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-            <motion.div 
+            <div
               className="max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
@@ -116,7 +73,7 @@ export default function SyncbaseTechnologyPage() {
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                 MYCURE Maestro (formerly Syncbase) is the cost-effective setup for your clinic management system. It enables clinics and multi-specialty practices to enjoy the reliability of on-premise servers with the flexibility and affordability of the cloud.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -129,13 +86,9 @@ export default function SyncbaseTechnologyPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
                   
                   {/* Section 1: Why Maestro? */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="why-syncbase" 
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Why Maestro?</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
@@ -159,16 +112,12 @@ export default function SyncbaseTechnologyPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       It lets you work offline without disruption and syncs your data to the cloud once you're back online.
                     </p>
-                  </motion.section>
+                  </Reveal>
 
                   {/* Section 2: Key Features */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="key-features" 
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-2xl font-semibold mb-6">Key Features</h2>
                     
@@ -213,16 +162,12 @@ export default function SyncbaseTechnologyPage() {
                         </li>
                       </ul>
                     </div>
-                  </motion.section>
+                  </Reveal>
 
                   {/* Section 3: Security & Privacy */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="security-privacy" 
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Security & Privacy</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
@@ -250,16 +195,12 @@ export default function SyncbaseTechnologyPage() {
                         <span><strong>Built for Data-Privacy Standards</strong> – built around international healthcare privacy requirements.</span>
                       </li>
                     </ul>
-                  </motion.section>
+                  </Reveal>
 
                   {/* Section 4: Benefits */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="benefits" 
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Benefits</h2>
                     <ul className="space-y-3 text-muted-foreground">
@@ -280,16 +221,12 @@ export default function SyncbaseTechnologyPage() {
                         <span>Protects sensitive patient information at every step.</span>
                       </li>
                     </ul>
-                  </motion.section>
+                  </Reveal>
 
                   {/* Section 5: Demo */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="demo" 
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Demo</h2>
                     <ul className="space-y-3 text-muted-foreground mb-6">
@@ -320,17 +257,14 @@ export default function SyncbaseTechnologyPage() {
                         </PrimaryButton>
                       </Link>
                     </div>
-                  </motion.section>
+                  </Reveal>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <motion.div 
+                <div
                   className="sticky top-24"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="border rounded-lg p-6">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
@@ -350,7 +284,7 @@ export default function SyncbaseTechnologyPage() {
                       ))}
                     </nav>
                   </div>
-                </motion.div>
+                </div>
               </aside>
             </div>
           </div>

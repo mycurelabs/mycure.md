@@ -1,15 +1,14 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { ArrowLeft, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
 
 export default function SecurityOverviewPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
   const sections = [
     { id: "security-principles", title: "1. Security Principles" },
@@ -34,47 +33,7 @@ export default function SecurityOverviewPage() {
     { id: "related-resources", title: "Related Resources" }
   ]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection(sections[sections.length - 1].id)
-      } else {
-        let currentSection = ""
-        let maxVisibility = 0
-
-        for (const section of sections) {
-          const element = document.getElementById(section.id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            const elementTop = rect.top
-            const elementBottom = rect.bottom
-            const viewportHeight = window.innerHeight
-
-            const visibleTop = Math.max(0, elementTop)
-            const visibleBottom = Math.min(viewportHeight, elementBottom)
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-
-            if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
-              maxVisibility = visibleHeight
-              currentSection = section.id
-            }
-          }
-        }
-
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const activeSection = useScrollSpy(sections.map((s) => s.id))
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -98,11 +57,8 @@ export default function SecurityOverviewPage() {
         {/* Hero Section */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-            <motion.div
+            <div
               className="max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
@@ -120,7 +76,7 @@ export default function SecurityOverviewPage() {
               <p className="text-sm sm:text-base text-muted-foreground mt-1">
                 Team OPS Inc. dba MYCURE (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -133,26 +89,18 @@ export default function SecurityOverviewPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
 
                   {/* Preamble */}
-                  <motion.div
+                  <div
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <p className="text-muted-foreground leading-relaxed"><strong>Team OPS Inc. dba MYCURE (“MYCURE,” “we,” “us,” or “our”)</strong> maintains security measures appropriate to the services and systems we operate.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Security is a shared responsibility. MYCURE is responsible for safeguards applicable to MYCURE CMS and the systems under our control. Customers remain responsible for users, permissions, devices, networks, workflows, third-party systems, and other environments or activities under their control.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">This Security Overview describes our general security approach. It is not an exhaustive description of every control, configuration, policy, technology, or procedure and does not establish a service-level commitment.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">More specific requirements may be established in an applicable Order Form, service agreement, Data Processing Agreement, Security Agreement, Business Associate Agreement, Service Level Agreement, or other written agreement.</p>
-                  </motion.div>
+                  </div>
 
-                  <motion.section
+                  <section
                     id="security-principles"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Security Principles</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE's security approach is guided by principles that include:</p>
@@ -167,15 +115,11 @@ export default function SecurityOverviewPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>adapting security practices as technology, risks, services, and legal requirements evolve.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Security measures are intended to reduce risk. No information system, network, software service, authentication mechanism, or security control can eliminate all security risk.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="shared-responsibility"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Shared Responsibility</h2>
                     <p className="text-muted-foreground leading-relaxed">Security of MYCURE CMS depends both on the safeguards maintained by MYCURE and on how Customers deploy, configure, administer, and use the service.</p>
@@ -217,15 +161,11 @@ export default function SecurityOverviewPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>complying with laws and regulatory requirements applicable to the Customer.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">The applicable written agreement may further define or modify this allocation for a particular deployment.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="hosting-and-deployment-models"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Hosting and Deployment Models</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may be deployed using different hosting and infrastructure arrangements.</p>
@@ -256,15 +196,11 @@ export default function SecurityOverviewPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may provide deployment support, application support, troubleshooting, or technical guidance relating to MYCURE CMS.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless separately agreed in writing, such activities do not make MYCURE the administrator or operator of the Customer-controlled infrastructure and do not transfer responsibility for that environment to MYCURE.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">The applicable Order Form, Statement of Work, service agreement, Security Agreement, or other written agreement may provide a more specific allocation of responsibilities.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="data-protection"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. Data Protection</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE applies safeguards designed to protect Customer Data processed through systems under MYCURE's control.</p>
@@ -286,15 +222,11 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">The specific technologies and implementation of these safeguards may evolve over time.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may modify, replace, upgrade, reconfigure, or discontinue internal technologies and security components as reasonably necessary to maintain, secure, develop, or improve MYCURE CMS.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="access-control"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Access Control</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS provides access-control functionality intended to help Customers restrict access according to organizational roles and operational requirements.</p>
@@ -312,15 +244,11 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers are responsible for assigning appropriate permissions and promptly removing access when a user is no longer authorized.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">A technical access-control capability does not determine whether a particular person should legally or operationally have access to particular information. That determination remains the Customer's responsibility.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="multi-factor-authentication-and-account-security"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Multi-Factor Authentication and Account Security</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS supports multi-factor authentication and may require MFA or other reasonable authentication controls for some or all users, accounts, or functionality.</p>
@@ -337,15 +265,11 @@ export default function SecurityOverviewPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>not disabling, bypassing, or circumventing required security controls.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may restrict, suspend, reset, or revoke access where reasonably necessary to address suspected credential compromise, unauthorized access, misuse, or another material security risk.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="logging-and-auditability"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Logging and Auditability</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS maintains logging and activity records appropriate to applicable service components.</p>
@@ -373,15 +297,11 @@ export default function SecurityOverviewPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">The availability, granularity, and retention of particular events may vary according to the component, deployment model, technical feasibility, security requirements, and evolution of MYCURE CMS.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE logging is not represented as a complete forensic system capable of detecting every unauthorized action or reconstructing every activity performed through the service.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers should not rely on MYCURE logging as their sole organizational, regulatory, fraud-detection, or personnel-monitoring control.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="mycure-personnel-and-support-access"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. MYCURE Personnel and Support Access</h2>
                     <p className="text-muted-foreground leading-relaxed">Access to production Customer Data by MYCURE personnel is restricted to authorized personnel with an appropriate operational need.</p>
@@ -400,15 +320,11 @@ export default function SecurityOverviewPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Authorized personnel are subject to applicable access controls and confidentiality obligations.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers should avoid including unnecessary Patient Data, credentials, passwords, authentication factors, or sensitive information in support communications.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where specific Customer Data is reasonably necessary to diagnose or resolve an issue, Customers should provide only the information necessary for that purpose.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="backups-recovery-and-business-continuity"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Backups, Recovery, and Business Continuity</h2>
                     <p className="text-muted-foreground leading-relaxed">For MYCURE-hosted services, MYCURE maintains backup, recovery, and business-continuity processes appropriate to the applicable service and risk.</p>
@@ -433,15 +349,11 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">For client-hosted or Customer-managed deployments, backup and recovery responsibilities for Customer-controlled infrastructure remain with the Customer unless expressly assigned otherwise in writing.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers remain responsible for maintaining any independent exports, archives, downtime procedures, or additional records required for their legal, regulatory, clinical, or operational needs.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="secure-development-and-maintenance"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. Secure Development and Maintenance</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE maintains development and maintenance practices designed to support the security and reliability of MYCURE CMS.</p>
@@ -461,15 +373,11 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Production Customer Data is not authorized for use in development tools merely for software-development convenience.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Development and security practices may evolve as MYCURE CMS, technology, risks, and applicable requirements change.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="vulnerability-and-threat-management"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Vulnerability and Threat Management</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE maintains processes designed to identify, assess, and respond to material security threats and vulnerabilities affecting systems under MYCURE's control.</p>
@@ -488,15 +396,11 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">No vulnerability-management process guarantees that every vulnerability will be identified before exploitation or that every security issue can be eliminated.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">For Customer-controlled environments, Customers remain responsible for vulnerability, patch, configuration, and infrastructure-security management within their control unless otherwise expressly agreed in writing.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="subprocessors-and-service-providers"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. Subprocessors and Service Providers</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may engage third-party providers to help provide, operate, secure, maintain, support, or recover MYCURE CMS.</p>
@@ -506,15 +410,11 @@ export default function SecurityOverviewPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE requires Subprocessors processing Customer Data on its behalf to be subject to appropriate confidentiality, security, and data-protection obligations based on the nature of the processing and applicable law.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers may also select or control third-party integrations or infrastructure providers. A third party independently selected or controlled by a Customer does not become a MYCURE Subprocessor solely because MYCURE CMS communicates with or operates within that service.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="artificial-intelligence"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Artificial Intelligence</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may introduce AI-assisted, machine-learning, automation, or similar functionality as MYCURE CMS evolves.</p>
@@ -522,15 +422,11 @@ export default function SecurityOverviewPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a third-party AI or large-language-model provider will process Customer Data on MYCURE's behalf, MYCURE will address applicable contractual, Subprocessor, privacy, security, and authorization requirements before or in connection with that processing.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Current material external Subprocessors are identified in our Subprocessor List.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Development or productivity tools that do not receive production Customer Data do not become Subprocessors of Customer Data merely because they are used by MYCURE personnel.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="security-incident-response"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">14. Security Incident Response</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE maintains procedures for assessing and responding to identified Security Incidents affecting systems under its control.</p>
@@ -559,15 +455,11 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Reports should be sent to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="privacy-healthcare-and-regulatory-responsibilities"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">15. Privacy, Healthcare, and Regulatory Responsibilities</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS provides technology used by healthcare organizations in different jurisdictions and operational settings.</p>
@@ -584,15 +476,11 @@ export default function SecurityOverviewPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>other written agreements.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not represent that MYCURE CMS is approved, certified, or legally suitable for every jurisdiction or regulated use merely because the service is technically available there.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="patient-data-and-clinical-responsibility"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">16. Patient Data and Clinical Responsibility</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS is an information-technology system.</p>
@@ -612,15 +500,11 @@ export default function SecurityOverviewPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>professional compliance.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Security controls provided by MYCURE support the service but do not transfer those clinical or professional responsibilities to MYCURE.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="enterprise-security-and-compliance-reviews"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. Enterprise Security and Compliance Reviews</h2>
                     <p className="text-muted-foreground leading-relaxed">Customers may request reasonable security and privacy information in connection with procurement, contracting, risk assessment, or regulatory review.</p>
@@ -640,15 +524,11 @@ export default function SecurityOverviewPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Certain information concerning MYCURE's infrastructure, security architecture, internal procedures, vulnerabilities, personnel, or other confidential systems may be restricted or subject to confidentiality protections.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Nothing in this Security Overview provides a right to penetration testing, vulnerability exploitation, source-code access, destructive testing, unrestricted infrastructure access, or access to information concerning other Customers.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Any audit or more extensive review remains subject to the applicable Customer agreement and applicable law.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="changes-to-security-measures"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">18. Changes to Security Measures</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may modify, replace, upgrade, reconfigure, add, or discontinue security technologies, infrastructure components, software, tools, controls, and procedures as MYCURE CMS evolves.</p>
@@ -664,46 +544,35 @@ export default function SecurityOverviewPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">This Security Overview does not permanently commit MYCURE to a particular cloud provider, monitoring technology, database, security product, authentication technology, software library, or infrastructure architecture.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a change materially affects Customer Data processing and requires Customer notice, authorization, contractual changes, or another mechanism under applicable law or an applicable written agreement, MYCURE will follow that requirement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="reporting-privacy-or-security-concerns"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Reporting Privacy or Security Concerns</h2>
                     <p className="text-muted-foreground leading-relaxed">Suspected security incidents, unauthorized access, credential compromise, privacy concerns, or other security or data-protection matters relating to MYCURE should be reported promptly to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Privacy &amp; Security Contact</strong><br /><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Please do not send passwords, authentication factors, or unnecessary Patient Data through unsecured communications.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="related-resources"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Related Resources</h2>
                     <p className="text-muted-foreground leading-relaxed"><strong>Privacy Notice</strong><br /><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Terms of Service</strong><br /><a href="/terms-and-conditions" className="text-primary hover:underline">https://mycure.md/terms-and-conditions</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
-                  </motion.section>
+                  </section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <motion.div
+                <div
                   className="sticky top-24"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="border rounded-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
@@ -723,7 +592,7 @@ export default function SecurityOverviewPage() {
                       ))}
                     </nav>
                   </div>
-                </motion.div>
+                </div>
               </aside>
             </div>
           </div>
