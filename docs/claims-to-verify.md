@@ -2,7 +2,7 @@
 
 **Purpose:** List of website claims that require internal confirmation before publishing.
 **Generated:** 2026-01-02
-**Scope:** Homepage, clinics, diagnostics, skin, telehealth, corporate, mobile-labs, booking, our-story, syncbase-technology, download pages (all pages complete)
+**Scope:** Homepage, clinics, diagnostics, skin, corporate, mobile-labs, booking, our-story, syncbase-technology, download pages (all pages complete)
 
 ---
 
@@ -100,15 +100,6 @@ The following claims were softened during revision per brand voice guidelines:
 | "clinics nationwide" (advantages) | "aesthetic clinics across the Philippines" | Wrong context |
 | Generic Advantages section | Aesthetic-specific content | Duplicate content rewritten |
 
-### Telehealth Page
-| Original | Revised To | Reason |
-|----------|------------|--------|
-| "increase revenue" (hero) | Removed | Revenue claims need verification |
-| "increase revenue" (description) | Removed | Revenue claims need verification |
-| "Increase Your Revenue" (title) | "Grow Your Practice" | Softer language |
-| "Military-grade encryption" | "Enterprise-grade encryption" | Less hyperbolic |
-| "clinics nationwide" | "healthcare providers are choosing" | More appropriate context |
-
 ### Corporate Page
 | Original | Revised To | Reason |
 |----------|------------|--------|
@@ -157,13 +148,6 @@ The following claims were softened during revision per brand voice guidelines:
 | Client Records | 500,000+ | Confirm this is accurate for aesthetic clinics |
 | Treatments Performed | 2,000,000+ | Confirm this is accurate |
 | Years in Healthcare | 10+ | Confirm company age |
-
-### Telehealth Page Statistics
-| Metric | Current Value | Verification Needed |
-|--------|---------------|---------------------|
-| Virtual Consultations | 850,000+ | Confirm this is accurate |
-| Years in Healthcare | 10+ | Confirm company age |
-| Partner Providers | 780 | Same as diagnostics; confirm current count |
 
 ---
 

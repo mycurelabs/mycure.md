@@ -20,9 +20,9 @@
 - Native CSS tooltips showing clinic names on hover
 
 ### 3. Features Section (Line 575)
-- 6 main feature cards grid
+- 5 main feature cards grid
 - ID: #features
-- Covers: Physicians, Outpatient Clinics, Diagnostics, Scheduling, Telehealth, Offline work
+- Covers: Physicians, Outpatient Clinics, Diagnostics, Scheduling, Offline work
 
 ### 4. Medical Data Tracker Section (Line 619)
 - Statistics showcase: 2.7M medical records, 1.5M patients served, 1.5K partners

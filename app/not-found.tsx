@@ -49,8 +49,6 @@ export default function NotFound() {
                 <span aria-hidden="true">•</span>
                 <Link href="/corporate" className="underline">Corporate</Link>
                 <span aria-hidden="true">•</span>
-                <Link href="/telehealth" className="underline">Telehealth</Link>
-                <span aria-hidden="true">•</span>
                 <Link href="/booking" className="underline">Booking</Link>
                 <span aria-hidden="true">•</span>
                 <Link href="/diagnostics" className="underline">Diagnostics</Link>

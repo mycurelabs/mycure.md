@@ -76,7 +76,6 @@ export function StructuredData() {
       "Appointment Scheduling",
             "HIPAA-Aligned Safeguards",
       "Offline Capability",
-      "Telehealth",
       "Laboratory Management",
       "Pharmacy Management",
       "Billing & Invoicing",

@@ -113,7 +113,6 @@ This document catalogs all page layout types used in the MYCURE website. Layouts
 
 **Files using this layout**:
 - `/app/booking/page.tsx` - Booking feature page (implemented)
-- `/app/telehealth/page.tsx` - Telehealth feature page (implemented)
 
 ---
 

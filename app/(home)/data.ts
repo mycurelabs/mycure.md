@@ -9,7 +9,6 @@ import {
   Hospital,
   FlaskConical,
   Calendar,
-  Video,
   WifiOff,
   Check,
   UserPlus,
@@ -98,7 +97,7 @@ export interface FeatureItem {
 export const featuresGridConfig = {
   badge: "Features",
   headline: "Complete Tools to Improve Healthcare Operations",
-  description: "MYCURE provides an integrated set of solutions for healthcare facilities, clinics, and diagnostic centers. From patient records to telehealth, our platform enables your team to deliver care more efficiently and securely.",
+  description: "MYCURE provides an integrated set of solutions for healthcare facilities, clinics, and diagnostic centers. From patient records to diagnostics, our platform enables your team to deliver care more efficiently and securely.",
   items: [
     {
       title: "Healthcare Professionals",
@@ -119,11 +118,6 @@ export const featuresGridConfig = {
       title: "Easy Scheduling",
       description: "Patients can schedule appointments online, helping reduce waiting times.",
       icon: Calendar,
-    },
-    {
-      title: "Telehealth",
-      description: "A secure platform for virtual consultations through video and audio calls.",
-      icon: Video,
     },
     {
       title: "Work Offline",
@@ -301,7 +295,7 @@ export const faqConfig = {
   items: [
     {
       question: "What is MYCURE?",
-      answer: "MYCURE is a healthcare management platform designed for multi-specialty clinics and enterprise healthcare facilities. It streamlines practice operations including patient records, scheduling, billing, and telehealth.",
+      answer: "MYCURE is a healthcare management platform designed for multi-specialty clinics and enterprise healthcare facilities. It streamlines practice operations including patient records, scheduling, and billing.",
     },
     {
       question: "How much does MYCURE cost?",
@@ -351,16 +345,13 @@ export const finalCtaConfig = {
 
 // Navigation Config
 export const navigationConfig = {
-  features: [
-    { label: "Booking", href: "/booking", description: "Let patients schedule appointments online and reduce wait times." },
-    { label: "Telehealth", href: "/telehealth", description: "Secure video consultations for virtual patient care." },
-  ],
   solutions: [
     { label: "Clinics", href: "/clinics", description: "Streamlined workflows for outpatient clinic operations." },
     { label: "Corporate", href: "/corporate", description: "Employee health programs and physical exams." },
     { label: "Skin & Aesthetics", href: "/skin", description: "Dermatology and aesthetic clinic solutions." },
     { label: "Diagnostics", href: "/diagnostics", description: "Laboratory and imaging workflow management." },
     { label: "Mobile Labs", href: "/mobile-labs", description: "On-site diagnostic services and specimen collection." },
+    { label: "Booking", href: "/booking", description: "Let patients schedule appointments online and reduce wait times." },
   ],
   links: [
     { label: "How it Works", href: "#how-it-works" },

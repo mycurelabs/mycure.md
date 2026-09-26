@@ -22,6 +22,15 @@ const nextConfig = {
     ],
   },
   productionBrowserSourceMaps: false,
+  async redirects() {
+    return [
+      {
+        source: '/telehealth',
+        destination: '/clinics',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
