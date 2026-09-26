@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Mail, MapPin } from "lucide-react"
 
 export interface ApplyStep {
@@ -28,11 +28,11 @@ export function HowToApply({
     <section id="apply" className="w-full py-16 sm:py-20 md:py-24 bg-muted/30 border-y">
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="mx-auto max-w-5xl grid lg:grid-cols-2 gap-10 lg:gap-16">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-8">{heading}</h2>
             <ol className="space-y-6">
@@ -50,14 +50,14 @@ export function HowToApply({
                 </li>
               ))}
             </ol>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             className="rounded-lg border bg-card p-6 md:p-8 h-fit"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.3, delay: 0.05, ease: [0, 0, 0.58, 1] }}
           >
             <h3 className="text-xl font-semibold mb-4">Prefer to reach out directly?</h3>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
@@ -76,7 +76,7 @@ export function HowToApply({
                 {office}
               </p>
             )}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

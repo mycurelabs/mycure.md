@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
@@ -21,10 +20,7 @@ export function CultureHero({ config }: { config: HeroConfig }) {
   const hasImage = Boolean(config.image) && !gradient
 
   const content = (
-    <motion.div
-      initial={{ opacity: 0, x: hasImage ? -20 : 0, y: hasImage ? 0 : 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
+    <div
       className={cn(
         "space-y-6",
         hasImage ? "text-center lg:text-left" : "max-w-3xl mx-auto text-center"
@@ -94,7 +90,7 @@ export function CultureHero({ config }: { config: HeroConfig }) {
           </Button>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 
   return (
@@ -118,10 +114,7 @@ export function CultureHero({ config }: { config: HeroConfig }) {
         {hasImage ? (
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {content}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+            <div
               className="relative order-first lg:order-last"
             >
               <Image
@@ -132,7 +125,7 @@ export function CultureHero({ config }: { config: HeroConfig }) {
                 className="w-full aspect-[6/5] object-contain mx-auto max-w-sm md:max-w-none"
                 priority
               />
-            </motion.div>
+            </div>
           </div>
         ) : (
           content

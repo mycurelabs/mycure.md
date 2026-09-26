@@ -2,7 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Check } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import type { AdvantagesConfig } from "@/components/types/product-page"
@@ -15,11 +15,11 @@ export function AdvantagesSection({ config }: AdvantagesSectionProps) {
   return (
     <section id="advantages" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background">
       <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
@@ -27,18 +27,18 @@ export function AdvantagesSection({ config }: AdvantagesSectionProps) {
           <p className="max-w-[800px] text-muted-foreground text-xl md:text-2xl leading-relaxed">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="space-y-20">
           {config.items.map((advantage, index) => {
             const isEven = index % 2 === 0
             return (
-              <motion.div
+              <m.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
                 className="grid lg:grid-cols-2 gap-12 items-center"
               >
                 <div className={`relative ${isEven ? 'order-2 lg:order-1' : 'order-2 lg:order-2'}`}>
@@ -69,7 +69,7 @@ export function AdvantagesSection({ config }: AdvantagesSectionProps) {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </m.div>
             )
           })}
         </div>

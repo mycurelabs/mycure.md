@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Check } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import type { TabSectionConfig } from "@/components/types/product-page"
@@ -19,11 +19,11 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
   return (
     <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
       <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="text-center mb-12"
         >
           <div className="flex justify-center mb-4">
@@ -35,7 +35,7 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
@@ -44,7 +44,7 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-colors duration-150 ${
                   activeTab === tab.id
                     ? "text-white shadow-sm bg-primary"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
@@ -57,20 +57,13 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
         </div>
 
         {activeTabContent && (
-          <motion.div
+          <div
             key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
             className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
           >
             {/* Left side - Images */}
             <div className="relative order-2 lg:order-1">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-              >
+              <div>
                 <Image
                   src={activeTabContent.image.src}
                   width={600}
@@ -78,18 +71,12 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
                   alt={activeTabContent.image.alt}
                   className="rounded-xl w-full"
                 />
-              </motion.div>
+              </div>
             </div>
 
             {/* Right side - Content */}
             <div className="order-1 lg:order-2">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-8"
-              >
+              <div className="space-y-8">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <activeTabContent.icon className="size-5 text-primary" />
@@ -109,9 +96,9 @@ export function BookingTabSection({ config }: BookingTabSectionProps) {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { HeartPulse, Quote } from "lucide-react"
 import type { MissionConfig } from "./types"
 
@@ -20,12 +20,12 @@ export function MissionSection({ config }: { config: MissionConfig }) {
       <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
 
       <div className="container px-4 sm:px-6 md:px-8 relative">
-        <motion.div
+        <m.div
           className="max-w-3xl mx-auto text-center mb-10 md:mb-14"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
         >
           {config.eyebrow && (
             <p className="text-sm font-semibold uppercase tracking-wider text-white mb-4">
@@ -38,14 +38,14 @@ export function MissionSection({ config }: { config: MissionConfig }) {
           {config.subtitle && (
             <p className="text-lg sm:text-xl text-white leading-relaxed">{config.subtitle}</p>
           )}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10 max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }}
         >
           <div className="grid md:grid-cols-2 gap-8 md:gap-10">
             {config.paragraphs.map((paragraph, index) => {
@@ -62,7 +62,7 @@ export function MissionSection({ config }: { config: MissionConfig }) {
               )
             })}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

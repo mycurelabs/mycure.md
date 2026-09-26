@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Check } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 
@@ -31,11 +31,11 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
   return (
     <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-white dark:bg-[#1a1a1a]">
       <div className="container px-4 sm:px-6 md:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
@@ -43,7 +43,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="space-y-20">
           {config.items.map((item, index) => {
@@ -51,12 +51,12 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
             const isImageLeft = item.imagePosition === "left"
 
             return (
-              <motion.div
+              <m.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
                 className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               >
                 {/* Media */}
@@ -110,7 +110,7 @@ export function WhyChooseSection({ config }: WhyChooseSectionProps) {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </m.div>
             )
           })}
         </div>

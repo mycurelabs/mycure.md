@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { staggerContainer, staggerItem, viewportOnce, transition } from "@/lib/animation-variants"
@@ -14,7 +14,7 @@ export function SolutionsGrid({ config }: SolutionsGridProps) {
   return (
     <section id="solutions" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
       <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -30,9 +30,9 @@ export function SolutionsGrid({ config }: SolutionsGridProps) {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -40,12 +40,12 @@ export function SolutionsGrid({ config }: SolutionsGridProps) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {config.items.map((solution) => (
-            <motion.div
+            <m.div
               key={solution.id}
               variants={staggerItem}
               transition={transition.medium}
             >
-              <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+              <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-shadow duration-150 hover:shadow-md">
                 <CardContent className="p-6 flex items-start gap-4">
                   <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20">
                     <solution.icon className="h-6 w-6 text-primary" />
@@ -60,9 +60,9 @@ export function SolutionsGrid({ config }: SolutionsGridProps) {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

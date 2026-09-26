@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { ShimmerButton } from "@/components/magicui/shimmer-button"
@@ -35,11 +35,11 @@ export function TimelineSection({ config }: TimelineSectionProps) {
 
       <div className="container px-4 sm:px-6 md:px-8 relative">
         {/* Section Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
@@ -50,7 +50,7 @@ export function TimelineSection({ config }: TimelineSectionProps) {
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="max-w-5xl mx-auto">
           {/* 3-Step Process */}
@@ -58,13 +58,13 @@ export function TimelineSection({ config }: TimelineSectionProps) {
             {config.processSteps.map((step, index) => {
               const Icon = step.icon
               return (
-                <motion.div
+                <m.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  className="bg-background rounded-2xl p-6 lg:p-8 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300 relative"
+                  transition={{ duration: 0.3, delay: index * 0.06, ease: [0, 0, 0.58, 1] }}
+                  className="bg-background rounded-2xl p-6 lg:p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow duration-150 relative"
                 >
                   {/* Step Number */}
                   <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-md">
@@ -85,17 +85,17 @@ export function TimelineSection({ config }: TimelineSectionProps) {
                       {step.description}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               )
             })}
           </div>
 
           {/* Call to Action */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.3, delay: 0.15, ease: [0, 0, 0.58, 1] }}
             className="text-center flex flex-col items-center"
           >
             <Link href={config.cta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
@@ -111,7 +111,7 @@ export function TimelineSection({ config }: TimelineSectionProps) {
             <p className="text-sm text-muted-foreground mt-4">
               {config.ctaNote}
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

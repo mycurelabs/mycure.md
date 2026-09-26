@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { NumberTicker } from "@/components/magicui/number-ticker"
 import type { StatisticsConfig } from "@/components/types/product-page"
 
@@ -16,10 +16,11 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
       <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
       <div className="container px-4 sm:px-6 md:px-8 relative">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center justify-center space-y-6 text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">
@@ -28,23 +29,23 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
           <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+        <m.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }}
           className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10"
         >
           <div className="grid md:grid-cols-3 gap-8 md:gap-12">
             {config.items.map((stat, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.06, ease: [0, 0, 0.58, 1] }}
                 className="text-center space-y-2"
               >
                 <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
@@ -53,10 +54,10 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
                 <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                   {stat.label}
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

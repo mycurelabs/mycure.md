@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { PrimaryButton } from "@/components/custom/primary-button"
@@ -39,7 +39,7 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
     <section id="solution" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background">
       <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
         {/* Content Section - Centered Vertical Layout */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -70,15 +70,15 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
               </PrimaryButton>
             </Link>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Video Section */}
-        <motion.div
+        <m.div
           id="solution-video"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }}
           className="relative mx-auto max-w-5xl mt-16"
         >
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
@@ -93,7 +93,7 @@ export function VideoShowcase({ config }: VideoShowcaseProps) {
               <p className="text-muted-foreground">Please enable JavaScript to view the video</p>
             </div>
           </noscript>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

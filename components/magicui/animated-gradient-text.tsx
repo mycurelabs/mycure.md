@@ -1,7 +1,4 @@
-"use client";
-
 import { cn } from "@/lib/utils";
-import { useReducedMotion } from "framer-motion";
 import { ComponentPropsWithoutRef } from "react";
 
 export interface AnimatedGradientTextProps
@@ -19,8 +16,6 @@ export function AnimatedGradientText({
   colorTo = "#9c40ff",
   ...props
 }: AnimatedGradientTextProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <span
       style={
@@ -34,9 +29,9 @@ export function AnimatedGradientText({
         // Base gradient styling
         "inline bg-gradient-to-r from-[var(--color-from)] via-[var(--color-to)] to-[var(--color-from)] bg-clip-text text-transparent",
         // Animation only when motion is allowed
-        !prefersReducedMotion && "animate-gradient bg-[length:var(--bg-size)_100%]",
+        "motion-safe:animate-gradient motion-safe:bg-[length:var(--bg-size)_100%]",
         // Static gradient for reduced motion
-        prefersReducedMotion && "bg-[length:100%_100%]",
+        "motion-reduce:bg-[length:100%_100%]",
         className,
       )}
       {...props}
