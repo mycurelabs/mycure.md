@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
 import { ArrowLeft, Menu, X } from "lucide-react"
@@ -73,7 +74,7 @@ export default function TermsAndConditionsPage() {
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       })
       setMobileTocOpen(false)
     }

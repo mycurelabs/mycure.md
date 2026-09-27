@@ -1,9 +1,11 @@
 "use client"
 
 import React from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
 import Link from "next/link"
 import Image from "next/image"
 import { m } from "framer-motion"
+import { MotionProvider } from "@/components/providers/motion-provider"
 import { cn } from "@/lib/utils"
 import { Activity, Check, ChevronRight, Menu, X, Moon, Sun, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -59,7 +61,7 @@ export default function LandingPage() {
       const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+      window.scrollTo({ top: offsetPosition, behavior: scrollBehavior() })
     }
     setMobileMenuOpen(false)
   }
@@ -68,13 +70,14 @@ export default function LandingPage() {
   const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0, 0, 0.58, 1] } } }
 
   return (
+    <MotionProvider>
     <div className="flex min-h-[100dvh] flex-col">
       <HomeFAQSchema />
       <MedicalBusinessSchema />
       {/* Header */}
       <header className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-[background-color,box-shadow] duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}>
         <div className="container flex h-16 items-center justify-between">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity">
+          <button onClick={() => window.scrollTo({ top: 0, behavior: scrollBehavior() })} className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity">
             <div className="size-8 rounded-full bg-white flex items-center justify-center">
               <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
             </div>
@@ -164,7 +167,7 @@ export default function LandingPage() {
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">{heroConfig.description}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
                 <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto"><ShimmerButton background="#0099CC" shimmerColor="#FFFFFF" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></ShimmerButton></Link>
-                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full sm:w-auto"><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
+                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: scrollBehavior() }); }} className="w-full sm:w-auto"><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
               </div>
             </div>
             <div id="video-demo" className="relative mx-auto max-w-5xl">
@@ -317,5 +320,6 @@ export default function LandingPage() {
         </section>
       </main>
     </div>
+    </MotionProvider>
   )
 }

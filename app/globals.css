@@ -183,3 +183,15 @@
     transform: translateY(16px);
   }
 }
+
+/* Print: never print content in a pre-animation (hidden) state. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

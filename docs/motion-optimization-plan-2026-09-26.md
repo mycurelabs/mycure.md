@@ -28,8 +28,10 @@ Purpose: cut the animation code the site ships and make every animation respect 
 Each phase is its own commit, with the build output recorded.
 
 ### Phase 1: Subtract (lowest risk, biggest win)
-- Replace `components/magicui/scroll-progress.tsx` with a CSS-only bar (`animation-timeline: scroll()`, with no bar in browsers that don't support it). The root layout then stops loading framer-motion.
-- Wrap the app in `MotionConfig reducedMotion="user"` (a small client provider), so all framer animations respect the reduce-motion setting.
+- Replace `components/magicui/scroll-progress.tsx` with a CSS-only bar (`animation-timeline: scroll()`: Chromium 115+ and Safari 26+; Firefox and older Safari show no bar). The root layout then stops loading framer-motion.
+- Add a small client `MotionProvider` (`LazyMotion strict` + `MotionConfig`). It is mounted only by the route layouts (and the home page) that render `m.*`, never the root layout, so document routes load no framer code.
+- Reduced motion means no animation at all, not just no movement: under `prefers-reduced-motion: reduce` the provider sets `MotionConfig reducedMotion="always"` with a zero-duration transition and `MotionGlobalConfig.skipAnimations`, so fades jump straight to their end state. The CSS `.reveal` hides only under `no-preference`, and JS smooth scrolling uses `lib/scroll-behavior.ts` (`"auto"` under reduce).
+- Without JS or in print, nothing stays hidden: a `<noscript>` style overrides framer's inline `opacity:0`, and `@media print` resets opacity and transforms.
 - Delete unused code:
   - The `motion` and `embla-carousel-react` dependencies.
   - `magicui/rainbow-button.tsx` and the 4 barrel `index.ts` files that nothing imports.
@@ -55,7 +57,7 @@ Each phase is its own commit, with the build output recorded.
 
 ## Verification (every phase)
 - `npm run build` passes. Record First Load JS per route against the baseline.
-- `grep` checks: no `from "framer-motion"` import of full `motion` after Phase 3; no framer in the root layout chunk after Phase 1.
+- `grep` checks: no `from "framer-motion"` import of full `motion` after Phase 3; no framer in the root layout chunk after Phase 1; document routes' HTML references no chunk containing framer markers (`MotionValue`, `animateVisualElement`). Every file using `m.*` renders under a route with `MotionProvider`.
 - Pages look the same (apart from the intended timing changes). Hero content is visible without JavaScript.
 
 ## Out of scope

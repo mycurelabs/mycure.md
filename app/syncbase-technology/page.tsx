@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
 import { Reveal } from "@/components/custom/reveal"
@@ -43,7 +44,7 @@ export default function SyncbaseTechnologyPage() {
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       })
       setMobileTocOpen(false)
     }

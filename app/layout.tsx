@@ -4,7 +4,6 @@ import { Inter, Lora } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ScrollProgress } from "@/components/magicui/scroll-progress"
-import { MotionProvider } from "@/components/providers/motion-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -105,16 +104,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://img.youtube.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <StructuredData />
+        {/* No JS: framer SSR emits inline opacity:0 for entrance states; show them. */}
+        <noscript>
+          <style dangerouslySetInnerHTML={{ __html: `[style*="opacity:0"],.reveal{opacity:1!important;transform:none!important}` }} />
+        </noscript>
       </head>
       <body className={`${inter.variable} ${lora.variable} font-sans`}>
         <GoogleAnalytics />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <ScrollProgress />
-            <MotionProvider>
               {children}
               <Footer />
-            </MotionProvider>
           </TooltipProvider>
         </ThemeProvider>
         <VercelAnalytics />
