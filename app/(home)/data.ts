@@ -351,7 +351,7 @@ export const navigationConfig = {
     { label: "Skin & Aesthetics", href: "/skin", description: "Dermatology and aesthetic clinic solutions." },
     { label: "Diagnostics", href: "/diagnostics", description: "Laboratory and imaging workflow management." },
     { label: "Mobile Labs", href: "/mobile-labs", description: "On-site diagnostic services and specimen collection." },
-    { label: "Booking", href: "/booking", description: "Let patients schedule appointments online and reduce wait times." },
+    { label: "Booking", href: "/booking", description: "Online appointment scheduling for patients." },
   ],
   links: [
     { label: "How it Works", href: "#how-it-works" },
