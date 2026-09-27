@@ -171,8 +171,7 @@ export default function MobileLabsPage() {
                       ? [
                           "Mobile-optimized DICOM viewer for field use",
                           "Cloud-based image storage accessible anywhere",
-                          "Offline-capable reporting with auto-sync",
-                          "Remote consultation tools for expert review"
+                          "Offline-capable reporting with auto-sync"
                         ]
                       : [
                           "Portable analyzer integration and calibration",

@@ -50,8 +50,8 @@
 
 ### 7. Sticky Scroll Features Section (Line 1049)
 - Scrollytelling implementation with healthcare excellence messaging
-- Progressive features: Your Clinical Command Center, Operations That Actually Work, Virtual Care That Feels Personal, Your Practice Always On
-- Updated icons: Calendar, Zap, Video, WifiOff for healthcare context
+- Progressive features: Your Clinical Command Center, Operations That Actually Work, Your Practice Always On
+- Updated icons: Calendar, Zap, WifiOff for healthcare context
 - Height: 400vh for scroll effect
 - Color scheme swap - "Your Practice, Always On" now green with "SYNCED" badge, "Operations That Actually Work" now purple
 
