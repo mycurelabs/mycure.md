@@ -33,7 +33,6 @@
 - 4 detailed healthcare-focused features with accompanying images
 - HIPAA Security & Compliance
 - Seamless Offline Operations
-- Simplified PhilHealth Claims Management
 - Effortless Clinical Workflows
 - Each feature includes CTA buttons
 - Muted background
