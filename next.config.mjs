@@ -11,8 +11,7 @@ const nextConfig = {
   },
   // Image optimization enabled (Next.js default)
   images: {
-    // AVIF output disabled as a mitigation for the Next.js Image Optimization (AVIF) advisory
-    formats: ['image/webp'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000, // 1 year cache for optimized images
     remotePatterns: [
       {
