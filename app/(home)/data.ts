@@ -317,10 +317,10 @@ export const faqConfig = {
     },
     {
       question: "What kind of support do you offer?",
-      answer: "Visit portal.mycure.md for self-service support including our knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare organizations.",
+      answer: "Visit portal.mycureapp.com for self-service support including our knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare organizations.",
       hasLink: true,
-      linkText: "portal.mycure.md",
-      linkHref: "https://portal.mycure.md",
+      linkText: "portal.mycureapp.com",
+      linkHref: "https://portal.mycureapp.com/",
     },
     {
       question: "Can I try MYCURE before committing?",

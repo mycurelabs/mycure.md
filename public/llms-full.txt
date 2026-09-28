@@ -176,6 +176,6 @@ Each question's full answer is rendered in the homepage HTML (and machine-readab
 - Operating address: The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila
 - Sitemap: https://mycure.md/sitemap.xml
 - Index file: https://mycure.md/llms.txt
-- Customer portal: https://portal.mycure.md
+- Customer portal: https://portal.mycureapp.com/
 - Book a demo: https://calendly.com/mycure/demo
 - Telephone: +63 2 7799 6262
