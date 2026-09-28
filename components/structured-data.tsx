@@ -35,6 +35,11 @@ export function StructuredData() {
       postalCode: "1600",
       addressCountry: "PH",
     },
+    telephone: "+63 2 7799 6262",
+    areaServed: {
+      "@type": "Country",
+      name: "Philippines",
+    },
     founder: {
       "@type": "Person",
       name: "Dale Dennis David",
