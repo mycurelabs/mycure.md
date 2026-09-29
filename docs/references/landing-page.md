@@ -20,9 +20,9 @@
 - Native CSS tooltips showing clinic names on hover
 
 ### 3. Features Section (Line 575)
-- 6 main feature cards grid
+- 5 main feature cards grid
 - ID: #features
-- Covers: Physicians, Outpatient Clinics, Diagnostics, Scheduling, Telehealth, Offline work
+- Covers: Physicians, Outpatient Clinics, Diagnostics, Scheduling, Offline work
 
 ### 4. Medical Data Tracker Section (Line 619)
 - Statistics showcase: 2.7M medical records, 1.5M patients served, 1.5K partners
@@ -33,7 +33,6 @@
 - 4 detailed healthcare-focused features with accompanying images
 - HIPAA Security & Compliance
 - Seamless Offline Operations
-- Simplified PhilHealth Claims Management
 - Effortless Clinical Workflows
 - Each feature includes CTA buttons
 - Muted background
@@ -48,35 +47,28 @@
 - Full-container image layout (540×256px) with gradient borders
 - Images use object-cover and object-top alignment
 
-### 7. Sticky Scroll Features Section (Line 1049)
-- Scrollytelling implementation with healthcare excellence messaging
-- Progressive features: Your Clinical Command Center, Operations That Actually Work, Virtual Care That Feels Personal, Your Practice Always On
-- Updated icons: Calendar, Zap, Video, WifiOff for healthcare context
-- Height: 400vh for scroll effect
-- Color scheme swap - "Your Practice, Always On" now green with "SYNCED" badge, "Operations That Actually Work" now purple
-
-### 8. All-in-One Integration Section (Line 1263)
+### 7. All-in-One Integration Section (Line 1263)
 - "Healthcare that works together" messaging
 - Healthcare-focused integration with existing workflows
 - Floating healthcare integration icons: Laboratory, Imaging, Authentication, Billing, Pharmacy, Chat, Inventory, Queuing
 - Visual integration showcase with healthcare-specific imagery
 
-### 9. How It Works Timeline Section (Line 1458)
+### 8. How It Works Timeline Section (Line 1458)
 - Interactive 7-day implementation timeline
 - Tabbed interface (Today, Day 3, Day 7)
 - "What you can achieve with MYCURE in just 7 days"
 - Free trial period: 15 days
 
-### 10. FAQ Section (Line 1572)
+### 9. FAQ Section (Line 1572)
 - Accordion-style frequently asked questions
 - ID: #faq
 - Same custom radial gradient background as Hero Section
 
-### 11. Final CTA Section (Line 1640)
+### 10. Final CTA Section (Line 1640)
 - Additional call-to-action section
 - Gradient background
 
-### 12. Footer Section (Line 1703)
+### 11. Footer Section (Line 1703)
 - Company information
 - Navigation links
 - Legal and contact information

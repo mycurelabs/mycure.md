@@ -23,8 +23,8 @@ export function jsonLdString(schema: unknown): string {
  *     query string so a future config edit adding `?si=...` or `?rel=0`
  *     does not silently corrupt the schema)
  *   - Service name composition from heroConfig.headline {prefix, highlight,
- *     suffix} (filters empty strings so pages like /telehealth with empty
- *     suffix do not emit a trailing space)
+ *     suffix} (filters empty strings so a page config with an empty
+ *     suffix does not emit a trailing space)
  *
  * NOTE: Product page only. The homepage heroConfig has a different shape
  * (headline.line1 / line2) and uses heroConfig.video.videoId directly —

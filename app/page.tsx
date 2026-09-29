@@ -83,23 +83,6 @@ export default function LandingPage() {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList className="gap-2">
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">Features</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[320px] gap-1 p-2">
-                    {navigationConfig.features.map((navItem) => (
-                      <li key={navItem.href}>
-                        <NavigationMenuLink asChild>
-                          <Link href={navItem.href} className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">{navItem.label}</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">{navItem.description}</p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">Solutions</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[500px] gap-1 p-2 md:grid-cols-2">

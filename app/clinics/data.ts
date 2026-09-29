@@ -10,7 +10,6 @@ import {
   Stethoscope,
   BarChart,
   Building2,
-  Shield,
   Cloud,
   Calendar,
 } from "lucide-react"
@@ -32,7 +31,7 @@ export const heroConfig: HeroConfig = {
     suffix: "That Actually Works",
   },
   description:
-    "MYCURE Clinics is clinic management software for outpatient practices — patient scheduling, billing, electronic medical records, and telehealth in one platform. Reduces wait times, eliminates paperwork, and gives your staff the tools to focus on patient care instead of admin.",
+    "MYCURE Clinics is clinic management software for outpatient practices — patient scheduling, billing, and electronic medical records in one platform. Reduces wait times, eliminates paperwork, and gives your staff the tools to focus on patient care instead of admin.",
   image: {
     src: "/section-assets/clinic-page/outpatient-clinics-hero-section.png",
     alt: "MYCURE Clinics - Healthcare professionals at reception desks",
@@ -192,18 +191,6 @@ export const advantagesConfig: AdvantagesConfig = {
   description:
     "Experience the features that make MYCURE the trusted choice for clinics nationwide.",
   items: [
-    {
-      title: "HIPAA-Aligned Telehealth Platform",
-      description:
-        "Built around healthcare data-privacy practices, including HIPAA-aligned safeguards, so clinics can offer virtual care with confidence.",
-      icon: Shield,
-      image: "/section-assets/clinic-page/carousel/carousel-hipaa-compliance.webp",
-      bullets: [
-        "Securely handled video consultations protecting patient privacy",
-        "HIPAA-aligned handling of telehealth records",
-        "Integrated billing for virtual consultations with automatic documentation",
-      ],
-    },
     {
       title: "Gain New Insights Into Your Clinic",
       description:

@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { Fragment } from 'react'
+import { navigationConfig } from '@/app/(home)/data'
 import { Metadata } from 'next'
 import { ProductHeader } from '@/components/sections/product-page'
 
@@ -37,7 +39,7 @@ export default function NotFound() {
                 href="/#features"
                 className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
               >
-                Explore Features
+                Explore the Platform
               </Link>
             </div>
             <div className="pt-6 border-t border-border max-w-md mx-auto">
@@ -45,17 +47,12 @@ export default function NotFound() {
                 Looking for something specific?
               </p>
               <div className="flex flex-wrap justify-center gap-2 text-sm">
-                <Link href="/clinics" className="underline">Clinics</Link>
-                <span aria-hidden="true">•</span>
-                <Link href="/corporate" className="underline">Corporate</Link>
-                <span aria-hidden="true">•</span>
-                <Link href="/telehealth" className="underline">Telehealth</Link>
-                <span aria-hidden="true">•</span>
-                <Link href="/booking" className="underline">Booking</Link>
-                <span aria-hidden="true">•</span>
-                <Link href="/diagnostics" className="underline">Diagnostics</Link>
-                <span aria-hidden="true">•</span>
-                <Link href="/skin" className="underline">MYCURE Beauty</Link>
+                {navigationConfig.solutions.map((item, i) => (
+                  <Fragment key={item.href}>
+                    {i > 0 && <span aria-hidden="true">•</span>}
+                    <Link href={item.href} className="underline">{item.label}</Link>
+                  </Fragment>
+                ))}
               </div>
             </div>
           </div>
