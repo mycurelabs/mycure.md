@@ -42,7 +42,7 @@ MYCURE's offline-first synchronization architecture. Records stay accessible to 
 ## Try MYCURE
 
 - [Book a demo](https://calendly.com/mycure/demo)
-- [Customer portal](https://portal.mycure.md)
+- [Customer portal](https://portal.mycureapp.com/)
 
 ## Operating details
 

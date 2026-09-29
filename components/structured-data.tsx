@@ -54,7 +54,7 @@ export function StructuredData() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      url: "https://portal.mycure.md",
+      url: "https://portal.mycureapp.com/",
     },
   };
 
@@ -88,7 +88,7 @@ export function StructuredData() {
     screenshot: "https://mycure.md/og-image.png",
     softwareHelp: {
       "@type": "WebPage",
-      url: "https://portal.mycure.md",
+      url: "https://portal.mycureapp.com/",
     },
   };
 
