@@ -27,7 +27,7 @@ The clinics page follows a modern, product-focused design pattern with the follo
 ### 1. Navigation Header
 **Pattern**: Sticky header with backdrop blur
 - Logo with home link
-- Desktop nav: Features, Solutions dropdown (Clinics), How it Works, FAQs
+- Desktop nav: Solutions dropdown (Clinics, Corporate, Skin & Aesthetics, Diagnostics, Mobile Labs, Booking), How it Works, FAQs
 - Theme toggle, Log In link, Get Started button
 - Mobile menu with accordion for Solutions
 

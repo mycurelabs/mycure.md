@@ -48,12 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/telehealth`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/culture`,
       lastModified: lastUpdate,
       changeFrequency: "monthly",

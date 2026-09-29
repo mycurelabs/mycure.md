@@ -32,7 +32,6 @@ import {
 import { WhyChooseSection, VisibilitySection, TimelineSection, StorybrandSection } from "@/components/sections/home-page"
 import { MobileNav } from "@/components/sections/product-page/MobileNav"
 import { HomeFAQSchema } from "@/components/schemas/HomeFAQSchema"
-import { MedicalBusinessSchema } from "@/components/schemas/MedicalBusinessSchema"
 import { HowToSchema } from "@/components/schemas/HowToSchema"
 import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
 
@@ -73,7 +72,6 @@ export default function LandingPage() {
     <MotionProvider>
     <div className="flex min-h-[100dvh] flex-col">
       <HomeFAQSchema />
-      <MedicalBusinessSchema />
       {/* Header */}
       <header className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-[background-color,box-shadow] duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}>
         <div className="container flex h-16 items-center justify-between">
@@ -85,23 +83,6 @@ export default function LandingPage() {
           </button>
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList className="gap-2">
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">Features</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[320px] gap-1 p-2">
-                    {navigationConfig.features.map((navItem) => (
-                      <li key={navItem.href}>
-                        <NavigationMenuLink asChild>
-                          <Link href={navItem.href} className="block select-none rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">{navItem.label}</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">{navItem.description}</p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent bg-transparent rounded-xl">Solutions</NavigationMenuTrigger>
                 <NavigationMenuContent>

@@ -100,7 +100,6 @@ This configuration prioritizes rapid development and deployment.
 ### Product Pages (product-style)
 - `/clinics` - Clinics product page (definitive product-style standard)
 - `/diagnostics` - Diagnostic services
-- `/telehealth` - Telehealth features (feature-style)
 - `/booking` - Booking system (feature-style)
 
 ### Content Pages (document-style)

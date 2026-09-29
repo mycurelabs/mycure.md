@@ -6,18 +6,15 @@
 > Used by healthcare providers across the Philippines.
 > Operated by Team OPS Inc. dba MYCURE. Founded 2016.
 
-MYCURE consolidates patient records, scheduling, billing, telehealth, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
+MYCURE consolidates patient records, scheduling, billing, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
 
 ## Core product pages
 
 ### [Clinics](https://mycure.md/clinics)
-All-in-one clinic management for outpatient practices. Covers patient registration, electronic medical records, scheduling, billing, prescriptions, and follow-up reminders. Includes integrated telehealth so consultations and in-person visits live in the same record. Designed for solo practitioners, group clinics, and multi-specialty outpatient organizations.
+All-in-one clinic management for outpatient practices. Covers patient registration, electronic medical records, scheduling, billing, prescriptions, and follow-up reminders. Designed for solo practitioners, group clinics, and multi-specialty outpatient organizations.
 
 ### [Corporate](https://mycure.md/corporate)
 Corporate clinic and occupational-health management for organizations that run on-site clinics or employee health programs. Handles pre-employment medicals, annual physical exams, fitness-to-work assessments, vaccination tracking, and corporate health reporting. Supports the regulatory expectations that apply to occupational health in the Philippines.
-
-### [Telehealth](https://mycure.md/telehealth)
-Virtual consultations with integrated video, secure messaging, scheduling, and digital prescriptions. Patient communications and records sit alongside in-person visit history in the same EMR, so providers do not maintain two parallel patient files. Includes appointment reminders and multi-device access for clinicians on the move.
 
 ### [Booking](https://mycure.md/booking)
 Online appointment scheduling with patient self-service. Patients book, reschedule, and cancel without phoning the front desk; clinics manage availability, buffer times, and provider calendars from the same console. Reduces front-desk phone load and no-shows through automated reminders.
@@ -45,7 +42,7 @@ MYCURE's offline-first synchronization architecture. Records stay accessible to 
 ## Try MYCURE
 
 - [Book a demo](https://calendly.com/mycure/demo)
-- [Customer portal](https://portal.mycure.md)
+- [Customer portal](https://portal.mycureapp.com/)
 
 ## Operating details
 

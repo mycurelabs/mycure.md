@@ -29,7 +29,7 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
         <SheetHeader>
           <VisuallyHidden>
             <SheetTitle>Navigation Menu</SheetTitle>
-            <SheetDescription>Main site navigation with features, solutions, and quick links</SheetDescription>
+            <SheetDescription>Main site navigation with solutions and quick links</SheetDescription>
           </VisuallyHidden>
         </SheetHeader>
 
@@ -60,23 +60,6 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
             >
               FAQs
             </Link>
-          </div>
-
-          {/* Features Section */}
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 mb-2">
-              Features
-            </span>
-            {navigationConfig.features.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={handleLinkClick}
-                className="flex items-center min-h-[44px] px-2 text-base font-medium hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
           </div>
 
           {/* Solutions Section */}

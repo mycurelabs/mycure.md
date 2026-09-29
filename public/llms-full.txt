@@ -6,7 +6,7 @@
 > Used by healthcare providers across the Philippines.
 > Operated by Team OPS Inc. dba MYCURE. Founded 2016.
 
-MYCURE consolidates patient records, scheduling, billing, telehealth, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
+MYCURE consolidates patient records, scheduling, billing, and lab/diagnostic workflows into one platform. It is built to work offline-first so clinics keep operating when connectivity drops, and synchronizes records back to the cloud when the connection returns.
 
 ## What this file is
 
@@ -20,7 +20,7 @@ Across the homepage and product pages, MYCURE positions itself as "Built for hea
 
 ## Platform overview
 
-MYCURE provides an integrated set of solutions for healthcare facilities, clinics, and diagnostic centers. From patient records to telehealth, the platform enables teams to deliver care more efficiently and securely.
+MYCURE provides an integrated set of solutions for healthcare facilities, clinics, and diagnostic centers. From patient records to diagnostics, the platform enables teams to deliver care more efficiently and securely.
 
 Core areas covered by the platform (from the homepage feature grid):
 
@@ -28,14 +28,13 @@ Core areas covered by the platform (from the homepage feature grid):
 - Outpatient Clinics
 - Diagnostics
 - Easy Scheduling
-- Telehealth
 - Work Offline
 
 ## Product line
 
 ### Clinics — https://mycure.md/clinics
 
-MYCURE Clinics is clinic management software for outpatient practices — patient scheduling, billing, electronic medical records, and telehealth in one platform. Reduces wait times, eliminates paperwork, and gives your staff the tools to focus on patient care instead of admin.
+MYCURE Clinics is clinic management software for outpatient practices — patient scheduling, billing, and electronic medical records in one platform. Reduces wait times, eliminates paperwork, and gives your staff the tools to focus on patient care instead of admin.
 
 Topics covered on the page (from the solutions grid):
 
@@ -60,21 +59,6 @@ Topics covered on the page (from the solutions grid):
 - Executive Health
 - Centralized Records
 - Productivity Analytics
-
-### Telehealth — https://mycure.md/telehealth
-
-MYCURE Telehealth is a virtual-care platform for clinics that want to offer remote consultations alongside in-person care. Includes HD video consultations, secure messaging, smart scheduling, and digital prescriptions — all in the same patient record as in-person visits.
-
-Features named on the page (from the specialties grid):
-
-- HD Video Consultations
-- Secure Messaging
-- Smart Scheduling
-- Digital Prescriptions
-- Secure Communications
-- Multi-Platform Access
-
-The page positions MYCURE Telehealth as HIPAA-aligned and built around healthcare data-privacy practices, so clinics can offer virtual care with confidence.
 
 ### Booking — https://mycure.md/booking
 
@@ -176,6 +160,6 @@ Each question's full answer is rendered in the homepage HTML (and machine-readab
 - Operating address: The Malayan Plaza, ADB Avenue, corner Opal Road, Ortigas Center, Pasig, 1600 Metro Manila
 - Sitemap: https://mycure.md/sitemap.xml
 - Index file: https://mycure.md/llms.txt
-- Customer portal: https://portal.mycure.md
+- Customer portal: https://portal.mycureapp.com/
 - Book a demo: https://calendly.com/mycure/demo
 - Telephone: +63 2 7799 6262

@@ -35,6 +35,11 @@ export function StructuredData() {
       postalCode: "1600",
       addressCountry: "PH",
     },
+    telephone: "+63 2 7799 6262",
+    areaServed: {
+      "@type": "Country",
+      name: "Philippines",
+    },
     founder: {
       "@type": "Person",
       name: "Dale Dennis David",
@@ -49,7 +54,7 @@ export function StructuredData() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      url: "https://portal.mycure.md",
+      url: "https://portal.mycureapp.com/",
     },
   };
 
@@ -76,7 +81,6 @@ export function StructuredData() {
       "Appointment Scheduling",
             "HIPAA-Aligned Safeguards",
       "Offline Capability",
-      "Telehealth",
       "Laboratory Management",
       "Pharmacy Management",
       "Billing & Invoicing",
@@ -84,7 +88,7 @@ export function StructuredData() {
     screenshot: "https://mycure.md/og-image.png",
     softwareHelp: {
       "@type": "WebPage",
-      url: "https://portal.mycure.md",
+      url: "https://portal.mycureapp.com/",
     },
   };
 
