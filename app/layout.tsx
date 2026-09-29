@@ -104,14 +104,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://img.youtube.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <StructuredData />
+        {/* No JS: framer SSR emits inline opacity:0 for entrance states; show them. */}
+        <noscript>
+          <style dangerouslySetInnerHTML={{ __html: `[style*="opacity:0"],.reveal{opacity:1!important;transform:none!important}` }} />
+        </noscript>
       </head>
       <body className={`${inter.variable} ${lora.variable} font-sans`}>
         <GoogleAnalytics />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <ScrollProgress />
-            {children}
-            <Footer />
+              {children}
+              <Footer />
           </TooltipProvider>
         </ThemeProvider>
         <VercelAnalytics />

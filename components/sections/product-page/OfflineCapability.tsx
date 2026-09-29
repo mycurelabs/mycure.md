@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Check } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 
@@ -8,11 +8,11 @@ export function OfflineCapability() {
   return (
     <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background">
       <div className="container px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center text-center space-y-8"
         >
           {/* Animated Badge */}
@@ -33,11 +33,11 @@ export function OfflineCapability() {
           </p>
 
           {/* Offline Sync Video */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }}
             className="relative w-full max-w-xl mt-8"
           >
             <div className="overflow-hidden rounded-2xl">
@@ -56,14 +56,14 @@ export function OfflineCapability() {
                 aria-label="MYCURE Offline Sync - Never Stop Caring"
               />
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Feature Points */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.15, ease: [0, 0, 0.58, 1] }}
             className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-3xl"
           >
             <div className="flex flex-col items-center space-y-2">
@@ -93,8 +93,8 @@ export function OfflineCapability() {
                 All offline data is encrypted and secured on your local device
               </p>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   )

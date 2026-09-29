@@ -80,13 +80,16 @@ export function NumberTicker({
   }, [springValue, formatter, decimalPlaces]);
 
   return (
-    <span
-      className={cn(
+    <>
+      <span
+        className={cn(
         "inline-block tabular-nums text-black dark:text-white tracking-wider",
         className,
       )}
-      ref={ref}
-      aria-label={formattedValue}
-    />
+        ref={ref}
+        aria-hidden="true"
+      />
+      <span className="sr-only">{formattedValue}</span>
+    </>
   );
 }

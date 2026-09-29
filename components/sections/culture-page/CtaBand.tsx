@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { ArrowRight, Check } from "lucide-react"
 import { PrimaryButton } from "@/components/custom/primary-button"
 import type { CtaBandConfig } from "./types"
@@ -28,11 +28,11 @@ export function CtaBand({ config }: { config: CtaBandConfig }) {
   return (
     <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
       <div className="container px-4 sm:px-6 md:px-8 max-w-6xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="text-center max-w-4xl mx-auto"
         >
           <div className="space-y-8">
@@ -74,7 +74,7 @@ export function CtaBand({ config }: { config: CtaBandConfig }) {
               </div>
             )}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
+import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { ArrowLeft, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
 
 export default function SubprocessorsPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
   const sections = [
     { id: "what-is-a-subprocessor", title: "1. What Is a Subprocessor?" },
@@ -23,47 +23,7 @@ export default function SubprocessorsPage() {
     { id: "related-resources", title: "Related Resources" }
   ]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection(sections[sections.length - 1].id)
-      } else {
-        let currentSection = ""
-        let maxVisibility = 0
-
-        for (const section of sections) {
-          const element = document.getElementById(section.id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            const elementTop = rect.top
-            const elementBottom = rect.bottom
-            const viewportHeight = window.innerHeight
-
-            const visibleTop = Math.max(0, elementTop)
-            const visibleBottom = Math.min(viewportHeight, elementBottom)
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-
-            if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
-              maxVisibility = visibleHeight
-              currentSection = section.id
-            }
-          }
-        }
-
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const activeSection = useScrollSpy(sections.map((s) => s.id))
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -73,7 +33,7 @@ export default function SubprocessorsPage() {
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       })
       setMobileTocOpen(false)
     }
@@ -87,11 +47,8 @@ export default function SubprocessorsPage() {
         {/* Hero Section */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-            <motion.div
+            <div
               className="max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
@@ -106,7 +63,7 @@ export default function SubprocessorsPage() {
               <p className="text-sm sm:text-base text-muted-foreground">
                 Effective Date: August 11, 2026
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -119,24 +76,16 @@ export default function SubprocessorsPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
 
                   {/* Preamble */}
-                  <motion.div
+                  <div
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <p className="text-muted-foreground leading-relaxed">This page should be read together with our <strong>Privacy Notice</strong>, <strong>Terms of Service</strong>, <strong>Security Overview</strong>, and any applicable data processing agreement, Business Associate Agreement, Order Form, or other written agreement with the Customer.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a Customer has a written agreement containing more specific provisions regarding subprocessors, processing locations, or deployment responsibilities, that agreement applies to the extent provided in that agreement.</p>
-                  </motion.div>
+                  </div>
 
-                  <motion.section
+                  <section
                     id="what-is-a-subprocessor"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. What Is a Subprocessor?</h2>
                     <p className="text-muted-foreground leading-relaxed">A <strong>Subprocessor</strong> is a third-party service provider engaged by MYCURE that processes Customer Data on behalf of MYCURE in connection with providing MYCURE CMS.</p>
@@ -149,30 +98,22 @@ export default function SubprocessorsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>infrastructure and service providers selected and controlled by a Customer for a client-hosted or customer-managed deployment.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Other personal data processed by MYCURE for its own business, account-administration, website, security, billing, or similar purposes is addressed in our Privacy Notice as applicable.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="current-material-subprocessors"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Current Material Subprocessors</h2>
                     <p className="text-muted-foreground leading-relaxed">The following providers currently process Customer Data in connection with the applicable MYCURE-hosted MYCURE CMS service.</p>
                     <div className="not-prose overflow-x-auto rounded-lg border mt-6"><table className="w-full text-sm text-left"><thead className="bg-muted/50 text-foreground"><tr><th className="px-4 py-3 font-semibold"><strong>Provider</strong></th><th className="px-4 py-3 font-semibold"><strong>Service</strong></th><th className="px-4 py-3 font-semibold"><strong>Primary Processing Location</strong></th><th className="px-4 py-3 font-semibold"><strong>Customer Data Involved</strong></th></tr></thead><tbody className="divide-y"><tr className="align-top text-muted-foreground"><td className="px-4 py-3 font-medium text-foreground"><strong>DigitalOcean</strong></td><td className="px-4 py-3">Managed Kubernetes hosting, compute, networking, and managed database</td><td className="px-4 py-3"><strong>United States</strong></td><td className="px-4 py-3">Potentially all Customer Data, depending on the infrastructure component used</td></tr><tr className="align-top text-muted-foreground"><td className="px-4 py-3 font-medium text-foreground"><strong>Google LLC (Google Cloud)</strong></td><td className="px-4 py-3">Object and file storage, encrypted secret management, and Google sign-in (OAuth)</td><td className="px-4 py-3"><strong>United States / configured per deployment</strong></td><td className="px-4 py-3">Customer Data (including file attachments), account identifiers, and application secrets</td></tr><tr className="align-top text-muted-foreground"><td className="px-4 py-3 font-medium text-foreground"><strong>Postmark</strong></td><td className="px-4 py-3">Transactional and system email delivery, including account verification, password-reset communications, and other applicable service-related communications</td><td className="px-4 py-3"><strong>United States</strong></td><td className="px-4 py-3">Primarily Authorized User names, email addresses, applicable message content, and delivery metadata</td></tr></tbody></table></div>
                     <p className="text-muted-foreground leading-relaxed mt-4">Patient clinical information is not intentionally transmitted to Postmark as part of the currently described account-verification and password-reset workflows.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">The providers and processing arrangements applicable to a particular Customer may vary based on deployment model, enabled functionality, geographic requirements, and the Customer’s applicable written agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="deployment-specific-processing"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Deployment-Specific Processing</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may be provided using different deployment models.</p>
@@ -183,15 +124,11 @@ export default function SubprocessorsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">For client-hosted, private-cloud, or customer-managed deployments, the Customer may select, provide, administer, or control its own hosting environment, infrastructure providers, networks, storage, backup systems, security services, or other technology.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">A provider selected or controlled by the Customer does not become a MYCURE Subprocessor solely because MYCURE CMS is deployed in or interacts with that environment.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">The applicable Order Form, service agreement, data processing agreement, security agreement, Statement of Work, or other written agreement may further describe deployment-specific responsibilities.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="customer-selected-third-party-services"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. Customer-Selected Third-Party Services</h2>
                     <p className="text-muted-foreground leading-relaxed">Customers may enable, request, or authorize MYCURE CMS to connect with third-party services.</p>
@@ -212,30 +149,22 @@ export default function SubprocessorsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">A third party selected or independently controlled by a Customer is not a MYCURE Subprocessor solely because MYCURE CMS transmits information to or receives information from that third party at the Customer’s instruction.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers are responsible for determining whether Customer-selected integrations and disclosures are appropriate and lawful for their use.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Third-party services may also be subject to their own terms, privacy notices, security practices, and data-processing arrangements.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="artificial-intelligence-services"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Artificial Intelligence Services</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE does not currently use a third-party artificial intelligence or large-language-model provider to process Customer Data as part of the production MYCURE CMS application.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may introduce AI-assisted functionality in the future.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">If an external AI or large-language-model provider is introduced and qualifies as a Subprocessor of Customer Data, MYCURE will address the applicable data-processing, authorization, security, and notice requirements and update this list as appropriate.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Use of development or internal productivity tools that do not receive production Customer Data does not make the provider of those tools a Subprocessor of Customer Data.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="subprocessor-safeguards"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Subprocessor Safeguards</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE requires Subprocessors processing Customer Data on its behalf to be subject to appropriate contractual, confidentiality, security, and data-protection obligations taking into account the nature of the service and applicable law.</p>
@@ -252,61 +181,46 @@ export default function SubprocessorsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>other obligations appropriate to the Processing.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">The specific obligations applicable to a Subprocessor may vary according to the nature of its service, the Customer’s deployment, and applicable law.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="changes-to-subprocessors"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Changes to Subprocessors</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may add, replace, or discontinue Subprocessors as its services, infrastructure, security requirements, technology, availability requirements, and business operations evolve.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a new material Subprocessor will process Customer Data and an applicable written agreement or law requires notice or another documented mechanism, MYCURE will follow the applicable requirement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Urgent changes may sometimes be necessary for security, legal, availability, continuity, or similar operational reasons. Where applicable, notice may be provided after such a change where prior notice is not reasonably practicable and the applicable agreement permits it.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">This Subprocessor List is intended to remain current but does not permanently commit MYCURE to any particular infrastructure provider or technology.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="questions-and-privacy-contact"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Questions and Privacy Contact</h2>
                     <p className="text-muted-foreground leading-relaxed">Questions concerning this Subprocessor List, privacy, data protection, or security matters relating to MYCURE may be directed to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Team OPS Inc. dba MYCURE</strong><br />201 Malayan Plaza<br />ADB Avenue corner Opal Road<br />Ortigas Business Center<br />Pasig City, Philippines 1600</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Privacy &amp; Security Contact:</strong><br /><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="related-resources"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Related Resources</h2>
                     <p className="text-muted-foreground leading-relaxed"><strong>Privacy Notice</strong><br /><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Terms of Service</strong><br /><a href="/terms-and-conditions" className="text-primary hover:underline">https://mycure.md/terms-and-conditions</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
-                  </motion.section>
+                  </section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <motion.div
+                <div
                   className="sticky top-24"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="border rounded-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
@@ -326,7 +240,7 @@ export default function SubprocessorsPage() {
                       ))}
                     </nav>
                   </div>
-                </motion.div>
+                </div>
               </aside>
             </div>
           </div>

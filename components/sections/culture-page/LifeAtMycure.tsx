@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { ImageIcon } from "lucide-react"
 import type { HighlightItem } from "./types"
 
@@ -31,11 +31,11 @@ export function LifeAtMycure({
     <section id="life" className="w-full py-16 sm:py-20 md:py-24">
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight mb-4">
               {heading}
@@ -60,13 +60,13 @@ export function LifeAtMycure({
                 )
               })}
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.3, delay: 0.05, ease: [0, 0, 0.58, 1] }}
           >
             {image ? (
               <Image
@@ -82,7 +82,7 @@ export function LifeAtMycure({
                 <span className="px-6 text-center text-sm">Graphic coming soon</span>
               </div>
             )}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

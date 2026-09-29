@@ -1,15 +1,15 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import type { HighlightItem } from "./types"
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.06 } },
 }
-const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0, 0, 0.58, 1] } } }
 
 /**
  * "How we work" — facts genuinely attested across the live job listings,
@@ -30,19 +30,19 @@ export function HowWeWork({
   return (
     <section id="how-we-work" className="w-full py-20 md:py-32 bg-muted/30">
       <div className="container px-4 sm:px-6 md:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
         >
           {badge && <AnimatedBadge>{badge}</AnimatedBadge>}
           <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">{heading}</h2>
           {intro && <p className="max-w-[800px] text-muted-foreground md:text-lg">{intro}</p>}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -52,8 +52,8 @@ export function HowWeWork({
           {items.map((feature) => {
             const Icon = feature.icon
             return (
-              <motion.div key={feature.title} variants={item}>
-                <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+              <m.div key={feature.title} variants={item}>
+                <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-shadow duration-150 hover:shadow-md">
                   <CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full">
                     <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
                       <Icon className="size-5" />
@@ -62,10 +62,10 @@ export function HowWeWork({
                     <p className="text-muted-foreground">{feature.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </m.div>
             )
           })}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

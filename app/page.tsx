@@ -1,9 +1,11 @@
 "use client"
 
 import React from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
+import { MotionProvider } from "@/components/providers/motion-provider"
 import { cn } from "@/lib/utils"
 import { Activity, Check, ChevronRight, Menu, X, Moon, Sun, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -58,21 +60,22 @@ export default function LandingPage() {
       const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+      window.scrollTo({ top: offsetPosition, behavior: scrollBehavior() })
     }
     setMobileMenuOpen(false)
   }
 
-  const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } }
-  const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
+  const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.06 } } }
+  const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0, 0, 0.58, 1] } } }
 
   return (
+    <MotionProvider>
     <div className="flex min-h-[100dvh] flex-col">
       <HomeFAQSchema />
       {/* Header */}
-      <header className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}>
+      <header className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-[background-color,box-shadow] duration-300 ${isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"}`}>
         <div className="container flex h-16 items-center justify-between">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity">
+          <button onClick={() => window.scrollTo({ top: 0, behavior: scrollBehavior() })} className="flex items-center gap-2 font-bold hover:opacity-80 transition-opacity">
             <div className="size-8 rounded-full bg-white flex items-center justify-center">
               <Image src="/mycure-logo.svg" alt="MYCURE Logo" width={32} height={32} />
             </div>
@@ -139,16 +142,16 @@ export default function LandingPage() {
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 sm:px-6 md:px-8 relative">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center max-w-4xl mx-auto mb-12">
+            <div className="text-center max-w-4xl mx-auto mb-12">
               <div className="mb-6"><div className="inline-flex items-center rounded-full px-4 py-1.5 bg-white/90 border border-white/20 backdrop-blur-sm shadow-lg"><Activity className="size-4 text-cyan-500 mr-2" /><AnimatedGradientText className="text-sm font-medium" colorFrom="var(--gradient-quinary)" colorTo="#FF6B35" speed={1.5}>{heroConfig.badge}</AnimatedGradientText></div></div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-tight mb-6 text-white">{heroConfig.headline.line1}<br />{heroConfig.headline.line2}</h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed mb-8 max-w-3xl mx-auto">{heroConfig.description}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
                 <Link href={heroConfig.cta.primary.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto"><ShimmerButton background="#0099CC" shimmerColor="#FFFFFF" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.primary.text}<ArrowRight className="ml-2 size-4" /></ShimmerButton></Link>
-                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full sm:w-auto"><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
+                <Link href={heroConfig.cta.secondary.href} onClick={(e) => { e.preventDefault(); document.getElementById('video-demo')?.scrollIntoView({ behavior: scrollBehavior() }); }} className="w-full sm:w-auto"><Button variant="outline" size="lg" className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white whitespace-nowrap w-full sm:w-auto min-w-[180px]">{heroConfig.cta.secondary.text}</Button></Link>
               </div>
-            </motion.div>
-            <motion.div id="video-demo" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="relative mx-auto max-w-5xl">
+            </div>
+            <div id="video-demo" className="relative mx-auto max-w-5xl">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm">
                 <YouTubeFacade videoId={heroConfig.video.videoId} title={heroConfig.video.title} poster="/images/hero-video-thumbnail.jpg" />
                 <VideoObjectSchema videoId={heroConfig.video.videoId} name={heroConfig.video.title} />
@@ -157,14 +160,14 @@ export default function LandingPage() {
               <noscript><div className="aspect-video rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center"><Link href={heroConfig.video.watchUrl} className="text-white hover:text-white/80 transition-colors" target="_blank" rel="noopener noreferrer">Watch MYCURE Introduction Video</Link></div></noscript>
               <div className="absolute -bottom-6 -right-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-white/20 to-white/10 blur-3xl opacity-70"></div>
               <div className="absolute -top-6 -left-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-white/10 to-white/20 blur-3xl opacity-70"></div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Logo Cloud Section */}
         <section className="w-full py-8 sm:py-12 md:py-16 border-y bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center">
+            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }} className="flex flex-col items-center justify-center space-y-6 md:space-y-8 text-center">
               <div className="space-y-1"><p className="text-sm font-medium text-muted-foreground">{logosConfig.heading}</p><p className="text-lg font-semibold text-foreground">{logosConfig.subheading}</p></div>
               <div className="relative w-full max-w-6xl overflow-hidden">
                 <Marquee pauseOnHover className="[--duration:25s] [--gap:2rem] md:[--gap:3rem] pb-10">
@@ -175,7 +178,7 @@ export default function LandingPage() {
                         alt={logo.alt}
                         width={240}
                         height={96}
-                        className="h-20 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-24"
+                        className="h-20 w-auto object-contain opacity-60 grayscale transition-[opacity,filter] duration-150 hover:opacity-100 hover:grayscale-0 md:h-24"
                       />
                       {/* CSS-only tooltip */}
                       <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md opacity-0 transition-opacity group-hover/logo:opacity-100">
@@ -185,7 +188,7 @@ export default function LandingPage() {
                   ))}
                 </Marquee>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
 
@@ -196,14 +199,14 @@ export default function LandingPage() {
         <section id="features" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
           <div className="container px-4 sm:px-6 md:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }} className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <AnimatedBadge>{featuresGridConfig.badge}</AnimatedBadge>
               <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight">{featuresGridConfig.headline}</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">{featuresGridConfig.description}</p>
-            </motion.div>
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {featuresGridConfig.items.map((feature, i) => { const Icon = feature.icon; return (<motion.div key={i} variants={item}><Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md"><CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full"><div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4"><Icon className="size-5" /></div><h3 className="text-xl font-bold mb-2">{feature.title}</h3><p className="text-muted-foreground">{feature.description}</p></CardContent></Card></motion.div>) })}
-            </motion.div>
+            </m.div>
+            <m.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {featuresGridConfig.items.map((feature, i) => { const Icon = feature.icon; return (<m.div key={i} variants={item}><Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-shadow duration-150 hover:shadow-md"><CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full"><div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4"><Icon className="size-5" /></div><h3 className="text-xl font-bold mb-2">{feature.title}</h3><p className="text-muted-foreground">{feature.description}</p></CardContent></Card></m.div>) })}
+            </m.div>
           </div>
         </section>
 
@@ -213,15 +216,15 @@ export default function LandingPage() {
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 sm:px-6 md:px-8 relative">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
+            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">{statisticsConfig.headline}</h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{statisticsConfig.description}</p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10">
+            </m.div>
+            <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }} className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10">
               <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-                {statisticsConfig.items.map((stat, i) => (<motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: stat.delay }} className="text-center space-y-2"><div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary"><NumberTicker value={stat.value} delay={stat.delay} className="font-bold text-primary" /></div><div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">{stat.label}</div></motion.div>))}
+                {statisticsConfig.items.map((stat, i) => (<m.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.06, ease: [0, 0, 0.58, 1] }} className="text-center space-y-2"><div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary"><NumberTicker value={stat.value} delay={stat.delay} className="font-bold text-primary" /></div><div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">{stat.label}</div></m.div>))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
 
@@ -237,22 +240,22 @@ export default function LandingPage() {
           <div className="container px-4 sm:px-6 md:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center relative">
               <div className="absolute inset-0 pointer-events-none">
-                {integrationConfig.icons.slice(0, 2).map((icon, i) => (<motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 * (i + 1) }} className={`absolute ${i === 0 ? "top-0 left-4 sm:left-8 md:left-1/4 -translate-x-1/2 -translate-y-8" : "top-8 right-4 sm:right-12 md:right-1/4 translate-x-1/2 -translate-y-12 sm:-translate-y-16 md:-translate-y-4"}`}><div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={40} height={40} alt={icon.alt} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded" /></div></motion.div>))}
-                {integrationConfig.icons.slice(2, 4).map((icon, i) => (<motion.div key={i} initial={{ opacity: 0, x: i === 0 ? -20 : 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 + 0.1 * i }} className={`absolute top-1/2 ${i === 0 ? "left-1 sm:left-8 md:left-8" : "right-1 sm:right-8 md:right-8"} -translate-y-1/2 hidden md:block`}><div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={40} height={40} alt={icon.alt} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded" /></div></motion.div>))}
-                {integrationConfig.icons.slice(4, 6).map((icon, i) => (<motion.div key={i} initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.5 + 0.1 * i }} className={`absolute ${i === 0 ? "bottom-8 left-8 sm:left-16 md:left-1/3 -translate-x-1/2 translate-y-8 sm:translate-y-12 md:translate-y-4" : "bottom-0 right-8 sm:right-16 md:right-1/3 translate-x-1/2 translate-y-12 sm:translate-y-16 md:translate-y-8"}`}><div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={40} height={40} alt={icon.alt} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded" /></div></motion.div>))}
-                {integrationConfig.icons.slice(6, 8).map((icon, i) => (<motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.7 + 0.1 * i }} className={`absolute top-1/4 ${i === 0 ? "left-12" : "right-12"} ${i === 0 ? "-translate-x-1/2" : "translate-x-1/2"} hidden lg:block`}><div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={28} height={28} alt={icon.alt} className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded" /></div></motion.div>))}
+                {integrationConfig.icons.slice(0, 2).map((icon, i) => (<m.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.06, ease: [0, 0, 0.58, 1] }} className={`absolute ${i === 0 ? "top-0 left-4 sm:left-8 md:left-1/4 -translate-x-1/2 -translate-y-8" : "top-8 right-4 sm:right-12 md:right-1/4 translate-x-1/2 -translate-y-12 sm:-translate-y-16 md:-translate-y-4"}`}><div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={40} height={40} alt={icon.alt} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded" /></div></m.div>))}
+                {integrationConfig.icons.slice(2, 4).map((icon, i) => (<m.div key={i} initial={{ opacity: 0, x: i === 0 ? -20 : 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.12 + i * 0.06, ease: [0, 0, 0.58, 1] }} className={`absolute top-1/2 ${i === 0 ? "left-1 sm:left-8 md:left-8" : "right-1 sm:right-8 md:right-8"} -translate-y-1/2 hidden md:block`}><div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={40} height={40} alt={icon.alt} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded" /></div></m.div>))}
+                {integrationConfig.icons.slice(4, 6).map((icon, i) => (<m.div key={i} initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.24 + i * 0.06, ease: [0, 0, 0.58, 1] }} className={`absolute ${i === 0 ? "bottom-8 left-8 sm:left-16 md:left-1/3 -translate-x-1/2 translate-y-8 sm:translate-y-12 md:translate-y-4" : "bottom-0 right-8 sm:right-16 md:right-1/3 translate-x-1/2 translate-y-12 sm:translate-y-16 md:translate-y-8"}`}><div className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15 bg-white rounded-full shadow-lg flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={40} height={40} alt={icon.alt} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded" /></div></m.div>))}
+                {integrationConfig.icons.slice(6, 8).map((icon, i) => (<m.div key={i} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.36 + i * 0.06, ease: [0, 0, 0.58, 1] }} className={`absolute top-1/4 ${i === 0 ? "left-12" : "right-12"} ${i === 0 ? "-translate-x-1/2" : "translate-x-1/2"} hidden lg:block`}><div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-white rounded-full shadow-md flex items-center justify-center border-[4px] border-gray-100/60"><Image src={icon.src} width={28} height={28} alt={icon.alt} className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded" /></div></m.div>))}
               </div>
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative z-10 py-16 md:py-24">
+              <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }} className="relative z-10 py-16 md:py-24">
                 <div className="space-y-8">
                   <div className="space-y-6">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{integrationConfig.headline.before} <br className="hidden sm:block" />{integrationConfig.headline.highlight}</h2>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{integrationConfig.description}</p>
                   </div>
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
+                  <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.15, ease: [0, 0, 0.58, 1] }} className="flex justify-center">
                     <Link href={integrationConfig.cta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto"><PrimaryButton slow className="flex items-center justify-center gap-2 w-full sm:w-auto">{integrationConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link>
-                  </motion.div>
+                  </m.div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </section>
@@ -271,10 +274,10 @@ export default function LandingPage() {
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="container px-4 sm:px-6 md:px-8 relative">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
+            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }} className="flex flex-col items-center justify-center space-y-6 text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight">{faqConfig.headline}</h2>
               <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">{faqConfig.description}</p>
-            </motion.div>
+            </m.div>
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
               {faqConfig.items.map((faq, i) => (<AccordionItem key={i} value={`item-${i}`} className="border-white/20 bg-white/10 backdrop-blur-sm rounded-xl mb-3 sm:mb-4 px-4 sm:px-6"><AccordionTrigger className="text-white hover:text-white/80 text-left text-base sm:text-lg font-medium py-4 sm:py-5">{faq.question}</AccordionTrigger><AccordionContent className="text-white/80 text-base sm:text-lg leading-relaxed">{faq.hasLink ? (<>Visit <a href={faq.linkHref} target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-white/80">{faq.linkText}</a> for complete self-service support including our comprehensive knowledgebase, ticketing system for technical issues, and community forum discussions with other healthcare providers.</>) : faq.answer}</AccordionContent></AccordionItem>))}
             </Accordion>
@@ -284,7 +287,7 @@ export default function LandingPage() {
         {/* Final CTA Section */}
         <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-br from-background to-muted/30">
           <div className="container px-4 sm:px-6 md:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center max-w-4xl mx-auto">
+            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }} className="text-center max-w-4xl mx-auto">
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight">{finalCtaConfig.headline.before} {finalCtaConfig.headline.highlight} {finalCtaConfig.headline.after}</h2>
@@ -293,10 +296,11 @@ export default function LandingPage() {
                 <div className="flex justify-center items-center px-4 sm:px-0"><Link href={finalCtaConfig.cta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto"><PrimaryButton slow className="h-11 sm:h-12 flex items-center justify-center gap-2 w-full sm:w-auto">{finalCtaConfig.cta.text}<ArrowRight className="size-4" /></PrimaryButton></Link></div>
                 <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">{finalCtaConfig.features.map((feature, i) => (<div key={i} className="flex items-center gap-2"><Check className="size-4 text-primary" /><span>{feature}</span></div>))}</div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
       </main>
     </div>
+    </MotionProvider>
   )
 }

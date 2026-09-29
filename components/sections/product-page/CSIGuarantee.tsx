@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { CheckCircle, Shield, Cloud } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 
@@ -11,11 +11,11 @@ export function CSIGuarantee() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Sticky Left Content */}
           <div className="lg:sticky lg:top-32 space-y-6">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
             >
               <AnimatedBadge>MYCURE CSI</AnimatedBadge>
               <p className="text-sm font-medium text-muted-foreground mt-3 tracking-wide">Compliance · Security · Interoperability</p>
@@ -28,17 +28,17 @@ export function CSIGuarantee() {
                 helps keep that trust intact through responsible data handling, compliance-aware
                 workflows, and connections to the systems clinics already work with. Specific safeguards and integrations depend on your plan, configuration, and applicable agreement.
               </p>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Progressive Feature Reveals */}
           <div className="space-y-40">
             {/* Compliance Feature */}
-            <motion.div
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+            <m.div
+              initial={{ opacity: 0, y: 24, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
               className="space-y-6"
             >
               <div className="flex items-center gap-4">
@@ -89,14 +89,14 @@ export function CSIGuarantee() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Security Feature */}
-            <motion.div
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+            <m.div
+              initial={{ opacity: 0, y: 24, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
               className="space-y-6"
             >
               <div className="flex items-center gap-4">
@@ -147,14 +147,14 @@ export function CSIGuarantee() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Interoperability Feature */}
-            <motion.div
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+            <m.div
+              initial={{ opacity: 0, y: 24, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
               className="space-y-6"
             >
               <div className="flex items-center gap-4">
@@ -204,7 +204,7 @@ export function CSIGuarantee() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

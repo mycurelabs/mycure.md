@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import {
   FileWarning,
   Clock,
@@ -95,11 +95,11 @@ export function StorybrandSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Sticky Left Content */}
           <div className="lg:sticky lg:top-32 space-y-6">
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
               >
                 <AnimatedBadge>Your Journey</AnimatedBadge>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-tight mt-4">
@@ -108,18 +108,18 @@ export function StorybrandSection() {
                 <p className="text-xl md:text-2xl text-muted-foreground mt-6 max-w-lg leading-relaxed">
                   See how MYCURE transforms your daily clinic operations from overwhelming paperwork to streamlined efficiency.
                 </p>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Progressive Feature Reveals */}
             <div className="space-y-40">
               {/* THE REALITY - Endless Notifications Loop */}
-              {/* Using motion.div instead of Scrollytelling.Animation for interactive content */}
-              <motion.div
-                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              {/* Using m.div instead of Scrollytelling.Animation for interactive content */}
+              <m.div
+                initial={{ opacity: 0, y: 24, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4">
@@ -144,10 +144,10 @@ export function StorybrandSection() {
                       {visibleCards.map(({ cardId, instanceId }, index) => {
                         const card = allNotifications[cardId]
                         return (
-                          <motion.div
+                          <m.div
                             key={instanceId}
                             layout
-                            initial={{ opacity: 0, y: 60 }}
+                            initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: index * 48 }}
                             exit={{ opacity: 0, x: 100, transition: { duration: 0.2 } }}
                             transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -172,21 +172,21 @@ export function StorybrandSection() {
                                 <X className="w-4 h-4 text-gray-400" />
                               </button>
                             </div>
-                          </motion.div>
+                          </m.div>
                         )
                       })}
                     </AnimatePresence>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* THE FRUSTRATION - Clinic Efficiency */}
-              {/* Using motion.div instead of Scrollytelling.Animation for consistency with interactive sections */}
-              <motion.div
-                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              {/* Using m.div instead of Scrollytelling.Animation for consistency with interactive sections */}
+              <m.div
+                initial={{ opacity: 0, y: 24, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4">
@@ -208,7 +208,7 @@ export function StorybrandSection() {
 
                     {/* Simple progress track */}
                     <div className="h-4 bg-gray-100 dark:bg-gray-800 rounded-full relative overflow-hidden">
-                      <motion.div
+                      <m.div
                         className="h-full rounded-full bg-gradient-to-r from-orange-500 to-red-500"
                         initial={{ width: "0%" }}
                         whileInView={{ width: "30%" }}
@@ -227,15 +227,15 @@ export function StorybrandSection() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* THE ANSWER - Next Patient Flow */}
-              {/* Using motion.div instead of Scrollytelling.Animation for interactive content */}
-              <motion.div
-                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              {/* Using m.div instead of Scrollytelling.Animation for interactive content */}
+              <m.div
+                initial={{ opacity: 0, y: 24, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4">
@@ -270,52 +270,52 @@ export function StorybrandSection() {
                             <div className="text-sm font-semibold">Patient #{patientIndex + 1}</div>
                             <div className="text-xs text-muted-foreground">Current encounter</div>
                           </div>
-                          <motion.div
+                          <m.div
                             key="patient-badge"
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             className="text-xs text-green-600 bg-green-100 dark:bg-green-900/50 px-2 py-0.5 rounded-full"
                           >
                             All caught up
-                          </motion.div>
+                          </m.div>
                         </div>
 
                         {/* Animated checklist */}
                         <AnimatePresence mode="wait">
                           {showChecklist && (
-                            <motion.div
+                            <m.div
                               key="patient-checklist"
                               initial={{ opacity: 0, x: 20 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -20 }}
-                              transition={{ duration: 0.3 }}
+                              transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
                               className="space-y-1.5 flex-1"
                             >
                               {checklistItems.map((item, index) => (
-                                <motion.div
+                                <m.div
                                   key={item}
                                   initial={{ opacity: 0, scale: 0.8 }}
                                   animate={{ opacity: 1, scale: 1 }}
-                                  transition={{ delay: index * 0.15, type: "spring", stiffness: 300 }}
+                                  transition={{ delay: index * 0.06, type: "spring", stiffness: 300 }}
                                   style={{ willChange: "transform, opacity" }}
                                   className="flex items-center gap-2 p-1.5 bg-green-50 dark:bg-green-900/20 rounded-lg"
                                 >
-                                  <motion.div
+                                  <m.div
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
-                                    transition={{ delay: index * 0.15 + 0.1, type: "spring", stiffness: 400 }}
+                                    transition={{ delay: index * 0.06 + 0.05, type: "spring", stiffness: 400 }}
                                   >
                                     <CheckCircle className="w-3.5 h-3.5 text-green-600" />
-                                  </motion.div>
+                                  </m.div>
                                   <span className="text-xs">{item}</span>
-                                </motion.div>
+                                </m.div>
                               ))}
-                            </motion.div>
+                            </m.div>
                           )}
                         </AnimatePresence>
 
                         {/* Next Patient Button */}
-                        <motion.button
+                        <m.button
                           type="button"
                           onClick={handleNextPatient}
                           disabled={isTransitioning}
@@ -327,12 +327,12 @@ export function StorybrandSection() {
                           <UserPlus className="w-4 h-4" />
                           <span>Next Patient</span>
                           <ChevronRight className="w-4 h-4" />
-                        </motion.button>
+                        </m.button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
         </div>
       </div>

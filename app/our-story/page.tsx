@@ -1,9 +1,11 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
+import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { Reveal } from "@/components/custom/reveal"
 import { ArrowLeft, Menu, X, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
@@ -13,7 +15,6 @@ import { VideoObjectSchema } from "@/components/schemas/VideoObjectSchema"
 
 export default function OurStoryPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
   const sections = [
     { id: "meet-paulette", title: "Meet Paulette" },
@@ -24,47 +25,7 @@ export default function OurStoryPage() {
   ]
 
   // Track active section based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("our-values")
-      } else {
-        let currentSection = ""
-        let maxVisibility = 0
-
-        for (const section of sections) {
-          const element = document.getElementById(section.id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            const elementTop = rect.top
-            const elementBottom = rect.bottom
-            const viewportHeight = window.innerHeight
-
-            const visibleTop = Math.max(0, elementTop)
-            const visibleBottom = Math.min(viewportHeight, elementBottom)
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-
-            if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
-              maxVisibility = visibleHeight
-              currentSection = section.id
-            }
-          }
-        }
-
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const activeSection = useScrollSpy(sections.map((s) => s.id))
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -74,7 +35,7 @@ export default function OurStoryPage() {
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       })
       setMobileTocOpen(false)
     }
@@ -109,11 +70,8 @@ export default function OurStoryPage() {
         {/* Hero Section - Blog Template Style */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-            <motion.div 
+            <div
               className="max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
@@ -125,7 +83,7 @@ export default function OurStoryPage() {
               <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
                 MYCURE starts and ends with real people
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -154,13 +112,9 @@ export default function OurStoryPage() {
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 1: Meet Paulette */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="meet-paulette" 
                     className="mb-20"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <div className="md:flex md:gap-8 items-start">
                       <div className="md:w-2/5 mb-6 md:mb-0">
@@ -196,18 +150,14 @@ export default function OurStoryPage() {
                         </p>
                       </div>
                     </div>
-                  </motion.section>
+                  </Reveal>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 2: About the Founders */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="about-founders" 
                     className="mb-20"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">About the Founders</h2>
                     
@@ -244,18 +194,14 @@ export default function OurStoryPage() {
                         </p>
                       </div>
                     </div>
-                  </motion.section>
+                  </Reveal>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 3: The Problem */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="the-problem" 
                     className="mb-20"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">The Problem</h2>
                     
@@ -276,18 +222,14 @@ export default function OurStoryPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       Thus health professionals are unable to optimize patient healthcare. In the same manner, patients have difficulty monitoring and organizing their medical data and history.
                     </p>
-                  </motion.section>
+                  </Reveal>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 4: Our Purpose */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="our-purpose" 
                     className="mb-20"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">Our Purpose</h2>
                     
@@ -316,18 +258,14 @@ export default function OurStoryPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       They are our true inspirations, the reasons for our being and existence.
                     </p>
-                  </motion.section>
+                  </Reveal>
                   
                   <hr className="border-t border-border/40 my-12" />
 
                   {/* Section 5: Our Values */}
-                  <motion.section 
+                  <Reveal as="section"
                     id="our-values" 
                     className="mb-20"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">Our Values</h2>
                     
@@ -353,17 +291,14 @@ export default function OurStoryPage() {
                         className="rounded-lg w-full object-cover"
                       />
                     </div>
-                  </motion.section>
+                  </Reveal>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <motion.div 
+                <div
                   className="sticky top-24"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="border rounded-lg p-6">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
@@ -383,7 +318,7 @@ export default function OurStoryPage() {
                       ))}
                     </nav>
                   </div>
-                </motion.div>
+                </div>
               </aside>
             </div>
           </div>

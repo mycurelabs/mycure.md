@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import type { ValueItem } from "./types"
@@ -28,12 +28,12 @@ export function CoreValues({
         className={cn("[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]", "opacity-50")}
       />
       <div className="container px-4 sm:px-6 md:px-8 relative z-10">
-        <motion.div
+        <m.div
           className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
         >
           {eyebrow && (
             <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
@@ -46,19 +46,19 @@ export function CoreValues({
           {intro && (
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">{intro}</p>
           )}
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-6xl mx-auto">
           {values.map((value, index) => {
             const Icon = value.icon
             return (
-              <motion.div
+              <m.div
                 key={value.title}
                 className="flex flex-col items-center text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.06, ease: [0, 0, 0.58, 1] }}
               >
                 <div
                   aria-hidden="true"
@@ -74,7 +74,7 @@ export function CoreValues({
                     {value.description}
                   </p>
                 )}
-              </motion.div>
+              </m.div>
             )
           })}
         </div>

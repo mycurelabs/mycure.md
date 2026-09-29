@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { navigationConfig } from '@/app/(home)/data'
 import { Metadata } from 'next'
-import { ProductHeader } from '@/components/sections/product-page'
+import { ProductHeader } from '@/components/sections/product-page/ProductHeader'
 
 export const metadata: Metadata = {
   title: 'Page Not Found',

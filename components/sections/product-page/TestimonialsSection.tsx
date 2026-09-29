@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Star } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
@@ -17,11 +17,11 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
       className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-background"
     >
       <div className="container px-4 sm:px-6 md:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
         >
           <AnimatedBadge>{config.badge}</AnimatedBadge>
@@ -31,18 +31,18 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
             {config.description}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">
           {config.testimonials.map((testimonial, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+              transition={{ duration: 0.3, delay: i * 0.06, ease: [0, 0, 0.58, 1] }}
             >
-              <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+              <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-shadow duration-150 hover:shadow-md">
                 <CardContent className="p-6 flex flex-col h-full">
                   <div className="flex mb-4">
                     {Array(testimonial.rating)
@@ -72,7 +72,7 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

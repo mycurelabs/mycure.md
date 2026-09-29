@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
+import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { ArrowLeft, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
 
 export default function PrivacyPolicyPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
   const sections = [
     { id: "scope", title: "1. Scope" },
@@ -38,47 +38,7 @@ export default function PrivacyPolicyPage() {
     { id: "related-resources", title: "Related Resources" }
   ]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection(sections[sections.length - 1].id)
-      } else {
-        let currentSection = ""
-        let maxVisibility = 0
-
-        for (const section of sections) {
-          const element = document.getElementById(section.id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            const elementTop = rect.top
-            const elementBottom = rect.bottom
-            const viewportHeight = window.innerHeight
-
-            const visibleTop = Math.max(0, elementTop)
-            const visibleBottom = Math.min(viewportHeight, elementBottom)
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-
-            if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
-              maxVisibility = visibleHeight
-              currentSection = section.id
-            }
-          }
-        }
-
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const activeSection = useScrollSpy(sections.map((s) => s.id))
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -88,7 +48,7 @@ export default function PrivacyPolicyPage() {
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       })
       setMobileTocOpen(false)
     }
@@ -102,11 +62,8 @@ export default function PrivacyPolicyPage() {
         {/* Hero Section */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-            <motion.div
+            <div
               className="max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
@@ -121,7 +78,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-sm sm:text-base text-muted-foreground">
                 Effective Date: August 11, 2026
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -134,24 +91,16 @@ export default function PrivacyPolicyPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
 
                   {/* Preamble */}
-                  <motion.div
+                  <div
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <p className="text-muted-foreground leading-relaxed">This Privacy Notice should be read together with our <strong>Terms of Service</strong>, <strong>Security Overview</strong>, <strong>Subprocessor List</strong>, and any applicable Order Form, Data Processing Agreement, Business Associate Agreement, service agreement, or other written agreement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a written agreement contains more specific privacy or data-processing terms, that agreement applies to the extent provided in that agreement.</p>
-                  </motion.div>
+                  </div>
 
-                  <motion.section
+                  <section
                     id="scope"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Scope</h2>
                     <p className="text-muted-foreground leading-relaxed">This Privacy Notice applies to personal data processed in connection with MYCURE, including information relating to:</p>
@@ -172,15 +121,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Patient Data</strong> means personal data relating to a patient, including health, clinical, appointment, billing, communication, and care-related information.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Service Administration Data</strong> means personal data that MYCURE processes for its own legitimate business and service-administration purposes, such as account administration, authentication and security, Customer relationship management, billing, contractual administration, support administration, legal compliance, and permitted business communications.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">This Privacy Notice does not replace a Customer's own privacy notice, patient notice, consent form, medical-record policy, or other legal obligation.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="our-role-in-processing-personal-data"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Our Role in Processing Personal Data</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may process different personal data in different legal capacities depending on the information, purpose, Customer relationship, deployment model, and applicable law.</p>
@@ -207,15 +152,11 @@ export default function PrivacyPolicyPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">The same information may be processed in different capacities for different purposes.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">For example, an Authorized User's email address may be processed on behalf of the Customer for access to MYCURE CMS while also being processed by MYCURE for security, account administration, or contractual communications.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="information-we-process"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. Information We Process</h2>
                     <p className="text-muted-foreground leading-relaxed">Depending on the services used and the applicable relationship, we may process the following categories of information.</p>
@@ -313,15 +254,11 @@ export default function PrivacyPolicyPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>other information reasonably necessary to address the request.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers and users should avoid including Patient Data or other sensitive Customer Data in support communications unless reasonably necessary for the applicable support issue.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="how-we-obtain-information"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. How We Obtain Information</h2>
                     <p className="text-muted-foreground leading-relaxed">Depending on the context, information may be provided or generated:</p>
@@ -337,15 +274,11 @@ export default function PrivacyPolicyPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>through business communications; or</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>through other lawful sources relevant to the applicable relationship.</span></li>
                     </ul>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="how-we-process-information"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. How We Process Information</h2>
                     <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">Customer Data</h3>
@@ -384,15 +317,11 @@ export default function PrivacyPolicyPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>communicating service or security information; and</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>conducting permitted business and marketing communications.</span></li>
                     </ul>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="lawful-bases"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. Lawful Bases</h2>
                     <p className="text-muted-foreground leading-relaxed">The lawful basis for processing depends on the applicable jurisdiction and context.</p>
@@ -408,15 +337,11 @@ export default function PrivacyPolicyPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE processes Customer Data on behalf of a Customer, the Customer is generally responsible for establishing the lawful basis for that processing.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Nothing in this Privacy Notice means that consent is required for every processing activity.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="sharing-and-disclosure"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Sharing and Disclosure</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE does not sell identifiable Patient Data.</p>
@@ -446,15 +371,11 @@ export default function PrivacyPolicyPage() {
                     </ul>
                     <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">7.6 Business Transactions</h3>
                     <p className="text-muted-foreground leading-relaxed mt-4">If MYCURE undergoes a merger, acquisition, financing, restructuring, reorganization, sale of assets, or similar transaction, personal data may be transferred or disclosed as reasonably necessary for that transaction and subject to applicable confidentiality and data-protection requirements.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="artificial-intelligence-and-automated-features"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Artificial Intelligence and Automated Features</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may introduce AI-assisted, machine-learning, automation, or similar functionality as MYCURE CMS evolves.</p>
@@ -463,15 +384,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Current material external Subprocessors are identified in our Subprocessor List.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless otherwise expressly authorized through an applicable Customer agreement or documented instruction, MYCURE does not authorize identifiable production Customer Data to be used to train general-purpose third-party AI or large-language models.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">AI-assisted functionality is not a substitute for professional medical judgment. Customers and healthcare professionals remain responsible for reviewing information used for clinical, professional, or regulated purposes.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="aggregated-statistical-and-de-identified-information"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Aggregated, Statistical, and De-Identified Information</h2>
                     <p className="text-muted-foreground leading-relaxed">Where permitted by applicable law and the applicable Customer agreement or instructions, MYCURE may generate aggregated, statistical, or de-identified information for legitimate purposes such as:</p>
@@ -485,15 +402,11 @@ export default function PrivacyPolicyPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Information treated as de-identified or anonymized for these purposes must not identify an individual where applicable law requires that status.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not treat identifiable Patient Data as anonymized merely because direct identifiers have been removed where the information remains reasonably capable of being linked to an individual.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="data-retention"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. Data Retention</h2>
                     <p className="text-muted-foreground leading-relaxed">Retention depends on the type of information, MYCURE's role in processing it, the applicable Customer agreement, Customer instructions, legal requirements, operational requirements, and applicable law.</p>
@@ -503,15 +416,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Deletion from active systems may not result in immediate deletion of residual information contained in ordinary backup cycles or information that must lawfully be preserved.</p>
                     <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3">MYCURE-Controlled Data</h3>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE retains Service Administration Data and other information processed for its own purposes for as long as reasonably necessary for the applicable business, contractual, security, legal, accounting, dispute-resolution, or compliance purpose, subject to applicable law.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="security"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Security</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE maintains reasonable technical and organizational safeguards appropriate to the nature of the service, information, deployment model, and reasonably foreseeable risks.</p>
@@ -542,15 +451,11 @@ export default function PrivacyPolicyPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">More information is available in our:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="mycure-personnel-and-support-access"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. MYCURE Personnel and Support Access</h2>
                     <p className="text-muted-foreground leading-relaxed">Access to production Customer Data by MYCURE personnel is restricted to authorized personnel with an appropriate operational need.</p>
@@ -567,15 +472,11 @@ export default function PrivacyPolicyPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>other activities necessary to provide the applicable service.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Support access does not make MYCURE the controller of Patient Data that MYCURE processes on behalf of a Customer.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="security-incidents-and-personal-data-breaches"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Security Incidents and Personal Data Breaches</h2>
                     <p className="text-muted-foreground leading-relaxed">Where MYCURE processes Customer Data on behalf of a Customer and becomes aware of an applicable Security Incident or Personal Data Breach, MYCURE will provide notice and cooperation as required by the applicable Customer agreement and applicable law.</p>
@@ -584,15 +485,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Where MYCURE acts as the controller of affected personal data, MYCURE will address notification obligations applicable to MYCURE in that capacity.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Security and privacy concerns relating to MYCURE may be reported to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="international-processing"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">14. International Processing</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may serve Customers and users in multiple jurisdictions.</p>
@@ -611,15 +508,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not represent that MYCURE CMS is approved, certified, or legally suitable for every jurisdiction merely because it is technically accessible there.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Jurisdiction-specific requirements may be addressed through an Order Form, Data Processing Agreement, Business Associate Agreement, local terms, deployment arrangement, or other written agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="children-and-minor-patients"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">15. Children and Minor Patients</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may process information relating to children or minor patients where used by healthcare Customers for authorized healthcare or related purposes.</p>
@@ -631,15 +524,11 @@ export default function PrivacyPolicyPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>applicable healthcare and recordkeeping requirements.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may apply reasonable identity, authorization, access, or security requirements to patient-facing functionality where appropriate.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="privacy-rights"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">16. Privacy Rights</h2>
                     <p className="text-muted-foreground leading-relaxed">Privacy rights vary by jurisdiction and depend on MYCURE's role in processing the applicable information.</p>
@@ -662,15 +551,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">For information for which MYCURE determines the purposes and means of processing, requests may be submitted to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may request reasonable information necessary to verify identity, authority, or the scope of a request.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="philippines"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. Philippines</h2>
                     <p className="text-muted-foreground leading-relaxed">For processing subject to the <strong>Philippine Data Privacy Act of 2012, its Implementing Rules and Regulations, and applicable issuances of the National Privacy Commission</strong>, the legal roles and responsibilities of MYCURE and its Customers are determined according to the applicable processing activity and agreement.</p>
@@ -680,15 +565,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Questions or privacy requests concerning processing for which MYCURE acts as PIC may be directed to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Requests concerning Patient Data controlled by a Customer should ordinarily be directed to the applicable clinic, healthcare organization, or other Customer.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="marketing-and-service-communications"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">18. Marketing and Service Communications</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may send communications necessary or appropriate for:</p>
@@ -706,15 +587,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Recipients may opt out of marketing communications through the mechanism provided in the communication or by contacting MYCURE.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Opting out of marketing communications does not prevent MYCURE from sending necessary account, security, billing, transactional, contractual, or service-related communications.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Identifiable Patient Data is not used for third-party advertising.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="cookies-and-website-technologies"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. Cookies, Website, and In-Application Technologies</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE websites may use cookies, local storage, and similar technologies for purposes such as:</p>
@@ -730,29 +607,21 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE also uses in-application analytics and error-monitoring technologies within MYCURE CMS to understand product usage, maintain and improve reliability, diagnose problems, and develop the service.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">For these purposes, MYCURE processes Authorized User account and usage information—such as user identifiers, name, email address, organization identifiers, activity events, and technical and diagnostic information—as information for which MYCURE determines the purposes and means of processing. This may involve a third-party product-analytics and error-monitoring provider that processes such information on MYCURE's behalf, including in the United States.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">These in-application analytics and error-monitoring technologies are not intended to collect identifiable Patient Data, and MYCURE is implementing measures to exclude Patient Data and other sensitive Customer Data from diagnostic and error reports.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="third-party-websites-and-services"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">20. Third-Party Websites and Services</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE websites or services may contain links to, or integrations with, services operated by third parties.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">This Privacy Notice does not govern independent third-party services that are not operated by MYCURE.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Third parties may maintain their own terms, privacy notices, security practices, and processing arrangements.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="changes-to-this-privacy-notice"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">21. Changes to This Privacy Notice</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may update this Privacy Notice from time to time to reflect changes in:</p>
@@ -769,15 +638,11 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">The effective date shown above indicates when the current version took effect.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where applicable law or an applicable agreement requires additional notice or another mechanism for a material change, MYCURE will follow that requirement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">An update to this Privacy Notice does not by itself override a more specific obligation contained in an applicable written Customer agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="relationship-to-customer-agreements"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">22. Relationship to Customer Agreements</h2>
                     <p className="text-muted-foreground leading-relaxed">This Privacy Notice describes MYCURE's general privacy practices.</p>
@@ -789,47 +654,36 @@ export default function PrivacyPolicyPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>create a representation that MYCURE CMS complies with every law or regulatory framework in every jurisdiction.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Contractual rights, obligations, liability provisions, data-processing instructions, retention requirements, processing locations, and other Customer-specific requirements remain governed by the applicable written agreement and Terms of Service.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="contact"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">23. Contact</h2>
                     <p className="text-muted-foreground leading-relaxed">For privacy, data-protection, or security matters concerning MYCURE:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Team OPS Inc. dba MYCURE</strong><br />201 Malayan Plaza<br />ADB Avenue corner Opal Road<br />Ortigas Business Center<br />Pasig City, Philippines 1600</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Privacy &amp; Security Contact:</strong><br /><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">If your inquiry concerns a medical record or Patient Data controlled by a Customer, you should ordinarily contact the applicable clinic, healthcare organization, or other Customer directly.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="related-resources"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Related Resources</h2>
                     <p className="text-muted-foreground leading-relaxed"><strong>Privacy Notice</strong><br /><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Terms of Service</strong><br /><a href="/terms-and-conditions" className="text-primary hover:underline">https://mycure.md/terms-and-conditions</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
-                  </motion.section>
+                  </section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <motion.div
+                <div
                   className="sticky top-24"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="border rounded-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
@@ -849,7 +703,7 @@ export default function PrivacyPolicyPage() {
                       ))}
                     </nav>
                   </div>
-                </motion.div>
+                </div>
               </aside>
             </div>
           </div>

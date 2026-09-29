@@ -5,7 +5,6 @@ module.exports = {
     "./app/**/*.{ts,tsx,mdx}",
     "./components/**/*.{ts,tsx}",
     "./lib/**/*.ts",
-    "./styles/**/*.ts",
   ],
   theme: {
     container: {
@@ -88,14 +87,6 @@ module.exports = {
             transform: "translateZ(0) rotate(360deg)",
           },
         },
-        "rainbow": {
-          "0%": {
-            backgroundPosition: "0%",
-          },
-          "100%": {
-            backgroundPosition: "200%",
-          },
-        },
         "shiny-text": {
           "0%, 90%, 100%": {
             backgroundPosition: "calc(-100% - var(--shiny-width)) 0",
@@ -113,21 +104,15 @@ module.exports = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-100% - var(--gap)))" },
         },
-        "marquee-vertical": {
-          from: { transform: "translateY(0)" },
-          to: { transform: "translateY(calc(-100% - var(--gap)))" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "shimmer-slide": "shimmer-slide 1s ease-in-out infinite alternate",
         "spin-around": "spin-around 2s linear infinite",
-        "rainbow": "rainbow 2s linear infinite",
         "shiny-text": "shiny-text 8s infinite",
         "gradient": "gradient 8s linear infinite",
         "marquee": "marquee var(--duration) linear infinite",
-        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },

@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { ArrowUpRight, MapPin, Search } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -86,18 +86,18 @@ export function DepartmentRoles({
   return (
     <section id="roles" className="w-full py-16 sm:py-20 md:py-24">
       <div className="container px-4 sm:px-6 md:px-8">
-        <motion.div
+        <m.div
           className="max-w-3xl mx-auto text-center mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight mb-4">
             {heading}
           </h2>
           {intro && <p className="text-lg text-muted-foreground">{intro}</p>}
-        </motion.div>
+        </m.div>
 
         {applyNote && (
           <p className="mx-auto mb-8 max-w-3xl text-center text-sm text-muted-foreground/80">

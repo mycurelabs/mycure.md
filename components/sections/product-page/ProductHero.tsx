@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import { PrimaryButton } from "@/components/custom/primary-button"
@@ -18,10 +17,7 @@ export function ProductHero({ config }: ProductHeroProps) {
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Hero Image - Shows first on mobile, left side on desktop */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="relative order-1 lg:order-1"
           >
             <Image
@@ -32,13 +28,10 @@ export function ProductHero({ config }: ProductHeroProps) {
               className="rounded-2xl w-full aspect-[6/5] object-cover mx-auto max-w-sm md:max-w-none"
               priority
             />
-          </motion.div>
+          </div>
 
           {/* Content - Shows second on mobile, right side on desktop */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div
             className="space-y-6 order-2 lg:order-2 text-center lg:text-left"
           >
             <div className="space-y-4">
@@ -62,7 +55,7 @@ export function ProductHero({ config }: ProductHeroProps) {
                 </PrimaryButton>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

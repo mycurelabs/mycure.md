@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { scrollBehavior } from "@/lib/scroll-behavior"
+import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { ArrowLeft, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentHeader } from "@/components/sections/shared"
 
 export default function TermsAndConditionsPage() {
   const [mobileTocOpen, setMobileTocOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
   const sections = [
     { id: "who-these-terms-apply-to", title: "1. Who These Terms Apply To" },
@@ -64,47 +64,7 @@ export default function TermsAndConditionsPage() {
     { id: "related-resources", title: "Related Resources" }
   ]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection(sections[sections.length - 1].id)
-      } else {
-        let currentSection = ""
-        let maxVisibility = 0
-
-        for (const section of sections) {
-          const element = document.getElementById(section.id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            const elementTop = rect.top
-            const elementBottom = rect.bottom
-            const viewportHeight = window.innerHeight
-
-            const visibleTop = Math.max(0, elementTop)
-            const visibleBottom = Math.min(viewportHeight, elementBottom)
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-
-            if (visibleHeight > maxVisibility || (elementTop <= 100 && elementBottom > 100)) {
-              maxVisibility = visibleHeight
-              currentSection = section.id
-            }
-          }
-        }
-
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const activeSection = useScrollSpy(sections.map((s) => s.id))
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -114,7 +74,7 @@ export default function TermsAndConditionsPage() {
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       })
       setMobileTocOpen(false)
     }
@@ -128,11 +88,8 @@ export default function TermsAndConditionsPage() {
         {/* Hero Section */}
         <section className="w-full border-b bg-muted/30">
           <div className="container px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
-            <motion.div
+            <div
               className="max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                 <ArrowLeft className="size-4" />
@@ -150,7 +107,7 @@ export default function TermsAndConditionsPage() {
               <p className="text-sm sm:text-base text-muted-foreground mt-1">
                 Team OPS Inc. dba MYCURE (&ldquo;MYCURE,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -163,26 +120,18 @@ export default function TermsAndConditionsPage() {
                 <div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight">
 
                   {/* Preamble */}
-                  <motion.div
+                  <div
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <p className="text-muted-foreground leading-relaxed">The Services are provided by <strong>Team OPS Inc. dba MYCURE (“MYCURE,” “we,” “us,” or “our”)</strong>.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Please read these Terms carefully.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">By accessing or using the Services, creating an account, signing or accepting an applicable Order Form, or otherwise agreeing to use the Services, you agree to these Terms.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">If you use the Services on behalf of a clinic, healthcare organization, company, or other legal entity, you represent that you have authority to bind that organization to these Terms.</p>
-                  </motion.div>
+                  </div>
 
-                  <motion.section
+                  <section
                     id="who-these-terms-apply-to"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">1. Who These Terms Apply To</h2>
                     <p className="text-muted-foreground leading-relaxed">These Terms may apply to:</p>
@@ -193,15 +142,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span><strong>Other Users</strong> — integration partners or other persons authorized to access applicable Services.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">The Customer is responsible for determining who may access its Services and for managing its Authorized Users.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="relationship-to-other-agreements"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">2. Relationship to Other Agreements</h2>
                     <p className="text-muted-foreground leading-relaxed">These Terms establish MYCURE's general terms for the Services.</p>
@@ -222,15 +167,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Specific commercial terms stated in an applicable Order Form, subscription agreement, proposal, or other accepted written agreement control over general commercial provisions in these Terms to the extent of an inconsistency.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Specific data-processing, privacy, confidentiality, security, retention, return, deletion, incident-notification, audit, or similar obligations stated in an applicable Data Processing Agreement, Data Processing and Security Agreement, Business Associate Agreement, or Security Agreement control for the subject matter addressed by that agreement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">These Terms may be supplemented by applicable MYCURE policies and notices made available through the Services or official MYCURE website as provided in these Terms and the applicable Customer agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="mycure-cms-and-the-services"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">3. MYCURE CMS and the Services</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE provides clinic-management software and related services.</p>
@@ -267,15 +208,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>applicable written agreement.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may develop, improve, modify, replace, or discontinue functionality over time, subject to these Terms and any applicable written agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="hosting-and-deployment-models"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">4. Hosting and Deployment Models</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may be provided through different deployment models.</p>
@@ -308,15 +245,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may provide deployment support, application support, troubleshooting, maintenance assistance, or technical guidance relating to MYCURE CMS.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless separately agreed in writing, such assistance does not make MYCURE the administrator or operator of the Customer-controlled environment and does not transfer responsibility for that infrastructure to MYCURE.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Additional infrastructure, migration, implementation, remediation, or technical services outside the applicable Service scope may be subject to a separate Statement of Work or professional-service fees.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="healthcare-use-and-clinical-responsibility"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">5. Healthcare Use and Clinical Responsibility</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE is a software and technology provider.</p>
@@ -343,15 +276,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>compliance with applicable professional standards.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not guarantee any particular clinical, treatment, diagnostic, reimbursement, regulatory, operational, or business outcome.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="no-emergency-use"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">6. No Emergency Use</h2>
                     <p className="text-muted-foreground leading-relaxed">The Services are not an emergency medical service.</p>
@@ -364,15 +293,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>performing functions where temporary system unavailability could itself create an unacceptable risk of harm.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers are responsible for maintaining appropriate emergency procedures, escalation protocols, downtime procedures, backup workflows, and alternative communication methods.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="regulatory-scope-and-jurisdiction-specific-use"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">7. Regulatory Scope and Jurisdiction-Specific Use</h2>
                     <p className="text-muted-foreground leading-relaxed">Healthcare, privacy, data-protection, consumer-protection, professional, medical-record, telehealth, security, and other requirements vary by jurisdiction and use case.</p>
@@ -395,15 +320,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>regulatory requirements.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a particular regulatory framework requires additional contractual, technical, deployment, or operational arrangements, those arrangements may need to be separately agreed before MYCURE CMS is used for that regulated purpose.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="eligibility-and-authority"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">8. Eligibility and Authority</h2>
                     <p className="text-muted-foreground leading-relaxed">To use the Services, you must:</p>
@@ -415,15 +336,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>comply with applicable age, capacity, parental, guardian, or representative requirements.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may refuse, restrict, suspend, or terminate access where MYCURE reasonably believes that a person lacks appropriate authorization or is using the Services unlawfully or contrary to these Terms.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="customer-accounts-and-authorized-users"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">9. Customer Accounts and Authorized Users</h2>
                     <p className="text-muted-foreground leading-relaxed">Customers are responsible for administering their Authorized Users.</p>
@@ -441,15 +358,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>require Authorized Users to comply with these Terms and applicable Customer policies.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customer is responsible for activity performed through Customer-controlled accounts and credentials to the extent such activity results from matters within Customer's control, except to the extent caused or materially contributed to by MYCURE's breach of its own applicable obligations.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="multi-factor-authentication-and-account-security"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">10. Multi-Factor Authentication and Account Security</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may support and require multi-factor authentication (“<strong>MFA</strong>”) or other reasonable authentication controls.</p>
@@ -464,15 +377,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>permit unauthorized third parties to use their accounts.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may reset credentials, invalidate sessions, restrict accounts, require additional verification, or suspend access where reasonably necessary to address suspected credential compromise or another material security risk.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="patient-facing-features"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">11. Patient-Facing Features</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may include patient-facing functionality such as:</p>
@@ -498,15 +407,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>how patient communications are handled.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE provides technical functionality but does not assume responsibility for the Customer's healthcare relationship with its patients.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="minor-patients-and-representative-access"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">12. Minor Patients and Representative Access</h2>
                     <p className="text-muted-foreground leading-relaxed">Where MYCURE CMS processes information relating to minors, Customers remain responsible for determining applicable legal, clinical, and organizational requirements.</p>
@@ -519,15 +424,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless expressly agreed otherwise in writing, MYCURE is not responsible for independently determining family relationships, guardianship, custody, legal authority, or entitlement to access a patient's information.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may require additional verification or restrict access where reasonably necessary for privacy, security, legal, or safety reasons.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="customer-data"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">13. Customer Data</h2>
                     <p className="text-muted-foreground leading-relaxed">“<strong>Customer Data</strong>” means data, content, records, files, images, documents, messages, and other information submitted to, stored in, transmitted through, generated through, or otherwise processed through MYCURE CMS for or on behalf of a Customer, including patient and clinical data.</p>
@@ -548,15 +449,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not acquire ownership of Customer Data merely because it is processed through the Services.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE does not sell identifiable patient Customer Data.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="data-protection-roles"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">14. Data Protection Roles</h2>
                     <p className="text-muted-foreground leading-relaxed">The parties' data-protection roles depend on the applicable information, processing purpose, jurisdiction, and agreement.</p>
@@ -573,15 +470,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>permitted business communications.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">More specific responsibilities may be established in an applicable Data Processing Agreement, Data Processing and Security Agreement, Business Associate Agreement, or other written agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="privacy-and-security-resources"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">15. Privacy and Security Resources</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE's general privacy and security practices are described in the following resources:</p>
@@ -591,30 +484,22 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">These resources supplement these Terms as applicable.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">A Privacy Notice or Security Overview does not by itself expand MYCURE's contractual obligations concerning Customer Data beyond these Terms and any applicable written Customer agreement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where an applicable Data Processing Agreement, Data Processing and Security Agreement, Security Agreement, Business Associate Agreement, or similar written agreement establishes more specific requirements, the more specific written agreement controls for its subject matter.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="hipaa-and-united-states-regulated-use"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">16. HIPAA and United States Regulated Use</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE does not represent that MYCURE CMS is automatically suitable for use subject to the United States Health Insurance Portability and Accountability Act (“HIPAA”) by every Customer or deployment.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">If a Customer intends to use MYCURE CMS in circumstances that require MYCURE to act as a Business Associate under HIPAA, the applicable parties must enter into an appropriate Business Associate Agreement before MYCURE performs processing that requires such an agreement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless and until the required Business Associate Agreement and any necessary technical, commercial, or deployment arrangements are in place, MYCURE CMS is not represented to that Customer as configured or contracted for HIPAA-regulated use requiring MYCURE to act as a Business Associate.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may condition or decline a particular regulated deployment based on technical, security, commercial, operational, or legal considerations.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="ai-assisted-features"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">17. AI-Assisted Features</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may introduce artificial intelligence, machine-learning, automation, or assistive functionality from time to time.</p>
@@ -643,15 +528,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">AI-assisted functionality does not replace professional medical, legal, accounting, regulatory, billing, or other qualified judgment.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where an external AI or large-language-model provider will process Customer Data on MYCURE's behalf, MYCURE will address applicable contractual, Subprocessor, authorization, privacy, and security requirements before or in connection with that processing.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless otherwise expressly authorized through an applicable Customer agreement or documented instruction, MYCURE does not authorize identifiable production Customer Data to be used to train general-purpose third-party AI or large-language models.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="aggregated-statistical-and-de-identified-information"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">18. Aggregated, Statistical, and De-Identified Information</h2>
                     <p className="text-muted-foreground leading-relaxed">Where permitted by applicable law and the applicable Customer agreement or instructions, MYCURE may create and use aggregated, statistical, anonymized, or de-identified information for legitimate purposes such as:</p>
@@ -667,15 +548,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Information represented as anonymized or de-identified must satisfy applicable requirements for that status.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE will not treat identifiable Patient Data as anonymized merely because obvious direct identifiers have been removed where the information remains reasonably capable of identifying an individual.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="mycure-personnel-and-support-access"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">19. MYCURE Personnel and Support Access</h2>
                     <p className="text-muted-foreground leading-relaxed">Access to production Customer Data by MYCURE personnel is restricted to authorized personnel with an appropriate operational need.</p>
@@ -693,15 +570,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Authorized personnel are subject to applicable confidentiality and access-control requirements.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers should avoid submitting unnecessary Patient Data or other sensitive information through support channels.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="security"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">20. Security</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE maintains reasonable technical and organizational security measures appropriate to the systems, Services, and Customer Data under MYCURE's control.</p>
@@ -730,15 +603,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Customers remain responsible for security matters within their control.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Additional information is available in the Security Overview.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="security-incidents"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">21. Security Incidents</h2>
                     <p className="text-muted-foreground leading-relaxed">Where MYCURE becomes aware of a Security Incident affecting Customer Data, MYCURE will provide notice and cooperation in accordance with applicable law and the applicable Customer agreement.</p>
@@ -756,15 +625,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">As between MYCURE and the Customer, the Customer generally remains responsible for determining and carrying out applicable notifications to its patients, data subjects, regulators, or other parties where the Customer is the responsible controller or equivalent party, subject to any independent obligation imposed directly upon MYCURE.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Security and privacy concerns relating to MYCURE should be reported to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="customer-responsibilities"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">22. Customer Responsibilities</h2>
                     <p className="text-muted-foreground leading-relaxed">Customer is responsible for its organization, healthcare operations, personnel, workflows, and use of the Services.</p>
@@ -792,15 +657,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>complying with applicable documentation and written agreements.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE is not responsible, as between MYCURE and Customer, for harm to the extent caused by Customer's failure to perform responsibilities within Customer's control, except to the extent MYCURE independently caused or materially contributed to that harm.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="acceptable-use"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">23. Acceptable Use</h2>
                     <p className="text-muted-foreground leading-relaxed">You must not use the Services to:</p>
@@ -821,15 +682,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>use the Services in a manner reasonably likely to cause material harm to MYCURE, Customers, patients, users, or third parties.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may restrict or suspend access where MYCURE reasonably believes that these requirements have been materially violated or continued use presents a material legal, security, operational, or safety risk.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="third-party-services-integrations-and-subprocessors"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">24. Third-Party Services, Integrations, and Subprocessors</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE CMS may interact with third-party systems.</p>
@@ -864,15 +721,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Current material Subprocessors are identified at:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Not every vendor, software product, library, framework, or business service used by MYCURE is a Subprocessor of Customer Data.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="fees-billing-taxes-and-renewals"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">25. Fees, Billing, Taxes, and Renewals</h2>
                     <p className="text-muted-foreground leading-relaxed">Fees, subscription terms, licensing terms, modules, billing schedules, implementation charges, renewal arrangements, usage limits, and other commercial matters are governed by the applicable:</p>
@@ -901,15 +754,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>applicable taxes or government charges change; or</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>the parties otherwise agree.</span></li>
                     </ul>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="suspension-and-protective-measures"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">26. Suspension and Protective Measures</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may suspend or restrict an account, user, session, integration, feature, or Service where MYCURE reasonably determines that such action is necessary because:</p>
@@ -928,15 +777,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Where reasonably practicable and consistent with the reason for suspension, MYCURE will provide notice.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may act without prior notice where reasonably necessary to address an urgent security, legal, safety, fraud, or service-protection concern.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Suspension does not relieve Customer of payment obligations already incurred.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="termination"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">27. Termination</h2>
                     <p className="text-muted-foreground leading-relaxed">Customer may terminate or discontinue Services according to the applicable subscription, Order Form, plan, or written agreement.</p>
@@ -958,15 +803,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>archival services; or</span></li>
                       <li className="flex gap-2"><span className="text-primary">•</span><span>another agreed purpose.</span></li>
                     </ul>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="data-export-return-and-post-termination-processing"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">28. Data Export, Return, and Post-Termination Processing</h2>
                     <p className="text-muted-foreground leading-relaxed">Unless a different period is established by an applicable written agreement, following expiration or termination of the active paid Service, Customer will have a period of up to <strong>sixty (60) days</strong> to request or perform an available export of Customer Data.</p>
@@ -988,15 +829,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Deletion from active systems may not result in immediate deletion of residual backup copies.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE is not responsible for Customer's failure to request or complete an available export within the applicable period, except to the extent otherwise required by applicable law or written agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="service-changes-and-availability"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">29. Service Changes and Availability</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may maintain, update, improve, modify, replace, add, reconfigure, or discontinue technologies, features, components, or internal implementations used to provide the Services.</p>
@@ -1024,15 +861,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where an applicable written agreement requires notice, migration assistance, Customer authorization, or another mechanism for a material change, MYCURE will comply with that agreement.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless expressly stated in a separately executed Service Level Agreement, MYCURE does not guarantee uninterrupted availability, a particular uptime percentage, recovery-point objective, recovery-time objective, or restoration time.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="intellectual-property"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">30. Intellectual Property</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE and its licensors retain all rights, title, and interest in MYCURE CMS and related:</p>
@@ -1067,28 +900,20 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>make MYCURE software available to third parties outside Customer's authorized use.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Third-party and open-source components may be subject to their applicable licenses.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="feedback"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">31. Feedback</h2>
                     <p className="text-muted-foreground leading-relaxed">If Customer or a user voluntarily provides MYCURE with suggestions, ideas, recommendations, or other feedback concerning the Services, MYCURE may use that feedback to develop or improve its products and services without payment or other obligation to the person providing the feedback.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE will not acquire ownership of Customer Data or Customer confidential information merely because it appears in feedback.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="customer-content-and-inputs"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">32. Customer Content and Inputs</h2>
                     <p className="text-muted-foreground leading-relaxed">Customer is responsible for Customer Data and other information submitted through its accounts.</p>
@@ -1104,15 +929,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>regulatory sufficiency</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">of Customer-provided content or instructions, except for obligations independently applicable to MYCURE.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="confidentiality"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">33. Confidentiality</h2>
                     <p className="text-muted-foreground leading-relaxed">Each party may receive confidential or proprietary information belonging to the other.</p>
@@ -1137,15 +958,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>must be disclosed by applicable law or lawful process.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where legally permitted and reasonably practicable, a party required to disclose the other party's confidential information may provide notice before disclosure.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="beta-preview-pilot-and-trial-features"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">34. Beta, Preview, Pilot, and Trial Features</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may offer:</p>
@@ -1169,15 +986,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>is provided “as is” and “as available” to the maximum extent permitted by law.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">MYCURE may impose additional conditions on use of beta or experimental functionality.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="disclaimers"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">35. Disclaimers</h2>
                     <p className="text-muted-foreground leading-relaxed">To the maximum extent permitted by applicable law and except as expressly provided in an applicable written agreement, the Services are provided <strong>“as is” and “as available.”</strong></p>
@@ -1205,15 +1018,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>use of the Services will produce a particular clinical, regulatory, financial, operational, or business result.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Nothing in these Terms excludes warranties or rights that cannot lawfully be excluded.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="limitation-of-liability"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">36. Limitation of Liability</h2>
                     <p className="text-muted-foreground leading-relaxed">To the maximum extent permitted by applicable law, MYCURE shall not be liable for indirect, incidental, special, exemplary, punitive, or consequential damages, or for loss of:</p>
@@ -1230,15 +1039,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Where an applicable separately executed written agreement establishes a different liability limitation, the applicable written agreement controls according to its terms.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">The foregoing limitations apply to the maximum extent permitted by applicable law even if a remedy fails of its essential purpose.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Nothing in these Terms limits liability to the extent applicable law prohibits such limitation or exclusion.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="customer-caused-claims-and-indemnification"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">37. Customer-Caused Claims and Indemnification</h2>
                     <p className="text-muted-foreground leading-relaxed">To the maximum extent permitted by applicable law and subject to any more specific applicable written agreement, Customer shall defend, indemnify, and hold harmless MYCURE and its affiliates, officers, directors, personnel, contractors, and agents from third-party claims, losses, liabilities, penalties, damages, costs, and reasonable legal fees to the extent arising from:</p>
@@ -1258,15 +1063,11 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">This Section does not apply to the extent the applicable claim was caused or materially contributed to by MYCURE's breach of these Terms, an applicable written agreement, or applicable law.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Nothing in this Section creates liability beyond what is permitted by applicable law or replaces a more specific indemnification provision contained in an applicable written agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="intellectual-property-claims"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">38. Intellectual Property Claims</h2>
                     <p className="text-muted-foreground leading-relaxed">If MYCURE reasonably determines that the Services have become, or are likely to become, subject to a third-party intellectual-property infringement claim, MYCURE may, at its option:</p>
@@ -1286,15 +1087,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>continued use after MYCURE provides reasonable notice to discontinue the affected use.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Subject to any applicable written agreement or non-waivable legal requirement, this Section states MYCURE's obligations concerning third-party intellectual-property infringement claims relating to the Services.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="government-and-legal-requests"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">39. Government and Legal Requests</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may preserve, process, or disclose information where required by:</p>
@@ -1306,15 +1103,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>another legally binding requirement.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where legally permitted and reasonably practicable, MYCURE may notify the affected Customer of a request specifically directed to Customer Data so that the Customer may exercise available legal rights.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="force-majeure"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">40. Force Majeure</h2>
                     <p className="text-muted-foreground leading-relaxed">Neither party is liable for delay or failure to perform an obligation, other than an obligation to pay amounts already due, to the extent caused by events beyond that party's reasonable control.</p>
@@ -1335,15 +1128,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>other comparable events beyond reasonable control.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">The affected party remains responsible for taking reasonable measures appropriate to the circumstances to resume performance.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="assignment"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">41. Assignment</h2>
                     <p className="text-muted-foreground leading-relaxed">Customer may not assign these Terms or transfer its rights or obligations under them without MYCURE's prior written consent, except where an applicable written agreement expressly permits assignment.</p>
@@ -1357,15 +1146,11 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>operation of law.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Any assignment remains subject to rights that cannot lawfully be transferred or restricted.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="changes-to-these-terms"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">42. Changes to These Terms</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may update these Terms prospectively from time to time to reflect:</p>
@@ -1397,29 +1182,21 @@ export default function TermsAndConditionsPage() {
                       <li className="flex gap-2"><span className="text-primary">•</span><span>alter a provision where applicable law requires a different amendment or acceptance mechanism.</span></li>
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">Where a separately executed agreement requires mutual written amendment for a particular matter, that requirement controls.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="governing-law-and-dispute-resolution"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">43. Governing Law and Dispute Resolution</h2>
                     <p className="text-muted-foreground leading-relaxed">Unless otherwise stated in an applicable separately executed written agreement, these Terms are governed by the laws of the <strong>Republic of the Philippines</strong>, without regard to conflict-of-law principles.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Unless otherwise stated in a separately executed written agreement, disputes arising out of or relating to these Terms or the Services shall be brought in the proper courts of <strong>Quezon City, Philippines</strong>.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Nothing in these Terms restricts rights, jurisdiction, remedies, or protections that cannot lawfully be waived or contractually restricted.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="notices"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">44. Notices</h2>
                     <p className="text-muted-foreground leading-relaxed">MYCURE may provide operational, contractual, security, or other notices through:</p>
@@ -1433,15 +1210,11 @@ export default function TermsAndConditionsPage() {
                     <p className="text-muted-foreground leading-relaxed mt-4">Where an applicable written agreement specifies a notice method or address, that agreement controls for notices subject to that provision.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">Privacy and security communications to MYCURE may be sent to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></strong></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="entire-agreement"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">45. Entire Agreement</h2>
                     <p className="text-muted-foreground leading-relaxed">These Terms, together with applicable:</p>
@@ -1457,87 +1230,64 @@ export default function TermsAndConditionsPage() {
                     </ul>
                     <p className="text-muted-foreground leading-relaxed mt-4">constitute the applicable agreement concerning the Services to the extent provided in those documents.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">A separately executed written agreement controls over these general Terms for the specific subject matter addressed by that agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="severability"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">46. Severability</h2>
                     <p className="text-muted-foreground leading-relaxed">If a provision of these Terms is held invalid or unenforceable, it shall be modified or limited to the minimum extent necessary to make it enforceable where permitted.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">If modification is not possible, the affected provision shall be severed.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">The remaining provisions continue in effect to the maximum extent permitted by law.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="no-waiver"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">47. No Waiver</h2>
                     <p className="text-muted-foreground leading-relaxed">Failure by either party to enforce a provision on one occasion does not waive the right to enforce that provision later.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">A waiver of a contractual right must be given through a legally valid mechanism by the party granting the waiver.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="contact-information"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">48. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">Questions concerning these Terms may be directed to:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Team OPS Inc. dba MYCURE</strong><br />201 Malayan Plaza<br />ADB Avenue corner Opal Road<br />Ortigas Business Center<br />Pasig City, Philippines 1600</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">For privacy, data-protection, or security matters:</p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Privacy &amp; Security Contact</strong><br /><a href="mailto:privacy@mycure.md" className="text-primary hover:underline">privacy@mycure.md</a></p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="acknowledgment"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">49. Acknowledgment</h2>
                     <p className="text-muted-foreground leading-relaxed">By accessing or using the Services through a mechanism that validly binds you to these Terms, you acknowledge that you have read and understood these Terms and agree to be bound by them.</p>
                     <p className="text-muted-foreground leading-relaxed mt-4">If you do not agree to these Terms, you must not access or use the Services except to the extent necessary to exercise an applicable termination, transition, export, or other right under an existing agreement.</p>
-                  </motion.section>
+                  </section>
 
-                  <motion.section
+                  <section
                     id="related-resources"
                     className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                   >
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Related Resources</h2>
                     <p className="text-muted-foreground leading-relaxed"><strong>Privacy Notice</strong><br /><a href="/privacy-policy" className="text-primary hover:underline">https://mycure.md/privacy-policy</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Terms of Service</strong><br /><a href="/terms-and-conditions" className="text-primary hover:underline">https://mycure.md/terms-and-conditions</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Security Overview</strong><br /><a href="/security-overview" className="text-primary hover:underline">https://mycure.md/security-overview</a></p>
                     <p className="text-muted-foreground leading-relaxed mt-4"><strong>Subprocessor List</strong><br /><a href="/subprocessors" className="text-primary hover:underline">https://mycure.md/subprocessors</a></p>
-                  </motion.section>
+                  </section>
                 </div>
               </div>
 
               {/* Desktop Table of Contents */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <motion.div
+                <div
                   className="sticky top-24"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="border rounded-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                     <h3 className="font-semibold mb-4">Table of Contents</h3>
@@ -1557,7 +1307,7 @@ export default function TermsAndConditionsPage() {
                       ))}
                     </nav>
                   </div>
-                </motion.div>
+                </div>
               </aside>
             </div>
           </div>

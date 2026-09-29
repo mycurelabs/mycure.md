@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { AnimatedBadge } from "@/components/custom/animated-badge"
 import type { FeatureJourneyConfig } from "@/components/types/product-page"
 
@@ -13,11 +13,11 @@ export function FeatureJourney({ config }: FeatureJourneyProps) {
   return (
     <section id="features" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-muted/30">
       <div className="container px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: [0, 0, 0.58, 1] }}
           className="max-w-5xl mx-auto"
         >
           {/* Header Content */}
@@ -39,11 +39,11 @@ export function FeatureJourney({ config }: FeatureJourneyProps) {
           </div>
 
           {/* Feature Journey Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
+          <m.div
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }}
             className="relative"
           >
             <Image
@@ -54,23 +54,23 @@ export function FeatureJourney({ config }: FeatureJourneyProps) {
               className="w-full h-auto rounded-2xl"
               priority
             />
-          </motion.div>
+          </m.div>
 
           {/* Optional Supporting Text */}
           {config.footnote && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.15, ease: [0, 0, 0.58, 1] }}
               className="mt-8 text-center"
             >
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
                 {config.footnote}
               </p>
-            </motion.div>
+            </m.div>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
