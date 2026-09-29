@@ -28,7 +28,7 @@ import type { ApplyStep } from "@/components/sections/culture-page/HowToApply"
 const APPLY_FORM_URL = "https://forms.gle/4N7gb7U6VffJR7J59"
 
 export const contactEmail = "jobs@mycure.md"
-// Real, approved office address (source: site MedicalBusinessSchema).
+// Real, approved office address (source: Organization schema in components/structured-data.tsx).
 export const office =
   "The Malayan Plaza, ADB Avenue cor. Opal Road, Ortigas Center, Pasig, Metro Manila"
 

@@ -10,7 +10,7 @@ export interface ApplyStep {
 
 /**
  * "How to apply" — application steps plus the genuine recruitment contact
- * (jobs@mycure.md) and the real office location from the site's MedicalBusiness
+ * (jobs@mycure.md) and the real office location from the site's Organization
  * schema. No invented contact numbers.
  */
 export function HowToApply({
