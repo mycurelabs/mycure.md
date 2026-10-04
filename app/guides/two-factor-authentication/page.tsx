@@ -10,7 +10,7 @@ import { ACCOUNT_SECURITY_LINKS } from "@/lib/account-security";
 export const metadata: Metadata = {
   title: "Set up two-factor authentication | MYCURE",
   description: "A step-by-step MYCURE security guide with screenshots: install Google Authenticator, save backup codes, scan your setup code, and confirm two-factor authentication.",
-  alternates: { canonical: "https://mycure.md/guides/two-factor-authentication" },
+  alternates: { canonical: "https://www.mycureapp.com/guides/two-factor-authentication" },
 };
 
 const sections = [

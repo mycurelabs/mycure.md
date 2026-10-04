@@ -84,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/guides/two-factor-authentication`,
+      url: "https://www.mycureapp.com/guides/two-factor-authentication",
       lastModified: lastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
