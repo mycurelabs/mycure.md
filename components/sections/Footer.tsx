@@ -109,6 +109,11 @@ export function Footer() {
               <h3 className="font-semibold">Support</h3>
               <ul className="-ml-2 text-sm">
                 <li>
+                  <Link href="/guides/two-factor-authentication" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                    Two-factor setup guide
+                  </Link>
+                </li>
+                <li>
                   <Link href="https://help.mycure.md/" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
                     Help Center
                   </Link>
@@ -193,6 +198,11 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold">Support</h3>
             <ul className="-ml-2 text-sm">
+              <li>
+                <Link href="/guides/two-factor-authentication" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
+                  Two-factor setup guide
+                </Link>
+              </li>
               <li>
                 <Link href="https://portal.mycureapp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center min-h-[44px] px-2 text-muted-foreground hover:text-foreground transition-colors">
                   Customer Portal
