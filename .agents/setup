@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Prepares a fresh Amp orb: installs dependencies and creates a local env file.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+step() { echo "==> $1"; SECONDS=0; }
+done_step() { echo "    done in ${SECONDS}s"; }
+
+step "pnpm@10 install --frozen-lockfile"
+# pnpm 11+ ignores the "pnpm.overrides" field in package.json, which the lockfile depends on.
+npx --yes pnpm@10 install --frozen-lockfile --prefer-offline
+done_step
+
+step "env file"
+[ -f .env.local ] || cp -- .env.example .env.local
+done_step

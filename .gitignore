@@ -38,3 +38,5 @@ next-env.d.ts
 
 # Claude Code local settings
 .claude/settings.local.json
+# Amp orb portal manifests
+.amp/portals/*
