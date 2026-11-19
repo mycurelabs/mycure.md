@@ -1,3 +1,4 @@
+import { platformStatisticsItems } from "@/lib/constants/platform-stats"
 import {
   Users,
   Shield,
@@ -131,11 +132,7 @@ export const featuresGridConfig = {
 export const statisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description: "MYCURE helps healthcare facilities and teams deliver better care through modern clinic management technology.",
-  items: [
-    { value: 13239859, label: "Medical Records", delay: 0.3 },
-    { value: 2946953, label: "Patients Served", delay: 0.4 },
-    { value: 6242974, label: "Transactions Completed", delay: 0.5 },
-  ],
+  items: platformStatisticsItems,
 }
 
 // Why Choose MYCURE Config (Image + Content Features)
