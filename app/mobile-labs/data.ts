@@ -1,3 +1,4 @@
+import { platformStatisticsItems } from "@/lib/constants/platform-stats"
 import {
   Clock,
   Zap,
@@ -129,11 +130,7 @@ export const statisticsConfig: StatisticsConfig = {
   headline: "Trusted by Healthcare Facilities Across the Philippines",
   description:
     "MYCURE is dedicated to helping mobile labs improve diagnostics through innovative clinic management technology.",
-  items: [
-    { value: 13239859, label: "Medical Records", delay: 0.3 },
-    { value: 2946953, label: "Patients Served", delay: 0.4 },
-    { value: 6242974, label: "Transactions Completed", delay: 0.5 },
-  ],
+  items: platformStatisticsItems,
 }
 
 export const specialtiesGridConfig: SpecialtiesGridConfig = {

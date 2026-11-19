@@ -38,7 +38,7 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
           transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }}
           className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10"
         >
-          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+          <div className={config.items.length === 4 ? "grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12" : "grid md:grid-cols-3 gap-8 md:gap-12"}>
             {config.items.map((stat, index) => (
               <m.div
                 key={index}
@@ -48,8 +48,9 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
                 transition={{ duration: 0.3, delay: index * 0.06, ease: [0, 0, 0.58, 1] }}
                 className="text-center space-y-2"
               >
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
-                  <NumberTicker value={stat.value} delay={stat.delay ?? 0.3 + index * 0.1} className="font-bold text-primary" />
+                <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-primary">
+                  <NumberTicker value={stat.value} decimalPlaces={stat.decimalPlaces} delay={stat.delay ?? 0.3 + index * 0.1} className="font-bold text-primary" />
+                  {stat.suffix}
                 </div>
                 <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                   {stat.label}
