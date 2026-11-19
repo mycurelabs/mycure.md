@@ -81,6 +81,7 @@ export interface StatisticItem {
   value: number
   label: string
   suffix?: string
+  decimalPlaces?: number
   delay?: number
 }
 

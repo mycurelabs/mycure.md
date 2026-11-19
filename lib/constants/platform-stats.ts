@@ -28,10 +28,18 @@ const medicalRecords = LEGACY_SOURCE_COUNTS.medical_records + PRODUCTION_COUNTS.
 const medicalPatients = LEGACY_SOURCE_COUNTS.medical_patients + PRODUCTION_COUNTS.medical_patients // 5,294,058
 const medicalEncounters = LEGACY_SOURCE_COUNTS.medical_encounters + PRODUCTION_COUNTS.medical_encounters // 4,767,307
 
+// Shown in millions with one decimal, such as 37.3M.
+const inMillions = (count: number, label: string, delay: number): StatisticItem => ({
+  value: Math.round(count / 100_000) / 10,
+  decimalPlaces: 1,
+  suffix: "M",
+  label,
+  delay,
+})
+
 export const platformStatisticsItems: StatisticItem[] = [
-  { value: medicalRecords, label: "Medical Records", delay: 0.3 },
-  { value: medicalPatients, label: "Patients Served", delay: 0.4 },
-  { value: medicalEncounters, label: "Patient Encounters", delay: 0.5 },
-  // 47,371,315
-  { value: medicalRecords + medicalPatients + medicalEncounters, label: "Total Records", delay: 0.6 },
+  inMillions(medicalRecords, "Medical Records", 0.3), // 37.3M
+  inMillions(medicalPatients, "Patients Served", 0.4), // 5.3M
+  inMillions(medicalEncounters, "Patient Encounters", 0.5), // 4.8M
+  inMillions(medicalRecords + medicalPatients + medicalEncounters, "Total Records", 0.6), // 47,371,315 → 47.4M
 ]

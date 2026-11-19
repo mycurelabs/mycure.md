@@ -49,7 +49,8 @@ export function StatisticsBar({ config }: StatisticsBarProps) {
                 className="text-center space-y-2"
               >
                 <div className="text-3xl md:text-4xl xl:text-5xl font-bold text-primary">
-                  <NumberTicker value={stat.value} delay={stat.delay ?? 0.3 + index * 0.1} className="font-bold text-primary" />
+                  <NumberTicker value={stat.value} decimalPlaces={stat.decimalPlaces} delay={stat.delay ?? 0.3 + index * 0.1} className="font-bold text-primary" />
+                  {stat.suffix}
                 </div>
                 <div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">
                   {stat.label}

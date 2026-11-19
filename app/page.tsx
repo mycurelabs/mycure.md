@@ -222,7 +222,7 @@ export default function LandingPage() {
             </m.div>
             <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.075, ease: [0, 0, 0.58, 1] }} className="bg-background/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10">
               <div className={statisticsConfig.items.length === 4 ? "grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12" : "grid md:grid-cols-3 gap-8 md:gap-12"}>
-                {statisticsConfig.items.map((stat, i) => (<m.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.06, ease: [0, 0, 0.58, 1] }} className="text-center space-y-2"><div className="text-3xl md:text-4xl xl:text-5xl font-bold text-primary"><NumberTicker value={stat.value} delay={stat.delay} className="font-bold text-primary" /></div><div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">{stat.label}</div></m.div>))}
+                {statisticsConfig.items.map((stat, i) => (<m.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.06, ease: [0, 0, 0.58, 1] }} className="text-center space-y-2"><div className="text-3xl md:text-4xl xl:text-5xl font-bold text-primary"><NumberTicker value={stat.value} decimalPlaces={stat.decimalPlaces} delay={stat.delay} className="font-bold text-primary" />{stat.suffix}</div><div className="text-sm md:text-base font-semibold text-muted-foreground tracking-wider uppercase">{stat.label}</div></m.div>))}
               </div>
             </m.div>
           </div>
